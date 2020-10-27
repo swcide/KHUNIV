@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>11111Sample</h1>
+	<h1>11111Sample수정수정</h1>
+	<h1>11111Sample수정수정</h1>
 </body>
 </html>
