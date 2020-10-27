@@ -3,24 +3,27 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="memberMapper">
 	<resultMap type="Member" id="memberResultSet">
-		<id property="id" column="ID"/>
-		<result property="pwd" column="PWD"/>
-		<result property="name" column="NAME"/>
-		<result property="email" column="EMAIL"/>
-		<result property="gender" column="GENDER"/>
-		<result property="age" column="AGE"/>
-		<result property="phone" column="PHONE"/>
-		<result property="address" column="ADDRESS"/>
-		<result property="enrollDate" column="ENROLL_DATE"/>
-		<result property="updateDate" column="UPDATE_DATE"/>
-		<result property="mStatus" column="M_STATUS"/>
+		<id property="sNo" column="STD_NO"/>
+		<result property="sPwd" column="STD_PWD"/>
+		<result property="sName" column="STD_NAME"/>
+		<result property="sEmail" column="STD_EMAIL"/>
+		<result property="sPhone" column="STD_PHONE"/>
+		<result property="sAddress" column="STD_ADDRESS"/>
+		<result property="enrollDate" column="ENT_DATE"/>
+		<result property="semester" column="SEMESTER"/>
+		<result property="sImage" column="STD_IMAGE"/>
+		<result property="dNo" column="DEPT_NO"/>
+		<result property="sSsn" column="STD_SSN"/>
+		<result property="sStatus" column="STATUS"/>
+		<result property="cpNo" column="COACH_PROF_NO"/>
 		</resultMap>
 		<!-- 로그인 -->
 	<select id="loginMember" parameterType="Member" resultMap="memberResultSet">
 	<!--=================암호화 전=====================-->
  		SELECT * 
-		FROM MEMBER
-		WHERE ID=#{id}
+		FROM TB_STUDENT
+		WHERE STD_NO=#{sNo}
+		AND STD_PWD=#{sPwd}
 		
 		
 

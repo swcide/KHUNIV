@@ -41,7 +41,7 @@
 						<p></p>
 
 						<div class="input-group mb-3">
-							<input type="text" name="id" placeholder="ID">
+							<input type="text" name="sNo" placeholder="학번">
 							<div class="input-group-append">
 								<div class="input-group-text">
 									<span class="fas fa-id-badge"></span>
@@ -49,7 +49,7 @@
 							</div>
 						</div>
 						<div class="input-group mb-3">
-							<input type="password" name="pw" placeholder="PW">
+							<input type="password" name="sPwd" placeholder="비밀번호">
 							<div class="input-group-append">
 								<div class="input-group-text">
 									<span class="fas fa-lock"></span>

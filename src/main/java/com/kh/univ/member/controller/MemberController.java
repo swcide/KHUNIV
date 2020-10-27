@@ -27,8 +27,9 @@ public class MemberController
 		private Logger logger = LoggerFactory.getLogger(MemberController.class);
 
 		// 암호화 처리
-		@Autowired
-		private BCryptPasswordEncoder bcryptPasswordEncoder;
+		/*
+		 * @Autowired private BCryptPasswordEncoder bcryptPasswordEncoder;
+		 */
 
 		/*
 		 * 3. session에 저장할 때 @SessionAttributes 사용
@@ -76,7 +77,7 @@ public class MemberController
 			{
 				if (!post.equals(""))
 					{
-						m.setAddress(post + "," + addr1 + "," + addr2);
+						m.setsAddress(post + "," + addr1 + "," + addr2);
 					}
 				int result = mService.updateMember(m);
 
