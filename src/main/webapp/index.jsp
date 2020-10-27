@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,21 +10,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Font Awesome -->
-<link rel="stylesheet"
-	href="resources/plugins/fontawesome-free/css/all.min.css">
+<link rel="stylesheet" href="resources/plugins/fontawesome-free/css/all.min.css">
 <!-- Ionicons -->
-<link rel="stylesheet"
-	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- icheck bootstrap -->
-<link rel="stylesheet"
-	href="resources/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+<link rel="stylesheet" href="resources/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="resources/dist/css/adminlte.min.css">
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet" href=" views/dist/css/intro.css">
-<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition login-page">
 	<div class="login-box">
@@ -35,54 +30,49 @@
 		<div class="card">
 			<div class="card-body login-card-body">
 				<p class="login-box-msg">로그인하실 종류를 선택해 주세요.</p>
-				<form action="index3.html" method="post">
-					<div class="btn-group btn-group-toggle" data-toggle="buttons">
-						<label class="btn bg-primary"> <input type="radio"
-							name="options" id="option1" autocomplete="off"> 학생
-						</label> <label class="btn bg-primary"> <input type="radio"
-							name="options" id="option2" autocomplete="off"> 교수
-						</label> <label class="btn bg-primary"> <input type="radio"
-							name="options" id="option3" autocomplete="off"> 관리자
-						</label>
-					</div>
-					<p></p>
-
-					<div class="input-group mb-3">
-						<input type="text" name="id" placeholder="ID">
-						<div class="input-group-append">
-							<div class="input-group-text">
-								<span class="fas fa-id-badge"></span>
-							</div>
-						</div>
-					</div>
-					<div class="input-group mb-3">
-						<input type="password" name="pw" placeholder="PW">
-						<div class="input-group-append">
-							<div class="input-group-text">
-								<span class="fas fa-lock"></span>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-8">
-							<div class="icheck-primary">
-								<input type="checkbox" id="remember"> <label
-									for="remember"> Remember Me </label>
-							</div>
-						</div>
-						<!-- /.col -->
-						<div class="col-4">
-							<!--<button type="submit" class="btn btn-primary btn-block">Sign In</button>-->
-							<button id="login" class="btn btn-primary btn-block">로그인</button>
-
+				<c:if test="${empty sessionScope.loginUser }">
+					<form action="login.do" method="post">
+						<div class="btn-group btn-group-toggle" data-toggle="buttons">
+							<label class="btn bg-primary"> <input type="radio" name="options" id="option1" autocomplete="off"> 학생
+							</label> <label class="btn bg-primary"> <input type="radio" name="options" id="option2" autocomplete="off"> 교수
+							</label> <label class="btn bg-primary"> <input type="radio" name="options" id="option3" autocomplete="off"> 관리자
+							</label>
 						</div>
 						<p></p>
-					</div>
-				</form>
 
+						<div class="input-group mb-3">
+							<input type="text" name="id" placeholder="ID">
+							<div class="input-group-append">
+								<div class="input-group-text">
+									<span class="fas fa-id-badge"></span>
+								</div>
+							</div>
+						</div>
+						<div class="input-group mb-3">
+							<input type="password" name="pw" placeholder="PW">
+							<div class="input-group-append">
+								<div class="input-group-text">
+									<span class="fas fa-lock"></span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-8">
+								<div class="icheck-primary">
+									<input type="checkbox" id="remember"> <label for="remember"> Remember Me </label>
+								</div>
+							</div>
+							<!-- /.col -->
+							<div class="col-4">
+								<!--<button type="submit" class="btn btn-primary btn-block">Sign In</button>-->
+								<button id="login" class="btn btn-primary btn-block">로그인</button>
+							</div>
+							<p></p>
+						</div>
+					</form>
+				</c:if>
 				<p class="mb-1">
-					<a href="id-search.jsp">학번 찾기</a> &nbsp;|&nbsp; <a
-						href="pw-search.jsp">비밀번호 찾기</a>
+					<a href="id-search.jsp">학번 찾기</a> &nbsp;|&nbsp; <a href="pw-search.jsp">비밀번호 찾기</a>
 				</p>
 				<p class="mb-0">
 				<p class="text-center">로그인이 어려울 시 문의해주세요 02)123-1234</p>
