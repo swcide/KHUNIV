@@ -24,7 +24,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href=" index2.html"><b>KH 대학교에 오신 것을 환영합니다.</b></a>
+    <a href=" index2.html"><b>우송시 사이버 대학교에 오신 것을 환영합니다.</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
