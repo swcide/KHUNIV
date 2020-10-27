@@ -17,18 +17,18 @@
 		</resultMap>
 		<!-- 로그인 -->
 	<select id="loginMember" parameterType="Member" resultMap="memberResultSet">
-		<!--=================암호화 전=====================-->
-<!-- 		SELECT * -->
-<!-- 		FROM MEMBER -->
-<!-- 		WHERE ID=#{id} -->
-<!-- 		AND PWD=#{pwd} -->
-<!-- 		AND M_STATUS='Y' -->
+	<!--=================암호화 전=====================-->
+ 		SELECT * 
+		FROM MEMBER
+		WHERE ID=#{id}
+		
+		
 
 		<!-- 암호화 후 -->
-			SELECT *
+	<!-- 		SELECT *
 			  FROM MEMBER
 			WHERE ID=#{id}
-		       	 AND M_STATUS='Y'
+		       	 AND M_STATUS='Y' -->
 	</select>
 	
 	
