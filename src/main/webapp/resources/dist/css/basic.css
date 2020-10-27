@@ -1,0 +1,121 @@
+@charset "utf-8";
+
+@import url('http://fonts.googleapis.com/earlyaccess/nanumgothic.css');
+@import url('http://fonts.googleapis.com/earlyaccess/nanummyeongjo.css');
+
+@font-face { 
+font-family: 'Noto Sans KR';
+font-style: normal; 
+font-weight: 100; 
+src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2) format('woff2'), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff) format('woff'), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf) format('opentype'); } @font-face { font-family: 'Noto Sans KR'; font-style: normal; font-weight: 300; src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff2) format('woff2'), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff) format('woff'), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.otf) format('opentype'); } @font-face { font-family: 'Noto Sans KR'; font-style: normal; font-weight: 400; src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff2) format('woff2'), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff) format('woff'), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.otf) format('opentype'); } @font-face { font-family: 'Noto Sans KR'; font-style: normal; font-weight: 500; src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff2) format('woff2'), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff) format('woff'), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.otf) format('opentype'); } @font-face { font-family: 'Noto Sans KR'; font-style: normal; font-weight: 700; src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2) format('woff2'), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff) format('woff'), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.otf) format('opentype'); } @font-face { font-family: 'Noto Sans KR'; font-style: normal; font-weight: 900; src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2) format('woff2'), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff) format('woff'), url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format('opentype'); }
+
+@font-face {
+    font-family: 'Nanum Myeongjo';
+    font-style: normal;
+    font-weight: 700;
+    src: url(font/NanumMyeongjoBold.eot);
+    src: url(font/NanumMyeongjoBold.eot?#iefix) format('embedded-opentype'), url(font/NanumMyeongjoBold.woff) format('woff'), format('truetype');
+}
+
+/* Basic */
+* {padding:0; margin:0;}
+html {-webkit-text-size-adjust: none; overflow-y:scroll; font-size:0.9em;} 
+body {word-break:break-all; font-size:1.1rem; color:#000; font-weight:400; line-height:1.6em; letter-spacing:-0.001em; font-family:"Noto Sans KR",Nanum Myeongjo, gulim, dotum, Helvetica, AppleGothic, Sans-serif; }
+li, dd {list-style: none;}
+caption, hr {font-size: 1px; height: 1px; overflow: hidden; position: absolute; width: 1px; top:-3000px; left:-2000px;}
+dd {text-align:justify;}
+img, fieldset {border:0px;}
+legend { font-size: 0; height: 0; overflow: hidden; position: absolute; visibility: hidden; width: 0;}
+
+input, button, select, textarea{font-size:1em; font-family:"Noto Sans KR", gulim, dotum, Helvetica, AppleGothic, Sans-serif; color:#5e5e5e;}
+em, cite, address, optgroup{ font-style:normal;}
+kbd, samp, code{ font-family:monospace;}
+
+A:link {color:#383d41; text-decoration:none;}
+A:visited {color:#383d41; text-decoration:none;}
+A:active {color: #383d41; text-decoration:none; }
+A:hover {color: #000; text-decoration:underline; }
+
+
+.group:after{ content:"."; display:block; visibility:hidden; clear:both; height:0;}
+.group{ display:inline-block;}
+.group{ display:block;}
+
+.clear_main{ clear:both; height:0; width:0; line-height:0; font-size:0;}
+
+.hidden { visibility:hidden; margin:0; padding:0; width:0; height:0; background:none; font-size:0; line-height:0; display:none; }
+.hide{display: block; position: absolute; top: -9999px; left: -9999px; width: 1px; height: 1px; line-height: 0; overflow: hidden; font-size: 0; text-indent: -9999px;}
+.show{ visibility:visible;}
+
+#accessibility a {position:absolute; left:0; top:-10000px; display:block; width:100%; text-align:center; font-size:1.3em; z-index:10000;}
+#accessibility a:hover, #accessibility a:focus, #accessibility a:active{ position:absolute; top:0; padding:15px 0; background:#1d60a7; color:#fff; font-weight:bold; z-index:10000;}
+
+/* display */
+.disblock {display:block;}
+.disnone {display:none;}
+.disinline {display:inline;}
+
+.bk1 {width:1px; display:inline-block;}
+.bk2 {width:2px; display:inline-block;}
+.bk3 {width:3px; display:inline-block;}
+
+/* Basic - clearfix */
+.clearfix:after {display:block; clear:both; content:"."; visibility:hidden; height:0;}
+.clearfix {display: inline-block;}
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+
+* html .clfx { height: 1%; overflow: visible;} /* IE6 float 해제*/
+*+html .clfx{ min-height: 1%;} /* IE7 float 해제 */
+.clfx:after{ clear: both; content: "."; display: block; height: 0; visibility: hidden; font-size: 0;}
+.clfix{clear: both; content: "."; display: block; height: 0;}
+
+/* 웹접근성 */
+.skip {font-size:1px; height: 1px; overflow: hidden; width: 1px; position: absolute; top:-10000px;}
+
+/* Basic - errorpage */
+#errorPage {margin:20px; padding:20px; border:1px solid; line-height:20px; display:block; }
+#errorPage span { font-size:20px; font-weight:bold; }
+
+/* Basic - etc */
+.clrBoth {clear: both; font-size: 1px; line-height: 1px;}
+.dplOn {display:block}
+.dplOff {display:none}
+.blue {color: #00f}
+.red {color: #f00}
+
+.highlight {font-weight:bold; background-color:#ff0;}
+a.home img{vertical-align:middle; margin-left:8px;}
+li.on a {font-weight:bold;}
+
+.brdline {border:1px #CCC solid; margin-left:5px; font-family:"Malgun Gothic";}
+.inpline {border:1px #CCC solid; padding:2px 3px;  vertical-align:middle; ime-mode:inactive; font-family:"Malgun Gothic";}
+.inplinekr {border:1px #CCC solid; padding:2px 3px; vertical-align:middle; ime-mode:active; font-family:"Malgun Gothic";}
+.selline {border:1px #CCC solid; vertical-align:middle; font-family:"Malgun Gothic";}
+.fileline {width:300px; margin:2px 0; height:20px; vertical-align:middle; font-family:"Malgun Gothic";}
+
+
+/* Basic - space */
+.space05 {height:5px}
+.space10 {height:10px}
+.space15 {height:15px}
+.space20 {height:20px}
+
+/* Basic - align */
+.text_center {text-align:center !important;}
+.text_right {text-align:right !important;}
+.text_left {text-align:left !important;}
+.text_justify{ text-align:justify !important;}
+
+/*정렬*/
+.floatl{float:left;}
+.floatr{float:right;}
+.clearb{clear:both;}
+.txtc{text-align:center;}
+.txtl{text-align:left;}
+.txtr{text-align:right;}
+
+/*font*/
+.f14 {font-size:14px;}
+.blue_g {color:#3f7599;}
+.num {font-family: Verdana;}
