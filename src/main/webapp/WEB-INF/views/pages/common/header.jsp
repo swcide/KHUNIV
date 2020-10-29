@@ -104,7 +104,6 @@
 														<li class="dropdown-submenu"><a class="dropdown-item" href="#">취업지원센터</a>
 															<ul class="dropdown-menu">
 																<li><a class="dropdown-item" href="feature-headers-overview.html">취업지원센터 바로가기</a></li>
-																<li><a class="dropdown-item" href="feature-headers-overview.html">취업 상담 안내</a></li>
 															</ul></li>
 
 														<li class="dropdown-submenu"><a class="dropdown-item" href="#">열린 광장</a>
@@ -119,7 +118,6 @@
 																<li class="dropdown-submenu"><a class="dropdown-item" href="#">취업정보 게시판</a>
 																	<ul class="dropdown-menu">
 																		<li><a class="dropdown-item" href="feature-page-headers-modern-small.html">구인 공고</a></li>
-																		<li><a class="dropdown-item" href="feature-page-headers-modern-medium.html">구직 안내</a></li>
 																		<li><a class="dropdown-item" href="feature-page-headers-modern-large.html">학생 이모저모</a></li>
 																	</ul></li>
 															</ul></li>
