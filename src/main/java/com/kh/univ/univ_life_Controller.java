@@ -133,9 +133,9 @@ public class univ_life_Controller {
 
 		return "univ_life/student_stories";
 	}
-
-	@RequestMapping(value = "FAQ.do", method = RequestMethod.GET)
-	public String FAQ(Locale locale, Model model) {
+	
+	@RequestMapping(value = "arts_write.do", method = RequestMethod.GET)
+	public String arts_write(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 
 		Date date = new Date();
@@ -145,25 +145,11 @@ public class univ_life_Controller {
 
 		model.addAttribute("serverTime", formattedDate );
 
-		return "univ_life/FAQ";
-	}
-
-	@RequestMapping(value = "QnA.do", method = RequestMethod.GET)
-	public String QnA(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
-		String formattedDate = dateFormat.format(date);
-
-		model.addAttribute("serverTime", formattedDate );
-
-		return "univ_life/QnA";
+		return "univ_life/arts_board_write";
 	}
 	
-	@RequestMapping(value = "dept_notice.do", method = RequestMethod.GET)
-	public String dept_notice(Locale locale, Model model) {
+	@RequestMapping(value = "engi_write.do", method = RequestMethod.GET)
+	public String engi_write(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 
 		Date date = new Date();
@@ -173,11 +159,11 @@ public class univ_life_Controller {
 
 		model.addAttribute("serverTime", formattedDate );
 
-		return "univ_life/dept_notice";
+		return "univ_life/engi_board_write";
 	}
 	
-	@RequestMapping(value = "gener_notice.do", method = RequestMethod.GET)
-	public String gener_notice(Locale locale, Model model) {
+	@RequestMapping(value = "human_write.do", method = RequestMethod.GET)
+	public String human_write(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 
 		Date date = new Date();
@@ -187,11 +173,11 @@ public class univ_life_Controller {
 
 		model.addAttribute("serverTime", formattedDate );
 
-		return "univ_life/myQnA";
+		return "univ_life/human_board_write";
 	}
 	
-	@RequestMapping(value = "myQnA.do", method = RequestMethod.GET)
-	public String myQnA(Locale locale, Model model) {
+	@RequestMapping(value = "natural_write.do", method = RequestMethod.GET)
+	public String natural_write(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 
 		Date date = new Date();
@@ -201,8 +187,7 @@ public class univ_life_Controller {
 
 		model.addAttribute("serverTime", formattedDate );
 
-		return "univ_life/myQnA";
+		return "univ_life/natural_board_write";
 	}
-
 
 }

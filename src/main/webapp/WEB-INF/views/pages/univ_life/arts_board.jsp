@@ -12,7 +12,7 @@
 				<div class="row mt-3">
 					<div
 						class="col-md-12 align-self-center p-static order-2 text-center">
-						<h1 class="text-9 font-weight-bold">에체능 게시판</h1>
+						<h1 class="text-9 font-weight-bold">예체능 게시판</h1>
 						<span class="sub-title"> Fine Arts and Athletics</span>
 					</div>
 				</div>
