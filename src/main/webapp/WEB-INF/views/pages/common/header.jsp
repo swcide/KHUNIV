@@ -88,16 +88,15 @@
 													</ul></li>
 												<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"> 학사 안내 </a>
 													<ul class="dropdown-menu">
-														<li><a class="dropdown-item" href="page-custom-header.html">수강 신청 안내</a></li>
+														<li><a class="dropdown-item" href="signup.do">수강 신청 안내</a></li>
 														<li class="dropdown-submenu"><a class="dropdown-item" href="#">학적 관리</a>
 															<ul class="dropdown-menu">
-																<li><a class="dropdown-item" href="about-us-advanced.html">휴학 안내</a></li>
-																<li><a class="dropdown-item" href="about-us.html">복학 안내</a></li>
-																<li><a class="dropdown-item" href="about-me.html">자퇴 안내</a></li>
-																<li><a class="dropdown-item" href="about-me.html">복학 안내</a></li>
-																<li><a class="dropdown-item" href="about-me.html">졸업 유예 안내</a></li>
-																<li><a class="dropdown-item" href="about-me.html">장학금 안내</a></li>
-																<li><a class="dropdown-item" href="about-me.html">등록금 납부 안내</a></li>
+																<li><a class="dropdown-item" href="absence.do">휴학 안내</a></li>
+																<li><a class="dropdown-item" href="return.do">복학 안내</a></li>
+																<li><a class="dropdown-item" href="dropout.do">자퇴 안내</a></li>
+																<li><a class="dropdown-item" href="postpone.do">졸업 유예 안내</a></li>
+																<li><a class="dropdown-item" href="scholarship.do">장학금 안내</a></li>
+																<li><a class="dropdown-item" href="tuition.do">등록금 납부 안내</a></li>
 															</ul></li>
 													</ul></li>
 												<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"> 대학 생활 </a>
