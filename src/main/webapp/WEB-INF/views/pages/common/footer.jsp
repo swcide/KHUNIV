@@ -60,7 +60,8 @@
 
 		<!-- Demo -->
 		<script src="resources/js/demos/demo-resume.js"></script>
-
+		<script src="resources/js/demos/demo-it-services.js"></script>
+		
 		<!-- Theme Custom -->
 		<script src="resources/js/custom.js"></script>
 

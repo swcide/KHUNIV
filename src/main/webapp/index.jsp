@@ -86,7 +86,7 @@
 										<div class="header-nav-main header-nav-main-square header-nav-main-dropdown-no-borders header-nav-main-transition header-nav-main-effect-2 header-nav-main-sub-effect-1 px-3">
 											<nav class="collapse">
 												<ul class="nav nav-pills" id="mainNav">
-													<li><a href="home.do" class="dropdown-item">HOMEPAGE</a></li>
+													<li><a href="main.do" class="dropdown-item">HOMEPAGE</a></li>
 												</ul>
 											</nav>
 										</div>
@@ -117,7 +117,7 @@
 												<div class="row">
 													<div class="col">
 														<h1 class="font-weight-extra-bold text-color-light text-md-10 text-lg-12 line-height-2 mb-4 pb-2 appear-animation" data-appear-animation="fadeInRightShorter" data-appear-animation-delay="1400">KH 사이버 대학교에 <br> 오신 것을 환영합니다.</h1>
-														<a href="home.do" class="btn btn-dark font-weight-bold text-3 rounded-0 px-5 btn-py-3 align-items-center d-inline-flex">홈페이지로 이동하기<i class="fas fa-arrow-right text-5 ml-3"></i></a>
+														<a href="main.do" class="btn btn-dark font-weight-bold text-3 rounded-0 px-5 btn-py-3 align-items-center d-inline-flex">홈페이지로 이동하기<i class="fas fa-arrow-right text-5 ml-3"></i></a>
 														<p></p>
 													</div>
 												</div>
@@ -133,7 +133,7 @@
 													<div class="col">
 														<p></p>
 														<div class="appear-animation" data-appear-animation="fadeInRightShorter" data-appear-animation-delay="1800">
-															<a href="#" class="btn btn-dark font-weight-bold text-3 rounded-0 px-5 btn-py-3 align-items-center d-inline-flex">학사페이지 이동하기<i class="fas fa-arrow-right text-5 ml-3"></i></a>
+															<a href="login.do" class="btn btn-dark font-weight-bold text-3 rounded-0 px-5 btn-py-3 align-items-center d-inline-flex">학사페이지 이동하기<i class="fas fa-arrow-right text-5 ml-3"></i></a>
 														</div>
 													</div>
 												</div>
@@ -149,7 +149,7 @@
 		</div>
 
 		<!-- Vendor -->
-		<script src="resources/vendor/jquery/jquery.min.js"></script> 없
+		<script src="resources/vendor/jquery/jquery.min.js"></script> 
 		<script src="resources/vendor/jquery.appear/jquery.appear.min.js"></script>
 		<script src="resources/vendor/jquery.easing/jquery.easing.min.js"></script>
 		<script src="resources/vendor/jquery.cookie/jquery.cookie.min.js"></script>

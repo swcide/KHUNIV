@@ -152,13 +152,13 @@
 											</a>
 											<div class="header-nav-features-dropdown header-nav-features-dropdown-mobile-fixed header-nav-features-dropdown-force-right" id="headerTopUserDropdown">
 												<div class="signin-form">
-													<h5 class="text-uppercase mb-4 font-weight-bold text-3">Sign In</h5>
+													<h5 class="text-uppercase mb-4 font-weight-bold text-3">LogIn</h5>
 													<form>
 														<div class="form-group">
-															<label class="mb-1 text-2 opacity-8">Email address* </label> <input type="email" class="form-control form-control-lg">
+															<label class="mb-1 text-2 opacity-8">학번* </label> <input type="email" class="form-control form-control-lg">
 														</div>
 														<div class="form-group">
-															<label class="mb-1 text-2 opacity-8">Password *</label> <input type="password" class="form-control form-control-lg">
+															<label class="mb-1 text-2 opacity-8">비밀번호*</label> <input type="password" class="form-control form-control-lg">
 														</div>
 														<div class="form-row pb-2">
 															<div class="form-group form-check col-lg-6 pl-1">
@@ -167,7 +167,7 @@
 																</div>
 															</div>
 															<div class="form-group col-lg-6 text-right">
-																<a class="text-uppercase text-1 font-weight-bold text-color-dark" id="headerRecover" href="#">LOST YOUR PASSWORD?</a>
+																<a class="text-uppercase text-1 font-weight-bold text-color-dark" id="headerRecover" href="#">비밀번호를 잊으셨나요?</a>
 															</div>
 														</div>
 														<div class="actions">
@@ -176,11 +176,6 @@
 																	<a class="btn btn-primary" href="#">Login</a>
 																</div>
 															</div>
-														</div>
-														<div class="extra-actions">
-															<p>
-																Don't have an account yet? <a href="#" id="headerSignUp" class="text-uppercase text-1 font-weight-bold text-color-dark">Sign Up</a>
-															</p>
 														</div>
 													</form>
 												</div>
