@@ -52,15 +52,15 @@
 		<script src="resources/vendor/modernizr/modernizr.min.js"></script>
 
 	</head>
-			<div role="main" class="main">
-				<div class="container" style="padding-top: 200px;">
+	
+			<div class="main" style="background-image: url(resources/img/KakaoTalk_20201029_211816935_06.jpg);     background-size: cover; height: 937px;">
+				<div class="container">
 					<div class="row">
 						<div class="col">
-							
 						</div>
 					</div>
 					<div class="container py-4">
-
+	<img src="resources/img/big-logo.png" style="width: 300px;height: 300px; margin-left: 35%; margin-top: 8%;">
 						<div class="row justify-content-center">
 							<div class="col-md-6 col-lg-5 mb-5 mb-lg-0">
 								<img src="">
@@ -87,7 +87,7 @@
 											</div>
 										</div>
 										<div class="form-group col-md-auto">
-											<a class="text-decoration-none text-color-dark text-color-hover-primary font-weight-semibold text-2" href="ad_main.do">Forgot Password?</a>
+											<a class="text-decoration-none text-color-dark text-color-hover-primary font-weight-semibold text-2" href="ad_main.do">비밀번호 찾기</a>
 										</div>
 									</div>
 									<div class="form-row">

@@ -45,10 +45,11 @@
 		<link rel="stylesheet" href="resources/vendor/circle-flip-slideshow/css/component.css">
 		
 		<!-- Demo CSS -->
-
+<link rel="stylesheet" href="resources/css/demos/demo-it-services.css">
 
 		<!-- Skin CSS -->
 		<link rel="stylesheet" href="resources/css/skins/default.css"> 
+		<link rel="stylesheet" href="resources/css/skins/skin-it-services.css">
 
 		<!-- Theme Custom CSS -->
 		<link rel="stylesheet" href="resources/css/custom.css">
@@ -196,7 +197,7 @@
 																<a class="dropdown-item" href="#">등록금</a>
 																<ul class="dropdown-menu">
 																	<li><a class="dropdown-item" href="page-services-3.html">등록금 고지서</a></li>
-																	<li><a class="dropdown-item" href="page-services.html">등록금 납부 바로가기</a></li>
+																	<li><a class="dropdown-item" href="page-services.html">등록금 납부</a></li>
 																	<li><a class="dropdown-item" href="page-services-2.html">등록금 납부 확인</a></li>
 																</ul>
 															</li>
