@@ -64,10 +64,10 @@ public class MemberController
 			}
 
 		// 마이페이지
-		@RequestMapping("myInfo.do")
+		@RequestMapping("mypage.do")
 		public String myInfoView()
 			{
-				return "member/myPage";
+				return "common/mypage";
 			}
 
 		// 회원정보 수정

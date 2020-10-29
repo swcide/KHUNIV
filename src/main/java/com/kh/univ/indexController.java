@@ -15,15 +15,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Handles requests for the application home page.
  */
 @Controller
-public class univ_info_Controller {
+public class indexController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(univ_info_Controller.class);
+	private static final Logger logger = LoggerFactory.getLogger(indexController.class);
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "univ_rull.do", method = RequestMethod.GET)
-	public String rull(Locale locale, Model model) {
+	@RequestMapping(value = "main.do", method = RequestMethod.GET)
+	public String main(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
@@ -33,11 +33,10 @@ public class univ_info_Controller {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "univ_info/univ_rull";
+		return "main";
 	}
-	
-	@RequestMapping(value = "univ_ego.do", method = RequestMethod.GET)
-	public String ego(Locale locale, Model model) {
+	@RequestMapping(value = "login.do", method = RequestMethod.GET)
+	public String login(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
@@ -47,8 +46,7 @@ public class univ_info_Controller {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "univ_info/univ_ego";
+		return "common/login";
 	}
-	
 	
 }
