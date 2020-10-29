@@ -1,542 +1,185 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <%@ include file="common/header.jsp"%>
 
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-	<!-- Content Header (Page header) -->
-	<section class="content-header" style="margin-bottom: -10px;">
-		<div class="container-fluid">
-			<div class="row mb-2">
-				<div class="col-sm-6">
-					<p style="font-size: 20px; margin-left: 2%;">학생포털시스템</p>
-					<p style="font-size: 14px; margin-left: 2.5%; margin-top: -20px;">student
-						portal system</p>
-				</div>
-				<div class="col-sm-6">
-					<ol class="breadcrumb float-sm-right">
-						<li class="breadcrumb-item"><select><option>학과
-									홈페이지</option>
-								<option>컴퓨터공학과</option>
-								<option>전자전기공학과</option>
-								<option>실용음악학과</option></select></li>
-					</ol>
-				</div>
+<div class="body">
+	<div role="main" class="main">
+		<div class="slider-container light rev_slider_wrapper" style="height: 650px;">
+			<div id="revolutionSlider" class="slider rev_slider" data-version="5.4.8" data-plugin-revolution-slider data-plugin-options="{'delay': 9000, 'gridwidth': 1170, 'gridheight': 650, 'disableProgressBar': 'on', 'responsiveLevels': [4096,1200,992,500], 'navigation' : {'arrows': { 'enable': true, 'style': 'arrows-style-1 arrows-big arrows-dark' }, 'bullets': {'enable': false, 'style': 'bullets-style-1 bullets-color-primary', 'h_align': 'center', 'v_align': 'bottom', 'space': 7, 'v_offset': 70, 'h_offset': 0}}}">
+				<ul>
+					<li data-transition="fade"><img src="resources/img/slides/need_bg.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg">
+
+						<div class="tp-caption" data-x="['left','left','center','center']" data-hoffset="['145','145','-150','-240']" data-y="center" data-voffset="['-50','-50','-50','-75']" data-start="1000" data-transform_in="x:[-300%];opacity:0;s:500;" data-transform_idle="opacity:0.5;s:500;"></div>
+
+						<div class="tp-caption text-color-dark font-weight-normal" data-x="['left','left','center','center']" data-hoffset="['200','200','0','0']" data-y="center" data-voffset="['-50','-50','-50','-75']" data-start="700" data-fontsize="['22','22','22','40']" data-lineheight="['25','25','25','45']" data-transform_in="y:[-0%];opacity:0;s:500;"></div>
+
+						<div class="tp-caption d-none d-md-block" data-frames='[{"delay":3800,"speed":500,"frame":"0","from":"opacity:0;x:10%;","to":"opacity:1;x:0;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;fb:0;","ease":"Power3.easeInOut"}]' data-x="['left','left','center','center']" data-hoffset="['365','365','80','135']" data-y="center" data-voffset="['-33','-33','-33','-55']"></div>
+
+						<div class="tp-caption" data-x="['left','left','center','center']" data-hoffset="['440','440','150','240']" data-y="center" data-voffset="['-50','-50','-50','-75']" data-start="1000" data-transform_in="x:[300%];opacity:0;s:500;" data-transform_idle="opacity:0.5;s:500;"></div>
+
+						<h1 class="tp-caption font-weight-extra-bold text-color-light negative-ls-2" data-frames='[{"delay":1000,"speed":2000,"frame":"0","from":"sX:1.5;opacity:0;fb:20px;","to":"o:1;fb:0;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;fb:0;","ease":"Power3.easeInOut"}]' data-x="['left','left','center','center']" data-hoffset="['152','152','0','0']" data-y="center" data-fontsize="['50','50','50','90']" data-lineheight="['55','55','55','95']" data-letterspacing="-1">KH 사이버 대학교</h1>
+
+						<div class="tp-caption font-weight-light text-color-light" data-frames='[{"from":"opacity:0;","speed":300,"to":"o:1;","delay":2000,"split":"chars","splitdelay":0.05,"ease":"Power2.easeInOut"},{"delay":"wait","speed":1000,"to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"}]' data-x="['left','left','center','center']" data-hoffset="['166','166','0','0']" data-y="center" data-voffset="['40','40','40','80']" data-fontsize="['18','18','18','50']" data-lineheight="['20','20','20','55']">KH Information Educational Institute</div></li>
+					<li data-transition="fade"><img src="resources/img/slides/need_bg_3.jpg" alt="" data-bgposition="right center" data-bgpositionend="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-kenburns="on" data-duration="9000" data-ease="Linear.easeNone" data-scalestart="110" data-scaleend="100" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0" data-offsetend="0 0" data-bgparallax="0" class="rev-slidebg">
+
+						<div class="tp-caption font-weight-extra-bold text-color-light negative-ls-2" data-frames='[{"delay":1000,"speed":2000,"frame":"0","from":"sX:1.5;opacity:0;fb:20px;","to":"o:1;fb:0;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;fb:0;","ease":"Power3.easeInOut"}]' data-x="center" data-y="center" data-voffset="['-50','-50','-50','-75']" data-fontsize="['50','50','50','90']" data-lineheight="['55','55','55','95']">새 시대를 향한 젊음의 도전</div>
+
+						<div class="tp-caption font-weight-light text-color-light" data-frames='[{"from":"opacity:0;","speed":300,"to":"o:1;","delay":2000,"split":"chars","splitdelay":0.05,"ease":"Power2.easeInOut"},{"delay":"wait","speed":1000,"to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"}]' data-x="center" data-y="center" data-fontsize="['18','18','18','50']" data-lineheight="['20','20','20','55']" style="color: #b5b5b5;">KH Information Educational Institute</div></li>
+				</ul>
 			</div>
 		</div>
-		<!-- /.container-fluid -->
-	</section>
 
-	<!-- Main content -->
-	<section class="content">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-3">
+		<section class="section bg-color-light border-0 m-0">
+			<div class="container">
+				<div class="row">
+					<div class="col">
 
-					<!-- Profile Image -->
-					<!-- #007bff -->
-					<div class="card card-primary card-outline"
-						style="border-color: #0053c2;">
-						<div class="card-body box-profile">
-							<div class="text-center">
-								<img class="profile-user-img img-fluid img-circle"
-									src="../dist/img/프로필사진2.jpg" alt="User profile picture">
-							</div>
-
-							<h3 class="profile-username text-center">윤기훈님</h3>
-
-							<p class="text-muted text-center">컴퓨터 공학과</p>
-
-							<ul class="list-group list-group-unbordered mb-3">
-								<li class="list-group-item"><b>재학중</b> <a
-									class="float-right">2학년 1학기</a></li>
-
-								<li class="list-group-item"><b>담당교수</b> <a
-									class="float-right">이성호</a></li>
-
-								<li class="list-group-item">
-
-									<div class="progress-group">
-										<p>학습 진도율</p>
-										<span class="float-right"><b>80%</b></span>
-										<div class="progress progress-sm" style="width: 85%;">
-											<div class="progress-bar"
-												style="background-color: gray; width: 80%;"></div>
-										</div>
-									</div>
-								</li>
-								<li class="list-group-item"><p
-										style="margin-bottom: 8px; font-size: 15px;">※ 바로가기</p> <a
-									href="./student_Info/certificate-print.jsp" class=""
-									style="background-color: #e8f3ff; color: black;"><b>증명서
-											발급</b></a> <a href="./student_Info/class-tuition.jsp" class=""
-									style="margin-left: 3%; background-color: #e8f3ff; color: black;"><b>등록금
-											납부</b></a> <a href="./student_Info/class-sub.jsp" class=""
-									style="margin-left: 3%; background-color: #e8f3ff; color: black;"><b>수강신청</b></a>
-									<a href="./student_Info/score-search.jsp" class=""
-									style="margin-left: 3%; background-color: #e8f3ff; color: black;"><b>성적조회</b></a></li>
-								<!--             <a href="#" class="btn btn-primary btn-block" style="background-color:#e0e0e0; color:#4d4d4d;border:none;margin-bottom:-20px;"><b>컴퓨터 공학과로 이동</b></a>
-                  -->
-								<a href="./test/testPage.jsp" class="btn btn-primary btn-block"
-									style="background-color: white; border: 1px solid gray; margin-top: 10px; margin-bottom: -20px; color: black;"><b>시험보러가기</b></a>
+						<div class="tabs tabs-bottom tabs-center tabs-simple">
+							<ul class="nav nav-tabs">
+								<li class="nav-item active"><a class="nav-link" href="#tabsNavigationSimple1" data-toggle="tab">학사 공지</a></li>
+								<li class="nav-item"><a class="nav-link" href="#tabsNavigationSimple2" data-toggle="tab">일반 공지</a></li>
 							</ul>
-
-						</div>
-						<!-- /.card-body -->
-					</div>
-					<!-- /.card -->
-
-					<!-- About Me Box -->
-					<div class="card card-primary" style="margin-top: 25Px;">
-						<div class="card-header"
-							style="background-color: #003166; color: WHITE;">
-							<h3 class="card-title">마이 페이지</h3>
-						</div>
-						<!-- /.card-header -->
-						<div class="card-body">
-							<strong><i class="fas fa-pencil-alt mr-1"></i><a
-								href="myInfo/myPage.jsp" style="color: black;">개인정보수정</a></strong>
-
-							<p class="text-muted" style="font-size: 14.5px; margin-top: 6px;">메일/휴대폰/주소/계좌
-								정보 등을 업데이트 해주세요</p>
-
-							<hr>
-
-							<strong>📆 개인 업무 및 일정</strong>
-							<p class="text-muted" style="font-size: 14.5px; margin-top: 6px;">자신의
-								학사 일정 및 개인 스케줄을 관리하세요</p>
-
-
-						</div>
-						<!-- /.card-body -->
-					</div>
-					<!-- /.card -->
-				</div>
-				<!-- /.col -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				<div class="col-md-9">
-					<div class="card">
-						<div class="card-header p-2">
-							<ul class="nav nav-pills">
-								<li class="nav-item"><a class="nav-link active"
-									href="#activity" data-toggle="tab">학사공지</a></li>
-								<li class="nav-item"><a class="nav-link" href="#timeline"
-									data-toggle="tab">일반공지</a></li>
-								<li class="nav-item"><a class="nav-link" href="#settings"
-									data-toggle="tab">보도자료</a></li>
-							</ul>
-						</div>
-						<!-- /.card-header -->
-						<div class="card-body">
 							<div class="tab-content">
-								<div class="active tab-pane" id="activity">
-									<!-- Post -->
-									<div class="post">
-										<div class="user-block">
-											<img class="img-circle img-bordered-sm"
-												src="../dist/img/user1-128x128.jpg" alt="user image">
-											<span class="username"> <a href="#"
-												style="color: gray;">황지희-학생지원팀</a> <a href="#"
-												class="float-right btn-tool"><i class="fas fa-times"></i></a>
-											</span> <span class="description">2020-09-21 7:30 PM today</span>
-										</div>
-										<!-- /.user-block -->
-										<p>(재)KT그룹희망나눔재단은 지속적인 장학사업운영을 통한 대학생들의 안정적인 학업 여건 조성과 사회
-											발전에 기여하는 ICT분야의 창의인재 육성 및 나눔문화 확산에 기여하는 인재를 양성하기 위해 장학생을 선발하여
-											장학금을 지급하고 있으니, 해당 학생들은 다음 내용을 참고하시어 기한 내 신청하시기 바랍니다.</p>
+								<div class="tab-pane active" id="tabsNavigationSimple1">
+									<div class="text-center">
+										<h4>학사 공지</h4>
 
-										<p>
-
-											<span class="float-right"> <a href="#"
-												class="link-black text-sm"
-												style="text-decoration: underline;"> 학사공지 더보기 </a>
-											</span>
-										</p>
-
+										<table class="table table-hover">
+											<thead>
+												<tr>
+													<th>#</th>
+													<th>제목</th>
+													<th>조회수</th>
+													<th>작성자</th>
+													<th>작성일</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>1</td>
+													<td>취업안내</td>
+													<td>3</td>
+													<td>윤기훈</td>
+													<td>2020/10/28</td>
+												</tr>
+												<tr>
+													<td>2</td>
+													<td>Jacob</td>
+													<td>Thornton</td>
+													<td>@fat</td>
+													<td>@fat</td>
+												</tr>
+												<tr>
+													<td>3</td>
+													<td>Larry</td>
+													<td>the Bird</td>
+													<td>@twitter</td>
+													<td>@fat</td>
+												</tr>
+											</tbody>
+										</table>
+										<a type="button" class="btn btn-quaternary btn-with-arrow mb-2 float-right" href="#">학사 공지 더보기<span><i class="fas fa-chevron-right"></i></span></a>
 									</div>
-									<!-- /.post -->
-
-
-
-
 								</div>
-								<!-- /.tab-pane -->
-								<div class="tab-pane" id="timeline">
-									<!-- Post -->
-									<div class="post">
-										<div class="user-block">
-											<img class="img-circle img-bordered-sm"
-												src="../dist/img/user1-128x128.jpg" alt="user image">
-											<span class="username"> <a href="#"
-												style="color: gray;">안고윤 팀장-정보지원센터</a> <a href="#"
-												class="float-right btn-tool"><i class="fas fa-times"></i></a>
-											</span> <span class="description">2020-09-21 7:30 PM today</span>
-										</div>
-										<!-- /.user-block -->
-										<p>학생 여러분 안녕하십니까. 2020년 9월 17일(목) 0시부터 4시 사이에 시스템 정기 점검이
-											있을 예정입니다. 시스템 장비 점검 및 보안패치, 업데이트 작업으로 인하여 점검시간내 접속불가 및 단락현상이
-											있을 예정이오니 다소 불편하시더라도 양해하여 주시기 바라오며, 점검 작업이 종료한 후 서비스를 이용하시기
-											바랍니다. 아래의 세부 내용을 확인 하여 주시기 바랍니다. - 아 래 - 1. 작업 일시 : 2020년 9월
-											17일(목) 0:00 ~ 4:00 (4시간) 2. 작업 내용 : 시스템 보안 패치 및 업데이트 수행 3. 참고
-											사항 : 동 시간대 홈페이지 접속 불가 및 일시적인 단락(서버별로 리부팅 약 10분~30분간 단락 예상) 보다
-											안정적인 서비스를 제공하기 위하여 노력 하겠습니다.</p>
+								
+								<div class="tab-pane" id="tabsNavigationSimple2">
+									<div class="text-center">
+										<h4>일반 공지</h4>
 
-										<p>
-
-											<span class="float-right"> <a href="#"
-												class="link-black text-sm"
-												style="text-decoration: underline;"> 일반공지 더보기 </a>
-											</span>
-										</p>
-
+										<table class="table table-hover">
+											<thead>
+												<tr>
+													<th>#</th>
+													<th>제목</th>
+													<th>조회수</th>
+													<th>작성자</th>
+													<th>작성일</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>1</td>
+													<td>취업안내</td>
+													<td>3</td>
+													<td>윤기훈</td>
+													<td>2020/10/28</td>
+												</tr>
+												<tr>
+													<td>2</td>
+													<td>Jacob</td>
+													<td>Thornton</td>
+													<td>@fat</td>
+													<td>@fat</td>
+												</tr>
+												<tr>
+													<td>3</td>
+													<td>Larry</td>
+													<td>the Bird</td>
+													<td>@twitter</td>
+													<td>@fat</td>
+												</tr>
+											</tbody>
+										</table>
+										<a type="button" class="btn btn-quaternary btn-with-arrow mb-2 float-right" href="#">일반 공지 더보기<span><i class="fas fa-chevron-right"></i></span></a>
 									</div>
-									<!-- /.post -->
-
-								</div>
-								<!-- /.tab-pane -->
-
-								<div class="tab-pane" id="settings">
-									<!-- Post -->
-									<div class="post">
-										<div class="user-block">
-											<img class="img-circle img-bordered-sm"
-												src="../dist/img/user1-128x128.jpg" alt="user image">
-											<span class="username"> <a href="#"
-												style="color: gray;">출판부</a> <a href="#"
-												class="float-right btn-tool"><i class="fas fa-times"></i></a>
-											</span> <span class="description">2020-09-21 7:30 PM today</span>
-										</div>
-										<!-- /.user-block -->
-										<p>우송시립대학교가 총학생회 주최로 진행한 온라인 2020 Summer Festival을 성공적으로
-											마감했다고 3일 밝혔다. 전국 2개 지역 캠퍼스를 보유하고 있는 우송대는 그동안 다양한 온·오프라인 행사와
-											활발한 커뮤니티 활동을 병행해 왔다</p>
-
-										<p>
-
-											<span class="float-right"> <a href="#"
-												class="link-black text-sm"
-												style="text-decoration: underline;"> 더보기 </a>
-											</span>
-										</p>
-
-									</div>
-									<!-- /.post -->
-								</div>
-								<!-- /.tab-pane -->
-							</div>
-							<!-- /.tab-content -->
-						</div>
-						<!-- /.card-body -->
-
-
-
-
-
-
-
-
-
-
-					</div>
-					<div class="card">
-
-						<div class="card-header p-2">
-							<ul class="nav nav-pills">
-								<li class="nav-item"><a class="nav-link active"
-									href="#activity1" data-toggle="tab">학습강좌</a></li>
-								<li class="nav-item"><a class="nav-link" href="#activity2"
-									data-toggle="tab">시험</a></li>
-								<li class="nav-item"><a class="nav-link" href="#activity4"
-									data-toggle="tab">프로젝트</a></li>
-								<li class="nav-item"><a class="nav-link" href="#activity5"
-									data-toggle="tab">게시판</a></li>
-
-							</ul>
-						</div>
-
-						<!-- /.card-header -->
-						<div class="card-body">
-							<div class="tab-content">
-
-								<div class="active tab-pane" id="activity1">
-									<!-- Post -->
-									<div class="post">
-										<!-- Table row -->
-										<div class="row">
-											<div class="col-12 table-responsive">
-												<table class="table table-striped">
-													<thead>
-														<tr>
-															<th>학기</th>
-															<th>과목명</th>
-															<th>이수</th>
-															<th>학점</th>
-															<th>담당교수</th>
-															<th>내 진도율</th>
-														</tr>
-													</thead>
-													<tbody>
-
-														<tr>
-															<td>1</td>
-															<td><a href="./lecture/lectureListDetail.jsp">Call
-																	of Duty</a></td>
-															<td>전선</td>
-															<td>3</td>
-															<td>이성호</td>
-															<td>46%</td>
-														</tr>
-														<tr>
-															<td>1</td>
-															<td>Need for Speed IV</td>
-															<td>교선</td>
-															<td>3</td>
-															<td>박길동</td>
-															<td>46%</td>
-
-														</tr>
-														<tr>
-															<td>1</td>
-															<td>Monsters DVD</td>
-															<td>전선</td>
-															<td>3</td>
-															<td>김휘경</td>
-															<td>46%</td>
-
-														</tr>
-														<tr>
-															<td>1</td>
-															<td>Grown Ups Blue Ray</td>
-															<td>전선</td>
-															<td>3</td>
-															<td>유승제</td>
-															<td>46%</td>
-														<tr>
-															<td>1</td>
-															<td>Need for Speed IV</td>
-															<td>교선</td>
-															<td>3</td>
-															<td>김지숙</td>
-															<td>46%</td>
-
-														</tr>
-													</tbody>
-												</table>
-											</div>
-											<!-- /.col -->
-										</div>
-										<!-- /.row -->
-									</div>
-
-
-								</div>
-								<!-- /.tab-pane -->
-
-								<div class="tab-pane" id="activity2">
-									<!-- Post -->
-									<div class="post">
-										<!-- Table row -->
-										<div class="row">
-											<div class="col-12 table-responsive">
-												<table class="table table-striped">
-													<thead>
-														<tr>
-															<th>학기</th>
-															<th>과목명</th>
-															<th>시험일자</th>
-															<th>담당교수</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td colspan=4>현재 진행중인 시험이 없습니다.
-															<td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
-											<!-- /.col -->
-										</div>
-										<!-- /.row -->
-									</div>
-
-
-								</div>
-								<!-- /.tab-pane -->
-								<div class="tab-pane" id="activity3">
-									<!-- Post -->
-									<div class="post">
-										<!-- Table row -->
-										<div class="row">
-											<div class="col-12 table-responsive">
-												<table class="table table-striped">
-													<thead>
-														<tr>
-															<th>학기</th>
-															<th>과목명</th>
-															<th>토론명</th>
-															<th>참여기간</th>
-															<th>게시글수</th>
-															<th>댓글수</th>
-															<th>참여여부</th>
-
-														</tr>
-													</thead>
-
-												</table>
-											</div>
-											<!-- /.col -->
-										</div>
-										<!-- /.row -->
-									</div>
-
-
-								</div>
-								<!-- /.tab-pane -->
-								<div class="tab-pane" id="activity4">
-									<!-- Post -->
-									<div class="post">
-										<!-- Table row -->
-										<div class="row">
-											<div class="col-12 table-responsive">
-												<table class="table table-striped">
-													<thead>
-														<tr>
-															<th>학기</th>
-															<th>과목명</th>
-															<th>이수</th>
-															<th>학점</th>
-															<th>담당교수</th>
-															<th>내 진도율</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td colspan=6>현재 진행중인 프로젝트가 없습니다.
-															<td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
-											<!-- /.col -->
-										</div>
-										<!-- /.row -->
-									</div>
-
-
-								</div>
-
-
-								<div class="tab-pane" id="activity5">
-									<!-- Post -->
-									<div class="post">
-										<!-- Table row -->
-										<div class="row">
-											<div class="col-12 table-responsive">
-												<table class="table table-striped">
-													<thead>
-														<tr>
-															<th>학기</th>
-															<th>과목명</th>
-															<th>게시판명</th>
-															<th>학점</th>
-															<th>게시판기간</th>
-															<th>참여점수</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td colspan=6>게시물이 존재하지 않습니다.
-															<td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
-											<!-- /.col -->
-										</div>
-										<!-- /.row -->
-									</div>
-
-
 								</div>
 							</div>
-
-
-							<!-- /.tab-pane -->
 						</div>
-						<!-- /.tab-content -->
 					</div>
-					<!-- /.card-body -->
-					<!-- /.nav-tabs-custom -->
 				</div>
 			</div>
+		</section>
+		<section class="section section-height-3 bg-color-grey-scale-1 m-0 border-0">
+			<div class="container">
+				<div class="row align-items-center justify-content-center">
+					<div class="col-lg-6 pb-sm-4 pb-lg-0 pr-lg-5 mb-sm-5 mb-lg-0">
+						<h2 class="text-color-dark font-weight-normal text-6 mb-2">취업 지원 센터</h2>
+						<p class="lead">우리 대학은 졸업 및 졸업 예정자에 한하여 취업 관련 도움을 주고자 취업 지원 센터를 설립하였습니다.</p>
+						<p class="pr-5 mr-5">
+							구인 공고 및 취업 알선 정보 제공을 하며 진로 상담과 전공 및 <br>비전공에 해당하는 회사 추천을 해드립니다. 지원 대상자가 아닌 학생은 진로 상담까지 이용 가능합니다.
+						</p>
+						<a href="#" class="btn btn-dark font-weight-semibold btn-px-4 btn-py-2 text-2">바로가기</a>
+					</div>
+					<div class="col-sm-8 col-md-6 col-lg-4 offset-sm-4 offset-md-4 offset-lg-2 mt-sm-5" style="top: 1.7rem;">
+						<img src="resources/img/generic/generic-corporate-3-1.jpg" class="img-fluid position-absolute d-none d-sm-block appear-animation" data-appear-animation="expandIn" data-appear-animation-delay="300" style="top: 10%; left: -50%;" alt="" /> <img src="img/generic/generic-corporate-3-2.jpg" class="img-fluid position-absolute d-none d-sm-block appear-animation" data-appear-animation="expandIn" style="top: -33%; left: -29%;" alt="" /> <img src="img/generic/generic-corporate-3-3.jpg" class="img-fluid position-relative appear-animation mb-2" data-appear-animation="expandIn" data-appear-animation-delay="600" alt="" />
+					</div>
+				</div>
+			</div>
+		</section>
 
+		<section class="section bg-color-light section-height-3 border-0 m-0">
+			<div class="container py-2">
+				<div class="row">
+					<div class="col">
+						<div class="row">
+							<div class="col pb-4">
+								<div class="row">
+									<div class="col-lg-6">
+										<h4>홍보 영상</h4>
+										<div class="embed-responsive-borders">
+											<div class="embed-responsive embed-responsive-16by9">
+												<iframe width="1280" height="720" src="https://www.youtube.com/embed/6q4DSKFn_k8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+											</div>
+										</div>
+									</div>
 
+									<div class="col-lg-6">
+										<h4>인기 특강</h4>
+										<div class="embed-responsive-borders">
+											<div class="embed-responsive embed-responsive-16by9">
+												<iframe width="1280" height="720" src="https://www.youtube.com/embed/d-9kILN_Ssg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 
+					</div>
+				</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-			<!-- /.col -->
-		</div>
-		<!-- /.row -->
-</div>
-<!-- /.container-fluid -->
-</section>
-<!-- /.content -->
+			</div>
+		</section>
+	</div>
 </div>
 <%@ include file="common/footer.jsp"%>

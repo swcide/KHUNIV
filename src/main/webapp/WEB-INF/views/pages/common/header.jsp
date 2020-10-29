@@ -1,94 +1,314 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-
-
-<!-- 헤더에 뭔가 추가하신다면 주의해주세요!! 헤더에는 절대 경로로 파일을 넣어줘야 어디에 include하든 깨지지 않아요~ -->
-
-
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>우송시립대학교</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- jQuery -->
-<script src="/woosong/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="/woosong/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="/woosong/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="/woosong/dist/js/demo.js"></script>
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="/woosong/plugins/fontawesome-free/css/all.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="/woosong/dist/css/adminlte.min.css">
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
- <!-- jsGrid -->
-  <link rel="stylesheet" href="/woosong/plugins/jsgrid/jsgrid.min.css">
-  <link rel="stylesheet" href="/woosong/plugins/jsgrid/jsgrid-theme.min.css">
-</head>
-<body class="hold-transition sidebar-mini">
-<!-- <div class="wrapper" style="margin-left:-15.5%;margin-top:1%;"> -->
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="margin-left:0px;">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav" style="margin-bottom:1%;">
+	<head>
 
-     <li class="nav-item d-none d-sm-inline-block">
-        <a href="/woosong/pages/main.jsp" style="color:black; font-size:20px;"><span style="margin-left:10px;font-size:25px;">👨‍🎓 </span><b>우송시립대학교&nbsp;</b></a>
-      </li>
+		<!-- Basic -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">	
 
-      <li class="nav-item d-none d-sm-inline-block" style="margin-left:5px;">
-        <a href="/woosong/pages/main.jsp" class="nav-link" style="font-size:19px;margin-top:-2.5px;">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">웹 메일</a>
-      </li>
-            <li class="nav-item d-none d-sm-inline-block">
-        <a href="/woosong/pages/lecture/lectureHall.jsp" class="nav-link">강의동</a>
-      </li>
-            <li class="nav-item d-none d-sm-inline-block">
-        <a href="/woosong/pages/student_Info/class-notice.jsp" class="nav-link">학사정보</a>
-      </li>
-            <li class="nav-item d-none d-sm-inline-block">
-        <a href="/woosong/pages/openSquare/squareMain.jsp" class="nav-link">열린광장</a>
-      </li>
-            <li class="nav-item d-none d-sm-inline-block">
-        <a href="/woosong/pages/helpDesk/FAQ.jsp" class="nav-link">상담센터</a>
-      </li>
-                  <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">전자책 도서관</a>
-      </li>
+		<title>Porto - Responsive HTML5 Template</title>	
+
+		<meta name="keywords" content="HTML5 Template" />
+		<meta name="description" content="Porto - Responsive HTML5 Template">
+		<meta name="author" content="okler.net">
+
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="resources/img/favicon.ico" type="image/x-icon" />
+		<link rel="apple-touch-icon" href="resources/img/apple-touch-icon.png">
+
+		<!-- Mobile Metas -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+
+		<!-- Web Fonts  -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light&display=swap" rel="stylesheet" type="text/css">
+
+		<!-- Vendor CSS -->
+		<link rel="stylesheet" href="resources/vendor/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="resources/vendor/fontawesome-free/css/all.min.css">
+		<link rel="stylesheet" href="resources/vendor/animate/animate.compat.css">
+		<link rel="stylesheet" href="resources/vendor/simple-line-icons/css/simple-line-icons.min.css">
+		<link rel="stylesheet" href="resources/vendor/owl.carousel/assets/owl.carousel.min.css">
+		<link rel="stylesheet" href="resources/vendor/owl.carousel/assets/owl.theme.default.min.css">
+		<link rel="stylesheet" href="resources/vendor/magnific-popup/magnific-popup.min.css">
+
+		<!-- Theme CSS -->
+		<link rel="stylesheet" href="resources/css/theme.css">
+		<link rel="stylesheet" href="resources/css/theme-elements.css">
+		<link rel="stylesheet" href="resources/css/theme-blog.css">
+		<link rel="stylesheet" href="resources/css/theme-shop.css">
+
+		<!-- Current Page CSS -->
+		<link rel="stylesheet" href="resources/vendor/rs-plugin/css/settings.css">
+		<link rel="stylesheet" href="resources/vendor/rs-plugin/css/layers.css">
+		<link rel="stylesheet" href="resources/vendor/rs-plugin/css/navigation.css">
+		<link rel="stylesheet" href="resources/vendor/circle-flip-slideshow/css/component.css">
+		
+		<!-- Demo CSS -->
+		<link rel="stylesheet" href="resources/css/demos/demo-resume.css">
+
+		<!-- Skin CSS -->
+		<link rel="stylesheet" href="resources/css/skins/default.css"> 
+		<link rel="stylesheet" href="resources/css/skins/skin-resume-blue.css"> 
+		<!-- Theme Custom CSS -->
+		<link rel="stylesheet" href="resources/css/custom.css">
+
+		<!-- Head Libs -->
+		<script src="resources/vendor/modernizr/modernizr.min.js"></script>
 
 
+	</head>
+	<body>
 
-    </ul>
+		<div class="body">
+			<header id="header" class="header-effect-shrink" data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyChangeLogo': true, 'stickyStartAt': 30, 'stickyHeaderContainerHeight': 70}">
+				<div class="header-body">
+					<div class="header-container container">
+						<div class="header-row">
+							<div class="header-column">
+								<div class="header-row">
+									<div class="header-logo">
+										<a href="index.html">
+											<img alt="Porto" width="100" height="48" data-sticky-width="82" data-sticky-height="40" src="img/logo.png">
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="header-column justify-content-end">
+								<div class="header-row">
+									<div class="header-nav header-nav-line header-nav-top-line header-nav-top-line-with-border order-2 order-lg-1">
+										<div class="header-nav-main header-nav-main-square header-nav-main-effect-2 header-nav-main-sub-effect-1">
+											<nav class="collapse">
+												<ul class="nav nav-pills" id="mainNav">
+													<li class="dropdown">
+														<a class="dropdown-item dropdown-toggle" href="index.html">
+															학교 소개
+														</a>
+													</li>
+													<li class="dropdown">
+														<a class="dropdown-item dropdown-toggle" href="#">
+															학사 안내
+														</a>
+														<ul class="dropdown-menu">
+															<li><a class="dropdown-item" href="page-custom-header.html">수강 신청 안내</a></li>
+															<li class="dropdown-submenu">
+																<a class="dropdown-item" href="#">학적 관리</a>
+																<ul class="dropdown-menu">
+																	<li><a class="dropdown-item" href="about-us-advanced.html">휴학 안내</a></li>
+																	<li><a class="dropdown-item" href="about-us.html">복학 안내</a></li>
+																	<li><a class="dropdown-item" href="about-me.html">자퇴 안내</a></li>
+																	<li><a class="dropdown-item" href="about-me.html">복학 안내</a></li>
+																	<li><a class="dropdown-item" href="about-me.html">졸업 유예 안내</a></li>
+																	<li><a class="dropdown-item" href="about-me.html">장학금 안내</a></li>
+																	<li><a class="dropdown-item" href="about-me.html">등록금 납부 안내</a></li>
+																</ul>
+															</li>
+														</ul>
+													</li>
+													<li class="dropdown">
+														<a class="dropdown-item dropdown-toggle" href="#">
+															대학 생활
+														</a>
+														<ul class="dropdown-menu">
+															<li class="dropdown-submenu">
+																<a class="dropdown-item" href="#">취업지원센터</a>
+																<ul class="dropdown-menu">
+																	<li><a class="dropdown-item" href="feature-headers-overview.html">취업지원센터 바로가기</a></li>
+																	<li><a class="dropdown-item" href="feature-headers-overview.html">취업 상담 안내</a></li>
+																</ul>
+															</li>
+															
+															<li class="dropdown-submenu">
+																<a class="dropdown-item" href="#">열린 광장</a>
+																<ul class="dropdown-menu">
+																	<li class="dropdown-submenu">
+																		<a class="dropdown-item" href="#">계열별 게시판</a>
+																		<ul class="dropdown-menu">
+																			<li><a class="dropdown-item" href="feature-page-headers-classic-small.html">인문 사회 계열</a></li>				
+																			<li><a class="dropdown-item" href="feature-page-headers-classic-medium.html">자연 과학 계열</a></li>				
+																			<li><a class="dropdown-item" href="feature-page-headers-classic-large.html">공학 계열</a></li>
+																			<li><a class="dropdown-item" href="feature-page-headers-classic-large.html">예체능 계열</a></li>
+																		</ul>
+																	</li>
+																	<li class="dropdown-submenu">
+																		<a class="dropdown-item" href="#">취업정보 게시판</a>
+																		<ul class="dropdown-menu">
+																			<li><a class="dropdown-item" href="feature-page-headers-modern-small.html">구인 공고</a></li>				
+																			<li><a class="dropdown-item" href="feature-page-headers-modern-medium.html">구직 안내</a></li>				
+																			<li><a class="dropdown-item" href="feature-page-headers-modern-large.html">학생 이모저모</a></li>
+																		</ul>
+																	</li>
+																</ul>
+															</li>
+														</ul>
+													</li>
+													<li class="dropdown">
+														<a class="dropdown-item dropdown-toggle" href="#">
+															상담 안내
+														</a>
+														<ul class="dropdown-menu">
+															<li class="dropdown-submenu">
+																<a class="dropdown-item" href="#">상담센터</a>
+																<ul class="dropdown-menu">
+																	<li><a class="dropdown-item" href="#">FAQ</a></li>
+																	<li><a class="dropdown-item" href="#">QNA</a></li>
+																	<li><a class="dropdown-item" href="#">내 질문 내역</a></li>
+																</ul>
+															</li>
+														</ul>
+													</li>
+													<li class="dropdown">
+														<a class="dropdown-item dropdown-toggle" href="#">
+															공지사항
+														</a>
+														<ul class="dropdown-menu">
+															<li><a class="dropdown-item" href="#">학사 공지</a></li>
+															<li><a class="dropdown-item" href="#">일반 공지</a></li>	
+														</ul>
+													</li>
+												</ul>
+											</nav>
+										</div>
+										<button class="btn header-btn-collapse-nav" data-toggle="collapse" data-target=".header-nav-main nav">
+											<i class="fas fa-bars"></i>
+										</button>
+									</div>
+									<c:if test="${empty sessionScope.loginUser }">
+									<div class="header-nav-features header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2">
+										<div class="header-nav-feature header-nav-features-user d-inline-flex mx-2 pr-2 signin" id="headerAccount">
+											<a href="#" class="header-nav-features-toggle">
+												<i class="far fa-user"></i> Sign In
+											</a>
+											<div class="header-nav-features-dropdown header-nav-features-dropdown-mobile-fixed header-nav-features-dropdown-force-right" id="headerTopUserDropdown">
+												<div class="signin-form">
+													<h5 class="text-uppercase mb-4 font-weight-bold text-3">Sign In</h5>
+													<form>
+														<div class="form-group">
+															<label class="mb-1 text-2 opacity-8">Email address* </label>
+															<input type="email" class="form-control form-control-lg">
+														</div>
+														<div class="form-group">
+															<label class="mb-1 text-2 opacity-8">Password *</label>
+															<input type="password" class="form-control form-control-lg">
+														</div>
+														<div class="form-row pb-2">
+															<div class="form-group form-check col-lg-6 pl-1">
+																<div class="custom-control custom-checkbox">
+																	<input type="checkbox" class="custom-control-input" id="rememberMeCheck">
+																	<label class="custom-control-label text-2" for="rememberMeCheck">Remember Me</label>
+																</div>
+															</div>
+															<div class="form-group col-lg-6 text-right">
+																<a class="text-uppercase text-1 font-weight-bold text-color-dark" id="headerRecover" href="#">LOST YOUR PASSWORD?</a>
+															</div>
+														</div>
+														<div class="actions">
+															<div class="form-row">
+																<div class="col d-flex justify-content-end">
+																	<a class="btn btn-primary" href="#">Login</a>
+																</div>
+															</div>
+														</div>
+														<div class="extra-actions">
+															<p>Don't have an account yet? <a href="#" id="headerSignUp" class="text-uppercase text-1 font-weight-bold text-color-dark">Sign Up</a></p>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+									</c:if>
+									<c:if test="${!empty sessionScope.loginUser }">
+									<div class="header-nav-features header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2" style="position: none;">
+										<div class="header-nav-feature header-nav-features-user header-nav-features-user-logged d-inline-flex mx-2 pr-2" id="headerAccount">
+											<a href="#" class="header-nav-features-toggle">
+												<i class="far fa-user"></i> JOHN DOE
+											</a>
+											<div class="header-nav-features-dropdown header-nav-features-dropdown-mobile-fixed header-nav-features-dropdown-force-right" id="headerTopUserDropdown">
+												<div class="row">
+													<div class="col-8">
+														<p class="mb-0 pb-0 text-2 line-height-1 pt-1">안녕하세요,</p>
+														<p><strong class="text-color-dark text-4">김진태 님</strong></p>
+													</div>
+													<div class="col-4">
+														<div class="d-flex justify-content-end">
+															<img class="rounded-circle" width="40" height="40" alt="" src="img/avatars/avatar.jpg">
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col">
+														<ul class="nav nav-list-simple flex-column text-3">
+															<li class="nav-item"><a class="nav-link" href="#">내 정보</a></li>
+															<li class="nav-item"><a class="nav-link border-bottom-0" href="#">로그아웃</a></li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									</c:if>
+									<button class="header-nav-features header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2 btn btn-outline btn-primary  btn-with-arrow">
+										등교하기<span><i class="fas fa-chevron-right"></i></span>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
 
-    <!-- SEARCH FORM
-    <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
 
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <!-- Messages Dropdown Menu -->
-      <a href="#">HELP DESK&nbsp;&nbsp;&nbsp;</a>
-    </ul>
-  </nav>
-  <!-- /.navbar -->
+		<!-- Vendor -->
+		<script src="resources/vendor/jquery/jquery.min.js"></script>
+		<script src="resources/vendor/jquery.appear/jquery.appear.min.js"></script>
+		<script src="resources/vendor/jquery.easing/jquery.easing.min.js"></script>
+		<script src="resources/vendor/jquery.cookie/jquery.cookie.min.js"></script>
+		<script src="resources/vendor/popper/umd/popper.min.js"></script>
+		<script src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script src="resources/vendor/common/common.min.js"></script>
+		<script src="resources/vendor/jquery.validation/jquery.validate.min.js"></script>
+		<script src="resources/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+		<script src="resources/vendor/jquery.gmap/jquery.gmap.min.js"></script>
+		<script src="resources/vendor/jquery.lazyload/jquery.lazyload.min.js"></script>
+		<script src="resources/vendor/isotope/jquery.isotope.min.js"></script>
+		<script src="resources/vendor/owl.carousel/owl.carousel.min.js"></script>
+		<script src="resources/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+		<script src="resources/vendor/vide/jquery.vide.min.js"></script>
+		<script src="resources/vendor/vivus/vivus.min.js"></script>
+
+		<!--(remove-empty-lines-end)-->
+
+		<!-- Theme Base, Components and Settings -->
+		<script src="resources/js/theme.js"></script>
+
+		<!-- Current Page Vendor and Views -->
+		<script src="resources/vendor/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+		<script src="resources/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+		<script src="resources/vendor/circle-flip-slideshow/js/jquery.flipshow.min.js"></script>
+		<script src="resources/js/views/view.home.js"></script>
+
+		<!-- Theme Custom -->
+		<script src="resources/js/custom.js"></script>
+
+
+		<!-- Theme Initialization Files -->
+		<script src="resources/js/theme.init.js"></script>
+
+		<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-12345678-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		 -->
+
+	</body>
+</html>
