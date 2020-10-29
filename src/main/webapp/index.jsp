@@ -74,8 +74,8 @@
 							<div class="header-column">
 								<div class="header-row">
 									<div class="header-logo">
-										<a href="index.html">
-											<img alt="Porto" width="82" height="40" src="resources/img/white-en-logo.png">
+										<a href="">
+											<img alt="Porto" width="140" height="40" src="resources/img/white-en-logo.png">
 										</a>
 									</div>
 								</div>
