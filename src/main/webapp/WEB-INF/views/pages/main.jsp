@@ -20,6 +20,7 @@
 						<h1 class="tp-caption font-weight-extra-bold text-color-light negative-ls-2" data-frames='[{"delay":1000,"speed":2000,"frame":"0","from":"sX:1.5;opacity:0;fb:20px;","to":"o:1;fb:0;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;fb:0;","ease":"Power3.easeInOut"}]' data-x="['left','left','center','center']" data-hoffset="['152','152','0','0']" data-y="center" data-fontsize="['50','50','50','90']" data-lineheight="['55','55','55','95']" data-letterspacing="-1">KH 사이버 대학교</h1>
 
 						<div class="tp-caption font-weight-light text-color-light" data-frames='[{"from":"opacity:0;","speed":300,"to":"o:1;","delay":2000,"split":"chars","splitdelay":0.05,"ease":"Power2.easeInOut"},{"delay":"wait","speed":1000,"to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"}]' data-x="['left','left','center','center']" data-hoffset="['166','166','0','0']" data-y="center" data-voffset="['40','40','40','80']" data-fontsize="['18','18','18','50']" data-lineheight="['20','20','20','55']">KH Information Educational Institute</div></li>
+
 					<li data-transition="fade"><img src="resources/img/slides/need_bg_3.jpg" alt="" data-bgposition="right center" data-bgpositionend="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-kenburns="on" data-duration="9000" data-ease="Linear.easeNone" data-scalestart="110" data-scaleend="100" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0" data-offsetend="0 0" data-bgparallax="0" class="rev-slidebg">
 
 						<div class="tp-caption font-weight-extra-bold text-color-light negative-ls-2" data-frames='[{"delay":1000,"speed":2000,"frame":"0","from":"sX:1.5;opacity:0;fb:20px;","to":"o:1;fb:0;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;fb:0;","ease":"Power3.easeInOut"}]' data-x="center" data-y="center" data-voffset="['-50','-50','-50','-75']" data-fontsize="['50','50','50','90']" data-lineheight="['55','55','55','95']">새 시대를 향한 젊음의 도전</div>
@@ -81,7 +82,7 @@
 										<a type="button" class="btn btn-quaternary btn-with-arrow mb-2 float-right" href="#">학사 공지 더보기<span><i class="fas fa-chevron-right"></i></span></a>
 									</div>
 								</div>
-								
+
 								<div class="tab-pane" id="tabsNavigationSimple2">
 									<div class="text-center">
 										<h4>일반 공지</h4>
@@ -141,7 +142,7 @@
 						<a href="#" class="btn btn-dark font-weight-semibold btn-px-4 btn-py-2 text-2">바로가기</a>
 					</div>
 					<div class="col-sm-8 col-md-6 col-lg-4 offset-sm-4 offset-md-4 offset-lg-2 mt-sm-5" style="top: 1.7rem;">
-						<img src="resources/img/generic/generic-corporate-3-1.jpg" class="img-fluid position-absolute d-none d-sm-block appear-animation" data-appear-animation="expandIn" data-appear-animation-delay="300" style="top: 10%; left: -50%;" alt="" /> <img src="img/generic/generic-corporate-3-2.jpg" class="img-fluid position-absolute d-none d-sm-block appear-animation" data-appear-animation="expandIn" style="top: -33%; left: -29%;" alt="" /> <img src="img/generic/generic-corporate-3-3.jpg" class="img-fluid position-relative appear-animation mb-2" data-appear-animation="expandIn" data-appear-animation-delay="600" alt="" />
+						<img src="resources/img/generic/generic-corporate-3-1.jpg" class="img-fluid position-absolute d-none d-sm-block appear-animation" data-appear-animation="expandIn" data-appear-animation-delay="300" style="top: 10%; left: -50%;" alt="" /> <img src="resources/img/generic/generic-corporate-3-2.jpg" class="img-fluid position-absolute d-none d-sm-block appear-animation" data-appear-animation="expandIn" style="top: -33%; left: -29%;" alt="" /> <img src="resources/img/generic/generic-corporate-3-3.jpg" class="img-fluid position-relative appear-animation mb-2" data-appear-animation="expandIn" data-appear-animation-delay="600" alt="" />
 					</div>
 				</div>
 			</div>
