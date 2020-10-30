@@ -350,6 +350,7 @@ ul.tab2 li.current {
 							</select>
 						</div>
 
+<<<<<<< HEAD
 					</div>
 				</div>
 				<div id="1class" class="tab-content2 ">
@@ -390,7 +391,64 @@ ul.tab2 li.current {
 												</span>
 											</td>
 										</tr>
+=======
+                    </div>
+                </div>
+                <div id="1class" class="tab-content2 ">
+                    <div class="col-lg-6 mb-5 mb-lg-0 card border-width-3 border-radius-0 border-color-hover-dark">
+                         <div class="table-responsive">
+                             <table class="shop_table cart">
+                                 <thead>
+                                     <tr class="text-color-dark">
+                                         <th class=" text-uppercase" width="15%">
+                                             강의번호
+                                         </th>
+                                         <th class="text-uppercase" width="20%">
+                                             교과목 명
+                                         </th>
+                                         <th class=" text-uppercase" width="20%">
+                                             강의 교수
+                                         </th>
+                                         <th class=" text-uppercase " width="10%">
+                                             학년
+                                         </th>
+                                         <th class=" text-uppercase " width="10%">
+                                             학점
+                                         </th>
+                                         <th class=" text-uppercase " width="15%">
+                                             추가
+                                         </th>
+                                     </tr>
+                                 </thead>
+                                 <tbody>
+                                     <tr class="cart_table_item">
+                                         <td class="product-thumbnail">
+                                             <span
+                                                 class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">C5011100</span>
+                                         </td>
+                                         <td class="product-thumbnail">
+                                             <span
+                                                 class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">고전시가론특강</span>
+                                         </td>
+                                         <td class="product-thumbnail">
+                                             <span
+                                                 class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">김진영</span>
+                                         </td>
+                                         <td class="product-thumbnail">
+                                             <span
+                                                 class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">1</span>
+                                         </td>
+                                         <td class="product-thumbnail">
+                                             <span
+                                                 class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">3</span>
+                                         </td>
+                                         <td class="product-thumbnail">
+                                              <button class="add">+</button>
+                                         </td>
+                                     </tr>
+>>>>>>> branch 'master' of https://github.com/KHunivesity/khuniv.git
 
+<<<<<<< HEAD
 									</tbody>
 								</table>
 							</div>
@@ -673,6 +731,371 @@ ul.tab2 li.current {
 					</div>
 				</div>
 				<div style="align-self: center;">
+=======
+                                 </tbody>
+                             </table>
+                         </div>
+                    </div>
+                </div>
+                <div id="2class" class="tab-content2 ">
+                    <div class="col-lg-6 mb-5 mb-lg-0 card border-width-3 border-radius-0 border-color-hover-dark">
+                        <div class="table-responsive">
+                            <table class="shop_table cart">
+                                <thead>
+                                    <tr class="text-color-dark">
+                                        <th class=" text-uppercase" width="15%">
+                                            강의번호
+                                        </th>
+                                        <th class="text-uppercase" width="20%">
+                                            교과목 명
+                                        </th>
+                                        <th class=" text-uppercase" width="20%">
+                                            강의 교수
+                                        </th>
+                                        <th class=" text-uppercase " width="10%">
+                                            학년
+                                        </th>
+                                        <th class=" text-uppercase " width="10%">
+                                            학점
+                                        </th>
+                                        <th class=" text-uppercase " width="15%">
+                                            추가
+                                        </th>
+                                </thead>
+                                <tbody>
+                                    <tr class="cart_table_item">
+                                        <td class="product-thumbnail">
+                                            <span
+                                                class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">C5011100</span>
+                                        </td>
+                                        <td class="product-thumbnail">
+                                            <span
+                                                class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">고전ㄴㄴ시가론특강</span>
+                                        </td>
+                                        <td class="product-thumbnail">
+                                            <span
+                                                class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">김진영</span>
+                                        </td>
+                                        <td class="product-thumbnail">
+                                            <span
+                                                class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">2</span>
+                                        </td>
+                                        <td class="product-thumbnail">
+                                            <span
+                                                class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">3</span>
+                                        </td>
+                                        <td class="product-thumbnail">
+                                               <button class="add">+</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div id="3class" class="tab-content2 ">
+                    <div class="col-lg-6 mb-5 mb-lg-0 card border-width-3 border-radius-0 border-color-hover-dark">
+                        <div class="table-responsive">
+                            <table class="shop_table cart">
+                                <thead>
+                                    <tr class="text-color-dark">
+                                        <th class=" text-uppercase" width="15%">
+                                            강의번호
+                                        </th>
+                                        <th class="text-uppercase" width="20%">
+                                            교과목 명
+                                        </th>
+                                        <th class=" text-uppercase" width="20%">
+                                            강의 교수
+                                        </th>
+                                        <th class=" text-uppercase " width="10%">
+                                            학년
+                                        </th>
+                                        <th class=" text-uppercase " width="10%">
+                                            학점
+                                        </th>
+                                        <th class=" text-uppercase " width="15%">
+                                            추가
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="cart_table_item">
+                                        <td class="product-thumbnail">
+                                            <span
+                                                class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">C5011100</span>
+                                        </td>
+                                        <td class="product-thumbnail">
+                                            <span
+                                                class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">고전ㄴㄴ시가론특강</span>
+                                        </td>
+                                        <td class="product-thumbnail">
+                                            <span
+                                                class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">김진영</span>
+                                        </td>
+                                        <td class="product-thumbnail">
+                                            <span
+                                                class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">3</span>
+                                        </td>
+                                        <td class="product-thumbnail">
+                                            <span
+                                                class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">3</span>
+                                        </td>
+                                        <td class="product-thumbnail">
+                                              <button class="add">+</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div id="4class" class="tab-content2 ">
+                    <div class="col-lg-6 mb-5 mb-lg-0 card border-width-3 border-radius-0 border-color-hover-dark">
+                        <div class="table-responsive">
+                            <table class="shop_table cart">
+                                <thead>
+                                    <tr class="text-color-dark">
+                                        <th class=" text-uppercase" width="15%">
+                                            강의번호
+                                        </th>
+                                        <th class="text-uppercase" width="20%">
+                                            교과목 명
+                                        </th>
+                                        <th class=" text-uppercase" width="20%">
+                                            강의 교수
+                                        </th>
+                                        <th class=" text-uppercase " width="10%">
+                                            학년
+                                        </th>
+                                        <th class=" text-uppercase " width="10%">
+                                            학점
+                                        </th>
+                                        <th class=" text-uppercase " width="15%">
+                                            추가
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="cart_table_item">
+                                        <td class="product-thumbnail">
+                                            <span
+                                                class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">C5011100</span>
+                                        </td>
+                                        <td class="product-thumbnail">
+                                            <span
+                                                class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">고전ㄴㄴ시가론특강</span>
+                                        </td>
+                                        <td class="product-thumbnail">
+                                            <span
+                                                class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">김진영</span>
+                                        </td>
+                                        <td class="product-thumbnail">
+                                            <span
+                                                class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">4</span>
+                                        </td>
+                                        <td class="product-thumbnail">
+                                            <span
+                                                class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">3</span>
+                                        </td>
+                                        <td class="product-thumbnail">
+                                            <button class="add">+</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div id="5class" class="tab-content2 ">
+                    <div class="col-lg-6 mb-5 mb-lg-0 card border-width-3 border-radius-0 border-color-hover-dark">
+                        <form method="post" action="">
+                            <div class="table-responsive">
+                                <table class="shop_table cart">
+                                    <thead>
+                                        <tr class="text-color-dark">
+                                            <th class=" text-uppercase" width="15%">
+                                                강의번호
+                                            </th>
+                                            <th class="text-uppercase" width="20%">
+                                                교과목 명
+                                            </th>
+                                            <th class=" text-uppercase" width="20%">
+                                                강의 교수
+                                            </th>
+                                            <th class=" text-uppercase " width="10%">
+                                                학년
+                                            </th>
+                                            <th class=" text-uppercase " width="10%">
+                                                학점
+                                            </th>
+                                            <th class=" text-uppercase " width="15%">
+                                                추가
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="cart_table_item">
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">C5011100</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">교양데스</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">김진영</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">3</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">3</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">
+                                                    <button id="add">+</button>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr class="cart_table_item">
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">C5011100</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">고전시가론특강</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">김진영</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">3</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">3</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                   <button class="add">+</button>
+                                            </td>
+                                        </tr>
+                                        <tr class="cart_table_item">
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">C5011100</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">고전시가론특강</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">김진영</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">3</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">3</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                   <button class="add">+</button>
+                                            </td>
+                                        </tr>
+                                        <tr class="cart_table_item">
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">C5011100</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">고전시가론특강</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">김진영</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">3</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">3</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                   <button class="add">+</button>
+                                            </td>
+                                        </tr>
+                                        <tr class="cart_table_item">
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">C5011100</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">고전시가론특강</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">김진영</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">3</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">3</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                   <button class="add">+</button>
+                                            </td>
+                                        </tr>
+                                        <tr class="cart_table_item">
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">C5011100</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">고전시가론특강</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">김진영</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">3</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span
+                                                    class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">3</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                   <button class="add">+</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div style=" align-self: center;">
+>>>>>>> branch 'master' of https://github.com/KHunivesity/khuniv.git
 
 					<i class="icon-arrow-right icons text-10 col-lg-3 col-6"></i> <br> <i class="icon-arrow-left icons text-10 col-lg-3 col-6"></i>
 

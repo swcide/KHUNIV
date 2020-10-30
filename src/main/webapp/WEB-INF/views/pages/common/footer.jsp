@@ -7,11 +7,11 @@
 						<div class="row py-4">
 							<div class="col-lg-1 d-flex align-items-center justify-content-center justify-content-lg-start mb-2 mb-lg-0">
 								<a href="index.html" class="logo pr-0 pr-lg-3">
-									<img alt="Porto Website Template" src="resources/img/white-en-logo.png" class="opacity-5" height="33">
+									<img alt="Porto Website Template" src="resources/img/khculogo4.png" class="opacity-5" height="33">
 								</a>
 							</div>
 							<div class="col-lg-7 d-flex align-items-center justify-content-center justify-content-lg-start mb-4 mb-lg-0">
-								<p>© Copyright 2020. KH Information Educational Institute. All Rights Reserved. 02)111-2222</p>
+								<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;© Copyright 2020. KH Information Educational Institute. All Rights Reserved. 02)111-2222</p>
 							</div>
 							<div class="col-lg-4 d-flex align-items-center justify-content-center justify-content-lg-end">
 								<nav id="sub-menu">
