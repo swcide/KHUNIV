@@ -12,8 +12,8 @@
 				<div class="row mt-3">
 					<div
 						class="col-md-12 align-self-center p-static order-2 text-center">
-						<h1 class="text-9 font-weight-bold">에체능 게시판</h1>
-						<span class="sub-title"> Fine Arts and Athletics</span>
+						<h1 class="text-9 font-weight-bold">인문 사회 게시판</h1>
+						<span class="sub-title"> Humanities and Social Sciences</span>
 					</div>
 				</div>
 			</div>
@@ -26,7 +26,7 @@
 
 						<div
 							class="custom-box-details bg-color-light custom-box-shadow-1 col-lg-12 ml-5 mb-5 mb-lg-4 float-right clearfix">
-							<h4>예체능 게시판</h4>
+							<h4>인문 사회 게시판</h4>
 
 							<table class="table table-hover">
 								<thead>
@@ -41,56 +41,57 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>7</td>
-										<td><a href="#">저는 말도 잘합니다</a></td>
+										<td>1</td>
+										<td><a href>저는 인문사회 전문가 입니다 너무 쉽네요</a></td>
 
-										<td>윤기훈</td>
+										<td>김진태</td>
 										<td>3</td>
 										<td>2020/10/28</td>
 									</tr>
 									<tr>
-										<td>6</td>
-										<td><a href="#"> 저는 태권도를 매우 잘합니다</a></td>
+										<td>2</td>
+										<td><a href>사회가 황폐해졌습니다</a></td>
+
+										<td>이성호</td>
+										<td>123</td>
+										<td>2020/10/28</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td><a href>형 머하세요</a></td>
 
 										<td>윤기훈</td>
 										<td>12</td>
 										<td>2020/10/28</td>
 									</tr>
 									<tr>
-										<td>5</td>
-										<td><a href="#">예체능학과에 관련된 내용이 뭐가 있을까요?</a></td>
-
-										<td>이성호</td>
-										<td>131</td>
-										<td>2020/10/28</td>
-									</tr>
-									<tr>
 										<td>4</td>
-										<td><a href="#">고마워요 </a></td>
+										<td><a href>보고싶다</a></td>
 
 										<td>김진태</td>
 										<td>11</td>
 										<td>2020/10/28</td>
 									</tr>
 									<tr>
-										<td>3</td>
-										<td><a href="#">턱걸이 50개 이상 가능하신분 배틀신청합니다</a></td>
+										<td>5</td>
+										<td><a href>영종도에 낚시포인트 좋은곳 있나요?</a></td>
 
-										<td>윤기훈</td>
+										<td>김진태</td>
 										<td>1</td>
 										<td>2020/10/28</td>
 									</tr>
 									<tr>
-										<td>2</td>
-										<td><a href="#">김치볶음밥에 반숙먹으면 달리기가 잘됩니다.</a></td>
+										<td>6</td>
+										<td><a href>삼겹살김치볶음밥에 반숙은 인문사회학적으로 옳은 선택입니다.</a></td>
 
 										<td>김진태</td>
 										<td>131</td>
 										<td>2020/10/28</td>
 									</tr>
 									<tr>
-										<td>1</td>
-										<td><a href="#">예체능 계열 관련글만 적어주시면 감사하겠습니다.</a></td>
+										<td>7</td>
+										<td><a href>인문사회계열 관련글만 적어주시면 감사하겠습니다.</a></td>
+
 										<td>관리자</td>
 										<td>131</td>
 										<td>2020/10/28</td>

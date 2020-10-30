@@ -13,7 +13,7 @@
 				<div class="row mt-3">
 					<div
 						class="col-md-12 align-self-center p-static order-2 text-center">
-						<h1 class="text-9 font-weight-bold">Q&A 작성</h1>
+						<h1 class="text-9 font-weight-bold">Q&A</h1>
 						<span class="sub-title">Question & Answer</span>
 					</div>
 				</div>
