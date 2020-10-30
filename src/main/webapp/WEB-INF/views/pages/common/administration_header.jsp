@@ -7,7 +7,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">	
 
-		<title>Porto - Responsive HTML5 Template</title>	
+		<title>KH Cyber University</title>	
 
 		<meta name="keywords" content="HTML5 Template" />
 		<meta name="description" content="Porto - Responsive HTML5 Template">
@@ -102,7 +102,7 @@
 											<nav class="collapse header-mobile-border-top">
 												<ul class="nav nav-pills" id="mainNav">
 													<li class="dropdown">
-														<a class="dropdown-item dropdown-toggle" href="index.html">
+														<a class="dropdown-item dropdown-toggle" href="#">
 															강의동
 														</a>
 														<ul class="dropdown-menu">
