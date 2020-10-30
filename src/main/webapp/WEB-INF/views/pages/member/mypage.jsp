@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<%@ include file="administration_header.jsp" %>
+<%@ include file="../common/administration_header.jsp" %>
 			<div role="main" class="main">
 
 				<section class="page-header page-header-classic">
@@ -119,5 +119,5 @@
 				</div>
 			</div>
 	</body>
-	<%@include file="footer.jsp" %>
+	<%@include file="../common/footer.jsp" %>
 </html>
