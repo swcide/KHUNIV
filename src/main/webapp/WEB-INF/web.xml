@@ -33,4 +33,14 @@
     <servlet-name>Signup</servlet-name>
     <url-pattern>/Signup</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LectureController</display-name>
+    <servlet-name>LectureController</servlet-name>
+    <servlet-class>com.kh.univ.LectureController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LectureController</servlet-name>
+    <url-pattern>/LectureController</url-pattern>
+  </servlet-mapping>
 </web-app>
