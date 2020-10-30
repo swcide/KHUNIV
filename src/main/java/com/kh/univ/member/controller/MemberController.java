@@ -67,7 +67,7 @@ public class MemberController
 		@RequestMapping("mypage.do")
 		public String myInfoView()
 			{
-				return "common/mypage";
+				return "member/mypage";
 			}
 
 		// 회원정보 수정

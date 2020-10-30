@@ -155,11 +155,11 @@
 															<li class="dropdown-submenu">
 																<a class="dropdown-item" href="#">강의</a>
 																<ul class="dropdown-menu">
-																	<li><a class="dropdown-item" href="contact-us-advanced.php">강의 개설 정보</a></li>
-																	<li><a class="dropdown-item" href="contact-us-advanced.php">수강신청</a></li>
-																	<li><a class="dropdown-item" href="contact-us.html">청강신청</a></li>
-																	<li><a class="dropdown-item" href="contact-us-recaptcha.html">신청현황</a></li>
-																	<li><a class="dropdown-item" href="contact-us-recaptcha.html">강의계획서</a></li>
+																	<li><a class="dropdown-item" href="ad_lect_list.do">강의 개설 정보</a></li>
+																	<li><a class="dropdown-item" href="ad_lect_appl.do">수강신청</a></li>
+																	<li><a class="dropdown-item" href="ad_audit_lect_appl.do">청강신청</a></li>
+																	<li><a class="dropdown-item" href="ad_appl_stat.do">신청현황</a></li>
+																	<li><a class="dropdown-item" href="ad_syllabus.do">강의계획서</a></li>
 																</ul>
 															</li>
 															<li>
