@@ -108,7 +108,7 @@
 
 														<li class="dropdown-submenu"><a class="dropdown-item" href="#">열린 광장</a>
 															<ul class="dropdown-menu">
-																<li class="dropdown-submenu"><a class="dropdown-item" href="dept_baord.do">계열별 게시판</a>
+																<li class="dropdown-submenu"><a class="dropdown-item" href="dept_board.do">계열별 게시판</a>
 																	<ul class="dropdown-menu">
 																		<li><a class="dropdown-item" href="human.do">인문 사회 계열</a></li>
 																		<li><a class="dropdown-item" href="natural.do">자연 과학 계열</a></li>
