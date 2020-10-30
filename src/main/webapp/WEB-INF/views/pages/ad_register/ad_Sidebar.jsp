@@ -16,7 +16,7 @@
 					<li class="nav-item"><a class="nav-link" href="ad_appl_stat.do">신청현황</a></li>
 				</ul></li>
 			<li class="nav-item"><a class="nav-link" href="ad_point_search_list.do">성적조회</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">휴학</a></li>
+			<li class="nav-item"><a class="nav-link" href="ad_leave_absence_check.do">휴학</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">복학</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">졸업유예</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">자퇴</a></li>

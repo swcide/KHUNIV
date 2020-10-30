@@ -173,8 +173,8 @@
 															<li class="dropdown-submenu">
 																<a class="dropdown-item" href="#">휴학</a>
 																<ul class="dropdown-menu">
-																	<li><a class="dropdown-item" href="about-us-advanced.html">휴학신청 바로가기</a></li>
-																	<li><a class="dropdown-item" href="about-us.html">휴학신청 확인</a></li>
+																	<li><a class="dropdown-item" onClick="window.open(this.href='ad_leave_absence.do', '', 'resizable=yes, width=900, height=800 left=700px top=100px'); return false;" >휴학신청 바로가기</a></li>
+																	<li><a class="dropdown-item" href="ad_leave_absence_check.do">휴학신청 확인</a></li>
 																</ul>
 															</li>
 															<li class="dropdown-submenu">

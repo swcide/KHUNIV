@@ -116,6 +116,32 @@ public class ad_Register_Controller {
 		
 		return "ad_register/ad_Point_Search";
 	}
+	@RequestMapping(value = "ad_leave_absence.do", method = RequestMethod.GET)
+	public String leave_absence(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "ad_register/ad_Leave_Absence";
+	}
+	@RequestMapping(value = "ad_leave_absence_check.do", method = RequestMethod.GET)
+	public String leave_absence_check(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "ad_register/ad_Leave_Absence_Check";
+	}
 	
 	
 	
