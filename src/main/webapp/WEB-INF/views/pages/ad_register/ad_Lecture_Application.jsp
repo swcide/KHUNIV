@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>KHCU | 수강신청</title>
 <style>
 ul.tab2 {
 	margin: 0px;

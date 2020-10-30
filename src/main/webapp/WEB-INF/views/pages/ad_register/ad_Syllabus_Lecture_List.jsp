@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>강의계획서</title>
+<title>KHCU | 강의계획서</title>
 </head>
 <body>
 	<%@include file="../common/administration_header.jsp"%>
@@ -16,7 +16,7 @@
 						<div class="col p-static">
 							<h1 data-title-border>강의계획서</h1>
 						</div>
-					</div>
+					</div><h6>학적관리 > 강의 ></h6>
 				</div>
 			</section>
 			<div class="container py-2">

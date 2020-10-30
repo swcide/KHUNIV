@@ -3,12 +3,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>KHCU | 강의계획서</title>
 <!-- Basic -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-<title>Porto - Responsive HTML5 Template</title>
 
 <meta name="keywords" content="HTML5 Template" />
 <meta name="description" content="Porto - Responsive HTML5 Template">
