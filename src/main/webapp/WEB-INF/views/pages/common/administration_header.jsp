@@ -159,7 +159,7 @@
 																	<li><a class="dropdown-item" href="ad_lect_appl.do">수강신청</a></li>
 																	<li><a class="dropdown-item" href="ad_audit_lect_appl.do">청강신청</a></li>
 																	<li><a class="dropdown-item" href="ad_appl_stat.do">신청현황</a></li>
-																	<li><a class="dropdown-item" href="ad_syllabus.do">강의계획서</a></li>
+																	<li><a class="dropdown-item" href="ad_syllabus_List.do">강의계획서</a></li>
 																</ul>
 															</li>
 															<li>

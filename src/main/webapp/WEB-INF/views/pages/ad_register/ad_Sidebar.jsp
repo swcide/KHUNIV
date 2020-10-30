@@ -15,7 +15,7 @@
 					<li class="nav-item"><a class="nav-link" href="ad_lect_appl.do">수강신청</a></li>
 					<li class="nav-item"><a class="nav-link" href="ad_audit_lect_appl.do">청강신청</a></li>
 					<li class="nav-item"><a class="nav-link" href="ad_appl_stat.do">신청현황</a></li>
-					<li class="nav-item"><a class="nav-link" href="ad_syllabus.do">강의계획서</a></li>
+					<li class="nav-item"><a class="nav-link" href="ad_syllabus_List.do">강의계획서</a></li>
 				</ul></li>
 			<li class="nav-item"><a class="nav-link" href="#">성적조회</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">휴학</a></li>
