@@ -50,19 +50,6 @@ public class ad_Register_Controller {
 		return "ad_register/ad_Application_Status";
 	}
 	
-	@RequestMapping(value = "ad_syllabus_List.do", method = RequestMethod.GET)
-	public String ad_syllabus_list(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "ad_register/ad_Syllabus_Lecture_List";
-	}
 	@RequestMapping(value = "ad_syllabus.do", method = RequestMethod.GET)
 	public String ad_syllabus(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
@@ -102,6 +89,32 @@ public class ad_Register_Controller {
 		model.addAttribute("serverTime", formattedDate );
 		
 		return "ad_register/ad_AuditLecture_Application";
+	}
+	@RequestMapping(value = "ad_point_search_list.do", method = RequestMethod.GET)
+	public String point_Search_List(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "ad_register/ad_Point_Search_List";
+	}
+	@RequestMapping(value = "ad_point_search.do", method = RequestMethod.GET)
+	public String point_Search(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "ad_register/ad_Point_Search";
 	}
 	
 	

@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html>
 	<head>
-
 		<!-- Basic -->
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">	
@@ -48,7 +47,7 @@
 <link rel="stylesheet" href="resources/css/demos/demo-it-services.css">
 
 		<!-- Skin CSS -->
-		<link rel="stylesheet" href="resources/css/skins/default.css"> 
+		<link rel="stylesheet" href="resources/css/skins/ad_default.css"> 
 		<link rel="stylesheet" href="resources/css/skins/skin-it-services.css">
 
 		<!-- Theme Custom CSS -->
@@ -56,6 +55,13 @@
 
 		<!-- Head Libs -->
 		<script src="resources/vendor/modernizr/modernizr.min.js"></script>
+
+
+
+<style>
+.table-hover tbody tr:hover{color:rgba(0,137,149,0.9);background-color:rgba(0,137,149,0.1)}
+
+</style>
 
 	</head>
 	<body>
@@ -159,11 +165,10 @@
 																	<li><a class="dropdown-item" href="ad_lect_appl.do">수강신청</a></li>
 																	<li><a class="dropdown-item" href="ad_audit_lect_appl.do">청강신청</a></li>
 																	<li><a class="dropdown-item" href="ad_appl_stat.do">신청현황</a></li>
-																	<li><a class="dropdown-item" href="ad_syllabus_List.do">강의계획서</a></li>
 																</ul>
 															</li>
 															<li>
-																<a class="dropdown-item" href="#">성적조회</a>
+																<a class="dropdown-item" href="ad_point_search_list.do">성적조회</a>
 															</li>
 															<li class="dropdown-submenu">
 																<a class="dropdown-item" href="#">휴학</a>
