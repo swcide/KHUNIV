@@ -33,8 +33,6 @@
     <link rel="stylesheet" href="resources/vendor/owl.carousel/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="resources/vendor/owl.carousel/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="resources/vendor/magnific-popup/magnific-popup.min.css">
-    <link rel="stylesheet" href="resources/vendor/bootstrap-star-rating/css/star-rating.min.css">
-    <link rel="stylesheet" href="resources/vendor/bootstrap-star-rating/themes/krajee-fas/theme.min.css">
 
     <!-- Theme CSS -->
     <link rel="stylesheet" href="resources/css/theme.css">
@@ -982,24 +980,13 @@
     <script src="resources/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
     <script src="resources/vendor/vide/jquery.vide.min.js"></script>
     <script src="resources/vendor/vivus/vivus.min.js"></script>
-    <script src="resources/vendor/bootstrap-star-rating/js/star-rating.min.js"></script>
-    <script src="resources/vendor/bootstrap-star-rating/themes/krajee-fas/theme.min.js"></script>
-    <script src="resources/vendor/jquery.countdown/jquery.countdown.min.js"></script>
 
     <!--(remove-empty-lines-end)-->
 
     <!-- Theme Base, Components and Settings -->
-    <script src="js/theme.js"></script>
-
-    <!-- Current Page Vendor and Views -->
-    <script src="js/views/view.shop.js"></script>
-
-    <!-- Theme Custom -->
-    <script src="js/custom.js"></script>
 
 
     <!-- Theme Initialization Files -->
-    <script src="js/theme.init.js"></script>
 
     <script>
         $(document).ready(function () {
