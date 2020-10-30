@@ -46,7 +46,7 @@ public class indexController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "common/login";
+		return "member/login";
 	}
 	
 }
