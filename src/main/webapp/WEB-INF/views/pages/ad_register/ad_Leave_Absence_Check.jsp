@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>KHCU | 휴학신청확인</title>
+<title>KHCU | 휴학</title>
 
 </head>
 <body>

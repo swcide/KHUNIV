@@ -17,9 +17,9 @@
 				</ul></li>
 			<li class="nav-item"><a class="nav-link" href="ad_point_search_list.do">성적조회</a></li>
 			<li class="nav-item"><a class="nav-link" href="ad_leave_absence_check.do">휴학</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">복학</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">졸업유예</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">자퇴</a></li>
+			<li class="nav-item"><a class="nav-link" href="ad_return_absence_check.do">복학</a></li>
+			<li class="nav-item"><a class="nav-link" href="ad_deferment_graduation_check.do">졸업유예</a></li>
+			<li class="nav-item"><a class="nav-link" href="ad_drop_absence_check.do">자퇴</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">등록금</a>
 				<ul>
 					<li class="nav-item"><a class="nav-link" href="#">등록금 고지서</a></li>

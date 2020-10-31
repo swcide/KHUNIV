@@ -180,22 +180,22 @@
 															<li class="dropdown-submenu">
 																<a class="dropdown-item" href="#">복학</a>
 																<ul class="dropdown-menu">
-																	<li><a class="dropdown-item" href="page-full-width.html">복학신청 바로가기</a></li>
-																	<li><a class="dropdown-item" href="page-left-sidebar.html">복학신청 확인</a></li>
+																	<li><a class="dropdown-item"onClick="window.open(this.href='ad_return_absence.do', '', 'resizable=yes, width=900, height=800 left=700px top=100px'); return false;" >복학신청 바로가기</a></li>
+																	<li><a class="dropdown-item" href="ad_return_absence_check.do">복학신청 확인</a></li>
 																</ul>
 															</li>
 															<li class="dropdown-submenu">
 																<a class="dropdown-item" href="#">졸업유예</a>
 																<ul class="dropdown-menu">
-																	<li><a class="dropdown-item" href="page-404.html">졸업유예신청 바로가기</a></li>
-																	<li><a class="dropdown-item" href="page-500.html">졸업유예신청 확인</a></li>
+																	<li><a class="dropdown-item" onClick="window.open(this.href='ad_deferment_graduation.do', '', 'resizable=yes, width=900, height=800 left=700px top=100px'); return false;">졸업유예신청 바로가기</a></li>
+																	<li><a class="dropdown-item" href="ad_deferment_graduation_check.do">졸업유예신청 확인</a></li>
 																</ul>
 															</li>
 															<li class="dropdown-submenu">
 																<a class="dropdown-item" href="#">자퇴</a>
 																<ul class="dropdown-menu">
-																	<li><a class="dropdown-item" href="page-team-advanced.html">자퇴신청 바로가기</a></li>
-																	<li><a class="dropdown-item" href="page-team.html">자퇴신청 확인</a></li>
+																	<li><a class="dropdown-item" onClick="window.open(this.href='ad_drop_absence.do', '', 'resizable=yes, width=900, height=800 left=700px top=100px'); return false;">자퇴신청 바로가기</a></li>
+																	<li><a class="dropdown-item" href="ad_drop_absence_check.do">자퇴신청 확인</a></li>
 																</ul>
 															</li>
 															<li class="dropdown-submenu">
