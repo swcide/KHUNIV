@@ -35,7 +35,7 @@
 										<li class="nav-item active"><a class="nav-link" href="#popular10" data-toggle="tab" class="text-center">전공 강의</a></li>
 										<li class="nav-item"><a class="nav-link" href="#recent10" data-toggle="tab" class="text-center">교양 강의</a></li>
 									</ul>
-									<div class="tab-content">
+									<div class="tab-content" style="height: 300px;">
 										<div id="popular10" class="tab-pane active">
 											<div class="form-group row">
 												<div class="col-lg-3">
@@ -90,7 +90,7 @@
 											</table>
 										</div>
 										<div id="recent10" class="tab-pane">
-											<div class="input-group input-group-md">
+											<div class="input-group input-group-md" style="margin-bottom: 16px;">
 												<input class="form-control" placeholder="과목명 검색" name="s" id="s" type="text"> <span class="input-group-append">
 													<button type="submit" class="btn btn-primary">
 														<i class="fas fa-search"></i>
@@ -148,5 +148,48 @@
 	
 
 	<%@include file="../common/footer.jsp"%>
+	
+	<script>
+	// 테이블의 Row 클릭시 값 가져오기
+	$("#recent10 tr").click(function(){ 	
+
+		window.open(this.href='ad_syllabus.do', '', 'resizable=yes, width=900, height=800 left=700px top=100px'); return false;
+// 		var str = ""
+// 		var tdArr = new Array();	// 배열 선언
+		
+// 		// 현재 클릭된 Row(<tr>)
+// 		var tr = $(this);
+// 		var td = tr.children();
+		
+// 		// tr.text()는 클릭된 Row 즉 tr에 있는 모든 값을 가져온다.
+// 		console.log("클릭한 Row의 모든 데이터 : "+tr.text());
+		
+// 		// 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
+// 		td.each(function(i){
+// 			tdArr.push(td.eq(i).text());
+// 		});
+		
+// 		console.log("배열에 담긴 값 : "+tdArr);
+		
+// 		// td.eq(index)를 통해 값을 가져올 수도 있다.
+// 		var no = td.eq(0).text();
+// 		var userid = td.eq(1).text();
+// 		var name = td.eq(2).text();
+// 		var email = td.eq(3).text();
+		
+		
+// 		str +=	" * 클릭된 Row의 td값 = No. : <font color='red'>" + no + "</font>" +
+// 				", 아이디 : <font color='red'>" + userid + "</font>" +
+// 				", 이름 : <font color='red'>" + name + "</font>" +
+// 				", 이메일 : <font color='red'>" + email + "</font>";		
+		
+// 		$("#ex1_Result1").html(" * 클릭한 Row의 모든 데이터 = " + tr.text());		
+// 		$("#ex1_Result2").html(str);
+	});
+	$("#popular10 tr").click(function(){ 	
+
+		window.open(this.href='ad_syllabus.do', '', 'resizable=yes, width=900, height=800 left=700px top=100px'); return false;
+	});
+	</script>
 </body>
 </html>

@@ -58,7 +58,10 @@
 <!-- Head Libs -->
 <script src="resources/vendor/modernizr/modernizr.min.js"></script>
 
+<style>
+.table-hover tbody tr:hover{color:rgba(0,83,171,0.9);background-color:rgba(0,83,171,0.1)}
 
+</style>
 </head>
 <body>
 
