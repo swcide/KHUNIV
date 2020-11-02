@@ -42,29 +42,32 @@
 													</video>
 												</span>
 											</span>
-											<label class="btn btn-primary btn-file"> 파일추가 <input type="file" style="display: none;">
-											</label>
+
 										</div>
 
 										<div class="col-md-6">
 
-											<input class="text-uppercase mb-5 text-center text-6 float-right" style="text-align: right;" placeholder="강의명 강의차시"> <br>
-											<textarea class="float-right" style="width: 300px;"></textarea>
-											<div class="post-meta float-right">
-												<span>
-													<i class="far fa-user"></i> By <a href="#">유승제 교수&nbsp;</a>
-												</span>
-												<span>
-													<i class="far fa-folder"></i><a href="#"> 수업자료 pdf </a>
-												</span>
-												
+											<div class="col-md-12">
+												<input class="text-uppercase mb-4 text-center text-6 float-right col-md-12" style="text-align: right;" placeholder="강의명 강의차시"> <br>
+
+												<textarea style="width: 100%;" cols="30" rows="4"></textarea>
+
+												<br>
+												<div class="col-md-12 ">
+													<span class='float-right'>
+														<i class="far fa-user"></i> By <a href="#">유승제 교수&nbsp;</a> <i class="far fa-folder"></i><a href="#"> 수업자료 pdf </a>
+													</span>
+
+												</div>
 											</div>
 
-											<button type="button" class="btn btn-dark" onclick="location.href= 'prof_lectureVideoWrite.do'" style="float: right; margin-bottom: 20px;">
-												<i class="fas fa-pencil-alt"></i> 등록
-											</button>
 										</div>
 									</div>
+									<label class="btn btn-primary btn-file"> 동영상 파일추가 <input type="file" style="display: none;">
+									</label>
+									<button type="button" class="btn btn-dark" onclick="location.href= 'prof_lectureVideoWrite.do'" style="float: right; margin-bottom: 20px;">
+										<i class="fas fa-pencil-alt"></i> 등록
+									</button>
 								</form>
 
 							</div>
