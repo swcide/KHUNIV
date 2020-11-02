@@ -152,8 +152,7 @@
 											style="width: 300px; height: 156px; margin-bottom: 30px; float: left;">
 
 											학과: 교양학과 <br> 과목명: Need for Speed IV <br> 담당교수: 김지숙
-											<br> 학점: 3 <br>
-											<br>
+											<br> 학점: 3 <br> <br>
 
 											<button type="submit" class="btn btn-primary">강의보기</button>
 
@@ -185,8 +184,7 @@
 										<div
 											style="width: 300px; height: 156px; margin-bottom: 30px; float: left;">
 											학과: 컴퓨터공학과 <br> 과목명: Monsters DVD <br> 담당교수: 김휘경 <br>
-											학점: 3 <br>
-											<br>
+											학점: 3 <br> <br>
 
 											<button type="submit" class="btn btn-primary">강의보기</button>
 
@@ -199,6 +197,13 @@
 
 									</div>
 									<!-- /.post -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</section>
 </div>
 <%@ include file="../common/footer.jsp"%>

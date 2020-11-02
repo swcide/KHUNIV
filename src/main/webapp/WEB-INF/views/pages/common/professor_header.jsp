@@ -113,7 +113,7 @@
 														</a>
 														<ul class="dropdown-menu">
 															<li>
-																<a class="dropdown-item" href="lecturelist.do">
+																<a class="dropdown-item" href="prof_lecturelist.do">
 																	내 강의 목록
 																</a>
 															</li>
