@@ -33,17 +33,14 @@
 
 					<div class="row">
 						<div class="col">
-						<button type="button" class="btn btn-dark"
-									onclick="location.href= 'prof_lectureVideoWrie.do'"
-									style="float: right; margin-bottom: 20px;">
-									<i class="fas fa-pencil-alt"></i> 동영상 업로드
-								</button> 
+							
+							<button id="addToTable" class="btn btn-dark" onclick="location.href= 'prof_lectureVideoWrite.do'" style="float: right; margin-bottom: 20px;">동영상 등록<i class="fas fa-plus"></i></button>
 							<h5 class="text-uppercase mt-4">강의 목록</h5>
 							<div class="row mt-lg-3">
-							
+
 
 								<div class="col">
-								
+
 
 									<span
 										class="thumb-info thumb-info-side-image thumb-info-no-zoom">
