@@ -65,7 +65,7 @@
 									</div>
 									<label class="btn btn-primary btn-file"> 동영상 파일추가 <input type="file" style="display: none;">
 									</label>
-									<button type="button" class="btn btn-dark" onclick="location.href= 'prof_lectureVideoWrite.do'" style="float: right; margin-bottom: 20px;">
+									<button type="button" class="btn btn-dark" onclick="location.href= 'prof_lectureVideoList.do'" style="float: right; margin-bottom: 20px;">
 										<i class="fas fa-pencil-alt"></i> 등록
 									</button>
 								</form>
