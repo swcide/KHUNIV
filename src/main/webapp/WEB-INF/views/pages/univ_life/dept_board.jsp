@@ -79,7 +79,7 @@
 										</table>
 										<a type="button"
 											class="btn btn-quaternary btn-with-arrow mb-2 float-right"
-											href="#">인문 사회 게시판으로 이동<span><i
+											href="human.do">인문 사회 게시판으로 이동<span><i
 												class="fas fa-chevron-right"></i></span></a>
 									</div>
 								</div>
@@ -126,7 +126,7 @@
 										</table>
 										<a type="button"
 											class="btn btn-quaternary btn-with-arrow mb-2 float-right"
-											href="#">자연 과학 게시판으로 이동<span><i
+											href="natural.do">자연 과학 게시판으로 이동<span><i
 												class="fas fa-chevron-right"></i></span></a>
 									</div>
 								</div>
@@ -171,7 +171,7 @@
 										</table>
 										<a type="button"
 											class="btn btn-quaternary btn-with-arrow mb-2 float-right"
-											href="#">공학 게시판으로 이동<span><i
+											href="engi.do">공학 게시판으로 이동<span><i
 												class="fas fa-chevron-right"></i></span></a>
 									</div>
 								</div>
@@ -218,7 +218,7 @@
 										</table>
 										<a type="button"
 											class="btn btn-quaternary btn-with-arrow mb-2 float-right"
-											href="#">예체능 게시판으로 이동<span><i
+											href="art.do">예체능 게시판으로 이동<span><i
 												class="fas fa-chevron-right"></i></span></a>
 									</div>
 								</div>

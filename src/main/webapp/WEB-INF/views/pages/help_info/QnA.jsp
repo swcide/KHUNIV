@@ -73,7 +73,7 @@
 								</tbody>
 							</table>
 							<button type="button" class="btn btn-dark"
-								onclick="location= 'Q&Awrite.jsp'"
+								onclick="location.href= 'QnA_write.do'"
 								style="float: right; margin-bottom: 20px;">
 								<i class="fas fa-pencil-alt"></i> 질문작성
 							</button>

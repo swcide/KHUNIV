@@ -60,7 +60,7 @@
 						</div>
 					</div>
 					<div class="container py-4">
-	<img src="resources/img/big-logo.png" style="width: 300px;height: 300px; margin-left: 35%; margin-top: 8%;">
+	<img src="resources/img/big-logo.png" style="width: 300px;height: 300px; margin-left: 35%; margin-top: 8%;"onclick="location.href='prof_main.do'">
 						<div class="row justify-content-center">
 							<div class="col-md-6 col-lg-5 mb-5 mb-lg-0">
 								<img src="">

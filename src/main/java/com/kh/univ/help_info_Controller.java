@@ -65,6 +65,20 @@ public class help_info_Controller {
 
 		return "help_info/myQnA";
 	}
+	
+	@RequestMapping(value = "QnA_write.do", method = RequestMethod.GET)
+	public String QnA_write(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+
+		String formattedDate = dateFormat.format(date);
+
+		model.addAttribute("serverTime", formattedDate );
+
+		return "help_info/QnA_write";
+	}
 
 
 }
