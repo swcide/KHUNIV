@@ -3,8 +3,9 @@
 
 <%@ include file="../common/administration_header.jsp"%>
 
-<div class="container py-4">
-<section
+<div class="body">
+	<div role="main" class="main">
+		<section
 			class="page-header page-header-modern page-header-background page-header-background-md overlay overlay-color-dark overlay-show overlay-op-3"
 			style="background-image: url(resources/img/page-header/KakaoTalk_20201026_130729067.jpg); padding: 70px;">
 			<div class="container">
@@ -17,11 +18,11 @@
 				</div>
 			</div>
 		</section>
-					<div class="row">
-						<div class="col">
-							<div class="blog-posts">
-
-								<div class="row">
+		<div class="container py-4">
+			<div class="row py-4 mb-4">
+				<div class="col">
+					<div class="image-hotspots">
+						<div class="row">
 
 									<div class="col-md-4 col-lg-3">
 										<article class="post post-medium border-0 pb-0 mb-5">
@@ -224,22 +225,27 @@
 									
 
 								</div>
-	
+						
+
 								
-
-							</div>
-						</div>
-
-					</div>
-
+								
+									</div>
 				</div>
+			</div>
+		</div>
+	</div>
+</div>
 <%@ include file="../common/footer.jsp"%>
 
 
+		
 
 
 
 
+
+
+								
 
 
 
