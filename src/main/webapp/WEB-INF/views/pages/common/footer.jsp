@@ -11,7 +11,7 @@
 								</a>
 							</div>
 							<div class="col-lg-7 d-flex align-items-center justify-content-center justify-content-lg-start mb-4 mb-lg-0">
-								<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;© Copyright 2020. KH Information Educational Institute. All Rights Reserved. 02)111-2222</p>
+								<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;© Copyright 2020. KH Cyber University. All Rights Reserved. 02)111-2222</p>
 							</div>
 							<div class="col-lg-4 d-flex align-items-center justify-content-center justify-content-lg-end">
 								<nav id="sub-menu">
