@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<title>Porto - Responsive HTML5 Template</title>
+<title>KHCU | KH Cyber University</title>
 
 <meta name="keywords" content="HTML5 Template" />
 <meta name="description" content="Porto - Responsive HTML5 Template">
@@ -149,11 +149,11 @@
 								<c:if test="${empty sessionScope.loginUser }">
 									<div class="header-nav-features header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2">
 										<div class="header-nav-feature header-nav-features-user d-inline-flex mx-2 pr-2 signin" id="headerAccount">
-											<a href="#" class="header-nav-features-toggle"> <i class="far fa-user"></i> Sign In
+											<a href="#" class="header-nav-features-toggle"> <i class="far fa-user"></i> 로그인
 											</a>
 											<div class="header-nav-features-dropdown header-nav-features-dropdown-mobile-fixed header-nav-features-dropdown-force-right" id="headerTopUserDropdown">
 												<div class="signin-form">
-													<h5 class="text-uppercase mb-4 font-weight-bold text-3">LogIn</h5>
+													<h5 class="text-uppercase mb-4 font-weight-bold text-3">로그인</h5>
 													<form>
 														<div class="form-group">
 															<label class="mb-1 text-2 opacity-8">학번* </label> <input type="email" class="form-control form-control-lg">
@@ -164,7 +164,7 @@
 														<div class="form-row pb-2">
 															<div class="form-group form-check col-lg-6 pl-1">
 																<div class="custom-control custom-checkbox">
-																	<input type="checkbox" class="custom-control-input" id="rememberMeCheck"> <label class="custom-control-label text-2" for="rememberMeCheck">Remember Me</label>
+																	<input type="checkbox" class="custom-control-input" id="rememberMeCheck"> <label class="custom-control-label text-2" for="rememberMeCheck">비밀번호 저장하기</label>
 																</div>
 															</div>
 															<div class="form-group col-lg-6 text-right">
@@ -174,7 +174,7 @@
 														<div class="actions">
 															<div class="form-row">
 																<div class="col d-flex justify-content-end">
-																	<a class="btn btn-primary" href="#">Login</a>
+																	<a class="btn btn-primary" href="#">로그인</a>
 																</div>
 															</div>
 														</div>
