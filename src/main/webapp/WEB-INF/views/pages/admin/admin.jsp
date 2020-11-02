@@ -1,494 +1,376 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
-<html lang="ko">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KHCU | ADMIN</title>
 
-  <title>WSCCU||ADMIN</title>
-<!-- jQuery -->
-<script src="/woosong/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="/woosong/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="/woosong/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="/woosong/dist/js/demo.js"></script>
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="/woosong/plugins/fontawesome-free/css/all.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="/woosong/dist/css/adminlte.min.css">
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-   <!-- IonIcons -->
-  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="assets/css/bootstrap.css">
+
+<link rel="stylesheet" href="assets/vendors/chartjs/Chart.min.css">
+
+<link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+<link rel="stylesheet" href="assets/css/app.css">
+<link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
 </head>
-<body class="hold-transition layout-top-nav">
-<div class="wrapper">
+<body>
+	<div id="app">
+		<div id="sidebar" class='active'>
+			<div class="sidebar-wrapper active">
+				<div class="sidebar-header">
+					<img src="assets/images/logo.svg" alt="" srcset="">
+				</div>
+				<div class="sidebar-menu">
+					<ul class="menu">
+						<li class="sidebar-item  has-sub"><a href="#" class='sidebar-link'> <i data-feather="triangle" width="20"></i> <span>학생</span>
+						</a>
+							<ul class="submenu ">
+								<li><a href="component-alert.html">학적관리현황</a></li>
+								<li><a href="component-badge.html">등록금납부현황</a></li>
+								<li><a href="component-badge.html">신입생 등록</a></li>
+							</ul></li>
 
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-fixed navbar-dark navbar-primary">
-    <div class="container">
-      <a href="/woosong/index3.html" class="navbar-brand">
-        <img src="/woosong/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-             style="opacity: .8">
-        <span class="brand-text font-weight-light">WSSCU||ADMIN</span>
-      </a>
-      
-      <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+						<li class="sidebar-item  has-sub"><a href="#" class='sidebar-link'> <i data-feather="briefcase" width="20"></i> <span>게시판</span>
+						</a>
+							<ul class="submenu ">
+								<li><a href="component-extra-avatar.html">공지 현황</a></li>
+								<li><a href="component-extra-avatar.html">계열별 게시판 현황</a></li>
+								<li><a href="component-extra-divider.html">취업정보 게시판 현황</a></li>
+								<li><a href="component-extra-divider.html">금칙어 관리</a></li>
+							</ul></li>
 
-      <div class="collapse navbar-collapse order-3" id="navbarCollapse">
-        <!-- Left navbar links -->
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a href="admin.jsp" class="active nav-link">Home</a>
-          </li>
-          <li class="nav-item"> 	
-            <a href="#" class="nav-link">학생</a>
-          </li>
-          <li class="nav-item"> 	
-            <a href="#" class="nav-link">게시판</a>
-          </li>
-          <li class="nav-item"> 	
-            <a href="#" class="nav-link">학과</a>
-          </li>
-          <li class="nav-item"> 	
-            <a href="#" class="nav-link">교수강의</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
-            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-              <li><a href="#" class="dropdown-item">Some action </a></li>
-              <li><a href="#" class="dropdown-item">Some other action</a></li>
+						<li class="sidebar-item  has-sub"><a href="#" class='sidebar-link'> <i data-feather="briefcase" width="20"></i> <span>학과</span>
+						</a>
+							<ul class="submenu ">
+								<li><a href="component-extra-avatar.html">교양학과</a></li>
+								<li><a href="component-extra-divider.html">일반학과</a></li>
+							</ul></li>
 
-              <li class="dropdown-divider"></li>
+						<li class="sidebar-item  has-sub"><a href="#" class='sidebar-link'> <i data-feather="file-text" width="20"></i> <span>교수</span>
+						</a>
+							<ul class="submenu ">
+								<li><a href="form-element-input.html">Input</a></li>
+								<li><a href="form-element-input-group.html">Input Group</a></li>
+								<li><a href="form-element-select.html">Select</a></li>
+								<li><a href="form-element-radio.html">Radio</a></li>
+								<li><a href="form-element-checkbox.html">Checkbox</a></li>
+								<li><a href="form-element-textarea.html">Textarea</a></li>
+							</ul></li>
+					</ul>
+				</div>
+				<button class="sidebar-toggler btn x">
+					<i data-feather="x"></i>
+				</button>
+			</div>
+		</div>
+		<div id="main">
+			<nav class="navbar navbar-header navbar-expand navbar-light">
+				<a class="sidebar-toggler" href="#"><span class="navbar-toggler-icon"></span></a>
+				<button class="btn navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav d-flex align-items-center navbar-light ml-auto">
+						<li class="dropdown nav-icon"><a href="#" data-toggle="dropdown" class="nav-link  dropdown-toggle nav-link-lg nav-link-user">
+								<div class="d-lg-inline-block">
+									<i data-feather="bell"></i>
+								</div>
+						</a>
+							<div class="dropdown-menu dropdown-menu-right dropdown-menu-large">
+								<h6 class='py-2 px-4'>Notifications</h6>
+								<ul class="list-group rounded-none">
+									<li class="list-group-item border-0 align-items-start">
+										<div class="avatar bg-success mr-3">
+											<span class="avatar-content"><i data-feather="shopping-cart"></i></span>
+										</div>
+										<div>
+											<h6 class='text-bold'>New Order</h6>
+											<p class='text-xs'>An order made by Ahmad Saugi for product Samsung Galaxy S69</p>
+										</div>
+									</li>
+								</ul>
+							</div></li>
+						<li class="dropdown nav-icon mr-2"><a href="#" data-toggle="dropdown" class="nav-link  dropdown-toggle nav-link-lg nav-link-user">
+								<div class="d-lg-inline-block">
+									<i data-feather="mail"></i>
+								</div>
+						</a>
+							<div class="dropdown-menu dropdown-menu-right">
+								<a class="dropdown-item" href="#"><i data-feather="user"></i> Account</a> <a class="dropdown-item active" href="#"><i data-feather="mail"></i> Messages</a> <a class="dropdown-item" href="#"><i data-feather="settings"></i> Settings</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="#"><i data-feather="log-out"></i> Logout</a>
+							</div></li>
+						<li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+								<div class="avatar mr-1">
+									<img src="assets/images/avatar/avatar-s-1.png" alt="" srcset="">
+								</div>
+								<div class="d-none d-md-block d-lg-inline-block">Hi, Saugi</div>
+						</a>
+							<div class="dropdown-menu dropdown-menu-right">
+								<a class="dropdown-item" href="#"><i data-feather="user"></i> Account</a> <a class="dropdown-item active" href="#"><i data-feather="mail"></i> Messages</a> <a class="dropdown-item" href="#"><i data-feather="settings"></i> Settings</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="#"><i data-feather="log-out"></i> Logout</a>
+							</div></li>
+					</ul>
+				</div>
+			</nav>
 
-              <!-- Level two dropdown-->
-              <li class="dropdown-submenu dropdown-hover">
-                <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Hover for action</a>
-                <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-                  <li>
-                    <a tabindex="-1" href="#" class="dropdown-item">level 2</a>
-                  </li>
+			<div class="main-content container-fluid">
+				<div class="page-title">
+					<h3>Dashboard</h3>
+					<p class="text-subtitle text-muted">A good dashboard to display your statistics</p>
+				</div>
+				<section class="section">
+					<div class="row mb-4">
+						<div class="col-md-8">
+							<div class="card">
+								<div class="card-header">
+									<h3 class='card-heading p-1 pl-3'>사이트 접속 현황</h3>
+								</div>
+								<div class="card-body">
+									<div class="row">
+										<div class="col-md-4 col-12">
+											<div class="pl-3">
+												<h1 class='mt-5'>today 1502</h1>
+												<p class='text-xs'>
+													<span class="text-green"><i data-feather="bar-chart" width="15"></i> +19%</span> than last day
+												</p>
+												<div class="legends">
+													<div class="legend d-flex flex-row align-items-center">
+														<div class='w-3 h-3 rounded-full bg-info mr-2'></div>
+														<span class='text-xs'>Last Month</span>
+													</div>
+													<div class="legend d-flex flex-row align-items-center">
+														<div class='w-3 h-3 rounded-full bg-blue mr-2'></div>
+														<span class='text-xs'>Current Month</span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-8 col-12">
+											<canvas id="bar"></canvas>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="card">
+								<div class="card-header d-flex justify-content-between align-items-center">
+									<h4 class="card-title">게시판 관리 현황</h4>
+								</div>
+								<div class="card-body px-0 pb-0">
+									<div class="table-responsive">
+										<table class='table mb-0' id="table1">
+											<thead>
+												<tr>
+													<th>이름</th>
+													<th>신고 내용</th>
+													<th>연락처</th>
+													<th>신고 게시판</th>
+													<th>처리 상태</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Graiden</td>
+													<td>vehicula.aliquet@semconsequat.co.uk</td>
+													<td>076 4820 8838</td>
+													<td>Offenburg</td>
+													<td>
+														<span class="badge bg-success">Active</span>
+													</td>
+												</tr>
+												<tr>
+													<td>Dale</td>
+													<td>fringilla.euismod.enim@quam.ca</td>
+													<td>0500 527693</td>
+													<td>New Quay</td>
+													<td>
+														<span class="badge bg-success">Active</span>
+													</td>
+												</tr>
+												<tr>
+													<td>Nathaniel</td>
+													<td>mi.Duis@diam.edu</td>
+													<td>(012165) 76278</td>
+													<td>Grumo Appula</td>
+													<td>
+														<span class="badge bg-danger">Inactive</span>
+													</td>
+												</tr>
+												<tr>
+													<td>Darius</td>
+													<td>velit@nec.com</td>
+													<td>0309 690 7871</td>
+													<td>Ways</td>
+													<td>
+														<span class="badge bg-success">Active</span>
+													</td>
+												</tr>
+												<tr>
+													<td>Ganteng</td>
+													<td>velit@nec.com</td>
+													<td>0309 690 7871</td>
+													<td>Ways</td>
+													<td>
+														<span class="badge bg-success">Active</span>
+													</td>
+												</tr>
+												<tr>
+													<td>Oleg</td>
+													<td>rhoncus.id@Aliquamauctorvelit.net</td>
+													<td>0500 441046</td>
+													<td>Rossignol</td>
+													<td>
+														<span class="badge bg-success">Active</span>
+													</td>
+												</tr>
+												<tr>
+													<td>Kermit</td>
+													<td>diam.Sed.diam@anteVivamusnon.org</td>
+													<td>(01653) 27844</td>
+													<td>Patna</td>
+													<td>
+														<span class="badge bg-success">Active</span>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
 
-                  <!-- Level three dropdown-->
-                  <li class="dropdown-submenu">
-                    <a id="dropdownSubMenu3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">level 2</a>
-                    <ul aria-labelledby="dropdownSubMenu3" class="dropdown-menu border-0 shadow">
-                      <li><a href="#" class="dropdown-item">3rd level</a></li>
-                      <li><a href="#" class="dropdown-item">3rd level</a></li>
-                    </ul>
-                  </li>
-                  <!-- End Level three -->
+							<div class="card widget-todo">
+								<div class="card-header border-bottom d-flex justify-content-between align-items-center">
+									<h4 class="card-title d-flex">
+										<i class='bx bx-check font-medium-5 pl-25 pr-75'></i>학적관리 현황
+									</h4>
+									<p>* 직전학기 기준</p>
+								</div>
+								<div class="card-body px-0 py-1">
+									<table class='table table-borderless'>
+										<tr>
+											<td class='col-3'>재학</td>
+											<td class='col-6'>
+												<div class="progress progress-secondary">
+													<div class="progress-bar" role="progressbar" style="width: 65%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+											</td>
+											<td class='col-3 text-center'>65%</td>
+										</tr>
+										<tr>
+											<td class='col-3'>휴학</td>
+											<td class='col-6'>
+												<div class="progress progress-info">
+													<div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+											</td>
+											<td class='col-3 text-center'>20%</td>
+										</tr>
+										<tr>
+											<td class='col-3'>복학</td>
+											<td class='col-6'>
+												<div class="progress progress-success">
+													<div class="progress-bar" role="progressbar" style="width: 35%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+											</td>
+											<td class='col-3 text-center'>40%</td>
+										</tr>
+										<tr>
+											<td class='col-3'>자퇴</td>
+											<td class='col-6'>
+												<div class="progress progress-danger">
+													<div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+											</td>
+											<td class='col-3 text-center'>10%</td>
+										</tr>
+										<tr>
+											<td class='col-4'>등록금 납부</td>
+											<td class='col-6'>
+												<div class="progress progress-primary">
+													<div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+											</td>
+											<td class='col-3 text-center'>80%</td>
+										</tr>
 
-                  <li><a href="#" class="dropdown-item">level 2</a></li>
-                  <li><a href="#" class="dropdown-item">level 2</a></li>
-                </ul>
-              </li>
-              <!-- End Level two -->
-            </ul>
-          </li>
-        </ul>
+									</table>
+								</div>
+							</div>
+							<div class="card">
+								<div class="card-header">
+									<h4 class="card-title">Q & A 게시판 현황</h4>
+								</div>
+								<div class="card-content">
+									<div class="card-body">
+										<div class="table-responsive">
+											<table class="table">
+												<thead>
+													<tr>
+														<th>이름</th>
+														<th style="text-align: center;">질문내용</th>
+														<th style="text-align: center;">처리 상태</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td class="text-bold-500">Michael Right</td>
+														<td style="text-align: center;">$15/hr</td>
+														<td class="text-bold-500" style="text-align: center;">
+															<span class="badge bg-primary">Primary</span>
+														</td>
+													</tr>
+													<tr>
+														<td class="text-bold-500">Morgan Vanblum</td>
+														<td style="text-align: center;">$13/hr</td>
+														<td class="text-bold-500" style="text-align: center;">
+															<a class="badge bg-danger">Danger</a>
+														</td>
+													</tr>
+													<tr>
+														<td class="text-bold-500">Tiffani Blogz</td>
+														<td style="text-align: center;">$15/hr</td>
+														<td class="text-bold-500" style="text-align: center;">
+															<span class="badge bg-primary">Primary</span>
+														</td>
+													</tr>
+													<tr>
+														<td class="text-bold-500">Ashley Boul</td>
+														<td style="text-align: center;">$15/hr</td>
+														<td class="text-bold-500" style="text-align: center;">
+															<span class="badge bg-primary">Primary</span>
+														</td>
+													</tr>
+													<tr>
+														<td class="text-bold-500">Mikkey Mice</td>
+														<td style="text-align: center;">$15/hr</td>
+														<td class="text-bold-500" style="text-align: center;">
+															<a class="badge bg-danger">Danger</a>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+	<script src="assets/js/feather-icons/feather.min.js"></script>
+	<script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script src="assets/js/app.js"></script>
 
-        <!-- SEARCH FORM -->
-        <form class="form-inline ml-0 ml-md-3">
-          <div class="input-group input-group-sm">
-            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-            <div class="input-group-append">
-              <button class="btn btn-navbar" type="submit">
-                <i class="fas fa-search"></i>
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
+	<script src="assets/vendors/chartjs/Chart.min.js"></script>
+	<script src="assets/vendors/apexcharts/apexcharts.min.js"></script>
+	<script src="assets/js/pages/dashboard.js"></script>
 
-      <!-- Right navbar links -->
-      <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-        <!-- Messages Dropdown Menu -->
-        <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#">
-            <i class="fas fa-comments"></i>
-            <span class="badge badge-danger navbar-badge">3</span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <a href="#" class="dropdown-item">
-              <!-- Message Start -->
-              <div class="media">
-                <img src="/woosong/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-                <div class="media-body">
-                  <h3 class="dropdown-item-title">
-                    Brad Diesel
-                    <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                  </h3>
-                  <p class="text-sm">Call me whenever you can...</p>
-                  <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                </div>
-              </div>
-              <!-- Message End -->
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <!-- Message Start -->
-              <div class="media">
-                <img src="/woosong/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                <div class="media-body">
-                  <h3 class="dropdown-item-title">
-                    John Pierce
-                    <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                  </h3>
-                  <p class="text-sm">I got your message bro</p>
-                  <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                </div>
-              </div>
-              <!-- Message End -->
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <!-- Message Start -->
-              <div class="media">
-                <img src="/woosong/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                <div class="media-body">
-                  <h3 class="dropdown-item-title">
-                    Nora Silvester
-                    <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                  </h3>
-                  <p class="text-sm">The subject goes here</p>
-                  <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                </div>
-              </div>
-              <!-- Message End -->
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-          </div>
-        </li>
-        <!-- Notifications Dropdown Menu -->
-        <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#">
-            <i class="far fa-bell"></i>
-            <span class="badge badge-warning navbar-badge">15</span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-header">15 Notifications</span>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-envelope mr-2"></i> 4 new messages
-              <span class="float-right text-muted text-sm">3 mins</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-users mr-2"></i> 8 friend requests
-              <span class="float-right text-muted text-sm">12 hours</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-file mr-2"></i> 3 new reports
-              <span class="float-right text-muted text-sm">2 days</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i
-              class="fas fa-th-large"></i></a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <!-- /.navbar -->
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <div class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-header border-0">
-                <div class="d-flex justify-content-between">
-                  <h3 class="card-title">Online Store Visitors</h3>
-                  <a href="javascript:void(0);">View Report</a>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="d-flex">
-                  <p class="d-flex flex-column">
-                    <span class="text-bold text-lg">820</span>
-                    <span>Visitors Over Time</span>
-                  </p>
-                  <p class="ml-auto d-flex flex-column text-right">
-                    <span class="text-success">
-                      <i class="fas fa-arrow-up"></i> 12.5%
-                    </span>
-                    <span class="text-muted">Since last week</span>
-                  </p>
-                </div>
-                <!-- /.d-flex -->
-
-                <div class="position-relative mb-4">
-                  <canvas id="visitors-chart" height="200"></canvas>
-                </div>
-
-                <div class="d-flex flex-row justify-content-end">
-                  <span class="mr-2">
-                    <i class="fas fa-square text-primary"></i> This Week
-                  </span>
-
-                  <span>
-                    <i class="fas fa-square text-gray"></i> Last Week
-                  </span>
-                </div>
-              </div>
-            </div>
-            <!-- /.card -->
-
-            <div class="card">
-              <div class="card-header border-0">
-                <h3 class="card-title">Products</h3>
-                <div class="card-tools">
-                  <a href="#" class="btn btn-tool btn-sm">
-                    <i class="fas fa-download"></i>
-                  </a>
-                  <a href="#" class="btn btn-tool btn-sm">
-                    <i class="fas fa-bars"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="card-body table-responsive p-0">
-                <table class="table table-striped table-valign-middle">
-                  <thead>
-                  <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Sales</th>
-                    <th>More</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td>
-                      <img src="/woosong/dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
-                      Some Product
-                    </td>
-                    <td>$13 USD</td>
-                    <td>
-                      <small class="text-success mr-1">
-                        <i class="fas fa-arrow-up"></i>
-                        12%
-                      </small>
-                      12,000 Sold
-                    </td>
-                    <td>
-                      <a href="#" class="text-muted">
-                        <i class="fas fa-search"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <img src="/woosong/dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
-                      Another Product
-                    </td>
-                    <td>$29 USD</td>
-                    <td>
-                      <small class="text-warning mr-1">
-                        <i class="fas fa-arrow-down"></i>
-                        0.5%
-                      </small>
-                      123,234 Sold
-                    </td>
-                    <td>
-                      <a href="#" class="text-muted">
-                        <i class="fas fa-search"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <img src="/woosong/dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
-                      Amazing Product
-                    </td>
-                    <td>$1,230 USD</td>
-                    <td>
-                      <small class="text-danger mr-1">
-                        <i class="fas fa-arrow-down"></i>
-                        3%
-                      </small>
-                      198 Sold
-                    </td>
-                    <td>
-                      <a href="#" class="text-muted">
-                        <i class="fas fa-search"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <img src="/woosong/dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
-                      Perfect Item
-                      <span class="badge bg-danger">NEW</span>
-                    </td>
-                    <td>$199 USD</td>
-                    <td>
-                      <small class="text-success mr-1">
-                        <i class="fas fa-arrow-up"></i>
-                        63%
-                      </small>
-                      87 Sold
-                    </td>
-                    <td>
-                      <a href="#" class="text-muted">
-                        <i class="fas fa-search"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col-md-6 -->
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-header border-0">
-                <div class="d-flex justify-content-between">
-                  <h3 class="card-title">Sales</h3>
-                  <a href="javascript:void(0);">View Report</a>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="d-flex">
-                  <p class="d-flex flex-column">
-                    <span class="text-bold text-lg">$18,230.00</span>
-                    <span>Sales Over Time</span>
-                  </p>
-                  <p class="ml-auto d-flex flex-column text-right">
-                    <span class="text-success">
-                      <i class="fas fa-arrow-up"></i> 33.1%
-                    </span>
-                    <span class="text-muted">Since last month</span>
-                  </p>
-                </div>
-                <!-- /.d-flex -->
-
-                <div class="position-relative mb-4">
-                  <canvas id="sales-chart" height="200"></canvas>
-                </div>
-
-                <div class="d-flex flex-row justify-content-end">
-                  <span class="mr-2">
-                    <i class="fas fa-square text-primary"></i> This year
-                  </span>
-
-                  <span>
-                    <i class="fas fa-square text-gray"></i> Last year
-                  </span>
-                </div>
-              </div>
-            </div>
-            <!-- /.card -->
-
-            <div class="card">
-              <div class="card-header border-0">
-                <h3 class="card-title">Online Store Overview</h3>
-                <div class="card-tools">
-                  <a href="#" class="btn btn-sm btn-tool">
-                    <i class="fas fa-download"></i>
-                  </a>
-                  <a href="#" class="btn btn-sm btn-tool">
-                    <i class="fas fa-bars"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
-                  <p class="text-success text-xl">
-                    <i class="ion ion-ios-refresh-empty"></i>
-                  </p>
-                  <p class="d-flex flex-column text-right">
-                    <span class="font-weight-bold">
-                      <i class="ion ion-android-arrow-up text-success"></i> 12%
-                    </span>
-                    <span class="text-muted">CONVERSION RATE</span>
-                  </p>
-                </div>
-                <!-- /.d-flex -->
-                <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
-                  <p class="text-warning text-xl">
-                    <i class="ion ion-ios-cart-outline"></i>
-                  </p>
-                  <p class="d-flex flex-column text-right">
-                    <span class="font-weight-bold">
-                      <i class="ion ion-android-arrow-up text-warning"></i> 0.8%
-                    </span>
-                    <span class="text-muted">SALES RATE</span>
-                  </p>
-                </div>
-                <!-- /.d-flex -->
-                <div class="d-flex justify-content-between align-items-center mb-0">
-                  <p class="text-danger text-xl">
-                    <i class="ion ion-ios-people-outline"></i>
-                  </p>
-                  <p class="d-flex flex-column text-right">
-                    <span class="font-weight-bold">
-                      <i class="ion ion-android-arrow-down text-danger"></i> 1%
-                    </span>
-                    <span class="text-muted">REGISTRATION RATE</span>
-                  </p>
-                </div>
-                <!-- /.d-flex -->
-              </div>
-            </div>
-          </div>
-          <!-- /.col-md-6 -->
-        </div>
-        <!-- /.row -->
-      </div>
-      <!-- /.container-fluid -->
-    </div>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-	
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-    <div class="p-3">
-      <h5>Title</h5>
-      <p>Sidebar content</p>
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
-<script src="/woosong/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="/woosong/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="/woosong/dist/js/adminlte.min.js"></script>
-<!-- OPTIONAL SCRIPTS -->
-<script src="/woosong/plugins/chart.js/Chart.min.js"></script>
-<script src="/woosong/dist/js/demo.js"></script>
-<script src="/woosong/dist/js/pages/dashboard3.js"></script>
-
-
-
-
-<%@ include file="../common/footer.jsp"%>
+	<script src="assets/js/main.js"></script>
+</body>
+</html>
