@@ -74,8 +74,8 @@
 								<div class="header-column justify-content-start">
 									<div class="header-row">
 										<div class="header-logo mt-0 mb-0">
-											<a href="index.html">
-												<img alt="Porto" width="269.66px" height="50px" data-sticky-width="230" data-sticky-height="40" src="resources/img/white-kr-logo.png">
+											<a href="ad_main.do">
+												<img alt="Porto" width="180px" height="50px" data-sticky-width="150" data-sticky-height="40" src="resources/img/white-kr-logo.png">
 											</a>
 										</div>
 									</div>
