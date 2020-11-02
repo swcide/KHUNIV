@@ -199,18 +199,17 @@
 																</ul>
 															</li>
 															<li class="dropdown-submenu">
-																<a class="dropdown-item" href="#">등록금</a>
+																<a class="dropdown-item" href="ad_tuition_bill.do">등록금</a>
 																<ul class="dropdown-menu">
-																	<li><a class="dropdown-item" href="page-services-3.html">등록금 고지서</a></li>
-																	<li><a class="dropdown-item" href="page-services.html">등록금 납부</a></li>
-																	<li><a class="dropdown-item" href="page-services-2.html">등록금 납부 확인</a></li>
+																	<li><a class="dropdown-item" href="ad_tuition_bill.do">등록금 납부</a></li>
+																	<li><a class="dropdown-item" href="ad_tuition_payment_check.do">등록금 납부 확인</a></li>
 																</ul>
 															</li>
 															<li class="dropdown-submenu">
-																<a class="dropdown-item" href="#">증명서 발급</a>
+																<a class="dropdown-item" href="ad_certificate_list.do">증명서 발급</a>
 																<ul class="dropdown-menu">
-																	<li><a class="dropdown-item" href="page-services-3.html">재학 증명서 발급</a></li>
-																	<li><a class="dropdown-item" href="page-services.html">졸업 증명서 발급</a></li>
+																	<li><a class="dropdown-item" href="ad_certificate_list.do">재학 증명서 발급</a></li>
+																	<li><a class="dropdown-item" href="ad_certificate_list.do">졸업 증명서 발급</a></li>
 																</ul>
 															</li>
 														</ul>

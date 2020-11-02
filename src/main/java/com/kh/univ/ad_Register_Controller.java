@@ -227,6 +227,89 @@ public class ad_Register_Controller {
 		return "ad_register/ad_Drop_Absence_Check";
 	}
 	
+	@RequestMapping(value = "ad_tuition_bill.do", method = RequestMethod.GET)
+	public String tuition_bill(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "ad_register/ad_Tuition_Bill";
+	}
+	
+	@RequestMapping(value = "ad_tuition_payment.do", method = RequestMethod.GET)
+	public String tuition_payment(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "ad_register/ad_Tuition_Payment";
+	}
+	
+	@RequestMapping(value = "ad_tuition_payment_check.do", method = RequestMethod.GET)
+	public String tuition_payment_check(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "ad_register/ad_Tuition_Payment_Check";
+	}
+	
+	// 작성중 
+	@RequestMapping(value = "ad_certificate_list.do", method = RequestMethod.GET)
+	public String certificate_list(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "ad_register/ad_Certificate_List";
+	}
+	@RequestMapping(value = "ad_certificate_inschool.do", method = RequestMethod.GET)
+	public String certificate_inschool(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "ad_register/ad_Certificate_InSchool";
+	}
+	@RequestMapping(value = "ad_certificate_graduation.do", method = RequestMethod.GET)
+	public String certificate_graduation(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "ad_register/ad_Certificate_Graduation";
+	}
+	
 	
 	
 	
