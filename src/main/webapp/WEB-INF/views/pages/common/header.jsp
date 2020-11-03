@@ -57,13 +57,41 @@
 
 <!-- Head Libs -->
 <script src="resources/vendor/modernizr/modernizr.min.js"></script>
-<script src="https://code.jquery.com/jqeury-3.5.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <style>
 .table-hover tbody tr:hover {
 	color: rgba(0, 83, 171, 0.9);
 	background-color: rgba(0, 83, 171, 0.1)
 }
 </style>
+
+<script>
+	$(function(){
+	    $("#btnLogin").click(function(){
+			 if($("#id").val().indexOf("a") > 0){
+				 //관리자
+				 $("#hd1").val("1");
+				 $("#hd2").val("3");
+				 $("#fm").attr("action","login.do").submit();
+			 }else if($("#id").val().indexOf("p") > 0){
+					//교수
+					$("#hd1").val("1");
+				 $("#hd2").val("2");
+				$("#fm").attr("action","login.do").submit();
+			 }else{
+					//학생
+					$("#hd1").val("1");
+				 $("#hd2").val("1");
+				$("#fm").attr("action","login.do").submit();
+			 }
+				 
+		});
+	});
+
+		 
+   		
+	 
+   </script>
 </head>
 <body>
 
@@ -159,7 +187,7 @@
 													<form id="fm" method="post">
 														<div class="form-group">
 															<label class="mb-1 text-2 opacity-8">학번* </label>
-															<input id="id" type="text" name="sId" class="form-control form-control-lg">
+															<input id="id" type="text" name="sNo" class="form-control form-control-lg">
 															<input type="hidden" id="hd1" name="type1">
 															<input type="hidden" id="hd2" name="type2">
 														</div>
@@ -237,34 +265,7 @@
 		</header>
 	</div>
 
-	<script>
-	 $(function(){
-		 
-   		$("#btnLogin").click(function(){
-   			alert(11);
-   			 if($("#id").val().contains("a")){
-   				 alert(1);
-   				 //관리자
-   				 $("#hd1").val("1");
-   				 $("#hd2").val("3");
-   				 $("#fm").attr("action","login.do").submit();
-   			 }else if($("textLoginId").val().contains("p")){
-   				alert(2);
-   					//교수
-   					$("#hd1").val("1");
-   				 $("#hd2").val("2");
-   				$("#fm").attr("action","login.do").submit();
-   			 }else{
-   				alert(3);
-   					//학생
-   					$("#hd1").val("1");
-   				 $("#hd2").val("1");
-   				$("#fm").attr("action","login.do").submit();
-   			 }
-   				 
-   		});
-	 });
-   </script>
+	
 	<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
