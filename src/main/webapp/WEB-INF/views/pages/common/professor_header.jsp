@@ -108,10 +108,10 @@
 										<ul class="nav nav-pills" id="mainNav">
 											<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"> 강의동 </a>
 												<ul class="dropdown-menu">
-													<li><a class="dropdown-item" href="prof_lecturelist.do"> 내 강의 목록 </a></li>
+													<li><a class="dropdown-item" href="prof_lecturelist.do"> 내 동영상 강의 목록 </a></li>
 													<li class="dropdown-submenu"><a class="dropdown-item" href="#">수업 관리</a>
 														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="learningprogress.do">학습 현황</a></li>
+															<li><a class="dropdown-item" href="prof_lectureList2.do">내 강의 목록</a></li>
 														</ul></li>
 													<li><a class="dropdown-item" href="speciallecture.do"> 특강 목록 </a></li>
 												</ul></li>
