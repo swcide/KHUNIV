@@ -17,8 +17,8 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.kh.univ.member.model.service.MemberService;
 import com.kh.univ.member.model.vo.Admin;
-import com.kh.univ.member.model.vo.Member;
 import com.kh.univ.member.model.vo.Professor;
+import com.kh.univ.member.model.vo.Student;
 
 @SessionAttributes("loginUser")
 @Controller
@@ -38,13 +38,14 @@ public class MemberController {
 	 * 
 	 * Model에 Attribute가 추가될 때 자동으로 키 값을 찾아 세션에 등록하는 기능을 제공하는 어노테이션
 	 */
-	@RequestMapping(value = "login.do", method = RequestMethod.POST)
-	public String memberLogin(Member m, Professor p, Admin a, Model model, HttpSession session, @RequestParam(value = "type1") int type1, @RequestParam(value = "type1") int type2)
+	@RequestMapping(value = "login.do")
+	public String memberLogin(Student s, Professor p, Admin a, Model model, HttpSession session, @RequestParam(value = "type1") int type1, @RequestParam(value = "type2") int type2)
 		{
+			System.out.println(type1 + ": " + "type2");
 			if (type1 == 1) {
 				switch (type2) {
 					case 1:
-						Member loginUser = mService.loginMember(m);
+						Student loginUser = mService.loginMember(s);
 						model.addAttribute("loginUser", loginUser);
 						return "redirect:main.do";
 					case 2:
@@ -59,7 +60,7 @@ public class MemberController {
 			} else {
 				switch (type2) {
 					case 1:
-						Member loginUser = mService.loginMember(m);
+						Student loginUser = mService.loginMember(s);
 						model.addAttribute("loginUser", loginUser);
 						return "redirect:ad_main.do";
 					case 2:
@@ -91,22 +92,4 @@ public class MemberController {
 			return "member/mypage";
 		}
 
-	// 회원정보 수정
-	@RequestMapping("mupdate.do")
-	public String memberUpdate(Member m, Model model, @RequestParam("post") String post, @RequestParam("address1") String addr1, @RequestParam("address2") String addr2)
-		{
-			if (!post.equals("")) {
-				m.setsAddress(post + "," + addr1 + "," + addr2);
-			}
-			int result = mService.updateMember(m);
-
-			if (result > 0) {
-				model.addAttribute("loginUser", m);
-				return "redirect:home.do";
-			} else {
-				model.addAttribute("msg", "회원정보수정 실패");
-				return "common/errorPage";
-			}
-
-		}
 }

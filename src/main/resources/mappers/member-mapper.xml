@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="memberMapper">
-	<resultMap type="Member" id="memberResultSet">
+	<resultMap type="Student" id="memberResultSet">
 		<id property="sNo" column="STD_NO"/>
 		<result property="sPwd" column="STD_PWD"/>
 		<result property="sName" column="STD_NAME"/>
@@ -18,16 +18,12 @@
 		<result property="cpNo" column="COACH_PROF_NO"/>
 		</resultMap>
 		<!-- 로그인 -->
-	<select id="loginMember" parameterType="Member" resultMap="memberResultSet">
+	<select id="loginMember" parameterType="Student" resultMap="memberResultSet">
 	<!--=================암호화 전=====================-->
  		SELECT * 
 		FROM TB_STUDENT
 		WHERE STD_NO=#{sNo}
-		AND STD_PWD=#{sPwd}  --학생디비
-		
-		관리자 -관
-		
-		교수 -교
+		AND STD_PWD=#{sPwd} 
 		
 
 		<!-- 암호화 후 -->
@@ -42,7 +38,7 @@
 	
 	
 	<!-- 회원정보수정 -->
-	<update id="updateMember" parameterType="Member">
+	<update id="updateMember" parameterType="Student">
 		UPDATE MEMBER 
 		      SET EMAIL=#{email},AGE=#{age},PHONE=#{phone},ADDRESS=#{address},UPDATE_DATE=SYSDATE
 		 WHERE ID=#{id}

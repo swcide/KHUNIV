@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.kh.univ.member.model.dao.MemberDao;
 import com.kh.univ.member.model.vo.Admin;
-import com.kh.univ.member.model.vo.Member;
 import com.kh.univ.member.model.vo.Professor;
+import com.kh.univ.member.model.vo.Student;
 
 @Service("mService")
 public class MemberServiceImpl implements MemberService
@@ -24,10 +24,10 @@ public class MemberServiceImpl implements MemberService
 		private DataSourceTransactionManager transactionManager;
 
 		@Override
-		public Member loginMember(Member m)
+		public Student loginMember(Student s)
 			{
 
-				return mDao.loginMember(m);
+				return mDao.loginMember(s);
 			}
 
 		@Override
@@ -43,9 +43,8 @@ public class MemberServiceImpl implements MemberService
 			}
 
 		@Override
-		public int updateMember(Member m)
+		public int updateMember(Student s)
 			{
-				// TODO Auto-generated method stub
 				return 0;
 			}
 

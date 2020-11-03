@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.univ.member.model.vo.Admin;
-import com.kh.univ.member.model.vo.Member;
 import com.kh.univ.member.model.vo.Professor;
+import com.kh.univ.member.model.vo.Student;
 
 @Repository("mDao")
 public class MemberDao {
@@ -14,9 +14,9 @@ public class MemberDao {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-	public Member loginMember(Member m)
+	public Student loginMember(Student s)
 		{
-			return (Member)sqlSession.selectOne("memberMapper.loginMember",m);
+			return (Student)sqlSession.selectOne("memberMapper.loginMember",s);
 		}
 
 	public Professor loginProf(Professor p)
