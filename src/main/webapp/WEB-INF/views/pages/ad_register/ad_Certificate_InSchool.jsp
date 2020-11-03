@@ -135,8 +135,8 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-12" align="center" style="margin-top: 40px;">
-										<h2 style="font-weight: bolder">
+									<div class="col-md-12" align="center" style="margin-top: 40px;background-image: url(resources/img/seal.png);background-size: contain;background-repeat: no-repeat;background-position: 70%;">
+										<h2 style="font-weight: bolder;margin-bottom: 9px;margin-top: 18px;">
 											<label> KH 사이버 대학교 총장</label>
 										</h2>
 									</div>
