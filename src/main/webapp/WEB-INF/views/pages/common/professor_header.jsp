@@ -132,7 +132,7 @@
 												<ul class="dropdown-menu">
 													<li class="dropdown-submenu"><a class="dropdown-item" href="#">강의</a>
 														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="ad_lect_list.do">강의 개설 정보</a></li>
+															<li><a class="dropdown-item" href="prof_lecturePlanList.do">강의 개설 정보</a></li>
 														</ul></li>
 												</ul></li>
 										</ul>

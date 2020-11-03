@@ -25,8 +25,8 @@
 							<table class="table table-hover">
 								<thead>
 									<tr>
-										<th>학생번호<th>
-										<th>이름<th>
+										<th>학생번호</th>
+										<th>이름</th>
 										<th>평균 시험 점수</th>
 										<th>과제제출률</th>
 										<th>수업진행률</th>
@@ -34,15 +34,15 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>2020423<td>
-										<th><a href>윤기훈</a></th>
+										<td>2020423</td>
+										<td><a href>윤기훈</a></td>
 										<td>78.34점</td>
 										<td>100%</td>
 										<td>12%</td>
 									</tr>
 									<tr>
-										<td>20200413<td>
-										<th><a href>김진태</a></th>
+										<td>20200413</td>
+										<td><a href>김진태</a></td>
 										<td>56.34점</td>
 										<td>80%</td>
 										<td>14%</td>

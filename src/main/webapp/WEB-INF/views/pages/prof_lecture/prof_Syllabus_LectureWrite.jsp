@@ -78,227 +78,337 @@
 			<div class="container py-2">
 				<div class="row">
 					<div class="col">
-						<table class="table table-hover">
-							<tbody>
-								<tr>
-									<th style="width: 118px;">교과목명(국문)</th>
-									<td colspan="3" style="text-align: center;">아리랑</td>
+						<form action="" id="" method="post">
+							<table class="table table-hover">
+								<tbody>
+									<tr>
+										<th style="width: 118px;">교과목명(공학)</th>
+										<td colspan="3" style="text-align: center;">자바</td>
 
-								</tr>
+									</tr>
+									<tr>
+										<th style="width: 118px;">과목번호</th>
+										<td style="width: 252px; text-align: center;">c123414</td>
+										<th style="width: 118px;">이수구분</th>
+										<td style="text-align: center;">전공</td>
+									</tr>
+									<tr>
+										<th>학점</th>
+										<td style="text-align: center;">3</td>
+										<th>선수과목</th>
+										<td style="text-align: center;">없음</td>
+									</tr>
+									<tr>
+										<th>교수</th>
+										<td style="text-align: center;">유승제</td>
+										<th>연구실</th>
+										<td style="text-align: center;">공학관 402호</td>
+									</tr>
+									<tr>
+										<th>연락처</th>
+										<td style="text-align: center;">010-1212-1323</td>
+										<th>E-mail</th>
+										<td style="text-align: center;">youu123@gmail.com</td>
+									</tr>
+								</tbody>
+							</table>
 
-								<tr>
-									<th style="width: 118px;">과목번호</th>
-									<td style="width: 252px; text-align: center;">-</td>
-									<th style="width: 118px;">이수구분</th>
-									<td style="text-align: center;">-</td>
-								</tr>
-								<tr>
-									<th>학점</th>
-									<td style="text-align: center;">-</td>
-									<th>선수과목</th>
-									<td style="text-align: center;">-</td>
-								</tr>
-								<tr>
-									<th>교수</th>
-									<td style="text-align: center;">-</td>
-									<th>연구실</th>
-									<td style="text-align: center;">-</td>
-								</tr>
-								<tr>
-									<th>연락처</th>
-									<td style="text-align: center;">-</td>
-									<th>E-mail</th>
-									<td style="text-align: center;">-</td>
-								</tr>
-							</tbody>
-						</table>
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>교과목개요</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<input class="form-control" width="600px">
+										</td>
+									</tr>
+								</tbody>
+								<thead>
+									<tr>
+										<th>강의목표</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<input class="form-control" width="600px">
+										</td>
+									</tr>
+								</tbody>
+								<thead>
+									<tr>
+										<th>강의방법</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<input class="form-control" width="600px">
+										</td>
+									</tr>
+								</tbody>
+								<thead>
+									<tr>
+										<th>평가방법</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<input class="form-control" width="600px">
+										</td>
+									</tr>
+								</tbody>
+								<thead>
+									<tr>
+										<th>과제물</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<input class="form-control" width="600px">
+										</td>
+									</tr>
+								</tbody>
+								<thead>
+									<tr>
+										<th>실험 및 실습계획</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<input class="form-control" width="600px">
+										</td>
+									</tr>
+								</tbody>
+								<thead>
+									<tr>
+										<th>관련강의</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<input class="form-control" width="600px">
+										</td>
+									</tr>
+								</tbody>
+								<thead>
+									<tr>
+										<th>교재</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<input class="form-control" width="600px">
+										</td>
+									</tr>
+								</tbody>
 
-						<table class="table table-hover">
-							<thead>
-								<tr>
-									<th>교과목개요</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>-</td>
-								</tr>
-							</tbody>
-							<thead>
-								<tr>
-									<th>강의목표</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>-</td>
-								</tr>
-							</tbody>
-							<thead>
-								<tr>
-									<th>강의방법</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>-</td>
-								</tr>
-							</tbody>
-							<thead>
-								<tr>
-									<th>평가방법</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>-</td>
-								</tr>
-							</tbody>
-							<thead>
-								<tr>
-									<th>과제물</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>-</td>
-								</tr>
-							</tbody>
-							<thead>
-								<tr>
-									<th>실험 및 실습계획</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>-</td>
-								</tr>
-							</tbody>
-							<thead>
-								<tr>
-									<th>관련강의</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>-</td>
-								</tr>
-							</tbody>
-							<thead>
-								<tr>
-									<th>교재</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>-</td>
-								</tr>
-							</tbody>
-
-						</table>
-						<table class="table table-hover">
-							<thead>
-								<tr>
-									<th>주차</th>
-									<th style="text-align: center;">강의내용</th>
-									<th style="text-align: center;">참고자료</th>
-									<th style="text-align: center;">비고</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<th>제 1주</th>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-								</tr>
-								<tr>
-									<th>제 2주</th>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-								</tr>
-								<tr>
-									<th>제 3주</th>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-								</tr>
-								<tr>
-									<th>제 4주</th>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-								</tr>
-								<tr>
-									<th>제 5주</th>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-								</tr>
-								<tr>
-									<th>제 6주</th>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-								</tr>
-								<tr>
-									<th>제 7주</th>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-								</tr>
-								<tr>
-									<th>제 8주</th>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-								</tr>
-								<tr>
-									<th>제 9주</th>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-								</tr>
-								<tr>
-									<th>제 10주</th>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-								</tr>
-								<tr>
-									<th>제 11주</th>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-								</tr>
-								<tr>
-									<th>제 12주</th>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-								</tr>
-								<tr>
-									<th>제 13주</th>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-								</tr>
-								<tr>
-									<th>제 14주</th>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-								</tr>
-								<tr>
-									<th>제 15주</th>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-								</tr>
-							</tbody>
-						</table>
-
+							</table>
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>주차</th>
+										<th style="text-align: center;">강의내용</th>
+										<th style="text-align: center;">참고자료</th>
+										<th style="text-align: center;">비고</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th>제 1주</th>
+										<td style="text-align: center;">
+											<input class="form-control">
+										</td>
+										<td style="text-align: center;">
+											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
+											</label>
+										</td>
+										<td style="text-align: center;">
+											<input class="form-control">
+										</td>
+									</tr>
+									<tr>
+										<th>제 2주</th>
+										<td style="text-align: center;">
+											<input class="form-control">
+										</td>
+										<td style="text-align: center;">
+											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
+											</label>
+										</td>
+										<td style="text-align: center;">
+											<input class="form-control">
+									</tr>
+									<tr>
+										<th>제 3주</th>
+										<td style="text-align: center;">
+											<input class="form-control">
+										</td>
+										<td style="text-align: center;">
+											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
+											</label>
+										</td>
+										<td style="text-align: center;">
+											<input class="form-control">
+									</tr>
+									<tr>
+										<th>제 4주</th>
+										<td style="text-align: center;">
+											<input class="form-control">
+										</td>
+										<td style="text-align: center;">
+											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
+											</label>
+										</td>
+										<td style="text-align: center;">
+											<input class="form-control">
+									</tr>
+									<tr>
+										<th>제 5주</th>
+										<td style="text-align: center;">
+											<input class="form-control">
+										</td>
+										<td style="text-align: center;">
+											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
+											</label>
+										</td>
+										<td style="text-align: center;">
+											<input class="form-control">
+									</tr>
+									<tr>
+										<th>제 6주</th>
+										<td style="text-align: center;">
+											<input class="form-control">
+										</td>
+										<td style="text-align: center;">
+											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
+											</label>
+										</td>
+										<td style="text-align: center;">
+											<input class="form-control">
+									</tr>
+									<tr>
+										<th>제 7주</th>
+										<td style="text-align: center;">
+											<input class="form-control">
+										</td>
+										<td style="text-align: center;">
+											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
+											</label>
+										</td>
+										<td style="text-align: center;">
+											<input class="form-control">
+									</tr>
+									<tr>
+										<th>제 8주</th>
+										<td style="text-align: center;">
+											<input class="form-control">
+										</td>
+										<td style="text-align: center;">
+											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
+											</label>
+										</td>
+										<td style="text-align: center;">
+											<input class="form-control">
+									</tr>
+									<tr>
+										<th>제 9주</th>
+										<td style="text-align: center;">
+											<input class="form-control">
+										</td>
+										<td style="text-align: center;">
+											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
+											</label>
+										</td>
+										<td style="text-align: center;">
+											<input class="form-control">
+									</tr>
+									<tr>
+										<th>제 10주</th>
+										<td style="text-align: center;">
+											<input class="form-control">
+										</td>
+										<td style="text-align: center;">
+											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
+											</label>
+										</td>
+										<td style="text-align: center;">
+											<input class="form-control">
+									</tr>
+									<tr>
+										<th>제 11주</th>
+										<td style="text-align: center;">
+											<input class="form-control">
+										</td>
+										<td style="text-align: center;">
+											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
+											</label>
+										</td>
+										<td style="text-align: center;">
+											<input class="form-control">
+									</tr>
+									<tr>
+										<th>제 12주</th>
+										<td style="text-align: center;">
+											<input class="form-control">
+										</td>
+										<td style="text-align: center;">
+											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
+											</label>
+										</td>
+										<td style="text-align: center;">
+											<input class="form-control">
+									</tr>
+									<tr>
+										<th>제 13주</th>
+										<td style="text-align: center;">
+											<input class="form-control">
+										</td>
+										<td style="text-align: center;">
+											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
+											</label>
+										</td>
+										<td style="text-align: center;">
+											<input class="form-control">
+									</tr>
+									<tr>
+										<th>제 14주</th>
+										<td style="text-align: center;">
+											<input class="form-control">
+										</td>
+										<td style="text-align: center;">
+											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
+											</label>
+										</td>
+										<td style="text-align: center;">
+											<input class="form-control">
+									</tr>
+									<tr>
+										<th>제 15주</th>
+										<td style="text-align: center;">
+											<input class="form-control">
+										</td>
+										<td style="text-align: center;">
+											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
+											</label>
+										</td>
+										<td style="text-align: center;">
+											<input class="form-control">
+									</tr>
+								</tbody>
+							</table>
+							<button type="button" class="btn btn-dark" onclick="location.href= 'prof_lecturePlanList.do'" style="float: right; margin-bottom: 20px;">
+								<i class="fas fa-pencil-alt"></i> 등록
+							</button>
+						</form>
 					</div>
 				</div>
 
