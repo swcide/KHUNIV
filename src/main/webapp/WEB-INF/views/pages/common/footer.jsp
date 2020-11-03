@@ -36,7 +36,7 @@
 		<script src="resources/vendor/popper/umd/popper.min.js"></script>
 		<script src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 		<script src="resources/vendor/common/common.min.js"></script>
-		<script src="resources/vendor/jquery.validation/jquery.validate.min.js"></script>
+		<script src="resources/vendor/jquery.validation/jquery.validate.js"></script>
 		<script src="resources/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
 		<script src="resources/vendor/jquery.gmap/jquery.gmap.min.js"></script>
 		<script src="resources/vendor/jquery.lazyload/jquery.lazyload.min.js"></script>

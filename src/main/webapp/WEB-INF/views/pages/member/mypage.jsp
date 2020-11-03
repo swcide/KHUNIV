@@ -57,20 +57,26 @@
 					<div class="form-group row">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">성명</label>
 						<div class="col-lg-9">
-							<input class="form-control" type="text" name="name" value="${loginUser.name }" required>
+							<input class="form-control" type="text" name="name" id="name" value="${loginUser.name }" required>
 						</div>
 					</div>
 					<c:if test="${!empty loginUser.ssn } ">
-					<c:forTokens items="${loginUser.ssn }" delims="-"></c:forTokens>
+					<c:forTokens items="${loginUser.ssn }" delims="-" varStatus="status">
 					<div class="form-group row">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">주민번호</label>
-						<div class="col-lg-4">
-							<input class="form-control" type="number" name="ssn" value="${loginUser.std_ssn }" required>
-						</div>-
+					<c:if test="${status.index eq 0}">
 						<div class="col-lg-4">
 							<input class="form-control" type="number" name="ssn" value="${loginUser.std_ssn }" required>
 						</div>
+						</c:if>
+						-
+						<c:if test="${status.index eq 1 }">
+						<div class="col-lg-4">
+							<input class="form-control" type="number" name="ssn" value="${loginUser.std_ssn }" required>
+						</div>
+						</c:if>
 					</div>
+					</c:forTokens>
 					</c:if>
 					<div class="form-group row">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">Email</label>
@@ -183,7 +189,7 @@
 					<div class="form-group row">
 						<div class="form-group col-lg-9"></div>
 						<div class="form-group col-lg-3">
-							<input type="submit" value="수정하기" class="btn btn-primary btn-sm mb-2 float-right" data-loading-text="Loading...">
+							<input type="submit" value="수정하기" id="btnUpdate" class="btn btn-primary btn-sm mb-2 float-right" data-loading-text="Loading...">
 						</div>
 					</div>
 				</form>
@@ -192,5 +198,34 @@
 	</div>
 </div>
 </body>
+<script>
+$('#btnUpdate').click(function(){
+	
+});
+if ($("#name").val() == "") {
+	alert("이름을 정확히 입력해주세요");
+	return;
+}
+for (var i=0; i<$("#name").val().length; i++)  { 
+    var chk = $("#name").val().substring(i,i+1); 
+    if(chk.match(/[0-9]|[a-z]|[A-Z]/)) { 
+    	alert("이름을 정확히 입력해주세요");
+        return;
+    }
+    if(chk.match(/([^가-힣\x20])/i)){
+    	alert("이름을 정확히 입력해주세요");
+        return;
+    }
+    if($("#name").val() == " "){
+    	alert("이름을 정확히 입력해주세요");
+        return;
+    }
+} 
+if ($("#name").val().length <= 1) {
+	alert("이름을 정확히 입력해주세요");
+	return;
+}
+
+</script>
 <%@include file="../common/footer.jsp"%>
 </html>

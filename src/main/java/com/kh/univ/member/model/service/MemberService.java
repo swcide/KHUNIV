@@ -1,7 +1,8 @@
 package com.kh.univ.member.model.service;
 
-import com.kh.univ.member.model.vo.Member;
+import com.kh.univ.member.model.vo.Admin;
 import com.kh.univ.member.model.vo.Professor;
+import com.kh.univ.member.model.vo.Student;
 
 public interface MemberService {
 
@@ -10,18 +11,20 @@ public interface MemberService {
 	 * @param m
 	 * @return session/address
 	 */
-	Member loginMember(Member m);
+	Student loginMember(Student s);
 
 	/**
 	 * 교수 로그인
-	 * @param m
+	 * @param p
 	 * @return
 	 */
-	Professor loginProf(Member m);
+	Professor loginProf(Professor p);
 	
 	
 	
-	int updateMember(Member m);
+	int updateMember(Student s);
+
+	Admin loginAdmin(Admin a);
 
 
 }

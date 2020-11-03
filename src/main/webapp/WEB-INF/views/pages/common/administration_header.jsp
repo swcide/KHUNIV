@@ -88,7 +88,7 @@
 													<i class="icon-user icons text-color-primary"></i>
 												</div>
 												<div class="header-extra-info-text">
-													<a href="mypage.do"><label>조원영</label></a>
+													<a href="mypage.do"><label><%-- ${loginUser.name } --%>aaaa</label></a>
 													<strong class="text-uppercase text-2">
 														<label><strong>학사행정사이트 방문을 환영합니다.</strong></label>
 													</strong>
