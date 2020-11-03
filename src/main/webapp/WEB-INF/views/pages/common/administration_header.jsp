@@ -126,7 +126,7 @@
 																</ul>
 															</li>
 															<li>
-																<a class="dropdown-item" href="index.html#demos">
+																<a class="dropdown-item" href="speciallecture.do">
 																	특강 목록
 																</a>
 															</li>

@@ -87,6 +87,23 @@ public class LectureController {
 		return "ad_lecture/ad_learnig_progress";
 	}
 	
+	/**
+	 * Simply selects the home view to render by returning its name.
+	 */
+	@RequestMapping(value = "speciallecture.do", method = RequestMethod.GET)
+	public String speciallecture(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "ad_lecture/ad_special_lecture";
+	}
+	
 }	
 
 
