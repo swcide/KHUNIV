@@ -36,7 +36,7 @@ public class prof_LectureController {
 		return "prof_lecture/prof_lectureList";
 	}
 	
-	@RequestMapping(value = "prof_lecturelist2.do", method = RequestMethod.GET)
+	@RequestMapping(value = "prof_lectureList2.do", method = RequestMethod.GET)
 	public String prof_lecture2(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
