@@ -8,7 +8,7 @@
 			<div class="container">
 				<div class="row mt-3">
 					<div class="col-md-12 align-self-center p-static order-2 text-center">
-						<h1 class="text-9 font-weight-bold">내 강의 목록</h1>
+						<h1 class="text-9 font-weight-bold">내 강의 학생 목록</h1>
 						<span class="sub-title">my lecture list</span>
 					</div>
 				</div>
@@ -20,15 +20,13 @@
 					<div class="col">
 
 						<div class="custom-box-details bg-color-light col-lg-12 ml-5 mb-5 mb-lg-4 float-right clearfix">
-							<h4>내 강의 목록</h4>
+							<h4>컴퓨터네트워킹</h4>
 
 							<table class="table table-hover">
 								<thead>
 									<tr>
-										<th>강의번호<th>
-										<th>학기</th>
-										<th>과목명</th>
-										<th>수강인원</th>
+										<th>학생번호<th>
+										<th>이름<th>
 										<th>평균 시험 점수</th>
 										<th>과제제출률</th>
 										<th>수업진행률</th>
@@ -36,22 +34,18 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>c12314123<td>
-										<td>2</td>
-										<th><a href>컴퓨터네트워킹</a></th>
-										<td>20</td>
+										<td>2020423<td>
+										<th><a href>윤기훈</a></th>
 										<td>78.34점</td>
 										<td>100%</td>
 										<td>12%</td>
 									</tr>
 									<tr>
-										<td>c12364123<td>
-										<td>2</td>
-										<th><a href>디자인 커뮤니케이션</a></th>
-										<td>18</td>
+										<td>20200413<td>
+										<th><a href>김진태</a></th>
 										<td>56.34점</td>
 										<td>80%</td>
-										<td>24%</td>
+										<td>14%</td>
 									</tr>
 								</tbody>
 							</table>

@@ -38,7 +38,7 @@
 									<tr>
 										<td>c12314123<td>
 										<td>2</td>
-										<th><a href>컴퓨터네트워킹</a></th>
+										<th><a href="prof_lectureStudentList.do">컴퓨터네트워킹</a></th>
 										<td>20</td>
 										<td>78.34점</td>
 										<td>100%</td>
@@ -47,7 +47,7 @@
 									<tr>
 										<td>c12364123<td>
 										<td>2</td>
-										<th><a href>디자인 커뮤니케이션</a></th>
+										<th><a href="prof_lectureStudentList.do">디자인 커뮤니케이션</a></th>
 										<td>18</td>
 										<td>56.34점</td>
 										<td>80%</td>

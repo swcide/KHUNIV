@@ -50,6 +50,20 @@ public class prof_LectureController {
 		return "prof_lecture/prof_lectureList2";
 	}
 	
+	@RequestMapping(value = "prof_lectureStudentList.do", method = RequestMethod.GET)
+	public String prof_Studentlecture(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "prof_lecture/prof_lectureStudentList";
+	}
+	
 	@RequestMapping(value = "prof_lectureVideoWrite.do", method = RequestMethod.GET)
 	public String prof_lectureVideoWrite(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
