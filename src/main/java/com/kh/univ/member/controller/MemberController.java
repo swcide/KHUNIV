@@ -36,28 +36,29 @@ public class MemberController
 		 * 3. session에 저장할 때 @SessionAttributes 사용
 		 * 
 		 * Model에 Attribute가 추가될 때 자동으로 키 값을 찾아 세션에 등록하는 기능을 제공하는 어노테이션
+		 * http://localhost:9999/spring/ad_login.do?type=학사로그인 / 홈페이지로그인
 		 */
 		@RequestMapping(value = "login.do", method = RequestMethod.POST)
 		public String memberLogin(Member m, Model model, HttpSession session)
 			{
 				Member loginUser = mService.loginMember(m);
 				Professor loginProf = mService.loginProf(m);
-
-				if (loginUser != null)
+				model.getAttribute(attributeName);
+				if(loginUser!=null)
 					{
 						model.addAttribute("loginUser", loginUser);
 						return "redirect:ad_main.do";
-					} else if (loginProf != null)
+					}else if(loginProf!=null)
 					{
 						model.addAttribute("loginProf", loginProf);
 						return "redirect:prof_main.do";
-					} else
+					}else
 					{
 						model.addAttribute("msg", "로그인 실패");
 						return "common/errorPage";
 					}
+		}
 
-			}
 
 		// 로그아웃
 		@RequestMapping("logout.do")

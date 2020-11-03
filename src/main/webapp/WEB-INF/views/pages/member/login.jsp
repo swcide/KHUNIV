@@ -67,18 +67,21 @@
 					<form action="/" id="frmSignIn" method="post" class="needs-validation">
 						<div class="form-row">
 							<div class="form-group col">
-								<label class="text-color-dark text-3">학번 <span class="text-color-danger">*</span></label> <input type="text" value="" class="form-control form-control-lg text-4" required>
+								<label class="text-color-dark text-3">학번 <span class="text-color-danger">*</span></label>
+								<input type="text" name="id" class="form-control form-control-lg text-4" required>
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="form-group col">
-								<label class="text-color-dark text-3">비밀번호 <span class="text-color-danger">*</span></label> <input type="password" value="" class="form-control form-control-lg text-4" required>
+								<label class="text-color-dark text-3">비밀번호 <span class="text-color-danger">*</span></label>
+								<input type="password" name="pw" class="form-control form-control-lg text-4" required>
 							</div>
 						</div>
 						<div class="form-row justify-content-between">
 							<div class="form-group col-md-auto">
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="rememberme"> <label class="custom-control-label cur-pointer text-2" for="rememberme">Remember Me</label>
+									<input type="checkbox" class="custom-control-input" id="rememberme">
+									<label class="custom-control-label cur-pointer text-2" for="rememberme">Remember Me</label>
 								</div>
 							</div>
 							<div class="form-group col-md-auto">
