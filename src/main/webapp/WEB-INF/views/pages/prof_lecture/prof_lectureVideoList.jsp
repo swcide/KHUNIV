@@ -34,11 +34,10 @@
 								동영상 등록<i class="fas fa-plus"></i>
 							</button>
 							<h5 class="text-uppercase mt-4">강의 목록</h5>
+							<br>
 							<div class="row mt-lg-3">
 
-
 								<div class="col">
-
 
 									<span class="thumb-info thumb-info-side-image thumb-info-no-zoom">
 										<span class="thumb-info-side-image-wrapper">
@@ -48,8 +47,8 @@
 										</span>
 										<span class="thumb-info-caption" style="text-align: right">
 											<span class="thumb-info-caption-text">
-												<h5 class="text-uppercase mb-5 text-center text-6">컴퓨터 네트워킹 1강</h5>
-												컴퓨터 네트워킹이란 무엇인가 개념과 기본 용어부터 공부하며 기초를 다지는 시간을 가져보자
+												<h5 class="text-uppercase mb-5 text-center text-6">컴퓨터 네트워킹 2강</h5>
+												좀 더 심화된 개념과 용어부터 공부하며 기초를 다지는 시간을 가져보자
 												<div class="post-meta">
 													<span>
 														<i class="far fa-user"></i> By <a href="#">유승제 교수&nbsp;</a>
@@ -81,9 +80,11 @@
 									</span>
 									<span class="thumb-info-caption" style="text-align: right">
 										<span class="thumb-info-caption-text">
-											<h5 class="text-uppercase mb-5 text-center text-6">컴퓨터 네트워킹 2강</h5>
-											좀 더 심화된 개념과 용어부터 공부하며 기초를 다지는 시간을 가져보자
-											<div class="post-meta">
+
+
+											<h5 class="text-uppercase mb-5 text-center text-6">컴퓨터 네트워킹 1강</h5>
+											컴퓨터 네트워킹이란 무엇인가 개념과 기본 용어부터 공부하며 기초를 다지는 시간을 가져보자
+											<div>
 												<span>
 													<i class="far fa-user"></i> By <a href="#">유승제 교수&nbsp;</a>
 												</span>
