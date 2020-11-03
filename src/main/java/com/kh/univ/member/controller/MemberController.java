@@ -16,6 +16,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.kh.univ.member.model.service.MemberService;
 import com.kh.univ.member.model.vo.Member;
+import com.kh.univ.member.model.vo.Professor;
 
 @SessionAttributes("loginUser")
 @Controller
@@ -40,11 +41,16 @@ public class MemberController
 		public String memberLogin(Member m, Model model, HttpSession session)
 			{
 				Member loginUser = mService.loginMember(m);
+				Professor loginProf = mService.loginProf(m);
 
 				if (loginUser != null)
 					{
 						model.addAttribute("loginUser", loginUser);
-						return "redirect:home.do";
+						return "redirect:ad_main.do";
+					} else if (loginProf != null)
+					{
+						model.addAttribute("loginProf", loginProf);
+						return "redirect:prof_main.do";
 					} else
 					{
 						model.addAttribute("msg", "로그인 실패");
