@@ -34,6 +34,9 @@
 		       	 AND M_STATUS='Y' -->
 	</select>
 	
+	<!--  교수 로그인 -->
+	
+	
 	
 	<!-- 회원정보수정 -->
 	<update id="updateMember" parameterType="Member">
