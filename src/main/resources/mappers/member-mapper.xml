@@ -16,7 +16,12 @@
 		<result property="sSsn" column="STD_SSN"/>
 		<result property="sStatus" column="STATUS"/>
 		<result property="cpNo" column="COACH_PROF_NO"/>
-		</resultMap>
+	</resultMap>
+	<resultMap type="Admin" id="adminResultSet">
+		<id property="aId" column="ADMIN_ID"/>
+		<result property="aPwd" column="ADMIN_PWD"/>
+	
+	</resultMap>
 		<!-- 로그인 -->
 	<select id="loginMember" parameterType="Student" resultMap="memberResultSet">
 	<!--=================암호화 전=====================-->
@@ -24,6 +29,20 @@
 		FROM TB_STUDENT
 		WHERE STD_NO=#{sNo}
 		AND STD_PWD=#{sPwd} 
+		
+
+		<!-- 암호화 후 -->
+	<!-- 		SELECT *
+			  FROM MEMBER
+			WHERE ID=#{id}
+		       	 AND M_STATUS='Y' -->
+	</select>
+	<select id="loginAdmin" parameterType="Admin" resultMap="adminResultSet">
+	<!--=================암호화 전=====================-->
+ 		SELECT * 
+		FROM TB_AD_ACCOUNT
+		WHERE ADMIN_ID=#{aId}
+		AND ADMIN_PWD=#{aPwd} 
 		
 
 		<!-- 암호화 후 -->

@@ -156,7 +156,7 @@
 											<div class="header-nav-features-dropdown header-nav-features-dropdown-mobile-fixed header-nav-features-dropdown-force-right" id="headerTopUserDropdown">
 												<div class="signin-form">
 													<h5 class="text-uppercase mb-4 font-weight-bold text-3">로그인</h5>
-													<form id="fm" method="post">
+													<form action ="login.do" id="fm" method="post">
 														<div class="form-group">
 															<label class="mb-1 text-2 opacity-8">학번* </label>
 															<input id="id" type="text" name="sId" class="form-control form-control-lg">
@@ -241,6 +241,8 @@
 	 $(function(){
 		 
    		$("#btnLogin").click(function(){
+   		
+   			
    			alert(11);
    			 if($("#id").val().contains("a")){
    				 alert(1);

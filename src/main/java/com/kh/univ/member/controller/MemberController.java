@@ -38,17 +38,19 @@ public class MemberController {
 	 * 
 	 * Model에 Attribute가 추가될 때 자동으로 키 값을 찾아 세션에 등록하는 기능을 제공하는 어노테이션
 	 */
-	@RequestMapping(value = "login.do")
-	public String memberLogin(Student s, Professor p, Admin a, Model model, HttpSession session, @RequestParam(value = "type1") int type1, @RequestParam(value = "type2") int type2)
+	@RequestMapping(value="login.do", method= {RequestMethod.GET, RequestMethod.POST})
+	public String memberLogin(Student s, Professor p, Admin a, Model model, HttpSession session, @RequestParam("type1") String type1, @RequestParam("type2") String type2)
 		{
-			System.out.println(type1 + ": " + "type2");
-			if (type1 == 1) {
+			System.out.println(type1 + ": " + "type1");
+			System.out.println(type2 + ": " + "type2");
+			
+			if (type1 == "1") {
 				switch (type2) {
-					case 1:
+					case "1":
 						Student loginUser = mService.loginMember(s);
 						model.addAttribute("loginUser", loginUser);
 						return "redirect:main.do";
-					case 2:
+					case "2":
 						Professor loginProf = mService.loginProf(p);
 						model.addAttribute("loginProf", loginProf);
 						return "redirect:main.do";
@@ -59,11 +61,11 @@ public class MemberController {
 				}
 			} else {
 				switch (type2) {
-					case 1:
+					case "1":
 						Student loginUser = mService.loginMember(s);
 						model.addAttribute("loginUser", loginUser);
 						return "redirect:ad_main.do";
-					case 2:
+					case "2":
 						Professor loginProf = mService.loginProf(p);
 						model.addAttribute("loginProf", loginProf);
 						return "redirect:prof_main.do";
@@ -73,6 +75,7 @@ public class MemberController {
 						return "redirect:admin.do";
 				}
 			}
+		
 		}
 
 	// 로그아웃
@@ -88,6 +91,12 @@ public class MemberController {
 	// 마이페이지
 	@RequestMapping("mypage.do")
 	public String myInfoView()
+		{
+			return "member/mypage";
+		}
+	//테스트용
+	@RequestMapping("admin.do")
+	public String myInfoView2()
 		{
 			return "member/mypage";
 		}
