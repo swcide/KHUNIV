@@ -184,7 +184,7 @@
 											<div class="header-nav-features-dropdown header-nav-features-dropdown-mobile-fixed header-nav-features-dropdown-force-right" id="headerTopUserDropdown">
 												<div class="signin-form">
 													<h5 class="text-uppercase mb-4 font-weight-bold text-3">로그인</h5>
-													<form id="fm" method="post">
+													<form action ="login.do" id="fm" method="post">
 														<div class="form-group">
 															<label class="mb-1 text-2 opacity-8">학번* </label>
 															<input id="id" type="text" name="sNo" class="form-control form-control-lg">
@@ -265,7 +265,40 @@
 		</header>
 	</div>
 
+<<<<<<< HEAD
 	
+=======
+	<script>
+	 $(function(){
+		 
+   		$("#btnLogin").click(function(){
+   		
+   			
+   			alert(11);
+   			 if($("#id").val().contains("a")){
+   				 alert(1);
+   				 //관리자
+   				 $("#hd1").val("1");
+   				 $("#hd2").val("3");
+   				 $("#fm").attr("action","login.do").submit();
+   			 }else if($("textLoginId").val().contains("p")){
+   				alert(2);
+   					//교수
+   					$("#hd1").val("1");
+   				 $("#hd2").val("2");
+   				$("#fm").attr("action","login.do").submit();
+   			 }else{
+   				alert(3);
+   					//학생
+   					$("#hd1").val("1");
+   				 $("#hd2").val("1");
+   				$("#fm").attr("action","login.do").submit();
+   			 }
+   				 
+   		});
+	 });
+   </script>
+>>>>>>> branch 'master' of https://github.com/KHunivesity/khuniv.git
 	<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
