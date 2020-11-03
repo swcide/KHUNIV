@@ -64,7 +64,7 @@
 					<img src="">
 					<h4 style="text-align: center;">학사행정시스템 로그인을 환영합니다.</h4>
 					<hr>
-					<form action="/" id="frmSignIn" method="post" class="needs-validation">
+					<form action="login.do" id="fm" method="post" class="needs-validation">
 						<div class="form-row">
 							<div class="form-group col">
 								<label class="text-color-dark text-3">학번 <span class="text-color-danger">*</span></label>
@@ -90,7 +90,7 @@
 						</div>
 						<div class="form-row">
 							<div class="form-group col">
-								<button type="submit" class="btn btn-dark btn-modern btn-block text-uppercase rounded-0 font-weight-bold text-3 py-3" data-loading-text="Loading...">Login</button>
+								<button id="btnLogin" type="submit" class="btn btn-dark btn-modern btn-block text-uppercase rounded-0 font-weight-bold text-3 py-3" data-loading-text="Loading...">로그인</button>
 							</div>
 						</div>
 					</form>
@@ -99,7 +99,21 @@
 		</div>
 	</div>
 </div>
-
+<script>
+   		$("btnLogin").click(function(){
+   			 if($("#id").val().contains("a")){
+   				 //관리자
+   				 $("fm").attr("action","login1.do?type1=1,type2=3");
+   			 }else if($("textLoginId").val().contains("p")){
+   					//교수
+   				$("fm").attr("action","logi21.do?type1=1,type2=2");
+   			 }else{
+   					//학생
+   				$("fm").attr("action","logi21.do?type1=1,type2=1");
+   			 }
+   				 
+   		});
+   </script>
 <!-- Vendor -->
 <script src="resources/vendor/jquery/jquery.min.js"></script>
 <script src="resources/vendor/jquery.appear/jquery.appear.min.js"></script>

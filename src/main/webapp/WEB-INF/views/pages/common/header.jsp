@@ -59,8 +59,10 @@
 <script src="resources/vendor/modernizr/modernizr.min.js"></script>
 
 <style>
-.table-hover tbody tr:hover{color:rgba(0,83,171,0.9);background-color:rgba(0,83,171,0.1)}
-
+.table-hover tbody tr:hover {
+	color: rgba(0, 83, 171, 0.9);
+	background-color: rgba(0, 83, 171, 0.1)
+}
 </style>
 </head>
 <body>
@@ -154,17 +156,20 @@
 											<div class="header-nav-features-dropdown header-nav-features-dropdown-mobile-fixed header-nav-features-dropdown-force-right" id="headerTopUserDropdown">
 												<div class="signin-form">
 													<h5 class="text-uppercase mb-4 font-weight-bold text-3">로그인</h5>
-													<form>
+													<form id="fm" action="login.do" method="post">
 														<div class="form-group">
-															<label class="mb-1 text-2 opacity-8">학번* </label> <input type="email" class="form-control form-control-lg">
+															<label class="mb-1 text-2 opacity-8">학번* </label>
+															<input id="id" type="text" class="form-control form-control-lg">
 														</div>
 														<div class="form-group">
-															<label class="mb-1 text-2 opacity-8">비밀번호*</label> <input type="password" class="form-control form-control-lg">
+															<label class="mb-1 text-2 opacity-8">비밀번호*</label>
+															<input id="pw" type="password" class="form-control form-control-lg">
 														</div>
 														<div class="form-row pb-2">
 															<div class="form-group form-check col-lg-6 pl-1">
 																<div class="custom-control custom-checkbox">
-																	<input type="checkbox" class="custom-control-input" id="rememberMeCheck"> <label class="custom-control-label text-2" for="rememberMeCheck">비밀번호 저장하기</label>
+																	<input type="checkbox" class="custom-control-input" id="rememberMeCheck">
+																	<label class="custom-control-label text-2" for="rememberMeCheck">비밀번호 저장하기</label>
 																</div>
 															</div>
 															<div class="form-group col-lg-6 text-right">
@@ -174,7 +179,7 @@
 														<div class="actions">
 															<div class="form-row">
 																<div class="col d-flex justify-content-end">
-																	<a class="btn btn-primary" name="" href="#">로그인</a>
+																	<button id="btnLogin" class="btn btn-primary" type="submit">로그인</button>
 																</div>
 															</div>
 														</div>
@@ -187,14 +192,14 @@
 								<c:if test="${!empty sessionScope.loginUser }">
 									<div class="header-nav-features header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2" style="position: none;">
 										<div class="header-nav-feature header-nav-features-user header-nav-features-user-logged d-inline-flex mx-2 pr-2" id="headerAccount">
-											<a href="#" class="header-nav-features-toggle"> <i class="far fa-user"></i> <c:out value="${loginUser.name}"/>
+											<a href="#" class="header-nav-features-toggle"> <i class="far fa-user"></i> <c:out value="${loginUser.name}" />
 											</a>
 											<div class="header-nav-features-dropdown header-nav-features-dropdown-mobile-fixed header-nav-features-dropdown-force-right" id="headerTopUserDropdown">
 												<div class="row">
 													<div class="col-8">
 														<p class="mb-0 pb-0 text-2 line-height-1 pt-1">안녕하세요,</p>
 														<p>
-															<strong class="text-color-dark text-4"><c:out value="${loginUser.name} 님"/></strong>
+															<strong class="text-color-dark text-4"><c:out value="${loginUser.name} 님" /></strong>
 														</p>
 													</div>
 													<div class="col-4">
@@ -206,8 +211,8 @@
 												<div class="row">
 													<div class="col">
 														<ul class="nav nav-list-simple flex-column text-3">
-														<c:url var="mypage" value="mypage.do"/>
-														<c:url var="logout" value="logout.do"/>
+															<c:url var="mypage" value="mypage.do" />
+															<c:url var="logout" value="logout.do" />
 															<li class="nav-item"><a class="nav-link" href="mypage">내 정보</a></li>
 															<li class="nav-item"><a class="nav-link border-bottom-0" href="logout">로그아웃</a></li>
 														</ul>
@@ -217,7 +222,7 @@
 										</div>
 									</div>
 								</c:if>
-								<c:url var="ad_login" value="ad_login.do"/>
+								<c:url var="ad_login" value="ad_login.do" />
 								<button class="header-nav-features header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2 btn btn-outline btn-primary  btn-with-arrow" onclick="location.href='${ad_login}'">
 									등교하기<span><i class="fas fa-chevron-right"></i></span>
 								</button>
@@ -229,6 +234,21 @@
 		</header>
 	</div>
 
+	<script>
+   		$("btnLogin").click(function(){
+   			 if($("#id").val().contains("a")){
+   				 //관리자
+   				 $("fm").attr("action","login1.do?type1=1,type2=3");
+   			 }else if($("textLoginId").val().contains("p")){
+   					//교수
+   				$("fm").attr("action","logi21.do?type1=1,type2=2");
+   			 }else{
+   					//학생
+   				$("fm").attr("action","logi21.do?type1=1,type2=1");
+   			 }
+   				 
+   		});
+   </script>
 	<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

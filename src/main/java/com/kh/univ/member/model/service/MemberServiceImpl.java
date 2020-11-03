@@ -6,6 +6,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Service;
 
 import com.kh.univ.member.model.dao.MemberDao;
+import com.kh.univ.member.model.vo.Admin;
 import com.kh.univ.member.model.vo.Member;
 import com.kh.univ.member.model.vo.Professor;
 
@@ -30,9 +31,15 @@ public class MemberServiceImpl implements MemberService
 			}
 
 		@Override
-		public Professor loginProf(Member m)
+		public Professor loginProf(Professor p)
 			{
-				return mDao.loginProf(m);
+				return mDao.loginProf(p);
+			}
+		
+		@Override
+		public Admin loginAdmin(Admin a)
+			{
+				return mDao.loginAdmin(a);
 			}
 
 		@Override
@@ -41,5 +48,6 @@ public class MemberServiceImpl implements MemberService
 				// TODO Auto-generated method stub
 				return 0;
 			}
+
 
 	}
