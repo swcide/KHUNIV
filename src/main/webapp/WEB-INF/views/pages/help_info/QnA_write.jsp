@@ -29,7 +29,7 @@
 							<div class="post-content ml-0">
 
 
-								<div class="post-block mt-5 post-leave-comment">
+								<div class="custom-box-details bg-color-light custom-box-shadow-1 col-lg-12 ml-5 mb-5 mb-lg-4 float-right clearfix">
 									<h4>Q&A 작성</h4>
 
 									<form class="contact-form rounded"

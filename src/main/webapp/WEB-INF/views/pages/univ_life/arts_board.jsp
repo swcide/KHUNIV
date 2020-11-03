@@ -98,7 +98,7 @@
 								</tbody>
 							</table>
 							<button type="button" class="btn btn-dark"
-								onclick="location= 'Q&Awrite.jsp'"
+								onclick="location.href= 'arts_write.do'"
 								style="float: right; margin-bottom: 20px;">
 								<i class="fas fa-pencil-alt"></i> 글쓰기
 							</button>

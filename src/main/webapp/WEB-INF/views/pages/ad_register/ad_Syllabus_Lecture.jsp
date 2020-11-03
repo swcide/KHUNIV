@@ -59,16 +59,16 @@
 <body onresize="parent.resizeTo(900,800)" onload="parent.resizeTo(700,100)">
 	<div class="body">
 		<div role="main" class="main">
-			<section class="page-header page-header-modern bg-color-light-scale-3 page-header-sm section-overlay-dot" style="margin:0; background-image: url(resources/img/custom-header-bg.jpg);">
+			<section class="page-header page-header-modern bg-color-light-scale-3 page-header-sm section-overlay-dot" style="margin: 0; background-image: url(resources/img/custom-header-bg.jpg);">
 				<!-- style="background-image: url(resources/img/en-mini-logo.png);" -->
 				<div class="col-12">
 					<div class="row">
-					<div class="col-md-5 align-self-center p-static order-2 text-center">
+						<div class="col-md-5 align-self-center p-static order-2 text-center">
 							<img alt="Porto Website Template" src="resources/img/khculogo4.png" class="float-left" height="40">
-							</div>
+						</div>
 						<div class="col-md-7 align-self-center p-static order-2 text-center">
-							<h1 class="text-dark text-uppercase float-left" >
-								<strong style="color:white;">강의계획서</strong>
+							<h1 class="text-dark text-uppercase float-left">
+								<strong style="color: white;">강의계획서</strong>
 							</h1>
 						</div>
 					</div>

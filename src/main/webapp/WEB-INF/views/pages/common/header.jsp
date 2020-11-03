@@ -73,7 +73,7 @@
 						<div class="header-column">
 							<div class="header-row">
 								<div class="header-logo">
-									<a href="index.html"> <img alt="Porto" width="140" height="40" data-sticky-width="140" data-sticky-height="40" src="resources/img/white-kr-logo.png">
+									<a href="main.do"> <img alt="Porto" width="140" height="40" data-sticky-width="140" data-sticky-height="40" src="resources/img/white-kr-logo.png">
 									</a>
 								</div>
 							</div>

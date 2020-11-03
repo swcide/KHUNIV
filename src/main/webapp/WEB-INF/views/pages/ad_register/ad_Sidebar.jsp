@@ -8,7 +8,7 @@
 	<aside class="sidebar">
 		<h5 class="font-weight-bold">학적관리</h5>
 		<ul class="nav nav-list flex-column mb-5">
-			<li class="nav-item"><a class="nav-link" href="#">강의</a>
+			<li class="nav-item"><a class="nav-link" href="ad_lect_list.do">강의</a>
 				<ul>
 					<li class="nav-item"><a class="nav-link" href="ad_lect_list.do">강의개설정보</a></li>
 					<li class="nav-item"><a class="nav-link" href="ad_lect_appl.do">수강신청</a></li>
@@ -20,15 +20,15 @@
 			<li class="nav-item"><a class="nav-link" href="ad_return_absence_check.do">복학</a></li>
 			<li class="nav-item"><a class="nav-link" href="ad_deferment_graduation_check.do">졸업유예</a></li>
 			<li class="nav-item"><a class="nav-link" href="ad_drop_absence_check.do">자퇴</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">등록금</a>
+			<li class="nav-item"><a class="nav-link" href="ad_tuition_bill.do">등록금</a>
 				<ul>
-					<li class="nav-item"><a class="nav-link" href="#">등록금 고지서</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">등록금 납부</a></li>
+					<li class="nav-item"><a class="nav-link" href="ad_tuition_bill.do">등록금 납부</a></li>
+					<li class="nav-item"><a class="nav-link" href="ad_tuition_payment_check.do">등록금 납부 확인</a></li>
 				</ul></li>
-			<li class="nav-item"><a class="nav-link" href="#">증명서 발급</a>
+			<li class="nav-item"><a class="nav-link" href="ad_certificate_list.do">증명서 발급</a>
 				<ul>
-					<li class="nav-item"><a class="nav-link" href="#">재학 증명서 발급</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">졸업 증명서 발급</a></li>
+					<li class="nav-item"><a class="nav-link" href="ad_certificate_list.do">재학 증명서 발급</a></li>
+					<li class="nav-item"><a class="nav-link" href="ad_certificate_list.do">졸업 증명서 발급</a></li>
 				</ul></li>
 		</ul>
 	</aside>
