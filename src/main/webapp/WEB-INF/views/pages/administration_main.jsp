@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>KHCU | Administration</title>
 </head>
 <body>
 	<%@ include file="common/administration_header.jsp"%>
