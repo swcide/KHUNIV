@@ -64,21 +64,24 @@
 					<img src="">
 					<h4 style="text-align: center;">학사행정시스템 로그인을 환영합니다.</h4>
 					<hr>
-					<form action="/" id="frmSignIn" method="post" class="needs-validation">
+					<form action="login.do" id="fm" method="post" class="needs-validation">
 						<div class="form-row">
 							<div class="form-group col">
-								<label class="text-color-dark text-3">학번 <span class="text-color-danger">*</span></label> <input type="text" value="" class="form-control form-control-lg text-4" required>
+								<label class="text-color-dark text-3">학번 <span class="text-color-danger">*</span></label>
+								<input type="text" name="id" class="form-control form-control-lg text-4" required>
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="form-group col">
-								<label class="text-color-dark text-3">비밀번호 <span class="text-color-danger">*</span></label> <input type="password" value="" class="form-control form-control-lg text-4" required>
+								<label class="text-color-dark text-3">비밀번호 <span class="text-color-danger">*</span></label>
+								<input type="password" name="pw" class="form-control form-control-lg text-4" required>
 							</div>
 						</div>
 						<div class="form-row justify-content-between">
 							<div class="form-group col-md-auto">
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="rememberme"> <label class="custom-control-label cur-pointer text-2" for="rememberme">Remember Me</label>
+									<input type="checkbox" class="custom-control-input" id="rememberme">
+									<label class="custom-control-label cur-pointer text-2" for="rememberme">Remember Me</label>
 								</div>
 							</div>
 							<div class="form-group col-md-auto">
@@ -87,7 +90,7 @@
 						</div>
 						<div class="form-row">
 							<div class="form-group col">
-								<button type="submit" class="btn btn-dark btn-modern btn-block text-uppercase rounded-0 font-weight-bold text-3 py-3" data-loading-text="Loading...">Login</button>
+								<button id="btnLogin" type="submit" class="btn btn-dark btn-modern btn-block text-uppercase rounded-0 font-weight-bold text-3 py-3" data-loading-text="Loading...">로그인</button>
 							</div>
 						</div>
 					</form>
@@ -96,7 +99,21 @@
 		</div>
 	</div>
 </div>
-
+<script>
+   		$("btnLogin").click(function(){
+   			 if($("#id").val().contains("a")){
+   				 //관리자
+   				 $("fm").attr("action","login1.do?type1=1,type2=3");
+   			 }else if($("textLoginId").val().contains("p")){
+   					//교수
+   				$("fm").attr("action","logi21.do?type1=1,type2=2");
+   			 }else{
+   					//학생
+   				$("fm").attr("action","logi21.do?type1=1,type2=1");
+   			 }
+   				 
+   		});
+   </script>
 <!-- Vendor -->
 <script src="resources/vendor/jquery/jquery.min.js"></script>
 <script src="resources/vendor/jquery.appear/jquery.appear.min.js"></script>

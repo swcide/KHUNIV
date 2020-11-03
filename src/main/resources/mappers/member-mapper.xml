@@ -23,8 +23,11 @@
  		SELECT * 
 		FROM TB_STUDENT
 		WHERE STD_NO=#{sNo}
-		AND STD_PWD=#{sPwd}
+		AND STD_PWD=#{sPwd}  --학생디비
 		
+		관리자 -관
+		
+		교수 -교
 		
 
 		<!-- 암호화 후 -->
