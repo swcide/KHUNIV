@@ -151,7 +151,7 @@
 								<c:if test="${empty sessionScope.loginUser }">
 									<div class="header-nav-features header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2">
 										<div class="header-nav-feature header-nav-features-user d-inline-flex mx-2 pr-2 signin" id="headerAccount">
-											<a href="#" class="header-nav-features-toggle"> <i class="far fa-user"></i> 로그인
+											<a href="login.do" class="header-nav-features-toggle"> <i class="far fa-user"></i> 로그인
 											</a>
 											<div class="header-nav-features-dropdown header-nav-features-dropdown-mobile-fixed header-nav-features-dropdown-force-right" id="headerTopUserDropdown">
 												<div class="signin-form">
