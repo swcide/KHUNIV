@@ -15,11 +15,15 @@ Theme Version:	8.1.0
 	// No White Space
 	$.validator.addMethod("noSpace", function(value, element) {
     	if( $(element).attr('required') ) {
-    		return value.search(/[a-zA-Z0-9À-žа-яА-ЯёЁα-ωΑ-Ω\s\u0621-\u064A\u0660-\u0669 ]/i) == 0;
+    		return value.search(/^[가-힣]+$/) == 0;
     	}
 
     	return true;
+<<<<<<< HEAD
 	}, 'Please fill 야임마 제대로 일 해라 어 this empty field.');
+=======
+	}, '한글로 입력하세요.');
+>>>>>>> branch 'master' of https://github.com/KHunivesity/khuniv.git
 
 	/*
 	Assign Custom Rules on Fields
