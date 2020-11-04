@@ -198,34 +198,6 @@
 	</div>
 </div>
 </body>
-<script>
-$('#btnUpdate').click(function(){
-	
-});
-if ($("#name").val() == "") {
-	alert("이름을 정확히 입력해주세요");
-	return;
-}
-for (var i=0; i<$("#name").val().length; i++)  { 
-    var chk = $("#name").val().substring(i,i+1); 
-    if(chk.match(/[0-9]|[a-z]|[A-Z]/)) { 
-    	alert("이름을 정확히 입력해주세요");
-        return;
-    }
-    if(chk.match(/([^가-힣\x20])/i)){
-    	alert("이름을 정확히 입력해주세요");
-        return;
-    }
-    if($("#name").val() == " "){
-    	alert("이름을 정확히 입력해주세요");
-        return;
-    }
-} 
-if ($("#name").val().length <= 1) {
-	alert("이름을 정확히 입력해주세요");
-	return;
-}
 
-</script>
 <%@include file="../common/footer.jsp"%>
 </html>

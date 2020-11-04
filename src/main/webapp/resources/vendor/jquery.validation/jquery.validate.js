@@ -370,7 +370,7 @@ $.extend( $.validator, {
 	},
 
 	messages: {
-		required: "필수 입력란입니다..",
+		required: "필수 입력란입니다.",
 		name: "성과 이름 포함 2자 이상 입력하세요",
 		remote: "Please fix this field.",
 		email: "이메일을 정확히 입력하세요.",
