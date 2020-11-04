@@ -216,9 +216,8 @@
 								<thead>
 									<tr>
 										<th>주차</th>
-										<th style="text-align: center;">강의내용</th>
+										<th style="text-align: center;">강의명</th>
 										<th style="text-align: center;">참고자료</th>
-										<th style="text-align: center;">비고</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -231,9 +230,6 @@
 											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
 											</label>
 										</td>
-										<td style="text-align: center;">
-											<input class="form-control">
-										</td>
 									</tr>
 									<tr>
 										<th>제 2주</th>
@@ -244,8 +240,6 @@
 											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
 											</label>
 										</td>
-										<td style="text-align: center;">
-											<input class="form-control">
 									</tr>
 									<tr>
 										<th>제 3주</th>
@@ -256,8 +250,6 @@
 											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
 											</label>
 										</td>
-										<td style="text-align: center;">
-											<input class="form-control">
 									</tr>
 									<tr>
 										<th>제 4주</th>
@@ -268,8 +260,6 @@
 											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
 											</label>
 										</td>
-										<td style="text-align: center;">
-											<input class="form-control">
 									</tr>
 									<tr>
 										<th>제 5주</th>
@@ -280,8 +270,6 @@
 											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
 											</label>
 										</td>
-										<td style="text-align: center;">
-											<input class="form-control">
 									</tr>
 									<tr>
 										<th>제 6주</th>
@@ -292,8 +280,6 @@
 											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
 											</label>
 										</td>
-										<td style="text-align: center;">
-											<input class="form-control">
 									</tr>
 									<tr>
 										<th>제 7주</th>
@@ -304,8 +290,6 @@
 											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
 											</label>
 										</td>
-										<td style="text-align: center;">
-											<input class="form-control">
 									</tr>
 									<tr>
 										<th>제 8주</th>
@@ -316,8 +300,6 @@
 											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
 											</label>
 										</td>
-										<td style="text-align: center;">
-											<input class="form-control">
 									</tr>
 									<tr>
 										<th>제 9주</th>
@@ -328,8 +310,6 @@
 											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
 											</label>
 										</td>
-										<td style="text-align: center;">
-											<input class="form-control">
 									</tr>
 									<tr>
 										<th>제 10주</th>
@@ -340,8 +320,6 @@
 											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
 											</label>
 										</td>
-										<td style="text-align: center;">
-											<input class="form-control">
 									</tr>
 									<tr>
 										<th>제 11주</th>
@@ -352,8 +330,6 @@
 											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
 											</label>
 										</td>
-										<td style="text-align: center;">
-											<input class="form-control">
 									</tr>
 									<tr>
 										<th>제 12주</th>
@@ -364,8 +340,6 @@
 											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
 											</label>
 										</td>
-										<td style="text-align: center;">
-											<input class="form-control">
 									</tr>
 									<tr>
 										<th>제 13주</th>
@@ -376,8 +350,6 @@
 											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
 											</label>
 										</td>
-										<td style="text-align: center;">
-											<input class="form-control">
 									</tr>
 									<tr>
 										<th>제 14주</th>
@@ -388,8 +360,6 @@
 											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
 											</label>
 										</td>
-										<td style="text-align: center;">
-											<input class="form-control">
 									</tr>
 									<tr>
 										<th>제 15주</th>
@@ -400,12 +370,10 @@
 											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
 											</label>
 										</td>
-										<td style="text-align: center;">
-											<input class="form-control">
 									</tr>
 								</tbody>
 							</table>
-							<button type="button" class="btn btn-dark" onclick="location.href= 'prof_lecturePlanList.do'" style="float: right; margin-bottom: 20px;">
+							<button type="button" class="btn btn-dark" onclick="location.href= 'javascript:self.close();'" style="float: right; margin-bottom: 20px;">
 								<i class="fas fa-pencil-alt"></i> 등록
 							</button>
 						</form>
