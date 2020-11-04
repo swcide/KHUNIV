@@ -68,13 +68,13 @@
 <script>
 	$(function() {
 		$("#btnLogin").click(function() {
-			if ($("#id").val().indexOf("a") > 0) {
+			if ($("#id").val().indexOf("a") > -1) {
 				//관리자
 				alert("admin");
 				$("#hd1").val("1");
 				$("#hd2").val("3");
 				$("#fm").attr("action", "login.do").submit();
-			} else if ($("#id").val().indexOf("p") > 0) {
+			} else if ($("#id").val().indexOf("p") > -1) {
 				//교수
 				alert("prof");
 				$("#hd1").val("1");
@@ -87,7 +87,6 @@
 				$("#hd2").val("1");
 				$("#fm").attr("action", "login.do").submit();
 			}
-
 		});
 	});
 </script>
@@ -185,10 +184,10 @@
 													<h5 class="text-uppercase mb-4 font-weight-bold text-3">로그인</h5>
 													<form action="login.do" id="fm" method="post">
 														<div class="form-group">
-															<label class="mb-1 text-2 opacity-8">학번* </label> <input id="id" type="text" name="sNo" class="form-control form-control-lg"> <input type="hidden" id="hd1" name="type1"> <input type="hidden" id="hd2" name="type2">
+															<label class="mb-1 text-2 opacity-8">학번* </label> <input id="id" type="text" name="aId" class="form-control form-control-lg"> <input type="hidden" id="hd1" name="type1"> <input type="hidden" id="hd2" name="type2">
 														</div>
 														<div class="form-group">
-															<label class="mb-1 text-2 opacity-8">비밀번호*</label> <input id="pw" type="password" name="sPwd" class="form-control form-control-lg">
+															<label class="mb-1 text-2 opacity-8">비밀번호*</label> <input id="pw" type="password" name="aPwd" class="form-control form-control-lg">
 
 														</div>
 														<div class="form-row pb-2">
@@ -225,6 +224,39 @@
 														<p class="mb-0 pb-0 text-2 line-height-1 pt-1">안녕하세요,</p>
 														<p>
 															<strong class="text-color-dark text-4"><c:out value="${loginUser.sName} 님" /></strong>
+														</p>
+													</div>
+													<div class="col-4">
+														<div class="d-flex justify-content-end">
+															<img class="rounded-circle" width="40" height="40" alt="" src="img/avatars/avatar.jpg">
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col">
+														<ul class="nav nav-list-simple flex-column text-3">
+<%-- 															<c:url var="mypage" value="mypage.do" /> --%>
+<%-- 															<c:url var="logout" value="logout.do" /> --%>
+															<li class="nav-item"><a class="nav-link" href="mypage.do">내 정보</a></li>
+															<li class="nav-item"><a class="nav-link border-bottom-0" href="logout.do">로그아웃</a></li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</c:if>
+								<c:if test="${!empty sessionScope.loginAdmin }">
+									<div class="header-nav-features header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2" style="position: none;">
+										<div class="header-nav-feature header-nav-features-user header-nav-features-user-logged d-inline-flex mx-2 pr-2" id="headerAccount">
+											<a href="#" class="header-nav-features-toggle"> <i class="far fa-user"></i> <c:out value="${loginAdmin.aId}" />
+											</a>
+											<div class="header-nav-features-dropdown header-nav-features-dropdown-mobile-fixed header-nav-features-dropdown-force-right" id="headerTopUserDropdown">
+												<div class="row">
+													<div class="col-8">
+														<p class="mb-0 pb-0 text-2 line-height-1 pt-1">안녕하세요,</p>
+														<p>
+															<strong class="text-color-dark text-4"><c:out value="${loginAdmin.aId} 님" /></strong>
 														</p>
 													</div>
 													<div class="col-4">
