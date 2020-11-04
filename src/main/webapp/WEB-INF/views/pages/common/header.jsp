@@ -57,13 +57,37 @@
 
 <!-- Head Libs -->
 <script src="resources/vendor/modernizr/modernizr.min.js"></script>
-
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <style>
 .table-hover tbody tr:hover {
 	color: rgba(0, 83, 171, 0.9);
 	background-color: rgba(0, 83, 171, 0.1)
 }
 </style>
+
+<script>
+	$(function() {
+		$("#btnLogin").click(function() {
+			if ($("#id").val().indexOf("a") > 0) {
+				//관리자
+				$("#hd1").val("1");
+				$("#hd2").val("3");
+				$("#fm").attr("action", "login.do").submit();
+			} else if ($("#id").val().indexOf("p") > 0) {
+				//교수
+				$("#hd1").val("1");
+				$("#hd2").val("2");
+				$("#fm").attr("action", "login.do").submit();
+			} else {
+				//학생
+				$("#hd1").val("1");
+				$("#hd2").val("1");
+				$("#fm").attr("action", "login.do").submit();
+			}
+
+		});
+	});
+</script>
 </head>
 <body>
 
@@ -156,20 +180,18 @@
 											<div class="header-nav-features-dropdown header-nav-features-dropdown-mobile-fixed header-nav-features-dropdown-force-right" id="headerTopUserDropdown">
 												<div class="signin-form">
 													<h5 class="text-uppercase mb-4 font-weight-bold text-3">로그인</h5>
-													<form id="fm" action="login.do" method="post">
+													<form action="login.do" id="fm" method="post">
 														<div class="form-group">
-															<label class="mb-1 text-2 opacity-8">학번* </label>
-															<input id="id" type="text" class="form-control form-control-lg">
+															<label class="mb-1 text-2 opacity-8">학번* </label> <input id="id" type="text" name="sNo" class="form-control form-control-lg"> <input type="hidden" id="hd1" name="type1"> <input type="hidden" id="hd2" name="type2">
 														</div>
 														<div class="form-group">
-															<label class="mb-1 text-2 opacity-8">비밀번호*</label>
-															<input id="pw" type="password" class="form-control form-control-lg">
+															<label class="mb-1 text-2 opacity-8">비밀번호*</label> <input id="pw" type="password" name="sPwd" class="form-control form-control-lg">
+
 														</div>
 														<div class="form-row pb-2">
 															<div class="form-group form-check col-lg-6 pl-1">
 																<div class="custom-control custom-checkbox">
-																	<input type="checkbox" class="custom-control-input" id="rememberMeCheck">
-																	<label class="custom-control-label text-2" for="rememberMeCheck">비밀번호 저장하기</label>
+																	<input type="checkbox" class="custom-control-input" id="rememberMeCheck"> <label class="custom-control-label text-2" for="rememberMeCheck">비밀번호 저장하기</label>
 																</div>
 															</div>
 															<div class="form-group col-lg-6 text-right">
@@ -224,7 +246,10 @@
 								</c:if>
 								<c:url var="ad_login" value="ad_login.do" />
 								<button class="header-nav-features header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2 btn btn-outline btn-primary  btn-with-arrow" onclick="location.href='${ad_login}'">
-									등교하기<span><i class="fas fa-chevron-right"></i></span>
+									등교하기
+									<span>
+										<i class="fas fa-chevron-right"></i>
+									</span>
 								</button>
 							</div>
 						</div>
@@ -234,21 +259,37 @@
 		</header>
 	</div>
 
+	
 	<script>
-   		$("btnLogin").click(function(){
-   			 if($("#id").val().contains("a")){
-   				 //관리자
-   				 $("fm").attr("action","login1.do?type1=1,type2=3");
-   			 }else if($("textLoginId").val().contains("p")){
-   					//교수
-   				$("fm").attr("action","logi21.do?type1=1,type2=2");
-   			 }else{
-   					//학생
-   				$("fm").attr("action","logi21.do?type1=1,type2=1");
-   			 }
-   				 
-   		});
-   </script>
+		$(function() {
+
+			$("#btnLogin").click(function() {
+
+				alert(11);
+				if ($("#id").val().contains("a")) {
+					alert(1);
+					//관리자
+					$("#hd1").val("1");
+					$("#hd2").val("3");
+					$("#fm").attr("action", "login.do").submit();
+				} else if ($("textLoginId").val().contains("p")) {
+					alert(2);
+					//교수
+					$("#hd1").val("1");
+					$("#hd2").val("2");
+					$("#fm").attr("action", "login.do").submit();
+				} else {
+					alert(3);
+					//학생
+					$("#hd1").val("1");
+					$("#hd2").val("1");
+					$("#fm").attr("action", "login.do").submit();
+				}
+
+			});
+		});
+	</script>
+	
 	<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

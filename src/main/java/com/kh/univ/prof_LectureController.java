@@ -36,6 +36,34 @@ public class prof_LectureController {
 		return "prof_lecture/prof_lectureList";
 	}
 	
+	@RequestMapping(value = "prof_lectureList2.do", method = RequestMethod.GET)
+	public String prof_lecture2(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "prof_lecture/prof_lectureList2";
+	}
+	
+	@RequestMapping(value = "prof_lectureStudentList.do", method = RequestMethod.GET)
+	public String prof_Studentlecture(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "prof_lecture/prof_lectureStudentList";
+	}
+	
 	@RequestMapping(value = "prof_lectureVideoWrite.do", method = RequestMethod.GET)
 	public String prof_lectureVideoWrite(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
@@ -62,6 +90,48 @@ public class prof_LectureController {
 		model.addAttribute("serverTime", formattedDate );
 		
 		return "prof_lecture/prof_lectureVideoList";
+	}
+	
+	@RequestMapping(value = "prof_Syllabus_LectureWrite.do", method = RequestMethod.GET)
+	public String prof_Syllabus_LectureWrite(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "prof_lecture/prof_Syllabus_LectureWrite";
+	}
+	
+	@RequestMapping(value = "prof_learningprogress.do", method = RequestMethod.GET)
+	public String prof_learningprogress(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "prof_lecture/prof_learnig_progress";
+	}
+	
+	@RequestMapping(value = "prof_lecturePlanList.do", method = RequestMethod.GET)
+	public String prof_lecturePlanList(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "prof_lecture/prof_lecturePlanList";
 	}
 	
 	/**
