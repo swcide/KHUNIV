@@ -17,6 +17,9 @@ public class Student {
 	private String sStatus;
 	private String cpNo;
 	private String dNo;
+	private String sCategory;
+	private String sDeptName;
+	
 	
 	public Student() {
 	}
@@ -37,6 +40,29 @@ public class Student {
 		this.sStatus = sStatus;
 		this.cpNo = cpNo;
 		this.dNo = dNo;
+	}
+
+	
+	
+	
+	public Student(String semester, String sNo, String sPwd, String sName, String sEmail, String sPhone, String sSsn, String sImage, String sAddress, Date enrollDate, String sStatus, String cpNo,
+			String dNo, String sCategory, String sDeptName) {
+		super();
+		this.semester = semester;
+		this.sNo = sNo;
+		this.sPwd = sPwd;
+		this.sName = sName;
+		this.sEmail = sEmail;
+		this.sPhone = sPhone;
+		this.sSsn = sSsn;
+		this.sImage = sImage;
+		this.sAddress = sAddress;
+		this.enrollDate = enrollDate;
+		this.sStatus = sStatus;
+		this.cpNo = cpNo;
+		this.dNo = dNo;
+		this.sCategory = sCategory;
+		this.sDeptName = sDeptName;
 	}
 
 	public String getSemester()
@@ -169,12 +195,35 @@ public class Student {
 			this.dNo = dNo;
 		}
 
+	public String getsCategory()
+		{
+			return sCategory;
+		}
+
+	public void setsCategory(String sCategory)
+		{
+			this.sCategory = sCategory;
+		}
+
+	public String getsDeptName()
+		{
+			return sDeptName;
+		}
+
+	public void setsDeptName(String sDeptName)
+		{
+			this.sDeptName = sDeptName;
+		}
+
 	@Override
 	public String toString()
 		{
 			return "Student [semester=" + semester + ", sNo=" + sNo + ", sPwd=" + sPwd + ", sName=" + sName + ", sEmail=" + sEmail + ", sPhone=" + sPhone + ", sSsn=" + sSsn + ", sImage=" + sImage
-					+ ", sAddress=" + sAddress + ", enrollDate=" + enrollDate + ", sStatus=" + sStatus + ", cpNo=" + cpNo + ", dNo=" + dNo + "]";
+					+ ", sAddress=" + sAddress + ", enrollDate=" + enrollDate + ", sStatus=" + sStatus + ", cpNo=" + cpNo + ", dNo=" + dNo + ", sCategory=" + sCategory + ", sDeptName=" + sDeptName
+					+ "]";
 		}
+
+	
 	
 	
 	

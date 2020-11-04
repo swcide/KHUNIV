@@ -26,16 +26,8 @@ public class ad_Register_Controller {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "ad_lect_list.do", method = RequestMethod.GET)
+	@RequestMapping(value = "ad_lect_list.do")
 	public String ad_lec(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
 		
 		return "ad_register/ad_Lecture_List";
 	}
@@ -46,16 +38,8 @@ public class ad_Register_Controller {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "ad_appl_stat.do", method = RequestMethod.GET)
+	@RequestMapping(value = "ad_appl_stat.do")
 	public String ad_appl_stat(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
 		
 		return "ad_register/ad_Application_Status";
 	}
@@ -66,16 +50,8 @@ public class ad_Register_Controller {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "ad_syllabus.do", method = RequestMethod.GET)
+	@RequestMapping(value = "ad_syllabus.do")
 	public String ad_syllabus(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
 		
 		return "ad_register/ad_Syllabus_Lecture";
 	}
@@ -86,16 +62,8 @@ public class ad_Register_Controller {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "ad_lect_appl.do", method = RequestMethod.GET)
+	@RequestMapping(value = "ad_lect_appl.do")
 	public String ad_lect_appl(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
 		
 		return "ad_register/ad_Lecture_Application";
 	}
@@ -105,16 +73,8 @@ public class ad_Register_Controller {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "ad_audit_lect_appl.do", method = RequestMethod.GET)
+	@RequestMapping(value = "ad_audit_lect_appl.do")
 	public String ad_audit_lect_appl(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
 		
 		return "ad_register/ad_AuditLecture_Application";
 	}
@@ -125,16 +85,8 @@ public class ad_Register_Controller {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "ad_point_search_list.do", method = RequestMethod.GET)
+	@RequestMapping(value = "ad_point_search_list.do")
 	public String point_Search_List(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
 		
 		return "ad_register/ad_Point_Search_List";
 	}
@@ -145,16 +97,8 @@ public class ad_Register_Controller {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "ad_point_search.do", method = RequestMethod.GET)
+	@RequestMapping(value = "ad_point_search.do")
 	public String point_Search(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
 		
 		return "ad_register/ad_Point_Search";
 	}
@@ -165,16 +109,8 @@ public class ad_Register_Controller {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "ad_leave_absence.do", method = RequestMethod.GET)
+	@RequestMapping(value = "ad_leave_absence.do")
 	public String leave_absence(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
 		
 		return "ad_register/ad_Leave_Absence";
 	}
@@ -185,16 +121,8 @@ public class ad_Register_Controller {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "ad_leave_absence_check.do", method = RequestMethod.GET)
+	@RequestMapping(value = "ad_leave_absence_check.do")
 	public String leave_absence_check(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
 		
 		return "ad_register/ad_Leave_Absence_Check";
 	}
@@ -205,16 +133,8 @@ public class ad_Register_Controller {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "ad_return_absence.do", method = RequestMethod.GET)
+	@RequestMapping(value = "ad_return_absence.do")
 	public String return_absence(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
 		
 		return "ad_register/ad_Return_Absence";
 	}
@@ -225,16 +145,8 @@ public class ad_Register_Controller {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "ad_return_absence_check.do", method = RequestMethod.GET)
+	@RequestMapping(value = "ad_return_absence_check.do")
 	public String return_absence_check(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
 		
 		return "ad_register/ad_Return_Absence_Check";
 	}
@@ -245,16 +157,8 @@ public class ad_Register_Controller {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "ad_deferment_graduation.do", method = RequestMethod.GET)
+	@RequestMapping(value = "ad_deferment_graduation.do")
 	public String deferment_graduation(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
 		
 		return "ad_register/ad_Deferment_Graduation";
 	}
@@ -265,16 +169,8 @@ public class ad_Register_Controller {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "ad_deferment_graduation_check.do", method = RequestMethod.GET)
+	@RequestMapping(value = "ad_deferment_graduation_check.do")
 	public String deferment_graduation_check(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
 		
 		return "ad_register/ad_Deferment_Graduation_Check";
 	}
@@ -285,16 +181,8 @@ public class ad_Register_Controller {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "ad_drop_absence.do", method = RequestMethod.GET)
+	@RequestMapping(value = "ad_drop_absence.do")
 	public String drop_absence(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
 		
 		return "ad_register/ad_Drop_Absence";
 	}
@@ -305,16 +193,8 @@ public class ad_Register_Controller {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "ad_drop_absence_check.do", method = RequestMethod.GET)
+	@RequestMapping(value = "ad_drop_absence_check.do")
 	public String drop_absence_check(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
 		
 		return "ad_register/ad_Drop_Absence_Check";
 	}
@@ -325,16 +205,8 @@ public class ad_Register_Controller {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "ad_tuition_bill.do", method = RequestMethod.GET)
+	@RequestMapping(value = "ad_tuition_bill.do")
 	public String tuition_bill(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
 		
 		return "ad_register/ad_Tuition_Bill";
 	}
@@ -345,16 +217,8 @@ public class ad_Register_Controller {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "ad_tuition_payment.do", method = RequestMethod.GET)
+	@RequestMapping(value = "ad_tuition_payment.do")
 	public String tuition_payment(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
 		
 		return "ad_register/ad_Tuition_Payment";
 	}
@@ -365,16 +229,8 @@ public class ad_Register_Controller {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "ad_tuition_payment_check.do", method = RequestMethod.GET)
+	@RequestMapping(value = "ad_tuition_payment_check.do")
 	public String tuition_payment_check(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
 		
 		return "ad_register/ad_Tuition_Payment_Check";
 	}
@@ -386,16 +242,8 @@ public class ad_Register_Controller {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "ad_certificate_list.do", method = RequestMethod.GET)
+	@RequestMapping(value = "ad_certificate_list.do")
 	public String certificate_list(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
 		
 		return "ad_register/ad_Certificate_List";
 	}
@@ -406,16 +254,8 @@ public class ad_Register_Controller {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "ad_certificate_inschool.do", method = RequestMethod.GET)
+	@RequestMapping(value = "ad_certificate_inschool.do")
 	public String certificate_inschool(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
 		
 		return "ad_register/ad_Certificate_InSchool";
 	}
@@ -426,16 +266,8 @@ public class ad_Register_Controller {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "ad_certificate_graduation.do", method = RequestMethod.GET)
+	@RequestMapping(value = "ad_certificate_graduation.do")
 	public String certificate_graduation(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
 		
 		return "ad_register/ad_Certificate_Graduation";
 	}

@@ -14,77 +14,118 @@ import com.kh.univ.member.model.vo.Admin;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
 
-@SessionAttributes({"loginUser","loginProf","loginAdmin"})
+@SessionAttributes({ "loginUser", "loginProf", "loginAdmin" })
 @Controller
 public class MemberController {
 
-  @Autowired
-  private MemberService mService;
-  private Logger logger = LoggerFactory.getLogger(MemberController.class);
+	@Autowired
+	private MemberService mService;
+	private Logger logger = LoggerFactory.getLogger(MemberController.class);
 
-  // 암호화 처리
-  /*
-   * @Autowired private BCryptPasswordEncoder bcryptPasswordEncoder;
-   */
+	// 암호화 처리
+	/*
+	 * @Autowired private BCryptPasswordEncoder bcryptPasswordEncoder;
+	 */
 
-  /*
-   * 3. session에 저장할 때 @SessionAttributes 사용
-   * 
-   * Model에 Attribute가 추가될 때 자동으로 키 값을 찾아 세션에 등록하는 기능을 제공하는 어노테이션
-   */
-  @RequestMapping(value = "login.do")
-  public String memberLogin(Student s, Professor p, Admin a, Model model,
-      @RequestParam(value = "type1") int type1, @RequestParam(value = "type2") int type2) {
+	/*
+	 * 3. session에 저장할 때 @SessionAttributes 사용
+	 * 
+	 * Model에 Attribute가 추가될 때 자동으로 키 값을 찾아 세션에 등록하는 기능을 제공하는 어노테이션
+	 */
+	/**
+	 * @param s
+	 * @param p
+	 * @param a
+	 * @param model
+	 * @param type1
+	 * @param type2
+	 * @param id
+	 * @param pw
+	 * @return
+	 */
+	@RequestMapping(value = "login.do")
+	public String memberLogin(Student s, Professor p, Admin a, Model model, @RequestParam(value = "type1") int type1, @RequestParam(value = "type2") int type2, @RequestParam(name = "id") String id,
+			@RequestParam(name = "pw") String pw)
+		{
 
-	  System.out.println(type1 + type2);
-	  
-    if (type1 == 1) {
-      switch (type2) {
-        case 1:
-          Student loginUser = mService.loginMember(s);
-          model.addAttribute("loginUser", loginUser);
-          return "redirect:main.do";
-        case 2:
-          Professor loginProf = mService.loginProf(p);
-          model.addAttribute("loginProf", loginProf);
-          return "redirect:main.do";
-        default:
-          Admin loginAdmin = mService.loginAdmin(a);
-          model.addAttribute("loginAdmin", loginAdmin);
-          return "redirect:main.do";
-      }
-    } else {
-      switch (type2) {
-        case 1:
-          Student loginUser = mService.loginMember(s);
-          System.out.println("loginUser : " + loginUser);
-          model.addAttribute("loginUser", loginUser);
-          return "redirect:ad_main.do";
-        case 2:
-          Professor loginProf = mService.loginProf(p);
-          model.addAttribute("loginProf", loginProf);
-          return "redirect:prof_main.do";
-        default:
-          Admin loginAdmin = mService.loginAdmin(a);
-          model.addAttribute("loginAdmin", loginAdmin);
-          return "redirect:admin.do";
-      }
-    }
-  }
+			System.out.println(id);
+			System.out.println(pw);
 
-  // 로그아웃
-  @RequestMapping("logout.do")
-  public String logout(SessionStatus status) {
+			System.out.println(type1 + type2);
 
-    // 세션의 상태를 확정 지어주는 메소드 호출이 필요하다.
-    status.setComplete();
-    return "redirect:main.do";
-  }
+			if (type1 == 1) {
+				switch (type2) {
+					case 1:
+						s.setsNo(id);
+						s.setsPwd(pw);
+						Student loginUser = mService.loginMember(s);
+						model.addAttribute("loginUser", loginUser);
+						return "main";
+					case 2:
+						p.setpNo(id);
+						p.setpPwd(pw);
+						Professor loginProf = mService.loginProf(p);
+						model.addAttribute("loginProf", loginProf);
+						return "main";
+					case 3:
+						a.setaId(id);
+						a.setaPwd(pw);
+						Admin loginAdmin = mService.loginAdmin(a);
+						model.addAttribute("loginAdmin", loginAdmin);
+						return "redirect:main.do";
+					default:
+						return "main";
+				}
+			} else {
+				switch (type2) {
+					case 1:
+						s.setsNo(id);
+						s.setsPwd(pw);
+						Student loginUser = mService.loginMember(s);
+						System.out.println("loginUser : " + loginUser);
+						model.addAttribute("loginUser", loginUser);
+						return "administration_main";
+					case 2:
+						p.setpNo(id);
+						p.setpPwd(pw);
+						Professor loginProf = mService.loginProf(p);
+						model.addAttribute("loginProf", loginProf);
+						return "professor_main";
+					default:
+						a.setaId(id);
+						a.setaPwd(pw);
+						Admin loginAdmin = mService.loginAdmin(a);
+						model.addAttribute("loginAdmin", loginAdmin);
+						return "admin";
+				}
+			}
+		}
 
-  // 마이페이지
-  @RequestMapping("mypage.do")
-  public String myInfoView() {
-    return "member/mypage";
-  }
+	// 로그아웃
+	@RequestMapping("logout.do")
+	public String logout(SessionStatus status)
+		{
+
+			// 세션의 상태를 확정 지어주는 메소드 호출이 필요하다.
+			status.setComplete();
+			return "redirect:main.do";
+		}
+	
+	// 로그아웃
+	@RequestMapping("ad_logout.do")
+	public String ad_logout(SessionStatus status)
+		{
+			
+			// 세션의 상태를 확정 지어주는 메소드 호출이 필요하다.
+			status.setComplete();
+			return "member/login";
+		}
+
+	// 마이페이지
+	@RequestMapping("mypage.do")
+	public String myInfoView(Student s, Model model)
+		{
+			return "member/mypage";
+		}
 
 }

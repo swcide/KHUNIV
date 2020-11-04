@@ -50,6 +50,8 @@
 <!-- Head Libs -->
 <script src="resources/vendor/modernizr/modernizr.min.js"></script>
 
+
+
 </head>
 
 <div class="main" style="background-image: url(resources/img/KakaoTalk_20201029_211816935_06.jpg); background-size: cover; height: 937px;">
@@ -64,17 +66,19 @@
 					<img src="">
 					<h4 style="text-align: center;">학사행정시스템 로그인을 환영합니다.</h4>
 					<hr>
-					<form action="login.do" id="fm" method="post" class="needs-validation">
+					<form action="ad_login.do" id="fm" method="post">
 						<div class="form-row">
 							<div class="form-group col">
 								<label class="text-color-dark text-3">학번 <span class="text-color-danger">*</span></label>
-								<input type="text" name="sNo" class="form-control form-control-lg text-4" required>
+								<input type="text" id="id" name="id" class="form-control form-control-lg text-4" required>
+								<input type="hidden" id="hd1" name="type1">
+								<input type="hidden" id="hd2" name="type2">
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="form-group col">
 								<label class="text-color-dark text-3">비밀번호 <span class="text-color-danger">*</span></label>
-								<input type="password" name="sPwd" class="form-control form-control-lg text-4" required>
+								<input  id="pw" type="password" name="pw" class="form-control form-control-lg text-4" required>
 							</div>
 						</div>
 						<div class="form-row justify-content-between">
@@ -99,21 +103,7 @@
 		</div>
 	</div>
 </div>
-<script>
-   		$("btnLogin").click(function(){
-   			 if($("#id").val().contains("a")){
-   				 //관리자
-   				 $("#fm").attr("action","login1.do?type1=1&type2=3");
-   			 }else if($("textLoginId").val().contains("p")){
-   					//교수
-   				$("#fm").attr("action","logi21.do?type1=1&type2=2");
-   			 }else{
-   					//학생
-   				$("#fm").attr("action","logi21.do?type1=1&type2=1");
-   			 }
-   				$("#fm").submit();
-   		});
-   </script>
+
 <!-- Vendor -->
 <script src="resources/vendor/jquery/jquery.min.js"></script>
 <script src="resources/vendor/jquery.appear/jquery.appear.min.js"></script>
@@ -122,7 +112,7 @@
 <script src="resources/vendor/popper/umd/popper.min.js"></script>
 <script src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="resources/vendor/common/common.min.js"></script>
-<script src="resources/vendor/jquery.validation/jquery.validate.min.js"></script>
+<script src="resources/vendor/jquery.validation/jquery.validate.js"></script>
 <script src="resources/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
 <script src="resources/vendor/jquery.gmap/jquery.gmap.min.js"></script>
 <script src="resources/vendor/jquery.lazyload/jquery.lazyload.min.js"></script>
@@ -144,6 +134,35 @@
 <!-- Theme Initialization Files -->
 <script src="resources/js/theme.init.js"></script>
 
+
+
+
+
+<script>
+ 	$(function() {
+ 		$("#btnLogin").click(function() {
+ 			if ($("#id").val().indexOf("a") > -1) {
+ 				//관리자
+ 				alert("admin");
+ 				$("#hd1").val("2");
+ 				$("#hd2").val("3");
+ 				$("#fm").attr("action", "admin.do").submit();
+ 			} else if ($("#id").val().indexOf("p") > -1) {
+ 				//교수
+ 				alert("prof");
+ 				$("#hd1").val("2");
+ 				$("#hd2").val("2");
+ 				$("#fm").attr("action", "login.do").submit();
+ 			} else {
+ 				//학생
+ 				alert("std");
+ 				$("#hd1").val("2");
+ 				$("#hd2").val("1");
+ 				$("#fm").attr("action", "login.do").submit();
+ 			}
+ 		});
+ 	});
+ </script> 
 <!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

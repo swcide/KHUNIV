@@ -65,31 +65,6 @@
 }
 </style>
 
-<script>
-	$(function() {
-		$("#btnLogin").click(function() {
-			if ($("#id").val().indexOf("a") > -1) {
-				//관리자
-				alert("admin");
-				$("#hd1").val("1");
-				$("#hd2").val("3");
-				$("#fm").attr("action", "login.do").submit();
-			} else if ($("#id").val().indexOf("p") > -1) {
-				//교수
-				alert("prof");
-				$("#hd1").val("1");
-				$("#hd2").val("2");
-				$("#fm").attr("action", "login.do").submit();
-			} else {
-				//학생
-				alert("std");
-				$("#hd1").val("1");
-				$("#hd2").val("1");
-				$("#fm").attr("action", "login.do").submit();
-			}
-		});
-	});
-</script>
 </head>
 <body>
 
@@ -174,7 +149,7 @@
 										<i class="fas fa-bars"></i>
 									</button>
 								</div>
-								<c:if test="${empty sessionScope.loginUser }">
+								<c:if test="${empty sessionScope }">
 									<div class="header-nav-features header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2">
 										<div class="header-nav-feature header-nav-features-user d-inline-flex mx-2 pr-2 signin" id="headerAccount">
 											<a href="login.do" class="header-nav-features-toggle"> <i class="far fa-user"></i> 로그인
@@ -184,16 +159,20 @@
 													<h5 class="text-uppercase mb-4 font-weight-bold text-3">로그인</h5>
 													<form action="login.do" id="fm" method="post">
 														<div class="form-group">
-															<label class="mb-1 text-2 opacity-8">학번* </label> <input id="id" type="text" name="aId" class="form-control form-control-lg"> <input type="hidden" id="hd1" name="type1"> <input type="hidden" id="hd2" name="type2">
+															<label class="mb-1 text-2 opacity-8">학번* </label>
+															<input id="id" type="text" name="id" class="form-control form-control-lg">
+															<input type="hidden" id="hd1" name="type1">
+															<input type="hidden" id="hd2" name="type2">
 														</div>
 														<div class="form-group">
-															<label class="mb-1 text-2 opacity-8">비밀번호*</label> <input id="pw" type="password" name="aPwd" class="form-control form-control-lg">
-
+															<label class="mb-1 text-2 opacity-8">비밀번호*</label>
+															<input id="pw" type="password" name="pw" class="form-control form-control-lg">
 														</div>
 														<div class="form-row pb-2">
 															<div class="form-group form-check col-lg-6 pl-1">
 																<div class="custom-control custom-checkbox">
-																	<input type="checkbox" class="custom-control-input" id="rememberMeCheck"> <label class="custom-control-label text-2" for="rememberMeCheck">비밀번호 저장하기</label>
+																	<input type="checkbox" class="custom-control-input" id="rememberMeCheck">
+																	<label class="custom-control-label text-2" for="rememberMeCheck">비밀번호 저장하기</label>
 																</div>
 															</div>
 															<div class="form-group col-lg-6 text-right">
@@ -235,8 +214,8 @@
 												<div class="row">
 													<div class="col">
 														<ul class="nav nav-list-simple flex-column text-3">
-<%-- 															<c:url var="mypage" value="mypage.do" /> --%>
-<%-- 															<c:url var="logout" value="logout.do" /> --%>
+															<%-- 															<c:url var="mypage" value="mypage.do" /> --%>
+															<%-- 															<c:url var="logout" value="logout.do" /> --%>
 															<li class="nav-item"><a class="nav-link" href="mypage.do">내 정보</a></li>
 															<li class="nav-item"><a class="nav-link border-bottom-0" href="logout.do">로그아웃</a></li>
 														</ul>
@@ -268,8 +247,8 @@
 												<div class="row">
 													<div class="col">
 														<ul class="nav nav-list-simple flex-column text-3">
-<%-- 															<c:url var="mypage" value="mypage.do" /> --%>
-<%-- 															<c:url var="logout" value="logout.do" /> --%>
+															<%-- 															<c:url var="mypage" value="mypage.do" /> --%>
+															<%-- 															<c:url var="logout" value="logout.do" /> --%>
 															<li class="nav-item"><a class="nav-link" href="mypage.do">내 정보</a></li>
 															<li class="nav-item"><a class="nav-link border-bottom-0" href="logout.do">로그아웃</a></li>
 														</ul>
@@ -281,9 +260,7 @@
 								</c:if>
 								<c:url var="ad_login" value="ad_login.do" />
 								<button class="header-nav-features header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2 btn btn-outline btn-primary  btn-with-arrow" onclick="location.href='${ad_login}'">
-									등교하기
-									<span>
-										<i class="fas fa-chevron-right"></i>
+									등교하기 <span> <i class="fas fa-chevron-right"></i>
 									</span>
 								</button>
 							</div>
@@ -293,7 +270,31 @@
 			</div>
 		</header>
 	</div>
-
+	<script>
+		$(function() {
+			$("#btnLogin").click(function() {
+				if ($("#id").val().indexOf("a") > -1) {
+					//관리자
+					alert("admin");
+					$("#hd1").val("1");
+					$("#hd2").val("3");
+					$("#fm").attr("action", "login.do").submit();
+				} else if ($("#id").val().indexOf("p") > -1) {
+					//교수
+					alert("prof");
+					$("#hd1").val("1");
+					$("#hd2").val("2");
+					$("#fm").attr("action", "login.do").submit();
+				} else{
+					//학생
+					alert("std");
+					$("#hd1").val("1");
+					$("#hd2").val("1");
+					$("#fm").attr("action", "login.do").submit();
+				} 
+			});
+		});
+	</script>
 	<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

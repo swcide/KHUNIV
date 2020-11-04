@@ -42,7 +42,6 @@
 
 			</div>
 			<div class="col-lg-9">
-
 				<div class="overflow-hidden mb-1">
 					<h2 class="font-weight-normal text-7 mb-0">
 						<strong class="font-weight-extra-bold">내 정보</strong>
@@ -51,33 +50,19 @@
 				<div class="overflow-hidden mb-4 pb-3">
 					<p class="mb-0">수정 후 반드시 저장해주시길 바랍니다.</p>
 				</div>
-
 				<form action="" role="form" class="needs-validation">
-
 					<div class="form-group row">
-						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">성명</label>
+						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 ">성명</label>
 						<div class="col-lg-9">
-							<input class="form-control" type="text" name="name" id="name" value="${loginUser.sName }" required>
+							<input class="form-control" type="text" name="name" id="name" value="${loginUser.sName }" disabled>
 						</div>
 					</div>
-					<c:if test="${!empty loginUser.sSsn } ">
-					<c:forTokens items="${loginUser.sSsn }" delims="-" varStatus="status">
 					<div class="form-group row">
-						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">주민번호</label>
-					<c:if test="${status.index eq 0}">
-						<div class="col-lg-4">
-							<input class="form-control" type="number" name="ssn" value="${loginUser.sSsn }" required>
+						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 ">주민번호</label>
+						<div class="col-lg-9">
+							<input class="form-control" type="text" name="ssn" value="${loginUser.sSsn }" disabled>
 						</div>
-						</c:if>
-						-
-						<c:if test="${status.index eq 1 }">
-						<div class="col-lg-4">
-							<input class="form-control" type="number" name="ssn" value="${loginUser.sSsn }" required>
-						</div>
-						</c:if>
 					</div>
-					</c:forTokens>
-					</c:if>
 					<div class="form-group row">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">Email</label>
 						<div class="col-lg-9">
@@ -85,105 +70,80 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">학적상태</label>
+						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 ">학적상태</label>
 						<div class="col-lg-9">
-							<input class="form-control" type="text" name=dept value="${loginUser.sStatus }">
+							<input class="form-control" type="text" name=dept value="${loginUser.sStatus }" disabled>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">학년</label>
+						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 ">학년</label>
 						<div class="col-lg-9">
-							<input class="form-control" type="text" name=dept value="학년"><!-- 수식필요 -->
+							<input class="form-control" type="text" name=dept value="${loginUser.semester /2 }학년" disabled>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">학기</label>
 						<div class="col-lg-9">
-							<input class="form-control" type="text" name=dept value="${loginUser.semester }학기">
+							<input class="form-control" type="text" name=dept value="${loginUser.semester }학기" disabled>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">학부</label>
 						<div class="col-lg-9">
-							<input class="form-control" type="text" name=dept value="학부"> <!--  학부 조인 필요 -->
+							<input class="form-control" type="text" name=dept value="${loginUser.sCategory }학부" disabled>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">전공</label>
 						<div class="col-lg-9">
-							<input class="form-control" type="text" name=dept value="학과"> <!-- 학과 조인 필요 -->
+							<input class="form-control" type="text" name=dept value="${loginUser.sDeptName }" disabled>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">학번</label>
 						<div class="col-lg-9">
-							<input class="form-control" type="number" name=dept value="${loginUser.sNo }">
+							<input class="form-control" type="number" name=dept value="${loginUser.sNo }" disabled>
 						</div>
 					</div>
-						<c:if test="${!empty loginUser.sAddress }">
+					<c:if test="${!empty loginUser.sAddress }">
 						<c:forTokens items="${loginUser.sAddress }" delims="," varStatus="status">
-					<div class="form-group row">
-						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">도로명 주소</label>
-						<c:if test="${status.index eq 0 }">
-						<div class="col-lg-7">
-							<input class="form-control" type="text" name="address" value="${loginUser.sAddress }" placeholder="주소 입력">
-						</div>
-						</c:if>
-						<div class="col-lg-2">
-							<input class="btn btn-primary btn-sm mb-2 float-right" type="button" name="state" value="도로명 검색" placeholder="">
-						</div>
-					</div>
-					<div class="form-group row">
-					<c:if test="${status.index eq 1 }">
-						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2"></label>
-						<div class="col-lg-7">
-							<input class="form-control" type="text" name="address_detail" value="${loginUser.sAddress }" placeholder="상세주소 입력">
-						</div>
-						</c:if>
-						<c:if test="${status.index eq 2 }">
-						<div class="col-lg-2">
-							<input class="form-control" type="text" name="address" value="${loginUser.sAddress }" placeholder="우편번호">
-						</div>
-						</c:if>
-					</div>
-					</c:forTokens>
+							<div class="form-group row">
+								<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">도로명 주소</label>
+								<c:if test="${status.index eq 0 }">
+									<div class="col-lg-7">
+										<input class="form-control" type="text" name="address" value="${loginUser.sAddress }" placeholder="주소 입력">
+									</div>
+								</c:if>
+								<div class="col-lg-2">
+									<input class="btn btn-primary btn-sm mb-2 float-right" type="button" name="state" value="도로명 검색" placeholder="">
+								</div>
+							</div>
+							<div class="form-group row">
+								<c:if test="${status.index eq 1 }">
+									<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required"></label>
+									<div class="col-lg-7">
+										<input class="form-control" type="text" name="address_detail" value="${loginUser.sAddress }" placeholder="상세주소 입력">
+									</div>
+								</c:if>
+							</div>
+						</c:forTokens>
 					</c:if>
-					<c:if test="${!empty loginUser.sPhone }">
-					<c:forTokens items="${loginUser.sPhone }" delims="," varStatus="status">
 					<div class="form-group row">
-						<c:if test="${status.index eq 0}">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">연락처</label>
-						<div class="col-lg-2">
-							<select class="form-control" name="phone"  required>
-								<option value="${loginUser.sPhone}" selected/>
-							</select>
-						</div>
-						</c:if>
-						-
-						<c:if test="${status.index eq 1}">
-						<div class="col-lg-3">
-							<input class="form-control" type="tel" name="phone" value="${loginUser.sPhone}" required>
-						</div>
-						</c:if>
-						-
-						<c:if test="${status.index eq 2 }">
-						<div class="col-lg-3">
-							<input class="form-control" type="tel" name="phone" value="${loginUser.sPhone}" required>
-						</div>
-						</c:if>
-					</div>
-					</c:forTokens>
-					</c:if>
-					<div class="form-group row">
-						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">비밀번호</label>
 						<div class="col-lg-9">
-							<input class="form-control" type="password" name="pw" value="" required>
+							<input class="form-control" type="tel" name="phone" value="${loginUser.sPhone}" required>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">변경할 비밀번호</label>
+						<div class="col-lg-9">
+							<input class="form-control" type="password" name="new_pw" value="" required>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">비밀번호 확인</label>
 						<div class="col-lg-9">
-							<input class="form-control" type="password" name="pw_check" value="" required>
+							<input class="form-control" type="password" name="check_pw" value="" required>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -198,34 +158,33 @@
 	</div>
 </div>
 </body>
-<script>
-$('#btnUpdate').click(function(){
-	
-});
-if ($("#name").val() == "") {
-	alert("이름을 정확히 입력해주세요");
-	return;
-}
-for (var i=0; i<$("#name").val().length; i++)  { 
-    var chk = $("#name").val().substring(i,i+1); 
-    if(chk.match(/[0-9]|[a-z]|[A-Z]/)) { 
-    	alert("이름을 정확히 입력해주세요");
-        return;
-    }
-    if(chk.match(/([^가-힣\x20])/i)){
-    	alert("이름을 정확히 입력해주세요");
-        return;
-    }
-    if($("#name").val() == " "){
-    	alert("이름을 정확히 입력해주세요");
-        return;
-    }
-} 
-if ($("#name").val().length <= 1) {
-	alert("이름을 정확히 입력해주세요");
-	return;
-}
-
-</script>
 <%@include file="../common/footer.jsp"%>
+<script>
+function chkPW(){
+
+	var pw = $("#password").val();
+	var id = $("#id").val();
+		
+	var reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+	var hangulcheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+	 
+	if(false === reg.test(pw)) {
+	alert('비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다.');
+	}else if(/(\w)\1\1\1/.test(pw)){
+	 alert('같은 문자를 4번 이상 사용하실 수 없습니다.');
+	 return false;
+	 }else if(pw.search(id) > -1){
+	 alert("비밀번호에 아이디가 포함되었습니다.");
+	  return false;
+	 }else if(pw.search(/\s/) != -1){
+	 alert("비밀번호는 공백 없이 입력해주세요.");
+	 return false;
+	 }else if(hangulcheck.test(pw)){
+	 alert("비밀번호에 한글을 사용 할 수 없습니다."); 
+	 }else {
+	 console.log("통과");
+	 }
+
+}
+</script>
 </html>
