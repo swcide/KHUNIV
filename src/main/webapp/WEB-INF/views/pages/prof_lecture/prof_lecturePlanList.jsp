@@ -51,7 +51,7 @@
 													<tr>
 														<td>1</td>
 														<td style="text-align: center;">2</td>
-														<td style="text-align: center;">HTML</td>
+														<td style="text-align: center;"><a href="">HTML</a></td>
 														<td style="text-align: center;">전공</td>
 														<td style="text-align: center;">c124352</td>
 														<td style="text-align: center;">2</td>
@@ -59,7 +59,7 @@
 													<tr>
 														<td>1</td>
 														<td style="text-align: center;">2</td>
-														<td style="text-align: center;">컴퓨터 네트워킹</td>
+														<td style="text-align: center;"><a href="">컴퓨터 네트워킹</a></td>
 														<td style="text-align: center;">전공</td>
 														<td style="text-align: center;">c124352</td>
 														<td style="text-align: center;">2</td>
@@ -67,7 +67,7 @@
 													<tr>
 														<td>1</td>
 														<td style="text-align: center;">2</td>
-														<td style="text-align: center;">자바</td>
+														<td style="text-align: center;"><a href="">자바</a></td>
 														<td style="text-align: center;">교양</td>
 														<td style="text-align: center;">c124352</td>
 														<td style="text-align: center;">2</td>
