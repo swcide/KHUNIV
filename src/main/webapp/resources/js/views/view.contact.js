@@ -19,11 +19,7 @@ Theme Version:	8.1.0
     	}
 
     	return true;
-<<<<<<< HEAD
-	}, 'Please fill 야임마 제대로 일 해라 어 this empty field.');
-=======
 	}, '한글로 입력하세요.');
->>>>>>> branch 'master' of https://github.com/KHunivesity/khuniv.git
 
 	/*
 	Assign Custom Rules on Fields
