@@ -881,7 +881,7 @@ $.extend( $.validator, {
 					// 'title' is never undefined, so handle empty string as undefined
 					!this.settings.ignoreTitle && element.title || undefined,
 					$.validator.messages[ rule.method ],
-					"<strong>Warning: No message defined for " + element.name + "</strong>"
+					"<strong>숫자,영대소문자,특수문자 포함 8자 이상 / 공백, 같은 문자 4번이상 반복, 아이디 입력 금지</strong>"
 				),
 				theregex = /\$?\{(\d+)\}/g;
 			if ( typeof message === "function" ) {
@@ -1415,6 +1415,16 @@ $.extend( $.validator, {
 			return value !== undefined && value !== null && value.length > 0;
 		},
 
+		password: function(value, element) {
+			
+			return this.optional(element) || /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/.test(value);
+			
+		},
+		
+		
+		tel: function(value, element){
+			return this.optional(element) || /(01[0|1|6|9|7])[-](\d{3}|\d{4})[-](\d{4}$)/.test(value);
+		},
 		// https://jqueryvalidation.org/email-method/
 		email: function( value, element ) {
 

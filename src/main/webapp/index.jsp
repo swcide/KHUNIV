@@ -175,7 +175,7 @@
 													<div class="appear-animation"
 														data-appear-animation="fadeInRightShorter"
 														data-appear-animation-delay="1800">
-														<a href="login.do"
+														<a href="login_page.do"
 															class="btn btn-dark font-weight-bold text-3 rounded-0 px-5 btn-py-3 align-items-center d-inline-flex">학사페이지
 															이동하기<i class="fas fa-arrow-right text-5 ml-3"></i>
 														</a>
