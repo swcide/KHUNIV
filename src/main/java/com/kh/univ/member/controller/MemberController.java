@@ -36,6 +36,8 @@ public class MemberController {
   public String memberLogin(Student s, Professor p, Admin a, Model model,
       @RequestParam(value = "type1") int type1, @RequestParam(value = "type2") int type2) {
 
+	  System.out.println(type1 + type2);
+	  
     if (type1 == 1) {
       switch (type2) {
         case 1:

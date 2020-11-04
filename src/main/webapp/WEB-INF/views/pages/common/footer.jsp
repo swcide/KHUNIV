@@ -48,9 +48,7 @@
 
 		<!--(remove-empty-lines-end)-->
 
-		<!-- Theme Base, Components and Settings -->
-		<script src="resources/js/theme.js"></script>
-
+		
 		<!-- Current Page Vendor and Views -->
 		<script src="resources/vendor/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
 		<script src="resources/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
@@ -64,10 +62,13 @@
 		
 		<!-- Theme Custom -->
 		<script src="resources/js/custom.js"></script>
-
+		<!-- Theme Base, Components and Settings -->
+		<script src="resources/js/theme.js"></script>
+		
 
 		<!-- Theme Initialization Files -->
 		<script src="resources/js/theme.init.js"></script>
+
 
 
 		<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.

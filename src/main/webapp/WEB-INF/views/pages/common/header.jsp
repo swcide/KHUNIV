@@ -265,38 +265,36 @@
 		</header>
 	</div>
 
-<<<<<<< HEAD
-	
-=======
+
 	<script>
-	 $(function(){
+// 	 $(function(){
 		 
-   		$("#btnLogin").click(function(){
+//    		$("#btnLogin").click(function(){
    		
    			
-   			alert(11);
-   			 if($("#id").val().contains("a")){
-   				 alert(1);
-   				 //관리자
-   				 $("#hd1").val("1");
-   				 $("#hd2").val("3");
-   				 $("#fm").attr("action","login.do").submit();
-   			 }else if($("textLoginId").val().contains("p")){
-   				alert(2);
-   					//교수
-   					$("#hd1").val("1");
-   				 $("#hd2").val("2");
-   				$("#fm").attr("action","login.do").submit();
-   			 }else{
-   				alert(3);
-   					//학생
-   					$("#hd1").val("1");
-   				 $("#hd2").val("1");
-   				$("#fm").attr("action","login.do").submit();
-   			 }
+//    			alert(11);
+//    			 if($("#id").val().contains("a")){
+//    				 alert(1);
+//    				 //관리자
+//    				 $("#hd1").val("1");
+//    				 $("#hd2").val("3");
+//    				 $("#fm").attr("action","login.do").submit();
+//    			 }else if($("textLoginId").val().contains("p")){
+//    				alert(2);
+//    					//교수
+//    					$("#hd1").val("1");
+//    				 $("#hd2").val("2");
+//    				$("#fm").attr("action","login.do").submit();
+//    			 }else{
+//    				alert(3);
+//    					//학생
+//    					$("#hd1").val("1");
+//    				 $("#hd2").val("1");
+//    				$("#fm").attr("action","login.do").submit();
+//    			 }
    				 
-   		});
-	 });
+//    		});
+// 	 });
    </script>
 >>>>>>> branch 'master' of https://github.com/KHunivesity/khuniv.git
 	<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
