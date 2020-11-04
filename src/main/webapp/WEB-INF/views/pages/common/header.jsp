@@ -69,22 +69,24 @@
 	$(function() {
 		$("#btnLogin").click(function() {
 			if ($("#id").val().indexOf("a") > 0) {
+				alert("amdin");
 				//관리자
 				$("#hd1").val("1");
 				$("#hd2").val("3");
 				$("#fm").attr("action", "login.do").submit();
 			} else if ($("#id").val().indexOf("p") > 0) {
+				alert("prof");
 				//교수
 				$("#hd1").val("1");
 				$("#hd2").val("2");
 				$("#fm").attr("action", "login.do").submit();
 			} else {
+				alert("std");
 				//학생
 				$("#hd1").val("1");
 				$("#hd2").val("1");
 				$("#fm").attr("action", "login.do").submit();
 			}
-
 		});
 	});
 </script>
@@ -258,33 +260,6 @@
 			</div>
 		</header>
 	</div>
-	<script>
-		$(function() {
-
-			$("#btnLogin").click(function() {
-
-				alert(11);
-				if ($("#id").val().contains("a")) {
-					//관리자
-					$("#hd1").val("1");
-					$("#hd2").val("3");
-					$("#fm").attr("action", "login.do").submit();
-				} else if ($("textLoginId").val().contains("p")) {
-					//교수
-					$("#hd1").val("1");
-					$("#hd2").val("2");
-					$("#fm").attr("action", "login.do").submit();
-				} else {
-					//학생
-					alert(dd);
-					$("#hd1").val("1");
-					$("#hd2").val("1");
-					$("#fm").attr("action", "login.do").submit();
-				}
-
-			});
-		});
-	</script>
 	<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -296,6 +271,5 @@
 			ga('send', 'pageview');
 		</script>
 		 -->
-
 </body>
 </html>

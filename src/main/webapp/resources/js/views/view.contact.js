@@ -15,11 +15,11 @@ Theme Version:	8.1.0
 	// No White Space
 	$.validator.addMethod("noSpace", function(value, element) {
     	if( $(element).attr('required') ) {
-    		return value.search(/[a-zA-Z0-9À-žа-яА-ЯёЁα-ωΑ-Ω\s\u0621-\u064A\u0660-\u0669 ]/i) == 0;
+    		return value.search(/^[가-힣]+$/) == 0;
     	}
 
     	return true;
-	}, 'Please fill this empty field.');
+	}, '한글로 입력하세요.');
 
 	/*
 	Assign Custom Rules on Fields

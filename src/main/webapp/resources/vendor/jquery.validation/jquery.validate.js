@@ -3,6 +3,7 @@
  *
  * https://jqueryvalidation.org/
  *
+ *
  * Copyright (c) 2020 Jörn Zaefferer
  * Released under the MIT license
  */
@@ -369,7 +370,7 @@ $.extend( $.validator, {
 	},
 
 	messages: {
-		required: "필수 입력란입니다..",
+		required: "필수 입력란입니다.",
 		name: "성과 이름 포함 2자 이상 입력하세요",
 		remote: "Please fix this field.",
 		email: "이메일을 정확히 입력하세요.",
@@ -1421,8 +1422,11 @@ $.extend( $.validator, {
 			// Retrieved 2014-01-14
 			// If you have a problem with this implementation, report a bug against the above spec
 			// Or use custom methods to implement your own email validation
-			/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,25})$/gi;
-		},
+
+			
+			 return this.optional(element) || /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value);
+			},
+
 
 		// https://jqueryvalidation.org/url-method/
 		url: function( value, element ) {
