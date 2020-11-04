@@ -214,14 +214,14 @@
 								<c:if test="${!empty sessionScope.loginUser }">
 									<div class="header-nav-features header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2" style="position: none;">
 										<div class="header-nav-feature header-nav-features-user header-nav-features-user-logged d-inline-flex mx-2 pr-2" id="headerAccount">
-											<a href="#" class="header-nav-features-toggle"> <i class="far fa-user"></i> <c:out value="${loginUser.name}" />
+											<a href="#" class="header-nav-features-toggle"> <i class="far fa-user"></i> <c:out value="${loginUser.sName}" />
 											</a>
 											<div class="header-nav-features-dropdown header-nav-features-dropdown-mobile-fixed header-nav-features-dropdown-force-right" id="headerTopUserDropdown">
 												<div class="row">
 													<div class="col-8">
 														<p class="mb-0 pb-0 text-2 line-height-1 pt-1">안녕하세요,</p>
 														<p>
-															<strong class="text-color-dark text-4"><c:out value="${loginUser.name} 님" /></strong>
+															<strong class="text-color-dark text-4"><c:out value="${loginUser.sName} 님" /></strong>
 														</p>
 													</div>
 													<div class="col-4">
@@ -233,10 +233,10 @@
 												<div class="row">
 													<div class="col">
 														<ul class="nav nav-list-simple flex-column text-3">
-															<c:url var="mypage" value="mypage.do" />
-															<c:url var="logout" value="logout.do" />
-															<li class="nav-item"><a class="nav-link" href="mypage">내 정보</a></li>
-															<li class="nav-item"><a class="nav-link border-bottom-0" href="logout">로그아웃</a></li>
+<%-- 															<c:url var="mypage" value="mypage.do" /> --%>
+<%-- 															<c:url var="logout" value="logout.do" /> --%>
+															<li class="nav-item"><a class="nav-link" href="mypage.do">내 정보</a></li>
+															<li class="nav-item"><a class="nav-link border-bottom-0" href="logout.do">로그아웃</a></li>
 														</ul>
 													</div>
 												</div>
@@ -258,8 +258,6 @@
 			</div>
 		</header>
 	</div>
-
-	<<<<<<< HEAD =======
 	<script>
 		$(function() {
 
@@ -267,20 +265,18 @@
 
 				alert(11);
 				if ($("#id").val().contains("a")) {
-					alert(1);
 					//관리자
 					$("#hd1").val("1");
 					$("#hd2").val("3");
 					$("#fm").attr("action", "login.do").submit();
 				} else if ($("textLoginId").val().contains("p")) {
-					alert(2);
 					//교수
 					$("#hd1").val("1");
 					$("#hd2").val("2");
 					$("#fm").attr("action", "login.do").submit();
 				} else {
-					alert(3);
 					//학생
+					alert(dd);
 					$("#hd1").val("1");
 					$("#hd2").val("1");
 					$("#fm").attr("action", "login.do").submit();
@@ -289,7 +285,6 @@
 			});
 		});
 	</script>
-	>>>>>>> branch 'master' of https://github.com/KHunivesity/khuniv.git
 	<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

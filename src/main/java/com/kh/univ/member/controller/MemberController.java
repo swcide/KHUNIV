@@ -14,7 +14,7 @@ import com.kh.univ.member.model.vo.Admin;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
 
-@SessionAttributes("loginUser")
+@SessionAttributes({"loginUser","loginProf","loginAdmin"})
 @Controller
 public class MemberController {
 
@@ -76,7 +76,7 @@ public class MemberController {
 
     // 세션의 상태를 확정 지어주는 메소드 호출이 필요하다.
     status.setComplete();
-    return "redirect:home.do";
+    return "redirect:main.do";
   }
 
   // 마이페이지
@@ -85,9 +85,4 @@ public class MemberController {
     return "member/mypage";
   }
 
-  // 테스트용
-  @RequestMapping("admin.do")
-  public String myInfoView2() {
-    return "member/mypage";
-  }
 }
