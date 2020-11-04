@@ -57,22 +57,22 @@
 					<div class="form-group row">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">성명</label>
 						<div class="col-lg-9">
-							<input class="form-control" type="text" name="name" id="name" value="${loginUser.name }" required>
+							<input class="form-control" type="text" name="name" id="name" value="${loginUser.sName }" required>
 						</div>
 					</div>
-					<c:if test="${!empty loginUser.ssn } ">
-					<c:forTokens items="${loginUser.ssn }" delims="-" varStatus="status">
+					<c:if test="${!empty loginUser.sSsn } ">
+					<c:forTokens items="${loginUser.sSsn }" delims="-" varStatus="status">
 					<div class="form-group row">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">주민번호</label>
 					<c:if test="${status.index eq 0}">
 						<div class="col-lg-4">
-							<input class="form-control" type="number" name="ssn" value="${loginUser.std_ssn }" required>
+							<input class="form-control" type="number" name="ssn" value="${loginUser.sSsn }" required>
 						</div>
 						</c:if>
 						-
 						<c:if test="${status.index eq 1 }">
 						<div class="col-lg-4">
-							<input class="form-control" type="number" name="ssn" value="${loginUser.std_ssn }" required>
+							<input class="form-control" type="number" name="ssn" value="${loginUser.sSsn }" required>
 						</div>
 						</c:if>
 					</div>
@@ -81,19 +81,19 @@
 					<div class="form-group row">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">Email</label>
 						<div class="col-lg-9">
-							<input class="form-control" type="email" name="email" value="${loginUser.email }" required>
+							<input class="form-control" type="email" name="email" value="${loginUser.sEmail }" required>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">학적상태</label>
 						<div class="col-lg-9">
-							<input class="form-control" type="text" name=dept value="${loginUser.std_status }">
+							<input class="form-control" type="text" name=dept value="${loginUser.sStatus }">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">학년</label>
 						<div class="col-lg-9">
-							<input class="form-control" type="text" name=dept value="${loginUser.dgree }학년">
+							<input class="form-control" type="text" name=dept value="학년"><!-- 수식필요 -->
 						</div>
 					</div>
 					<div class="form-group row">
@@ -105,28 +105,28 @@
 					<div class="form-group row">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">학부</label>
 						<div class="col-lg-9">
-							<input class="form-control" type="text" name=dept value="${loginUser.category }학부">
+							<input class="form-control" type="text" name=dept value="학부"> <!--  학부 조인 필요 -->
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">전공</label>
 						<div class="col-lg-9">
-							<input class="form-control" type="text" name=dept value="${loginUser.dept }">
+							<input class="form-control" type="text" name=dept value="학과"> <!-- 학과 조인 필요 -->
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">학번</label>
 						<div class="col-lg-9">
-							<input class="form-control" type="number" name=dept value="${loginUser.std_no }">
+							<input class="form-control" type="number" name=dept value="${loginUser.sNo }">
 						</div>
 					</div>
-						<c:if test="${!empty loginUser.address }">
-						<c:forTokens items="${loginUser.address }" delims="," varStatus="status">
+						<c:if test="${!empty loginUser.sAddress }">
+						<c:forTokens items="${loginUser.sAddress }" delims="," varStatus="status">
 					<div class="form-group row">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">도로명 주소</label>
 						<c:if test="${status.index eq 0 }">
 						<div class="col-lg-7">
-							<input class="form-control" type="text" name="address" value="${loginUser.address }" placeholder="주소 입력">
+							<input class="form-control" type="text" name="address" value="${loginUser.sAddress }" placeholder="주소 입력">
 						</div>
 						</c:if>
 						<div class="col-lg-2">
@@ -137,38 +137,38 @@
 					<c:if test="${status.index eq 1 }">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2"></label>
 						<div class="col-lg-7">
-							<input class="form-control" type="text" name="address_detail" value="${loginUser.address_detail }" placeholder="상세주소 입력">
+							<input class="form-control" type="text" name="address_detail" value="${loginUser.sAddress }" placeholder="상세주소 입력">
 						</div>
 						</c:if>
 						<c:if test="${status.index eq 2 }">
 						<div class="col-lg-2">
-							<input class="form-control" type="text" name="address" value="${loginUser.address }" placeholder="우편번호">
+							<input class="form-control" type="text" name="address" value="${loginUser.sAddress }" placeholder="우편번호">
 						</div>
 						</c:if>
 					</div>
 					</c:forTokens>
 					</c:if>
-					<c:if test="${!empty loginUser.phone }">
-					<c:forTokens items="${loginUser.phone }" delims="," varStatus="status">
+					<c:if test="${!empty loginUser.sPhone }">
+					<c:forTokens items="${loginUser.sPhone }" delims="," varStatus="status">
 					<div class="form-group row">
 						<c:if test="${status.index eq 0}">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">연락처</label>
 						<div class="col-lg-2">
 							<select class="form-control" name="phone"  required>
-								<option value="${loginUser.phone}" selected/>
+								<option value="${loginUser.sPhone}" selected/>
 							</select>
 						</div>
 						</c:if>
 						-
 						<c:if test="${status.index eq 1}">
 						<div class="col-lg-3">
-							<input class="form-control" type="tel" name="phone" value="${loginUser.phone}" required>
+							<input class="form-control" type="tel" name="phone" value="${loginUser.sPhone}" required>
 						</div>
 						</c:if>
 						-
 						<c:if test="${status.index eq 2 }">
 						<div class="col-lg-3">
-							<input class="form-control" type="tel" name="phone" value="${loginUser.phone}" required>
+							<input class="form-control" type="tel" name="phone" value="${loginUser.sPhone}" required>
 						</div>
 						</c:if>
 					</div>
@@ -177,13 +177,13 @@
 					<div class="form-group row">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">비밀번호</label>
 						<div class="col-lg-9">
-							<input class="form-control" type="password" name="pw" value="${loginUser.pw }" required>
+							<input class="form-control" type="password" name="pw" value="" required>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">비밀번호 확인</label>
 						<div class="col-lg-9">
-							<input class="form-control" type="password" name="pw_check" value="${loginUser.pw_check }" required>
+							<input class="form-control" type="password" name="pw_check" value="" required>
 						</div>
 					</div>
 					<div class="form-group row">
