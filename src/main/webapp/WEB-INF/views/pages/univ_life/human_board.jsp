@@ -42,7 +42,7 @@
 								<tbody>
 									<tr>
 										<td>1</td>
-										<td><a href>저는 인문사회 전문가 입니다 너무 쉽네요</a></td>
+										<td><a href ="human_bDetail.do">저는 인문사회 전문가 입니다 너무 쉽네요</a></td>
 
 										<td>김진태</td>
 										<td>3</td>

@@ -189,5 +189,14 @@ public class univ_life_Controller {
 
 		return "univ_life/natural_board_write";
 	}
+	@RequestMapping(value = "human_bDetail.do", method = RequestMethod.GET)
+	public String human_bdetail(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
 
+	
+
+		return "univ_life/human_board_detail";
+	}
+
+	
 }
