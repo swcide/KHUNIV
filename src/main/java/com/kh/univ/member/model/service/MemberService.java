@@ -21,10 +21,10 @@ public interface MemberService {
 	Professor loginProf(Professor p);
 	
 	
+	Admin loginAdmin(Admin a);
 	
 	int updateMember(Student s);
 
-	Admin loginAdmin(Admin a);
 
 
 }
