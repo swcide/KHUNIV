@@ -127,5 +127,11 @@ public class MemberController {
 		{
 			return "member/mypage";
 		}
+	
+	@RequestMapping("prof_mypage.do")
+	public String prof_myInfoView(Professor p, Model model)
+		{
+			return "member/prof_mypage";
+		}
 
 }
