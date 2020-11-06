@@ -39,6 +39,7 @@ public class notice_Controller {
 
 		return "notice/gener_notice";
 	}
-	
+
+
 
 }

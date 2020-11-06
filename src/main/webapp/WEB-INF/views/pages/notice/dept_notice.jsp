@@ -47,10 +47,10 @@
 											<td>${n.nId }</td>
 											<td>
 												<c:url var="hdetail" value="humandetail.do">
-													<c:param name="nId" value="${ n.nId }"/>
+													<c:param name="nId" value="${n.nId }"/>
 													<c:param name="currentPage" value="${ pi.currentPage }"/>
 												</c:url>
-												<a href="humandetail.do">${n.nTitle }</a>
+												<a href=${ hdetail}>${n.nTitle }</a>
 											</td>
 											
 											<td>${n.nWriter }</td>
@@ -64,7 +64,7 @@
 					
 				
 							<c:if test="${!empty sessionScope.loginAdmin }">
-								<button type="button" class="btn btn-dark"onclick="location= 'Q&Awrite.jsp'"style="float: right; margin-bottom: 20px;">
+								<button type="button" class="btn btn-dark"onclick="location.href='humaninsert.do;'"style="float: right; margin-bottom: 20px;">
 									<i class="fas fa-pencil-alt"></i> 공지작성
 								</button> 
 							</c:if>

@@ -26,5 +26,23 @@ public class NoticeDao {
 		
 		return (ArrayList)sqlSession.selectList("noticeMapper.selectList",null,rowBounds);
 	}
+	public int updateCount(int nId) {
+		return sqlSession.update("noticeMapper.updateCount",nId);
+	}
+
+	public Notice selectNotice(int nId) {
+		// TODO Auto-generated method stub
+		return  sqlSession.selectOne("noticeMapper.selectNotice",nId);
+	}
+
+	public int insertNotice(Notice n) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("noticeMapper.insertNotice",n);
+	}
+
+	public Object selectUpdateNotice(int nId) {
+		
+		return sqlSession.insert("noticeMapper.updateNotice",b);
+	}
 
 }

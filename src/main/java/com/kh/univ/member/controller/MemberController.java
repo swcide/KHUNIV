@@ -57,10 +57,11 @@ public class MemberController {
 			System.out.println(id);
 			System.out.println(pw);
 
-			System.out.println(type1 + type2);
+			System.out.println("type1:"+type1 +"type2:"+ type2);
+			
 
 			if (type1 == 1) {
-				switch (type1) {
+				switch (type2) {
 					case 1:
 						s.setsNo(id);
 						s.setsPwd(pw);
@@ -99,21 +100,32 @@ public class MemberController {
 
 						}
 						
-					default:
+					case 3:
 						a.setaId(id);
 						a.setaPwd(pw);
 						Admin loginAdmin = mService.loginAdmin(a);
+						System.out.println(loginAdmin);
+						
 						if(loginAdmin!=null) {
 							model.addAttribute("loginAdmin", loginAdmin);
+							System.out.println(loginAdmin);
 							return "redirect:main.do";
 						}else {
 							response.setContentType("text/html; charset=UTF-8");
 
 				            PrintWriter out = response.getWriter();
-				            out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+				            out.println("<script>alert('로그인 정보를 확인해주세요 admin.'); history.go(-1);</script>");
 				            out.flush();
 				            return "main";
 						}
+					default:
+						response.setContentType("text/html; charset=UTF-8");
+
+			            PrintWriter out = response.getWriter();
+			            out.println("<script>alert('로그인 정보를 확인하쇼.'); history.go(-1);</script>");
+			            out.flush();
+			            return "main";
+						
 					
 				}
 			} else {
@@ -132,7 +144,7 @@ public class MemberController {
 				            PrintWriter out = response.getWriter();
 				            out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
 				            out.flush();
-				            return "administration_main";
+				            return "member/login";
 
 						}
 						
@@ -151,10 +163,10 @@ public class MemberController {
 				            PrintWriter out = response.getWriter();
 				            out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
 				            out.flush();
-				            return "professor_main";
+				            return "member/login";
 
 						}
-					default:
+					case 3:
 						a.setaId(id);
 						a.setaPwd(pw);
 						Admin loginAdmin = mService.loginAdmin(a);
@@ -168,8 +180,15 @@ public class MemberController {
 				            PrintWriter out = response.getWriter();
 				            out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
 				            out.flush();
-				            return "main";
+				            return "member/login";
 						}
+					default:
+						response.setContentType("text/html; charset=UTF-8");
+
+			            PrintWriter out = response.getWriter();
+			            out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+			            out.flush();
+			            return "member/login";
 						
 				}
 			}
