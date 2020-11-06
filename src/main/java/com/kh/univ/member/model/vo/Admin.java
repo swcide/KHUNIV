@@ -4,7 +4,7 @@ public class Admin
 	{
 	private String aId; 
 	private String aPwd;
-	
+	private String aName;
 	
 	
 	
@@ -14,10 +14,11 @@ public class Admin
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Admin(String aId, String aPwd) {
+	public Admin(String aId, String aPwd, String aName) {
 		super();
 		this.aId = aId;
 		this.aPwd = aPwd;
+		this.aName = aName;
 	}
 
 	public String getaId() {
@@ -33,10 +34,19 @@ public class Admin
 		this.aPwd = aPwd;
 	}
 
+	public String getaName() {
+		return aName;
+	}
+
+	public void setaName(String aName) {
+		this.aName = aName;
+	}
+
 	@Override
 	public String toString() {
-		return "Admin [aId=" + aId + ", aPwd=" + aPwd + "]";
-	} 
+		return "Admin [aId=" + aId + ", aPwd=" + aPwd + ", aName=" + aName + "]";
+	}
+
 	
 	
 	}

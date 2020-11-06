@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="noticeMapper">
+ 
+  <resultMap type="Notice" id="noticeResultSet">
+  		<id property="nId" column="NID"/>
+  		<result property="nType" column="NTYPE"/>
+		<result property="nTitle" column="NTITLE"/>
+		<result property="nWriter" column="NWRITER"/>
+		<result property="nWriter" column="NNAME"/>
+		<result property="nContent" column="NCONTENT"/>
+		<result property="nContent" column="NCOUNT"/>
+		<result property="originalFileName" column="ORIGINAL_FILENAME"/>
+		<result property="renameFileName" column="RENAME_FILENAME"/>
+		<result property="nCount" column="BCOUNT"/>
+		<result property="nCreateDate" column="N_CREATE_DATE"/>
+		<result property="nModifyDate" column="N_MODIFY_DATE"/>
+		<result property="nStatus" column="N_STATUS"/>
+		<result property="nStatus" column="N_SECRET"/>
+ 	 </resultMap>
+ 	 
+ 	 	<select id="getListCount"  resultType="_int">
+  		SELECT COUNT(*)
+  		FROM TB_DEPT_NOTICE
+  		WHERE N_STATUS='Y'	
+ 		</select>
+		<select id="selectList" resultMap="noticeResultSet">
+ 		SELECT *
+		FROM TB_DEPT_NOTICE
+		WHERE N_STATUS='Y'
+		ORDER BY NID DESC
+ 	 </select>
+</mapper>
