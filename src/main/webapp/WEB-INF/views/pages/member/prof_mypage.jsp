@@ -73,7 +73,7 @@
 					<div class="form-group row">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">학부</label>
 						<div class="col-lg-9">
-							<input class="form-control" type="text" name=dept value="${loginProf.deptNo }학부" disabled>
+							<input class="form-control" type="text" name=dept value="${loginProf.deptNo }" disabled>
 						</div>
 					</div>
 					<div class="form-group row">

@@ -26,6 +26,7 @@
    <resultMap type="Admin" id="adminResultSet">
       <id property="aId" column="ADMIN_ID" />
       <result property="aPwd" column="ADMIN_PWD" />
+      <result property="aName" column="ADMIN_NAME" />
    </resultMap>
 
    <!-- 교수 맵 -->
