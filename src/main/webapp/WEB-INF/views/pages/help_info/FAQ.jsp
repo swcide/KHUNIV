@@ -30,7 +30,7 @@
 
 							<div class="toggle toggle-minimal toggle-primary"
 								data-plugin-toggle data-plugin-options="{ 'isAccordion': true }">
-								<section class="toggle active">
+								<section class="toggle">
 									<a class="toggle-title">Q. 분실물은 어디서 찾을 수 있을까요?</a>
 									<div class="toggle-content">
 										<p>A. 애초에 잃어버리지 않는 습관을 들이면 어떨까요?</p>
