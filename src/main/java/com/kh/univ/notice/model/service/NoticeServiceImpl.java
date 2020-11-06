@@ -7,7 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.kh.univ.notice.model.dao.NoticeDao;
 import com.kh.univ.notice.model.vo.Notice;
-import com.kh.univ.notice.model.vo.PageInfo;
+import com.kh.univ.common.PageInfo;
+
 
 @Service("nService")
 public class NoticeServiceImpl implements NoticeService {

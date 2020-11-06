@@ -22,8 +22,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.kh.univ.common.Pagination;
-import com.kh.univ.helpDesk.model.service.helpDeskService;
 import com.kh.univ.common.PageInfo;
+import com.kh.univ.helpDesk.model.service.helpDeskService;
 import com.kh.univ.helpDesk.model.vo.QnA;
 import com.kh.univ.helpDesk.model.vo.Reply;
 

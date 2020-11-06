@@ -3,7 +3,8 @@ package com.kh.univ.notice.model.service;
 import java.util.ArrayList;
 
 import com.kh.univ.notice.model.vo.Notice;
-import com.kh.univ.notice.model.vo.PageInfo;
+import com.kh.univ.common.PageInfo;
+
 
 public interface NoticeService {
 

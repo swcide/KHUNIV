@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.univ.notice.model.vo.Notice;
-import com.kh.univ.notice.model.vo.PageInfo;
+import com.kh.univ.common.PageInfo;
 
 @Repository("nDao")
 public class NoticeDao {

@@ -1,4 +1,4 @@
-package com.kh.univ.helpDesk.model.vo;
+package com.kh.univ.common;
 
 public class PageInfo {
 	private int currentPage;

@@ -17,9 +17,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.common.Pagination;
+import com.kh.univ.common.PageInfo;
 import com.kh.univ.notice.model.service.NoticeService;
 import com.kh.univ.notice.model.vo.Notice;
-import com.kh.univ.notice.model.vo.PageInfo;
 
 @Controller
 public class NoticeController {
@@ -41,7 +41,7 @@ public class NoticeController {
 		
 	
 		
-		PageInfo pi = Pagination.getpageInfo(currentPage, listCount);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<Notice> list = nService.selectList(pi);
 
