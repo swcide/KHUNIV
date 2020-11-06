@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,10 +92,13 @@
 											<div class="header-extra-info-text">
 												<div class="row">
 													<div class="col-md-6">
-														<a href="mypage.do"><label><strong style="color:#008995">${loginUser.sName }</strong></label></a>
+														<c:if test="${!empty sessionScope.loginUser }"><a href="mypage.do"><label><strong style="color:#008995">${loginUser.sName }</strong></label></a></c:if>
+														<c:if test="${!empty sessionScope.loginProf }"><a href="mypage.do"><label><strong style="color:#008995">${loginProf.pName }</strong></label></a></c:if>
+														<c:if test="${!empty sessionScope.loginAdmin }"><a href="mypage.do"><label><strong style="color:#008995">${loginAdmin.aId }</strong></label></a></c:if>
 													</div>
 													<div class="col-md-6" style="text-align: right">
-														<a href="ad_logout.do"><label><strong>로그아웃</strong></label></a>
+<!-- 														<a href="mypage.do"><label><strong>내 정보</strong></label></a>
+ -->														<a href="ad_logout.do"><label><strong>로그아웃</strong></label></a>
 													</div>
 												</div>
 												<strong class="text-uppercase text-2"> <label><strong>학사행정사이트 방문을 환영합니다</strong></label>
@@ -103,7 +107,7 @@
 										</li>
 									</ul>
 								</div>
-							</div>
+							</div> 
 						</div>
 					</div>
 				</div>

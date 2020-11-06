@@ -27,7 +27,7 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800%7CShadows+Into+Light%7CPlayfair+Display:400&display=swap"
 	rel="stylesheet" type="text/css">
-
+	
 <!-- Vendor CSS -->
 <link rel="stylesheet"
 	href="resources/vendor/bootstrap/css/bootstrap.min.css">

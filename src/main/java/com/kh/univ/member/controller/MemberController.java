@@ -1,5 +1,10 @@
 package com.kh.univ.member.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,16 +47,18 @@ public class MemberController {
 	 * @param id
 	 * @param pw
 	 * @return
+	 * @throws IOException 
 	 */
 	@RequestMapping(value = "login.do")
 	public String memberLogin(Student s, Professor p, Admin a, Model model, @RequestParam(value = "type1") int type1, @RequestParam(value = "type2") int type2, @RequestParam(name = "id") String id,
-			@RequestParam(name = "pw") String pw)
+			@RequestParam(name = "pw") String pw , HttpServletResponse response) throws IOException
 		{
 
 			System.out.println(id);
 			System.out.println(pw);
 
-			System.out.println(type1 + type2);
+			System.out.println("type1:"+type1 +"type2:"+ type2);
+			
 
 			if (type1 == 1) {
 				switch (type2) {
@@ -59,22 +66,67 @@ public class MemberController {
 						s.setsNo(id);
 						s.setsPwd(pw);
 						Student loginUser = mService.loginMember(s);
-						model.addAttribute("loginUser", loginUser);
-						return "main";
+						if(loginUser!=null) {
+							model.addAttribute("loginUser", loginUser);
+							return "main";
+						}else {
+							response.setContentType("text/html; charset=UTF-8");
+
+				            PrintWriter out = response.getWriter();
+				            out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+				            out.flush();
+				            return "main";
+
+						}
+						
+						
 					case 2:
 						p.setpNo(id);
 						p.setpPwd(pw);
+					
+							
+					
 						Professor loginProf = mService.loginProf(p);
-						model.addAttribute("loginProf", loginProf);
-						return "main";
+						if(loginProf!=null) {
+							model.addAttribute("loginProf", loginProf);
+							return "main";
+						}else {
+							response.setContentType("text/html; charset=UTF-8");
+
+				            PrintWriter out = response.getWriter();
+				            out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+				            out.flush();
+				            return "main";
+
+						}
+						
 					case 3:
 						a.setaId(id);
 						a.setaPwd(pw);
 						Admin loginAdmin = mService.loginAdmin(a);
-						model.addAttribute("loginAdmin", loginAdmin);
-						return "redirect:main.do";
+						System.out.println(loginAdmin);
+						
+						if(loginAdmin!=null) {
+							model.addAttribute("loginAdmin", loginAdmin);
+							System.out.println(loginAdmin);
+							return "redirect:main.do";
+						}else {
+							response.setContentType("text/html; charset=UTF-8");
+
+				            PrintWriter out = response.getWriter();
+				            out.println("<script>alert('로그인 정보를 확인해주세요 admin.'); history.go(-1);</script>");
+				            out.flush();
+				            return "main";
+						}
 					default:
-						return "main";
+						response.setContentType("text/html; charset=UTF-8");
+
+			            PrintWriter out = response.getWriter();
+			            out.println("<script>alert('로그인 정보를 확인하쇼.'); history.go(-1);</script>");
+			            out.flush();
+			            return "main";
+						
+					
 				}
 			} else {
 				switch (type2) {
@@ -82,21 +134,62 @@ public class MemberController {
 						s.setsNo(id);
 						s.setsPwd(pw);
 						Student loginUser = mService.loginMember(s);
-						System.out.println("loginUser : " + loginUser);
-						model.addAttribute("loginUser", loginUser);
-						return "administration_main";
+					
+						if(loginUser!=null) {
+							model.addAttribute("loginUser", loginUser);
+							return "administration_main";
+						}else {
+							response.setContentType("text/html; charset=UTF-8");
+
+				            PrintWriter out = response.getWriter();
+				            out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+				            out.flush();
+				            return "member/login";
+
+						}
+						
 					case 2:
 						p.setpNo(id);
 						p.setpPwd(pw);
 						Professor loginProf = mService.loginProf(p);
-						model.addAttribute("loginProf", loginProf);
-						return "professor_main";
-					default:
+					
+						
+						if(loginProf!=null) {
+							model.addAttribute("loginProf", loginProf);
+							return "professor_main";
+						}else {
+							response.setContentType("text/html; charset=UTF-8");
+
+				            PrintWriter out = response.getWriter();
+				            out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+				            out.flush();
+				            return "member/login";
+
+						}
+					case 3:
 						a.setaId(id);
 						a.setaPwd(pw);
 						Admin loginAdmin = mService.loginAdmin(a);
-						model.addAttribute("loginAdmin", loginAdmin);
-						return "admin";
+						
+						if(loginAdmin!=null) {
+							model.addAttribute("loginAdmin", loginAdmin);
+							return "redirect:admin.do";
+						}else {
+							response.setContentType("text/html; charset=UTF-8");
+
+				            PrintWriter out = response.getWriter();
+				            out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+				            out.flush();
+				            return "member/login";
+						}
+					default:
+						response.setContentType("text/html; charset=UTF-8");
+
+			            PrintWriter out = response.getWriter();
+			            out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+			            out.flush();
+			            return "member/login";
+						
 				}
 			}
 		}
@@ -131,6 +224,7 @@ public class MemberController {
 	@RequestMapping("prof_mypage.do")
 	public String prof_myInfoView(Professor p, Model model)
 		{
+		
 			return "member/prof_mypage";
 		}
 

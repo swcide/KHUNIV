@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<%@ include file="../common/administration_header.jsp"%>
+<%@ include file="../common/professor_header.jsp"%>
 <div role="main" class="main">
 
 	<section class="page-header page-header-classic">
@@ -60,7 +60,7 @@
 					<div class="form-group row">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 ">주민번호</label>
 						<div class="col-lg-9">
-							<input class="form-control" type="text" name="ssn" value="${loginProf.pSsn }" disabled>
+							<input class="form-control" type="text" name="ssn" value="${loginProf.pSsn}" disabled>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -73,7 +73,7 @@
 					<div class="form-group row">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">학부</label>
 						<div class="col-lg-9">
-							<input class="form-control" type="text" name=dept value="${loginProf.deptNo }학부" disabled>
+							<input class="form-control" type="text" name=dept value="${loginProf.deptNo }" disabled>
 						</div>
 					</div>
 					<div class="form-group row">
