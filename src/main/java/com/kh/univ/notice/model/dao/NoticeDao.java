@@ -42,7 +42,7 @@ public class NoticeDao {
 
 	public Object selectUpdateNotice(int nId) {
 		
-		return sqlSession.insert("noticeMapper.updateNotice",b);
+		return sqlSession.insert("noticeMapper.updateNotice",nId);
 	}
 
 }
