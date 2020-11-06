@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.kh.univ.notice.model.vo.Notice;
 import com.kh.univ.notice.model.vo.PageInfo;
+import com.kh.univ.notice.model.vo.nReply;
 
 public interface NoticeService {
 
@@ -33,6 +34,18 @@ public interface NoticeService {
 	int insertNotice(Notice n);
 
 
-	Object selectUpdateNotice(int nId);
+	Notice selectUpdateNotice(int nId);
+
+
+	int updateNotice(Notice n);
+
+
+	int deleteNotice(int nId);
+
+
+	ArrayList<nReply> selectReplyList(int nId);
+
+
+	int insertReply(nReply r);
 
 }

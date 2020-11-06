@@ -19,6 +19,16 @@
 		<result property="nStatus" column="N_SECRET"/>
  	 </resultMap>
  	 
+ 	  <resultMap type="NReply" id="replyResultSet">
+ 	 	<id property="rId" column="N_RID"/>
+		<result property="rContent" column="N_RCONTENT"/>
+		<result property="refBid" column="N_REF_NID"/>
+		<result property="rWriter" column="N_RWRITER"/>
+		<result property="rCreateDate" column="N_R_CREATE_DATE"/>
+		<result property="rmodifyDate" column="N_R_MODIFY_DATE"/>
+		<result property="rStatus" column="N_R_STATUS"/>
+ 	 </resultMap>
+ 	 
  	 	<select id="getListCount"  resultType="_int">
   		SELECT COUNT(*)
   		FROM TB_DEPT_NOTICE
@@ -45,4 +55,22 @@
  	 	INSERT INTO TB_DEPT_NOTICE
  	 	VALUES(SEQ_NID.NEXTVAL,#{nType},#{nTitle},#{nContent},#{nWriter},#{nName},DEFAULT,DEFAULT,DEFAULT,DEFAULT,#{originalFileName},#{renameFileName},DEFAULT)
  	 </insert>
+ 	 <update id="updateNotice"  parameterType="Notice">
+ 	 	UPDATE TB_DEPT_NOTICE
+ 	 	SET NTITLE=#{nTitle},NCONTENT=#{nContent},ORIGINAL_FILENAME=#{originalFileName},RENAME_FILENAME=#{renameFileName},N_MODIFY_DATE=SYSDATE
+ 	 	WHERE NID=#{nId} 
+ 	 </update>
+ 	 
+ 	  <update id="deleteNotice" parameterType="_int">
+ 	 	UPDATE TB_DEPT_NOTICE
+ 	 	SET N_STATUS ='N'
+ 	 	WHERE NID= #{nId}
+ 	 </update>
+ 	 <select id="selectReplyList" parameterType="_int" resultMap="replyResultSet">
+ 	 	SELECT *
+ 	 	FROM TB_NOTICE_REPLY
+ 	 	WHERE N_REF_NID=#{NId}
+ 	 	AND N_R_STATUS='Y'
+ 	 	ORDER BY RID DESC
+ 	 </select>
 </mapper>

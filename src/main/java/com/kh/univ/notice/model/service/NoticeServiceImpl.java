@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.kh.univ.notice.model.dao.NoticeDao;
 import com.kh.univ.notice.model.vo.Notice;
 import com.kh.univ.notice.model.vo.PageInfo;
+import com.kh.univ.notice.model.vo.nReply;
 
 @Service("nService")
 public class NoticeServiceImpl implements NoticeService {
@@ -47,8 +48,32 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public Object selectUpdateNotice(int nId) {
-		return nDao.selectUpdateNotice(nId);
+	public Notice selectUpdateNotice(int nId) {
+		return nDao.selectNotice(nId);
+	}
+
+	@Override
+	public int updateNotice(Notice n) {
+		// TODO Auto-generated method stub
+		return nDao.updateNotice(n);
+	}
+
+	@Override
+	public int deleteNotice(int nId) {
+		
+		return nDao.deleteNotice(nId);
+	}
+
+	@Override
+	public ArrayList<nReply> selectReplyList(int nId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int insertReply(nReply r) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 

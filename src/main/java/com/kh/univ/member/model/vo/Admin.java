@@ -38,7 +38,7 @@ public class Admin
 		return aName;
 	}
 
-	public void setaName(String aName) {
+	public void setAName(String aName) {
 		this.aName = aName;
 	}
 
