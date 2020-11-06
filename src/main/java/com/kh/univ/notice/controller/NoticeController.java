@@ -7,9 +7,9 @@ import com.kh.univ.notice.model.service.NoticeService;
 
 @Controller
 public class NoticeController {
-	
-	@Autowired NoticeService nService
-	
-	public ModelAndView noticeDetail(ModelAndView mv, int bid,)
+//	
+//	@Autowired NoticeService nService
+//	
+//	public ModelAndView noticeDetail(ModelAndView mv, int bid,)
 	
 }

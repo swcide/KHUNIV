@@ -112,12 +112,6 @@
 						</c:forTokens>
 					</c:if>
 					<div class="form-group row">
-						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">연락처</label>
-						<div class="col-lg-9">
-							<input class="form-control" type="tel" name="phone" value="${loginProf.pPhone}" required>
-						</div>
-					</div>
-					<div class="form-group row">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">변경할 비밀번호</label>
 						<div class="col-lg-9">
 							<input class="form-control" type="password" name="new_pw" value="" required>

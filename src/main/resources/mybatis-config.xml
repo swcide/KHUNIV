@@ -11,12 +11,15 @@
 		<typeAlias type="com.kh.univ.member.model.vo.Student" alias="Student"/>
 		<typeAlias type="com.kh.univ.member.model.vo.Professor" alias="Professor"/>
 		<typeAlias type="com.kh.univ.member.model.vo.Admin" alias="Admin"/>
+		<typeAlias type="com.kh.univ.helpDesk.model.vo.QnA" alias="QnA"/>
+		<typeAlias type="com.kh.univ.helpDesk.model.vo.Reply" alias="Reply"/>
 	</typeAliases>
 	 <!--  environments 엘리먼트로 dataSource 등의 DB정보를 작성했었다.
 	 		=> 스프링에서는 그 정보를 여기서는 안쓴다.
 	 		root-context.xml에 작성하게된다.(DataSource 등록은 ) -->
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
+		<mapper resource="mappers/hdBoard-mapper.xml"/>
 	</mappers>
 	
 </configuration>
