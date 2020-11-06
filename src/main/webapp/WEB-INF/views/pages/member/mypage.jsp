@@ -105,29 +105,27 @@
 							<input class="form-control" type="number" name=dept value="${loginUser.sNo }" disabled>
 						</div>
 					</div>
-					<c:if test="${!empty loginUser.sAddress }">
-						<c:forTokens items="${loginUser.sAddress }" delims="," varStatus="status">
-							<div class="form-group row">
-								<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">도로명 주소</label>
+						<c:forTokens var="addr" items="${loginUser.sAddress }" delims="," varStatus="status">
+							<div class="form-group row" style="margin-bottom: 0;">
 								<c:if test="${status.index eq 0 }">
+								<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">도로명 주소</label>
 									<div class="col-lg-7">
-										<input class="form-control" type="text" name="address" value="${loginUser.sAddress }" placeholder="주소 입력">
+										<input class="form-control" type="text" name="address" value="${addr }" placeholder="주소 입력">
 									</div>
-								</c:if>
 								<div class="col-lg-2">
 									<input class="btn btn-primary btn-sm mb-2 float-right" type="button" name="state" value="도로명 검색" placeholder="">
 								</div>
-							</div>
-							<div class="form-group row">
-								<c:if test="${status.index eq 1 }">
-									<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required"></label>
-									<div class="col-lg-7">
-										<input class="form-control" type="text" name="address_detail" value="${loginUser.sAddress }" placeholder="상세주소 입력">
-									</div>
 								</c:if>
 							</div>
+								<c:if test="${status.index eq 1 }">
+							<div class="form-group row">
+									<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">상세주소</label>
+									<div class="col-lg-9">
+										<input class="form-control" type="text" name="address_detail" value="${addr}" placeholder="상세주소 입력">
+									</div>
+							</div>
+								</c:if>
 						</c:forTokens>
-					</c:if>
 					<div class="form-group row">
 						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">연락처</label>
 						<div class="col-lg-9">
