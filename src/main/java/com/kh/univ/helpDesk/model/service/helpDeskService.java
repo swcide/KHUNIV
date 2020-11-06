@@ -2,7 +2,7 @@ package com.kh.univ.helpDesk.model.service;
 
 import java.util.ArrayList;
 
-import com.kh.univ.helpDesk.model.vo.PageInfo;
+import com.kh.univ.common.PageInfo;
 import com.kh.univ.helpDesk.model.vo.QnA;
 import com.kh.univ.helpDesk.model.vo.Reply;
 
