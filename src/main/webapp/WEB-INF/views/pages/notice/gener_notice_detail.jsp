@@ -13,8 +13,8 @@
 				<div class="row mt-3">
 					<div
 						class="col-md-12 align-self-center p-static order-2 text-center">
-						<h1 class="text-9 font-weight-bold">학사공지</h1>
-						<span class="sub-title">Department Notice</span>
+						<h1 class="text-9 font-weight-bold">일반공지</h1>
+						<span class="sub-title">General Notice</span>
 					</div>
 				</div>
 			</div>
