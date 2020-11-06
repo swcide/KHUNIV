@@ -3,96 +3,96 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="memberMapper">
 
-	<!-- 학생 맵 -->
-	<resultMap type="Student" id="studentResultSet">
-		<id property="sNo" column="STD_NO" />
-		<result property="sPwd" column="STD_PWD" />
-		<result property="sName" column="STD_NAME" />
-		<result property="sEmail" column="STD_EMAIL" />
-		<result property="sPhone" column="STD_PHONE" />
-		<result property="sAddress" column="STD_ADDRESS" />
-		<result property="enrollDate" column="ENT_DATE" />
-		<result property="semester" column="SEMESTER" />
-		<result property="sImage" column="STD_IMAGE" />
-		<result property="dNo" column="DEPT_NO" />
-		<result property="sSsn" column="STD_SSN" />
-		<result property="sStatus" column="STATUS" />
-		<result property="cpNo" column="COACH_PROF_NO" />
-		<result property="sCategory" column="CATEGORY" />
-		<result property="sDeptName" column="DEPARTMENT_NAME" />
-	</resultMap>
+   <!-- 학생 맵 -->
+   <resultMap type="Student" id="studentResultSet">
+      <id property="sNo" column="STD_NO" />
+      <result property="sPwd" column="STD_PWD" />
+      <result property="sName" column="STD_NAME" />
+      <result property="sEmail" column="STD_EMAIL" />
+      <result property="sPhone" column="STD_PHONE" />
+      <result property="sAddress" column="STD_ADDRESS" />
+      <result property="enrollDate" column="ENT_DATE" />
+      <result property="semester" column="SEMESTER" />
+      <result property="sImage" column="STD_IMAGE" />
+      <result property="dNo" column="DEPT_NO" />
+      <result property="sSsn" column="STD_SSN" />
+      <result property="sStatus" column="STATUS" />
+      <result property="cpNo" column="COACH_PROF_NO" />
+      <result property="sCategory" column="CATEGORY" />
+      <result property="sDeptName" column="DEPARTMENT_NAME" />
+   </resultMap>
 
-	<!-- 관리자 맵 -->
-	<resultMap type="Admin" id="adminResultSet">
-		<id property="aId" column="ADMIN_ID" />
-		<result property="aPwd" column="ADMIN_PWD" />
-	</resultMap>
+   <!-- 관리자 맵 -->
+   <resultMap type="Admin" id="adminResultSet">
+      <id property="aId" column="ADMIN_ID" />
+      <result property="aPwd" column="ADMIN_PWD" />
+   </resultMap>
 
-	<!-- 교수 맵 -->
-	<resultMap type="Professor" id="professorResultSet">
-		<id property="pNo" column="PROF_NO" />
-		<result property="pName" column="PROF_NAME" />
-		<result property="pSsn" column="PROF_SSN" />
-		<result property="pAddr" column="PROF_ADDRESS" />
-		<result property="deptNo" column="DEPT_NO" />
-		<result property="pPosition" column="PROF_POSITION" />
-		<result property="pPwd" column="PROF_PWD" />
-		<result property="pEmail" column="PROF_EMAIL" />
-		<result property="pLab" column="PROF_LAB" />
-	</resultMap>
+   <!-- 교수 맵 -->
+   <resultMap type="Professor" id="professorResultSet">
+      <id property="pNo" column="PROF_NO" />
+      <result property="pName" column="PROF_NAME" />
+      <result property="pSsn" column="PROF_SSN" />
+      <result property="pAddr" column="PROF_ADDRESS" />
+      <result property="deptNo" column="DEPT_NO" />
+      <result property="pPosition" column="PROF_POSITION" />
+      <result property="pPwd" column="PROF_PWD" />
+      <result property="pEmail" column="PROF_EMAIL" />
+      <result property="pLab" column="PROF_LAB" />
+   </resultMap>
 
-	<!-- 학생 로그인 -->
-	<select id="loginMember" parameterType="Student" resultMap="studentResultSet">
-		<!--=================암호화 전===================== -->
-		SELECT *
-		   FROM TB_STUDENT
-		   JOIN TB_DEPARTMENT USING(DEPT_NO)
-		WHERE STD_NO=#{sNo}
-		     AND STD_PWD=#{sPwd}
+   <!-- 학생 로그인 -->
+   <select id="loginMember" parameterType="Student" resultMap="studentResultSet">
+      <!--=================암호화 전===================== -->
+      SELECT *
+         FROM TB_STUDENT
+         JOIN TB_DEPARTMENT USING(DEPT_NO)
+      WHERE STD_NO=#{sNo}
+           AND STD_PWD=#{sPwd}
         
 
 
-		<!-- 암호화 후 -->
-		<!-- SELECT * FROM MEMBER WHERE ID=#{id} AND M_STATUS='Y' -->
-	</select>
-	<!-- 관리자 로그인 -->
-	<select id="loginAdmin" parameterType="Admin" resultMap="adminResultSet">
-		<!--=================암호화 전===================== -->
-		SELECT *
-		FROM TB_AD_ACCOUNT
-		WHERE ADMIN_ID=#{aId}
-		AND ADMIN_PWD=#{aPwd}
+      <!-- 암호화 후 -->
+      <!-- SELECT * FROM MEMBER WHERE ID=#{id} AND M_STATUS='Y' -->
+   </select>
+   <!-- 관리자 로그인 -->
+   <select id="loginAdmin" parameterType="Admin" resultMap="adminResultSet">
+      <!--=================암호화 전===================== -->
+      SELECT *
+      FROM TB_AD_ACCOUNT
+      WHERE ADMIN_ID=#{aId}
+      AND ADMIN_PWD=#{aPwd}
 
 
-		<!-- 암호화 후 -->
-		<!-- SELECT * FROM MEMBER WHERE ID=#{id} AND M_STATUS='Y' -->
-	</select>
+      <!-- 암호화 후 -->
+      <!-- SELECT * FROM MEMBER WHERE ID=#{id} AND M_STATUS='Y' -->
+   </select>
 
-	<!-- 교수 로그인 -->
-	<select id="loginProf" parameterType="Professor" resultMap="professorResultSet">
-		<!--=================암호화 전===================== -->
-		SELECT *
-		FROM TB_PROFESSOR
-		WHERE PROF_NO=#{pNo}
-		AND PROF_PWD=#{pPwd}
-
-
-		<!-- 암호화 후 -->
-		<!-- SELECT * FROM MEMBER WHERE ID=#{id} AND M_STATUS='Y' -->
-	</select>
+   <!-- 교수 로그인 -->
+   <select id="loginProf" parameterType="Professor" resultMap="professorResultSet">
+      <!--=================암호화 전===================== -->
+      SELECT *
+      FROM TB_PROFESSOR
+      WHERE PROF_NO=#{pNo}
+      AND PROF_PWD=#{pPwd}
 
 
-	<!-- 회원정보수정 -->
-	<update id="updateMember" parameterType="Student">
-		UPDATE MEMBER
-		SET EMAIL=#{email},AGE=#{age},PHONE=#{phone},ADDRESS=#{address},UPDATE_DATE=SYSDATE
-		WHERE ID=#{id}
-	</update>
+      <!-- 암호화 후 -->
+      <!-- SELECT * FROM MEMBER WHERE ID=#{id} AND M_STATUS='Y' -->
+   </select>
 
-	<select id="idCheck" parameterType="string" resultType="_int">
-		SELECT COUNT(*)
-		FROM MEMBER
-		WHERE ID=#{id}
-	</select>
+
+   <!-- 회원정보수정 -->
+   <update id="updateMember" parameterType="Student">
+      UPDATE MEMBER
+      SET EMAIL=#{email},AGE=#{age},PHONE=#{phone},ADDRESS=#{address},UPDATE_DATE=SYSDATE
+      WHERE ID=#{id}
+   </update>
+
+   <select id="idCheck" parameterType="string" resultType="_int">
+      SELECT COUNT(*)
+      FROM MEMBER
+      WHERE ID=#{id}
+   </select>
 
 </mapper>

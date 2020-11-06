@@ -21,8 +21,6 @@
 			</section>
 			<div class="container py-2">
 				<div class="row">
-					<!-- 학적관리 사이드바 -->
-
 
 					<!-- 컨텐츠 -->
 					<div class="col">
@@ -31,23 +29,12 @@
 								<div class="tabs">
 									<ul class="nav nav-tabs nav-justified flex-column flex-md-row">
 										<li class="nav-item active"><a class="nav-link" href="#popular10" data-toggle="tab" class="text-center">전공 강의</a></li>
-										<li class="nav-item"><a class="nav-link" href="#recent10" data-toggle="tab" class="text-center">교양 강의</a></li>
 									</ul>
 									<div class="tab-content" style="height: 300px;">
 										<div id="popular10" class="tab-pane active">
 											<div class="form-group row">
-												<div class="col-lg-3">
-													<div class="custom-select-1">
-														<select id="user_select_degree" class="form-control" name="degree" size="0">
-															<option value="degree1" selected="select">학년 선택</option>
-															<option value="degree1">1학년</option>
-															<option value="degree2">2학년</option>
-															<option value="degree3">3학년</option>
-															<option value="degree4">4학년</option>
-														</select>
-													</div>
-												</div>
-											<label class="btn btn-primary btn-file" style=" margin-left:680px" id="addPlanToTable">강의 계획서 등록</label>
+												
+											<label class="btn btn-primary btn-file" style=" margin-left:950px" id="addPlanToTable">강의 계획서 등록</label>
 											</div>
 											<table class="table table-hover">
 												<thead>
@@ -55,83 +42,35 @@
 														<th>#</th>
 														<th style="text-align: center;">학년</th>
 														<th style="text-align: center;">강의명</th>
-														<th style="text-align: center;">시험일자</th>
-														<th style="text-align: center;">학점</th>
-														<th style="text-align: center;">담당교수</th>
+														<th style="text-align: center;">강의구분</th>
+														<th style="text-align: center;">강의번호</th>
+														<th style="text-align: center;">학기</th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
 														<td>1</td>
-														<td style="text-align: center;">4</td>
-														<td style="text-align: center;">Mark</td>
-														<td style="text-align: center;">Otto</td>
-														<td style="text-align: center;">3</td>
-														<td style="text-align: center;">이성호</td>
-													</tr>
-													<tr>
-														<td>1</td>
-														<td style="text-align: center;">4</td>
-														<td style="text-align: center;">Mark</td>
-														<td style="text-align: center;">Otto</td>
-														<td style="text-align: center;">3</td>
-														<td style="text-align: center;">이성호</td>
-													</tr>
-													<tr>
-														<td>1</td>
-														<td style="text-align: center;">4</td>
-														<td style="text-align: center;">Mark</td>
-														<td style="text-align: center;">Otto</td>
-														<td style="text-align: center;">3</td>
-														<td style="text-align: center;">이성호</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-										<div id="recent10" class="tab-pane">
-											<div class="input-group input-group-md" style="margin-bottom: 16px;">
-												<input class="form-control" placeholder="과목명 검색" name="s" id="s" type="text">
-												<span class="input-group-append">
-													<button type="submit" class="btn btn-primary">
-														<i class="fas fa-search"></i>
-													</button>
-												</span>
-											</div>
-											<table class="table table-hover">
-												<thead>
-													<tr>
-														<th>#</th>
-														<th style="text-align: center;">학년</th>
-														<th style="text-align: center;">강의명</th>
-														<th style="text-align: center;">시험일자</th>
-														<th style="text-align: center;">학점</th>
-														<th style="text-align: center;">담당교수</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>1</td>
-														<td style="text-align: center;">4</td>
-														<td style="text-align: center;">Mark</td>
-														<td style="text-align: center;">Otto</td>
-														<td style="text-align: center;">1</td>
-														<td style="text-align: center;">이성호</td>
-													</tr>
-													<tr>
-														<td>2</td>
-														<td style="text-align: center;">1</td>
-														<td style="text-align: center;">Mark</td>
-														<td style="text-align: center;">Otto</td>
 														<td style="text-align: center;">2</td>
-														<td style="text-align: center;">@mdo</td>
+														<td style="text-align: center;"><a href="">HTML</a></td>
+														<td style="text-align: center;">전공</td>
+														<td style="text-align: center;">c124352</td>
+														<td style="text-align: center;">2</td>
 													</tr>
 													<tr>
-														<td>3</td>
-														<td style="text-align: center;">3</td>
-														<td style="text-align: center;">Mark</td>
-														<td style="text-align: center;">Otto</td>
+														<td>1</td>
 														<td style="text-align: center;">2</td>
-														<td style="text-align: center;">@mdo</td>
+														<td style="text-align: center;"><a href="">컴퓨터 네트워킹</a></td>
+														<td style="text-align: center;">전공</td>
+														<td style="text-align: center;">c124352</td>
+														<td style="text-align: center;">2</td>
+													</tr>
+													<tr>
+														<td>1</td>
+														<td style="text-align: center;">2</td>
+														<td style="text-align: center;"><a href="">자바</a></td>
+														<td style="text-align: center;">교양</td>
+														<td style="text-align: center;">c124352</td>
+														<td style="text-align: center;">2</td>
 													</tr>
 												</tbody>
 											</table>
