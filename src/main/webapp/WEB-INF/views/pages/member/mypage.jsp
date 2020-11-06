@@ -41,6 +41,99 @@
 				</aside>
 
 			</div>
+			<c:if test="${!empty sessionScope.loginProf }">
+			<div class="col-lg-9">
+				<div class="overflow-hidden mb-1">
+					<h2 class="font-weight-normal text-7 mb-0">
+						<strong class="font-weight-extra-bold">내 정보</strong>
+					</h2>
+				</div>
+				<div class="overflow-hidden mb-4 pb-3">
+					<p class="mb-0">수정 후 반드시 저장해주시길 바랍니다.</p>
+				</div>
+				<form action="" role="form" class="needs-validation">
+					<div class="form-group row">
+						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 ">성명</label>
+						<div class="col-lg-9">
+							<input class="form-control" type="text" name="name" id="name" value="${loginProf.pName }" disabled>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 ">주민번호</label>
+						<div class="col-lg-9">
+							<input class="form-control" type="text" name="ssn" value="${loginProf.pSsn}" disabled>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">Email</label>
+						<div class="col-lg-9">
+							<input class="form-control" type="email" name="email" value="${loginProf.pEmail }" required>
+						</div>
+					</div>
+					
+					<div class="form-group row">
+						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">학부</label>
+						<div class="col-lg-9">
+							<input class="form-control" type="text" name=dept value="${loginProf.deptNo }학부" disabled>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">직급</label>
+						<div class="col-lg-9">
+							<input class="form-control" type="text" name=dept value="${loginProf.pPosition }" disabled>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">연구실</label>
+						<div class="col-lg-9">
+							<input class="form-control" type="text" name=dept value="${loginProf.pLab }" disabled>
+						</div>
+					</div>
+					<c:if test="${!empty loginProf.pAddr }">
+						<c:forTokens items="${loginProf.pAddr }" delims="," varStatus="status">
+							<div class="form-group row">
+								<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">도로명 주소</label>
+								<c:if test="${status.index eq 0 }">
+									<div class="col-lg-7">
+										<input class="form-control" type="text" name="address" value="${loginProf.pAddr }" placeholder="주소 입력">
+									</div>
+								</c:if>
+								<div class="col-lg-2">
+									<input class="btn btn-primary btn-sm mb-2 float-right" type="button" name="state" value="도로명 검색" placeholder="">
+								</div>
+							</div>
+							<div class="form-group row">
+								<c:if test="${status.index eq 1 }">
+									<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required"></label>
+									<div class="col-lg-7">
+										<input class="form-control" type="text" name="address_detail" value="${loginProf.pAddr }" placeholder="상세주소 입력">
+									</div>
+								</c:if>
+							</div>
+						</c:forTokens>
+					</c:if>
+					<div class="form-group row">
+						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">변경할 비밀번호</label>
+						<div class="col-lg-9">
+							<input class="form-control" type="password" name="new_pw" value="" required>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">비밀번호 확인</label>
+						<div class="col-lg-9">
+							<input class="form-control" type="password" name="check_pw" value="" required>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="form-group col-lg-9"></div>
+						<div class="form-group col-lg-3">
+							<input type="submit" value="수정하기" id="btnUpdate" class="btn btn-primary btn-sm mb-2 float-right" data-loading-text="Loading...">
+						</div>
+					</div>
+				</form>
+			</div>
+			</c:if>
+			<c:if test="${!empty sessionScope.loginUser }">
 			<div class="col-lg-9">
 				<div class="overflow-hidden mb-1">
 					<h2 class="font-weight-normal text-7 mb-0">
@@ -152,6 +245,7 @@
 					</div>
 				</form>
 			</div>
+			</c:if>
 		</div>
 	</div>
 </div>

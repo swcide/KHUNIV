@@ -41,5 +41,4 @@ public class notice_Controller {
 	}
 
 
-
 }
