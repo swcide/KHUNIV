@@ -55,6 +55,9 @@
 <!-- Theme Custom CSS -->
 <link rel="stylesheet" href="resources/css/custom.css">
 
+<!-- SummerNote -->
+<link rel="stylesheet" href="resources/plugins/summernote/summernote-bs4.css">
+
 <!-- Head Libs -->
 <script src="resources/vendor/modernizr/modernizr.min.js"></script>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>

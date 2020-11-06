@@ -54,7 +54,7 @@
 		<script src="resources/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 		<script src="resources/vendor/circle-flip-slideshow/js/jquery.flipshow.min.js"></script>
 		<script src="resources/js/views/view.home.js"></script>
-		<script src="resources/js/views/view.contact.js"></script>
+<!-- 		<script src="resources/js/views/view.contact.js"></script> -->
 
 		<!-- Demo -->
 		<script src="resources/js/demos/demo-resume.js"></script>
@@ -68,7 +68,15 @@
 
 		<!-- Theme Initialization Files -->
 		<script src="resources/js/theme.init.js"></script>
-
+		
+		<!-- Summernote -->
+		<script src="resources/plugins/summernote/summernote-bs4.min.js"></script>
+		<script>
+		  $(function () {
+		    // Summernote
+		    $('.textarea').summernote()
+		  })
+		</script>
 
 
 		<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.

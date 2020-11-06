@@ -39,62 +39,6 @@ public class notice_Controller {
 
 		return "notice/gener_notice";
 	}
-	
-	@RequestMapping(value = "gener_notice_write.do", method = RequestMethod.GET)
-	public String gener_notice_write(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
 
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
-		String formattedDate = dateFormat.format(date);
-
-		model.addAttribute("serverTime", formattedDate );
-
-		return "notice/gener_notice_write";
-	}
-	@RequestMapping(value = "gener_notice_detail.do", method = RequestMethod.GET)
-	public String gener_notice_detail(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
-		String formattedDate = dateFormat.format(date);
-
-		model.addAttribute("serverTime", formattedDate );
-
-		return "notice/gener_notice_detail";
-	}
-	
-	@RequestMapping(value = "dept_notice_detail.do", method = RequestMethod.GET)
-	public String dept_notice_detail(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
-		String formattedDate = dateFormat.format(date);
-
-		model.addAttribute("serverTime", formattedDate );
-
-		return "notice/dept_notice_detail";
-	}
-	
-	@RequestMapping(value = "dept_notice_write.do", method = RequestMethod.GET)
-	public String dept_notice_write(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
-		String formattedDate = dateFormat.format(date);
-
-		model.addAttribute("serverTime", formattedDate );
-
-		return "notice/dept_notice_write";
-	}
-	
-	
 
 }

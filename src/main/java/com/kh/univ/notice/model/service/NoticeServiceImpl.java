@@ -26,6 +26,31 @@ public class NoticeServiceImpl implements NoticeService {
 		// TODO Auto-generated method stub
 		return  nDao.selectList(pi);
 	}
+
+	@Override
+	public Notice selectNotice(int nId) {
+		
+		int result=nDao.updateCount(nId);
+		
+		if(result>0) {
+			return nDao.selectNotice(nId);
+		}else {
+			return null;
+		}
+		
+	}
+
+	@Override
+	public int insertNotice(Notice n) {
+		// TODO Auto-generated method stub
+		return nDao.insertNotice(n);
+	}
+
+	@Override
+	public Object selectUpdateNotice(int nId) {
+		// TODO Auto-generated method stub
+		return nDao.selectUpdateNotice(int nId);
+	}
 	
 
 }

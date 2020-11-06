@@ -1,7 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ include file="../common/header.jsp"%>
+
+<style>
+.mailbox-attachment-info{
+	background: #f8f9fa;
+    padding: 10px;
+	}
+}
+.mailbox-attachment-name{
+    color: #666;
+    font-weight: 700;
+}
+</style>
 
 <div class="body">
 	<div role="main" class="main">
@@ -30,20 +43,67 @@
 							<div class="post-content ml-0">
 
 								<h2 class="font-weight-bold">
-									<a href="blog-post.html">제목제목제목</a>
+									${ n.nTitle }
 								</h2>
 
 								<div class="post-meta">
-									<span><i class="far fa-user fl"></i> By <a href="#">관리자</a>
-									</span> <span class="date float-right">2020-10-29 13:38</span>
+									<span><i class="far fa-user fl"></i> By ${n.nWriter }
+									</span> <span class="date float-right">${n.nCreateDate }</span>
 								</div>
 
-								<p>공지사항 내용이 여기들어감요</p>
-
-
-
-
+								<p class="text-5">${n.nContent }</p>
+								
+								<div class="mt-5 ">
+									<hr>
+									<h4 >첨부파일</h4>
+								</div>
+								
+								
+								<c:if test="${ !empty n.originalFileName }">
+								<ul class=" d-flex align-items-stretch clearfix" style="list-style:none; padding: 0;">
+					                <li>		
+					                  <div class="mailbox-attachment-info">
+					                    <a href="/spring/resources/uploadFiles/${n.renameFileName}" download="${n.originalFileName }" class="mailbox-attachment-name">
+					                    	<i class="fas fa-paperclip"></i>${n.originalFileName }
+				                    	</a>
+					                        <span class="mailbox-attachment-size clearfix mt-">
+					                          <a href="#" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
+					                        </span>
+					                  </div>
+					                </li>
+								</ul>
+								
+								
+								</c:if>
+							
+<%-- 								<c:if test="${ loginAdmin != null }"> --%>
+								<div class=" float-right">											
+											<div>
+												<c:url var="nupview" value="nupView.do">
+													<c:param name="bId" value="${n.nId }"/>
+												</c:url>
+												<c:url var="ndelete" value="bdelete.do">
+													<c:param name="bId" value="${n.nId }"/>
+												</c:url>
+												<c:url var="nlist" value="dept_notice.do">
+													<c:param name="currentPage" value="${ currentPage }"/>
+												</c:url>
+											
+											
+												<a href="${ndelete }" class="mb-1 mt-1 mr-1 btn btn-primary">
+													삭제하기
+												</a>
+												<a href="${nupview }" class="mb-1 mt-1 mr-1 btn btn-primary">
+													수정하기
+												</a>											
+											</div>
+										</div>
+										<a href="${nlist }" class="mb-1 mt-1 mr-1 btn btn-primary float-left">
+												목록으로
+										</a>
+<%-- 								</c:if> --%>
 								<div id="comments" class="post-block mt-5 post-comments">
+								
 
 
 									<ul class="comments">
@@ -68,36 +128,7 @@
 									</ul>
 								</div>
 
-								<!-- <div class="post-block mt-5 post-leave-comment">
-										<h4 class="mb-3">Leave a comment</h4>
-
-										<form class="contact-form p-4 rounded bg-color-grey"
-											action="php/contact-form.php" method="POST">
-											<div class="p-2">
-												<div class="form-row">
-													<div class="form-group col">
-														<label
-															class="required font-weight-bold text-dark">Comment</label>
-														<textarea maxlength="5000"
-															data-msg-required="Please enter your message." rows="2"
-															class="form-control" name="message" required></textarea>
-													</div>
-												</div>
-												<div class="form-row">
-													<div class="form-group col mb-0">
-														<input type="submit" value="뒤로가기"
-															class="btn btn-quaternary btn-modern"
-															data-loading-text="Loading...">
-														<input type="submit" value="등록"
-															class="btn btn-dark btn-modern float-right"
-															data-loading-text="Loading...">
-													</div>
-
-												</div>
-
-											</div>
-										</form>
-									</div> -->
+								
 
 							</div>
 						</article>
