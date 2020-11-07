@@ -1,4 +1,4 @@
-package com.kh.univ.notice.model.vo;
+package com.kh.univ.common;
 
 public class PageInfo {
 	private int currentPage;
@@ -10,11 +10,7 @@ public class PageInfo {
 	
 	private int boardLimit;
 	
-	public PageInfo() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
+	public PageInfo() {}
 
 	public PageInfo(int currentPage, int listCount, int pageLimit, int maxPage, int startPage, int endPage,
 			int boardLimit) {
@@ -27,7 +23,6 @@ public class PageInfo {
 		this.endPage = endPage;
 		this.boardLimit = boardLimit;
 	}
-
 
 	public int getCurrentPage() {
 		return currentPage;
@@ -77,16 +72,13 @@ public class PageInfo {
 		this.endPage = endPage;
 	}
 
-
 	public int getBoardLimit() {
 		return boardLimit;
 	}
 
-
 	public void setBoardLimit(int boardLimit) {
 		this.boardLimit = boardLimit;
 	}
-
 
 	@Override
 	public String toString() {
@@ -95,7 +87,6 @@ public class PageInfo {
 				+ boardLimit + "]";
 	}
 
-	
 	
 
 }

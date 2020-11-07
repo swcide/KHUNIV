@@ -7,8 +7,13 @@ import org.springframework.stereotype.Service;
 
 import com.kh.univ.notice.model.dao.NoticeDao;
 import com.kh.univ.notice.model.vo.Notice;
+<<<<<<< HEAD
 import com.kh.univ.notice.model.vo.PageInfo;
 import com.kh.univ.notice.model.vo.nReply;
+=======
+import com.kh.univ.common.PageInfo;
+
+>>>>>>> branch 'master' of https://github.com/KHunivesity/khuniv.git
 
 @Service("nService")
 public class NoticeServiceImpl implements NoticeService {

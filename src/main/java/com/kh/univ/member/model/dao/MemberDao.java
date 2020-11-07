@@ -9,7 +9,7 @@ import com.kh.univ.member.model.vo.Student;
 
 @Repository("mDao")
 public class MemberDao {
-
+	
   @Autowired
   SqlSessionTemplate sqlSession;
 

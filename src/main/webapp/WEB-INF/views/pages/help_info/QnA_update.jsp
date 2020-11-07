@@ -26,33 +26,34 @@
 
 
 								<div class="custom-box-details bg-color-light custom-box-shadow-1 col-lg-12 ml-5 mb-5 mb-lg-4 float-right clearfix">
-									<h4>Q&A 작성</h4>
-
-									<form class="contact-form rounded" action="php/contact-form.php" method="POST">
-
-
-										<div class="switch">
-											<input type="checkbox" name="switch" data-plugin-ios-switch />
-											<label>&nbsp; 비밀글</label>
-										</div>
-
+									<h4>QnA 수정</h4>
+									<form id="fm"class="contact-form"	action="ninsert.do" method="post" enctype="multipart/form-data">
 										<div class="form-group">
-											<input class="form-control" placeholder="제목">
+											<input class="form-control"  name="nTitle" placeholder="제목">
 										</div>
 										<div class="form-row">
-
 											<div class="form-group col">
-
-												<textarea maxlength="5000" data-msg-required="Please enter your message." rows="10" class="form-control" name="message" required></textarea>
+											<input type="hidden" name="nWriter" value="${loginAdmin.aId}">
+											<input type="hidden" name="nName"value="${loginAdmin.aName}">
+											<input type="hidden" name="nYype"value="01">
+												  <div class=" ">
+										              <div class="mb-3">
+										                <textarea class="textarea" placeholder="Place some text here" name="nContent"
+										                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+										              </div>
+										            
+										            </div>
+										            <div>첨부파일</div>
+													<div><input class="form-control-file" type="file" name="uploadFile"></div>
 											</div>
 										</div>
-										<div class="form-row">
-											<div class="form-group col mb-0">
-												<input type="submit" value="뒤로가기" class="btn btn-quaternary mb-2">
-												<input type="submit" value="완료" class="btn btn-dark btn-modern float-right" data-loading-text="Loading...">
-											</div>
-										</div>
+										
+										<input  type="button" onclick="location.href='dept_notice.do'" value="뒤로가기"	class="btn btn-quaternary mb-2">
+										<input	type="submit" value="완료"class="btn btn-dark btn-modern float-right">
 									</form>
+									<script>
+									
+									</script>
 								</div>
 							</div>
 						</article>

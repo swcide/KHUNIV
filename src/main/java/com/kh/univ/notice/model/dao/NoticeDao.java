@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.univ.notice.model.vo.Notice;
-import com.kh.univ.notice.model.vo.PageInfo;
+import com.kh.univ.common.PageInfo;
 
 @Repository("nDao")
 public class NoticeDao {
@@ -40,6 +40,7 @@ public class NoticeDao {
 		return sqlSession.insert("noticeMapper.insertNotice",n);
 	}
 
+<<<<<<< HEAD
 
 
 	public int updateNotice(Notice n) {
@@ -49,6 +50,11 @@ public class NoticeDao {
 
 	public int deleteNotice(int nId) {
 		return sqlSession.update("noticeMapper.deleteNotice",nId);
+=======
+	public Object selectUpdateNotice(int nId) {
+		
+		return sqlSession.insert("noticeMapper.updateNotice",nId);
+>>>>>>> branch 'master' of https://github.com/KHunivesity/khuniv.git
 	}
 
 }

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="hdBoardMapper">
+
+<resultMap type="QnA" id="QnAResultSet">
+<id property="qnaId" column="QNA_ID" />
+<result property="qnaTitle" column="QNA_TITLE"/>
+<result property="qnaWriter" column="QNA_WRITER"/>
+<result property="qnaContent" column="QNA_CONTENT"/>
+<result property="qnaOriginalFileName" column="QNA_ORIGINAL_FILENAME"/>
+<result property="qnaRenameFileName" column="QNA_RENAME_FILENAME"/>
+<result property="qnaCount" column="QNA_COUNT"/>
+<result property="qnaCreateDate" column="QNA_CREATE_DATE"/>
+<result property="qnaModifyDate" column="QNA_NODIFY_DATE"/>
+<result property="qnaStatus" column="QNA_STATUS"/>
+</resultMap>
+
+<resultMap type="Reply" id="QNA_replyResultSet">
+		<id property="qna_rId" column="QNA_RID"/>
+		<result property="qna_rContent" column="QNA_RCONTENT"/>
+		<result property="qna_refBid" column="QNA_REF_BID"/>
+		<result property="qna_rWriter" column="QNA_RWRITER"/>
+		<result property="qna_rCreateDate" column="QNA_R_CREATE_DATE"/>
+		<result property="qna_rModifyDate" column="QNA_R_NODIFY_DATE"/>
+		<result property="qna_rStatus" column="QNA_R_STATUS"/>
+	</resultMap>
+
+
+<select id="getListCount" resultType="_int">
+	SELECT COUNT(*)
+	   FROM TB_HELPDESK_QNA
+</select>
+
+
+<select id="selectList" resultMap="QnAResultSet">
+	SELECT *
+	   FROM TB_HELPDESK_QNA
+	   ORDER BY QNA_ID DESC
+</select>
+
+<update id="updateCount" parameterType="_int">
+	UPDATE TB_HELPDESK_QNA 
+	SET QNA_COUNT = QNA_COUNT +1 
+	WHERE QNA_ID = #{b.qnaId}
+	</update>
+
+<select id="selectBoard" resultMap="QnAResultSet">
+SELECT * 
+  FROM TB_HELPDESK_QNA
+  WHERE QNA_ID = #{b.qnaId}
+</select>
+
+<select id="selectReplyList" parameterType="_int" resultMap="QNA_replyResultSet">
+		SELECT *
+		   FROM TB_QNA_REPLY
+		 WHERE QNA_REF_BID = #{bId}
+		 AND QNA_R_STATUS = 'Y'
+		 ORDER BY RID DESC
+	</select>
+	
+	<insert id="insertReply" parameterType="Reply">
+		INSERT INTO TB_QNA_REPLY
+		VALUES(SEQ_RID.NEXTVAL,#{rContent},#{refBid},#{rWriter},SYSDATE,SYSDATE,DEFAULT)
+	</insert>
+
+<select id="selectUpdateBoard" resultMap="QnAResultSet">
+		SELECT *
+		FROM TB_HELPDESK_QNA
+		WHERE QNA_ID = #{qnaId}
+		AND QNA_STATUS='Y'
+</select>
+
+<update id="updateBoard" parameterType="QnA">
+		UPDATE BOARD
+			  SET  QNA_TITLE=#{qnaTitle},
+				      QNA_CONTENT=#{qnaContent},
+					  QNA_NODIFY_DATE=SYSDATE
+		WHERE  BID = #{qnaId}
+	</update>
+</mapper>

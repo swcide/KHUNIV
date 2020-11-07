@@ -1,19 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 <%@ include file="../common/header.jsp"%>
 
 <div class="body">
 	<div role="main" class="main">
-		<section
-			class="page-header page-header-modern page-header-background page-header-background-md overlay overlay-color-dark overlay-show overlay-op-3"
-			style="background-image: url(img/page-header/page-header-background-transparent.jpg); padding: 70px;">
+		<section class="page-header page-header-modern page-header-background page-header-background-md overlay overlay-color-dark overlay-show overlay-op-3" style="background-image: url(img/page-header/page-header-background-transparent.jpg); padding: 70px;">
 			<div class="container">
 				<div class="row mt-3">
-					<div
-						class="col-md-12 align-self-center p-static order-2 text-center">
+					<div class="col-md-12 align-self-center p-static order-2 text-center">
 						<h1 class="text-9 font-weight-bold">Q&A</h1>
 						<span class="sub-title">Question & Answer</span>
 					</div>
@@ -26,8 +22,7 @@
 				<div class="row">
 					<div class="col">
 
-						<div
-							class="custom-box-details bg-color-light custom-box-shadow-1 col-lg-12 ml-5 mb-5 mb-lg-4 float-right clearfix">
+						<div class="custom-box-details bg-color-light custom-box-shadow-1 col-lg-12 ml-5 mb-5 mb-lg-4 float-right clearfix">
 							<h4>Q&A</h4>
 
 							<table class="table table-hover">
@@ -39,57 +34,86 @@
 										<th>답변상태</th>
 									</tr>
 								</thead>
-								<c:forEach var="b" items="${list }">
 								<tbody>
-									<tr>
-										<td>4</td>
-										<td><a href>제 생각엔 학교에 큰 문제가 있는 거 같아요</a></td>
-										<td>비밀글</td>
-										<td><span
-											class="badge badge-sm badge-pill text-uppercase px-2 py-1 mr-1">답변대기</span>
-										</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td><a href>사이트가 멋있네요</a></td>
-										<td>조원영</td>
-										<td><span
-											class="badge badge-dark badge-sm badge-pill text-uppercase px-2 py-1 mr-1">답변완료</span>
-										</td>
-									</tr>
-									<tr>
-										<td>2</td>
-										<td><a href>짜치다는게 무슨 뜻이예요?</a></td>
-										<td>김진태</td>
-										<td><span
-											class="badge badge-dark badge-sm badge-pill text-uppercase px-2 py-1 mr-1">답변완료</span>
-										</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td><a href>디자인이 너무 짜쳐요</a></td>
-										<td>이성호</td>
-										<td><span
-											class="badge badge-dark badge-sm badge-pill text-uppercase px-2 py-1 mr-1">답변완료</span>
-										</td>
-									</tr>
+									<c:forEach var="b" items="${list }">
+										<tr>
+											<td>${b.qnaId}</td>
+											<td>
+												<c:if test="${!empty sessionScope }">
+													<c:url var="QnA_detail" value="QnA_detail.do">
+														<c:param name="qnaId" value="${b.qnaId}" />
+														<c:param name="currentPage" value="${pi.currentPage }" />
+													</c:url>
+													<a href="${QnA_detail }">${b.qnaTitle }</a>
+												</c:if>
+
+												<c:if test="${empty sessionScope }">
+													${b.qnaTitle }
+												</c:if>
+											</td>
+											<td>${b.qnaWriter }</td>
+											<td>
+												<c:if test="${empty refly }">
+													<span class="badge badge-dark badge-sm badge-pill text-uppercase px-2 py-1 mr-1">답변완료</span>
+												</c:if>
+												<c:if test="${!empty refly }">
+													<span class="badge badge-sm badge-pill text-uppercase px-2 py-1 mr-1">답변대기</span>
+												</c:if>
+											</td>
+										</tr>
+									</c:forEach>
 								</tbody>
-								</c:forEach>
 							</table>
-							<button type="button" class="btn btn-dark"
-								onclick="location.href= 'QnA_write.do'"
-								style="float: right; margin-bottom: 20px;">
-								<i class="fas fa-pencil-alt"></i> 질문작성
-							</button>
-						</div>
-						<div class="card-tools" align="center">
+							<div class="card-tools" align="center">
 							<ul class="pagination pagination-sm" style="display: inline-flex">
-								<li class="page-item"><a class="page-link" href="#"><i
-										class="fas fa-angle-left"></i></a></li>
-								<li class="page-item active"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#"><i
-										class="fas fa-angle-right"></i></a></li>
-							</ul>
+								<c:if test="${ pi.currentPage eq 1 }">
+								<a class="page-link" href="#"><i class="fas fa-angle-left"></i></a>
+						         </c:if>
+								<c:if test="${ pi.currentPage ne 1 }">
+									<c:url var="before" value="QnA.do">
+										<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
+									</c:url>
+									<li class="page-item">
+								<a class="page-link" href="${ before }"><i class="fas fa-angle-left"></i></a>
+								</li>
+        						   </c:if>
+
+								<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+									<c:if test="${ p eq pi.currentPage }">
+									<li class="page-item active">
+								<a class="page-link" href="${ pagination }">${ p }</a></li>
+									</c:if>
+
+									<c:if test="${ p ne pi.currentPage }">
+										<c:url var="pagination" value="QnA.do">
+											<c:param name="currentPage" value="${ p }" />
+										</c:url>
+										<li class="page-item">
+								<a class="page-link" href="${ pagination }">${ p }</a></li>
+             						  </c:if>
+								</c:forEach>
+
+								<c:if test="${ pi.currentPage eq pi.maxPage }">
+					               <li class="page-item">
+								<a class="page-link" href="#"><i class="fas fa-angle-right"></i></a>
+								</li>
+					            </c:if>
+								<c:if test="${ pi.currentPage ne pi.maxPage }">
+									<c:url var="after" value="QnA.do">
+										<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
+									</c:url>
+									<li class="page-item">
+								<a class="page-link" href="${ after }"><i class="fas fa-angle-right"></i></a>
+								</li>
+								</c:if>
+								
+								</ul>
+							<c:if test="${! empty sessionScope.loginUser }">
+								<button  type="button" class="btn btn-dark" onclick="location.href= 'QnA_write.do'" style="float: right; margin-bottom: 20px;">
+									<i class="fas fa-pencil-alt"></i> 질문작성
+								</button>
+							</c:if>
+							</div>
 						</div>
 					</div>
 				</div>
