@@ -40,8 +40,6 @@ public class NoticeDao {
 		return sqlSession.insert("noticeMapper.insertNotice",n);
 	}
 
-<<<<<<< HEAD
-
 
 	public int updateNotice(Notice n) {
 		// TODO Auto-generated method stub
@@ -50,11 +48,9 @@ public class NoticeDao {
 
 	public int deleteNotice(int nId) {
 		return sqlSession.update("noticeMapper.deleteNotice",nId);
-=======
-	public Object selectUpdateNotice(int nId) {
-		
-		return sqlSession.insert("noticeMapper.updateNotice",nId);
->>>>>>> branch 'master' of https://github.com/KHunivesity/khuniv.git
+
+
+
 	}
 
 }

@@ -23,18 +23,13 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.kh.univ.common.Pagination;
-<<<<<<< HEAD
 import com.kh.univ.member.model.vo.Admin;
-=======
+
 import com.kh.univ.common.PageInfo;
->>>>>>> branch 'master' of https://github.com/KHunivesity/khuniv.git
+
 import com.kh.univ.notice.model.service.NoticeService;
 import com.kh.univ.notice.model.vo.Notice;
-<<<<<<< HEAD
-import com.kh.univ.notice.model.vo.PageInfo;
 import com.kh.univ.notice.model.vo.nReply;
-=======
->>>>>>> branch 'master' of https://github.com/KHunivesity/khuniv.git
 
 @Controller
 public class NoticeController {
