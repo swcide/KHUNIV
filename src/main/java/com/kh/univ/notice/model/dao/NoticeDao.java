@@ -40,9 +40,17 @@ public class NoticeDao {
 		return sqlSession.insert("noticeMapper.insertNotice",n);
 	}
 
-	public Object selectUpdateNotice(int nId) {
-		
-		return sqlSession.insert("noticeMapper.updateNotice",nId);
+
+	public int updateNotice(Notice n) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("noticeMapper.updateNotice",n);
+	}
+
+	public int deleteNotice(int nId) {
+		return sqlSession.update("noticeMapper.deleteNotice",nId);
+
+
+
 	}
 
 }
