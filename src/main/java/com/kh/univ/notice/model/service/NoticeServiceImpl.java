@@ -69,13 +69,13 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public ArrayList<nReply> selectReplyList(int nId) {
 		// TODO Auto-generated method stub
-		return null;
+		return nDao.selectReplyList(nId);
 	}
 
 	@Override
 	public int insertReply(nReply r) {
 		// TODO Auto-generated method stub
-		return 0;
+		return nDao.insertReply(r);
 	}
 	
 

@@ -22,7 +22,7 @@
  	  <resultMap type="NReply" id="replyResultSet">
  	 	<id property="rId" column="N_RID"/>
 		<result property="rContent" column="N_RCONTENT"/>
-		<result property="refBid" column="N_REF_NID"/>
+		<result property="refNid" column="N_REF_NID"/>
 		<result property="rWriter" column="N_RWRITER"/>
 		<result property="rCreateDate" column="N_R_CREATE_DATE"/>
 		<result property="rmodifyDate" column="N_R_MODIFY_DATE"/>
@@ -69,8 +69,13 @@
  	 <select id="selectReplyList" parameterType="_int" resultMap="replyResultSet">
  	 	SELECT *
  	 	FROM TB_NOTICE_REPLY
- 	 	WHERE N_REF_NID=#{NId}
+ 	 	WHERE N_REF_NID=#{nId}
  	 	AND N_R_STATUS='Y'
- 	 	ORDER BY RID DESC
+ 	 	ORDER BY N_RID DESC
  	 </select>
+ 	 
+ 	  <insert id="insertReply" parameterType="Reply">
+ 	 	INSERT INTO TB_NOTICE_REPLY
+ 	 	VALUES(SEQ_N_RID.NEXTVAL,#{rContent},#{refNid},SYSDATE,SYSDATE,#{rWriter},DEFAULT)
+ 	 </insert>
 </mapper>

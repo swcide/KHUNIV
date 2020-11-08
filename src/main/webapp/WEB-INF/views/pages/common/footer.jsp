@@ -29,7 +29,6 @@
 		</div>
 
 		<!-- Vendor -->
-		<script src="resources/vendor/jquery/jquery.min.js"></script>
 		<script src="resources/vendor/jquery.appear/jquery.appear.min.js"></script>
 		<script src="resources/vendor/jquery.easing/jquery.easing.min.js"></script>
 		<script src="resources/vendor/jquery.cookie/jquery.cookie.min.js"></script>
@@ -54,7 +53,7 @@
 		<script src="resources/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 		<script src="resources/vendor/circle-flip-slideshow/js/jquery.flipshow.min.js"></script>
 		<script src="resources/js/views/view.home.js"></script>
-<!-- 		<script src="resources/js/views/view.contact.js"></script> -->
+		<script src="resources/js/views/view.contact.js"></script>
 
 		<!-- Demo -->
 		<script src="resources/js/demos/demo-resume.js"></script>
