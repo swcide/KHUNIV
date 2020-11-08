@@ -234,6 +234,8 @@ public class NoticeController {
 		gson.toJson(rList,response.getWriter());
 	}
 	
+	
+	
 	@ResponseBody
 	@RequestMapping("addReply.do")
 	public String addReply(nReply r) {

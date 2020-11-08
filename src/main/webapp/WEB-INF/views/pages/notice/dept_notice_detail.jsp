@@ -14,6 +14,7 @@
 Student loginUser = (Student)session.getAttribute("loginUser");
 Professor loginProf = (Professor)session.getAttribute("loginProf");
 Admin loginAdmin = (Admin)session.getAttribute("loginAdmin");
+
 String sNo = null;
 String pNo = null;
 String aId = null;
@@ -22,7 +23,8 @@ String sName =null;
 String pName =null;
 String aName = null;
 
-Integer type = null;
+
+int type = 0;
 
 	if(loginUser !=null){
 	 sNo =loginUser.getsNo(); 
@@ -273,7 +275,11 @@ ul.comments li {
 								</div> 
 								</c:if>	
 								
-								
+								<input type="hidden" id="div_1" value="22">
+								<input type="hidden" id="div_2" value="11">
+								<input type="hidden" id="div_3" value="33">
+								<input type="hidden" id="div_4" value="44">
+								<input type="hidden" id="div_5" value="55">
 							</div>
 						</article>
 					</div>
@@ -294,7 +300,9 @@ ul.comments li {
 // 			getReplyList(); // 타 회원이 댓글들을 작성했을 수도 있으니 지속적으로 댓글 불러오기
 // 		},3000);
 
-
+		function check (){
+		
+		}
 		
 		
 		$('#rSubmit').on('click',function(){
@@ -306,31 +314,29 @@ ul.comments li {
              }
 			
 			
-			
-			
-			
-			
-			var rContent = $("#rContent").val();
-			var refNid = ${n.nId};
-			var rName;
-			var rWriter;
-			var type= "<%=type%>";
-			
-			console.log(rContent)
-			if(type !=null){
-				if (type==1){
+			 var rContent = $("#rContent").val();
+			 var refNid = ${n.nId};
+			 var rName;
+			 var rWriter;
+			 var type= "<%=type%>";
+//	 			 var refRid = $(obj).
+				
+				 if(type !=null){
+					if (type==1){
 					rName = "<%=sName%>";
 					rWriter = "<%=sNo%>";
-				}
-				else if(type==2){
-					rName = "<%=pName%>";
-					rWriter = "<%=pNo%>";
-				}else if(type==3){
-					rName = "<%=aName%>";
-					rWriter = "<%=aId%>";
-				}
+				 	}
+					 else if(type==2){
+						rName = "<%=pName%>";
+						rWriter = "<%=pNo%>";
+			    	}else if(type==3){
+						rName = "<%=aName%>";
+						rWriter = "<%=aId%>";
+				 	}
 			
-			}
+			 }
+			
+			
 		
 			
 			if (type != null){
@@ -349,7 +355,6 @@ ul.comments li {
 						getReplyList(); // 등록 성공 시 다시 댓글 리스트를 호출
 						$("#rContent").val(""); // 댓글 등록이 성공을 하면 작성한 글은 초기화 시켜준다.
 						alert("댓글이 등록되었습니다.");
-						console.log(data);
 					}
 				},error:function(request,status,errorData){
 					console.log(request.status + " : " + errorData);
@@ -368,15 +373,17 @@ ul.comments li {
 		
 		function getReplyList() {
 			var nId = ${n.nId};
-				console.log(nId)
 			$.ajax({
 				url:"nrList.do",
 				data:{nId:nId},
 				dataType:"json",
 				success:function(data){
-					$li = $('#comments ul li');
-					$li.html("");
-				
+					$ul = $('#comments ul');
+					$li1 = $('#comments ul li');
+					$content= $('.contetnt');
+// 					$ul.html("");
+// 					$li1.html("");
+					
 					
 					
 
@@ -384,52 +391,143 @@ ul.comments li {
 					var $dupReply;
 					var $rWriter;
 					
+					var $refRid ;
 					var $rName;
 					var $rContent;
 					var $rCreateDate;
 					var type= "<%=type%>";
+					
+					var $rIdCheck;  //참조 댓글의 rid
 					var $rId;
+					var $div_c;
+					var $rePlace;
 					
 
 					$("#rCount").text("댓글("+data.length+")");
 					
 					if(data.length>0){
+						
 						for(var i  in data){
-
+							
+		
+							$rId = data[i].rId;
+							$rIdCheck = $('<input type="hidden" value="'+data[i].rId+'">') //참조 댓글의 rid
+							
 							$rWriter =$('<input type"hidden" "value="'+data[i].rWriter+'">').val();
 							$rName =$('<input type"hidden" value="'+data[i].rName+'">').val();
 							$rContent=$('<input type"hidden"  value="'+data[i].rContent+'">').val();
 							$rCreateDate=$('<input type"hidden"  value="'+data[i].rCreateDate+'">').val();
-							
-							$rId = data[i].rId;
-							
-							
-							
-							$div_c = $(
-									
-									'<div class="comment">'+													
-									'	<div class="comment-block">'+
-									'		<div class="comment-arrow"></div>'+
-									'		<input type="hidden" value="'+$rId+'">'+		
-									'		<span class="comment-by">'+
-									'			<strong >'+$rName+'</strong>'+
-									'		<span class="date float-right" style=" margin-left: 10px;">'+$rCreateDate+'</span>'+			
-									'		</span>'+
-									'		<p style="margin-bottom:15px;">'+$rContent+'</p>'+ 
-									'		<textarea style="width:85%; display: none;"></textarea>'+
-// 									' 		<span class="float-right">'+
-// 									'				<span> <a href="javascript:void(0);" onclick="reAddReply(this);"><i class="fas fa-reply"></i> Reply</a></span>'+
-// 									'		</span>'+
-									'	</div>'+
-									'</div>' );
+					
+							if(data[i].refRid==0){
+										
 								
-						$li.append($div_c);
-						
-						
-						
+								  // 대댓글이 참조할 댓글의 rid
+								$div_c = 
+										'	<li>'+
+										'		<div class="comment">'+													
+										'			<div class="comment-block">'+
+										'				<div class="comment-arrow"></div>'+
+										'				<input id="rId_'+$rId+'" type="hidden" value="'+$rId+'">'+		
+										'				<span class="comment-by">'+
+										'					<strong >'+$rName+'</strong>'+
+										'				<span class="date float-right" style=" margin-left: 10px;">'+$rCreateDate+'</span>'+			
+										'				</span>'+
+										'				<p style="margin-bottom:15px;">'+$rContent+'</p>'+ 
+										'				<textarea style="width:85%; display: none;"></textarea>'+
+										' 				<span class="float-right">'+
+										'						<span class="checkId"> <a href="javascript:void(0);" onclick="reAddReplyView(this);"><i class="fas fa-reply"></i> Reply</a></span>'+
+										'				</span>'+
+										'			</div>'+
+										'		</div>' 
+										'	<li>'
+									
+									
+							
+	
+								
+							
+							
+										
+								if(type ==0 ){
+									$('.checkId').css('display','none');
+									
+								}	
+	
+								$ul.append($div_c);
+								
+							}
+
+							
 						}
+
+				
+					
+					
+						for(var i  in data){
 						
-						//for문
+	
+						for(var j in data){
+							$refRid =data[i].refRid;
+							$rId = data[j].rId;
+							var rIdLength = $('<input type="hidden" value="'+$rId+'">').val()
+							
+
+							
+
+							for(z=1; z<data.length+10; z++){
+								var  $li = $('#rId_'+z).parent().parent();
+								var rId_val =$('#rid_'+[z]).val();
+								
+								
+								
+	// 							$li.html("");
+									
+								
+								$rWriter =data[i].rWriter
+								$rName = data[i].rName
+								$rContent= data[i].rContent
+								$rCreateDate= data[i].rCreateDate;
+								
+								if($refRid != 0){
+									if($refRid ==$rId){
+	
+								
+										
+										$rePlace=$(	
+												'<ul class="comments reply">'+
+												'	<li>'+
+												'   	<div class="comment">'+				
+												'			<i class="fas fa-chevron-up"></i>'+
+												'     		<div class="comment-block">'+
+												'     			<input type="hidden" value="'+$rId+'">'+		
+												'     			<span class="comment-by">'+
+												'     				<strong >수정한거'+$rName+'</strong>'+
+												'     			<span class="date float-right" style=" margin-left: 10px;">'+$rCreateDate+'</span>'+			
+												'     			</span>'+
+												'     			<p style="margin-bottom:15px;">'+$rContent+'</p>'+ 
+												'     			<textarea style="width:85%; display: none;"></textarea>'+
+												'      			<span class="float-right">'+
+												'     					<span class="checkId"> <a href="javascript:void(0);" onclick="reAddReplyView(this);"><i class="fas fa-reply"></i> Reply</a></span>'+
+												'     			</span>'+
+												'     		</div>'+
+												'     	</div>' +
+												'	<li>'+
+												'<ul>'
+										
+												);
+										
+										$li.append($rePlace);
+									}
+								
+								
+								}
+								
+							}
+						}
+					}
+
+					//for문
+						
 
 						if (type==1){
 							var sNo= "<%=sNo%>";
@@ -439,10 +537,10 @@ ul.comments li {
 								if($rWriter==sNo){	
 									$dupReply = $(	
 													'<span  class=" float-right">'+
-														'<button onclick="rDelete(this);" class="btn btn-xs btn-light" style=" margin-right: 10px; ">삭제</button>'+
+														'<button onclick="rDelete(this);" class="btn btn-xs btn-light btnChk" style=" margin-right: 10px; ">삭제</button>'+
 													'</span>'+
 													'<span class=" float-right">'+
-														'<button onclick="rUpdateView(this);"class="btn btn-xs btn-primary" style=" margin-right: 10px;" >수정</button>'+
+														'<button onclick="rUpdateView(this);"class="btn btn-xs btn-primary btnChk" style=" margin-right: 10px;" >수정</button>'+
 													'</span>'											 
 												);
 							
@@ -456,10 +554,10 @@ ul.comments li {
 									$dupReply = $(	
 													'<span  class=" float-right">'+
 													
-														'<button onclick="rDelete(this);" class="btn btn-xs btn-light" style=" margin-right: 10px; ">삭제</button>'+
+														'<button onclick="rDelete(this);" class="btnChk btn btn-xs btn-light" style=" margin-right: 10px; ">삭제</button>'+
 													'</span>'+
 													'<span class=" float-right">'+
-														'<button onclick="rUpdateView(this);" class="btn btn-xs btn-primary" style=" margin-right: 10px;" >수정</button>'+
+														'<button onclick="rUpdateView(this);" class="btnChk btn btn-xs btn-primary" style=" margin-right: 10px;" >수정</button>'+
 													'</span>'
 												  );	
 
@@ -470,10 +568,10 @@ ul.comments li {
 								$dupReply = $(	
 												'<span  class=" float-right">'+
 												
-													'<button onclick="rDelete(this);" class="btn btn-xs btn-light" style=" margin-right: 10px; ">삭제</button>'+
+													'<button onclick="rDelete(this);" class="btnChk btn btn-xs btn-light" style=" margin-right: 10px; ">삭제</button>'+
 												'</span>'+
 												'<span class=" float-right">'+
-													'<button onclick="rUpdateView(this);" class="btn btn-xs btn-primary" style=" margin-right: 10px;" >수정</button>'+
+													'<button onclick="rUpdateView(this);" class="btnChk btn btn-xs btn-primary" style=" margin-right: 10px;" >수정</button>'+
 												'</span>'						
 											);	
 					
@@ -482,7 +580,7 @@ ul.comments li {
 						
 					}
 					//if 문
-				
+			
 				},error: function(result){
 					console.log(result)
 				}
@@ -497,7 +595,6 @@ ul.comments li {
 			var rId = $(obj).parent().siblings('input').val();
 			
 			
-			console.log(rId);
 			
 			$.ajax({
 				url:"deleteReply.do",
@@ -519,15 +616,15 @@ ul.comments li {
 			});
 		}
 		function rUpdateView(obj){
-			
+			$('.checkId').css('display','none');	
 // 			var rContent =$(obj).parent().siblings('p').html().trim();
 			var rId =$(obj).parent().siblings('input').val();
 			var rName = $('.comment-by').children().siblings('span').html().trim();
 			var rCreateDate = $('.comment-by').children().siblings('strong').html().trim();
 			
-			var $test;
-			$tset = '<span>테스트 입니다.</span>';
 		
+			
+
 			
 			
 			var changeBtn;
@@ -539,7 +636,7 @@ ul.comments li {
 			changeContent= $(obj).parent().siblings('p').css('display','none');
 			var changeContent2;
 			changeContent= $(obj).parent().siblings('textarea').css('display','block');
-					
+				
 			
 			var edit = $(obj).parent().append(changeBtn);
 			
@@ -547,11 +644,7 @@ ul.comments li {
 			var remove =$(obj).remove();
 			
 			
-// 		   var rUpdateView = 
-// 			   $(
-						  
-				   
-// 	   			)
+
 		   
 			
 			
@@ -561,15 +654,11 @@ ul.comments li {
 		}
 		
 		function rUpdate(obj){
-			
-			
-				
-			
-		
-			
 			var nId = ${n.nId};
 			var rId = $(obj).parent().siblings('input').val();
 			var rContent =$(obj).parent().siblings('textarea').val();
+			
+			
 			
 			 if(rContent.trim() == ""){
                  alert("내용을 입력하세요");
@@ -578,8 +667,6 @@ ul.comments li {
              }
 			
 			
-			console.log(rId);
-			console.log(rContent);
 			
 			$.ajax({
 				url:"updateReply.do",
@@ -589,9 +676,12 @@ ul.comments li {
 				type:"post",
 				success:function(data){
 					if(data =="success"){
+// 						var test ;
+							getReplyList();
 						
 						alert("수정이 완료되었습니다.");
-						getReplyList();
+					
+						
 						
 					}
 				},error: function(result){
@@ -602,28 +692,162 @@ ul.comments li {
 			});
 		}
 	
-	function rCancle(obj){
-		var update = '<button onclick="rUpdateView(this);" class="btn btn-xs btn-primary" style=" margin-right: 10px;" >수정</button>';
-		var $btnBack;
-		
-		var remove2 =$(obj).siblings('button').remove();
-		
-		var changeContent2;
-		changeContent= $(obj).parent().siblings('textarea').css('display','none');
+		function rCancle(obj){
+			var update = '<button onclick="rUpdateView(this);" class="btn btn-xs btn-primary" style=" margin-right: 10px;" >수정</button>';
+			$('.checkId').css('display','block');
 
-		var changeContent;
-		changeContent= $(obj).parent().siblings('p').css('display','block');
+			var remove2 =$(obj).siblings('button').remove();
+			
+			var changeContent2;
+			changeContent= $(obj).parent().siblings('textarea').css('display','none');
+	
+			var changeContent;
+			changeContent= $(obj).parent().siblings('p').css('display','block');
+	
+			$btnBack=$(obj).parent().append(update);
+			var remove =$(obj).remove();
+			
+			
+		
+			
+		}
+	
+		function reAddReplyView(obj){
+			
+			var refRid = $(obj).parent().parent().siblings('input').val(); //null 이면 그냥 null 아니면 댓글
+			var refNid = ${n.nId};
+			var rName;
+			var rWriter;
+			var type= "<%=type%>";
+			var $tr;
+			var $test;
 
-		$btnBack=$(obj).parent().append(update);
-		var remove =$(obj).remove();
+			if(type !=null){
+				if (type==1){
+					rName = "<%=sName%>";
+					rWriter = "<%=sNo%>";
+				}
+				else if(type==2){
+					rName = "<%=pName%>";
+					rWriter = "<%=pNo%>";
+				}else if(type==3){
+					rName = "<%=aName%>";
+					rWriter = "<%=aId%>";
+				}
+			
+			}
+			console.log(rName)
+			console.log(refRid);
+		
+			if(refRid !=null ){
+				
+				$
+				$tr  = $(obj).parent().parent().parent();;
+				$test = $(
+						
+						'<ul class="comments reply">'+
+						'	<li>'+
+						'		<div class="comment">'+
+						'			<i class="fas fa-chevron-up"></i>'+
+						'			<div class="comment-block">'+
+						'			<span class="comment-by">'+
+						'				<strong>'+rWriter+'</strong>'+
+						'			</span>'+
+						'				<textarea id ="reRContent"style="width:85%; hight:40px"></textarea>'+
+						'				<input type="hidden" value="'+refRid+'">'+	
+						'				<button onclick="r_rCancle(this);" class="btn btn-light btn-sm float-right" style="margin-left:10px" >취소</button>'+
+						'				<button onclick="r_addReply(this);" class="btn btn-light btn-sm float-right" style="margin-left:10px">등록</button>'+
+						'			</div>'+
+						'		</div>'+
+						'	</li>'+
+						'</ul>'	
+				);
+				
+				$tr.after($test);
+				
+				$('.checkId2').css('display','none');
+				$('.checkId').css('display','none');
+				$('.btnChk').css('display','none');
+				console.log(rName)
+				console.log(type)
+				console.log(refRid)
+
+			}
+
+	}
+
+	function r_addReply (obj){
+		
+		if($("#reRContent").val().trim() == ""){
+             alert("내용을 입력하세요");
+             $("#reRContent").focus();
+             return false;
+        }
+		
+		
+		var rContent = $("#reRContent").val();
+		var refNid = ${n.nId}; // 게시판 번호
+		
+		
+		var refRid = $(obj).siblings('input').val(); //댓글달 댓글 번호
+		
+		var rWriter ; // 아이디
+		var rName; // 이름
+		var type= "<%=type%>";
+
+			
+			 console.log(rContent)
+			 if(type!=null){
+				if (type==1){
+					rName = "<%=sName%>";
+				rWriter = "<%=sNo%>";
+			 }
+			 else if(type==2){
+				rName = "<%=pName%>";
+				rWriter = "<%=pNo%>";
+	    	 }else if(type==3){
+				rName = "<%=aName%>";
+				rWriter = "<%=aId%>";
+				 console.log(rName)
+			 }
+		
+		 }
+		
+		$.ajax({
+			url:"addReply.do",
+			data:{
+				rContent:rContent,
+				refNid:refNid,
+				rWriter:rWriter,
+				rName:rName,
+				refRid:refRid
+				},
+			type:"post",
+			success:function(data){
+				if(data =="success"){
+					getReplyList();
+
+					$("#rContent").val(""); // 댓글 등록이 성공을 하면 작성한 글은 초기화 시켜준다.
+				}
+			}
+			
+		});
+		
+		
+	}
+	
+	function r_rCancle (obj){
+		var remove = $(obj).parent().parent().parent().parent();
+		
+		remove.remove();
+		$('.checkId2').css('display','block');
+		$('.checkId').css('display','block');
+		$('.btnChk').css('display','block');
 		
 	
 		
 	}
-	
-	
-	
-	
+
 	
 	
 	
