@@ -250,5 +250,36 @@ public class NoticeController {
 		}
 	}
 	
+	@ResponseBody
+	@RequestMapping("deleteReply.do")
+	public String deleteReply(nReply r) {
+		
+		
+		int result = nService.deleteReply(r);
+		
+		
+		System.out.println(result);
+		if(result>0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	@ResponseBody
+	@RequestMapping("updateReply.do")
+	public String updateReply(nReply r) {
+		
+		
+		int result = nService.updateReply(r);
+		
+		
+		System.out.println(result);
+		if(result>0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
 		
 }

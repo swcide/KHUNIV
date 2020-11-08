@@ -32,18 +32,15 @@ public class NoticeDao {
 	}
 
 	public Notice selectNotice(int nId) {
-		// TODO Auto-generated method stub
 		return  sqlSession.selectOne("noticeMapper.selectNotice",nId);
 	}
 
 	public int insertNotice(Notice n) {
-		// TODO Auto-generated method stub
 		return sqlSession.insert("noticeMapper.insertNotice",n);
 	}
 
 
 	public int updateNotice(Notice n) {
-		// TODO Auto-generated method stub
 		return sqlSession.update("noticeMapper.updateNotice",n);
 	}
 
@@ -55,12 +52,19 @@ public class NoticeDao {
 	}
 
 	public ArrayList<nReply> selectReplyList(int nId) {
-	
 		return (ArrayList)sqlSession.selectList("noticeMapper.selectReplyList",nId);
 	}
 
 	public int insertReply(nReply r) {
 		return sqlSession.insert("noticeMapper.insertReply",r);
+	}
+
+	public int deleteReply(nReply r) {
+		return sqlSession.update("noticeMapper.deleteReply",r);
+	}
+
+	public int updateReply(nReply r) {
+		return sqlSession.update("noticeMapper.updateReply",r);
 	}
 
 }

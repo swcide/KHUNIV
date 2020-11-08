@@ -52,4 +52,10 @@ public interface NoticeService {
 
 	int insertReply(nReply r);
 
+
+	int deleteReply(nReply r);
+
+
+	int updateReply(nReply r);
+
 }

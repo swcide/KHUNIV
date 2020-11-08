@@ -27,6 +27,8 @@
 		<result property="rCreateDate" column="N_R_CREATE_DATE"/>
 		<result property="rmodifyDate" column="N_R_MODIFY_DATE"/>
 		<result property="rStatus" column="N_R_STATUS"/>
+		<result property="rName" column="N_RNAME"/>
+		<result property="refRid" column="N_REF_RID"/>
  	 </resultMap>
  	 
  	 	<select id="getListCount"  resultType="_int">
@@ -76,6 +78,16 @@
  	 
  	  <insert id="insertReply" parameterType="Reply">
  	 	INSERT INTO TB_NOTICE_REPLY
- 	 	VALUES(SEQ_N_RID.NEXTVAL,#{rContent},#{refNid},SYSDATE,SYSDATE,#{rWriter},DEFAULT)
+ 	 	VALUES(SEQ_N_RID.NEXTVAL,#{rContent},#{refNid},SYSDATE,SYSDATE,#{rWriter},DEFAULT,#{rName},#{refRid})
+ 	 </insert>
+ 	 <insert id="deleteReply" parameterType="Reply">
+ 	 	UPDATE TB_NOTICE_REPLY
+ 	 	SET  N_R_STATUS='N'
+ 		WHERE N_RID= #{rId}
+ 	 </insert>
+ 	 <insert id="updateReply" parameterType="Reply">
+ 	 	UPDATE TB_NOTICE_REPLY
+ 	 	SET  N_RCONTENT=#{rContent}
+ 		WHERE N_RID= #{rId}
  	 </insert>
 </mapper>

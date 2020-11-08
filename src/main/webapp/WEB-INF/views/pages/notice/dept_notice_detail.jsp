@@ -14,21 +14,29 @@
 Student loginUser = (Student)session.getAttribute("loginUser");
 Professor loginProf = (Professor)session.getAttribute("loginProf");
 Admin loginAdmin = (Admin)session.getAttribute("loginAdmin");
-String sName = null;
-String pName = null;
+String sNo = null;
+String pNo = null;
+String aId = null;
+
+String sName =null;
+String pName =null;
 String aName = null;
+
 Integer type = null;
 
 	if(loginUser !=null){
-	 sName =loginUser.getsName(); 
+	 sNo =loginUser.getsNo(); 
+	 sName =loginUser.getsName();
 	 type = loginUser.getType();
 	
 	}else if(loginProf !=null){	
-	pName =loginProf.getpName();
+	 pNo =loginProf.getpNo();
+	 pName=loginProf.getpName();
 	 type = loginProf.getType();
 	
 	}else if (loginAdmin !=null){
-	aName = loginAdmin.getaName();
+	 aId = loginAdmin.getaId();
+	 aName = loginAdmin.getaName();
 	 type = loginAdmin.getType();
 	
 	}
@@ -147,25 +155,84 @@ ul.comments li {
 										</div>
 										
 								</c:if>
+								<c:if test="${ loginAdmin.aId eq n.nWriter }">
+								<div class=" float-right">											
+											<div>
+												<c:url var="nupview" value="nupView.do">
+													<c:param name="nId" value="${n.nId }"/>
+												</c:url>
+												<c:url var="ndelete" value="ndelete.do">
+													<c:param name="nId" value="${n.nId }"/>
+												</c:url>
+												<c:url var="nlist" value="dept_notice.do">
+													<c:param name="currentPage" value="${ currentPage }"/>
+												</c:url>
+											
+											
+												<a href="${ndelete}" class="mb-1 mt-1 mr-1 btn btn-primary">
+													삭제하기
+												</a>
+												<a href="${nupview }" class="mb-1 mt-1 mr-1 btn btn-primary">
+													수정하기
+												</a>											
+											</div>
+										</div>
+										
+								</c:if>
+								<c:if test="${ loginProf.pNo eq n.nWriter and loginAdmin.sNo eq n.nWriter}">
+								<div class=" float-right">											
+											<div>
+												<c:url var="nupview" value="nupView.do">
+													<c:param name="nId" value="${n.nId }"/>
+												</c:url>
+												<c:url var="ndelete" value="ndelete.do">
+													<c:param name="nId" value="${n.nId }"/>
+												</c:url>
+												<c:url var="nlist" value="dept_notice.do">
+													<c:param name="currentPage" value="${ currentPage }"/>
+												</c:url>
+											
+											
+												<a href="${ndelete}" class="mb-1 mt-1 mr-1 btn btn-primary">
+													삭제하기
+												</a>
+												<a href="${nupview }" class="mb-1 mt-1 mr-1 btn btn-primary">
+													수정하기
+												</a>											
+											</div>
+										</div>
+										
+								</c:if>
+								<c:if test="${ lgoinUser.sNo eq n.nWriter and loginAdmin.sNo eq n.nWriter }">
+								<div class=" float-right">											
+											<div>
+												<c:url var="nupview" value="nupView.do">
+													<c:param name="nId" value="${n.nId }"/>
+												</c:url>
+												<c:url var="ndelete" value="ndelete.do">
+													<c:param name="nId" value="${n.nId }"/>
+												</c:url>
+												<c:url var="nlist" value="dept_notice.do">
+													<c:param name="currentPage" value="${ currentPage }"/>
+												</c:url>
+											
+											
+												<a href="${ndelete}" class="mb-1 mt-1 mr-1 btn btn-primary">
+													삭제하기
+												</a>
+												<a href="${nupview }" class="mb-1 mt-1 mr-1 btn btn-primary">
+													수정하기
+												</a>											
+											</div>
+										</div>
+										
+								</c:if>
 								
 								<div id="comments" class="post-block mt-5 post-comments">
 											<h4 id ="rCount"class="mb-3"></h4>
 
 											<ul class="comments">
 												<li>
-<!-- 													<div class="comment">													 -->
-<!-- 														<div class="comment-block"> -->
-<!-- 															<div class="comment-arrow"></div> -->
-<!-- 															<span class="comment-by"> -->
-<!-- 																<strong>John Doe</strong> -->
-<!-- 																<span class="float-right"> -->
-<!-- 																	<span> <a href="#"><i class="fas fa-reply"></i> Reply</a></span> -->
-<!-- 																</span> -->
-<!-- 															</span> -->
-<!-- 															<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim ornare nisi, vitae mattis nulla ante id dui.</p> -->
-<!-- 															<span class="date float-right">January 12, 2020 at 1:38 pm</span> -->
-<!-- 														</div> -->
-<!-- 													</div> -->
 
 											</ul>
 
@@ -184,7 +251,7 @@ ul.comments li {
 							
 							
 						
- 								
+ 								<c:if test="${!empty sessionScope  }">
  								<div class="post-block mt-5 post-leave-comment">
  									<h4 class="mb-3">Leave a comment</h4> 									
  										<div class="p-2"> 
@@ -204,7 +271,7 @@ ul.comments li {
 											</div> 
 										</div> 								
 								</div> 
-
+								</c:if>	
 								
 								
 							</div>
@@ -245,22 +312,26 @@ ul.comments li {
 			
 			var rContent = $("#rContent").val();
 			var refNid = ${n.nId};
+			var rName;
 			var rWriter;
 			var type= "<%=type%>";
 			
+			console.log(rContent)
 			if(type !=null){
 				if (type==1){
-					rWriter = "<%=sName%>";
+					rName = "<%=sName%>";
+					rWriter = "<%=sNo%>";
 				}
 				else if(type==2){
-					rWriter = "<%=pName%>";
+					rName = "<%=pName%>";
+					rWriter = "<%=pNo%>";
 				}else if(type==3){
-					rWriter = "<%=aName%>";
+					rName = "<%=aName%>";
+					rWriter = "<%=aId%>";
 				}
 			
 			}
-			console.log(rWriter);
-			console.log(rContent);
+		
 			
 			if (type != null){
 			$.ajax({
@@ -268,13 +339,17 @@ ul.comments li {
 				data:{
 					rContent:rContent,
 					refNid:refNid,
-					rWriter:rWriter
+					rWriter:rWriter,
+					rName:rName
+
 					},
 				type:"post",
 				success:function(data){
 					if(data == "success"){
-// 						getReplyList(); // 등록 성공 시 다시 댓글 리스트를 호출
+						getReplyList(); // 등록 성공 시 다시 댓글 리스트를 호출
 						$("#rContent").val(""); // 댓글 등록이 성공을 하면 작성한 글은 초기화 시켜준다.
+						alert("댓글이 등록되었습니다.");
+						console.log(data);
 					}
 				},error:function(request,status,errorData){
 					console.log(request.status + " : " + errorData);
@@ -282,10 +357,12 @@ ul.comments li {
 				
 			});
 			}else{
-				alert("로그인부탁함당");
+			
 			}
 		})
 	});
+	
+		
 
 	
 		
@@ -297,58 +374,259 @@ ul.comments li {
 				data:{nId:nId},
 				dataType:"json",
 				success:function(data){
+					$li = $('#comments ul li');
+					$li.html("");
 				
 					
-				
 					
-					var $div_comment = $('<div class="comment">');
-					var $div_block = $('<div class="comment-block">');
-					var $div_arrow = $('<div class="comment-arrow">')
-					var $span_cby = $('<span class="comment-by">');
-					var $reply =$('<span class="float-right"> <span> <a href="#"><i class="fas fa-reply"></i> Reply</a></span></span>')
+
 					
 					var $dupReply;
-					
-					
 					var $rWriter;
+					
+					var $rName;
 					var $rContent;
 					var $rCreateDate;
 					var type= "<%=type%>";
+					var $rId;
 					
 
 					$("#rCount").text("댓글("+data.length+")");
 					
 					if(data.length>0){
 						for(var i  in data){
-						   
+
+							$rWriter =$('<input type"hidden" "value="'+data[i].rWriter+'">').val();
+							$rName =$('<input type"hidden" value="'+data[i].rName+'">').val();
+							$rContent=$('<input type"hidden"  value="'+data[i].rContent+'">').val();
+							$rCreateDate=$('<input type"hidden"  value="'+data[i].rCreateDate+'">').val();
 							
-							$rWriter= $('<strong>').text(data[0].rWriter+"");
-							$rContent =$('<p>'+ data[0].rContent+'</p>');
-							$rCreateDate= $('<span class="date float-right"'>+data[0].rCreateDate+"</span>");
+							$rId = data[i].rId;
 							
-							$ul =$('#comments ul li');
-							$ul.append($div_comment);
 							
-							$div_comment.append($div_block);
-							$div_block.append($div_arrow);
-							$div_block.append($span_cby);
-							$span_cby.append($reply);
 							
-							$span_cby.append($rWriter);
-							
-							$div_block.append($rContent);
+							$div_c = $(
+									
+									'<div class="comment">'+													
+									'	<div class="comment-block">'+
+									'		<div class="comment-arrow"></div>'+
+									'		<input type="hidden" value="'+$rId+'">'+		
+									'		<span class="comment-by">'+
+									'			<strong >'+$rName+'</strong>'+
+									'		<span class="date float-right" style=" margin-left: 10px;">'+$rCreateDate+'</span>'+			
+									'		</span>'+
+									'		<p style="margin-bottom:15px;">'+$rContent+'</p>'+ 
+									'		<textarea style="width:85%; display: none;"></textarea>'+
+// 									' 		<span class="float-right">'+
+// 									'				<span> <a href="javascript:void(0);" onclick="reAddReply(this);"><i class="fas fa-reply"></i> Reply</a></span>'+
+// 									'		</span>'+
+									'	</div>'+
+									'</div>' );
+								
+						$li.append($div_c);
+						
+						
 						
 						}
 						
-					}
+						//for문
 
+						if (type==1){
+							var sNo= "<%=sNo%>";
+							
+							$
+						
+								if($rWriter==sNo){	
+									$dupReply = $(	
+													'<span  class=" float-right">'+
+														'<button onclick="rDelete(this);" class="btn btn-xs btn-light" style=" margin-right: 10px; ">삭제</button>'+
+													'</span>'+
+													'<span class=" float-right">'+
+														'<button onclick="rUpdateView(this);"class="btn btn-xs btn-primary" style=" margin-right: 10px;" >수정</button>'+
+													'</span>'											 
+												);
+							
+								 $('.comment-block').append($dupReply);
+								}
+							}
+							else if(type==2){
+							var pNo = "<%=pNo%>";
+							
+								if($rWriter==pNo){
+									$dupReply = $(	
+													'<span  class=" float-right">'+
+													
+														'<button onclick="rDelete(this);" class="btn btn-xs btn-light" style=" margin-right: 10px; ">삭제</button>'+
+													'</span>'+
+													'<span class=" float-right">'+
+														'<button onclick="rUpdateView(this);" class="btn btn-xs btn-primary" style=" margin-right: 10px;" >수정</button>'+
+													'</span>'
+												  );	
+
+							  	$('.comment-block').append($dupReply);
+								}
+							}else if(type==3){
+						
+								$dupReply = $(	
+												'<span  class=" float-right">'+
+												
+													'<button onclick="rDelete(this);" class="btn btn-xs btn-light" style=" margin-right: 10px; ">삭제</button>'+
+												'</span>'+
+												'<span class=" float-right">'+
+													'<button onclick="rUpdateView(this);" class="btn btn-xs btn-primary" style=" margin-right: 10px;" >수정</button>'+
+												'</span>'						
+											);	
 					
+								$('.comment-block ').append($dupReply);
+							}
+						
+					}
+					//if 문
 				
 				},error: function(result){
 					console.log(result)
 				}
 			});
 		};
+	
+		
+		
+		function rDelete(obj){
+			
+			var nId = ${n.nId};
+			var rId = $(obj).parent().siblings('input').val();
+			
+			
+			console.log(rId);
+			
+			$.ajax({
+				url:"deleteReply.do",
+				data:{
+					rId:rId},
+				type:"post",
+				success:function(data){
+					if(data =="success"){
+						
+						alert("삭제가 완료되었습니다.");
+						getReplyList();
+						
+					}
+				},error: function(result){
+					console.log(result)
+				}
+				
+				
+			});
+		}
+		function rUpdateView(obj){
+			
+// 			var rContent =$(obj).parent().siblings('p').html().trim();
+			var rId =$(obj).parent().siblings('input').val();
+			var rName = $('.comment-by').children().siblings('span').html().trim();
+			var rCreateDate = $('.comment-by').children().siblings('strong').html().trim();
+			
+			var $test;
+			$tset = '<span>테스트 입니다.</span>';
+		
+			
+			
+			var changeBtn;
+			changeBtn=
+				'<button onclick="rUpdate(this);" class="btn btn-xs btn-primary" style=" margin-right: 10px; ">수정하기</button>'+
+				'<button  onclick="rCancle(this);" class="btn btn-xs btn-primary" style=" margin-right: 10px; ">취소하기</button>';
+			
+			var changeContent;
+			changeContent= $(obj).parent().siblings('p').css('display','none');
+			var changeContent2;
+			changeContent= $(obj).parent().siblings('textarea').css('display','block');
+					
+			
+			var edit = $(obj).parent().append(changeBtn);
+			
+			
+			var remove =$(obj).remove();
+			
+			
+// 		   var rUpdateView = 
+// 			   $(
+						  
+				   
+// 	   			)
+		   
+			
+			
+			
+			
+
+		}
+		
+		function rUpdate(obj){
+			
+			
+				
+			
+		
+			
+			var nId = ${n.nId};
+			var rId = $(obj).parent().siblings('input').val();
+			var rContent =$(obj).parent().siblings('textarea').val();
+			
+			 if(rContent.trim() == ""){
+                 alert("내용을 입력하세요");
+                 rContent.focus();
+                 return false;
+             }
+			
+			
+			console.log(rId);
+			console.log(rContent);
+			
+			$.ajax({
+				url:"updateReply.do",
+				data:{
+					rId:rId,
+					rContent:rContent},
+				type:"post",
+				success:function(data){
+					if(data =="success"){
+						
+						alert("수정이 완료되었습니다.");
+						getReplyList();
+						
+					}
+				},error: function(result){
+					console.log(result)
+				}
+				
+				
+			});
+		}
+	
+	function rCancle(obj){
+		var update = '<button onclick="rUpdateView(this);" class="btn btn-xs btn-primary" style=" margin-right: 10px;" >수정</button>';
+		var $btnBack;
+		
+		var remove2 =$(obj).siblings('button').remove();
+		
+		var changeContent2;
+		changeContent= $(obj).parent().siblings('textarea').css('display','none');
+
+		var changeContent;
+		changeContent= $(obj).parent().siblings('p').css('display','block');
+
+		$btnBack=$(obj).parent().append(update);
+		var remove =$(obj).remove();
+		
+	
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	</script>
