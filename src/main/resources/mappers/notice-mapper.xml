@@ -84,6 +84,7 @@
  	 	UPDATE TB_NOTICE_REPLY
  	 	SET  N_R_STATUS='N'
  		WHERE N_RID= #{rId}
+ 		OR N_REF_RID =#{rId}
  	 </insert>
  	 <insert id="updateReply" parameterType="Reply">
  	 	UPDATE TB_NOTICE_REPLY
