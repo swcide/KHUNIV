@@ -29,6 +29,7 @@
 		<result property="rStatus" column="N_R_STATUS"/>
 		<result property="rName" column="N_RNAME"/>
 		<result property="refRid" column="N_REF_RID"/>
+		<result property="nType" column="NTYPE"/>
  	 </resultMap>
  	 
  	 	<select id="getListCount"  resultType="_int">
@@ -68,11 +69,12 @@
  	 	SET N_STATUS ='N'
  	 	WHERE NID= #{nId}
  	 </update>
- 	 <select id="selectReplyList" parameterType="_int" resultMap="replyResultSet">
+ 	 <select id="selectDeptReplyList" parameterType="_int" resultMap="replyResultSet">
  	 	SELECT *
  	 	FROM TB_NOTICE_REPLY
  	 	WHERE N_REF_NID=#{nId}
  	 	AND N_R_STATUS='Y'
+ 	 	AND NTYPE=1
  	 	ORDER BY N_RID DESC
  	 </select>
  	 
