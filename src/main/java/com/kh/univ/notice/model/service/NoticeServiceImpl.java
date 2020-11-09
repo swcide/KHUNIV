@@ -20,13 +20,11 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	@Override
 	public int getListCount() {
-		// TODO Auto-generated method stub
 		return nDao.getListCount();
 	}
 
 	@Override
 	public ArrayList<Notice> selectList(PageInfo pi) {
-		// TODO Auto-generated method stub
 		return  nDao.selectList(pi);
 	}
 
@@ -45,7 +43,6 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public int insertNotice(Notice n) {
-		// TODO Auto-generated method stub
 		return nDao.insertNotice(n);
 	}
 
@@ -56,26 +53,32 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public int updateNotice(Notice n) {
-		// TODO Auto-generated method stub
 		return nDao.updateNotice(n);
 	}
 
 	@Override
 	public int deleteNotice(int nId) {
-		
 		return nDao.deleteNotice(nId);
 	}
 
 	@Override
 	public ArrayList<nReply> selectReplyList(int nId) {
-		// TODO Auto-generated method stub
-		return null;
+		return nDao.selectReplyList(nId);
 	}
 
 	@Override
 	public int insertReply(nReply r) {
-		// TODO Auto-generated method stub
-		return 0;
+		return nDao.insertReply(r);
+	}
+
+	@Override
+	public int deleteReply(nReply r) {
+		return nDao.deleteReply(r);
+	}
+
+	@Override
+	public int updateReply(nReply r) {
+		return nDao.updateReply(r);
 	}
 	
 

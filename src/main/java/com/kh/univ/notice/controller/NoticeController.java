@@ -49,7 +49,7 @@ public class NoticeController {
 				
 		int listCount = nService.getListCount();
 		
-	
+		
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
@@ -114,6 +114,7 @@ public class NoticeController {
 	
 	}
 	
+	
 	public String saveFile(MultipartFile file,HttpServletRequest request) {
 		
 		// 파일이 저장될 경로를 설정하기
@@ -161,7 +162,7 @@ public class NoticeController {
 		return mv;
 		
 	}
-	@RequestMapping("bupdate.do")
+	@RequestMapping("nupdate.do")
 	public ModelAndView updateBoard(ModelAndView mv,Notice n,HttpServletRequest request,
 			 @RequestParam(name="uploadFile",required = false) MultipartFile file) {
 		if(file !=null && !file.isEmpty()) { // 새로 업로드된 파일이 있다면
@@ -221,23 +222,59 @@ public class NoticeController {
 	
 	@RequestMapping(value="nrList.do")
 	public void getReplyList(HttpServletResponse response, int nId ) throws JsonIOException, IOException {
-		System.out.println(nId);
+	
 		response.setContentType("application/json; charset=UTF-8");
-		System.out.println(nId);
+
 		
 		ArrayList<nReply> rList =nService.selectReplyList(nId);
+		
+
 		
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		gson.toJson(rList,response.getWriter());
 	}
 	
-//	@ResponseBody
+	
+	
+	@ResponseBody
 	@RequestMapping("addReply.do")
-	public String addReply(nReply r,@RequestParam("userType")String userType) {
-		System.out.println(r);
+	public String addReply(nReply r) {
 		
 		
 		int result = nService.insertReply(r);
+		
+		
+		System.out.println(result);
+		if(result>0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("deleteReply.do")
+	public String deleteReply(nReply r) {
+		
+		
+		int result = nService.deleteReply(r);
+		
+		
+		System.out.println(result);
+		if(result>0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	@ResponseBody
+	@RequestMapping("updateReply.do")
+	public String updateReply(nReply r) {
+		
+		
+		int result = nService.updateReply(r);
+		
+		
 		System.out.println(result);
 		if(result>0) {
 			return "success";
