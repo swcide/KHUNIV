@@ -85,5 +85,15 @@ public class helpDeskDao {
 			return (ArrayList)sqlSession.selectList("hdBoardMapper.mySelectList",student,rowBounds);
 		}
 
+	public int deleteReply(Reply r)
+		{
+			return sqlSession.update("hdBoardMapper.deleteReply",r);
+		}
+
+	public int updateReply(Reply r)
+		{
+			return sqlSession.update("hdBoardMapper.updateReply",r);
+		}
+
 
 }

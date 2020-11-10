@@ -3,25 +3,35 @@ package com.kh.univ.helpDesk.model.vo;
 import java.sql.Date;
 
 public class Reply {
+	
 	private int rId;
 	private String rContent;
-	private int refBid;
+	private int refQid;
 	private String rWriter;
 	private Date rCreateDate;
-	private Date rModifyDate;
+	private Date rmodifyDate;
 	private String rStatus;
+	private String rName;
+	private int refRid;
+	private int qType;
 	
-	public Reply() {}
+	public Reply() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-	public Reply(int rId, String rContent, int refBid, String rWriter, Date rCreateDate, Date rModifyDate, String rStatus) {
+	public Reply(int rId, String rContent, int refQid, String rWriter, Date rCreateDate, Date rmodifyDate, String rStatus, String rName, int refRid, int qType) {
 		super();
 		this.rId = rId;
 		this.rContent = rContent;
-		this.refBid = refBid;
+		this.refQid = refQid;
 		this.rWriter = rWriter;
 		this.rCreateDate = rCreateDate;
-		this.rModifyDate = rModifyDate;
+		this.rmodifyDate = rmodifyDate;
 		this.rStatus = rStatus;
+		this.rName = rName;
+		this.refRid = refRid;
+		this.qType = qType;
 	}
 
 	public int getrId()
@@ -44,14 +54,14 @@ public class Reply {
 			this.rContent = rContent;
 		}
 
-	public int getRefBid()
+	public int getRefQid()
 		{
-			return refBid;
+			return refQid;
 		}
 
-	public void setRefBid(int refBid)
+	public void setRefQid(int refQid)
 		{
-			this.refBid = refBid;
+			this.refQid = refQid;
 		}
 
 	public String getrWriter()
@@ -74,14 +84,14 @@ public class Reply {
 			this.rCreateDate = rCreateDate;
 		}
 
-	public Date getrModifyDate()
+	public Date getRmodifyDate()
 		{
-			return rModifyDate;
+			return rmodifyDate;
 		}
 
-	public void setrModifyDate(Date rModifyDate)
+	public void setRmodifyDate(Date rmodifyDate)
 		{
-			this.rModifyDate = rModifyDate;
+			this.rmodifyDate = rmodifyDate;
 		}
 
 	public String getrStatus()
@@ -94,12 +104,45 @@ public class Reply {
 			this.rStatus = rStatus;
 		}
 
+	public String getrName()
+		{
+			return rName;
+		}
+
+	public void setrName(String rName)
+		{
+			this.rName = rName;
+		}
+
+	public int getRefRid()
+		{
+			return refRid;
+		}
+
+	public void setRefRid(int refRid)
+		{
+			this.refRid = refRid;
+		}
+
+	public int getqType()
+		{
+			return qType;
+		}
+
+	public void setqType(int qType)
+		{
+			this.qType = qType;
+		}
+
 	@Override
 	public String toString()
 		{
-			return "Reply [rId=" + rId + ", rContent=" + rContent + ", refBid=" + refBid + ", rWriter=" + rWriter + ", rCreateDate=" + rCreateDate + ", rModifyDate=" + rModifyDate + ", rStatus="
-					+ rStatus + "]";
+			return "Reply [rId=" + rId + ", rContent=" + rContent + ", refQid=" + refQid + ", rWriter=" + rWriter + ", rCreateDate=" + rCreateDate + ", rmodifyDate=" + rmodifyDate + ", rStatus="
+					+ rStatus + ", rName=" + rName + ", refRid=" + refRid + ", qType=" + qType + "]";
 		}
 
+
 	
+	
+
 }
