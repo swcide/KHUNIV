@@ -148,7 +148,7 @@
 													</ul></li>
 												<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"> 공지사항 </a>
 													<ul class="dropdown-menu">
-														<li><a class="dropdown-item" href="dept_notice.do">학사 공지</a></li>
+														<li><a class="dropdown-item" href="deptNList.do">학사 공지</a></li>
 														<li><a class="dropdown-item" href="gener_notice.do">일반 공지</a></li>
 													</ul></li>
 											</ul>

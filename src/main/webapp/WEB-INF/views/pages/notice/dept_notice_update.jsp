@@ -38,7 +38,7 @@
 								<div class="custom-box-details bg-color-light custom-box-shadow-1 col-lg-12 ml-5 mb-5 mb-lg-4 float-right clearfix">
 									<h4>학사공지 작성</h4>
 
-									<form class="contact-form"	action="bupdate.do" method="post" enctype="multipart/form-data">
+									<form class="contact-form"	action="deptNupdate.do" method="post" enctype="multipart/form-data">
 										<input type="hidden" name="nId" value="${n.nId}">
 										<input type="hidden" name="originalFileName" value="${n.originalFileName }">
 										<input type="hidden" name="renameFileName" value="${n.renameFileName }">

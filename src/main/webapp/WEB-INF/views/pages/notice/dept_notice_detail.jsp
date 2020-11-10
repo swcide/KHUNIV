@@ -136,13 +136,13 @@ ul.comments li {
 								<c:if test="${ loginAdmin != null }">
 								<div class=" float-right">											
 											<div>
-												<c:url var="nupview" value="nupView.do">
+												<c:url var="nupview" value="deptNupView.do">
 													<c:param name="nId" value="${n.nId }"/>
 												</c:url>
-												<c:url var="ndelete" value="ndelete.do">
+												<c:url var="ndelete" value="deptNdelete.do">
 													<c:param name="nId" value="${n.nId }"/>
 												</c:url>
-												<c:url var="nlist" value="dept_notice.do">
+												<c:url var="nlist" value="dept_nList.do">
 													<c:param name="currentPage" value="${ currentPage }"/>
 												</c:url>
 											
@@ -160,13 +160,13 @@ ul.comments li {
 								<c:if test="${ loginAdmin.aId eq n.nWriter }">
 								<div class=" float-right">											
 											<div>
-												<c:url var="nupview" value="nupView.do">
+												<c:url var="nupview" value="deptNupView.do">
 													<c:param name="nId" value="${n.nId }"/>
 												</c:url>
 												<c:url var="ndelete" value="ndelete.do">
 													<c:param name="nId" value="${n.nId }"/>
 												</c:url>
-												<c:url var="nlist" value="dept_notice.do">
+												<c:url var="nlist" value="dept_nList.do">
 													<c:param name="currentPage" value="${ currentPage }"/>
 												</c:url>
 											
@@ -184,13 +184,13 @@ ul.comments li {
 								<c:if test="${ loginProf.pNo eq n.nWriter and loginAdmin.sNo eq n.nWriter}">
 								<div class=" float-right">											
 											<div>
-												<c:url var="nupview" value="nupView.do">
+												<c:url var="nupview" value="deptNupView.do">
 													<c:param name="nId" value="${n.nId }"/>
 												</c:url>
 												<c:url var="ndelete" value="ndelete.do">
 													<c:param name="nId" value="${n.nId }"/>
 												</c:url>
-												<c:url var="nlist" value="dept_notice.do">
+												<c:url var="nlist" value="dept_nList.do">
 													<c:param name="currentPage" value="${ currentPage }"/>
 												</c:url>
 											
@@ -208,13 +208,13 @@ ul.comments li {
 								<c:if test="${ lgoinUser.sNo eq n.nWriter and loginAdmin.sNo eq n.nWriter }">
 								<div class=" float-right">											
 											<div>
-												<c:url var="nupview" value="nupView.do">
+												<c:url var="nupview" value="deptNupView.do">
 													<c:param name="nId" value="${n.nId }"/>
 												</c:url>
 												<c:url var="ndelete" value="ndelete.do">
 													<c:param name="nId" value="${n.nId }"/>
 												</c:url>
-												<c:url var="nlist" value="dept_notice.do">
+												<c:url var="nlist" value="dept_nList.do">
 													<c:param name="currentPage" value="${ currentPage }"/>
 												</c:url>
 											
@@ -234,11 +234,11 @@ ul.comments li {
 											<h4 id ="rCount"class="mb-3"></h4>
 
 											<ul class="comments">
-												<li>
+												
 
 											</ul>
 
-										</div>
+								</div>
 							
 							
 							
@@ -341,7 +341,7 @@ ul.comments li {
 			
 			if (type != null){
 			$.ajax({
-				url:"addReply.do",
+				url:"NoticeAddReply.do",
 				data:{
 					rContent:rContent,
 					refNid:refNid,
@@ -374,14 +374,13 @@ ul.comments li {
 		function getReplyList() {
 			var nId = ${n.nId};
 			$.ajax({
-				url:"nrList.do",
+				url:"deptNrList.do",
 				data:{nId:nId},
 				dataType:"json",
 				success:function(data){
 					$ul = $('#comments ul');
 					$li1 = $('#comments ul li');
-					$content= $('.contetnt');
-// 					$ul.html("");
+					$ul.html("");
 // 					$li1.html("");
 					
 					
@@ -421,13 +420,13 @@ ul.comments li {
 							if(data[i].refRid==0){
 										
 								
-								  // 대댓글이 참조할 댓글의 rid
 								$div_c = 
-										'	<li>'+
+										'	<li id="rId_'+$rId+'">'+
 										'		<div class="comment">'+													
 										'			<div class="comment-block">'+
 										'				<div class="comment-arrow"></div>'+
-										'				<input id="rId_'+$rId+'" type="hidden" value="'+$rId+'">'+		
+										'				<input type="hidden" value="'+$rId+'">'+		
+										'				<input type="hidden" value="'+data[i].refRid+'">'+		
 										'				<span class="comment-by">'+
 										'					<strong >'+$rName+'</strong>'+
 										'				<span class="date float-right" style=" margin-left: 10px;">'+$rCreateDate+'</span>'+			
@@ -456,76 +455,68 @@ ul.comments li {
 								$ul.append($div_c);
 								
 							}
+							for(var j in data){
+								$refRid =data[j].refRid;
+								
+								if($refRid != 0){	
+								
+									var  $li = $('#rId_'+$rId);
+// 									var rId_val =$('#rid_'+[z]).val();
+									console.log($rId+"rId");
+									
+									
+		// 							$li.html("");
+										
+									$reRid = data[j].rId
+									$rWriter =data[j].rWriter
+									$rName = data[j].rName
+									$rContent= data[j].rContent
+									$rCreateDate= data[j].rCreateDate;
+									
+									
+										if($refRid ==$rId){
+		
+											console.log("refrid"+$refRid+"----"+$rId+"rId");
+											
+											$rePlace=$(	
+													'<ul class="comments reply">'+
+													'    <li >'+
+													'   	<div class="comment">'+				
+													'			<i class="fas fa-chevron-up"></i>'+
+													'     		<div class="comment-block">'+
+													'     			<input type="hidden" value="'+$reRid+'">'+		
+													'     			<span class="comment-by">'+
+													'     				<strong >수정한거'+$rName+'</strong>'+
+													'     			<span class="date float-right" style=" margin-left: 10px;">'+$rCreateDate+'</span>'+			
+													'     			</span>'+
+													'     			<p style="margin-bottom:15px;">'+$rContent+'</p>'+ 
+													'     			<textarea style="width:85%; display: none;"></textarea>'+
+													'     		</div>'+
+													'     	</div>' +
+													'	<li>'+
+													'<ul>'
+											
+													);
+											
+											$li.append($rePlace);
+										}
+									
+									
+									
+									
+								
+								}
+							}
+								
 
-							
+								
 						}
 
 				
-					
-					
-						for(var i  in data){
 						
-	
-						for(var j in data){
-							$refRid =data[i].refRid;
-							$rId = data[j].rId;
-							var rIdLength = $('<input type="hidden" value="'+$rId+'">').val()
-							
-
-							
-
-							for(z=1; z<data.length+10; z++){
-								var  $li = $('#rId_'+z).parent().parent();
-								var rId_val =$('#rid_'+[z]).val();
-								
-								
-								
-	// 							$li.html("");
-									
-								
-								$rWriter =data[i].rWriter
-								$rName = data[i].rName
-								$rContent= data[i].rContent
-								$rCreateDate= data[i].rCreateDate;
-								
-								if($refRid != 0){
-									if($refRid ==$rId){
-	
-								
-										
-										$rePlace=$(	
-												'<ul class="comments reply">'+
-												'	<li>'+
-												'   	<div class="comment">'+				
-												'			<i class="fas fa-chevron-up"></i>'+
-												'     		<div class="comment-block">'+
-												'     			<input type="hidden" value="'+$rId+'">'+		
-												'     			<span class="comment-by">'+
-												'     				<strong >수정한거'+$rName+'</strong>'+
-												'     			<span class="date float-right" style=" margin-left: 10px;">'+$rCreateDate+'</span>'+			
-												'     			</span>'+
-												'     			<p style="margin-bottom:15px;">'+$rContent+'</p>'+ 
-												'     			<textarea style="width:85%; display: none;"></textarea>'+
-												'      			<span class="float-right">'+
-												'     					<span class="checkId"> <a href="javascript:void(0);" onclick="reAddReplyView(this);"><i class="fas fa-reply"></i> Reply</a></span>'+
-												'     			</span>'+
-												'     		</div>'+
-												'     	</div>' +
-												'	<li>'+
-												'<ul>'
-										
-												);
-										
-										$li.append($rePlace);
-									}
-								
-								
-								}
-								
-							}
-						}
-					}
-
+					
+						
+					
 					//for문
 						
 
@@ -597,7 +588,7 @@ ul.comments li {
 			
 			
 			$.ajax({
-				url:"deleteReply.do",
+				url:"NoticeDeleteReply.do",
 				data:{
 					rId:rId},
 				type:"post",
@@ -669,7 +660,7 @@ ul.comments li {
 			
 			
 			$.ajax({
-				url:"updateReply.do",
+				url:"noticeUpdateReply.do",
 				data:{
 					rId:rId,
 					rContent:rContent},
@@ -751,7 +742,7 @@ ul.comments li {
 						'			<i class="fas fa-chevron-up"></i>'+
 						'			<div class="comment-block">'+
 						'			<span class="comment-by">'+
-						'				<strong>'+rWriter+'</strong>'+
+						'				<strong>'+rName+'</strong>'+
 						'			</span>'+
 						'				<textarea id ="reRContent"style="width:85%; hight:40px"></textarea>'+
 						'				<input type="hidden" value="'+refRid+'">'+	
@@ -814,7 +805,7 @@ ul.comments li {
 		 }
 		
 		$.ajax({
-			url:"addReply.do",
+			url:"NoticeAddReply.do",
 			data:{
 				rContent:rContent,
 				refNid:refNid,
@@ -825,9 +816,11 @@ ul.comments li {
 			type:"post",
 			success:function(data){
 				if(data =="success"){
+					
+					
 					getReplyList();
-
 					$("#rContent").val(""); // 댓글 등록이 성공을 하면 작성한 글은 초기화 시켜준다.
+					alert("댓글이 등록되었습니다.");
 				}
 			}
 			

@@ -13,6 +13,7 @@ public class nReply {
 	private String rStatus;
 	private String rName;
 	private int refRid;
+	private int nType;
 	
 	public nReply() {
 		super();
@@ -20,7 +21,7 @@ public class nReply {
 	}
 
 	public nReply(int rId, String rContent, int refNid, String rWriter, Date rCreateDate, Date rmodifyDate,
-			String rStatus, String rName, int refRid) {
+			String rStatus, String rName, int refRid, int nType) {
 		super();
 		this.rId = rId;
 		this.rContent = rContent;
@@ -31,6 +32,7 @@ public class nReply {
 		this.rStatus = rStatus;
 		this.rName = rName;
 		this.refRid = refRid;
+		this.nType = nType;
 	}
 
 	public int getrId() {
@@ -105,13 +107,22 @@ public class nReply {
 		this.refRid = refRid;
 	}
 
+	public int getnType() {
+		return nType;
+	}
+
+	public void setnType(int nType) {
+		this.nType = nType;
+	}
+
 	@Override
 	public String toString() {
 		return "nReply [rId=" + rId + ", rContent=" + rContent + ", refNid=" + refNid + ", rWriter=" + rWriter
 				+ ", rCreateDate=" + rCreateDate + ", rmodifyDate=" + rmodifyDate + ", rStatus=" + rStatus + ", rName="
-				+ rName + ", refRid=" + refRid + "]";
+				+ rName + ", refRid=" + refRid + ", nType=" + nType + "]";
 	}
 
+	
 	
 	
 
