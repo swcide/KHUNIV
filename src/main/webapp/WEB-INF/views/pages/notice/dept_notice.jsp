@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+
 
 
 <%@ include file="../common/header.jsp"%>
@@ -41,22 +43,57 @@
 									</tr>
 								</thead>
 								<tbody>
-								<!-- 이전이전이전 -->
 									<c:forEach var="n" items="${list}">
-										<tr>
-											<td>${n.nId }</td>
-											<td>
-												<c:url var="hdetail" value="deptDetail.do">
-													<c:param name="nId" value="${n.nId }"/>
-													<c:param name="currentPage" value="${ pi.currentPage }"/>
-												</c:url>
-												<a href=${ hdetail}>${n.nTitle }</a>
-											</td>
-											
-											<td>${n.nWriter }</td>
-											<td>${n.nCreateDate}</td>
-											<td>${n.nCount}</td>											
-										</tr>	
+									<c:set var="nSecret" value="${n.nSecret}"/>
+										<c:choose>
+											<c:when test="${nSecret == 'N' }">
+												<tr>
+													<td>${n.nId}</td>
+													<td>
+														<c:url var="nDetail" value="nDetail.do">
+															<c:param name="nId" value="${n.nId}"/>
+															<c:param name="currentPage" value="${ pi.currentPage }"/>
+															<c:param name="nType" value="${n.nType }"/>
+														</c:url>
+														<a class="ntitle" href="${nDetail}">${n.nTitle}</a>
+													</td>
+													
+													<td>${n.nName }</td>
+													<td>${n.nCreateDate}</td>
+													<td>${n.nCount}</td>											
+												</tr>	
+											</c:when>
+											<c:when test="${admin!=null}">
+												<tr>
+													<td>${n.nId }</td>
+													<td>
+														<c:url var="nDetail" value="nDetail.do">
+															<c:param name="nId" value="${n.nId }"/>
+															<c:param name="currentPage" value="${ pi.currentPage }"/>
+															<c:param name="nType" value="${n.nType }"/>
+														</c:url>
+														
+														
+														<c:if test="${nSecret eq 'N'}">
+															<a id="ntitle" href="${nDetail}">
+																${n.nTitle }
+															</a>
+														</c:if>
+														
+														<c:if test="${nSecret eq 'Y'}">
+															<a id="ntitle" href="${nDetail}">
+																<span style="color:red">(비밀글)</span>${n.nTitle }
+															</a>
+														</c:if>
+													</td>
+													
+													<td>${n.nName }}</td>
+													<td>${n.nCreateDate}</td>
+													<td>${n.nCount}</td>
+																							
+												</tr>	
+											</c:when>
+										</c:choose>
 									</c:forEach>
 									
 								</tbody>
@@ -64,7 +101,7 @@
 					
 				
 							<c:if test="${!empty sessionScope.loginAdmin }">
-								<button type="button" class="btn btn-dark"onclick="location.href='deptNInsertView.do;'"style="float: right; margin-bottom: 20px;">
+								<button type="button" class="btn btn-dark"onclick="location.href='nInsertView.do?nType=1'"style="float: right; margin-bottom: 20px;">
 									<i class="fas fa-pencil-alt"></i> 공지작성
 								</button> 
 							</c:if>
@@ -82,7 +119,7 @@
 									
 								</c:if>
 								<c:if test="${ pi.currentPage ne 1 }">
-								   <c:url var="before" value="dept_notice.do">
+								   <c:url var="before" value="nList.do?nType=1">
 					                  <c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
 					       		   </c:url>
 									 	<li class="page-item">
@@ -101,7 +138,7 @@
 										</li>
 									</c:if>
 									<c:if test="${ p ne pi.currentPage }">
-									 <c:url var="pagination" value="dept_notice.do">
+									 <c:url var="pagination" value="nList.do?nType=1">
 					                    <c:param name="currentPage" value="${ p }"/>
 					                 </c:url>
 					                 	<li class="page-item ">
@@ -121,7 +158,7 @@
 				            	
 <!-- 				            	다음대음다음대음 -->
 				            	<c:if test="${pi.currentPage ne pi.maxPage }">
-									<c:url var="after" value="dept_notice.do">
+									<c:url var="after" value="nList.do?nType=1">
 						             	<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 						            </c:url> 
 									
@@ -137,6 +174,9 @@
 				</div>
 			</div>
 		</section>
+		<script>
+		
+		</script>
 	</div>
 </div>
 <%@ include file="../common/footer.jsp"%>

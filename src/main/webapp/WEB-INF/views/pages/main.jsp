@@ -2,6 +2,12 @@
 
 <%@ include file="common/header.jsp"%>
 
+<%
+
+
+
+%>
+
 <div class="body">
 	<div role="main" class="main">
 		<div class="slider-container light rev_slider_wrapper" style="height: 650px;">
@@ -50,39 +56,72 @@
 												<tr>
 													<th>#</th>
 													<th>제목</th>
-													<th>조회수</th>
 													<th>작성자</th>
+													<th>조회수</th>
 													<th>작성일</th>
 												</tr>
 											</thead>
+											
 											<tbody>
-												<tr>
-													<td>1</td>
-													<td>취업안내</td>
-													<td>3</td>
-													<td>윤기훈</td>
-													<td>2020/10/28</td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>Jacob</td>
-													<td>Thornton</td>
-													<td>@fat</td>
-													<td>@fat</td>
-												</tr>
-												<tr>
-													<td>3</td>
-													<td>Larry</td>
-													<td>the Bird</td>
-													<td>@twitter</td>
-													<td>@fat</td>
-												</tr>
+												<c:forEach var="n" items="${nList}">
+													<c:set var="nType" value="${n.nType}"/>
+													<c:set var="nSecret" value="${n.nSecret}"/>
+													<c:if test="${nType eq 1}"> 
+													
+														<c:choose>
+															<c:when test="${nSecret == 'N' }">
+																<tr>
+																	<td>${n.nId}</td>
+																	<td>
+																		<c:url var="nDetail" value="nDetail.do">
+																			<c:param name="nId" value="${n.nId}"/>
+																			<c:param name="currentPage" value="${ pi.currentPage }"/>
+																			<c:param name="nType" value="${n.nType }"/>
+																		</c:url>
+																		<a class="ntitle" href="${nDetail}">${n.nTitle}</a>
+																	</td>
+																	
+																	<td>${n.nName }</td>
+																	<td>${n.nCount}</td>	
+																	<td>${n.nCreateDate}</td>
+																</tr>	
+															</c:when>
+															<c:when test="${admin!=null}">
+																<tr>
+																	<td>${n.nId }</td>
+																	<td>
+																		<c:if test="${nSecret eq 'N'}">
+																			<a id="ntitle" href="${nDetail}">
+																				${n.nTitle }
+																			</a>
+																		</c:if>
+																		
+																		<c:if test="${nSecret eq 'Y'}">
+																			<a id="ntitle" href="${nDetail}">
+																				<span style="color:red">(비밀글)</span>${n.nTitle }
+																			</a>
+																		</c:if>
+																	</td>
+																	
+																	<td>${n.nName }}</td>
+																	<td>${n.nCreateDate}</td>
+																	<td>${n.nCount}</td>
+																											
+																</tr>	
+															</c:when>
+														</c:choose>
+													</c:if>
+												</c:forEach>
 											</tbody>
+											
 										</table>
-										<a type="button" class="btn btn-quaternary btn-with-arrow mb-2 float-right" href="#">학사 공지 더보기<span><i class="fas fa-chevron-right"></i></span></a>
+										<a type="button" class="btn btn-quaternary btn-with-arrow mb-2 float-right" href="nList.do?nType=1">학사 공지 더보기<span><i class="fas fa-chevron-right"></i></span></a>
 									</div>
 								</div>
+								<script>
 
+								</script>
+	
 								<div class="tab-pane" id="tabsNavigationSimple2">
 									<div class="text-center">
 										<h4>일반 공지</h4>
@@ -92,36 +131,65 @@
 												<tr>
 													<th>#</th>
 													<th>제목</th>
-													<th>조회수</th>
 													<th>작성자</th>
+													<th>조회수</th>
 													<th>작성일</th>
 												</tr>
 											</thead>
+											
 											<tbody>
-												<tr>
-													<td>1</td>
-													<td>취업안내</td>
-													<td>3</td>
-													<td>윤기훈</td>
-													<td>2020/10/28</td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>Jacob</td>
-													<td>Thornton</td>
-													<td>@fat</td>
-													<td>@fat</td>
-												</tr>
-												<tr>
-													<td>3</td>
-													<td>Larry</td>
-													<td>the Bird</td>
-													<td>@twitter</td>
-													<td>@fat</td>
-												</tr>
+												<c:forEach var="n" items="${nList}">
+													<c:set var="nType" value="${n.nType}"/>
+													<c:set var="nSecret" value="${n.nSecret}"/>
+													<c:if test="${nType eq 2}"> 
+													
+														<c:choose>
+															<c:when test="${nSecret == 'N' }">
+																<tr>
+																	<td>${n.nId}</td>
+																	<td>
+																		<c:url var="nDetail" value="nDetail.do">
+																			<c:param name="nId" value="${n.nId}"/>
+																			<c:param name="currentPage" value="${ pi.currentPage }"/>
+																			<c:param name="nType" value="${n.nType }"/>
+																		</c:url>
+																		<a class="ntitle" href="${nDetail}">${n.nTitle}</a>
+																	</td>
+																	
+																	<td>${n.nName }</td>
+																	<td>${n.nCount}</td>	
+																	<td>${n.nCreateDate}</td>
+																</tr>	
+															</c:when>
+															<c:when test="${admin!=null}">
+																<tr>
+																	<td>${n.nId }</td>
+																	<td>
+																		<c:if test="${nSecret eq 'N'}">
+																			<a id="ntitle" href="${nDetail}">
+																				${n.nTitle }
+																			</a>
+																		</c:if>
+																		
+																		<c:if test="${nSecret eq 'Y'}">
+																			<a id="ntitle" href="${nDetail}">
+																				<span style="color:red">(비밀글)</span>${n.nTitle }
+																			</a>
+																		</c:if>
+																	</td>
+																	
+																	<td>${n.nName }}</td>
+																	<td>${n.nCreateDate}</td>
+																	<td>${n.nCount}</td>
+																											
+																</tr>	
+															</c:when>
+														</c:choose>
+													</c:if>
+												</c:forEach>
 											</tbody>
 										</table>
-										<a type="button" class="btn btn-quaternary btn-with-arrow mb-2 float-right" href="#">일반 공지 더보기<span><i class="fas fa-chevron-right"></i></span></a>
+										<a type="button" class="btn btn-quaternary btn-with-arrow mb-2 float-right" href="nList.do?nType=2">일반 공지 더보기<span><i class="fas fa-chevron-right"></i></span></a>
 									</div>
 								</div>
 							</div>

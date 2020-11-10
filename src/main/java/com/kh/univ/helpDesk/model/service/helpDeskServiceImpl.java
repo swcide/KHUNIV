@@ -9,6 +9,8 @@ import com.kh.univ.helpDesk.model.dao.helpDeskDao;
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.helpDesk.model.vo.QnA;
 import com.kh.univ.helpDesk.model.vo.Reply;
+import com.kh.univ.member.model.vo.Student;
+import com.kh.univ.notice.model.vo.nReply;
 
 @Service("hdService")
 public class helpDeskServiceImpl implements helpDeskService{
@@ -52,6 +54,61 @@ public class helpDeskServiceImpl implements helpDeskService{
 			}
 	}
 
+	
+	/**
+	 * qna 작성
+	 */
+	@Override
+	public int insertQnA(QnA q)
+		{
+			return hdDao.insertQnA(q);
+		}
+
+	/**
+	 * qna 수정 화면
+	 */
+	@Override
+	public Object selectUpdateBoard(int qnaId)
+		{
+			return hdDao.selectUpdateBoard(qnaId);
+		}
+
+	/**
+	 *qna 수정
+	 */
+	@Override
+	public int updateContents(QnA qna)
+		{
+			return hdDao.updateContents(qna);
+		}
+
+	/**
+	 * qna 삭제 = status > n 
+	 */
+	@Override
+	public int deleteBoard(int qnaId)
+		{
+			return hdDao.deleteBoard(qnaId);
+		}
+
+	/**
+	 * 내질문 갯수
+	 */
+	@Override
+	public int getMyListCount()
+		{
+			return hdDao.getMyListCount();
+		}
+
+	/**
+	 *내질문 리스트
+	 */
+	@Override
+	public ArrayList<QnA> mySelectList(PageInfo pi, Student student)
+		{
+			return hdDao.mySelectList(pi, student);
+		}
+
 	/**
 	 * 댓글 리스트 불러오기
 	 */
@@ -67,23 +124,26 @@ public class helpDeskServiceImpl implements helpDeskService{
 	@Override
 	public int insertReply(Reply r)
 		{
+			System.out.println("댓글추가서비스");
 			return hdDao.insertReply(r);
 		}
 
 	/**
-	 * 게시글 수정 불러오기
+	 * 댓글삭제
 	 */
 	@Override
-	public Object selectUpdateBoard(int qnaId)
+	public int deleteReply(Reply r)
 		{
-			return hdDao.selectUpdateBoard( qnaId) ;
-		}
-	
-	@Override
-	public int updateBoard(QnA qna)
-		{
-			return hdDao.updateBoard(qna);
+			return hdDao.deleteReply(r);
 		}
 
+	/**
+	 * 댓글수정
+	 */
+	@Override
+	public int updateReply(Reply r)
+		{
+			return hdDao.updateReply(r);
+		}
 	
 }

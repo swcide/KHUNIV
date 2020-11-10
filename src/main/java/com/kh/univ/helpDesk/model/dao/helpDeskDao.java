@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.helpDesk.model.vo.QnA;
 import com.kh.univ.helpDesk.model.vo.Reply;
+import com.kh.univ.member.model.vo.Student;
 
 
 @Repository("hdDao")
@@ -20,13 +21,11 @@ public class helpDeskDao {
 
 	public int getListCount()
 		{
-			System.out.println("countDao");
 			return sqlSession.selectOne("hdBoardMapper.getListCount");
 		}
 	
 	public ArrayList<QnA> getSelectList(PageInfo pi)
 		{
-			System.out.println("listDao");
 			int offset = (pi.getCurrentPage() -1 ) * pi.getBoardLimit();
 			RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
 			return (ArrayList)sqlSession.selectList("hdBoardMapper.selectList",null,rowBounds);
@@ -49,17 +48,51 @@ public class helpDeskDao {
 
 	public int insertReply(Reply r)
 		{
+			System.out.println("댓글추가DAO");
 			return sqlSession.insert("hdBoardMapper.insertReply",r);
 		}
 
-	public int updateBoard(QnA qna)
+	public int insertQnA(QnA q)
 		{
-			return sqlSession.update("hdBoardMapper.udateBoard",qna);
+			return sqlSession.insert("hdBoardMapper.insertQnA",q);
 		}
 
 	public Object selectUpdateBoard(int qnaId)
 		{
-			return sqlSession.selectOne("hdBoardMapper.selectUpdateBoard", qnaId);
+			return sqlSession.selectOne("hdBoardMapper.updateBoard",qnaId);
+		}
+
+	public int updateContents(QnA qna)
+		{
+			return sqlSession.update("hdBoardMapper.updateContents", qna);
+		}
+
+	public int deleteBoard(int qnaId)
+		{
+			System.out.println("delete Dao");
+			return sqlSession.update("hdBoardMapper.deleteBoard", qnaId);
+		}
+
+	public int getMyListCount()
+		{
+			return sqlSession.selectOne("hdBoardMapper.getMyListCount");
+		}
+	
+	public ArrayList<QnA> mySelectList(PageInfo pi, Student student)
+		{
+			int offset = (pi.getCurrentPage() -1 ) * pi.getBoardLimit();
+			RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+			return (ArrayList)sqlSession.selectList("hdBoardMapper.mySelectList",student,rowBounds);
+		}
+
+	public int deleteReply(Reply r)
+		{
+			return sqlSession.update("hdBoardMapper.deleteReply",r);
+		}
+
+	public int updateReply(Reply r)
+		{
+			return sqlSession.update("hdBoardMapper.updateReply",r);
 		}
 
 

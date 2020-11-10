@@ -5,29 +5,42 @@ import java.util.ArrayList;
 import com.kh.univ.notice.model.vo.Notice;
 
 import com.kh.univ.notice.model.vo.nReply;
+<<<<<<< HEAD
 
 import com.kh.univ.common.PageInfo;
+=======
+>>>>>>> branch 'master' of https://github.com/KHunivesity/khuniv.git
 
+<<<<<<< HEAD
+=======
+import com.kh.univ.common.PageInfo;
+import com.kh.univ.member.model.vo.Admin;
+
+>>>>>>> branch 'master' of https://github.com/KHunivesity/khuniv.git
 
 
 public interface NoticeService {
 
 	/**
 	 * 1.조회수용
+	 * @param nType 
 	 * @return
 	 */
-	int getListCount();
+	int getListCount(int nType);
 
+	ArrayList<Notice> selectList(PageInfo pi, int nType);
 	
-	ArrayList<Notice> selectList(PageInfo pi);
+	ArrayList<Notice> selectTopList();
+
 
 	
 	/**
 	 * 2.상세보기
+	 * @param n 
 	 * @param bId
 	 * @return
 	 */
-	Notice selectNotice(int nId);
+	Notice selectNotice(int nId, Notice n);
 
 
 	/**
@@ -39,8 +52,6 @@ public interface NoticeService {
 
 
 	Notice selectUpdateNotice(int nId);
-
-
 	int updateNotice(Notice n);
 
 
@@ -57,5 +68,10 @@ public interface NoticeService {
 
 
 	int updateReply(nReply r);
+
+
+
+
+	
 
 }

@@ -3,103 +3,146 @@ package com.kh.univ.helpDesk.model.vo;
 import java.sql.Date;
 
 public class Reply {
-	private int qna_rId;
-	private String qna_rContent;
-	private int qna_refBid;
-	private String qna_rWriter;
-	private Date qna_rCreateDate;
-	private Date qna_rModifyDate;
-	private String qna_rStatus;
 	
-	public Reply() {}
-
-	public Reply(int qna_rId, String qna_rContent, int qna_refBid, String qna_rWriter, Date qna_rCreateDate, Date qna_rModifyDate, String qna_rStatus) {
+	private int rId;
+	private String rContent;
+	private int refQid;
+	private String rWriter;
+	private Date rCreateDate;
+	private Date rmodifyDate;
+	private String rStatus;
+	private String rName;
+	private int refRid;
+	private int qType;
+	
+	public Reply() {
 		super();
-		this.qna_rId = qna_rId;
-		this.qna_rContent = qna_rContent;
-		this.qna_refBid = qna_refBid;
-		this.qna_rWriter = qna_rWriter;
-		this.qna_rCreateDate = qna_rCreateDate;
-		this.qna_rModifyDate = qna_rModifyDate;
-		this.qna_rStatus = qna_rStatus;
+		// TODO Auto-generated constructor stub
 	}
 
-	public int getQna_rId()
+	public Reply(int rId, String rContent, int refQid, String rWriter, Date rCreateDate, Date rmodifyDate, String rStatus, String rName, int refRid, int qType) {
+		super();
+		this.rId = rId;
+		this.rContent = rContent;
+		this.refQid = refQid;
+		this.rWriter = rWriter;
+		this.rCreateDate = rCreateDate;
+		this.rmodifyDate = rmodifyDate;
+		this.rStatus = rStatus;
+		this.rName = rName;
+		this.refRid = refRid;
+		this.qType = qType;
+	}
+
+	public int getrId()
 		{
-			return qna_rId;
+			return rId;
 		}
 
-	public void setQna_rId(int qna_rId)
+	public void setrId(int rId)
 		{
-			this.qna_rId = qna_rId;
+			this.rId = rId;
 		}
 
-	public String getQna_rContent()
+	public String getrContent()
 		{
-			return qna_rContent;
+			return rContent;
 		}
 
-	public void setQna_rContent(String qna_rContent)
+	public void setrContent(String rContent)
 		{
-			this.qna_rContent = qna_rContent;
+			this.rContent = rContent;
 		}
 
-	public int getQna_refBid()
+	public int getRefQid()
 		{
-			return qna_refBid;
+			return refQid;
 		}
 
-	public void setQna_refBid(int qna_refBid)
+	public void setRefQid(int refQid)
 		{
-			this.qna_refBid = qna_refBid;
+			this.refQid = refQid;
 		}
 
-	public String getQna_rWriter()
+	public String getrWriter()
 		{
-			return qna_rWriter;
+			return rWriter;
 		}
 
-	public void setQna_rWriter(String qna_rWriter)
+	public void setrWriter(String rWriter)
 		{
-			this.qna_rWriter = qna_rWriter;
+			this.rWriter = rWriter;
 		}
 
-	public Date getQna_rCreateDate()
+	public Date getrCreateDate()
 		{
-			return qna_rCreateDate;
+			return rCreateDate;
 		}
 
-	public void setQna_rCreateDate(Date qna_rCreateDate)
+	public void setrCreateDate(Date rCreateDate)
 		{
-			this.qna_rCreateDate = qna_rCreateDate;
+			this.rCreateDate = rCreateDate;
 		}
 
-	public Date getQna_rModifyDate()
+	public Date getRmodifyDate()
 		{
-			return qna_rModifyDate;
+			return rmodifyDate;
 		}
 
-	public void setQna_rModifyDate(Date qna_rModifyDate)
+	public void setRmodifyDate(Date rmodifyDate)
 		{
-			this.qna_rModifyDate = qna_rModifyDate;
+			this.rmodifyDate = rmodifyDate;
 		}
 
-	public String getQna_rStatus()
+	public String getrStatus()
 		{
-			return qna_rStatus;
+			return rStatus;
 		}
 
-	public void setQna_rStatus(String qna_rStatus)
+	public void setrStatus(String rStatus)
 		{
-			this.qna_rStatus = qna_rStatus;
+			this.rStatus = rStatus;
+		}
+
+	public String getrName()
+		{
+			return rName;
+		}
+
+	public void setrName(String rName)
+		{
+			this.rName = rName;
+		}
+
+	public int getRefRid()
+		{
+			return refRid;
+		}
+
+	public void setRefRid(int refRid)
+		{
+			this.refRid = refRid;
+		}
+
+	public int getqType()
+		{
+			return qType;
+		}
+
+	public void setqType(int qType)
+		{
+			this.qType = qType;
 		}
 
 	@Override
 	public String toString()
 		{
-			return "Reply [qna_rId=" + qna_rId + ", qna_rContent=" + qna_rContent + ", qna_refBid=" + qna_refBid + ", qna_rWriter=" + qna_rWriter + ", qna_rCreateDate=" + qna_rCreateDate
-					+ ", qna_rModifyDate=" + qna_rModifyDate + ", qna_rStatus=" + qna_rStatus + "]";
+			return "Reply [rId=" + rId + ", rContent=" + rContent + ", refQid=" + refQid + ", rWriter=" + rWriter + ", rCreateDate=" + rCreateDate + ", rmodifyDate=" + rmodifyDate + ", rStatus="
+					+ rStatus + ", rName=" + rName + ", refRid=" + refRid + ", qType=" + qType + "]";
 		}
 
+
 	
+	
+
 }

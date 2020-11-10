@@ -53,10 +53,10 @@
 											</td>
 											<td>${b.qnaWriter }</td>
 											<td>
-												<c:if test="${empty refly }">
+												<c:if test="${!empty refly }">
 													<span class="badge badge-dark badge-sm badge-pill text-uppercase px-2 py-1 mr-1">답변완료</span>
 												</c:if>
-												<c:if test="${!empty refly }">
+												<c:if test="${empty refly }">
 													<span class="badge badge-sm badge-pill text-uppercase px-2 py-1 mr-1">답변대기</span>
 												</c:if>
 											</td>

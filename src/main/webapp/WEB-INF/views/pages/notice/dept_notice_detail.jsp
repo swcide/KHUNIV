@@ -82,7 +82,7 @@ ul.comments li {
 				<div class="row mt-3">
 					<div
 						class="col-md-12 align-self-center p-static order-2 text-center">
-						<h1 class="text-9 font-weight-bold">학사공지${n.nId}${type2 }</h1>
+						<h1 class="text-9 font-weight-bold">학사공지${n.nId}</h1>
 						<span class="sub-title">Department Notice</span>
 					</div>
 				</div>
@@ -134,21 +134,48 @@ ul.comments li {
 								</c:if>
 							
 								<c:if test="${ loginAdmin != null }">
+									<div class=" float-right">											
+										<div>
+											<c:url var="nupview" value="nUpView.do">
+												<c:param name="nId" value="${n.nId }"/>
+												<c:param name="nType" value="${n.nType}"/>
+											</c:url>
+											<c:url var="nDelete" value="nDelete.do">
+												<c:param name="nId" value="${n.nId }"/>
+											</c:url>
+											<c:url var="nList" value="nList.do?nType=1">
+												<c:param name="currentPage" value="${ currentPage }"/>
+											</c:url>
+										
+											<a href="${nDelete}" class="mb-1 mt-1 mr-1 btn btn-primary">
+												삭제하기${nupview}
+											</a>
+											<a href="${nupview }" class="mb-1 mt-1 mr-1 btn btn-primary">
+												수정하기
+											</a>											
+										</div>
+									</div>
+										
+								</c:if>
+								<c:if test="${ loginProf.pNo eq n.nWriter }">
 								<div class=" float-right">											
 											<div>
-												<c:url var="nupview" value="deptNupView.do">
+												<c:url var="nupview" value="nUpView.do">
+													<c:param name="nId" value="${n.nId }"/>
+													<c:param name="nType" value="${n.nType}"/>
+												</c:url>
+												<c:url var="nDelete" value="nDelete.do?nType=1">
 													<c:param name="nId" value="${n.nId }"/>
 												</c:url>
-												<c:url var="ndelete" value="deptNdelete.do">
-													<c:param name="nId" value="${n.nId }"/>
-												</c:url>
-												<c:url var="nlist" value="dept_nList.do">
+												<c:url var="nList" value="nList.do">
 													<c:param name="currentPage" value="${ currentPage }"/>
 												</c:url>
+										
+												<c:set var="test" value="${n.nType }"/>
 											
 											
-												<a href="${ndelete}" class="mb-1 mt-1 mr-1 btn btn-primary">
-													삭제하기
+												<a href="${nDelete}" class="mb-1 mt-1 mr-1 btn btn-primary">
+													삭제하기 ${test }
 												</a>
 												<a href="${nupview }" class="mb-1 mt-1 mr-1 btn btn-primary">
 													수정하기
@@ -157,78 +184,7 @@ ul.comments li {
 										</div>
 										
 								</c:if>
-								<c:if test="${ loginAdmin.aId eq n.nWriter }">
-								<div class=" float-right">											
-											<div>
-												<c:url var="nupview" value="deptNupView.do">
-													<c:param name="nId" value="${n.nId }"/>
-												</c:url>
-												<c:url var="ndelete" value="ndelete.do">
-													<c:param name="nId" value="${n.nId }"/>
-												</c:url>
-												<c:url var="nlist" value="dept_nList.do">
-													<c:param name="currentPage" value="${ currentPage }"/>
-												</c:url>
-											
-											
-												<a href="${ndelete}" class="mb-1 mt-1 mr-1 btn btn-primary">
-													삭제하기
-												</a>
-												<a href="${nupview }" class="mb-1 mt-1 mr-1 btn btn-primary">
-													수정하기
-												</a>											
-											</div>
-										</div>
-										
-								</c:if>
-								<c:if test="${ loginProf.pNo eq n.nWriter and loginAdmin.sNo eq n.nWriter}">
-								<div class=" float-right">											
-											<div>
-												<c:url var="nupview" value="deptNupView.do">
-													<c:param name="nId" value="${n.nId }"/>
-												</c:url>
-												<c:url var="ndelete" value="ndelete.do">
-													<c:param name="nId" value="${n.nId }"/>
-												</c:url>
-												<c:url var="nlist" value="dept_nList.do">
-													<c:param name="currentPage" value="${ currentPage }"/>
-												</c:url>
-											
-											
-												<a href="${ndelete}" class="mb-1 mt-1 mr-1 btn btn-primary">
-													삭제하기
-												</a>
-												<a href="${nupview }" class="mb-1 mt-1 mr-1 btn btn-primary">
-													수정하기
-												</a>											
-											</div>
-										</div>
-										
-								</c:if>
-								<c:if test="${ lgoinUser.sNo eq n.nWriter and loginAdmin.sNo eq n.nWriter }">
-								<div class=" float-right">											
-											<div>
-												<c:url var="nupview" value="deptNupView.do">
-													<c:param name="nId" value="${n.nId }"/>
-												</c:url>
-												<c:url var="ndelete" value="ndelete.do">
-													<c:param name="nId" value="${n.nId }"/>
-												</c:url>
-												<c:url var="nlist" value="dept_nList.do">
-													<c:param name="currentPage" value="${ currentPage }"/>
-												</c:url>
-											
-											
-												<a href="${ndelete}" class="mb-1 mt-1 mr-1 btn btn-primary">
-													삭제하기
-												</a>
-												<a href="${nupview }" class="mb-1 mt-1 mr-1 btn btn-primary">
-													수정하기
-												</a>											
-											</div>
-										</div>
-										
-								</c:if>
+								
 								
 								<div id="comments" class="post-block mt-5 post-comments">
 											<h4 id ="rCount"class="mb-3"></h4>
@@ -264,9 +220,10 @@ ul.comments li {
 											</div> 
  											</div> 
  											<div class="form-row"> 
+ 											
  												<div class="form-group col mb-0">
 													<input id="rSubmit"type="button" value="등록"  class="btn btn-dark btn-modern float-right" data-loading-text="Loading..."> 
-												<a href="${nlist}" class="mb-1 mt-1 mr-1 btn btn-primary float-left">
+												<a href="${nList }" class="mb-1 mt-1 mr-1 btn btn-primary float-left">
 												목록으로
 										</a>
 												</div> 
@@ -275,11 +232,7 @@ ul.comments li {
 								</div> 
 								</c:if>	
 								
-								<input type="hidden" id="div_1" value="22">
-								<input type="hidden" id="div_2" value="11">
-								<input type="hidden" id="div_3" value="33">
-								<input type="hidden" id="div_4" value="44">
-								<input type="hidden" id="div_5" value="55">
+						
 							</div>
 						</article>
 					</div>
@@ -300,9 +253,6 @@ ul.comments li {
 // 			getReplyList(); // 타 회원이 댓글들을 작성했을 수도 있으니 지속적으로 댓글 불러오기
 // 		},3000);
 
-		function check (){
-		
-		}
 		
 		
 		$('#rSubmit').on('click',function(){
@@ -316,8 +266,9 @@ ul.comments li {
 			
 			 var rContent = $("#rContent").val();
 			 var refNid = ${n.nId};
-			 var rName;
+			 var nType =${n.nType};
 			 var rWriter;
+			 var rName;
 			 var type= "<%=type%>";
 //	 			 var refRid = $(obj).
 				
@@ -346,7 +297,8 @@ ul.comments li {
 					rContent:rContent,
 					refNid:refNid,
 					rWriter:rWriter,
-					rName:rName
+					rName:rName,
+					nType:nType
 
 					},
 				type:"post",
@@ -374,7 +326,7 @@ ul.comments li {
 		function getReplyList() {
 			var nId = ${n.nId};
 			$.ajax({
-				url:"deptNrList.do",
+				url:"nRList.do",
 				data:{nId:nId},
 				dataType:"json",
 				success:function(data){
@@ -438,7 +390,7 @@ ul.comments li {
 										'				</span>'+
 										'			</div>'+
 										'		</div>' 
-										'	<li>'
+										'	<li>';
 									
 									
 							
@@ -457,22 +409,21 @@ ul.comments li {
 							}
 							for(var j in data){
 								$refRid =data[j].refRid;
-								
+							
 								if($refRid != 0){	
-								
+									
 									var  $li = $('#rId_'+$rId);
-// 									var rId_val =$('#rid_'+[z]).val();
 									console.log($rId+"rId");
 									
 									
-		// 							$li.html("");
+// 									$li.html("");
 										
 									$reRid = data[j].rId
 									$rWriter =data[j].rWriter
 									$rName = data[j].rName
 									$rContent= data[j].rContent
 									$rCreateDate= data[j].rCreateDate;
-									
+									console.log("refrid"+$refRid+"----"+$rId+"rId");
 									
 										if($refRid ==$rId){
 		
@@ -778,7 +729,7 @@ ul.comments li {
 		
 		var rContent = $("#reRContent").val();
 		var refNid = ${n.nId}; // 게시판 번호
-		
+		var nType = ${n.nType};
 		
 		var refRid = $(obj).siblings('input').val(); //댓글달 댓글 번호
 		
@@ -811,7 +762,8 @@ ul.comments li {
 				refNid:refNid,
 				rWriter:rWriter,
 				rName:rName,
-				refRid:refRid
+				refRid:refRid,
+				nType:nType
 				},
 			type:"post",
 			success:function(data){
