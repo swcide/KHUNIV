@@ -2,6 +2,12 @@
 
 <%@ include file="common/header.jsp"%>
 
+<%
+
+
+
+%>
+
 <div class="body">
 	<div role="main" class="main">
 		<div class="slider-container light rev_slider_wrapper" style="height: 650px;">
@@ -55,34 +61,35 @@
 													<th>작성일</th>
 												</tr>
 											</thead>
+											
 											<tbody>
-												<tr>
-													<td>1</td>
-													<td>취업안내</td>
-													<td>3</td>
-													<td>윤기훈</td>
-													<td>2020/10/28</td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>Jacob</td>
-													<td>Thornton</td>
-													<td>@fat</td>
-													<td>@fat</td>
-												</tr>
-												<tr>
-													<td>3</td>
-													<td>Larry</td>
-													<td>the Bird</td>
-													<td>@twitter</td>
-													<td>@fat</td>
-												</tr>
+												
+<%-- 												<c:if test="${n.nType eq 01}"> --%>
+												
+													<c:forEach var="nl" items="${nList}">
+														<tr>
+														
+															<td>${nl.nId}</td>
+															<td>${nl.nTitle }</td>
+															<td>${nl.nCount }</td>
+															<td>${nl.nName }</td>
+															<td>${nl.nCreateDate }</td>
+														</tr>
+													</c:forEach>
+<%-- 												</c:if> --%>
 											</tbody>
+											
 										</table>
 										<a type="button" class="btn btn-quaternary btn-with-arrow mb-2 float-right" href="#">학사 공지 더보기<span><i class="fas fa-chevron-right"></i></span></a>
 									</div>
 								</div>
-
+								<script>
+									$(function(){
+										console.log(${n.nId});
+										console.log(${n.nType});
+									});
+								</script>
+	
 								<div class="tab-pane" id="tabsNavigationSimple2">
 									<div class="text-center">
 										<h4>일반 공지</h4>
@@ -98,27 +105,18 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td>1</td>
-													<td>취업안내</td>
-													<td>3</td>
-													<td>윤기훈</td>
-													<td>2020/10/28</td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>Jacob</td>
-													<td>Thornton</td>
-													<td>@fat</td>
-													<td>@fat</td>
-												</tr>
-												<tr>
-													<td>3</td>
-													<td>Larry</td>
-													<td>the Bird</td>
-													<td>@twitter</td>
-													<td>@fat</td>
-												</tr>
+												<c:if test="${n.nType eq 02 }">
+													<c:forEach var="n" items="${nList}">
+														<tr>
+														
+															<td>${n.nId}</td>
+															<td>${n.nTitle }</td>
+															<td>${n.nCount }</td>
+															<td>${n.nName }</td>
+															<td>${n.nCreateDate }</td>
+														</tr>
+													</c:forEach>
+												</c:if>
 											</tbody>
 										</table>
 										<a type="button" class="btn btn-quaternary btn-with-arrow mb-2 float-right" href="#">일반 공지 더보기<span><i class="fas fa-chevron-right"></i></span></a>

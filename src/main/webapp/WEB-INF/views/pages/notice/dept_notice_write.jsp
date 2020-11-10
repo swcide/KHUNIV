@@ -63,7 +63,7 @@
 											</div>
 										</div>
 										
-										<input  type="button" onclick="location.href='dept_notice.do'" value="뒤로가기"	class="btn btn-quaternary mb-2">
+										<input  type="button" onclick="location.href='deptNList.do'" value="뒤로가기"	class="btn btn-quaternary mb-2">
 										<input	type="submit" value="완료"class="btn btn-dark btn-modern float-right">
 									</form>
 									

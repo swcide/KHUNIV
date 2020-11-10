@@ -58,4 +58,7 @@ public interface NoticeService {
 
 	int updateReply(nReply r);
 
+
+	ArrayList<Notice> selectTopList();
+
 }

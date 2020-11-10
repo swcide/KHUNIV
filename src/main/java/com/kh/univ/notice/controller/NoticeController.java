@@ -37,6 +37,7 @@ public class NoticeController {
 	@Autowired
 	private NoticeService nService;
 
+//	-------------------------- 학사공지 ------------------------------
 	/**
 	 * 1.게시글 조회데스
 	 * @param mv
@@ -61,6 +62,13 @@ public class NoticeController {
 		mv.setViewName("notice/dept_notice");
 		return mv;
 	}
+	/**
+	 * 2. 게시물 상세조회
+	 * @param mv
+	 * @param nId
+	 * @param currentPage
+	 * @return
+	 */
 	@RequestMapping("deptDetail.do")
 	public ModelAndView deptNoticeDetail(ModelAndView mv, int nId,
 									@RequestParam(value="currentPage",required = false,defaultValue = "1") int currentPage) {
@@ -77,10 +85,21 @@ public class NoticeController {
 		
 		return mv;
 	}	
+	/**
+	 * 3 . 게시글 작성 뷰
+	 * @return
+	 */
 	@RequestMapping("deptNInsertView.do")
 	public String deptNoticeInsertView() {
 		return "notice/dept_notice_write";
 	}	
+	/**
+	 * 4. 게시글 작성
+	 * @param n
+	 * @param request
+	 * @param file
+	 * @return
+	 */
 	@RequestMapping("deptNInsert.do")
 	public String deptNoticeInsert(Notice n,HttpServletRequest request,
 							 @RequestParam(name="uploadFile",required = false) MultipartFile file) {
@@ -148,13 +167,29 @@ public class NoticeController {
 		
 		return renameFileName;
 	}
-		@RequestMapping("deptNupView.do")
+		
+	/**
+	 * 5. 게시글 수정 뷰
+	 * @param mv
+	 * @param nId
+	 * @return
+	 */
+	@RequestMapping("deptNupView.do")
 	public ModelAndView deptNoticeUpdateView(ModelAndView mv, int nId) {
 		System.out.println(nId);
 		mv.addObject("n",nService.selectUpdateNotice(nId)).setViewName("notice/dept_notice_update");
 		return mv;
 		
 	}
+	/**
+	 * 
+	 * 6. 게시글 수정
+	 * @param mv
+	 * @param n
+	 * @param request
+	 * @param file
+	 * @return
+	 */
 	@RequestMapping("deptNupdate.do")
 	public ModelAndView deptNoticeUpdate(ModelAndView mv,Notice n,HttpServletRequest request,
 			 @RequestParam(name="uploadFile",required = false) MultipartFile file) {
@@ -194,6 +229,12 @@ public class NoticeController {
 				f.delete();
 			}
 		}
+	/**
+	 * 7. 게시글 삭제
+	 * @param nId
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("deptNdelete.do")
 	public String boardDelete(int nId, HttpServletRequest request) {
 		
@@ -211,6 +252,13 @@ public class NoticeController {
 			return "common/errorPage";
 		}
 	}
+	/**
+	 * 8. 댓글 조회
+	 * @param response
+	 * @param nId
+	 * @throws JsonIOException
+	 * @throws IOException
+	 */
 	@RequestMapping(value="deptNrList.do")
 	public void getReplyList(HttpServletResponse response, int nId ) throws JsonIOException, IOException {
 	
@@ -224,6 +272,11 @@ public class NoticeController {
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		gson.toJson(rList,response.getWriter());
 	}
+	/**
+	 * 9. 댓글 작성
+	 * @param r
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("NoticeAddReply.do")
 	public String addReply(nReply r) {
@@ -239,6 +292,11 @@ public class NoticeController {
 			return "fail";
 		}
 	}	
+	/**
+	 * 10. 댓글 삭제
+	 * @param r
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("NoticeDeleteReply.do")
 	public String deleteReply(nReply r) {
@@ -254,6 +312,11 @@ public class NoticeController {
 			return "fail";
 		}
 	}
+	/**
+	 * 11. 댓글 업데이트
+	 * @param r
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("noticeUpdateReply.do")
 	public String updateReply(nReply r) {
@@ -270,5 +333,55 @@ public class NoticeController {
 		}
 	}
 	
+	
+// ------------------------------- 일반공지 -------------------------------------
 		
+	
+	/**
+	 * 1. 게시물 조회
+	 * @param mv
+	 * @param currentPage
+	 * @return
+	 */
+	@RequestMapping("generNList.do")
+	public ModelAndView generNoticeList (ModelAndView mv, @RequestParam(value="currentPage",
+	    required = false,defaultValue = "1") int currentPage) {
+				
+		int listCount = nService.getListCount();
+		
+		
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Notice> list = nService.selectList(pi);
+	
+		
+		mv.addObject("list",list);
+		mv.addObject("pi",pi);
+		mv.setViewName("notice/gener_notice");
+		return mv;
+	}
+	/**
+	 * 2. 게시물 상세조회
+	 * @param mv
+	 * @param nId
+	 * @param currentPage
+	 * @return
+	 */
+	@RequestMapping("generDetail.do")
+	public ModelAndView generNoticeDetail(ModelAndView mv, int nId,
+									@RequestParam(value="currentPage",required = false,defaultValue = "1") int currentPage) {
+	
+		Notice n = nService.selectNotice(nId);
+		
+		if(n!=null) {
+			mv.addObject("n",n)
+			  .addObject("currentPage", currentPage)
+			  .setViewName("notice/gener_notice_detail");
+		}else {
+			mv.addObject("msg", "게시글 상세 조회 실패").setViewName("common/errorPage");
+		}
+		
+		return mv;
+	}	
 }

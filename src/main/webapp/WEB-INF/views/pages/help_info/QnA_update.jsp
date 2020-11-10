@@ -8,7 +8,7 @@
 			<div class="container">
 				<div class="row mt-3">
 					<div class="col-md-12 align-self-center p-static order-2 text-center">
-						<h1 class="text-9 font-weight-bold">Q&A 작성하기</h1>
+						<h1 class="text-9 font-weight-bold">Q&A 수정하기</h1>
 						<span class="sub-title">Question and Answer</span>
 					</div>
 				</div>
@@ -27,29 +27,25 @@
 
 								<div class="custom-box-details bg-color-light custom-box-shadow-1 col-lg-12 ml-5 mb-5 mb-lg-4 float-right clearfix">
 									<h4>QnA 수정</h4>
-									<form id="fm"class="contact-form"	action="ninsert.do" method="post" enctype="multipart/form-data">
+									<form id="fm"class="contact-form"	action="qnaUpdate.do" method="post" enctype="multipart/form-data">
 										<div class="form-group">
-											<input class="form-control"  name="nTitle" placeholder="제목">
+											<input class="form-control"  name="qnaTitle" value="${b.qnaTitle }">
 										</div>
 										<div class="form-row">
 											<div class="form-group col">
-											<input type="hidden" name="nWriter" value="${loginAdmin.aId}">
-											<input type="hidden" name="nName"value="${loginAdmin.aName}">
-											<input type="hidden" name="nYype"value="01">
+											<input type="hidden" name="qnaWriter" value="${loginUser.sNo}">
+											<input type="hidden" name="qnaName"value="${loginUser.sName}">
+											<input type="hidden" name="qnaId"value="${b.qnaId}">
 												  <div class=" ">
 										              <div class="mb-3">
-										                <textarea class="textarea" placeholder="Place some text here" name="nContent"
-										                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+										                <textarea class="textarea" name="qnaContent"  value="${b.qnaContent }"
+										                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">${b.qnaContent }</textarea>
 										              </div>
-										            
 										            </div>
-										            <div>첨부파일</div>
-													<div><input class="form-control-file" type="file" name="uploadFile"></div>
 											</div>
 										</div>
-										
-										<input  type="button" onclick="location.href='dept_notice.do'" value="뒤로가기"	class="btn btn-quaternary mb-2">
-										<input	type="submit" value="완료"class="btn btn-dark btn-modern float-right">
+										<input  type="button" onclick="history.back()" value="뒤로가기"	class="btn btn-quaternary mb-2">
+										<input	type="submit" value="수정하기"class="btn btn-dark btn-modern float-right">
 									</form>
 									<script>
 									

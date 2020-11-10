@@ -15,6 +15,11 @@ import com.kh.univ.common.PageInfo;
 public class NoticeDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
+	
+	public ArrayList<Notice> selectTopList() {
+		return (ArrayList)sqlSession.selectList("noticeMapper.selectDeptTopList");
+	}
 
 	public int getListCount() {
 		
@@ -66,5 +71,7 @@ public class NoticeDao {
 	public int updateReply(nReply r) {
 		return sqlSession.update("noticeMapper.updateReply",r);
 	}
+
+	
 
 }
