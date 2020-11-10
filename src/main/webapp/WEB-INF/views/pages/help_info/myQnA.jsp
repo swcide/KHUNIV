@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	
 
 <%@ include file="../common/header.jsp"%>
 
@@ -38,39 +40,85 @@
 									</tr>
 								</thead>
 								<tbody>
+								<c:forEach var="b" items="${list }">
 									<tr>
-										<td>4</td>
-										<td><a href>제 생각엔 학교에 큰 문제가 있는 거 같아요</a></td>
-										<td>조원영</td>
-										<td><span
-											class="badge badge-sm badge-pill text-uppercase px-2 py-1 mr-1">답변대기</span>
+										<td>${b.qnaId}</td>
+										<td>
+										<c:if test="${!empty sessionScope }">
+													<c:url var="QnA_detail" value="QnA_detail.do">
+														<c:param name="qnaId" value="${b.qnaId}" />
+														<c:param name="currentPage" value="${pi.currentPage }" />
+													</c:url>
+										<a href ="${QnA_detail }">${b.qnaTitle }</a>
+										</c:if>
+										
+										<c:if test="${empty sessionScope }">
+													${b.qnaTitle }
+												</c:if>
+										</td>
+										<td>${b.qnaWriter }</td>
+										<td>
+										<c:if test="${empty refly }">
+										<span class="badge badge-sm badge-pill text-uppercase px-2 py-1 mr-1">답변대기</span>
+										</c:if>
+										<c:if test="${!empty refly }">
+													<span class="badge badge-sm badge-pill text-uppercase px-2 py-1 mr-1">답변대기</span>
+												</c:if>
 										</td>
 									</tr>
-									<tr>
-										<td>3</td>
-										<td><a href>사이트가 멋있네요</a></td>
-										<td>조원영</td>
-										<td><span
-											class="badge badge-dark badge-sm badge-pill text-uppercase px-2 py-1 mr-1">답변완료</span>
-										</td>
-									</tr>
+									</c:forEach>
 								</tbody>
 							</table>
-							<button type="button" class="btn btn-dark"
-								onclick="location= 'Q&Awrite.jsp'"
-								style="float: right; margin-bottom: 20px;">
-								<i class="fas fa-pencil-alt"></i> 질문작성
-							</button>
-						</div>
-						<div class="card-tools" align="center">
+							<div class="card-tools" align="center">
 							<ul class="pagination pagination-sm" style="display: inline-flex">
-								<li class="page-item"><a class="page-link" href="#"><i
-										class="fas fa-angle-left"></i></a></li>
-								<li class="page-item active"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#"><i
-										class="fas fa-angle-right"></i></a></li>
-							</ul>
-						</div>
+								<c:if test="${ pi.currentPage eq 1 }">
+								<a class="page-link" href="#"><i class="fas fa-angle-left"></i></a>
+						         </c:if>
+								<c:if test="${ pi.currentPage ne 1 }">
+									<c:url var="before" value="QnA.do">
+										<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
+									</c:url>
+									<li class="page-item">
+								<a class="page-link" href="${ before }"><i class="fas fa-angle-left"></i></a>
+								</li>
+        						   </c:if>
+
+								<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+									<c:if test="${ p eq pi.currentPage }">
+									<li class="page-item active">
+								<a class="page-link" href="${ pagination }">${ p }</a></li>
+									</c:if>
+
+									<c:if test="${ p ne pi.currentPage }">
+										<c:url var="pagination" value="QnA.do">
+											<c:param name="currentPage" value="${ p }" />
+										</c:url>
+										<li class="page-item">
+								<a class="page-link" href="${ pagination }">${ p }</a></li>
+             						  </c:if>
+								</c:forEach>
+
+								<c:if test="${ pi.currentPage eq pi.maxPage }">
+					               <li class="page-item">
+								<a class="page-link" href="#"><i class="fas fa-angle-right"></i></a>
+								</li>
+					            </c:if>
+								<c:if test="${ pi.currentPage ne pi.maxPage }">
+									<c:url var="after" value="QnA.do">
+										<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
+									</c:url>
+									<li class="page-item">
+								<a class="page-link" href="${ after }"><i class="fas fa-angle-right"></i></a>
+								</li>
+								</c:if>
+								
+								</ul>
+							<c:if test="${! empty sessionScope.loginUser }">
+								<button  type="button" class="btn btn-dark" onclick="location.href= 'QnA_write.do'" style="float: right; margin-bottom: 20px;">
+									<i class="fas fa-pencil-alt"></i> 질문작성
+								</button>
+							</c:if>
+							</div>
 					</div>
 				</div>
 			</div>
