@@ -33,84 +33,100 @@
 									<tr>
 										<th>#</th>
 										<th>제목</th>
-
 										<th>작성자</th>
 										<th>조회수</th>
 										<th>작성일</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>1</td>
-										<td><a href ="human_bDetail.do">저는 인문사회 전문가 입니다 너무 쉽네요</a></td>
-
-										<td>김진태</td>
-										<td>3</td>
-										<td>2020/10/28</td>
-									</tr>
-									<tr>
-										<td>2</td>
-										<td><a href>사회가 황폐해졌습니다</a></td>
-
-										<td>이성호</td>
-										<td>123</td>
-										<td>2020/10/28</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td><a href>형 머하세요</a></td>
-
-										<td>윤기훈</td>
-										<td>12</td>
-										<td>2020/10/28</td>
-									</tr>
-									<tr>
-										<td>4</td>
-										<td><a href>보고싶다</a></td>
-
-										<td>김진태</td>
-										<td>11</td>
-										<td>2020/10/28</td>
-									</tr>
-									<tr>
-										<td>5</td>
-										<td><a href>영종도에 낚시포인트 좋은곳 있나요?</a></td>
-
-										<td>김진태</td>
-										<td>1</td>
-										<td>2020/10/28</td>
-									</tr>
-									<tr>
-										<td>6</td>
-										<td><a href>삼겹살김치볶음밥에 반숙은 인문사회학적으로 옳은 선택입니다.</a></td>
-
-										<td>김진태</td>
-										<td>131</td>
-										<td>2020/10/28</td>
-									</tr>
-									<tr>
-										<td>7</td>
-										<td><a href>인문사회계열 관련글만 적어주시면 감사하겠습니다.</a></td>
-
-										<td>관리자</td>
-										<td>131</td>
-										<td>2020/10/28</td>
-									</tr>
+									<c:forEach var="h" items="${list}">
+										<tr>
+											<td>${h.hId }</td>
+											<td>
+												<c:url var="hdetail" value="hBoardDetail.do">
+													<c:param name="hId" value="${h.hId }"/>
+													<c:param name="currentPage" value="${ pi.currentPage }"/>
+												</c:url>
+												<a href=${ hdetail}>${h.hTitle }</a>
+											</td>
+											
+											<td>${h.hWriter }</td>
+											<td>${h.hCreateDate}</td>
+											<td>${h.hCount}</td>											
+										</tr>	
+									</c:forEach>
+									
 								</tbody>
 							</table>
-							<button type="button" class="btn btn-dark"
-								onclick="location.href= 'human_write.do'"
-								style="float: right; margin-bottom: 20px;">
-								<i class="fas fa-pencil-alt"></i> 글쓰기
-							</button>
+							<c:if test="${!empty sessionScope.loginUser }">
+								<button type="button" class="btn btn-dark"onclick="location.href= 'human_write.do'"style="float: right; margin-bottom: 20px;">
+									<i class="fas fa-pencil-alt"></i> 글쓰기
+								</button> 
+							</c:if>
 						</div>
 						<div class="card-tools" align="center">
 							<ul class="pagination pagination-sm" style="display: inline-flex">
-								<li class="page-item"><a class="page-link" href="#"><i
-										class="fas fa-angle-left"></i></a></li>
-								<li class="page-item active"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#"><i
-										class="fas fa-angle-right"></i></a></li>
+								<!-- 이전 -->
+								<c:if test="${ pi.currentPage eq 1 }">
+									
+										<li class="page-item">
+											<a class="page-link" >
+												<i class="fas fa-angle-left"></i>
+											</a>
+										</li>
+									
+								</c:if>
+								<c:if test="${ pi.currentPage ne 1 }">
+								   <c:url var="before" value="human.do">
+					                  <c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
+					       		   </c:url>
+									 	<li class="page-item">
+											<a class="page-link" href="${ before }">
+												<i class="fas fa-angle-left"></i>
+											</a>
+										</li>
+								</c:if>
+								
+								<!-- 페이징처리 -->
+							  	<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+									<c:if test="${ p eq pi.currentPage }">
+									
+										<li class="page-item active">
+											<a class="page-link" href="${ pagination }">${p}</a>
+										</li>
+									</c:if>
+									<c:if test="${ p ne pi.currentPage }">
+									 <c:url var="pagination" value="human.do">
+					                    <c:param name="currentPage" value="${ p }"/>
+					                 </c:url>
+					                 	<li class="page-item ">
+											<a class="page-link" href="${ pagination }">${p}</a>
+										</li>
+									</c:if>
+								</c:forEach>
+								<c:if test="${ pi.currentPage eq pi.maxPage }">
+								
+					              		<li class="page-item">
+					              			<a class="page-link" >
+												<i class="fas fa-angle-right"></i>
+											</a>
+										</li>
+									
+				            	</c:if>	
+				            	
+<!-- 				            	다음 -->
+				            	<c:if test="${pi.currentPage ne pi.maxPage }">
+									<c:url var="after" value="human.do">
+						             	<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+						            </c:url> 
+									
+									<li class="page-item">
+										<a class="page-link" href="${after}">
+											<i class="fas fa-angle-right"></i>
+										</a>
+									</li>
+								</c:if>
+					
 							</ul>
 						</div>
 					</div>

@@ -5,10 +5,18 @@ import java.util.ArrayList;
 import com.kh.univ.notice.model.vo.Notice;
 
 import com.kh.univ.notice.model.vo.nReply;
+<<<<<<< HEAD
 
+import com.kh.univ.common.PageInfo;
+=======
+>>>>>>> branch 'master' of https://github.com/KHunivesity/khuniv.git
+
+<<<<<<< HEAD
+=======
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.member.model.vo.Admin;
 
+>>>>>>> branch 'master' of https://github.com/KHunivesity/khuniv.git
 
 
 public interface NoticeService {

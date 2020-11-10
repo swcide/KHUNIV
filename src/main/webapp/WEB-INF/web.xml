@@ -1,88 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-
-	<!-- 
-			* web.xml
-		
-		Tomcat(WAS) 실행시 web.xml을 제일먼저 읽게 된다.
-		- 서버 실행 시 초기에 읽어야 할 설정 xml 문서들을 읽도록 web.xml에 등록
-		- 서블릿 실행 이전에 서블릿 초기화하는 용도로 사용.
-	 -->
-
-
-	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
-	
-	<!-- 
-		* contextConfigLocation
-		  설정 xml 문서들 로딩 시 설정 xml 문서의 경로를 작성하기 위한 param-name/value
-	
-	 -->
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-<!-- 		<param-value>/WEB-INF/spring/root-context.xml</param-value> -->
-		<!-- root-context.xml을 소스폴더 최상위 패스 ("src/main/resources ==> classpath)  -->
-		<param-value>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
 			classpath:root-context.xml
-<!-- 			/WEB-INF/spring/spring-security.xml -->
+
 		</param-value>
-	</context-param>
-	
-	<!-- Creates the Spring Container shared by all Servlets and Filters -->
-	<!-- 
-		* ContextLoaderListener	
-		 web.xml 내부에 읽어들여야 할 설정 xml 문서들 중 가장 먼저 로딩(pre-loading)되어야 하는 xml문서를 읽기위한 리스너
-	 -->
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-
-	<!-- Processes application requests -->
-	
-	<!-- 
-		* DispatcherServlet
-		url-pattern(요청)에 해당하는 viewResolver, HandlerMapping 정보들을 저장하고 있는 설정 xml문서를 등록(servlet-context.xml)
-	 -->
-	<servlet>
-		<servlet-name>appServlet</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <servlet>
+    <servlet-name>appServlet</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>
 				/WEB-INF/spring/appServlet/servlet-context.xml
-				<!-- AOP를 위한 설정파일 추가 -->
-<!-- 				/WEB-INF/spring/appServlet/aspect-context.xml -->
-			</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-		
-	<servlet-mapping>
-		<servlet-name>appServlet</servlet-name>
-		<url-pattern>*.do</url-pattern>
-		<!-- *.do 인요청들을 DispatcherServlet에서 HandleMapping을 통해 해당 Controller 요청하도록 -->
-	</servlet-mapping>
-	
-	<!-- 공용 에러페이지 등록 -->
-	<error-page>
-		<exception-type>java.lang.Exception</exception-type>
-		<location>/WEB_INF/view/common/errorPage.jsp</location>
-	</error-page>
-	
-	<!-- 한글 깨짐 방지 인코딩 -->
-	<filter>
-		<filter-name>encodingFilter</filter-name>
-		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-		<init-param>
-			<!-- encoding 값을 UTF-8로 지정해준다 -->
-			<param-name>encoding</param-name>
-			<param-value>UTF-8</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-		<filter-name>encodingFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+				
 
+			</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>appServlet</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  <error-page>
+    <exception-type>java.lang.Exception</exception-type>
+    <location>/WEB_INF/view/common/errorPage.jsp</location>
+  </error-page>
+  <filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UnivLifeController</display-name>
+    <servlet-name>UnivLifeController</servlet-name>
+    <servlet-class>com.kh.univ.univLife.controller.UnivLifeController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UnivLifeController</servlet-name>
+    <url-pattern>/UnivLifeController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>HumanBoardController</display-name>
+    <servlet-name>HumanBoardController</servlet-name>
+    <servlet-class>com.kh.univ.univlife.boad.human.controller.HumanBoardController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HumanBoardController</servlet-name>
+    <url-pattern>/HumanBoardController</url-pattern>
+  </servlet-mapping>
 </web-app>
