@@ -38,7 +38,7 @@
 								<div class="custom-box-details bg-color-light custom-box-shadow-1 col-lg-12 ml-5 mb-5 mb-lg-4 float-right clearfix">
 									<h4>학사공지 작성</h4>
 
-									<form id="fm"class="contact-form"	action="ninsert.do" method="post" enctype="multipart/form-data">
+									<form id="fm"class="contact-form"	action="deptNInsert.do" method="post" enctype="multipart/form-data">
 
 
 				

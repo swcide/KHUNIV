@@ -43,8 +43,8 @@ public class NoticeController {
 	 * @param currentPage
 	 * @return
 	 */
-	@RequestMapping("dept_notice.do")
-	public ModelAndView noticeDetail (ModelAndView mv, @RequestParam(value="currentPage",
+	@RequestMapping("deptNList.do")
+	public ModelAndView deptNoticeList (ModelAndView mv, @RequestParam(value="currentPage",
 	    required = false,defaultValue = "1") int currentPage) {
 				
 		int listCount = nService.getListCount();
@@ -61,8 +61,8 @@ public class NoticeController {
 		mv.setViewName("notice/dept_notice");
 		return mv;
 	}
-	@RequestMapping("humandetail.do")
-	public ModelAndView boardDetail(ModelAndView mv, int nId,
+	@RequestMapping("deptDetail.do")
+	public ModelAndView deptNoticeDetail(ModelAndView mv, int nId,
 									@RequestParam(value="currentPage",required = false,defaultValue = "1") int currentPage) {
 	
 		Notice n = nService.selectNotice(nId);
@@ -76,16 +76,13 @@ public class NoticeController {
 		}
 		
 		return mv;
-	}
-	
-	@RequestMapping("humaninsert.do")
-	public String boardInsertView() {
+	}	
+	@RequestMapping("deptNInsertView.do")
+	public String deptNoticeInsertView() {
 		return "notice/dept_notice_write";
-	}
-	
-	
-	@RequestMapping("ninsert.do")
-	public String insertBoard(Notice n,HttpServletRequest request,
+	}	
+	@RequestMapping("deptNInsert.do")
+	public String deptNoticeInsert(Notice n,HttpServletRequest request,
 							 @RequestParam(name="uploadFile",required = false) MultipartFile file) {
 		// @RequestParam어노테이션을 이용한 업롣 ㅡ파일 접근
 		// form enctype이 multipart/form-data로 작성되어있어야하고, method=post이어야 한다.
@@ -112,9 +109,7 @@ public class NoticeController {
 			return "common/errorPage";
 		}
 	
-	}
-	
-	
+	}	
 	public String saveFile(MultipartFile file,HttpServletRequest request) {
 		
 		// 파일이 저장될 경로를 설정하기
@@ -153,17 +148,15 @@ public class NoticeController {
 		
 		return renameFileName;
 	}
-	
-
-	@RequestMapping("nupView.do")
-	public ModelAndView noticeUpdateView(ModelAndView mv, int nId) {
+		@RequestMapping("deptNupView.do")
+	public ModelAndView deptNoticeUpdateView(ModelAndView mv, int nId) {
 		System.out.println(nId);
 		mv.addObject("n",nService.selectUpdateNotice(nId)).setViewName("notice/dept_notice_update");
 		return mv;
 		
 	}
-	@RequestMapping("nupdate.do")
-	public ModelAndView updateBoard(ModelAndView mv,Notice n,HttpServletRequest request,
+	@RequestMapping("deptNupdate.do")
+	public ModelAndView deptNoticeUpdate(ModelAndView mv,Notice n,HttpServletRequest request,
 			 @RequestParam(name="uploadFile",required = false) MultipartFile file) {
 		if(file !=null && !file.isEmpty()) { // 새로 업로드된 파일이 있다면
 			if(n.getRenameFileName() !=null) { //기존의 파일이 존재했을 경우 기존 파일 삭제.
@@ -192,8 +185,7 @@ public class NoticeController {
 		
 		return mv;
 	}
-	
-		public void deleteFile(String fileName, HttpServletRequest request) {
+	public void deleteFile(String fileName, HttpServletRequest request) {
 			String root = request.getSession().getServletContext().getRealPath("resources");
 			String savePath = root+"\\uploadFiles";
 			File f = new File(savePath+"\\"+fileName);//기존의 업로드된 파일의 실제 경로를 이용해서 ifle 객체 생성
@@ -202,7 +194,7 @@ public class NoticeController {
 				f.delete();
 			}
 		}
-	@RequestMapping("ndelete.do")
+	@RequestMapping("deptNdelete.do")
 	public String boardDelete(int nId, HttpServletRequest request) {
 		
 		Notice n = nService.selectUpdateNotice(nId);
@@ -219,8 +211,7 @@ public class NoticeController {
 			return "common/errorPage";
 		}
 	}
-	
-	@RequestMapping(value="nrList.do")
+	@RequestMapping(value="deptNrList.do")
 	public void getReplyList(HttpServletResponse response, int nId ) throws JsonIOException, IOException {
 	
 		response.setContentType("application/json; charset=UTF-8");
@@ -233,11 +224,8 @@ public class NoticeController {
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		gson.toJson(rList,response.getWriter());
 	}
-	
-	
-	
 	@ResponseBody
-	@RequestMapping("addReply.do")
+	@RequestMapping("NoticeAddReply.do")
 	public String addReply(nReply r) {
 		
 		
@@ -250,10 +238,9 @@ public class NoticeController {
 		}else {
 			return "fail";
 		}
-	}
-	
+	}	
 	@ResponseBody
-	@RequestMapping("deleteReply.do")
+	@RequestMapping("NoticeDeleteReply.do")
 	public String deleteReply(nReply r) {
 		
 		
@@ -268,7 +255,7 @@ public class NoticeController {
 		}
 	}
 	@ResponseBody
-	@RequestMapping("updateReply.do")
+	@RequestMapping("noticeUpdateReply.do")
 	public String updateReply(nReply r) {
 		
 		

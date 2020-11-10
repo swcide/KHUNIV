@@ -46,7 +46,7 @@
 										<tr>
 											<td>${n.nId }</td>
 											<td>
-												<c:url var="hdetail" value="humandetail.do">
+												<c:url var="hdetail" value="deptDetail.do">
 													<c:param name="nId" value="${n.nId }"/>
 													<c:param name="currentPage" value="${ pi.currentPage }"/>
 												</c:url>
@@ -64,7 +64,7 @@
 					
 				
 							<c:if test="${!empty sessionScope.loginAdmin }">
-								<button type="button" class="btn btn-dark"onclick="location.href='humaninsert.do;'"style="float: right; margin-bottom: 20px;">
+								<button type="button" class="btn btn-dark"onclick="location.href='deptNInsertView.do;'"style="float: right; margin-bottom: 20px;">
 									<i class="fas fa-pencil-alt"></i> 공지작성
 								</button> 
 							</c:if>

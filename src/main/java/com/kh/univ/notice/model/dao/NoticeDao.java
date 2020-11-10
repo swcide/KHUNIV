@@ -52,7 +52,7 @@ public class NoticeDao {
 	}
 
 	public ArrayList<nReply> selectReplyList(int nId) {
-		return (ArrayList)sqlSession.selectList("noticeMapper.selectReplyList",nId);
+		return (ArrayList)sqlSession.selectList("noticeMapper.selectDeptReplyList",nId);
 	}
 
 	public int insertReply(nReply r) {
