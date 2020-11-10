@@ -98,6 +98,7 @@ public class helpDeskController {
 	@ResponseBody
 	@RequestMapping("qna_addReply.do")
 	public String addReply(Reply r) {
+			System.out.println("댓글추가컨트롤러");
 		int result = hdService.insertReply(r);
 		if(result > 0) {
 			return "success";

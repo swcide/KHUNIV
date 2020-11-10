@@ -37,7 +37,7 @@
  	 	<![CDATA[
  	 	SELECT *
  	 	FROM (SELECT * 
- 	 		  FROM TB_DEPT_NOTICE
+ 	 		  FROM TB_NOTICE_BOARD
  	 		  ORDER BY NID DESC)
  		WHERE ROWNUM <=5
  		AND N_STATUS ='Y'

@@ -3,102 +3,102 @@ package com.kh.univ.helpDesk.model.vo;
 import java.sql.Date;
 
 public class Reply {
-	private int qna_rId;
-	private String qna_rContent;
-	private int qna_refBid;
-	private String qna_rWriter;
-	private Date qna_rCreateDate;
-	private Date qna_rModifyDate;
-	private String qna_rStatus;
+	private int rId;
+	private String rContent;
+	private int refBid;
+	private String rWriter;
+	private Date rCreateDate;
+	private Date rModifyDate;
+	private String rStatus;
 	
 	public Reply() {}
 
-	public Reply(int qna_rId, String qna_rContent, int qna_refBid, String qna_rWriter, Date qna_rCreateDate, Date qna_rModifyDate, String qna_rStatus) {
+	public Reply(int rId, String rContent, int refBid, String rWriter, Date rCreateDate, Date rModifyDate, String rStatus) {
 		super();
-		this.qna_rId = qna_rId;
-		this.qna_rContent = qna_rContent;
-		this.qna_refBid = qna_refBid;
-		this.qna_rWriter = qna_rWriter;
-		this.qna_rCreateDate = qna_rCreateDate;
-		this.qna_rModifyDate = qna_rModifyDate;
-		this.qna_rStatus = qna_rStatus;
+		this.rId = rId;
+		this.rContent = rContent;
+		this.refBid = refBid;
+		this.rWriter = rWriter;
+		this.rCreateDate = rCreateDate;
+		this.rModifyDate = rModifyDate;
+		this.rStatus = rStatus;
 	}
 
-	public int getQna_rId()
+	public int getrId()
 		{
-			return qna_rId;
+			return rId;
 		}
 
-	public void setQna_rId(int qna_rId)
+	public void setrId(int rId)
 		{
-			this.qna_rId = qna_rId;
+			this.rId = rId;
 		}
 
-	public String getQna_rContent()
+	public String getrContent()
 		{
-			return qna_rContent;
+			return rContent;
 		}
 
-	public void setQna_rContent(String qna_rContent)
+	public void setrContent(String rContent)
 		{
-			this.qna_rContent = qna_rContent;
+			this.rContent = rContent;
 		}
 
-	public int getQna_refBid()
+	public int getRefBid()
 		{
-			return qna_refBid;
+			return refBid;
 		}
 
-	public void setQna_refBid(int qna_refBid)
+	public void setRefBid(int refBid)
 		{
-			this.qna_refBid = qna_refBid;
+			this.refBid = refBid;
 		}
 
-	public String getQna_rWriter()
+	public String getrWriter()
 		{
-			return qna_rWriter;
+			return rWriter;
 		}
 
-	public void setQna_rWriter(String qna_rWriter)
+	public void setrWriter(String rWriter)
 		{
-			this.qna_rWriter = qna_rWriter;
+			this.rWriter = rWriter;
 		}
 
-	public Date getQna_rCreateDate()
+	public Date getrCreateDate()
 		{
-			return qna_rCreateDate;
+			return rCreateDate;
 		}
 
-	public void setQna_rCreateDate(Date qna_rCreateDate)
+	public void setrCreateDate(Date rCreateDate)
 		{
-			this.qna_rCreateDate = qna_rCreateDate;
+			this.rCreateDate = rCreateDate;
 		}
 
-	public Date getQna_rModifyDate()
+	public Date getrModifyDate()
 		{
-			return qna_rModifyDate;
+			return rModifyDate;
 		}
 
-	public void setQna_rModifyDate(Date qna_rModifyDate)
+	public void setrModifyDate(Date rModifyDate)
 		{
-			this.qna_rModifyDate = qna_rModifyDate;
+			this.rModifyDate = rModifyDate;
 		}
 
-	public String getQna_rStatus()
+	public String getrStatus()
 		{
-			return qna_rStatus;
+			return rStatus;
 		}
 
-	public void setQna_rStatus(String qna_rStatus)
+	public void setrStatus(String rStatus)
 		{
-			this.qna_rStatus = qna_rStatus;
+			this.rStatus = rStatus;
 		}
 
 	@Override
 	public String toString()
 		{
-			return "Reply [qna_rId=" + qna_rId + ", qna_rContent=" + qna_rContent + ", qna_refBid=" + qna_refBid + ", qna_rWriter=" + qna_rWriter + ", qna_rCreateDate=" + qna_rCreateDate
-					+ ", qna_rModifyDate=" + qna_rModifyDate + ", qna_rStatus=" + qna_rStatus + "]";
+			return "Reply [rId=" + rId + ", rContent=" + rContent + ", refBid=" + refBid + ", rWriter=" + rWriter + ", rCreateDate=" + rCreateDate + ", rModifyDate=" + rModifyDate + ", rStatus="
+					+ rStatus + "]";
 		}
 
 	

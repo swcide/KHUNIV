@@ -68,6 +68,7 @@ public class helpDeskServiceImpl implements helpDeskService{
 	@Override
 	public int insertReply(Reply r)
 		{
+			System.out.println("댓글추가서비스");
 			return hdDao.insertReply(r);
 		}
 	

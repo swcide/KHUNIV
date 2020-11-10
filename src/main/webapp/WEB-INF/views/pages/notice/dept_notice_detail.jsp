@@ -335,34 +335,6 @@ ul.comments li {
 			
 		
 			
-			if (type != null){
-			$.ajax({
-				url:"NoticeAddReply.do",
-				data:{
-					rContent:rContent,
-					refNid:refNid,
-					rWriter:rWriter,
-					rName:rName
-
-					},
-				type:"post",
-				success:function(data){
-					if(data == "success"){
-						getReplyList(); // 등록 성공 시 다시 댓글 리스트를 호출
-						$("#rContent").val(""); // 댓글 등록이 성공을 하면 작성한 글은 초기화 시켜준다.
-						alert("댓글이 등록되었습니다.");
-					}
-				},error:function(request,status,errorData){
-					console.log(request.status + " : " + errorData);
-				}
-				
-			});
-			}else{
-			
-			}
-		})
-	});
-	
 		
 
 	

@@ -48,6 +48,7 @@ public class helpDeskDao {
 
 	public int insertReply(Reply r)
 		{
+			System.out.println("댓글추가DAO");
 			return sqlSession.insert("hdBoardMapper.insertReply",r);
 		}
 

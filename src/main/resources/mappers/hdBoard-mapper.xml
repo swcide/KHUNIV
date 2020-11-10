@@ -54,18 +54,7 @@ SELECT *
   WHERE QNA_ID = #{b.qnaId}
 </select>
 
-<select id="selectReplyList" parameterType="_int" resultMap="QNA_replyResultSet">
-		SELECT *
-		   FROM TB_QNA_REPLY
-		 WHERE QNA_REF_BID = #{bId}
-		 AND QNA_R_STATUS = 'Y'
-		 ORDER BY RID DESC
-	</select>
-	
-	<insert id="insertReply" parameterType="Reply">
-		INSERT INTO TB_QNA_REPLY
-		VALUES(SEQ_RID.NEXTVAL,#{rContent},#{refBid},#{rWriter},SYSDATE,SYSDATE,DEFAULT)
-	</insert>
+
 	
 	<insert id="insertQnA" parameterType="QnA">
  	 	INSERT INTO TB_HELPDESK_QNA
@@ -109,5 +98,17 @@ SELECT *
 	   ORDER BY QNA_ID DESC
 </select>
 
+<select id="selectReplyList" parameterType="_int" resultMap="QNA_replyResultSet">
+		SELECT *
+		   FROM TB_QNA_REPLY
+		 WHERE QNA_REF_BID = #{bId}
+		 AND QNA_R_STATUS = 'Y'
+		 ORDER BY RID DESC
+	</select>
+	
+	<insert id="insertReply" parameterType="Reply">
+		INSERT INTO TB_QNA_REPLY
+		VALUES(SEQ_QNA_RID.NEXTVAL,#{rContent},#{refBid},#{rWriter},SYSDATE,SYSDATE,DEFAULT,DEFAULT,DEFAULT,DEFAULT)
+	</insert>
 
 </mapper>
