@@ -1,18 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import = " com.kh.univ.member.model.vo.Admin"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import=" com.kh.univ.member.model.vo.Admin"%>
 
 <%@ include file="../common/header.jsp"%>
 
 <div class="body">
 	<div role="main" class="main">
 		<
-		<section
-			class="page-header page-header-modern page-header-background page-header-background-md overlay overlay-color-dark overlay-show overlay-op-3"
-			style="background-image: url(img/page-header/page-header-background-transparent.jpg); padding: 70px;">
+		<section class="page-header page-header-modern page-header-background page-header-background-md overlay overlay-color-dark overlay-show overlay-op-3" style="background-image: url(img/page-header/page-header-background-transparent.jpg); padding: 70px;">
 			<div class="container">
 				<div class="row mt-3">
-					<div
-						class="col-md-12 align-self-center p-static order-2 text-center">
+					<div class="col-md-12 align-self-center p-static order-2 text-center">
 						<h1 class="text-9 font-weight-bold">Q&A</h1>
 						<span class="sub-title">Question & Answer > Detail</span>
 					</div>
@@ -34,91 +30,96 @@
 								</h2>
 
 								<div class="post-meta">
-									<span><i class="far fa-user fl"></i> By ${b.qnaWriter }
-									</span> 
-									<span class="date float-right">${b.qnaCreateDate }</span>
-								<span class=" float-right">조회수 : ${b.qnaCount } |</span>
-								</div >
+									<span><i class="far fa-user fl"></i> By ${b.qnaWriter } </span> <span class="date float-right">${b.qnaCreateDate }</span> <span class=" float-right">조회수 : ${b.qnaCount } |</span>
+								</div>
 								<p>${b.qnaContent}</p>
-								<c:url var="bupview" value="bupView.do">
-					               <c:param name="bId" value="${b.qnaId }"/>
-					            </c:url>
-					            <c:url var="bdelete" value="bdelete.do">
-					               <c:param name="bId" value="${b.qnaId }"/>
-					            </c:url>
-					            <c:url var="blist" value="blist.do">
-					               <c:param name="currentPage" value="${ currentPage }"/>
-					            </c:url>
+								<c:url var="qnaUpview" value="qnaUpView.do">
+									<c:param name="qnaId" value="${b.qnaId }" />
+								</c:url>
+								<c:url var="qnaDelete" value="qnaDelete.do">
+									<c:param name="qnaId" value="${b.qnaId }" />
+								</c:url>
+								<c:url var="blist" value="blist.do">
+									<c:param name="currentPage" value="${ currentPage }" />
+								</c:url>
 
-								<c:if test="${ loginAdmin.aId eq b.qnaWriter }">
-					               <a href="${ qnaUpview }">수정하기</a>&nbsp;            
-					               <a href="${ bdelete }">삭제하기</a>&nbsp;            
+								<c:if test="${ loginUser.sNo eq b.qnaWriter}">
+									<a href="${ qnaUpview }">수정하기</a>&nbsp;            
+					               <a href="${ qnaDelete }">삭제하기</a>&nbsp;            
 					            </c:if>
-					            
-					            <!-- 댓글댓글댓글댓글댓글댓글 -->
-<!-- 								<div id="comments" class="post-block mt-5 post-comments"> -->
-<!-- 									<ul class="comments"> -->
-<!-- 										<li> -->
-<!-- 											<div class="comment"> -->
-<!-- 												<div class="comment-block"> -->
-<!-- 													<span class="comment-by">  -->
-<!-- 													<strong>관리자</strong>  -->
-<!-- 													</span> -->
-<!-- 													<p>짜친다 이 말은 쪼들린다 혹은 몹시 궁핍하여 생활하기에 곤란하다는 뜻의 경상도 지방의 -->
-<!-- 														말입니다. 대충 촌스럽다거나 구리다는 뜻으로 생각하시면 될 거 같습니다.</p> -->
-<!-- 													<span class="date float-right">2020-10-29 13:38 </span> -->
-<!-- 												</div> -->
-<!-- 											</div> -->
-<!-- 										</li> -->
-<!-- 									</ul> -->
-<!-- 								</div> -->
-								<c:if test="${!empty sessionScope.loginAdmin }">
-<!-- 								<div class="post-block mt-5 post-leave-comment"> -->
-<!-- 										<h4 class="mb-3">댓글</h4> -->
-<!-- 										<form> -->
-<!-- 											<div class="p-2"> -->
-<!-- 												<div class="form-row"> -->
-<!-- 													<div class="form-group col"> -->
-<!-- 														<label -->
-<!-- 															class="required font-weight-bold text-dark">내용</label> -->
-<!-- 														<textarea maxlength="5000" -->
-<!-- 															data-msg-required="Please enter your message." rows="2" -->
-<!-- 															class="form-control" name="message" required></textarea> -->
-<!-- 													</div> -->
-<!-- 												</div> -->
-<!-- 												<div class="form-row"> -->
-<!-- 													<div class="form-group col mb-0"> -->
-<!-- 														<input type="submit" value="뒤로가기" -->
-<!-- 															class="btn btn-quaternary btn-modern" -->
-<!-- 															onclick="history.back()"> -->
-<!-- 														<input type="submit" value="등록" -->
-<!-- 															class="btn btn-dark btn-modern float-right" -->
-<!-- 															data-loading-text="Loading..."> -->
-<!-- 													</div> -->
-<!-- 												</div> -->
-<!-- 											</div> -->
-<!-- 										</form> -->
-<!-- 									</div> -->
+								<c:if test="${ loginAdmin.aId eq b.qnaWriter}">
+									<a href="${ qnaUpview }">수정하기</a>&nbsp;      
+					              <a href="${ qnaDelete }">삭제하기</a>&nbsp;     
+					            </c:if>
 
-<table align="center" width="500" border="1" cellspacting="0">
-		<tr>
-			<td><textarea rows="3" cols="55" id="rContent"></textarea></td>
-			<td>
-				<button id="rSubmit">등록하기</button>
-			</td>
-		</tr>
-	</table>
-	
-	<table align="center" width="500" border="1" cellspacing="0" id="rtb">
-		<thead>
-			<tr>
-				<td colspan="3"><b id="rCount"></b></td>
-			</tr>
-		</thead>
-		<tbody>
-		</tbody>
-	</table>
-</c:if>
+								<!-- 댓글댓글댓글댓글댓글댓글 -->
+								<!-- 								<div id="comments" class="post-block mt-5 post-comments"> -->
+								<!-- 									<ul class="comments"> -->
+								<!-- 										<li> -->
+								<!-- 											<div class="comment"> -->
+								<!-- 												<div class="comment-block"> -->
+								<!-- 													<span class="comment-by">  -->
+								<!-- 													<strong>관리자</strong>  -->
+								<!-- 													</span> -->
+								<!-- 													<p>짜친다 이 말은 쪼들린다 혹은 몹시 궁핍하여 생활하기에 곤란하다는 뜻의 경상도 지방의 -->
+								<!-- 														말입니다. 대충 촌스럽다거나 구리다는 뜻으로 생각하시면 될 거 같습니다.</p> -->
+								<!-- 													<span class="date float-right">2020-10-29 13:38 </span> -->
+								<!-- 												</div> -->
+								<!-- 											</div> -->
+								<!-- 										</li> -->
+								<!-- 									</ul> -->
+								<!-- 								</div> -->
+								<c:if test="${!empty sessionScope.loginAdmin }">
+									<!-- 								<div class="post-block mt-5 post-leave-comment"> -->
+									<!-- 										<h4 class="mb-3">댓글</h4> -->
+									<!-- 										<form> -->
+									<!-- 											<div class="p-2"> -->
+									<!-- 												<div class="form-row"> -->
+									<!-- 													<div class="form-group col"> -->
+									<!-- 														<label -->
+									<!-- 															class="required font-weight-bold text-dark">내용</label> -->
+									<!-- 														<textarea maxlength="5000" -->
+									<!-- 															data-msg-required="Please enter your message." rows="2" -->
+									<!-- 															class="form-control" name="message" required></textarea> -->
+									<!-- 													</div> -->
+									<!-- 												</div> -->
+									<!-- 												<div class="form-row"> -->
+									<!-- 													<div class="form-group col mb-0"> -->
+									<!-- 														<input type="submit" value="뒤로가기" -->
+									<!-- 															class="btn btn-quaternary btn-modern" -->
+									<!-- 															onclick="history.back()"> -->
+									<!-- 														<input type="submit" value="등록" -->
+									<!-- 															class="btn btn-dark btn-modern float-right" -->
+									<!-- 															data-loading-text="Loading..."> -->
+									<!-- 													</div> -->
+									<!-- 												</div> -->
+									<!-- 											</div> -->
+									<!-- 										</form> -->
+									<!-- 									</div> -->
+
+									<table align="center" width="500" border="1" cellspacting="0">
+										<tr>
+											<td>
+												<textarea rows="3" cols="55" id="rContent"></textarea>
+											</td>
+											<td>
+												<button id="rSubmit">등록하기</button>
+											</td>
+										</tr>
+									</table>
+
+									<table align="center" width="500" border="1" cellspacing="0" id="rtb">
+										<thead>
+											<tr>
+												<td colspan="3">
+													<b id="rCount"></b>
+												</td>
+											</tr>
+										</thead>
+										<tbody>
+										</tbody>
+									</table>
+								</c:if>
 							</div>
 						</article>
 					</div>

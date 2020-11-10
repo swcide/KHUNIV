@@ -47,11 +47,11 @@ public class NoticeServiceImpl implements NoticeService {
 		return nDao.insertNotice(n);
 	}
 
-	@Override
-	public Object selectUpdateNotice(int nId) {
-		// TODO Auto-generated method stub
-		return nDao.selectUpdateNotice(int nId);
-	}
+//	@Override
+//	public Object selectUpdateNotice(int nId) {
+//		// TODO Auto-generated method stub
+//		return nDao.selectUpdateNotice(int nId);
+//	}
 	
 
 }

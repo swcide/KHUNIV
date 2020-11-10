@@ -137,7 +137,9 @@
 															<ul class="dropdown-menu">
 																<li><a class="dropdown-item" href="FAQ.do">FAQ</a></li>
 																<li><a class="dropdown-item" href="QnA.do">Q&A</a></li>
+																<c:if test="${!empty sessionScope.loginUser }">
 																<li><a class="dropdown-item" href="myQnA.do">내 질문 내역</a></li>
+																</c:if>
 															</ul></li>
 													</ul></li>
 												<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"> 공지사항 </a>
