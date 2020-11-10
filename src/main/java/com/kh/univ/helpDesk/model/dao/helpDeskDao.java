@@ -71,7 +71,7 @@ public class helpDeskDao {
 		}
 
 	/**
-	 * QnA Update
+	 * QnA Update view
 	 * @param qnaId
 	 * @return
 	 */
@@ -81,7 +81,7 @@ public class helpDeskDao {
 		}
 
 	/**
-	 * QnA 
+	 * QnA Update Form
 	 * @param qna
 	 * @return
 	 */
@@ -90,17 +90,31 @@ public class helpDeskDao {
 			return sqlSession.update("hdBoardMapper.updateContents", qna);
 		}
 
+	/**
+	 * QnA Delete
+	 * @param qnaId
+	 * @return
+	 */
 	public int deleteBoard(int qnaId)
 		{
-			System.out.println("delete Dao");
 			return sqlSession.update("hdBoardMapper.deleteBoard", qnaId);
 		}
 
+	/**
+	 * My QnA List Count
+	 * @return
+	 */
 	public int getMyListCount()
 		{
 			return sqlSession.selectOne("hdBoardMapper.getMyListCount");
 		}
 	
+	/**
+	 * My QnA List
+	 * @param pi
+	 * @param student
+	 * @return
+	 */
 	public ArrayList<QnA> mySelectList(PageInfo pi, Student student)
 		{
 			int offset = (pi.getCurrentPage() -1 ) * pi.getBoardLimit();
@@ -128,11 +142,21 @@ public class helpDeskDao {
 			return sqlSession.insert("hdBoardMapper.insertReply",r);
 		}
 	
+	/**
+	 * QnA ReplyDelete
+	 * @param r
+	 * @return
+	 */
 	public int deleteReply(Reply r)
 		{
 			return sqlSession.update("hdBoardMapper.deleteReply",r);
 		}
 
+	/**
+	 * QnA ReplyUpdate
+	 * @param r
+	 * @return
+	 */
 	public int updateReply(Reply r)
 		{
 			return sqlSession.update("hdBoardMapper.updateReply",r);

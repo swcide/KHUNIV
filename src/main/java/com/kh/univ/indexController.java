@@ -80,4 +80,9 @@ public class indexController {
 		
 		return "professor_main";
 	}
+	
+	@RequestMapping(value = "emp.do")
+	public String emp(Model model) {
+		return "univ_life/emp_center";
+	}
 }
