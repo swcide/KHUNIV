@@ -26,7 +26,7 @@
 
 						<div
 							class="custom-box-details bg-color-light custom-box-shadow-1 col-lg-12 ml-5 mb-5 mb-lg-4 float-right clearfix">
-							<h4>학사공지</h4>
+							<h4>일반공지</h4>
 							
 							<table class="table table-hover">
 								<thead>
@@ -41,19 +41,52 @@
 								<tbody>
 								<!-- 이전이전이전 -->
 									<c:forEach var="n" items="${list}">
-										<tr>
-											<td>${n.nId }</td>
-											<td>
-												<c:url var="gdetail" value="generDetail.do">
-													<c:param name="nId" value="${n.nId }"/>
-													<c:param name="currentPage" value="${ pi.currentPage }"/>
-												</c:url>
-												<a href=${ hdetail}>${n.nTitle }</a>
-											</td>
-											<td>${n.nWriter }</td>
-											<td>${n.nCreateDate}</td>
-											<td>${n.nCount}</td>											
-										</tr>	
+									<c:set var="nSecret" value="${n.nSecret}"/>
+										<c:choose>
+											<c:when test="${nSecret == 'N' }">
+												<tr>
+													<td>${n.nId }</td>
+													<td>
+														<c:url var="nDetail" value="nDetail.do">
+															<c:param name="nId" value="${n.nId }"/>
+															<c:param name="currentPage" value="${ pi.currentPage }"/>
+															<c:param name="nType" value="${n.nType }"/>
+														</c:url>
+														<a id="ntitle" href=${ nDetail}>${n.nTitle }</a>
+													</td>
+													
+													<td>${n.nWriter }</td>
+													<td>${n.nCreateDate}</td>
+													<td>${n.nCount}</td>											
+												</tr>	
+											</c:when>
+											<c:when test="${admin!=null}">
+												<tr>
+													<td>${n.nId }</td>
+													<td>
+														<c:url var="nDetail" value="nDetail.do">
+															<c:param name="nId" value="${n.nId }"/>
+															<c:param name="currentPage" value="${ pi.currentPage }"/>
+															<c:param name="nType" value="${n.nType }"/>
+														</c:url>
+														<c:if test="${nSecret eq 'N'}">
+															<a id="ntitle" href="${nDetail}">
+																${n.nTitle }
+															</a>
+														</c:if>
+														<c:if test="${nSecret eq 'Y'}">
+															<a id="ntitle" href="${nDetail}">
+																<span style="color:red">(비밀글)</span>${n.nTitle }
+															</a>
+														</c:if>
+													</td>
+													
+													<td>${n.nWriter }</td>
+													<td>${n.nCreateDate}</td>
+													<td>${n.nCount}</td>											
+												</tr>	
+											</c:when>
+										</c:choose>
 									</c:forEach>
 									
 								</tbody>
@@ -61,7 +94,7 @@
 					
 				
 							<c:if test="${!empty sessionScope.loginAdmin }">
-								<button type="button" class="btn btn-dark"onclick="location.href='generNInsertView.do;'"style="float: right; margin-bottom: 20px;">
+								<button type="button" class="btn btn-dark"onclick="location.href='nInsertView.do?nType=2'"style="float: right; margin-bottom: 20px;">
 									<i class="fas fa-pencil-alt"></i> 공지작성
 								</button> 
 							</c:if>
@@ -79,7 +112,7 @@
 									
 								</c:if>
 								<c:if test="${ pi.currentPage ne 1 }">
-								   <c:url var="before" value="generNList.do">
+								   <c:url var="before" value="nList.do?nType=2">
 					                  <c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
 					       		   </c:url>
 									 	<li class="page-item">
@@ -98,7 +131,7 @@
 										</li>
 									</c:if>
 									<c:if test="${ p ne pi.currentPage }">
-									 <c:url var="pagination" value="generNList.do">
+									 <c:url var="pagination" value="nList.do?nType=2">
 					                    <c:param name="currentPage" value="${ p }"/>
 					                 </c:url>
 					                 	<li class="page-item ">
@@ -118,7 +151,7 @@
 				            	
 <!-- 				            	다음대음다음대음 -->
 				            	<c:if test="${pi.currentPage ne pi.maxPage }">
-									<c:url var="after" value="generNList.do">
+									<c:url var="after" value="nList.do?nType=2">
 						             	<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 						            </c:url> 
 									
@@ -134,8 +167,20 @@
 				</div>
 			</div>
 		</section>
+
 	</div>
 </div>
+<script>
+	$(function(){
+		
+		if($('input').val()=='Y'){
+			var secret=$('#ntitle').before("<span>(비공개)</span>");
+			secret.siblings('span').css('color','red');	
+			
+		}
+			
+	})
+</script>
 <%@ include file="../common/footer.jsp"%>
 
 

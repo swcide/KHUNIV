@@ -6,9 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,60 +40,116 @@ public class NoticeController {
 
 //	-------------------------- 학사공지 ------------------------------
 	/**
-	 * 1.게시글 조회데스
+	 * 1_1 .학사 게시글 조회데스
 	 * @param mv
 	 * @param currentPage
 	 * @return
 	 */
-	@RequestMapping("deptNList.do")
-	public ModelAndView deptNoticeList (ModelAndView mv, @RequestParam(value="currentPage",
+	@RequestMapping("nList.do")
+	public ModelAndView deptNoticeList (ModelAndView mv,HttpSession session, @RequestParam int nType,@RequestParam(value="currentPage",
 	    required = false,defaultValue = "1") int currentPage) {
 				
-		int listCount = nService.getListCount();
+		int listCount = nService.getListCount(nType);
 		
 		
 		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-		
-		ArrayList<Notice> list = nService.selectList(pi);
+		Admin admin =(Admin)session.getAttribute("loginAdmin");
 	
 		
-		mv.addObject("list",list);
-		mv.addObject("pi",pi);
-		mv.setViewName("notice/dept_notice");
+	
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Notice> list = nService.selectList(pi,nType);
+
+	
+			
+			if(nType ==1) {
+	
+				mv.addObject("list",list);
+				mv.addObject("pi",pi);
+				mv.addObject("admin",admin);
+				mv.addObject("nType",nType);
+				mv.setViewName("notice/dept_notice");
+				
+				
+			}else if(nType==2){
+				mv.addObject("list",list);
+				mv.addObject("pi",pi);
+				mv.setViewName("notice/gener_notice");
+			}
+		
+			
 		return mv;
+		
+		
+		
 	}
+	
+
+	
 	/**
-	 * 2. 게시물 상세조회
+	 * 2 게시물 상세조회
 	 * @param mv
 	 * @param nId
 	 * @param currentPage
 	 * @return
 	 */
-	@RequestMapping("deptDetail.do")
-	public ModelAndView deptNoticeDetail(ModelAndView mv, int nId,
+	@RequestMapping("nDetail.do")
+	public ModelAndView deptNoticeDetail(ModelAndView mv, int nId, int nType,
 									@RequestParam(value="currentPage",required = false,defaultValue = "1") int currentPage) {
 	
-		Notice n = nService.selectNotice(nId);
+		Notice n = new Notice(); 
 		
-		if(n!=null) {
+				n.setnId(nId);
+				n.setnType(nType);
+				
+				
+		 n = nService.selectNotice(nId,n);
+		
+		 
+		
+		
+		if(n.getnType()==1) {
 			mv.addObject("n",n)
 			  .addObject("currentPage", currentPage)
 			  .setViewName("notice/dept_notice_detail");
+			
+			
+		}else if(n.getnType()==2) {
+			
+			mv.addObject("n",n)
+			  .addObject("currentPage", currentPage)
+			  .setViewName("notice/gener_notice_detail");
+
+			
 		}else {
 			mv.addObject("msg", "게시글 상세 조회 실패").setViewName("common/errorPage");
 		}
-		
 		return mv;
 	}	
+	
+	
+	
+	
 	/**
-	 * 3 . 게시글 작성 뷰
+	 * 3 .게시글 작성 뷰
 	 * @return
 	 */
-	@RequestMapping("deptNInsertView.do")
-	public String deptNoticeInsertView() {
+	@RequestMapping("nInsertView.do")
+	public String deptNoticeInsertView(@RequestParam int nType) {
+		
+		if(nType==1) {
+		
 		return "notice/dept_notice_write";
-	}	
+		}else if(nType==2){
+		return "notice/gener_notice_write";
+		}else {
+		return 	"common/errorPage";
+		}
+	}
+	
+		
+
 	/**
 	 * 4. 게시글 작성
 	 * @param n
@@ -101,12 +157,14 @@ public class NoticeController {
 	 * @param file
 	 * @return
 	 */
-	@RequestMapping("deptNInsert.do")
+	@RequestMapping("nInsert.do")
 	public String deptNoticeInsert(Notice n,HttpServletRequest request,
 							 @RequestParam(name="uploadFile",required = false) MultipartFile file) {
 		// @RequestParam어노테이션을 이용한 업롣 ㅡ파일 접근
 		// form enctype이 multipart/form-data로 작성되어있어야하고, method=post이어야 한다.
 		// MultipartResolver가 multipartFile객체를 컨트롤러로 전달할 수 있다.
+		
+		
 		
 		if(!file.getOriginalFilename().equals("")) {
 			//서버에 업로드를 해야한다.
@@ -122,12 +180,16 @@ public class NoticeController {
 		
 		int result = nService.insertNotice(n);
 		
+		
+		
 		if(result>0) {
-			
-			return "redirect:dept_notice.do";
-		}else {
-			return "common/errorPage";
+			if(n.getnType()==1) {
+				return "redirect:nList.do?nType=1";
+			}else if(n.getnType()==2){
+				return "redirect:nList.do?nType=2";
+			}
 		}
+		return "common/errorPage";
 	
 	}	
 	public String saveFile(MultipartFile file,HttpServletRequest request) {
@@ -170,18 +232,29 @@ public class NoticeController {
 	}
 		
 	/**
-	 * 5. 게시글 수정 뷰
+	 * 5 게시글 수정 뷰
 	 * @param mv
 	 * @param nId
 	 * @return
 	 */
-	@RequestMapping("deptNupView.do")
-	public ModelAndView deptNoticeUpdateView(ModelAndView mv, int nId) {
-		System.out.println(nId);
-		mv.addObject("n",nService.selectUpdateNotice(nId)).setViewName("notice/dept_notice_update");
+	@RequestMapping("nUpView.do")
+	public ModelAndView deptNoticeUpdateView(ModelAndView mv, int nId,int nType) {
+		System.out.println(nType +"시소다");
+		
+		
+		
+		if(nType ==1 ) {
+			mv.addObject("n",nService.selectUpdateNotice(nId)).setViewName("notice/dept_notice_update");
+
+		}else if(nType==2){
+			mv.addObject("n",nService.selectUpdateNotice(nId)).setViewName("notice/gener_notice_update");
+
+		}
 		return mv;
 		
 	}
+	
+
 	/**
 	 * 
 	 * 6. 게시글 수정
@@ -191,8 +264,8 @@ public class NoticeController {
 	 * @param file
 	 * @return
 	 */
-	@RequestMapping("deptNupdate.do")
-	public ModelAndView deptNoticeUpdate(ModelAndView mv,Notice n,HttpServletRequest request,
+	@RequestMapping("nUpdate.do")
+	public ModelAndView noticeUpdate(ModelAndView mv,Notice n,HttpServletRequest request,
 			 @RequestParam(name="uploadFile",required = false) MultipartFile file) {
 		if(file !=null && !file.isEmpty()) { // 새로 업로드된 파일이 있다면
 			if(n.getRenameFileName() !=null) { //기존의 파일이 존재했을 경우 기존 파일 삭제.
@@ -206,14 +279,14 @@ public class NoticeController {
 				n.setRenameFileName(renameFileName);
 			}
 		}
-		System.out.println(n.getnId());
-		System.out.println(n);
-		
 		int result = nService.updateNotice(n);
 		
 		if(result>0) {
-			System.out.println(n.getnId());
-			mv.addObject("nId",n.getnId()).setViewName("redirect:humandetail.do");
+			if(n.getnType()==1) {
+			mv.addObject("nId",n.getnId()).setViewName("redirect:nDetail.do?nType=1");
+			}else {
+			mv.addObject("nId",n.getnId()).setViewName("redirect:nDetail.do?nType=2");
+			}
 		}else {
 			mv.addObject("msg","수정실패").setViewName("common/errorPage");
 		}
@@ -236,8 +309,11 @@ public class NoticeController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("deptNdelete.do")
-	public String boardDelete(int nId, HttpServletRequest request) {
+	@RequestMapping("nDelete.do")
+	public String deptNoticeDelete(int nId, HttpServletRequest request) {
+		
+		
+		
 		
 		Notice n = nService.selectUpdateNotice(nId);
 		
@@ -247,12 +323,19 @@ public class NoticeController {
 		
 		int result = nService.deleteNotice(nId);
 		
-		if(result >0) {
-			return "redirect:dept_notice.do";
+		if(result >0 && n.getnType()==1) {
+			return "redirect:nList.do?nType=1";
+			
+		}else if(result>0 &&n.getnType()==2){
+			return "redirect:nList.do?nType=2";
 		}else {
 			return "common/errorPage";
 		}
+			
+		
 	}
+		
+	
 	/**
 	 * 8. 댓글 조회
 	 * @param response
@@ -260,18 +343,16 @@ public class NoticeController {
 	 * @throws JsonIOException
 	 * @throws IOException
 	 */
-	@RequestMapping(value="deptNrList.do")
+	@RequestMapping(value="nRList.do")
 	public void getReplyList(HttpServletResponse response, int nId ) throws JsonIOException, IOException {
 	
 		response.setContentType("application/json; charset=UTF-8");
 
 		
 		ArrayList<nReply> rList =nService.selectReplyList(nId);
-		
-
-		
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		gson.toJson(rList,response.getWriter());
+		
 	}
 	/**
 	 * 9. 댓글 작성
@@ -286,7 +367,6 @@ public class NoticeController {
 		int result = nService.insertReply(r);
 		
 		
-		System.out.println(result);
 		if(result>0) {
 			return "success";
 		}else {
@@ -306,7 +386,6 @@ public class NoticeController {
 		int result = nService.deleteReply(r);
 		
 		
-		System.out.println(result);
 		if(result>0) {
 			return "success";
 		}else {
@@ -326,7 +405,6 @@ public class NoticeController {
 		int result = nService.updateReply(r);
 		
 		
-		System.out.println(result);
 		if(result>0) {
 			return "success";
 		}else {
@@ -335,54 +413,48 @@ public class NoticeController {
 	}
 	
 	
-// ------------------------------- 일반공지 -------------------------------------
+
+
 		
+
+//----------------------------------------------------------
+
 	
 	/**
-	 * 1. 게시물 조회
+	 * 1_2. 일반 게시물 리스트 조회
 	 * @param mv
+	 * @param session
 	 * @param currentPage
 	 * @return
 	 */
 	@RequestMapping("generNList.do")
-	public ModelAndView generNoticeList (ModelAndView mv, @RequestParam(value="currentPage",
+	public ModelAndView generNoticeList (ModelAndView mv,HttpSession session, @RequestParam(value="currentPage",
 	    required = false,defaultValue = "1") int currentPage) {
-				
-		int listCount = nService.getListCount();
-		
-		
-		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-		
-		ArrayList<Notice> list = nService.selectList(pi);
+//				
+//		int listCount = nService.getDeptListCount();
+//		
+//		Admin admin =(Admin)session.getAttribute("loginAdmin");
+//		
+//		
+//		
+//		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+//		
+//		ArrayList<Notice> list = nService.selectDeptList(pi);
+//		ArrayList<Notice> listAll = nService.selectDeptListAll(pi); //비공개,공개 모두 관람 
+//		
+//		if(admin==null) {
+//			mv.addObject("list",list);
+//			mv.addObject("pi",pi);
+//			mv.setViewName("notice/gener_notice");
+//		}else{
+//			mv.addObject("list",listAll);
+//			mv.addObject("pi",pi);
+//			mv.setViewName("notice/gener_notice");
+//		}
 	
-		
-		mv.addObject("list",list);
-		mv.addObject("pi",pi);
-		mv.setViewName("notice/gener_notice");
 		return mv;
+		
 	}
-	/**
-	 * 2. 게시물 상세조회
-	 * @param mv
-	 * @param nId
-	 * @param currentPage
-	 * @return
-	 */
-	@RequestMapping("generDetail.do")
-	public ModelAndView generNoticeDetail(ModelAndView mv, int nId,
-									@RequestParam(value="currentPage",required = false,defaultValue = "1") int currentPage) {
+
 	
-		Notice n = nService.selectNotice(nId);
-		
-		if(n!=null) {
-			mv.addObject("n",n)
-			  .addObject("currentPage", currentPage)
-			  .setViewName("notice/gener_notice_detail");
-		}else {
-			mv.addObject("msg", "게시글 상세 조회 실패").setViewName("common/errorPage");
-		}
-		
-		return mv;
-	}	
 }

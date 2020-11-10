@@ -38,12 +38,12 @@
 								<div class="custom-box-details bg-color-light custom-box-shadow-1 col-lg-12 ml-5 mb-5 mb-lg-4 float-right clearfix">
 									<h4>학사공지 작성</h4>
 
-									<form id="fm"class="contact-form"action="deptNInsert.do" method="post" enctype="multipart/form-data">
+									<form id="fm"class="contact-form"action="nInsert.do" method="post" enctype="multipart/form-data">
 
 
 				
 										<div class="form-group">
-											<input class="form-control"  name="nTitle" placeholder="제목">
+											<input id="ntitle" class="form-control"  name="nTitle" placeholder="제목">
 										</div>
 										<div class="form-row">
 
@@ -63,8 +63,11 @@
 											</div>
 										</div>
 										
-										<input  type="button" onclick="location.href='deptNList.do'" value="뒤로가기"	class="btn btn-quaternary mb-2">
-										<input	type="submit" value="완료"class="btn btn-dark btn-modern float-right">
+										<input  type="button" onclick="location.href='javascript:history.go(-1)'" value="뒤로가기"	class="btn btn-quaternary mb-2">
+										
+										<input id="submit"	type="submit" value="완료"class="btn btn-dark btn-modern float-right">
+										
+
 									</form>
 									
 									<script>
@@ -83,12 +86,23 @@
 
 <script>
 $(function(){
-	 if($("#Content").val().trim() == ""){
-         alert("내용을 입력하세요");
-         $("#Content").focus();
-         return false;
-     }
 	
+	
+		
+	$('#submit').on('click',function(){
+		 if($('#Content').val().trim() == ""){
+	         alert("내용을 입력하세요");
+	         $('#Content').focus();
+	         return false;
+	     }else if($("#ntitle").val().trim() == ""){
+	         alert("제목을 입력하세요");
+	         $("#Content").focus();
+	         return false;
+		 
+		}
+		 console.log("hihihi")
+	
+	})
 })
 
 </script>

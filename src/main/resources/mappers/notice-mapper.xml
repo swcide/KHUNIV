@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="noticeMapper">
+
  
   <resultMap type="Notice" id="noticeResultSet">
   		<id property="nId" column="NID"/>
   		<result property="nType" column="NTYPE"/>
 		<result property="nTitle" column="NTITLE"/>
 		<result property="nWriter" column="NWRITER"/>
-		<result property="nWriter" column="NNAME"/>
+		<result property="nName" column="NNAME"/>
 		<result property="nContent" column="NCONTENT"/>
 		<result property="nCount" column="NCOUNT"/>
 		<result property="originalFileName" column="ORIGINAL_FILENAME"/>
@@ -16,7 +17,7 @@
 		<result property="nCreateDate" column="N_CREATE_DATE"/>
 		<result property="nModifyDate" column="N_MODIFY_DATE"/>
 		<result property="nStatus" column="N_STATUS"/>
-		<result property="nStatus" column="N_SECRET"/>
+		<result property="nSecret" column="N_SECRET"/>
  	 </resultMap>
  	 
  	  <resultMap type="NReply" id="replyResultSet">
@@ -33,55 +34,91 @@
  	 </resultMap>
  	 
  	 
- 	 <select id="selectDeptTopList" resultMap="noticeResultSet">
+ 	 
+ 	 <select id="selectnList" resultMap="noticeResultSet">
+ 		SELECT *
+		FROM TB_NOTICE_BOARD
+		WHERE N_STATUS='Y'
+		AND NTYPE=#{nType}
+		ORDER BY NID DESC
+
+ 	</select>
+ 	 
+ 	 
+ 	 
+ 	 
+ 	 <select id="selectTopList" resultMap="noticeResultSet">
  	 	<![CDATA[
  	 	SELECT *
  	 	FROM (SELECT * 
  	 		  FROM TB_NOTICE_BOARD
  	 		  ORDER BY NID DESC)
- 		WHERE ROWNUM <=5
+ 		WHERE ROWNUM <=10
  		AND N_STATUS ='Y'
  		]]>
  	 </select>
  	 
  	<select id="getListCount"  resultType="_int">
   		SELECT COUNT(*)
-  		FROM TB_DEPT_NOTICE
+  		FROM TB_NOTICE_BOARD
+
   		WHERE N_STATUS='Y'	
+  		AND NTYPE=#{nType}
+  
 	</select>
-		<select id="selectList" resultMap="noticeResultSet">
- 		SELECT *
-		FROM TB_DEPT_NOTICE
-		WHERE N_STATUS='Y'
-		ORDER BY NID DESC
- 	 </select>
+
+
+ 	 
+ 	 
  	 <update id="updateCount" parameterType="_int">
- 	 	UPDATE TB_DEPT_NOTICE
+ 	 	UPDATE TB_NOTICE_BOARD
  	 	SET NCOUNT = NCOUNT+1
  	 	WHERE NID=#{nId}
  	 </update>
  	  <select id="selectNotice" resultMap="noticeResultSet">
  	 	SELECT *
- 	 	FROM TB_DEPT_NOTICE
+ 	 	FROM TB_NOTICE_BOARD
  	 	WHERE NID=#{nId}
  	 	AND N_STATUS='Y'
+ 	 	
+ 	 	
  	 </select>
  	  <insert id="insertNotice" parameterType="Notice">
- 	 	INSERT INTO TB_DEPT_NOTICE
- 	 	VALUES(SEQ_NID.NEXTVAL,#{nType},#{nTitle},#{nContent},#{nWriter},#{nName},DEFAULT,DEFAULT,DEFAULT,DEFAULT,#{originalFileName},#{renameFileName},DEFAULT)
+ 	 	INSERT INTO TB_NOTICE_BOARD
+ 	 	<if test="nType==1">
+ 	 	VALUES(SEQ_DEPT_NID.NEXTVAL,#{nType},#{nTitle},#{nContent},#{nWriter},#{nName},DEFAULT,DEFAULT,DEFAULT,DEFAULT,#{originalFileName},#{renameFileName},DEFAULT)
+ 	 	</if>
+ 	 	<if test="nType==2">
+ 	 	VALUES(SEQ_GENER_NID.NEXTVAL,#{nType},#{nTitle},#{nContent},#{nWriter},#{nName},DEFAULT,DEFAULT,DEFAULT,DEFAULT,#{originalFileName},#{renameFileName},DEFAULT)
+ 	 	</if>
+ 	 	
  	 </insert>
  	 <update id="updateNotice"  parameterType="Notice">
- 	 	UPDATE TB_DEPT_NOTICE
- 	 	SET NTITLE=#{nTitle},NCONTENT=#{nContent},ORIGINAL_FILENAME=#{originalFileName},RENAME_FILENAME=#{renameFileName},N_MODIFY_DATE=SYSDATE
+ 	 	UPDATE TB_NOTICE_BOARD
+ 	 	
+ 	 	SET  NTITLE=#{nTitle},NTYPE=#{nType},NCONTENT=#{nContent},ORIGINAL_FILENAME=#{originalFileName},RENAME_FILENAME=#{renameFileName},N_MODIFY_DATE=SYSDATE,N_SECRET=#{nSecret}
+ 	 	
  	 	WHERE NID=#{nId} 
+<!--  	 	<if test ="nType==1"> -->
+<!--  	 	SET NID='SEQ_GENER_NID.NEXTVAL', NTITLE=#{nTitle},NTYPE=#{nType},NCONTENT=#{nContent},ORIGINAL_FILENAME=#{originalFileName},RENAME_FILENAME=#{renameFileName},N_MODIFY_DATE=SYSDATE,N_SECRET=#{nSecret} -->
+<!--  	 	WHERE NID=#{nId}  -->
+<!--  	 	</if> -->
+<!--  	 	<if test ="nType==1"> -->
+<!--  	 	SET NID='SEQ_DEPT_NID.NEXTVAL',NTITLE=#{nTitle},NTYPE=#{nType},NCONTENT=#{nContent},ORIGINAL_FILENAME=#{originalFileName},RENAME_FILENAME=#{renameFileName},N_MODIFY_DATE=SYSDATE,N_SECRET=#{nSecret} -->
+<!--  	 	WHERE NID=#{nId}  -->
+<!--  	 	</if> -->
  	 </update>
  	 
  	  <update id="deleteNotice" parameterType="_int">
- 	 	UPDATE TB_DEPT_NOTICE
+ 	 	UPDATE TB_NOTICE_BOARD
  	 	SET N_STATUS ='N'
  	 	WHERE NID= #{nId}
  	 </update>
- 	 <select id="selectDeptReplyList" parameterType="_int" resultMap="replyResultSet">
+ 	 
+ 	 
+ 	
+ 	 
+ 	 <select id="selectNReplyList" parameterType="_int" resultMap="replyResultSet">
  	 	SELECT *
  	 	FROM TB_NOTICE_REPLY
  	 	WHERE N_REF_NID=#{nId}
@@ -92,7 +129,7 @@
  	 
  	  <insert id="insertReply" parameterType="Reply">
  	 	INSERT INTO TB_NOTICE_REPLY
- 	 	VALUES(SEQ_N_RID.NEXTVAL,#{rContent},#{refNid},SYSDATE,SYSDATE,#{rWriter},DEFAULT,#{rName},#{refRid})
+ 	 	VALUES(SEQ_N_RID.NEXTVAL,#{rContent},#{refNid},SYSDATE,SYSDATE,#{rWriter},DEFAULT,#{rName},#{refRid},#{nType})
  	 </insert>
  	 <insert id="deleteReply" parameterType="Reply">
  	 	UPDATE TB_NOTICE_REPLY
@@ -105,4 +142,20 @@
  	 	SET  N_RCONTENT=#{rContent}
  		WHERE N_RID= #{rId}
  	 </insert>
+ 	 
+ 	   <select id="detailNotice" resultMap="noticeResultSet">
+ 	 	SELECT *
+ 	 	FROM TB_NOTICE_BOARD
+ 	 	WHERE NID=#{nId}
+ 	 	<if test="nType==1">
+ 	 	And NTYPE =#{nType}
+ 	 	AND N_STATUS='Y'
+ 	 	</if>
+ 	 	<if test="nType==2"> 	
+ 	 	And NTYPE =#{nType}
+ 	 	AND N_STATUS='Y'
+ 	 	</if>
+ 	 	
+ 	 	
+ 	 </select>
 </mapper>
