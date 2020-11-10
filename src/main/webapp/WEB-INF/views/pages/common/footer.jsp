@@ -29,7 +29,6 @@
 		</div>
 
 		<!-- Vendor -->
-		<script src="resources/vendor/jquery/jquery.min.js"></script>
 		<script src="resources/vendor/jquery.appear/jquery.appear.min.js"></script>
 		<script src="resources/vendor/jquery.easing/jquery.easing.min.js"></script>
 		<script src="resources/vendor/jquery.cookie/jquery.cookie.min.js"></script>

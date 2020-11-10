@@ -86,7 +86,7 @@ public class helpDeskController {
 			return mv;
 	}
 	
-	@RequestMapping(value="qna_rList.do")
+	@RequestMapping(value="qnarList.do")
 	public void getReplyList(HttpServletResponse response, int qnaId) throws JsonIOException, IOException {
 		
 		ArrayList<Reply> rList = hdService.selectReplyList(qnaId);

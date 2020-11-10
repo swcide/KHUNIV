@@ -8,12 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.univ.notice.model.vo.Notice;
+import com.kh.univ.notice.model.vo.nReply;
 import com.kh.univ.common.PageInfo;
 
 @Repository("nDao")
 public class NoticeDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
+	
+	public ArrayList<Notice> selectTopList() {
+		return (ArrayList)sqlSession.selectList("noticeMapper.selectDeptTopList");
+	}
 
 	public int getListCount() {
 		
@@ -31,18 +37,41 @@ public class NoticeDao {
 	}
 
 	public Notice selectNotice(int nId) {
-		// TODO Auto-generated method stub
 		return  sqlSession.selectOne("noticeMapper.selectNotice",nId);
 	}
 
 	public int insertNotice(Notice n) {
-		// TODO Auto-generated method stub
 		return sqlSession.insert("noticeMapper.insertNotice",n);
 	}
 
-	public Object selectUpdateNotice(int nId) {
-		
-		return sqlSession.insert("noticeMapper.updateNotice",nId);
+
+	public int updateNotice(Notice n) {
+		return sqlSession.update("noticeMapper.updateNotice",n);
 	}
+
+	public int deleteNotice(int nId) {
+		return sqlSession.update("noticeMapper.deleteNotice",nId);
+
+
+
+	}
+
+	public ArrayList<nReply> selectReplyList(int nId) {
+		return (ArrayList)sqlSession.selectList("noticeMapper.selectDeptReplyList",nId);
+	}
+
+	public int insertReply(nReply r) {
+		return sqlSession.insert("noticeMapper.insertReply",r);
+	}
+
+	public int deleteReply(nReply r) {
+		return sqlSession.update("noticeMapper.deleteReply",r);
+	}
+
+	public int updateReply(nReply r) {
+		return sqlSession.update("noticeMapper.updateReply",r);
+	}
+
+	
 
 }

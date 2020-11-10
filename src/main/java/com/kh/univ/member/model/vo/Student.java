@@ -19,34 +19,16 @@ public class Student {
 	private String dNo;
 	private String sCategory;
 	private String sDeptName;
+	private int type;
 	
 	
 	public Student() {
 	}
 
-	public Student(String semester, String sNo, String sPwd, String sName, String sEmail, String sPhone, String sSsn, String sImage, String sAddress, Date enrollDate, String sStatus, String cpNo,
-			String dNo) {
-		super();
-		this.semester = semester;
-		this.sNo = sNo;
-		this.sPwd = sPwd;
-		this.sName = sName;
-		this.sEmail = sEmail;
-		this.sPhone = sPhone;
-		this.sSsn = sSsn;
-		this.sImage = sImage;
-		this.sAddress = sAddress;
-		this.enrollDate = enrollDate;
-		this.sStatus = sStatus;
-		this.cpNo = cpNo;
-		this.dNo = dNo;
-	}
 
-	
-	
-	
-	public Student(String semester, String sNo, String sPwd, String sName, String sEmail, String sPhone, String sSsn, String sImage, String sAddress, Date enrollDate, String sStatus, String cpNo,
-			String dNo, String sCategory, String sDeptName) {
+	public Student(String semester, String sNo, String sPwd, String sName, String sEmail, String sPhone, String sSsn,
+			String sImage, String sAddress, Date enrollDate, String sStatus, String cpNo, String dNo, String sCategory,
+			String sDeptName, int type) {
 		super();
 		this.semester = semester;
 		this.sNo = sNo;
@@ -63,176 +45,183 @@ public class Student {
 		this.dNo = dNo;
 		this.sCategory = sCategory;
 		this.sDeptName = sDeptName;
+		this.type = type;
 	}
 
-	public String getSemester()
-		{
-			return semester;
-		}
 
-	public void setSemester(String semester)
-		{
-			this.semester = semester;
-		}
+	public String getSemester() {
+		return semester;
+	}
 
-	public String getsNo()
-		{
-			return sNo;
-		}
 
-	public void setsNo(String sNo)
-		{
-			this.sNo = sNo;
-		}
+	public void setSemester(String semester) {
+		this.semester = semester;
+	}
 
-	public String getsPwd()
-		{
-			return sPwd;
-		}
 
-	public void setsPwd(String sPwd)
-		{
-			this.sPwd = sPwd;
-		}
+	public String getsNo() {
+		return sNo;
+	}
 
-	public String getsName()
-		{
-			return sName;
-		}
 
-	public void setsName(String sName)
-		{
-			this.sName = sName;
-		}
+	public void setsNo(String sNo) {
+		this.sNo = sNo;
+	}
 
-	public String getsEmail()
-		{
-			return sEmail;
-		}
 
-	public void setsEmail(String sEmail)
-		{
-			this.sEmail = sEmail;
-		}
+	public String getsPwd() {
+		return sPwd;
+	}
 
-	public String getsPhone()
-		{
-			return sPhone;
-		}
 
-	public void setsPhone(String sPhone)
-		{
-			this.sPhone = sPhone;
-		}
+	public void setsPwd(String sPwd) {
+		this.sPwd = sPwd;
+	}
 
-	public String getsSsn()
-		{
-			return sSsn;
-		}
 
-	public void setsSsn(String sSsn)
-		{
-			this.sSsn = sSsn;
-		}
+	public String getsName() {
+		return sName;
+	}
 
-	public String getsImage()
-		{
-			return sImage;
-		}
 
-	public void setsImage(String sImage)
-		{
-			this.sImage = sImage;
-		}
+	public void setsName(String sName) {
+		this.sName = sName;
+	}
 
-	public String getsAddress()
-		{
-			return sAddress;
-		}
 
-	public void setsAddress(String sAddress)
-		{
-			this.sAddress = sAddress;
-		}
+	public String getsEmail() {
+		return sEmail;
+	}
 
-	public Date getEnrollDate()
-		{
-			return enrollDate;
-		}
 
-	public void setEnrollDate(Date enrollDate)
-		{
-			this.enrollDate = enrollDate;
-		}
+	public void setsEmail(String sEmail) {
+		this.sEmail = sEmail;
+	}
 
-	public String getsStatus()
-		{
-			return sStatus;
-		}
 
-	public void setsStatus(String sStatus)
-		{
-			this.sStatus = sStatus;
-		}
+	public String getsPhone() {
+		return sPhone;
+	}
 
-	public String getCpNo()
-		{
-			return cpNo;
-		}
 
-	public void setCpNo(String cpNo)
-		{
-			this.cpNo = cpNo;
-		}
+	public void setsPhone(String sPhone) {
+		this.sPhone = sPhone;
+	}
 
-	public String getdNo()
-		{
-			return dNo;
-		}
 
-	public void setdNo(String dNo)
-		{
-			this.dNo = dNo;
-		}
+	public String getsSsn() {
+		return sSsn;
+	}
 
-	public String getsCategory()
-		{
-			return sCategory;
-		}
 
-	public void setsCategory(String sCategory)
-		{
-			this.sCategory = sCategory;
-		}
+	public void setsSsn(String sSsn) {
+		this.sSsn = sSsn;
+	}
 
-	public String getsDeptName()
-		{
-			return sDeptName;
-		}
 
-	public void setsDeptName(String sDeptName)
-		{
-			this.sDeptName = sDeptName;
-		}
+	public String getsImage() {
+		return sImage;
+	}
+
+
+	public void setsImage(String sImage) {
+		this.sImage = sImage;
+	}
+
+
+	public String getsAddress() {
+		return sAddress;
+	}
+
+
+	public void setsAddress(String sAddress) {
+		this.sAddress = sAddress;
+	}
+
+
+	public Date getEnrollDate() {
+		return enrollDate;
+	}
+
+
+	public void setEnrollDate(Date enrollDate) {
+		this.enrollDate = enrollDate;
+	}
+
+
+	public String getsStatus() {
+		return sStatus;
+	}
+
+
+	public void setsStatus(String sStatus) {
+		this.sStatus = sStatus;
+	}
+
+
+	public String getCpNo() {
+		return cpNo;
+	}
+
+
+	public void setCpNo(String cpNo) {
+		this.cpNo = cpNo;
+	}
+
+
+	public String getdNo() {
+		return dNo;
+	}
+
+
+	public void setdNo(String dNo) {
+		this.dNo = dNo;
+	}
+
+
+	public String getsCategory() {
+		return sCategory;
+	}
+
+
+	public void setsCategory(String sCategory) {
+		this.sCategory = sCategory;
+	}
+
+
+	public String getsDeptName() {
+		return sDeptName;
+	}
+
+
+	public void setsDeptName(String sDeptName) {
+		this.sDeptName = sDeptName;
+	}
+
+
+	public int getType() {
+		return type;
+	}
+
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
 
 	@Override
-	public String toString()
-		{
-			return "Student [semester=" + semester + ", sNo=" + sNo + ", sPwd=" + sPwd + ", sName=" + sName + ", sEmail=" + sEmail + ", sPhone=" + sPhone + ", sSsn=" + sSsn + ", sImage=" + sImage
-					+ ", sAddress=" + sAddress + ", enrollDate=" + enrollDate + ", sStatus=" + sStatus + ", cpNo=" + cpNo + ", dNo=" + dNo + ", sCategory=" + sCategory + ", sDeptName=" + sDeptName
-					+ "]";
-		}
+	public String toString() {
+		return "Student [semester=" + semester + ", sNo=" + sNo + ", sPwd=" + sPwd + ", sName=" + sName + ", sEmail="
+				+ sEmail + ", sPhone=" + sPhone + ", sSsn=" + sSsn + ", sImage=" + sImage + ", sAddress=" + sAddress
+				+ ", enrollDate=" + enrollDate + ", sStatus=" + sStatus + ", cpNo=" + cpNo + ", dNo=" + dNo
+				+ ", sCategory=" + sCategory + ", sDeptName=" + sDeptName + ", type=" + type + "]";
+	}
+
+	
 
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-}	
 
 
+}

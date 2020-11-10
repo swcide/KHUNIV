@@ -3,6 +3,7 @@ package com.kh.univ.member.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
@@ -51,7 +52,7 @@ public class MemberController {
 	 */
 	@RequestMapping(value = "login.do")
 	public String memberLogin(Student s, Professor p, Admin a, Model model, @RequestParam(value = "type1") int type1, @RequestParam(value = "type2") int type2, @RequestParam(name = "id") String id,
-			@RequestParam(name = "pw") String pw , HttpServletResponse response) throws IOException
+			@RequestParam(name = "pw") String pw ,HttpServletRequest request, HttpServletResponse response) throws IOException
 		{
 
 			System.out.println(id);
@@ -65,9 +66,13 @@ public class MemberController {
 					case 1:
 						s.setsNo(id);
 						s.setsPwd(pw);
+						s.setType(type2);
 						Student loginUser = mService.loginMember(s);
 						if(loginUser!=null) {
 							model.addAttribute("loginUser", loginUser);
+							
+							
+							
 							return "main";
 						}else {
 							response.setContentType("text/html; charset=UTF-8");
@@ -89,7 +94,10 @@ public class MemberController {
 						Professor loginProf = mService.loginProf(p);
 						if(loginProf!=null) {
 							model.addAttribute("loginProf", loginProf);
+							model.addAttribute("type2", type2);
+						
 							return "main";
+							
 						}else {
 							response.setContentType("text/html; charset=UTF-8");
 
@@ -108,7 +116,9 @@ public class MemberController {
 						
 						if(loginAdmin!=null) {
 							model.addAttribute("loginAdmin", loginAdmin);
-							System.out.println(loginAdmin);
+						
+							model.addAttribute("type2", type2);
+						
 							return "redirect:main.do";
 						}else {
 							response.setContentType("text/html; charset=UTF-8");
@@ -137,6 +147,7 @@ public class MemberController {
 					
 						if(loginUser!=null) {
 							model.addAttribute("loginUser", loginUser);
+							model.addAttribute("type2", type2);
 							return "administration_main";
 						}else {
 							response.setContentType("text/html; charset=UTF-8");
@@ -156,6 +167,7 @@ public class MemberController {
 						
 						if(loginProf!=null) {
 							model.addAttribute("loginProf", loginProf);
+							model.addAttribute("type2", type2);
 							return "professor_main";
 						}else {
 							response.setContentType("text/html; charset=UTF-8");
@@ -173,6 +185,7 @@ public class MemberController {
 						
 						if(loginAdmin!=null) {
 							model.addAttribute("loginAdmin", loginAdmin);
+							model.addAttribute("type2", type2);
 							return "redirect:admin.do";
 						}else {
 							response.setContentType("text/html; charset=UTF-8");

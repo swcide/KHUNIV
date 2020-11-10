@@ -1,6 +1,56 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.kh.univ.member.model.vo.Student"%>
+<%@ page import="com.kh.univ.member.model.vo.Admin"%>
+<%@ page import="com.kh.univ.member.model.vo.Professor"%>
+
+
+<%
+
+
+
+Student loginUser = (Student)session.getAttribute("loginUser");
+Professor loginProf = (Professor)session.getAttribute("loginProf");
+Admin loginAdmin = (Admin)session.getAttribute("loginAdmin");
+
+String sNo = null;
+String pNo = null;
+String aId = null;
+
+String sName =null;
+String pName =null;
+String aName = null;
+
+
+int type = 0;
+
+	if(loginUser !=null){
+	 sNo =loginUser.getsNo(); 
+	 sName =loginUser.getsName();
+	 type = loginUser.getType();
+	
+	}else if(loginProf !=null){	
+	 pNo =loginProf.getpNo();
+	 pName=loginProf.getpName();
+	 type = loginProf.getType();
+	
+	}else if (loginAdmin !=null){
+	 aId = loginAdmin.getaId();
+	 aName = loginAdmin.getaName();
+	 type = loginAdmin.getType();
+	
+	}
+	
+System.out.println(type);	
+
+
+     
+
+%>
+
+
 
 <%@ include file="../common/header.jsp"%>
 
@@ -14,19 +64,25 @@
     color: #666;
     font-weight: 700;
 }
+ul.comments li {
+	clear: both;
+    padding: 10px 0px 0px 20px!important;
+}}
 </style>
+
+
 
 <div class="body">
 	<div role="main" class="main">
-		<
+
 		<section
 			class="page-header page-header-modern page-header-background page-header-background-md overlay overlay-color-dark overlay-show overlay-op-3"
-			style="background-image: url(img/page-header/page-header-background-transparent.jpg); padding: 70px;">
+			>
 			<div class="container">
 				<div class="row mt-3">
 					<div
 						class="col-md-12 align-self-center p-static order-2 text-center">
-						<h1 class="text-9 font-weight-bold">학사공지</h1>
+						<h1 class="text-9 font-weight-bold">학사공지${n.nId}${type2 }</h1>
 						<span class="sub-title">Department Notice</span>
 					</div>
 				</div>
@@ -43,7 +99,7 @@
 							<div class="post-content ml-0">
 
 								<h2 class="font-weight-bold">
-									${ n.nTitle }
+									${ n.nTitle }    
 								</h2>
 
 								<div class="post-meta">
@@ -69,6 +125,7 @@
 					                        <span class="mailbox-attachment-size clearfix mt-">
 					                          <a href="#" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
 					                        </span>
+					                    
 					                  </div>
 					                </li>
 								</ul>
@@ -76,21 +133,21 @@
 								
 								</c:if>
 							
-<%-- 								<c:if test="${ loginAdmin != null }"> --%>
+								<c:if test="${ loginAdmin != null }">
 								<div class=" float-right">											
 											<div>
-												<c:url var="nupview" value="nupView.do">
-													<c:param name="bId" value="${n.nId }"/>
+												<c:url var="nupview" value="deptNupView.do">
+													<c:param name="nId" value="${n.nId }"/>
 												</c:url>
-												<c:url var="ndelete" value="bdelete.do">
-													<c:param name="bId" value="${n.nId }"/>
+												<c:url var="ndelete" value="deptNdelete.do">
+													<c:param name="nId" value="${n.nId }"/>
 												</c:url>
-												<c:url var="nlist" value="dept_notice.do">
+												<c:url var="nlist" value="dept_nList.do">
 													<c:param name="currentPage" value="${ currentPage }"/>
 												</c:url>
 											
 											
-												<a href="${ndelete }" class="mb-1 mt-1 mr-1 btn btn-primary">
+												<a href="${ndelete}" class="mb-1 mt-1 mr-1 btn btn-primary">
 													삭제하기
 												</a>
 												<a href="${nupview }" class="mb-1 mt-1 mr-1 btn btn-primary">
@@ -98,38 +155,131 @@
 												</a>											
 											</div>
 										</div>
-										<a href="${nlist }" class="mb-1 mt-1 mr-1 btn btn-primary float-left">
+										
+								</c:if>
+								<c:if test="${ loginAdmin.aId eq n.nWriter }">
+								<div class=" float-right">											
+											<div>
+												<c:url var="nupview" value="deptNupView.do">
+													<c:param name="nId" value="${n.nId }"/>
+												</c:url>
+												<c:url var="ndelete" value="ndelete.do">
+													<c:param name="nId" value="${n.nId }"/>
+												</c:url>
+												<c:url var="nlist" value="dept_nList.do">
+													<c:param name="currentPage" value="${ currentPage }"/>
+												</c:url>
+											
+											
+												<a href="${ndelete}" class="mb-1 mt-1 mr-1 btn btn-primary">
+													삭제하기
+												</a>
+												<a href="${nupview }" class="mb-1 mt-1 mr-1 btn btn-primary">
+													수정하기
+												</a>											
+											</div>
+										</div>
+										
+								</c:if>
+								<c:if test="${ loginProf.pNo eq n.nWriter and loginAdmin.sNo eq n.nWriter}">
+								<div class=" float-right">											
+											<div>
+												<c:url var="nupview" value="deptNupView.do">
+													<c:param name="nId" value="${n.nId }"/>
+												</c:url>
+												<c:url var="ndelete" value="ndelete.do">
+													<c:param name="nId" value="${n.nId }"/>
+												</c:url>
+												<c:url var="nlist" value="dept_nList.do">
+													<c:param name="currentPage" value="${ currentPage }"/>
+												</c:url>
+											
+											
+												<a href="${ndelete}" class="mb-1 mt-1 mr-1 btn btn-primary">
+													삭제하기
+												</a>
+												<a href="${nupview }" class="mb-1 mt-1 mr-1 btn btn-primary">
+													수정하기
+												</a>											
+											</div>
+										</div>
+										
+								</c:if>
+								<c:if test="${ lgoinUser.sNo eq n.nWriter and loginAdmin.sNo eq n.nWriter }">
+								<div class=" float-right">											
+											<div>
+												<c:url var="nupview" value="deptNupView.do">
+													<c:param name="nId" value="${n.nId }"/>
+												</c:url>
+												<c:url var="ndelete" value="ndelete.do">
+													<c:param name="nId" value="${n.nId }"/>
+												</c:url>
+												<c:url var="nlist" value="dept_nList.do">
+													<c:param name="currentPage" value="${ currentPage }"/>
+												</c:url>
+											
+											
+												<a href="${ndelete}" class="mb-1 mt-1 mr-1 btn btn-primary">
+													삭제하기
+												</a>
+												<a href="${nupview }" class="mb-1 mt-1 mr-1 btn btn-primary">
+													수정하기
+												</a>											
+											</div>
+										</div>
+										
+								</c:if>
+								
+								<div id="comments" class="post-block mt-5 post-comments">
+											<h4 id ="rCount"class="mb-3"></h4>
+
+											<ul class="comments">
+												
+
+											</ul>
+
+								</div>
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+						
+ 								<c:if test="${!empty sessionScope  }">
+ 								<div class="post-block mt-5 post-leave-comment">
+ 									<h4 class="mb-3">Leave a comment</h4> 									
+ 										<div class="p-2"> 
+ 											<div class="form-row"> 
+ 												<div class="form-group col"> 
+ 													<label class="required font-weight-bold text-dark">Comment</label> 
+ 													<textarea id="rContent" maxlength="5000" rows="2" class="form-control" name="message" ></textarea> 
+											</div> 
+ 											</div> 
+ 											<div class="form-row"> 
+ 												<div class="form-group col mb-0">
+													<input id="rSubmit"type="button" value="등록"  class="btn btn-dark btn-modern float-right" data-loading-text="Loading..."> 
+												<a href="${nlist}" class="mb-1 mt-1 mr-1 btn btn-primary float-left">
 												목록으로
 										</a>
-<%-- 								</c:if> --%>
-								<div id="comments" class="post-block mt-5 post-comments">
+												</div> 
+											</div> 
+										</div> 								
+								</div> 
+								</c:if>	
 								
-
-
-									<ul class="comments">
-										<li>
-											<div class="comment">
-												<div
-													class="img-thumbnail img-thumbnail-no-borders d-none d-sm-block">
-													<img class="avatar" alt="" src="img/avatars/avatar-2.jpg">
-												</div>
-												<div class="comment-block">
-													<div class="comment-arrow"></div>
-													<span class="comment-by"> <strong>댓글 작성자 이름이 여기 들어감</strong> <span
-														class="float-right"> <span> <a href="#"><i
-																	class="fas fa-reply"></i> Reply</a></span>
-													</span>
-													</span>
-													<p>댓글 내용이 여기 들어감</p>
-													<span class="date float-right">2020-10-29 13:38 </span>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div>
-
-								
-
+								<input type="hidden" id="div_1" value="22">
+								<input type="hidden" id="div_2" value="11">
+								<input type="hidden" id="div_3" value="33">
+								<input type="hidden" id="div_4" value="44">
+								<input type="hidden" id="div_5" value="55">
 							</div>
 						</article>
 					</div>
@@ -137,5 +287,567 @@
 			</div>
 		</div>
 	</div>
+	
+	<div class=" commentList "></div>
+	
+
+	<script src="resources/vendor/jquery/jquery.min.js"></script>
+<script>
+
+	$(function(){
+		getReplyList();
+// 		setInterval(function(){
+// 			getReplyList(); // 타 회원이 댓글들을 작성했을 수도 있으니 지속적으로 댓글 불러오기
+// 		},3000);
+
+		function check (){
+		
+		}
+		
+		
+		$('#rSubmit').on('click',function(){
+		
+			 if($("#rContent").val().trim() == ""){
+                 alert("내용을 입력하세요");
+                 $("#rContent").focus();
+                 return false;
+             }
+			
+			
+			 var rContent = $("#rContent").val();
+			 var refNid = ${n.nId};
+			 var rName;
+			 var rWriter;
+			 var type= "<%=type%>";
+//	 			 var refRid = $(obj).
+				
+				 if(type !=null){
+					if (type==1){
+					rName = "<%=sName%>";
+					rWriter = "<%=sNo%>";
+				 	}
+					 else if(type==2){
+						rName = "<%=pName%>";
+						rWriter = "<%=pNo%>";
+			    	}else if(type==3){
+						rName = "<%=aName%>";
+						rWriter = "<%=aId%>";
+				 	}
+			
+			 }
+			
+			
+		
+			
+			if (type != null){
+			$.ajax({
+				url:"NoticeAddReply.do",
+				data:{
+					rContent:rContent,
+					refNid:refNid,
+					rWriter:rWriter,
+					rName:rName
+
+					},
+				type:"post",
+				success:function(data){
+					if(data == "success"){
+						getReplyList(); // 등록 성공 시 다시 댓글 리스트를 호출
+						$("#rContent").val(""); // 댓글 등록이 성공을 하면 작성한 글은 초기화 시켜준다.
+						alert("댓글이 등록되었습니다.");
+					}
+				},error:function(request,status,errorData){
+					console.log(request.status + " : " + errorData);
+				}
+				
+			});
+			}else{
+			
+			}
+		})
+	});
+	
+		
+
+	
+		
+		function getReplyList() {
+			var nId = ${n.nId};
+			$.ajax({
+				url:"deptNrList.do",
+				data:{nId:nId},
+				dataType:"json",
+				success:function(data){
+					$ul = $('#comments ul');
+					$li1 = $('#comments ul li');
+					$ul.html("");
+// 					$li1.html("");
+					
+					
+					
+
+					
+					var $dupReply;
+					var $rWriter;
+					
+					var $refRid ;
+					var $rName;
+					var $rContent;
+					var $rCreateDate;
+					var type= "<%=type%>";
+					
+					var $rIdCheck;  //참조 댓글의 rid
+					var $rId;
+					var $div_c;
+					var $rePlace;
+					
+
+					$("#rCount").text("댓글("+data.length+")");
+					
+					if(data.length>0){
+						
+						for(var i  in data){
+							
+		
+							$rId = data[i].rId;
+							$rIdCheck = $('<input type="hidden" value="'+data[i].rId+'">') //참조 댓글의 rid
+							
+							$rWriter =$('<input type"hidden" "value="'+data[i].rWriter+'">').val();
+							$rName =$('<input type"hidden" value="'+data[i].rName+'">').val();
+							$rContent=$('<input type"hidden"  value="'+data[i].rContent+'">').val();
+							$rCreateDate=$('<input type"hidden"  value="'+data[i].rCreateDate+'">').val();
+					
+							if(data[i].refRid==0){
+										
+								
+								$div_c = 
+										'	<li id="rId_'+$rId+'">'+
+										'		<div class="comment">'+													
+										'			<div class="comment-block">'+
+										'				<div class="comment-arrow"></div>'+
+										'				<input type="hidden" value="'+$rId+'">'+		
+										'				<input type="hidden" value="'+data[i].refRid+'">'+		
+										'				<span class="comment-by">'+
+										'					<strong >'+$rName+'</strong>'+
+										'				<span class="date float-right" style=" margin-left: 10px;">'+$rCreateDate+'</span>'+			
+										'				</span>'+
+										'				<p style="margin-bottom:15px;">'+$rContent+'</p>'+ 
+										'				<textarea style="width:85%; display: none;"></textarea>'+
+										' 				<span class="float-right">'+
+										'						<span class="checkId"> <a href="javascript:void(0);" onclick="reAddReplyView(this);"><i class="fas fa-reply"></i> Reply</a></span>'+
+										'				</span>'+
+										'			</div>'+
+										'		</div>' 
+										'	<li>'
+									
+									
+							
+	
+								
+							
+							
+										
+								if(type ==0 ){
+									$('.checkId').css('display','none');
+									
+								}	
+	
+								$ul.append($div_c);
+								
+							}
+							for(var j in data){
+								$refRid =data[j].refRid;
+								
+								if($refRid != 0){	
+								
+									var  $li = $('#rId_'+$rId);
+// 									var rId_val =$('#rid_'+[z]).val();
+									console.log($rId+"rId");
+									
+									
+		// 							$li.html("");
+										
+									$reRid = data[j].rId
+									$rWriter =data[j].rWriter
+									$rName = data[j].rName
+									$rContent= data[j].rContent
+									$rCreateDate= data[j].rCreateDate;
+									
+									
+										if($refRid ==$rId){
+		
+											console.log("refrid"+$refRid+"----"+$rId+"rId");
+											
+											$rePlace=$(	
+													'<ul class="comments reply">'+
+													'    <li >'+
+													'   	<div class="comment">'+				
+													'			<i class="fas fa-chevron-up"></i>'+
+													'     		<div class="comment-block">'+
+													'     			<input type="hidden" value="'+$reRid+'">'+		
+													'     			<span class="comment-by">'+
+													'     				<strong >수정한거'+$rName+'</strong>'+
+													'     			<span class="date float-right" style=" margin-left: 10px;">'+$rCreateDate+'</span>'+			
+													'     			</span>'+
+													'     			<p style="margin-bottom:15px;">'+$rContent+'</p>'+ 
+													'     			<textarea style="width:85%; display: none;"></textarea>'+
+													'     		</div>'+
+													'     	</div>' +
+													'	<li>'+
+													'<ul>'
+											
+													);
+											
+											$li.append($rePlace);
+										}
+									
+									
+									
+									
+								
+								}
+							}
+								
+
+								
+						}
+
+				
+						
+					
+						
+					
+					//for문
+						
+
+						if (type==1){
+							var sNo= "<%=sNo%>";
+							
+							$
+						
+								if($rWriter==sNo){	
+									$dupReply = $(	
+													'<span  class=" float-right">'+
+														'<button onclick="rDelete(this);" class="btn btn-xs btn-light btnChk" style=" margin-right: 10px; ">삭제</button>'+
+													'</span>'+
+													'<span class=" float-right">'+
+														'<button onclick="rUpdateView(this);"class="btn btn-xs btn-primary btnChk" style=" margin-right: 10px;" >수정</button>'+
+													'</span>'											 
+												);
+							
+								 $('.comment-block').append($dupReply);
+								}
+							}
+							else if(type==2){
+							var pNo = "<%=pNo%>";
+							
+								if($rWriter==pNo){
+									$dupReply = $(	
+													'<span  class=" float-right">'+
+													
+														'<button onclick="rDelete(this);" class="btnChk btn btn-xs btn-light" style=" margin-right: 10px; ">삭제</button>'+
+													'</span>'+
+													'<span class=" float-right">'+
+														'<button onclick="rUpdateView(this);" class="btnChk btn btn-xs btn-primary" style=" margin-right: 10px;" >수정</button>'+
+													'</span>'
+												  );	
+
+							  	$('.comment-block').append($dupReply);
+								}
+							}else if(type==3){
+						
+								$dupReply = $(	
+												'<span  class=" float-right">'+
+												
+													'<button onclick="rDelete(this);" class="btnChk btn btn-xs btn-light" style=" margin-right: 10px; ">삭제</button>'+
+												'</span>'+
+												'<span class=" float-right">'+
+													'<button onclick="rUpdateView(this);" class="btnChk btn btn-xs btn-primary" style=" margin-right: 10px;" >수정</button>'+
+												'</span>'						
+											);	
+					
+								$('.comment-block ').append($dupReply);
+							}
+						
+					}
+					//if 문
+			
+				},error: function(result){
+					console.log(result)
+				}
+			});
+		};
+	
+		
+		
+		function rDelete(obj){
+			
+			var nId = ${n.nId};
+			var rId = $(obj).parent().siblings('input').val();
+			
+			
+			
+			$.ajax({
+				url:"NoticeDeleteReply.do",
+				data:{
+					rId:rId},
+				type:"post",
+				success:function(data){
+					if(data =="success"){
+						
+						alert("삭제가 완료되었습니다.");
+						getReplyList();
+						
+					}
+				},error: function(result){
+					console.log(result)
+				}
+				
+				
+			});
+		}
+		function rUpdateView(obj){
+			$('.checkId').css('display','none');	
+// 			var rContent =$(obj).parent().siblings('p').html().trim();
+			var rId =$(obj).parent().siblings('input').val();
+			var rName = $('.comment-by').children().siblings('span').html().trim();
+			var rCreateDate = $('.comment-by').children().siblings('strong').html().trim();
+			
+		
+			
+
+			
+			
+			var changeBtn;
+			changeBtn=
+				'<button onclick="rUpdate(this);" class="btn btn-xs btn-primary" style=" margin-right: 10px; ">수정하기</button>'+
+				'<button  onclick="rCancle(this);" class="btn btn-xs btn-primary" style=" margin-right: 10px; ">취소하기</button>';
+			
+			var changeContent;
+			changeContent= $(obj).parent().siblings('p').css('display','none');
+			var changeContent2;
+			changeContent= $(obj).parent().siblings('textarea').css('display','block');
+				
+			
+			var edit = $(obj).parent().append(changeBtn);
+			
+			
+			var remove =$(obj).remove();
+			
+			
+
+		   
+			
+			
+			
+			
+
+		}
+		
+		function rUpdate(obj){
+			var nId = ${n.nId};
+			var rId = $(obj).parent().siblings('input').val();
+			var rContent =$(obj).parent().siblings('textarea').val();
+			
+			
+			
+			 if(rContent.trim() == ""){
+                 alert("내용을 입력하세요");
+                 rContent.focus();
+                 return false;
+             }
+			
+			
+			
+			$.ajax({
+				url:"noticeUpdateReply.do",
+				data:{
+					rId:rId,
+					rContent:rContent},
+				type:"post",
+				success:function(data){
+					if(data =="success"){
+// 						var test ;
+							getReplyList();
+						
+						alert("수정이 완료되었습니다.");
+					
+						
+						
+					}
+				},error: function(result){
+					console.log(result)
+				}
+				
+				
+			});
+		}
+	
+		function rCancle(obj){
+			var update = '<button onclick="rUpdateView(this);" class="btn btn-xs btn-primary" style=" margin-right: 10px;" >수정</button>';
+			$('.checkId').css('display','block');
+
+			var remove2 =$(obj).siblings('button').remove();
+			
+			var changeContent2;
+			changeContent= $(obj).parent().siblings('textarea').css('display','none');
+	
+			var changeContent;
+			changeContent= $(obj).parent().siblings('p').css('display','block');
+	
+			$btnBack=$(obj).parent().append(update);
+			var remove =$(obj).remove();
+			
+			
+		
+			
+		}
+	
+		function reAddReplyView(obj){
+			
+			var refRid = $(obj).parent().parent().siblings('input').val(); //null 이면 그냥 null 아니면 댓글
+			var refNid = ${n.nId};
+			var rName;
+			var rWriter;
+			var type= "<%=type%>";
+			var $tr;
+			var $test;
+
+			if(type !=null){
+				if (type==1){
+					rName = "<%=sName%>";
+					rWriter = "<%=sNo%>";
+				}
+				else if(type==2){
+					rName = "<%=pName%>";
+					rWriter = "<%=pNo%>";
+				}else if(type==3){
+					rName = "<%=aName%>";
+					rWriter = "<%=aId%>";
+				}
+			
+			}
+			console.log(rName)
+			console.log(refRid);
+		
+			if(refRid !=null ){
+				
+				$
+				$tr  = $(obj).parent().parent().parent();;
+				$test = $(
+						
+						'<ul class="comments reply">'+
+						'	<li>'+
+						'		<div class="comment">'+
+						'			<i class="fas fa-chevron-up"></i>'+
+						'			<div class="comment-block">'+
+						'			<span class="comment-by">'+
+						'				<strong>'+rName+'</strong>'+
+						'			</span>'+
+						'				<textarea id ="reRContent"style="width:85%; hight:40px"></textarea>'+
+						'				<input type="hidden" value="'+refRid+'">'+	
+						'				<button onclick="r_rCancle(this);" class="btn btn-light btn-sm float-right" style="margin-left:10px" >취소</button>'+
+						'				<button onclick="r_addReply(this);" class="btn btn-light btn-sm float-right" style="margin-left:10px">등록</button>'+
+						'			</div>'+
+						'		</div>'+
+						'	</li>'+
+						'</ul>'	
+				);
+				
+				$tr.after($test);
+				
+				$('.checkId2').css('display','none');
+				$('.checkId').css('display','none');
+				$('.btnChk').css('display','none');
+				console.log(rName)
+				console.log(type)
+				console.log(refRid)
+
+			}
+
+	}
+
+	function r_addReply (obj){
+		
+		if($("#reRContent").val().trim() == ""){
+             alert("내용을 입력하세요");
+             $("#reRContent").focus();
+             return false;
+        }
+		
+		
+		var rContent = $("#reRContent").val();
+		var refNid = ${n.nId}; // 게시판 번호
+		
+		
+		var refRid = $(obj).siblings('input').val(); //댓글달 댓글 번호
+		
+		var rWriter ; // 아이디
+		var rName; // 이름
+		var type= "<%=type%>";
+
+			
+			 console.log(rContent)
+			 if(type!=null){
+				if (type==1){
+					rName = "<%=sName%>";
+				rWriter = "<%=sNo%>";
+			 }
+			 else if(type==2){
+				rName = "<%=pName%>";
+				rWriter = "<%=pNo%>";
+	    	 }else if(type==3){
+				rName = "<%=aName%>";
+				rWriter = "<%=aId%>";
+				 console.log(rName)
+			 }
+		
+		 }
+		
+		$.ajax({
+			url:"NoticeAddReply.do",
+			data:{
+				rContent:rContent,
+				refNid:refNid,
+				rWriter:rWriter,
+				rName:rName,
+				refRid:refRid
+				},
+			type:"post",
+			success:function(data){
+				if(data =="success"){
+					
+					
+					getReplyList();
+					$("#rContent").val(""); // 댓글 등록이 성공을 하면 작성한 글은 초기화 시켜준다.
+					alert("댓글이 등록되었습니다.");
+				}
+			}
+			
+		});
+		
+		
+	}
+	
+	function r_rCancle (obj){
+		var remove = $(obj).parent().parent().parent().parent();
+		
+		remove.remove();
+		$('.checkId2').css('display','block');
+		$('.checkId').css('display','block');
+		$('.btnChk').css('display','block');
+		
+	
+		
+	}
+
+	
+	
+	
+	
+	
+	</script>
+
 </div>
+
 <%@ include file="../common/footer.jsp"%>

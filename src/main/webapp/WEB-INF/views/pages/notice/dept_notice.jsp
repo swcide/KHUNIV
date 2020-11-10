@@ -46,7 +46,7 @@
 										<tr>
 											<td>${n.nId }</td>
 											<td>
-												<c:url var="hdetail" value="humandetail.do">
+												<c:url var="hdetail" value="deptDetail.do">
 													<c:param name="nId" value="${n.nId }"/>
 													<c:param name="currentPage" value="${ pi.currentPage }"/>
 												</c:url>
@@ -64,7 +64,7 @@
 					
 				
 							<c:if test="${!empty sessionScope.loginAdmin }">
-								<button type="button" class="btn btn-dark"onclick="location.href='humaninsert.do;'"style="float: right; margin-bottom: 20px;">
+								<button type="button" class="btn btn-dark"onclick="location.href='deptNInsertView.do;'"style="float: right; margin-bottom: 20px;">
 									<i class="fas fa-pencil-alt"></i> 공지작성
 								</button> 
 							</c:if>
@@ -82,7 +82,7 @@
 									
 								</c:if>
 								<c:if test="${ pi.currentPage ne 1 }">
-								   <c:url var="before" value="dept_notice.do">
+								   <c:url var="before" value="deptNoticeList.do">
 					                  <c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
 					       		   </c:url>
 									 	<li class="page-item">
@@ -101,7 +101,7 @@
 										</li>
 									</c:if>
 									<c:if test="${ p ne pi.currentPage }">
-									 <c:url var="pagination" value="dept_notice.do">
+									 <c:url var="pagination" value="deptNoticeList.do">
 					                    <c:param name="currentPage" value="${ p }"/>
 					                 </c:url>
 					                 	<li class="page-item ">
@@ -121,7 +121,7 @@
 				            	
 <!-- 				            	다음대음다음대음 -->
 				            	<c:if test="${pi.currentPage ne pi.maxPage }">
-									<c:url var="after" value="dept_notice.do">
+									<c:url var="after" value="deptNoticeList.do">
 						             	<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 						            </c:url> 
 									

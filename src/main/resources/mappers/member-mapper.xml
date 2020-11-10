@@ -19,7 +19,8 @@
       <result property="sStatus" column="STATUS" />
       <result property="cpNo" column="COACH_PROF_NO" />
       <result property="sCategory" column="CATEGORY" />
-      <result property="sDeptName" column="DEPARTMENT_NAME" />
+      <result property="sDeptName" column="DEPARTMENT_NAME"/>
+      <result property="type" column="LOGIN_TYPE" />
    </resultMap>
 
    <!-- 관리자 맵 -->
@@ -27,6 +28,7 @@
       <id property="aId" column="ADMIN_ID" />
       <result property="aPwd" column="ADMIN_PWD" />
       <result property="aName" column="ADMIN_NAME" />
+      <result property="type" column="LOGIN_TYPE" />
    </resultMap>
 
    <!-- 교수 맵 -->
@@ -40,6 +42,7 @@
       <result property="pPwd" column="PROF_PWD" />
       <result property="pEmail" column="PROF_EMAIL" />
       <result property="pLab" column="PROF_LAB" />
+        <result property="type" column="LOGIN_TYPE" />
    </resultMap>
 
    <!-- 학생 로그인 -->
