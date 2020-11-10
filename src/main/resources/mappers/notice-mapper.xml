@@ -32,11 +32,23 @@
 		<result property="nType" column="NTYPE"/>
  	 </resultMap>
  	 
- 	 	<select id="getListCount"  resultType="_int">
+ 	 
+ 	 <select id="selectDeptTopList" resultMap="noticeResultSet">
+ 	 	<![CDATA[
+ 	 	SELECT *
+ 	 	FROM (SELECT * 
+ 	 		  FROM TB_DEPT_NOTICE
+ 	 		  ORDER BY NID DESC)
+ 		WHERE ROWNUM <=5
+ 		AND N_STATUS ='Y'
+ 		]]>
+ 	 </select>
+ 	 
+ 	<select id="getListCount"  resultType="_int">
   		SELECT COUNT(*)
   		FROM TB_DEPT_NOTICE
   		WHERE N_STATUS='Y'	
- 		</select>
+	</select>
 		<select id="selectList" resultMap="noticeResultSet">
  		SELECT *
 		FROM TB_DEPT_NOTICE

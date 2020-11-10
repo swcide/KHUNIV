@@ -18,6 +18,14 @@ public class NoticeServiceImpl implements NoticeService {
 	@Autowired
 	private NoticeDao nDao;
 	
+	
+	
+	
+	@Override
+	public ArrayList<Notice> selectTopList() {
+		return nDao.selectTopList();
+	}
+	
 	@Override
 	public int getListCount() {
 		return nDao.getListCount();
@@ -80,6 +88,7 @@ public class NoticeServiceImpl implements NoticeService {
 	public int updateReply(nReply r) {
 		return nDao.updateReply(r);
 	}
-	
+
+
 
 }
