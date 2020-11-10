@@ -362,7 +362,7 @@ public class NoticeController {
 		return mv;
 	}
 	/**
-	 * 2. 게시물 상세조회
+	 * 2. 게시물 
 	 * @param mv
 	 * @param nId
 	 * @param currentPage

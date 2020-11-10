@@ -38,7 +38,7 @@
 								<div class="custom-box-details bg-color-light custom-box-shadow-1 col-lg-12 ml-5 mb-5 mb-lg-4 float-right clearfix">
 									<h4>학사공지 작성</h4>
 
-									<form id="fm"class="contact-form"	action="deptNInsert.do" method="post" enctype="multipart/form-data">
+									<form id="fm"class="contact-form"action="deptNInsert.do" method="post" enctype="multipart/form-data">
 
 
 				
@@ -50,10 +50,10 @@
 											<div class="form-group col">
 											<input type="hidden" name="nWriter" value="${loginAdmin.aId}">
 											<input type="hidden" name="nName"value="${loginAdmin.aName}">
-											<input type="hidden" name="nType"value="01">
+											<input type="hidden" name="nType"value="1">
 												  <div class=" ">
 										              <div class="mb-3">
-										                <textarea class="textarea" placeholder="Place some text here" name="nContent"
+										                <textarea id ="Content"class="textarea" placeholder="Place some text here" name="nContent"
 										                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
 										              </div>
 										            
@@ -80,4 +80,16 @@
 		</div>
 	</div>
 </div>
+
+<script>
+$(function(){
+	 if($("#Content").val().trim() == ""){
+         alert("내용을 입력하세요");
+         $("#Content").focus();
+         return false;
+     }
+	
+})
+
+</script>
 <%@ include file="../common/footer.jsp"%>

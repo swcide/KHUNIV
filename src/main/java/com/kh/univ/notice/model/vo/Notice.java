@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Notice {
 	
 	private int nId;
-	private String nType;
+	private int nType;
 	private String nTitle;
 	private String nContent;
 	private String nWriter;
@@ -24,7 +24,7 @@ public class Notice {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Notice(int nId, String nType, String nTitle, String nContent, String nWriter, String nName, int nCount,
+	public Notice(int nId, int nType, String nTitle, String nContent, String nWriter, String nName, int nCount,
 			String originalFileName, String renameFileName, Date nCreateDate, Date nModifyDate, String nStatus,
 			String nSecret) {
 		super();
@@ -51,11 +51,11 @@ public class Notice {
 		this.nId = nId;
 	}
 
-	public String getnType() {
+	public int getnType() {
 		return nType;
 	}
 
-	public void setnType(String nType) {
+	public void setnType(int nType) {
 		this.nType = nType;
 	}
 
@@ -155,5 +155,6 @@ public class Notice {
 				+ ", nModifyDate=" + nModifyDate + ", nStatus=" + nStatus + ", nSecret=" + nSecret + "]";
 	}
 
+	
 	
 }

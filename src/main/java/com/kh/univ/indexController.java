@@ -36,20 +36,20 @@ public class indexController {
 		
 		
 		
-		Notice n = new Notice();
 		
 		ArrayList<Notice> nList = nService.selectTopList();
 		
-		System.out.println(n.getnType());
 		System.out.println(nList);
 		
-		mv.addObject("n",n);
+		
 		mv.addObject("nList",nList);
 		mv.setViewName("main");
 	
 		return mv;
 	
 	}
+	
+
 	@RequestMapping(value = "login_page.do", method = RequestMethod.GET)
 	public String login(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);

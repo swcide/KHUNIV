@@ -59,21 +59,20 @@
 													<th>조회수</th>
 													<th>작성자</th>
 													<th>작성일</th>
+													<th>작성일</th>
 												</tr>
 											</thead>
 											
 											<tbody>
-												
-<%-- 												<c:if test="${n.nType eq 01}"> --%>
-												
-													<c:forEach var="nl" items="${nList}">
+<%-- 												<c:if test="${nList.nType eq 01}"> --%>
+													<c:forEach var="n" items="${nList}">
 														<tr>
-														
-															<td>${nl.nId}</td>
-															<td>${nl.nTitle }</td>
-															<td>${nl.nCount }</td>
-															<td>${nl.nName }</td>
-															<td>${nl.nCreateDate }</td>
+															<td>${n.nId}</td>
+															<td>${n.nTitle }</td>
+															<td>${n.nCount }</td>
+															<td>${n.nName }</td>
+															<td>${n.nCreateDate }</td>
+<%-- 															<td>${n.nType} --%>
 														</tr>
 													</c:forEach>
 <%-- 												</c:if> --%>
@@ -84,10 +83,7 @@
 									</div>
 								</div>
 								<script>
-									$(function(){
-										console.log(${n.nId});
-										console.log(${n.nType});
-									});
+							
 								</script>
 	
 								<div class="tab-pane" id="tabsNavigationSimple2">
@@ -105,7 +101,7 @@
 												</tr>
 											</thead>
 											<tbody>
-												<c:if test="${n.nType eq 02 }">
+<%-- 												<c:if test="${n.nType eq 02 }"> --%>
 													<c:forEach var="n" items="${nList}">
 														<tr>
 														
@@ -116,7 +112,7 @@
 															<td>${n.nCreateDate }</td>
 														</tr>
 													</c:forEach>
-												</c:if>
+<%-- 												</c:if> --%>
 											</tbody>
 										</table>
 										<a type="button" class="btn btn-quaternary btn-with-arrow mb-2 float-right" href="#">일반 공지 더보기<span><i class="fas fa-chevron-right"></i></span></a>

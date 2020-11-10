@@ -275,11 +275,7 @@ ul.comments li {
 								</div> 
 								</c:if>	
 								
-								<input type="hidden" id="div_1" value="22">
-								<input type="hidden" id="div_2" value="11">
-								<input type="hidden" id="div_3" value="33">
-								<input type="hidden" id="div_4" value="44">
-								<input type="hidden" id="div_5" value="55">
+						
 							</div>
 						</article>
 					</div>
