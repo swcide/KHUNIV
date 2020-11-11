@@ -51,7 +51,7 @@
 													${b.qnaTitle }
 												</c:if>
 											</td>
-											<td>${b.qnaWriter }
+											<td>${b.qnaName }
 											</td>
 											
 											<td>

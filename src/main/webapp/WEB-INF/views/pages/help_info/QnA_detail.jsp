@@ -70,11 +70,11 @@ int type = 0;
 							<div class="post-content ml-0">
 
 								<h2 class="font-weight-bold">
-									<a href="blog-post.html">${b.qnaTitle }</a>
+									<span>${b.qnaTitle }</span>
 								</h2>
 
 								<div class="post-meta">
-									<span><i class="far fa-user fl"></i> By ${b.qnaWriter } </span> <span class="date float-right">${b.qnaCreateDate }</span> <span class=" float-right">조회수 : ${b.qnaCount } |</span>
+									<span><i class="far fa-user fl"></i> By ${b.qnaName} </span> <span class="date float-right">${b.qnaCreateDate }</span> <span class=" float-right">조회수 : ${b.qnaCount } |</span>
 								</div>
 								<p>${b.qnaContent}</p>
 								<c:url var="qnaUpview" value="qnaUpView.do">
@@ -97,13 +97,14 @@ int type = 0;
 					            </c:if>
 
 								<!-- 댓글댓글댓글댓글댓글댓글 -->
+								<c:if test="${!empty sessionScope.loginUser  }">
 								<div id="comments" class="post-block mt-5 post-comments">
 											<h4 id ="rCount"class="mb-3"></h4>
 											<ul class="comments">
 											</ul>
 								</div>
 						
- 								<c:if test="${!empty sessionScope  }">
+ 								
  								<div class="post-block mt-5 post-leave-comment">
  									<h4 class="mb-3">Leave a comment</h4> 									
  										<div class="p-2"> 
