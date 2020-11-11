@@ -39,6 +39,7 @@ public class indexController {
 		
 		ArrayList<Notice> nList = nService.selectTopList();
 		
+		System.out.println(nList);
 		
 		
 		mv.addObject("nList",nList);

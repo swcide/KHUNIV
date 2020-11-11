@@ -54,6 +54,7 @@
  	 		  FROM TB_NOTICE_BOARD
  	 		  ORDER BY NID DESC)
  		WHERE ROWNUM <=10
+ 		AND N_SECRET ='N'
  		AND N_STATUS ='Y'
  		]]>
  	 </select>

@@ -65,11 +65,9 @@
 											<tbody>
 												<c:forEach var="n" items="${nList}">
 													<c:set var="nType" value="${n.nType}"/>
-													<c:set var="nSecret" value="${n.nSecret}"/>
 													<c:if test="${nType eq 1}"> 
 													
-														<c:choose>
-															<c:when test="${nSecret == 'N' }">
+														
 																<tr>
 																	<td>${n.nId}</td>
 																	<td>
@@ -85,31 +83,7 @@
 																	<td>${n.nCount}</td>	
 																	<td>${n.nCreateDate}</td>
 																</tr>	
-															</c:when>
-															<c:when test="${admin!=null}">
-																<tr>
-																	<td>${n.nId }</td>
-																	<td>
-																		<c:if test="${nSecret eq 'N'}">
-																			<a id="ntitle" href="${nDetail}">
-																				${n.nTitle }
-																			</a>
-																		</c:if>
-																		
-																		<c:if test="${nSecret eq 'Y'}">
-																			<a id="ntitle" href="${nDetail}">
-																				<span style="color:red">(비밀글)</span>${n.nTitle }
-																			</a>
-																		</c:if>
-																	</td>
-																	
-																	<td>${n.nName }}</td>
-																	<td>${n.nCreateDate}</td>
-																	<td>${n.nCount}</td>
-																											
-																</tr>	
-															</c:when>
-														</c:choose>
+					
 													</c:if>
 												</c:forEach>
 											</tbody>
@@ -140,51 +114,22 @@
 											<tbody>
 												<c:forEach var="n" items="${nList}">
 													<c:set var="nType" value="${n.nType}"/>
-													<c:set var="nSecret" value="${n.nSecret}"/>
 													<c:if test="${nType eq 2}"> 
-													
-														<c:choose>
-															<c:when test="${nSecret == 'N' }">
-																<tr>
-																	<td>${n.nId}</td>
-																	<td>
-																		<c:url var="nDetail" value="nDetail.do">
-																			<c:param name="nId" value="${n.nId}"/>
-																			<c:param name="currentPage" value="${ pi.currentPage }"/>
-																			<c:param name="nType" value="${n.nType }"/>
-																		</c:url>
-																		<a class="ntitle" href="${nDetail}">${n.nTitle}</a>
-																	</td>
-																	
-																	<td>${n.nName }</td>
-																	<td>${n.nCount}</td>	
-																	<td>${n.nCreateDate}</td>
-																</tr>	
-															</c:when>
-															<c:when test="${admin!=null}">
-																<tr>
-																	<td>${n.nId }</td>
-																	<td>
-																		<c:if test="${nSecret eq 'N'}">
-																			<a id="ntitle" href="${nDetail}">
-																				${n.nTitle }
-																			</a>
-																		</c:if>
-																		
-																		<c:if test="${nSecret eq 'Y'}">
-																			<a id="ntitle" href="${nDetail}">
-																				<span style="color:red">(비밀글)</span>${n.nTitle }
-																			</a>
-																		</c:if>
-																	</td>
-																	
-																	<td>${n.nName }}</td>
-																	<td>${n.nCreateDate}</td>
-																	<td>${n.nCount}</td>
-																											
-																</tr>	
-															</c:when>
-														</c:choose>
+														<tr>
+															<td>${n.nId}</td>
+															<td>
+																<c:url var="nDetail" value="nDetail.do">
+																	<c:param name="nId" value="${n.nId}"/>
+																	<c:param name="currentPage" value="${ pi.currentPage }"/>
+																	<c:param name="nType" value="${n.nType }"/>
+																</c:url>
+																<a class="ntitle" href="${nDetail}">${n.nTitle}</a>
+															</td>
+															
+															<td>${n.nName }</td>
+															<td>${n.nCount}</td>	
+															<td>${n.nCreateDate}</td>
+														</tr>	
 													</c:if>
 												</c:forEach>
 											</tbody>
