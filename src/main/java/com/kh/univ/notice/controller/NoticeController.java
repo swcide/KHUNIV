@@ -47,7 +47,7 @@ public class NoticeController {
 	 * @return
 	 */
 	@RequestMapping("nList.do")
-	public ModelAndView deptNoticeList (ModelAndView mv,HttpSession session, @RequestParam int nType,@RequestParam(value="currentPage",
+	public ModelAndView noticeList (ModelAndView mv,HttpSession session, @RequestParam int nType,@RequestParam(value="currentPage",
 	    required = false,defaultValue = "1") int currentPage) {
 				
 		int listCount = nService.getListCount(nType);
@@ -96,7 +96,7 @@ public class NoticeController {
 	 * @return
 	 */
 	@RequestMapping("nDetail.do")
-	public ModelAndView deptNoticeDetail(ModelAndView mv, int nId, int nType,
+	public ModelAndView noticeDetail(ModelAndView mv, int nId, int nType,
 									@RequestParam(value="currentPage",required = false,defaultValue = "1") int currentPage) {
 	
 		Notice n = new Notice(); 
@@ -137,7 +137,7 @@ public class NoticeController {
 	 * @return
 	 */
 	@RequestMapping("nInsertView.do")
-	public String deptNoticeInsertView(@RequestParam int nType) {
+	public String noticeInsertView(@RequestParam int nType) {
 		
 		if(nType==1) {
 		
@@ -159,7 +159,7 @@ public class NoticeController {
 	 * @return
 	 */
 	@RequestMapping("nInsert.do")
-	public String deptNoticeInsert(Notice n,HttpServletRequest request,
+	public String noticeInsert(Notice n,HttpServletRequest request,
 							 @RequestParam(name="uploadFile",required = false) MultipartFile file) {
 		// @RequestParam어노테이션을 이용한 업롣 ㅡ파일 접근
 		// form enctype이 multipart/form-data로 작성되어있어야하고, method=post이어야 한다.
@@ -239,7 +239,7 @@ public class NoticeController {
 	 * @return
 	 */
 	@RequestMapping("nUpView.do")
-	public ModelAndView deptNoticeUpdateView(ModelAndView mv, int nId,int nType) {
+	public ModelAndView noticeUpdateView(ModelAndView mv, int nId,int nType) {
 		System.out.println(nType +"시소다");
 		
 		
@@ -311,7 +311,7 @@ public class NoticeController {
 	 * @return
 	 */
 	@RequestMapping("nDelete.do")
-	public String deptNoticeDelete(int nId, HttpServletRequest request) {
+	public String noticeDelete(int nId, HttpServletRequest request) {
 		
 		
 		
