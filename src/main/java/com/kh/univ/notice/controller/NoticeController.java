@@ -178,9 +178,16 @@ public class NoticeController {
 			}
 		}
 		
-		
+		for (int i = 0; i<18;i++) {
+			for(int j=0; j<20; j++) {
+				if(i==j) {
+					
+				}
+			}
+			
+		}
 		int result = nService.insertNotice(n);
-		
+	
 		
 		
 		if(result>0) {

@@ -130,11 +130,11 @@ ul.comments li {
 									<div class=" float-right">											
 										<div>
 											<c:url var="nupview" value="nUpView.do">
-												<c:param name="nId" value="${h.hId }"/>
-												<c:param name="nType" value="${h.hType}"/>
+												<c:param name="hId" value="${h.hId }"/>
+												<c:param name="hType" value="${h.hType}"/>
 											</c:url>
 											<c:url var="nDelete" value="nDelete.do">
-												<c:param name="nId" value="${h.hId }"/>
+												<c:param name="hId" value="${h.hId }"/>
 											</c:url>
 											<c:url var="nList" value="nList.do?nType=1">
 												<c:param name="currentPage" value="${ currentPage }"/>
