@@ -51,17 +51,19 @@
 													${b.qnaTitle }
 												</c:if>
 											</td>
-											<td>${b.qnaWriter }</td>
+											<td>${b.qnaWriter }
+											</td>
+											
 											<td>
-												<c:if test="${!empty refly }">
+												<c:if test="${b.rCount > 0}">
 													<span class="badge badge-dark badge-sm badge-pill text-uppercase px-2 py-1 mr-1">답변완료</span>
 												</c:if>
-												<c:if test="${empty refly }">
+												<c:if test="${b.rCount == 0}">
 													<span class="badge badge-sm badge-pill text-uppercase px-2 py-1 mr-1">답변대기</span>
 												</c:if>
 											</td>
 										</tr>
-									</c:forEach>
+												</c:forEach>
 								</tbody>
 							</table>
 							<div class="card-tools" align="center">

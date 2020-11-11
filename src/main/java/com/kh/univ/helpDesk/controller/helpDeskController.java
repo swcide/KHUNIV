@@ -57,24 +57,26 @@ public class helpDeskController {
 	 * QnA List & Count
 	 * @param mv
 	 * @param currentPage
+	 * @param qnaId 
+	 * @param response 
 	 * @return
 	 */
 	@RequestMapping("QnA.do")                                                                                        
-	public ModelAndView boardList(ModelAndView mv, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage ) {
-		System.out.println(currentPage);
+	public ModelAndView boardList(ModelAndView mv, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage) {
 		int listCount = hdService.getListCount();
-		System.out.println("controller");
 		System.out.println(listCount);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<QnA> list = hdService.selectList(pi);
+	
 		System.out.println(list);
 		mv.addObject("list",list);
 		mv.addObject("pi",pi);
 		mv.setViewName("help_info/QnA");
-		
+
 		return mv;
+		
 	}
 	
 	/**
