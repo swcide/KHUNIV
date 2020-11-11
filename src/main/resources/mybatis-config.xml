@@ -3,29 +3,30 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
 	<settings>
-		<setting name="jdbcTypeForNull" value="NULL"/>
+		<setting name="jdbcTypeForNull" value="NULL" />
 	</settings>
-	
+
 	<!-- typeAliases -->
 	<typeAliases>
-		<typeAlias type="com.kh.univ.member.model.vo.Student" alias="Student"/>
-		<typeAlias type="com.kh.univ.member.model.vo.Professor" alias="Professor"/>
-		<typeAlias type="com.kh.univ.member.model.vo.Admin" alias="Admin"/>
-		<typeAlias type="com.kh.univ.helpDesk.model.vo.QnA" alias="QnA"/>
-		<typeAlias type="com.kh.univ.helpDesk.model.vo.Reply" alias="Reply"/>
-		<typeAlias type="com.kh.univ.notice.model.vo.Notice" alias="Notice"/>
-		<typeAlias type="com.kh.univ.notice.model.vo.nReply" alias="nReply"/>
-		<!-- <typeAlias type="com.kh.univ.univlife.model.baord.human.vo.hReply" alias="hReply"/> -->
-		<typeAlias type="com.kh.univ.univlife.board.human.model.vo.HumanBoard" alias="HumanBoard"/>
+		<typeAlias type="com.kh.univ.member.model.vo.Student" alias="Student" />
+		<typeAlias type="com.kh.univ.member.model.vo.Professor" alias="Professor" />
+		<typeAlias type="com.kh.univ.member.model.vo.Admin" alias="Admin" />
+		<typeAlias type="com.kh.univ.helpDesk.model.vo.QnA" alias="QnA" />
+		<typeAlias type="com.kh.univ.helpDesk.model.vo.Reply" alias="Reply" />
+		<typeAlias type="com.kh.univ.notice.model.vo.Notice" alias="Notice" />
+		<typeAlias type="com.kh.univ.notice.model.vo.nReply" alias="nReply" />
+		<typeAlias type="com.kh.univ.univlife.board.human.model.vo.HumanBoard" alias="HumanBoard" />
+		<typeAlias type="com.kh.univ.lecture.model.vo.LectureClass" alias="LectureClass" />
+		<typeAlias type="com.kh.univ.lecture.model.vo.LecturePlan" alias="LecturePlan" />
+
 	</typeAliases>
-	 <!--  environments 엘리먼트로 dataSource 등의 DB정보를 작성했었다.
-	 		=> 스프링에서는 그 정보를 여기서는 안쓴다.
-	 		root-context.xml에 작성하게된다.(DataSource 등록은 ) -->
+	<!-- environments 엘리먼트로 dataSource 등의 DB정보를 작성했었다. => 스프링에서는 그 정보를 여기서는 안쓴다. root-context.xml에 작성하게된다.(DataSource 등록은 ) -->
 	<mappers>
-		<mapper resource="mappers/member-mapper.xml"/>
-		<mapper resource="mappers/hdBoard-mapper.xml"/>
-		<mapper resource="mappers/notice-mapper.xml"/>
-		<mapper resource="mappers/humanBoard-mapper.xml"/>
+		<mapper resource="mappers/member-mapper.xml" />
+		<mapper resource="mappers/hdBoard-mapper.xml" />
+		<mapper resource="mappers/notice-mapper.xml" />
+		<mapper resource="mappers/humanBoard-mapper.xml" />
+		<mapper resource="mappers/lecture-mapper.xml" />
 	</mappers>
-	
+
 </configuration>

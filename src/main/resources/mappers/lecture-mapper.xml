@@ -18,6 +18,31 @@
 		<result property="lecTextbook" column="LEC_TEXTBOOK"/>
  	 </resultMap>
  	 
+ 	 <resultMap type="LectureClass" id="lectureClassResultSet">
+ 	 <id property="classNo" column="CLASS_NO"/>
+ 	 <result property="className" column="CLASS_NAME"/>
+ 	 
+ 	 <result property="lecAttendance" column="LECTURE_ATTENDANCE"/>
+ 	 <result property="lecLearningRate" column="LECTURE_LEARNINGRATE"/>
+ 	 <result property="Attendees" column="CLASS_ATTENDEES"/>
+ 	 
+ 	 <result property="classSummary" column="CLASS_SUMMARY"/>
+ 	 <result property="classImg" column="CLASS_IMG"/>
+ 	 <result property="profName" column="PROF_NAME"/>
+ 	 <result property="profEmail" column="PROF_EMAIL"/>
+ 	 <result property="deptName" column="DEPT_NAME"/>
+ 	 </resultMap>
+ 	 
+ 	 <select id="selectList" resultMap="lectureClassResultSet">
+ 	 
+ 	 	SELECT * FROM TB_CLASS C
+ 	 					JOIN TB_CLASS_DETAIL CD USING(CLASS_NO)
+ 	 					JOIN TB_CLASS_PROFESSOR CP USING(CLASS_NO)
+ 	 					JOIN TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
+ 	 					JOIN TB_DEPARTMENT D ON(D.DEPT_NO = C.DEPT_NO)
+ 	 	
+ 	 </select>
+ 	 
  	 
  	 <select id="selectlpList" resultMap="lecturePlanResultSet">
  		SELECT *
