@@ -38,6 +38,7 @@ public class NoticeController {
 	@Autowired
 	private NoticeService nService;
 
+
 //	-------------------------- 학사공지 ------------------------------
 	/**
 	 * 1_1 .학사 게시글 조회데스
