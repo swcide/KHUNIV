@@ -131,18 +131,7 @@
 													<li><a class="dropdown-item" href="speciallecture.do"> 특강 목록 </a></li>
 												</ul></li>
 											<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"> 시험 </a>
-												<ul class="dropdown-menu">
-													<li class="dropdown-submenu"><a class="dropdown-item" href="#">정기 시험</a>
-														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="#">중간 고사</a></li>
-															<li><a class="dropdown-item" href="#">기말 고사</a></li>
-														</ul></li>
-													<li class="dropdown-submenu"><a class="dropdown-item" href="#">수시 시험</a>
-														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="#">퀴즈</a></li>
-															<li><a class="dropdown-item" href="#">과제</a></li>
-														</ul></li>
-												</ul></li>
+												</li>
 											<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"> 학적 관리 </a>
 												<ul class="dropdown-menu">
 													<li class="dropdown-submenu"><a class="dropdown-item" href="#">강의</a>

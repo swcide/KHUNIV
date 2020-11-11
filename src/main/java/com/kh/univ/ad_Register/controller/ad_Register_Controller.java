@@ -1,4 +1,4 @@
-package com.kh.univ;
+package com.kh.univ.ad_Register.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
