@@ -2,7 +2,7 @@ package com.kh.univ.lecture.model.vo;
 
 public class LectureClass {
 	
-	private int lIp;
+	private int lId;					// 게시글 번호
 	private String classNo; 		    // 과목번호
 	private String className;			// 과목명
 	private String lecAttendance;	    // 출석 
@@ -15,9 +15,9 @@ public class LectureClass {
 	}
 
 
-	public LectureClass(int lIp, String classNo, String className, String lecAttendance, String lecLearningRate, int attendees) {
+	public LectureClass(int lId, String classNo, String className, String lecAttendance, String lecLearningRate, int attendees) {
 		super();
-		this.lIp = lIp;
+		this.lId = lId;
 		this.classNo = classNo;
 		this.className = className;
 		this.lecAttendance = lecAttendance;
@@ -26,13 +26,13 @@ public class LectureClass {
 	}
 
 
-	public int getlIp() {
-		return lIp;
+	public int getlId() {
+		return lId;
 	}
 
 
-	public void setlIp(int lIp) {
-		this.lIp = lIp;
+	public void setlId(int lId) {
+		this.lId = lId;
 	}
 
 
@@ -88,7 +88,7 @@ public class LectureClass {
 
 	@Override
 	public String toString() {
-		return "LectureClass [lIp=" + lIp + ", classNo=" + classNo + ", className=" + className + ", lecAttendance=" + lecAttendance
+		return "LectureClass [lId=" + lId + ", classNo=" + classNo + ", className=" + className + ", lecAttendance=" + lecAttendance
 				+ ", lecLearningRate=" + lecLearningRate + ", Attendees=" + Attendees + "]";
 	}
 

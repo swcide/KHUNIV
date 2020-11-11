@@ -1,4 +1,4 @@
-package com.kh.univ.prof_lecture.controller;
+package com.kh.univ.lecture.model.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
