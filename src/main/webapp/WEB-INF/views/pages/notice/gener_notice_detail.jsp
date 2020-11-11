@@ -195,7 +195,7 @@ System.out.println(type);
  											<div class="form-row"> 
  												<div class="form-group col mb-0">
 													<input id="rSubmit"type="button" value="등록"  class="btn btn-dark btn-modern float-right" data-loading-text="Loading..."> 
-												<a href="javascript:history.go(-1)" class="mb-1 mt-1 mr-1 btn btn-primary float-left">
+												<a href="${nlist }" class="mb-1 mt-1 mr-1 btn btn-primary float-left">
 												목록으로
 										</a>
 												</div> 

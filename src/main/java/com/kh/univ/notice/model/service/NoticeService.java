@@ -32,7 +32,7 @@ public interface NoticeService {
 	 * @param bId
 	 * @return
 	 */
-	Notice selectNotice(int nId, Notice n);
+	Notice selectNotice(Notice n);
 
 
 	/**
@@ -47,7 +47,7 @@ public interface NoticeService {
 	int updateNotice(Notice n);
 
 
-	int deleteNotice(int nId);
+	int deleteNotice(Notice n);
 
 
 	ArrayList<nReply> selectReplyList(int nId);

@@ -74,15 +74,18 @@
  	 	UPDATE TB_NOTICE_BOARD
  	 	SET NCOUNT = NCOUNT+1
  	 	WHERE NID=#{nId}
+ 	 	AND NTYPE= #{nType}
  	 </update>
+ 	 
  	  <select id="selectNotice" resultMap="noticeResultSet">
  	 	SELECT *
  	 	FROM TB_NOTICE_BOARD
-		<if test="nType==1">
  	 	WHERE NID=#{nId}
- 	 	AND NTYPE
+ 	 	AND NTYPE =#{nType}
  	 	AND N_STATUS='Y'
- 	 	</if>
+ 	
+ 	 
+ 	 	
  	 	
  	 </select>
  	  <insert id="insertNotice" parameterType="Notice">
@@ -97,24 +100,23 @@
  	 </insert>
  	 <update id="updateNotice"  parameterType="Notice">
  	 	UPDATE TB_NOTICE_BOARD
- 	 	
- 	 	SET  NTITLE=#{nTitle},NTYPE=#{nType},NCONTENT=#{nContent},ORIGINAL_FILENAME=#{originalFileName},RENAME_FILENAME=#{renameFileName},N_MODIFY_DATE=SYSDATE,N_SECRET=#{nSecret}
- 	 	
+ 	 	<if test ="nType==1">
+ 	 	SET NID=SEQ_DEPT_NID.NEXTVAL,NTITLE=#{nTitle},NTYPE=1,NCONTENT=#{nContent},ORIGINAL_FILENAME=#{originalFileName},RENAME_FILENAME=#{renameFileName},N_MODIFY_DATE=SYSDATE,N_SECRET=#{nSecret}
  	 	WHERE NID=#{nId} 
-<!--  	 	<if test ="nType==1"> -->
-<!--  	 	SET NID='SEQ_GENER_NID.NEXTVAL', NTITLE=#{nTitle},NTYPE=#{nType},NCONTENT=#{nContent},ORIGINAL_FILENAME=#{originalFileName},RENAME_FILENAME=#{renameFileName},N_MODIFY_DATE=SYSDATE,N_SECRET=#{nSecret} -->
-<!--  	 	WHERE NID=#{nId}  -->
-<!--  	 	</if> -->
-<!--  	 	<if test ="nType==1"> -->
-<!--  	 	SET NID='SEQ_DEPT_NID.NEXTVAL',NTITLE=#{nTitle},NTYPE=#{nType},NCONTENT=#{nContent},ORIGINAL_FILENAME=#{originalFileName},RENAME_FILENAME=#{renameFileName},N_MODIFY_DATE=SYSDATE,N_SECRET=#{nSecret} -->
-<!--  	 	WHERE NID=#{nId}  -->
-<!--  	 	</if> -->
+ 	 	AND NTYPE=2
+ 	 	</if>
+ 	 	<if test ="nType==2">
+		SET NID=SEQ_GENER_NID.NEXTVAL,NTITLE=#{nTitle},NTYPE=2,NCONTENT=#{nContent},ORIGINAL_FILENAME=#{originalFileName},RENAME_FILENAME=#{renameFileName},N_MODIFY_DATE=SYSDATE,N_SECRET=#{nSecret}
+ 	 	WHERE NID=#{nId} 
+ 	 	AND NTYPE=1
+ 	 	</if>
  	 </update>
  	 
  	  <update id="deleteNotice" parameterType="_int">
  	 	UPDATE TB_NOTICE_BOARD
  	 	SET N_STATUS ='N'
  	 	WHERE NID= #{nId}
+ 	 	AND NTYPE=#{nType}
  	 </update>
  	 
  	 

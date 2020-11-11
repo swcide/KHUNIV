@@ -39,11 +39,11 @@ public class NoticeDao {
 	}
 	
 	
-	public int updateCount(int nId) {
-		return sqlSession.update("noticeMapper.updateCount",nId);
+	public int updateCount(Notice n) {
+		return sqlSession.update("noticeMapper.updateCount",n);
 	}
 
-	public Notice selectNotice(int n) {
+	public Notice selectNotice(Notice n) {
 		return  sqlSession.selectOne("noticeMapper.selectNotice",n);
 	}
 
@@ -56,8 +56,8 @@ public class NoticeDao {
 		return sqlSession.update("noticeMapper.updateNotice",n);
 	}
 
-	public int deleteNotice(int nId) {
-		return sqlSession.update("noticeMapper.deleteNotice",nId);
+	public int deleteNotice(Notice n) {
+		return sqlSession.update("noticeMapper.deleteNotice",n);
 
 	}
 	

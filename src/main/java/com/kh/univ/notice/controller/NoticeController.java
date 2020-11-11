@@ -75,6 +75,7 @@ public class NoticeController {
 				
 			}else if(nType==2){
 				mv.addObject("list",list);
+				mv.addObject("admin",admin);
 				mv.addObject("pi",pi);
 				mv.setViewName("notice/gener_notice");
 			}
@@ -96,18 +97,12 @@ public class NoticeController {
 	 * @return
 	 */
 	@RequestMapping("nDetail.do")
-	public ModelAndView noticeDetail(ModelAndView mv, int nId, int nType,
+	public ModelAndView noticeDetail(ModelAndView mv, Notice n,
 									@RequestParam(value="currentPage",required = false,defaultValue = "1") int currentPage) {
 	
-		Notice n = new Notice(); 
+	
+		 n = nService.selectNotice(n);
 		
-				n.setnId(nId);
-				n.setnType(nType);
-				
-				
-		 n = nService.selectNotice(nId,n);
-		
-		 
 		
 		
 		if(n.getnType()==1) {
@@ -246,14 +241,13 @@ public class NoticeController {
 	 * @return
 	 */
 	@RequestMapping("nUpView.do")
-	public ModelAndView noticeUpdateView(ModelAndView mv, int nId,int nType) {
-		System.out.println(nType +"시소다");
+	public ModelAndView noticeUpdateView(ModelAndView mv,Notice n) {
+
 		
-		Notice n = new Notice(); 
-		
-		n.setnId(nId);
-		n.setnType(nType);
-		
+
+		int nType = n.getnType();
+
+		System.out.println(n.getnType() + "리절트");
 		
 		
 		if(nType ==1 ) {
@@ -292,13 +286,29 @@ public class NoticeController {
 				n.setRenameFileName(renameFileName);
 			}
 		}
+		System.out.println(n.getnType() + "엔타입");
+		
 		int result = nService.updateNotice(n);
+		ArrayList<Notice> list = nService.selectTopList();
+		
+		int lastIndex = list.size();
+		System.out.println(lastIndex);
+		
+		int nId= list.get(lastIndex-1).getnId();
+		
+		
+		System.out.println(nId);
+		System.out.println(result+ "리절트");
+		System.out.println("nId" +n.getnId());
+		
 		
 		if(result>0) {
 			if(n.getnType()==1) {
-			mv.addObject("nId",n.getnId()).setViewName("redirect:nDetail.do?nType=1");
-			}else {
-			mv.addObject("nId",n.getnId()).setViewName("redirect:nDetail.do?nType=2");
+			mv.addObject("nId",nId).setViewName("redirect:nDetail.do?nType=1");
+			System.out.println("nId type=1::::" +n.getnId());
+			}else if (n.getnType()==2) {
+			mv.addObject("nId",nId).setViewName("redirect:nDetail.do?nType=2");
+			System.out.println("nId tpye=2::::" +n.getnId());
 			}
 		}else {
 			mv.addObject("msg","수정실패").setViewName("common/errorPage");
@@ -323,18 +333,18 @@ public class NoticeController {
 	 * @return
 	 */
 	@RequestMapping("nDelete.do")
-	public String noticeDelete(int nId, HttpServletRequest request) {
+	public String noticeDelete(Notice n , HttpServletRequest request) {
 		
 		
 		
 		
-		Notice n = nService.selectUpdateNotice(nId);
+		n = nService.selectUpdateNotice(n);
 		
 		if(n.getRenameFileName() != null) {
 			deleteFile(n.getRenameFileName(),request);
 		}
 		
-		int result = nService.deleteNotice(nId);
+		int result = nService.deleteNotice(n);
 		
 		if(result >0 && n.getnType()==1) {
 			return "redirect:nList.do?nType=1";

@@ -40,9 +40,11 @@ public class NoticeServiceImpl implements NoticeService {
 
 
    @Override
-   public Notice selectNotice(int nId, Notice n ) {
-      
-      int result=nDao.updateCount(nId);
+   public Notice selectNotice( Notice n ) {
+     
+   
+	   
+      int result=nDao.updateCount(n);
       
       
       if(result>0) {
@@ -69,8 +71,8 @@ public class NoticeServiceImpl implements NoticeService {
    }
 
    @Override
-   public int deleteNotice(int nId) {
-      return nDao.deleteNotice(nId);
+   public int deleteNotice(Notice n) {
+      return nDao.deleteNotice(n);
    }
 
    @Override
