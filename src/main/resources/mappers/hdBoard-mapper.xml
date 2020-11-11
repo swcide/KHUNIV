@@ -17,13 +17,16 @@
 </resultMap>
 
 <resultMap type="Reply" id="QNA_replyResultSet">
-		<id property="qna_rId" column="QNA_RID"/>
-		<result property="qna_rContent" column="QNA_RCONTENT"/>
-		<result property="qna_refBid" column="QNA_REF_BID"/>
-		<result property="qna_rWriter" column="QNA_RWRITER"/>
-		<result property="qna_rCreateDate" column="QNA_R_CREATE_DATE"/>
-		<result property="qna_rModifyDate" column="QNA_R_MODIFY_DATE"/>
-		<result property="qna_rStatus" column="QNA_R_STATUS"/>
+		<id property="rId" column="QNA_RID"/>
+		<result property="rContent" column="QNA_RCONTENT"/>
+		<result property="refQid" column="QNA_REF_BID"/>
+		<result property="rWriter" column="QNA_RWRITER"/>
+		<result property="rCreateDate" column="QNA_R_CREATE_DATE"/>
+		<result property="rmodifyDate" column="QNA_R_MODIFY_DATE"/>
+		<result property="rStatus" column="QNA_R_STATUS"/>
+		<result property="rName" column="QNA_RNAME"/>
+		<result property="refRid" column="QNA_REF_RID"/>
+		<result property="qType" column="QNATYPE"/>
 	</resultMap>
 
 
@@ -32,7 +35,6 @@
 	   FROM TB_HELPDESK_QNA
 	   WHERE QNA_STATUS = 'Y'
 </select>
-
 
 <select id="selectList" resultMap="QnAResultSet">
 	SELECT *
@@ -54,19 +56,6 @@ SELECT *
   WHERE QNA_ID = #{b.qnaId}
 </select>
 
-<select id="selectReplyList" parameterType="_int" resultMap="QNA_replyResultSet">
-		SELECT *
-		   FROM TB_QNA_REPLY
-		 WHERE QNA_REF_BID = #{bId}
-		 AND QNA_R_STATUS = 'Y'
-		 ORDER BY RID DESC
-	</select>
-	
-	<insert id="insertReply" parameterType="Reply">
-		INSERT INTO TB_QNA_REPLY
-		VALUES(SEQ_RID.NEXTVAL,#{rContent},#{refBid},#{rWriter},SYSDATE,SYSDATE,DEFAULT)
-	</insert>
-	
 	<insert id="insertQnA" parameterType="QnA">
  	 	INSERT INTO TB_HELPDESK_QNA
  	 	VALUES(SEQ_QNA_ID.NEXTVAL,#{qnaTitle},#{qnaContent},#{qnaWriter},#{qnaName},DEFAULT,SYSDATE,SYSDATE,'Y','N')
@@ -78,7 +67,6 @@ SELECT *
 		WHERE QNA_ID = #{qnaId}
 		AND QNA_STATUS='Y'
 </select>
-
 
 <update id="updateContents" parameterType="QnA">
 	UPDATE TB_HELPDESK_QNA
@@ -108,6 +96,32 @@ SELECT *
 	   WHERE QNA_WRITER = #{sNo}
 	   ORDER BY QNA_ID DESC
 </select>
+
+<select id="selectReplyList" parameterType="_int" resultMap="QNA_replyResultSet">
+		SELECT *
+		   FROM TB_QNA_REPLY
+		 WHERE QNA_REF_BID = #{qnaId}
+		 AND QNA_R_STATUS = 'Y'
+		 ORDER BY QNA_RID DESC
+	</select>
+	
+	<insert id="insertReply" parameterType="Reply">
+		INSERT INTO TB_QNA_REPLY
+		VALUES(SEQ_QNA_RID.NEXTVAL,#{rContent},#{refQid},SYSDATE,SYSDATE,#{rWriter},DEFAULT,#{rName},#{refRid},DEFAULT)
+	</insert>
+
+<update id="deleteReply" parameterType="reply">
+		UPDATE TB_QNA_REPLY
+ 	 	SET  QNA_R_STATUS='N'
+ 		WHERE QNA_RID= #{rId}
+ 		OR QNA_REF_BID =#{rId}
+</update>
+
+ <insert id="updateReply" parameterType="Reply">
+ 	 	UPDATE TB_QNA_REPLY
+ 	 	SET  QNA_RCONTENT=#{rContent}
+ 		WHERE QNA_RID= #{rId}
+ 	 </insert>
 
 
 </mapper>

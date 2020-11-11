@@ -10,6 +10,7 @@ import com.kh.univ.common.PageInfo;
 import com.kh.univ.helpDesk.model.vo.QnA;
 import com.kh.univ.helpDesk.model.vo.Reply;
 import com.kh.univ.member.model.vo.Student;
+import com.kh.univ.notice.model.vo.nReply;
 
 @Service("hdService")
 public class helpDeskServiceImpl implements helpDeskService{
@@ -53,23 +54,6 @@ public class helpDeskServiceImpl implements helpDeskService{
 			}
 	}
 
-	/**
-	 * 댓글 리스트 불러오기
-	 */
-	@Override
-	public ArrayList<Reply> selectReplyList(int qnaId)
-		{
-			return hdDao.selectReplyList(qnaId);
-		}
-
-	/**
-	 * 댓글 등록
-	 */
-	@Override
-	public int insertReply(Reply r)
-		{
-			return hdDao.insertReply(r);
-		}
 	
 	/**
 	 * qna 작성
@@ -125,6 +109,41 @@ public class helpDeskServiceImpl implements helpDeskService{
 			return hdDao.mySelectList(pi, student);
 		}
 
+	/**
+	 * 댓글 리스트 불러오기
+	 */
+	@Override
+	public ArrayList<Reply> selectReplyList(int qnaId)
+		{
+			return hdDao.selectReplyList(qnaId);
+		}
 
+	/**
+	 * 댓글 등록
+	 */
+	@Override
+	public int insertReply(Reply r)
+		{
+			System.out.println("댓글추가서비스");
+			return hdDao.insertReply(r);
+		}
+
+	/**
+	 * 댓글삭제
+	 */
+	@Override
+	public int deleteReply(Reply r)
+		{
+			return hdDao.deleteReply(r);
+		}
+
+	/**
+	 * 댓글수정
+	 */
+	@Override
+	public int updateReply(Reply r)
+		{
+			return hdDao.updateReply(r);
+		}
 	
 }

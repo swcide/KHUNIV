@@ -20,8 +20,8 @@
 				<div class="row mt-3">
 					<div
 						class="col-md-12 align-self-center p-static order-2 text-center">
-						<h1 class="text-9 font-weight-bold">학사공지 작성하기</h1>
-						<span class="sub-title">Department Notice Write</span>
+						<h1 class="text-9 font-weight-bold">일반공지 작성하기</h1>
+						<span class="sub-title">General Notice Write</span>
 					</div>
 				</div>
 			</div>
@@ -38,7 +38,7 @@
 
 
 								<div class="custom-box-details bg-color-light custom-box-shadow-1 col-lg-12 ml-5 mb-5 mb-lg-4 float-right clearfix">
-									<h4>학사공지 작성</h4>
+									<h4>일반공지 작성</h4>
 
 									<form class="contact-form"	action="nUpdate.do" method="post" enctype="multipart/form-data">
 										<input id="nId"type="hidden" name="nId" value="${n.nId}">

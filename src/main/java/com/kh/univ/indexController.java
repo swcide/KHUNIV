@@ -39,7 +39,6 @@ public class indexController {
 		
 		ArrayList<Notice> nList = nService.selectTopList();
 		
-		System.out.println(nList);
 		
 		
 		mv.addObject("nList",nList);
@@ -80,5 +79,10 @@ public class indexController {
 		model.addAttribute("serverTime", formattedDate );
 		
 		return "professor_main";
+	}
+	
+	@RequestMapping(value = "emp.do")
+	public String emp(Model model) {
+		return "univ_life/emp_center";
 	}
 }

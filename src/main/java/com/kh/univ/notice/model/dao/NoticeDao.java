@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.univ.notice.model.vo.Notice;
 import com.kh.univ.notice.model.vo.nReply;
 import com.kh.univ.common.PageInfo;
+import com.kh.univ.member.model.vo.Admin;
 
 @Repository("nDao")
 public class NoticeDao {
@@ -18,20 +19,26 @@ public class NoticeDao {
 	
 	
 	public ArrayList<Notice> selectTopList() {
-		return (ArrayList)sqlSession.selectList("noticeMapper.selectDeptTopList");
+		return (ArrayList)sqlSession.selectList("noticeMapper.selectTopList");
 	}
 
-	public int getListCount() {
+	public int getListCount(int nType) {
 		
-		return sqlSession.selectOne("noticeMapper.getListCount");
+		return sqlSession.selectOne("noticeMapper.getListCount",nType);
 	}
 
-	public ArrayList<Notice> selectList(PageInfo pi) {
+	public ArrayList<Notice> selectList(PageInfo pi, int nType) {
 		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
 		
-		return (ArrayList)sqlSession.selectList("noticeMapper.selectList",null,rowBounds);
+		return (ArrayList)sqlSession.selectList("noticeMapper.selectnList",nType,rowBounds);
 	}
+	public Notice detailNotice(Notice n) {
+		return sqlSession.selectOne("noticeMapper.detailNotice",n);
+	
+	}
+	
+	
 	public int updateCount(int nId) {
 		return sqlSession.update("noticeMapper.updateCount",nId);
 	}
@@ -52,12 +59,11 @@ public class NoticeDao {
 	public int deleteNotice(int nId) {
 		return sqlSession.update("noticeMapper.deleteNotice",nId);
 
-
-
 	}
+	
 
 	public ArrayList<nReply> selectReplyList(int nId) {
-		return (ArrayList)sqlSession.selectList("noticeMapper.selectDeptReplyList",nId);
+		return (ArrayList)sqlSession.selectList("noticeMapper.selectNReplyList",nId);
 	}
 
 	public int insertReply(nReply r) {
@@ -71,6 +77,17 @@ public class NoticeDao {
 	public int updateReply(nReply r) {
 		return sqlSession.update("noticeMapper.updateReply",r);
 	}
+
+	
+
+
+
+	
+
+
+	
+
+	
 
 	
 

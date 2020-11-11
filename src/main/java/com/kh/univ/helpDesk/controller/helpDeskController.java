@@ -32,6 +32,7 @@ import com.kh.univ.helpDesk.model.vo.QnA;
 import com.kh.univ.helpDesk.model.vo.Reply;
 import com.kh.univ.member.model.vo.Student;
 import com.kh.univ.notice.model.vo.Notice;
+import com.kh.univ.notice.model.vo.nReply;
 
 /**
  * Handles requests for the application home page.
@@ -47,13 +48,17 @@ public class helpDeskController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	
-
 	@RequestMapping(value = "FAQ.do", method = RequestMethod.GET)
 	public String FAQ(Model model) {
 		return "help_info/FAQ";
 	}
 
+	/**
+	 * QnA List & Count
+	 * @param mv
+	 * @param currentPage
+	 * @return
+	 */
 	@RequestMapping("QnA.do")                                                                                        
 	public ModelAndView boardList(ModelAndView mv, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage ) {
 		System.out.println(currentPage);
@@ -72,6 +77,13 @@ public class helpDeskController {
 		return mv;
 	}
 	
+	/**
+	 * QnA Detail
+	 * @param mv
+	 * @param qnaId
+	 * @param currentPage
+	 * @return
+	 */
 	@RequestMapping(value = "QnA_detail.do", method = RequestMethod.GET)
 	public ModelAndView QnA_detail(ModelAndView mv, int qnaId, @RequestParam(value="currentPage", required=false, defaultValue="1")int currentPage) {
 			QnA qna = hdService.selectBoard(qnaId);
@@ -86,26 +98,14 @@ public class helpDeskController {
 			return mv;
 	}
 	
-	@RequestMapping(value="qnarList.do")
-	public void getReplyList(HttpServletResponse response, int qnaId) throws JsonIOException, IOException {
-		
-		ArrayList<Reply> rList = hdService.selectReplyList(qnaId);
-		response.setContentType("application/json; charset=UTF-8");
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-		gson.toJson(rList, response.getWriter());
-	}
 	
-	@ResponseBody
-	@RequestMapping("qna_addReply.do")
-	public String addReply(Reply r) {
-		int result = hdService.insertReply(r);
-		if(result > 0) {
-			return "success";
-		}else {
-			return "fail";
-		}
-	}
 	
+	/**
+	 * QnA Insert
+	 * @param q
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("qna_insert.do")
 	public String insertBoard(QnA q,HttpServletRequest request ) {
 		int result = hdService.insertQnA(q);
@@ -118,14 +118,27 @@ public class helpDeskController {
 		}
 	
 	}
-	//****************************************************************************
 	
+	/**
+	 * QnA UpdateView
+	 * @param mv
+	 * @param qnaId
+	 * @return
+	 */
 	@RequestMapping("qnaUpView.do")
 	public ModelAndView boardUpdateView(ModelAndView mv, int qnaId) {
 		mv.addObject("b", hdService.selectUpdateBoard(qnaId)).setViewName("help_info/QnA_update");
 		
 		return mv;
 	}
+	
+	/**
+	 * QnA UpdateForm
+	 * @param mv
+	 * @param qna
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("qnaUpdate.do")
 	public ModelAndView boardUpdate(ModelAndView mv, QnA qna, HttpServletRequest request) {
 		int result = hdService.updateContents(qna);
@@ -138,6 +151,12 @@ public class helpDeskController {
 		return mv;
 	}
 	
+	/**
+	 * QnA Delete
+	 * @param qnaId
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("qnaDelete.do")
 	public String boardDelete(int qnaId, HttpServletRequest request) {
 			System.out.println("deleteController");
@@ -149,11 +168,23 @@ public class helpDeskController {
 		}
 	}
 	
+	/**
+	 * QnA Write
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "QnA_write.do")
 	public String QnA_write(Model model) {
 		return "help_info/QnA_write";
 	}
 
+	/**
+	 * My QnA
+	 * @param mv
+	 * @param session
+	 * @param currentPage
+	 * @return
+	 */
 	@RequestMapping("myQnA.do")                                                                                        
 	public ModelAndView myQnAList(ModelAndView mv,HttpSession session,@RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage ) {
 		int listCount = hdService.getMyListCount();
@@ -169,6 +200,71 @@ public class helpDeskController {
 		
 		return mv;
 	}
-
+	
+	/**
+	 * QnA ReplyList
+	 * @param response
+	 * @param qnaId
+	 * @throws JsonIOException
+	 * @throws IOException
+	 */
+	@RequestMapping(value="qnarList.do")
+	public void getReplyList(HttpServletResponse response, int qnaId) throws JsonIOException, IOException {
+		
+		ArrayList<Reply> rList = hdService.selectReplyList(qnaId);
+		response.setContentType("application/json; charset=UTF-8");
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(rList, response.getWriter());
+	}
+	
+	/**
+	 * QnA ReplyInsert
+	 * @param r
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("qna_addReply.do")
+	public String addReply(Reply r) {
+		int result = hdService.insertReply(r);
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
+	/**
+	 * QnA ReplyDelete
+	 * @param r
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("qna_DeleteReply.do")
+	public String deleteReply(Reply r) {
+		int result = hdService.deleteReply(r);
+		if(result>0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
+	/**
+	 * QnA ReplyUpdate
+	 * @param r
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("qna_UpdateReply.do")
+	public String updateReply(Reply r) {
+		int result = hdService.updateReply(r);
+		
+		if(result>0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
 }
 

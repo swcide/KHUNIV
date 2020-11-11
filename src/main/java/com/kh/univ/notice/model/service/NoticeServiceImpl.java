@@ -9,6 +9,7 @@ import com.kh.univ.notice.model.dao.NoticeDao;
 import com.kh.univ.notice.model.vo.Notice;
 import com.kh.univ.notice.model.vo.nReply;
 import com.kh.univ.common.PageInfo;
+import com.kh.univ.member.model.vo.Admin;
 
 
 
@@ -18,7 +19,10 @@ public class NoticeServiceImpl implements NoticeService {
    @Autowired
    private NoticeDao nDao;
    
-   
+   @Override
+   public int getListCount(int nType) {
+      return nDao.getListCount(nType);
+   }
    
    
    @Override
@@ -26,23 +30,23 @@ public class NoticeServiceImpl implements NoticeService {
       return nDao.selectTopList();
    }
    
-   @Override
-   public int getListCount() {
-      return nDao.getListCount();
-   }
+  
 
    @Override
-   public ArrayList<Notice> selectList(PageInfo pi) {
-      return  nDao.selectList(pi);
+   public ArrayList<Notice> selectList(PageInfo pi,int nType) {
+
+      return  nDao.selectList(pi,nType);
    }
 
+
    @Override
-   public Notice selectNotice(int nId) {
+   public Notice selectNotice(int nId, Notice n ) {
       
       int result=nDao.updateCount(nId);
       
+      
       if(result>0) {
-         return nDao.selectNotice(nId);
+         return nDao.detailNotice(n);
       }else {
          return null;
       }
@@ -88,6 +92,8 @@ public class NoticeServiceImpl implements NoticeService {
    public int updateReply(nReply r) {
       return nDao.updateReply(r);
    }
+
+
 
 
 

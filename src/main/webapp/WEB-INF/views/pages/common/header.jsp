@@ -150,8 +150,8 @@
 													</ul></li>
 												<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"> 공지사항 </a>
 													<ul class="dropdown-menu">
-														<li><a class="dropdown-item" href="deptNList.do">학사 공지</a></li>
-														<li><a class="dropdown-item" href="generNList.do">일반 공지</a></li>
+														<li><a class="dropdown-item" href="nList.do?nType=1">학사 공지</a></li>
+														<li><a class="dropdown-item" href="nList.do?nType=2">일반 공지</a></li>
 													</ul></li>
 											</ul>
 										</nav>
