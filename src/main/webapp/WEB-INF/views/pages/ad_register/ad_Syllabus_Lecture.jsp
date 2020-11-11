@@ -200,7 +200,8 @@
 							<thead>
 								<tr>
 									<th>주차</th>
-									<th style="text-align: center;">강의명</th>
+									<th style="text-align: center;">단원명</th>
+									<th style="text-align: center;">설명</th>
 									<th style="text-align: center;">참고자료</th>
 								</tr>
 							</thead>
@@ -209,9 +210,11 @@
 									<th>제 1주</th>
 									<td style="text-align: center;">-</td>
 									<td style="text-align: center;">-</td>
+									<td style="text-align: center;">-</td>
 								</tr>
 								<tr>
 									<th>제 2주</th>
+									<td style="text-align: center;">-</td>
 									<td style="text-align: center;">-</td>
 									<td style="text-align: center;">-</td>
 								</tr>
@@ -219,8 +222,10 @@
 									<th>제 3주</th>
 									<td style="text-align: center;">-</td>
 									<td style="text-align: center;">-</td>
+									<td style="text-align: center;">-</td>
 								<tr>
 									<th>제 4주</th>
+									<td style="text-align: center;">-</td>
 									<td style="text-align: center;">-</td>
 									<td style="text-align: center;">-</td>
 								</tr>
@@ -228,9 +233,11 @@
 									<th>제 5주</th>
 									<td style="text-align: center;">-</td>
 									<td style="text-align: center;">-</td>
+									<td style="text-align: center;">-</td>
 								</tr>
 								<tr>
 									<th>제 6주</th>
+									<td style="text-align: center;">-</td>
 									<td style="text-align: center;">-</td>
 									<td style="text-align: center;">-</td>
 								</tr>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lectureMapper">
+
+ 
+  <resultMap type="LecturePlan" id="lecturePlanResultSet">
+  		<id property="classNo" column="CLASS_NO"/>
+  		<result property="className" column="CLASS_NAME"/>
+		<result property="classProf" column="CLASS_PROF"/>
+		<result property="classType" column="CLASS_TYPE"/>
+		<result property="classSummary" column="CLASS_SUMMARY"/>
+		<result property="classGoal" column="CLASS_GOAL"/>
+		<result property="lecMethod" column="LEC_METHOD"/>
+		<result property="evalMethod" column="EVAL_METHOD"/>
+		<result property="assignment" column="ASSIGNMENT"/>
+		<result property="lecExperiment" column="LEC_EXPERIMENT"/>
+		<result property="relatedLec" column="RELATED_LEC"/>
+		<result property="lecTextbook" column="LEC_TEXTBOOK"/>
+ 	 </resultMap>
+ 	 
+ 	 
+ 	 <select id="selectlpList" resultMap="lecturePlanResultSet">
+ 		SELECT *
+		FROM TB_LECTURE_PLAN
+		WHERE CLASS_PROF=#{classProf}
+		AND CLASS_NO=#{classNo}
+ 	</select>
+ 	 
+</mapper>

@@ -13,9 +13,7 @@ public class LecturePlan {
 	private String lecExperiment;	// 실험 및 실습계획
 	private String relatedLec; 		// 관련강의
 	private String lecTextbook; 	// 강의교재
-	private String lecImagePath;    // 강의 이미지 경로
-	private String lecVideoPath; 	// 동영상 파일경로
-	private String lecAttendance; 	// 출석 
+	
 	
 	
 	
@@ -25,7 +23,7 @@ public class LecturePlan {
 
 	public LecturePlan(String classNo, String className, String classProf, String classType, String classSummary, String classGoal, String lecMethod,
 			String evalMethod, String assignment, String lecExperiment, String relatedLec, String lecTextbook, String lecImagePath,
-			String lecVideoPath, String lecAttendance) {
+			String lecVideoPath) {
 		super();
 		this.classNo = classNo;
 		this.className = className;
@@ -39,12 +37,114 @@ public class LecturePlan {
 		this.lecExperiment = lecExperiment;
 		this.relatedLec = relatedLec;
 		this.lecTextbook = lecTextbook;
-		this.lecImagePath = lecImagePath;
-		this.lecVideoPath = lecVideoPath;
-		this.lecAttendance = lecAttendance;
 	}
 
-	
+	public String getClassNo() {
+		return classNo;
+	}
+
+	public void setClassNo(String classNo) {
+		this.classNo = classNo;
+	}
+
+	public String getClassName() {
+		return className;
+	}
+
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	public String getClassProf() {
+		return classProf;
+	}
+
+	public void setClassProf(String classProf) {
+		this.classProf = classProf;
+	}
+
+	public String getClassType() {
+		return classType;
+	}
+
+	public void setClassType(String classType) {
+		this.classType = classType;
+	}
+
+	public String getClassSummary() {
+		return classSummary;
+	}
+
+	public void setClassSummary(String classSummary) {
+		this.classSummary = classSummary;
+	}
+
+	public String getClassGoal() {
+		return classGoal;
+	}
+
+	public void setClassGoal(String classGoal) {
+		this.classGoal = classGoal;
+	}
+
+	public String getLecMethod() {
+		return lecMethod;
+	}
+
+	public void setLecMethod(String lecMethod) {
+		this.lecMethod = lecMethod;
+	}
+
+	public String getEvalMethod() {
+		return evalMethod;
+	}
+
+	public void setEvalMethod(String evalMethod) {
+		this.evalMethod = evalMethod;
+	}
+
+	public String getAssignment() {
+		return assignment;
+	}
+
+	public void setAssignment(String assignment) {
+		this.assignment = assignment;
+	}
+
+	public String getLecExperiment() {
+		return lecExperiment;
+	}
+
+	public void setLecExperiment(String lecExperiment) {
+		this.lecExperiment = lecExperiment;
+	}
+
+	public String getRelatedLec() {
+		return relatedLec;
+	}
+
+	public void setRelatedLec(String relatedLec) {
+		this.relatedLec = relatedLec;
+	}
+
+	public String getLecTextbook() {
+		return lecTextbook;
+	}
+
+	public void setLecTextbook(String lecTextbook) {
+		this.lecTextbook = lecTextbook;
+	}
+
+	@Override
+	public String toString() {
+		return "LecturePlan [classNo=" + classNo + ", className=" + className + ", classProf=" + classProf + ", classType=" + classType
+				+ ", classSummary=" + classSummary + ", classGoal=" + classGoal + ", lecMethod=" + lecMethod + ", evalMethod=" + evalMethod
+				+ ", assignment=" + assignment + ", lecExperiment=" + lecExperiment + ", relatedLec=" + relatedLec + ", lecTextbook=" + lecTextbook
+				+ "]";
+	}
+
+
+
 
 	
 	
