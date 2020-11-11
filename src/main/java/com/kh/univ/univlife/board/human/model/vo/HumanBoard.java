@@ -9,7 +9,7 @@ public class HumanBoard {
 	private String hTitle;
 	private String hContent;
 	private String hWriter;
-	private String hname;
+	private String hName;
 	private int hCount ;
 	private String originalFilename;
 	private String renameFilename;
@@ -18,12 +18,11 @@ public class HumanBoard {
 	private Date hModifyDate;
 	private String hStatus;
 	private String hSecret;
-	
 	public HumanBoard() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public HumanBoard(int hId, String hType, String hTitle, String hContent, String hWriter, String hname, int hCount,
+	public HumanBoard(int hId, String hType, String hTitle, String hContent, String hWriter, String hName, int hCount,
 			String originalFilename, String renameFilename, Date hCreateDate, Date hModifyDate, String hStatus,
 			String hSecret) {
 		super();
@@ -32,7 +31,7 @@ public class HumanBoard {
 		this.hTitle = hTitle;
 		this.hContent = hContent;
 		this.hWriter = hWriter;
-		this.hname = hname;
+		this.hName = hName;
 		this.hCount = hCount;
 		this.originalFilename = originalFilename;
 		this.renameFilename = renameFilename;
@@ -71,11 +70,11 @@ public class HumanBoard {
 	public void sethWriter(String hWriter) {
 		this.hWriter = hWriter;
 	}
-	public String getHname() {
-		return hname;
+	public String gethName() {
+		return hName;
 	}
-	public void setHname(String hname) {
-		this.hname = hname;
+	public void sethName(String hName) {
+		this.hName = hName;
 	}
 	public int gethCount() {
 		return hCount;
@@ -122,7 +121,7 @@ public class HumanBoard {
 	@Override
 	public String toString() {
 		return "HumanBoard [hId=" + hId + ", hType=" + hType + ", hTitle=" + hTitle + ", hContent=" + hContent
-				+ ", hWriter=" + hWriter + ", hname=" + hname + ", hCount=" + hCount + ", originalFilename="
+				+ ", hWriter=" + hWriter + ", hName=" + hName + ", hCount=" + hCount + ", originalFilename="
 				+ originalFilename + ", renameFilename=" + renameFilename + ", hCreateDate=" + hCreateDate
 				+ ", hModifyDate=" + hModifyDate + ", hStatus=" + hStatus + ", hSecret=" + hSecret + "]";
 	}

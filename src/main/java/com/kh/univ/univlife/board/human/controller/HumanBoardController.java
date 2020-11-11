@@ -84,11 +84,11 @@ public class HumanBoardController {
 
 		if (!file.getOriginalFilename().equals("")) {
 
-			String renameFIleName = saveFile(file, request);
+			String renameFIlename = saveFile(file, request);
 
-			if (renameFIleName != null) {
+			if (renameFIlename != null) {
 				h.setOriginalFilename(file.getOriginalFilename());
-				h.setRenameFilename(renameFIleName);
+				h.setRenameFilename(renameFIlename);
 
 			}
 		}
@@ -97,7 +97,7 @@ public class HumanBoardController {
 
 		if (result > 0) {
 
-			return "redirect:humanboard.do";
+			return "redirect:human.do";
 		} else {
 			return "common/errorPage";
 		}
@@ -123,13 +123,13 @@ public class HumanBoardController {
 			folder.mkdirs(); // 폴더가 없다면 생성한다.
 		}
 		// 파일명을 rename 과정을 추가 --> "년월일시분초.확장자"로 변경
-		String originalFileName = file.getOriginalFilename();
+		String originalFilename = file.getOriginalFilename();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 
-		String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "."
-				+ originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
+		String renameFilename = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "."
+				+ originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
 
-		String renamePath = folder + "\\" + renameFileName; // 실제 저장될 파일 경로 + 파일명
+		String renamePath = folder + "\\" + renameFilename; // 실제 저장될 파일 경로 + 파일명
 
 		try {
 			file.transferTo(new File(renamePath)); // 전달받은 file이 rename명으로 이때 파일이 저장된다.
@@ -138,7 +138,7 @@ public class HumanBoardController {
 			System.out.println("파일전송 에러" + e.getMessage());
 		}
 
-		return renameFileName;
+		return renameFilename;
 	}
 
 	@RequestMapping("hBoardupView.do")
@@ -157,11 +157,11 @@ public class HumanBoardController {
 				deleteFile(h.getRenameFilename(), request);
 			}
 
-			String renameFileName = saveFile(file, request);
+			String renameFilename = saveFile(file, request);
 
-			if (renameFileName != null) {
+			if (renameFilename != null) {
 				h.setOriginalFilename(file.getOriginalFilename());
-				h.setRenameFilename(renameFileName);
+				h.setRenameFilename(renameFilename);
 			}
 		}
 		System.out.println(h.gethId());
@@ -179,10 +179,10 @@ public class HumanBoardController {
 		return mv;
 	}
 
-	public void deleteFile(String fileName, HttpServletRequest request) {
+	public void deleteFile(String filename, HttpServletRequest request) {
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		String savePath = root + "\\uploadFiles";
-		File f = new File(savePath + "\\" + fileName);// 기존의 업로드된 파일의 실제 경로를 이용해서 ifle 객체 생성
+		File f = new File(savePath + "\\" + filename);// 기존의 업로드된 파일의 실제 경로를 이용해서 ifle 객체 생성
 
 		if (f.exists()) {
 			f.delete();
@@ -201,7 +201,7 @@ public class HumanBoardController {
 		int result = hService.deleteHumanBoard(hId);
 
 		if (result > 0) {
-			return "redirect:humanBoard.do";
+			return "redirect:human.do";
 		} else {
 			return "common/errorPage";
 		}

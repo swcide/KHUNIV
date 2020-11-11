@@ -1,7 +1,72 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.kh.univ.member.model.vo.Student"%>
+<%@ page import="com.kh.univ.member.model.vo.Admin"%>
+<%@ page import="com.kh.univ.member.model.vo.Professor"%>
+
+<%
+
+
+
+Student loginUser = (Student)session.getAttribute("loginUser");
+Professor loginProf = (Professor)session.getAttribute("loginProf");
+Admin loginAdmin = (Admin)session.getAttribute("loginAdmin");
+
+String sNo = null;
+String pNo = null;
+String aId = null;
+
+String sName =null;
+String pName =null;
+String aName = null;
+
+
+int type = 0;
+
+	if(loginUser !=null){
+	 sNo =loginUser.getsNo(); 
+	 sName =loginUser.getsName();
+	 type = loginUser.getType();
+	
+	}else if(loginProf !=null){	
+	 pNo =loginProf.getpNo();
+	 pName=loginProf.getpName();
+	 type = loginProf.getType();
+	
+	}else if (loginAdmin !=null){
+	 aId = loginAdmin.getaId();
+	 aName = loginAdmin.getaName();
+	 type = loginAdmin.getType();
+	
+	}
+	
+System.out.println(type);	
+
+
+     
+
+%>
+
+
 <%@ include file="../common/header.jsp"%>
+
+<style>
+.mailbox-attachment-info{
+	background: #f8f9fa;
+    padding: 10px;
+	}
+}
+.mailbox-attachment-name{
+    color: #666;
+    font-weight: 700;
+}
+ul.comments li {
+	clear: both;
+    padding: 10px 0px 0px 20px!important;
+}}
+</style>
 
 <div class="body">
 	<div role="main" class="main">
@@ -29,15 +94,117 @@
 							<div class="post-content ml-0">
 
 								<h2 class="font-weight-bold">
-									<a href="blog-post.html">100분 토론 함께 나가실 분 구합니다.</a>
+									${ h.hTitle }
 								</h2>
 
 								<div class="post-meta">
-									<span><i class="far fa-user fl"></i> By <a href="#">윤기훈</a>
-									</span> <span class="date float-right">2020-10-29 13:38</span>
+									<span><i class="far fa-user fl"></i> By ${h.hWriter }
+									</span> <span class="date float-right">${h.hCreateDate }</span>
 								</div>
 
-								<p>제가 디스 담당합니다. 연락주세요</p>
+								<p clss="text-5">${h.hContent }</p>
+								
+								<div class="mt-5 ">
+									<hr>
+									<h4 >첨부파일</h4>
+								</div>
+								
+								<c:if test="${ !empty h.originalnilename }">
+								<ul class=" d-flex align-items-stretch clearfix" style="list-style:none; padding: 0;">
+					                <li>		
+					                  <div class="mailbox-attachment-info">
+					                    <a href="/spring/resources/uploadFiles/${h.renameFilename}" download="${n.originalFilename }" class="mailbox-attachment-name">
+					                    	<i class="fas fa-paperclip"></i>${h.originalFilename }
+				                    	</a>
+					                        <span class="mailbox-attachment-size clearfix mt-">
+					                          <a href="#" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
+					                        </span>
+					                    
+					                  </div>
+					                </li>
+								</ul>
+								
+								
+								</c:if>
+								<c:if test="${ loginAdmin != null }">
+									<div class=" float-right">											
+										<div>
+											<c:url var="nupview" value="nUpView.do">
+												<c:param name="nId" value="${h.hId }"/>
+												<c:param name="nType" value="${h.hType}"/>
+											</c:url>
+											<c:url var="nDelete" value="nDelete.do">
+												<c:param name="nId" value="${h.hId }"/>
+											</c:url>
+											<c:url var="nList" value="nList.do?nType=1">
+												<c:param name="currentPage" value="${ currentPage }"/>
+											</c:url>
+										
+											<a href="${hDelete}" class="mb-1 mt-1 mr-1 btn btn-primary">
+												삭제하기${hupview}
+											</a>
+											<a href="${hupview }" class="mb-1 mt-1 mr-1 btn btn-primary">
+												수정하기
+											</a>											
+										</div>
+									</div>
+										
+								</c:if>
+								<c:if test="${ loginProf.pNo eq h.hWriter }">
+								<div class=" float-right">											
+											<div>
+												<c:url var="hupview" value="hUpView.do">
+													<c:param name="hId" value="${h.nId }"/>
+													<c:param name="hType" value="${h.hType}"/>
+												</c:url>
+												<c:url var="hDelete" value="hDelete.do?hType=1">
+													<c:param name="hId" value="${h.hId }"/>
+												</c:url>
+												<c:url var="hList" value="hList.do">
+													<c:param name="currentPage" value="${ currentPage }"/>
+												</c:url>
+										
+												<c:set var="test" value="${h.hType }"/>
+											
+											
+												<a href="${hDelete}" class="mb-1 mt-1 mr-1 btn btn-primary">
+													삭제하기 ${test }
+												</a>
+												<a href="${hupview }" class="mb-1 mt-1 mr-1 btn btn-primary">
+													수정하기
+												</a>											
+											</div>
+										</div>
+										
+								</c:if>
+								<c:if test="${ loginUser.sNo eq h.hWriter }">
+								<div class=" float-right">											
+											<div>
+												<c:url var="hupview" value="hUpView.do">
+													<c:param name="hId" value="${h.nId }"/>
+													<c:param name="hType" value="${h.hType}"/>
+												</c:url>
+												<c:url var="hDelete" value="hDelete.do?hType=1">
+													<c:param name="hId" value="${h.hId }"/>
+												</c:url>
+												<c:url var="hList" value="hList.do">
+													<c:param name="currentPage" value="${ currentPage }"/>
+												</c:url>
+										
+												<c:set var="test" value="${h.hType }"/>
+											
+											
+												<a href="${hDelete}" class="mb-1 mt-1 mr-1 btn btn-primary">
+													삭제하기 ${test }
+												</a>
+												<a href="${hupview }" class="mb-1 mt-1 mr-1 btn btn-primary">
+													수정하기
+												</a>											
+											</div>
+										</div>
+										
+								</c:if>
+								
 
 
 

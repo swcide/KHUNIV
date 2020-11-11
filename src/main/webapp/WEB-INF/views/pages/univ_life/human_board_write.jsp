@@ -32,32 +32,37 @@
 								<div class="post-block mt-5 post-leave-comment">
 									<h4>인문 사회 게시판 작성</h4>
 
-									<form class="contact-form rounded"
-										action="php/contact-form.php" method="POST">
+									<form id="fm"class="contact-form"action="hBoardInsert.do" method="post" enctype="multipart/form-data">
 
 										<div class="form-group">
-											<input class="form-control" placeholder="제목">
+											<input id="htitle" class="form-control" name="htitle" placeholder="제목">
 										</div>
 										<div class="form-row">
 
 											<div class="form-group col">
-
+											
+											
+ 											<input type="hidden" name="hWriter" value="${loginUser.sNo}">
+											<input type="hidden" name="hName"value="${loginUser.sName}">
+ 											<input type="hidden" name="hType"value="1"> 
+												 <div class=" ">
+										              <div class="mb-3">
 												<textarea maxlength="5000"
 													data-msg-required="Please enter your message." rows="10"
 													class="form-control" name="message" required></textarea>
+												 </div>
+										            
+										            </div>
+													<div>첨부파일</div>
+													<div><input class="form-control-file" type="file" name="uploadFile"></div>
 											</div>
 										</div>
-										<div class="form-row">
-											<div class="form-group col mb-0">
-												<input type="submit" value="뒤로가기"
-													class="btn btn-quaternary mb-2"
-													data-loading-text="Loading..."> <input
-													type="submit" value="완료"
-													class="btn btn-dark btn-modern float-right"
-													data-loading-text="Loading...">
-											</div>
-										</div>
+										<input  type="button" onclick="location.href='javascript:history.go(-1)'" value="뒤로가기"	class="btn btn-quaternary mb-2">
+										
+										<input id="submit"	type="submit" value="완료"class="btn btn-dark btn-modern float-right">
 									</form>
+											</div>
+										</div>
 								</div>
 							</div>
 						</article>
@@ -67,4 +72,27 @@
 		</div>
 	</div>
 </div>
+
+<script>
+$(function(){
+	
+	
+		
+	$('#submit').on('click',function(){
+		 if($('#Content').val().trim() == ""){
+	         alert("내용을 입력하세요");
+	         $('#Content').focus();
+	         return false;
+	     }else if($("#ntitle").val().trim() == ""){
+	         alert("제목을 입력하세요");
+	         $("#Content").focus();
+	         return false;
+		 
+		}
+		 console.log("hohoho")
+	
+	})
+})
+
+</script>
 <%@ include file="../common/footer.jsp"%>

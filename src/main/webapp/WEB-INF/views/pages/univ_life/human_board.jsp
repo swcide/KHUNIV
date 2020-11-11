@@ -58,8 +58,8 @@
 									
 								</tbody>
 							</table>
-							<c:if test="${!empty sessionScope.loginUser }">
-								<button type="button" class="btn btn-dark"onclick="location.href= 'human_write.do'"style="float: right; margin-bottom: 20px;">
+							<c:if test="${!empty sessionScope.loginUser  }">
+								<button type="button" class="btn btn-dark"onclick="location.href= 'hBoardInsertView.do'"style="float: right; margin-bottom: 20px;">
 									<i class="fas fa-pencil-alt"></i> 글쓰기
 								</button> 
 							</c:if>

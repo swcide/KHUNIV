@@ -10,8 +10,8 @@
 		<result property="hWriter" column="HNAME"/>
 		<result property="hContent" column="HCONTENT"/>
 		<result property="hCount" column="HCOUNT"/>
-		<result property="originalFileName" column="ORIGINAL_FILENAME"/>
-		<result property="renameFileName" column="RENAME_FILENAME"/>
+		<result property="originalFilename" column="ORIGINAL_FILENAME"/>
+		<result property="renameFilename" column="RENAME_FILENAME"/>
 		<result property="hCount" column="HCOUNT"/>
 		<result property="hCreateDate" column="H_CREATE_DATE"/>
 		<result property="hModifyDate" column="H_MODIFY_DATE"/>
@@ -56,12 +56,12 @@
  	 </select>
  	  <insert id="insertHumanBoard" parameterType="HumanBoard">
  	 	INSERT INTO TB_HUMAN_BOARD
- 	 	VALUES(SEQ_HID.NEXTVAL,#{hType},#{hTitle},#{hContent},#{hWriter},#{hName},DEFAULT,DEFAULT,DEFAULT,DEFAULT,#{originalFileName},#{renameFileName},DEFAULT)
+ 	 	VALUES(SEQ_HUMAN_HID.NEXTVAL,#{hType},#{hTitle},#{hContent},#{hWriter},#{hName},DEFAULT,DEFAULT,DEFAULT,DEFAULT,#{originalFilename},#{renameFilename},DEFAULT)
  	 </insert>
  	 
  	 <update id="updateHumanBoard"  parameterType="HumanBoard">
  	 	UPDATE TB_HUMAN_BOARD
- 	 	SET HTITLE=#{hTitle},HCONTENT=#{hContent},ORIGINAL_FILENAME=#{originalFileName},RENAME_FILENAME=#{renameFileName},H_MODIFY_DATE=SYSDATE
+ 	 	SET HTITLE=#{hTitle},HCONTENT=#{hContent},ORIGINAL_FILENAME=#{originalFilename},RENAME_FILENAME=#{renameFilename},H_MODIFY_DATE=SYSDATE
  	 	WHERE HID=#{hId} 
  	 </update>
  	 
