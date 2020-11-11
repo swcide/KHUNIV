@@ -78,9 +78,11 @@
  	  <select id="selectNotice" resultMap="noticeResultSet">
  	 	SELECT *
  	 	FROM TB_NOTICE_BOARD
+		<if test="nType==1">
  	 	WHERE NID=#{nId}
+ 	 	AND NTYPE
  	 	AND N_STATUS='Y'
- 	 	
+ 	 	</if>
  	 	
  	 </select>
  	  <insert id="insertNotice" parameterType="Notice">

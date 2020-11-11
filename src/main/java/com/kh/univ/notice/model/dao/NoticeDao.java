@@ -43,8 +43,8 @@ public class NoticeDao {
 		return sqlSession.update("noticeMapper.updateCount",nId);
 	}
 
-	public Notice selectNotice(int nId) {
-		return  sqlSession.selectOne("noticeMapper.selectNotice",nId);
+	public Notice selectNotice(int n) {
+		return  sqlSession.selectOne("noticeMapper.selectNotice",n);
 	}
 
 	public int insertNotice(Notice n) {

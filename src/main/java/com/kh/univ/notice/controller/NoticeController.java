@@ -249,13 +249,18 @@ public class NoticeController {
 	public ModelAndView noticeUpdateView(ModelAndView mv, int nId,int nType) {
 		System.out.println(nType +"시소다");
 		
+		Notice n = new Notice(); 
+		
+		n.setnId(nId);
+		n.setnType(nType);
+		
 		
 		
 		if(nType ==1 ) {
-			mv.addObject("n",nService.selectUpdateNotice(nId)).setViewName("notice/dept_notice_update");
+			mv.addObject("n",nService.selectUpdateNotice(n)).setViewName("notice/dept_notice_update");
 
 		}else if(nType==2){
-			mv.addObject("n",nService.selectUpdateNotice(nId)).setViewName("notice/gener_notice_update");
+			mv.addObject("n",nService.selectUpdateNotice(n)).setViewName("notice/gener_notice_update");
 
 		}
 		return mv;

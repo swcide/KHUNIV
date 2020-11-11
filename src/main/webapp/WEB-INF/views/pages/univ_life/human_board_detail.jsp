@@ -109,7 +109,7 @@ ul.comments li {
 									<h4 >첨부파일</h4>
 								</div>
 								
-								<c:if test="${ !empty h.originalnilename }">
+								<c:if test="${ !empty h.originalFilename }">
 								<ul class=" d-flex align-items-stretch clearfix" style="list-style:none; padding: 0;">
 					                <li>		
 					                  <div class="mailbox-attachment-info">

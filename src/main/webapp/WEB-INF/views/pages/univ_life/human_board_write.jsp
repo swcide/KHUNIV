@@ -35,21 +35,21 @@
 									<form id="fm"class="contact-form"action="hBoardInsert.do" method="post" enctype="multipart/form-data">
 
 										<div class="form-group">
-											<input id="htitle" class="form-control" name="htitle" placeholder="제목">
+											<input id="htitle" class="form-control" name="hTitle" placeholder="제목">
 										</div>
 										<div class="form-row">
 
 											<div class="form-group col">
 											
 											
- 											<input type="hidden" name="hWriter" value="${loginUser.sNo}">
+ 										<input type="hidden" name="hWriter" value="${loginUser.sNo}">
 											<input type="hidden" name="hName"value="${loginUser.sName}">
- 											<input type="hidden" name="hType"value="1"> 
+											<input type="hidden" name="hType"value="2">
 												 <div class=" ">
 										              <div class="mb-3">
 												<textarea maxlength="5000"
 													data-msg-required="Please enter your message." rows="10"
-													class="form-control" name="message" required></textarea>
+													class="form-control" name="hContent" required></textarea>
 												 </div>
 										            
 										            </div>

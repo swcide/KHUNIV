@@ -49,6 +49,8 @@ public class HumanBoardController {
 		int listCount = hService.getListCount();
 
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		
 
 		ArrayList<HumanBoard> list = hService.selectList(pi);
 

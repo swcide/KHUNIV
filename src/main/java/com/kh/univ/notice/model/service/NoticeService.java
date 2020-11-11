@@ -43,7 +43,7 @@ public interface NoticeService {
 	int insertNotice(Notice n);
 
 
-	Notice selectUpdateNotice(int nId);
+	Notice selectUpdateNotice(Notice n);
 	int updateNotice(Notice n);
 
 

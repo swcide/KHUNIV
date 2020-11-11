@@ -36,15 +36,18 @@
 										action="php/contact-form.php" method="POST">
 
 										<div class="form-group">
-											<input class="form-control" placeholder="제목">
+											<input class="form-control" placeholder="제sddddd목">
 										</div>
 										<div class="form-row">
 
 											<div class="form-group col">
+											<input type="hidden" name="rWriter" value="${loginAdmin.aId}">
+											<input type="hidden" name="rName"value="${loginAdmin.aName}">
+											<input type="hidden" name="hType"value="2">
 
 												<textarea maxlength="5000"
 													data-msg-required="Please enter your message." rows="10"
-													class="form-control" name="message" required></textarea>
+													class="form-control" name="hContent" required></textarea>
 											</div>
 										</div>
 										<div class="form-row">

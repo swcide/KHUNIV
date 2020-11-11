@@ -51,8 +51,9 @@
 											</td>
 											
 											<td>${h.hWriter }</td>
+											<td>${h.hCount}</td>	
 											<td>${h.hCreateDate}</td>
-											<td>${h.hCount}</td>											
+																				
 										</tr>	
 									</c:forEach>
 									

@@ -59,8 +59,8 @@ public class NoticeServiceImpl implements NoticeService {
    }
 
    @Override
-   public Notice selectUpdateNotice(int nId) {
-      return nDao.selectNotice(nId);
+   public Notice selectUpdateNotice(Notice n) {
+      return nDao.selectNotice(n);
    }
 
    @Override
