@@ -14,6 +14,9 @@
 <result property="qnaCreateDate" column="QNA_CREATE_DATE"/>
 <result property="qnaModifyDate" column="QNA_MODIFY_DATE"/>
 <result property="qnaStatus" column="QNA_STATUS"/>
+<result property="rCount" column="rCount"/>
+
+<collection property="replyList" javaType="java.util.ArrayList" resultMap="QNA_replyResultSet"/>
 </resultMap>
 
 <resultMap type="Reply" id="QNA_replyResultSet">
@@ -30,6 +33,7 @@
 	</resultMap>
 
 
+
 <select id="getListCount" resultType="_int">
 	SELECT COUNT(*)
 	   FROM TB_HELPDESK_QNA
@@ -37,10 +41,24 @@
 </select>
 
 <select id="selectList" resultMap="QnAResultSet">
-	SELECT *
-	   FROM TB_HELPDESK_QNA
-	   WHERE QNA_STATUS = 'Y'
-	   ORDER BY QNA_ID DESC
+	SELECT 
+       H.QNA_ID
+     , H.QNA_TITLE
+     , H.QNA_CONTENT
+     , H.QNA_WRITER
+     , H.QNA_NAME
+     , H.QNA_COUNT
+     , H.QNA_CREATE_DATE
+     , H.QNA_MODIFY_DATE
+     , H.QNA_STATUS
+     , H.QNA_SECRET
+     , (SELECT COUNT(QNA_REF_BID)
+                   FROM TB_QNA_REPLY R 
+                  WHERE H.QNA_ID = R.QNA_REF_BID) rCount
+  FROM TB_HELPDESK_QNA H
+      WHERE QNA_STATUS = 'Y'
+      ORDER BY QNA_ID DESC
+
 	   
 </select>
 
