@@ -247,7 +247,6 @@ public class NoticeController {
 
 		int nType = n.getnType();
 
-		System.out.println(n.getnType() + "리절트");
 		
 		
 		if(nType ==1 ) {
@@ -286,20 +285,15 @@ public class NoticeController {
 				n.setRenameFileName(renameFileName);
 			}
 		}
-		System.out.println(n.getnType() + "엔타입");
 		
 		int result = nService.updateNotice(n);
 		ArrayList<Notice> list = nService.selectTopList();
 		
 		int lastIndex = list.size();
-		System.out.println(lastIndex);
 		
 		int nId= list.get(lastIndex-1).getnId();
 		
 		
-		System.out.println(nId);
-		System.out.println(result+ "리절트");
-		System.out.println("nId" +n.getnId());
 		
 		
 		if(result>0) {
