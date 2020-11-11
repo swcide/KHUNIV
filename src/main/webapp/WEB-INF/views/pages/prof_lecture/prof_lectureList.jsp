@@ -40,8 +40,6 @@
 											class="font-weight-semibold text-5 line-height-6 mt-3 mb-2">
 											<a href="blog-post.html">컴퓨터네트워킹</a>
 										</h2>
-										<p>컴퓨터 네트워크의전체적인기술을먼저 이해한다. 모바일 기기가 통신을 하려면 무선 LAN이나 LTE
-											망을 통하여 억세스가 이루어진다.</p>
 
 										<div class="post-meta">
 											<span><i class="far fa-user"></i> 교수: 정윤찬 </span> <span><i
