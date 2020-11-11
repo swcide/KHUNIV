@@ -40,7 +40,6 @@ int type = 0;
 	
 	}
 	
-System.out.println(type);	
 
 
      
