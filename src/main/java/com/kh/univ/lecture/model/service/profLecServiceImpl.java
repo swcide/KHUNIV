@@ -25,12 +25,21 @@ public class profLecServiceImpl implements profLecService {
 		}
 
 	/**
-	 *강의 업로드
+	 *강의 업로드 화면
 	 */
 	@Override
 	public ArrayList<LecturePlanWeek> lecVideoWrite(LecturePlanWeek lpw)
 		{
 			return plDao.lecVideoWrite(lpw);
+		}
+
+	/**
+	 * 강의 업로드
+	 */
+	@Override
+	public int lectureVideoInsert(LecturePlanWeek lpw)
+		{
+			return plDao.lectureVideoInsert(lpw);
 		}
 
 

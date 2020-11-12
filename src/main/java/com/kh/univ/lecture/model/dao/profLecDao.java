@@ -24,6 +24,11 @@ public class profLecDao {
 		{
 			return (ArrayList)sqlSession.selectList("lectureMapper.lecVideoWrite", lpw);
 		}
+
+	public int lectureVideoInsert(LecturePlanWeek lpw)
+		{
+			return sqlSession.insert("lectureMapper.lectureVideoInsert",lpw);
+		}
 	
 
 }

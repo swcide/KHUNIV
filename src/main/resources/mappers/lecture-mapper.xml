@@ -55,8 +55,15 @@
  	 <select id="lecVideoWrite" resultMap="lecturePlanWeekResultSet">
 	 	 SELECT  *
 		    FROM TB_CLASS_DETAIL
+		    ORDER BY LECTURE_NO DESC
  	 
  	 </select>
+ 	 
+ 	 <insert id="lectureVideoInsert" parameterType="LecturePlanWeek">
+ 	 INSERT INTO TB_CLASS_DETAIL
+		VALUES(#{classNo},#{lecNo},#{lecName},#{lecReference},#{lecVideo},#{lecExplanation},DEFAULT,DEFAULT,DEFAULT,SYSDATE)
+ 	 
+ 	 </insert>
  	 
  	 
  	 <select id="selectlpList" resultMap="lecturePlanResultSet">

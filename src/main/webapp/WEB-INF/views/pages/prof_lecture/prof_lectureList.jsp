@@ -31,7 +31,7 @@
 										<div class="post-content">
 
 											<h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2">
-												<a href="prof_lectureVideoWrite.do">${lc.className }</a>
+												<a href="prof_lectureVideo.do">${lc.className }</a>
 											</h2>
 
 											<p>${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }</p>

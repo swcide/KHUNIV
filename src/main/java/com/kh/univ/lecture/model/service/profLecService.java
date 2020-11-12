@@ -20,6 +20,13 @@ public interface profLecService {
 	 * @return
 	 */
 	ArrayList<LecturePlanWeek> lecVideoWrite(LecturePlanWeek lpw);
+
+	/**
+	 * 강의등록 로직
+	 * @param lpw
+	 * @return
+	 */
+	int lectureVideoInsert(LecturePlanWeek lpw);
 	
 
 
