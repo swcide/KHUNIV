@@ -270,7 +270,7 @@ ul.comments li {
 			
 			 var rContent = $("#rContent").val();
 			 var refHid = ${h.hId};
-			 
+			 var hType =${h.hType}; 
 			 var rWriter;
 			 var rName;
 			 var type= "<%=type%>";
@@ -303,7 +303,7 @@ ul.comments li {
 					refHid:refHid,
 					rWriter:rWriter,
 					rName:rName,
-					
+					hType:hType
 
 					},
 				type:"post",
@@ -616,7 +616,7 @@ ul.comments li {
 			
 			
 			$.ajax({
-				url:"noticeUpdateReply.do",
+				url:"hBoardUpdateReply.do",
 				data:{
 					rId:rId,
 					rContent:rContent},

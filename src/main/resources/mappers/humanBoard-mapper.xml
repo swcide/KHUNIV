@@ -74,8 +74,6 @@
  	 	SELECT *
  	 	FROM TB_HUMANBOARD_REPLY
  	 	WHERE H_REF_HID=#{hId}
- 	 	AND H_R_STATUS='Y'
- 	 	AND HTYPE=1
  	 	ORDER BY H_RID DESC
  	 </select>
  	 
