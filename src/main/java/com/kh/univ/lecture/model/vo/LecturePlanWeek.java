@@ -8,7 +8,7 @@ public class LecturePlanWeek {
 	private String classNo;
 	
 	// 강의 주차별
-	private String lecNo;
+	private int lecNo;
 	
 	//아래로는 강의 주차별 제목
 	private String lecName; 
@@ -30,7 +30,7 @@ public class LecturePlanWeek {
 	}
 
 
-	public LecturePlanWeek(String classNo, String lecNo, String lecName, String lecReference, String lecExplanation, String lecVideo, Date lecVideoCreateDate) {
+	public LecturePlanWeek(String classNo, int lecNo, String lecName, String lecReference, String lecExplanation, String lecVideo, Date lecVideoCreateDate) {
 		super();
 		this.classNo = classNo;
 		this.lecNo = lecNo;
@@ -54,13 +54,13 @@ public class LecturePlanWeek {
 		}
 
 
-	public String getLecNo()
+	public int getLecNo()
 		{
 			return lecNo;
 		}
 
 
-	public void setLecNo(String lecNo)
+	public void setLecNo(int lecNo)
 		{
 			this.lecNo = lecNo;
 		}
@@ -133,5 +133,7 @@ public class LecturePlanWeek {
 					+ lecVideo + ", lecVideoCreateDate=" + lecVideoCreateDate + "]";
 		}
 
+
+	
 	
 }

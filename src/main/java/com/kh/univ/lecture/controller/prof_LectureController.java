@@ -1,7 +1,6 @@
 package com.kh.univ.lecture.controller;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,13 +11,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.lecture.model.service.profLecService;
 import com.kh.univ.lecture.model.vo.LectureClass;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
+import com.kh.univ.member.model.vo.Professor;
 
+
+@SessionAttributes({"loginProf"})
 @Controller
 public class prof_LectureController {
 	
@@ -27,16 +30,22 @@ public class prof_LectureController {
 	
 	
 	/**
-	 * 내 강의 동영상 목록 클릭 시 DB 출력
+	 * 내 강의 동영상 목록 클릭 담당과목만 출력
 	 * @param mv
 	 * @param lc
 	 * @param session
 	 * @return
 	 */
 	@RequestMapping(value = "prof_lecturelist.do")
-	public ModelAndView prof_lecture(ModelAndView mv, LectureClass lc, HttpSession session) {
-			ArrayList<LectureClass> aLc = plService.selectValue(lc);
+	public ModelAndView prof_lecture(ModelAndView mv,HttpSession session) {
+			
+			Professor p = (Professor) session.getAttribute("loginProf");
+			String pNo = p.getpNo();
+			
+			ArrayList<LectureClass> aLc = plService.selectValue(pNo);
 			System.out.println(aLc);
+			System.out.println();
+			
 			if(aLc != null) {
 			mv.addObject("aLc",aLc);
 			mv.setViewName("prof_lecture/prof_lectureList");
@@ -57,12 +66,20 @@ public class prof_LectureController {
 		return "prof_lecture/prof_lectureStudentList";
 	}
 	
+	/**
+	 * 해당 과목의 주차별 내용만 출력 
+	 * @param mv
+	 * @param lpw
+	 * @param cNo
+	 * @return
+	 */
 	@RequestMapping(value = "prof_lectureVideo.do")
-	public ModelAndView prof_lectureVideoWrite(ModelAndView mv, LecturePlanWeek lpw, HttpSession session) {
-			ArrayList<LecturePlanWeek> aLpw = plService.lecVideoWrite(lpw);
-			
-			System.out.println(aLpw);
+	public ModelAndView prof_lectureVideo(ModelAndView mv,@RequestParam(name="classNo",required=false) String classNo) {
+			ArrayList<LecturePlanWeek> aLpw = plService.lectureVideo(classNo);
+			System.out.println(classNo);
+			System.out.println("classNo");
 			if(aLpw != null) {
+				mv.addObject("classNo",classNo);	
 				mv.addObject("aLpw",aLpw);
 				mv.setViewName("prof_lecture/prof_lectureVideo");
 			}else {
@@ -72,20 +89,33 @@ public class prof_LectureController {
 		return mv;
 	}
 	
-	@RequestMapping(value ="prof_lectureVideoInsert.do")
-	public String prof_lectureVideoInsert(LecturePlanWeek lpw, HttpServletRequest request,@RequestParam(name="lecVideo",required=false) MultipartFile file) {
+	@RequestMapping("prof_lectureVideoInsert.do")   
+	public String prof_lectureVideoInsert(LecturePlanWeek lpw, HttpServletRequest request,@RequestParam(name="lecVideo1",required=false) MultipartFile file,@RequestParam(name="lecRef",required=false) MultipartFile refFile,@RequestParam(name="classNo",required=false) String classNo) {
+			System.out.println("in");
+			System.out.println(classNo);
 			if(!file.getOriginalFilename().equals(" ")) {
 				//서버에 업로드 해야한다.
+				
 				String renameFileName = saveFile(file,request);
 				if(renameFileName != null) { //파일이 잘 저장된 경우
-//					lpw.setLecVideo(file.getOriginalFilename()); // 파일명만 DB에 저장
+					lpw.setLecVideo(file.getOriginalFilename()); // 파일명만 DB에 저장
 					lpw.setLecVideo(renameFileName);
 				}
 			}
 			
+			if(!refFile.getOriginalFilename().equals(" ")) {
+				//서버에 업로드 해야한다.
+				String renameRefFileName = saveFile(refFile,request);
+				if(renameRefFileName != null) { //파일이 잘 저장된 경우
+					lpw.setLecReference(refFile.getOriginalFilename()); // 파일명만 DB에 저장
+					lpw.setLecReference(renameRefFileName);
+				}
+			}
+			
 			int result = plService.lectureVideoInsert(lpw);
+
 			if(result > 0) {
-				return "redirect:prof_lectureVideo.do";
+				return "redirect:prof_lectureVideo.do?classNo="+classNo;
 			}else {
 				return "common/errorPage";
 			}
@@ -97,10 +127,9 @@ public class prof_LectureController {
 			//webapp 하위의 resources
 			String root = request.getSession().getServletContext().getRealPath("resources");
 			System.out.println("root : " + root);
-			
 			//파일 경로
 			// \를 문자로 인식시키기 위해서는 "\\"를 사용한다.
-			String savePath = root + "\\videoUploadFile";
+			String savePath = root + "\\lectureUploadFile";
 			
 			File folder = new File(savePath);
 			
@@ -108,16 +137,16 @@ public class prof_LectureController {
 				folder.mkdirs(); // 폴더가 없다면 생성한다. 
 			}
 			
-			String lecVideo = file.getOriginalFilename();
+			String fileName = file.getOriginalFilename();
 			
-			String renamePath = folder + "\\"+lecVideo;//실제 저장될 파일 경로 + 파일명
+			String renamePath = folder + "\\"+fileName;//실제 저장될 파일 경로 + 파일명
 			
 			try {
 				file.transferTo(new File(renamePath)); // 전달 받은 file이 rename명으로 이때 파일이 저장된다.
 			}catch(Exception e) {
 				System.out.println("파일 전송 에러 : " + e.getMessage());
 			}
-			return lecVideo;
+			return fileName;
 		}
 
 	
