@@ -81,7 +81,7 @@
 			<div class="bounce3"></div>
 		</div>
 	</div>
-
+	
 	<div class="body bg-dark">
 		<header id="header" class="header-transparent"
 			data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyChangeLogo': false, 'stickyStartAt': 0}">
@@ -145,6 +145,8 @@
 										<div class="col-half-section col-half-section-left">
 											<div class="row">
 												<div class="col">
+												<div ></div>
+												<a class="btn btn-dark font-weight-bold text-3 rounded-0 px-5 btn-py-3 align-items-center d-inline-flex"href="tMain.do" >시험페이지 가기</a>
 													<h1
 														class="font-weight-extra-bold text-color-light text-md-10 text-lg-12 line-height-2 mb-4 pb-2 appear-animation"
 														data-appear-animation="fadeInRightShorter"
@@ -201,7 +203,7 @@
 	<script src="resources/vendor/popper/umd/popper.min.js"></script>
 	<script src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="resources/vendor/common/common.min.js"></script>
-	<script src="resources/vendor/jquery.validation/jquery.validate.min.js"></script>
+<!-- 	<script src="resources/vendor/jquery.validation/jquery.validate.min.js"></script> -->
 	<script
 		src="resources/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
 	<script src="resources/vendor/jquery.gmap/jquery.gmap.min.js"></script>
@@ -225,7 +227,7 @@
 		src="resources/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 
 	<!-- Current Page Vendor and Views -->
-	<script src="resources/js/views/view.contact.js"></script>
+<!-- 	<script src="resources/js/views/view.contact.js"></script> -->
 
 	<!-- Theme Custom -->
 	<script src="resources/js/custom.js"></script>

@@ -4,9 +4,9 @@ public class LectureClass {
 	
 	private String classNo; 		    // 과목번호 					tb-class
 	private String className;			// 과목명						tb-class
-	private String lecAttendance;	    // 출석 					우찌할꼬
-	private String lecLearningRate;     // 학습률					우찌할꼬
-	private int Attendees;			    	// 수강인원				우찌할꼬
+	private String lecAttendance;	    // 출석 					tb-class-detail
+	private String lecLearningRate;     // 학습률					tb-class-detail
+	private int Attendees;			    	// 수강인원				tb-class-detail
 	private String classSummary;	// 교과목개요				tb_lectuerPlan
 	private String classImg; 			//과목사진					tb-class
 	private String profName; 			 //교수이름					tb-class-professor join tb-professor
