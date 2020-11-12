@@ -21,19 +21,20 @@ public interface HumanBoardService {
 
 	int updateHumanBoard(HumanBoard h);
 
-//	ArrayList<hReply> selectReplyList(int hId);
-//
-//	int insertReply(hReply r);
-//
-//	int deleteReply(hReply r);
-//
-//	int updateReply(hReply r);
+	ArrayList<hReply> selectReplyList(int hId);
+
+	int insertReply(hReply r);
+
+	int deleteReply(hReply r);
+
+	int updateReply(hReply r);
 
 	
 
 	HumanBoard selectUpdateHumanBoard(int hId);
 
 	int deleteHumanBoard(int hId);
+
 
 
 

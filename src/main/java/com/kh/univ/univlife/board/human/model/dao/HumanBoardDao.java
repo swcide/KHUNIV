@@ -55,21 +55,21 @@ public class HumanBoardDao {
 
 	}
 
-//	public ArrayList<hReply> selectReplyList(int hId) {
-//		return (ArrayList)sqlSession.selectList("humanBoardMapper.selectDeptReplyList",hId);
-//	}
-//
-//	public int insertReply(hReply r) {
-//		return sqlSession.insert("humanBoardMapper.insertReply",r);
-//	}
-//
-//	public int deleteReply(hReply r) {
-//		return sqlSession.update("humanBoardMapper.deleteReply",r);
-//	}
-//
-//	public int updateReply(hReply r) {
-//		return sqlSession.update("humanBoardMapper.updateReply",r);
-//	}
+	public ArrayList<hReply> selectReplyList(int hId) {
+		return (ArrayList)sqlSession.selectList("humanBoardMapper.selectDeptReplyList",hId);
+	}
+
+	public int insertReply(hReply r) {
+		return sqlSession.insert("humanBoardMapper.insertReply",r);
+	}
+
+	public int deleteReply(hReply r) {
+		return sqlSession.update("humanBoardMapper.deleteReply",r);
+	}
+
+	public int updateReply(hReply r) {
+		return sqlSession.update("humanBoardMapper.updateReply",r);
+	}
 
 
 }

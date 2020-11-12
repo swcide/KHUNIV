@@ -15,8 +15,9 @@
 		<typeAlias type="com.kh.univ.helpDesk.model.vo.Reply" alias="Reply"/>
 		<typeAlias type="com.kh.univ.notice.model.vo.Notice" alias="Notice"/>
 		<typeAlias type="com.kh.univ.notice.model.vo.nReply" alias="nReply"/>
-		<!-- <typeAlias type="com.kh.univ.univlife.model.baord.human.vo.hReply" alias="hReply"/> -->
+		
 		<typeAlias type="com.kh.univ.univlife.board.human.model.vo.HumanBoard" alias="HumanBoard"/>
+		<typeAlias type="com.kh.univ.univlife.board.human.model.vo.hReply" alias="hReply"/>
 	</typeAliases>
 	 <!--  environments 엘리먼트로 dataSource 등의 DB정보를 작성했었다.
 	 		=> 스프링에서는 그 정보를 여기서는 안쓴다.
