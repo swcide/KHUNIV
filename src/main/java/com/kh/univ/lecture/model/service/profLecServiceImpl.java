@@ -44,6 +44,15 @@ public class profLecServiceImpl implements profLecService {
 			return plDao.lectureVideoInsert(lpw);
 		}
 
+	/**
+	 *강의 삭제
+	 */
+	@Override
+	public int lectureVideoDelete(LecturePlanWeek lpw)
+		{
+			return plDao.lectureVideoDelete(lpw);
+		}
+
 
 	
 }

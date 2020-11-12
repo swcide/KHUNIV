@@ -29,6 +29,13 @@ public interface profLecService {
 	 * @return
 	 */
 	int lectureVideoInsert(LecturePlanWeek lpw);
+
+	/**
+	 * 강의 삭제
+	 * @param lpw
+	 * @return
+	 */
+	int lectureVideoDelete(LecturePlanWeek lpw);
 	
 
 

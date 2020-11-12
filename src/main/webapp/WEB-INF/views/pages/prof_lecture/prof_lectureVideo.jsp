@@ -16,8 +16,8 @@
 	text-decoration: underline;
 }
 
-.far{
-color: #008995;
+.far {
+	color: #008995;
 }
 </style>
 <div class="body">
@@ -42,14 +42,8 @@ color: #008995;
 								<form id="fm" class="col" action="prof_lectureVideoInsert.do" method="post" enctype="multipart/form-data">
 									<div class="row">
 										<div class="col-md-6">
-											<span class="thumb-info thumb-info-side-image thumb-info-no-zoom">
-												<span class="thumb-info-side-image-wrapper">
-													<video poster="" style="height: 200px; background-color: lightgrey;" width="350px">
-														<source src="resources/video/비비쓰담기.mp4" type="video/mp4">
+														<img alt="Porto" width="350px" height="200px" style="    border: 1px solid rgb(118, 118, 118); border-radius: 3px;" data-sticky-width="150" data-sticky-height="40" src="resources/img/playButton.png">
 														<!-- 경로수정 -->
-													</video>
-												</span>
-											</span>
 										</div>
 										<div class="col-md-6">
 											<div class="col-md-12">
@@ -82,6 +76,7 @@ color: #008995;
 									</button>
 								</form>
 							</div>
+							<p>강의 등록 후 동영상이 나오지 않으면 <a href="https://convert-video-online.com/ko/">해당 사이트</a>에서 변환하여 등록 바랍니다. <strong style="color:#008995">(Video Codec - H.264 | Audio Codec - AAC)</strong></p>
 							<!-- **********************************************  등록한 강의내역 확인하는 곳 ***************************************** -->
 							<hr>
 							<h4 class="text-uppercase mt-4">등록한 강의</h4>
@@ -106,15 +101,25 @@ color: #008995;
 														<span>
 															<i class="far fa-folder"></i>
 															<c:if test="${empty aLpw.lecReference }">
-																<label> 참고자료없음 </label>
+																<label> 자료없음 </label>
 															</c:if>
 															<c:if test="${!empty aLpw.lecReference }">
 																<a href="resources/lectureUploadFile/${aLpw.lecReference}" download="${aLpw.lecReference}"> ${aLpw.lecReference } </a>
 															</c:if>
-															<!-- 수업자료경로넣어야됨 ~ -->
 														</span>
 														<br>
-														<span>업로드 일자 : ${aLpw.lecVideoCreateDate }</span>
+														<input name="lecNo" value="${aLpw.lecNo }" type="hidden">
+														<div class="post-meta">
+															<span>등록일자 : ${aLpw.lecVideoCreateDate } |</span>
+															<span>
+																<i class="far fa-trash-alt"></i>
+																<c:url var="lecDelete" value="prof_lectureVideoDelete.do">
+																	<c:param name="lecNo" value="${aLpw.lecNo }" />
+																	<c:param name="classNo" value="${classNo }" />
+																</c:url>
+																<a href="${lecDelete}">삭제하기</a>
+															</span>
+														</div>
 													</div>
 												</span>
 											</span>

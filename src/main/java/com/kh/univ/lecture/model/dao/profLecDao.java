@@ -32,5 +32,10 @@ public class profLecDao {
 			return sqlSession.insert("lectureMapper.lectureVideoInsert",lpw);
 		}
 
+	public int lectureVideoDelete(LecturePlanWeek lpw)
+		{
+			return sqlSession.delete("lectureMapper.lectureVideoDelete",lpw);
+		}
+
 
 }

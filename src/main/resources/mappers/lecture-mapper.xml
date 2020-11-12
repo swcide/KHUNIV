@@ -76,5 +76,11 @@
 		WHERE CLASS_PROF=#{classProf}
 		AND CLASS_NO=#{classNo}
  	</select>
+ 	
+ 	<delete id="lectureVideoDelete" parameterType="LecturePlanWeek">
+ 		DELETE 
+ 		   FROM TB_CLASS_DETAIL 
+ 		WHERE LECTURE_NO = #{lecNo}
+ 	</delete>
  	 
 </mapper>
