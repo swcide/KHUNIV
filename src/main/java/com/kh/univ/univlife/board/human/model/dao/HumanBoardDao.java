@@ -56,7 +56,7 @@ public class HumanBoardDao {
 	}
 
 	public ArrayList<hReply> selectReplyList(int hId) {
-		return (ArrayList)sqlSession.selectList("humanBoardMapper.selectDeptReplyList",hId);
+		return (ArrayList)sqlSession.selectList("humanBoardMapper.selectHumanReplyList",hId);
 	}
 
 	public int insertReply(hReply r) {

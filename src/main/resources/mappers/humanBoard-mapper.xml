@@ -72,26 +72,26 @@
  	 </update>
  	 <select id="selectHumanReplyList" parameterType="_int" resultMap="replyResultSet">
  	 	SELECT *
- 	 	FROM TB_HUMAN_REPLY
- 	 	WHERE H_REF_HID=#{nId}
+ 	 	FROM TB_HUMANBOARD_REPLY
+ 	 	WHERE H_REF_HID=#{hId}
  	 	AND H_R_STATUS='Y'
  	 	AND HTYPE=1
  	 	ORDER BY H_RID DESC
  	 </select>
  	 
  	  <insert id="insertReply" parameterType="Reply">
- 	 	INSERT INTO TB_HUMAN_REPLY
- 	 	VALUES(SEQ_H_RID.NEXTVAL,#{rContent},#{refNid},SYSDATE,SYSDATE,#{rWriter},DEFAULT,#{rName},#{refRid})
+ 	 	INSERT INTO TB_HUMANBOARD_REPLY
+ 	 	VALUES(SEQ_HUMAN_RID.NEXTVAL,#{rContent},#{refHid},SYSDATE,SYSDATE,#{rWriter},DEFAULT,#{rName},#{refRid},#{hType})
  	 </insert>
  	 <insert id="deleteReply" parameterType="Reply">
- 	 	UPDATE TB_NOTICE_REPLY
- 	 	SET  N_R_STATUS='N'
- 		WHERE N_RID= #{rId}
- 		OR N_REF_RID =#{rId}
+ 	 	UPDATE TB_HUMANBOARD_REPLY
+ 	 	SET  H_R_STATUS='N'
+ 		WHERE H_RID= #{rId}
+ 		OR H_REF_RID =#{rId}
  	 </insert>
  	 <insert id="updateReply" parameterType="Reply">
- 	 	UPDATE TB_NOTICE_REPLY
- 	 	SET  N_RCONTENT=#{rContent}
- 		WHERE N_RID= #{rId}
+ 	 	UPDATE TB_HUMANBOARD_REPLY
+ 	 	SET  H_RCONTENT=#{rContent}
+ 		WHERE H_RID= #{rId}
  	 </insert>
 </mapper>

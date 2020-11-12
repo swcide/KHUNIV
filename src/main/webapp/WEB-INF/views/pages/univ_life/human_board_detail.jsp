@@ -269,8 +269,8 @@ ul.comments li {
 			
 			
 			 var rContent = $("#rContent").val();
-			 var refNid = ${h.hId};
-			 var hType =${h.hType};
+			 var refHid = ${h.hId};
+			 
 			 var rWriter;
 			 var rName;
 			 var type= "<%=type%>";
@@ -278,14 +278,15 @@ ul.comments li {
 				
 				 if(type !=null){
 					if (type==1){
-					rName = "<%=sName%>";
-					rWriter = "<%=sNo%>";
-				 	}
+						rName = "<%=sName%>";
+						rWriter = "<%=sNo%>";
+						
+					}
 					 else if(type==2){
 						rName = "<%=pName%>";
 						rWriter = "<%=pNo%>";
 			    	}else if(type==3){
-						rName = "<%=aName%>";
+			    		rName = "<%=aName%>";
 						rWriter = "<%=aId%>";
 				 	}
 			
@@ -302,7 +303,7 @@ ul.comments li {
 					refHid:refHid,
 					rWriter:rWriter,
 					rName:rName,
-					hType:hType
+					
 
 					},
 				type:"post",
