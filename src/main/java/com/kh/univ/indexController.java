@@ -77,4 +77,10 @@ public class indexController {
 	public String emp(Model model) {
 		return "univ_life/emp_center";
 	}
+
+	@RequestMapping(value = "ad_main.do", method = RequestMethod.GET)
+	public String ad_main() {
+		
+		return "administration_main";
+	}
 }
