@@ -78,11 +78,12 @@
 							<div class="header-column justify-content-start">
 								<div class="header-row">
 									<div class="header-logo mt-0 mb-0">
-										<a href="ad_main.do"> <img alt="Porto" width="180px" height="50px" data-sticky-width="150" data-sticky-height="40" src="resources/img/white-kr-logo.png">
+										<a href="prof_main.do"> <img alt="Porto" width="180px" height="50px" data-sticky-width="150" data-sticky-height="40" src="resources/img/white-kr-logo.png">
 										</a>
 									</div>
 								</div>
 							</div>
+
 							<div class="header-column justify-content-end d-none d-lg-inline-flex">
 								<div class="header-row">
 									<ul class="header-extra-info d-flex align-items-center pt-3 pb-3">
@@ -91,13 +92,22 @@
 												<i class="icon-user icons text-color-primary"></i>
 											</div>
 											<div class="header-extra-info-text">
-												<a href="prof_mypage.do"><label>${loginProf.pName }</label></a> <strong class="text-uppercase text-2"> <label><strong>교수용 학사행정사이트 방문을 환영합니다.</strong></label>
+												<div class="row">
+													<div class="col-md-6 float-left">
+														<label><strong><a href="prof_mypage.do" style="color: #008995">${loginProf.pName }</a> </strong></label>
+													</div>
+													<div class="col-md-6 float-right">
+														<label align="right"><strong><a href="ad_logout.do" style="color: #008995">로그아웃</a></strong></label>
+													</div>
+												</div>
+												<strong class="text-uppercase text-2"> <label><strong>교수용 학사행정사이트 방문을 환영합니다.</strong></label>
 												</strong>
 											</div>
 										</li>
 									</ul>
 								</div>
 							</div>
+
 						</div>
 					</div>
 				</div>
@@ -113,25 +123,20 @@
 													<li><a class="dropdown-item" href="prof_lecturelist.do"> 내 동영상 강의 목록 </a></li>
 													<li class="dropdown-submenu"><a class="dropdown-item" href="#">수업 관리</a>
 														<ul class="dropdown-menu">
-															
+
 															<li><a class="dropdown-item" href="prof_lectureList2.do">내 강의 목록</a></li>
 															<li><a class="dropdown-item" href="prof_lecturePlanList.do">강의 개설 정보</a></li>
-														</ul>
-													</li>
-												</ul>
-											</li>
+														</ul></li>
+												</ul></li>
 											<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"> 시험및 과제 </a>
 												<ul class="dropdown-menu">
-													<li><a class="dropdown-item" href="TestInsert.do">시험</a>
-													</li>
+													<li><a class="dropdown-item" href="TestInsert.do">시험</a></li>
 													<li class="dropdown-submenu"><a class="dropdown-item" href="#">과제 및 퀴즈</a>
 														<ul class="dropdown-menu">
 															<li><a class="dropdown-item" href="TestInsert.do">퀴즈</a></li>
 															<li><a class="dropdown-item" href="prof_homeworklist.do">과제</a></li>
-														</ul>
-													</li>
-												</ul>
-											</li>
+														</ul></li>
+												</ul></li>
 										</ul>
 									</nav>
 								</div>
