@@ -45,9 +45,12 @@ public interface NoticeService {
 
 	Notice selectUpdateNotice(Notice n);
 	int updateNotice(Notice n);
+	
 
 
 	int deleteNotice(Notice n);
+	
+	
 
 
 	ArrayList<nReply> selectReplyList(int nId);
@@ -60,6 +63,8 @@ public interface NoticeService {
 
 
 	int updateReply(nReply r);
+
+	Notice updateAfterNotice(Notice n);
 
 
 

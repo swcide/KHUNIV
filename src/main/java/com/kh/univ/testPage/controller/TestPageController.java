@@ -4,12 +4,20 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.kh.univ.member.model.vo.Student;
+import com.kh.univ.testPage.model.service.TestPageService;
 
 /**
  * Handles requests for the application home page.
@@ -17,13 +25,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class TestPageController {
 	
+	@Autowired
+	private TestPageService tService;
 
 	
-	@RequestMapping(value = "tMain.do", method = RequestMethod.GET)
-	public String testMain(Model model) {
-
+	@RequestMapping("tMain.do")
+		public ModelAndView testMain (ModelAndView mv,HttpSession session,@RequestParam(value="currentPage",
+				   required = false,defaultValue = "1") int currentPage) {
 		
-		return "Test_Std/exam_Lecture_List";
+		Student s = (Student) session.getAttribute("loginUser");
+		
+		System.out.println(s);
+		
+		
+		
+		mv.addObject("s",s);
+		mv.setViewName( "Test_Std/exam_Lecture_List");
+		
+		return mv;
 	}
 	
 	@RequestMapping(value = "tList.do", method = RequestMethod.GET)
@@ -73,6 +92,41 @@ public class TestPageController {
 	public String TestObjection(Model model) {
 		
 		return "Test_Std/exam_Objection";
+		
+		
+	}
+	@RequestMapping(value = "TestInsert.do", method = RequestMethod.GET)
+	public String TestInsert(Model model) {
+		
+		return "prof_lecture/prof_testList";
+		
+		
+	}
+	@RequestMapping(value = "prof_testInsert.do", method = RequestMethod.GET)
+	public String TestInsert2(Model model) {
+		
+		return "prof_lecture/prof_test_insert";
+		
+		
+	}
+	@RequestMapping(value = "prof_homeworklist.do", method = RequestMethod.GET)
+	public String homeworklist(Model model) {
+		
+		return "prof_lecture/prof_homework_list";
+		
+		
+	}
+	@RequestMapping(value = "prof_homeworkInsert.do", method = RequestMethod.GET)
+	public String homework(Model model) {
+		
+		return "prof_lecture/prof_homework_insert";
+		
+		
+	}
+	@RequestMapping(value = "prof_studentEvaluation.do", method = RequestMethod.GET)
+	public String homeworkEvaludation(Model model) {
+		
+		return "prof_lecture/prof_homework_Evaluation";
 		
 		
 	}

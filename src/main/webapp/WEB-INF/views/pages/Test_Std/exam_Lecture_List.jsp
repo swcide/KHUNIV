@@ -44,7 +44,7 @@
                     
                     
                     <div class="title-block">
-						<h4>김진태 님의 강의 목록 입니다.</h4>
+						<h4>${s.sName } 님의 강의 목록 입니다.</h4>
                     
                         
                     </div>

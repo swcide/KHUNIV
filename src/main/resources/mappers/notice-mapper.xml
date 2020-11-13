@@ -67,8 +67,7 @@
   		AND NTYPE=#{nType}
   
 	</select>
-
-
+	
  	 
  	 
  	 <update id="updateCount" parameterType="_int">
@@ -78,17 +77,23 @@
  	 	AND NTYPE= #{nType}
  	 </update>
  	 
+ 	 <select id="updateAfterNotice" resultMap="noticeResultSet">
+ 		SELECT *
+ 	 	FROM TB_NOTICE_BOARD
+ 	 	WHERE NTITLE=#{nTitle}
+ 	 	AND NWRITER =#{nWriter}
+ 	 	And NCONTENT =#{nContent}
+ 	 	AND N_STATUS='Y'
+ 	 </select>
  	  <select id="selectNotice" resultMap="noticeResultSet">
  	 	SELECT *
  	 	FROM TB_NOTICE_BOARD
  	 	WHERE NID=#{nId}
  	 	AND NTYPE =#{nType}
  	 	AND N_STATUS='Y'
- 	
- 	 
- 	 	
- 	 	
  	 </select>
+ 	 
+ 	 
  	  <insert id="insertNotice" parameterType="Notice">
  	 	INSERT INTO TB_NOTICE_BOARD
  	 	<if test="nType==1">
@@ -102,11 +107,21 @@
  	 <update id="updateNotice"  parameterType="Notice">
  	 	UPDATE TB_NOTICE_BOARD
  	 	<if test ="nType==1">
- 	 	SET NID=SEQ_DEPT_NID.NEXTVAL,NTITLE=#{nTitle},NTYPE=1,NCONTENT=#{nContent},ORIGINAL_FILENAME=#{originalFileName},RENAME_FILENAME=#{renameFileName},N_MODIFY_DATE=SYSDATE,N_SECRET=#{nSecret}
+ 	 	SET NTITLE=#{nTitle},NCONTENT=#{nContent},ORIGINAL_FILENAME=#{originalFileName},RENAME_FILENAME=#{renameFileName},N_MODIFY_DATE=SYSDATE,N_SECRET=#{nSecret}
+ 	 	WHERE NID=#{nId} 
+ 	 	AND NTYPE=1
+ 	 	</if>
+ 	 	<if test ="nType==2">
+ 	 	SET NTITLE=#{nTitle},NCONTENT=#{nContent},ORIGINAL_FILENAME=#{originalFileName},RENAME_FILENAME=#{renameFileName},N_MODIFY_DATE=SYSDATE,N_SECRET=#{nSecret}
  	 	WHERE NID=#{nId} 
  	 	AND NTYPE=2
  	 	</if>
- 	 	<if test ="nType==2">
+ 	 	<if test ="nType==3">
+		SET NID=SEQ_DEPT_NID.NEXTVAL,NTITLE=#{nTitle},NTYPE=1,NCONTENT=#{nContent},ORIGINAL_FILENAME=#{originalFileName},RENAME_FILENAME=#{renameFileName},N_MODIFY_DATE=SYSDATE,N_SECRET=#{nSecret}
+ 	 	WHERE NID=#{nId} 
+ 	 	AND NTYPE=2
+ 	 	</if>
+ 	 	<if test ="nType==4">
 		SET NID=SEQ_GENER_NID.NEXTVAL,NTITLE=#{nTitle},NTYPE=2,NCONTENT=#{nContent},ORIGINAL_FILENAME=#{originalFileName},RENAME_FILENAME=#{renameFileName},N_MODIFY_DATE=SYSDATE,N_SECRET=#{nSecret}
  	 	WHERE NID=#{nId} 
  	 	AND NTYPE=1

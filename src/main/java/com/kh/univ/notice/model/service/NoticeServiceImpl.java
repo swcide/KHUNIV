@@ -96,6 +96,12 @@ public class NoticeServiceImpl implements NoticeService {
    }
 
 
+@Override
+public Notice updateAfterNotice(Notice n) {
+	return nDao.updateAfterNotice(n);
+}
+
+
 
 
 

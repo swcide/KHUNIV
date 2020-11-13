@@ -18,34 +18,42 @@
 		<div class="container py-4">
 			<div class="row py-4 mb-4">
 				<div class="col">
-					<div class="image-hotspots">
-						<div class="row">
+					<div class="custom-box-details bg-color-light col-lg-12 ml-5 mb-5 mb-lg-4 float-right clearfix">
+							<h4>내 강의 목록</h4>
 
-							<c:forEach var="lc" items="${ aLc}">
-								<div class="col-md-4 col-lg-3">
-									<article class="post post-medium border-0 pb-0 mb-5">
-										<div class="post-image">
-											<a href="blog-post.html"> <img src="resources/img/컴퓨터네트워킹.jpg" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="강의이미지" />
-											</a>
-										</div>
-										<div class="post-content">
-
-											<h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2">
-												<a href="prof_lectureVideo.do">${lc.className }</a>
-											</h2>
-
-											<p>${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }</p>
-
-
-											<div class="post-meta">
-												<span><i class="far fa-user"></i> 교수: ${lc.profName } </span> <span><i class="far fa-folder"></i> 수강대상: ${lc.deptName } </span> <span><i class="far fa-comments"></i> <a href="#">${lc.profEmail }</a></span> <span class="d-block mt-2"><a href="#" class="btn btn-xs btn-light text-1 text-uppercase">강의 계획서</a></span>
-											</div>
-										</div>
-									</article>
-								</div>
-							</c:forEach>
-						</div>
-					</div>
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>주차<th>
+										<th>제목</th>
+										<th>진행</th>
+										<th>배점</th>
+										<th>제출</th>
+										<th>평가</th>
+										<th>응시 기간</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>c12314123<td>
+										<td>2</td>
+										<th><a href="prof_lectureStudentList.do">컴퓨터네트워킹</a></th>
+										<td>20</td>
+										<td>78.34점</td>
+										<td>100%</td>
+										<td>12%</td>
+									</tr>
+									<tr>
+										<td>c12364123<td>
+										<td>2</td>
+										<th><a href="prof_lectureStudentList.do">디자인 커뮤니케이션</a></th>
+										<td>18</td>
+										<td>56.34점</td>
+										<td>80%</td>
+										<td>24%</td>
+									</tr>
+								</tbody>
+							</table>
 				</div>
 			</div>
 		</div>

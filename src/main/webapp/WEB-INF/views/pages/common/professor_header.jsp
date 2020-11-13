@@ -45,6 +45,8 @@
 
 <!-- Demo CSS -->
 <link rel="stylesheet" href="resources/css/demos/demo-it-services.css">
+<!-- SummerNote -->
+<link rel="stylesheet" href="resources/plugins/summernote/summernote-bs4.css">
 
 <!-- Skin CSS -->
 <link rel="stylesheet" href="resources/css/skins/ad_default.css">
@@ -115,17 +117,14 @@
 															<li><a class="dropdown-item" href="prof_lecturePlanList.do">강의 개설 정보</a></li>
 														</ul></li>
 												</ul></li>
-											<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="$|#"> 시험 </a>
+											<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="$|#"> 시험및 과제 </a>
 												<ul class="dropdown-menu">
-													<li class="dropdown-submenu"><a class="dropdown-item" href="#">정기 시험</a>
-														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="testPage.do">중간 고사</a></li>
-															<li><a class="dropdown-item" href="#">기말 고사</a></li>
-														</ul></li>
-													<li class="dropdown-submenu"><a class="dropdown-item" href="#">수시 시험</a>
+													<li><a class="dropdown-item" href="TestInsert.do">시험</a>
+													</li>
+													<li class="dropdown-submenu"><a class="dropdown-item" href="#">과제 및 퀴즈</a>
 														<ul class="dropdown-menu">
 															<li><a class="dropdown-item" href="#">퀴즈</a></li>
-															<li><a class="dropdown-item" href="#">과제</a></li>
+															<li><a class="dropdown-item" href="prof_homeworklist.do">과제</a></li>
 														</ul></li>
 												</ul>
 											</li>

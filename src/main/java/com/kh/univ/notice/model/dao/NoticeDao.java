@@ -78,6 +78,10 @@ public class NoticeDao {
 		return sqlSession.update("noticeMapper.updateReply",r);
 	}
 
+	public Notice updateAfterNotice(Notice n) {
+		return sqlSession.selectOne("noticeMapper.updateAfterNotice",n);
+	}
+
 	
 
 
