@@ -29,7 +29,6 @@
 										<th>학기</th>
 										<th>과목명</th>
 										<th>수강인원</th>
-										<th>평균 시험 점수</th>
 										<th>과제제출률</th>
 										<th>수업진행률</th>
 									</tr>
@@ -40,7 +39,6 @@
 										<td>2</td>
 										<th><a href="prof_lectureStudentList.do">컴퓨터네트워킹</a></th>
 										<td>20</td>
-										<td>78.34점</td>
 										<td>100%</td>
 										<td>12%</td>
 									</tr>
@@ -49,7 +47,6 @@
 										<td>2</td>
 										<th><a href="prof_lectureStudentList.do">디자인 커뮤니케이션</a></th>
 										<td>18</td>
-										<td>56.34점</td>
 										<td>80%</td>
 										<td>24%</td>
 									</tr>
