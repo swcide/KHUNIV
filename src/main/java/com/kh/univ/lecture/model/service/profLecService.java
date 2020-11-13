@@ -8,7 +8,16 @@ import com.kh.univ.lecture.model.vo.LectureClass;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
+import com.kh.univ.notice.model.vo.Notice;
 
+/**
+ * @author admin
+ *
+ */
+/**
+ * @author admin
+ *
+ */
 public interface profLecService {
 
 	/**
@@ -47,9 +56,24 @@ public interface profLecService {
 	int lectureVideoDelete(LecturePlanWeek lpw);
 	
 
+	/**
+	 * 강의 수정
+	 * @param lpw
+	 * @return
+	 */
+	int lectureVideoUpdate(LecturePlanWeek lpw);
+	
+	/**
+	 * ㅅㅂ
+	 * @param lpw
+	 * @return
+	 */
+	LecturePlanWeek updateAfter(LecturePlanWeek lpw);
 	ArrayList<LecturePlanWeek> selectSyllaOne2(String classNo);
 
 	LecturePlan selectSyllaOne1(String classNo);
+
+
 
 	
 

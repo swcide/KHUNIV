@@ -12,6 +12,7 @@ import com.kh.univ.lecture.model.vo.LectureClass;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
+import com.kh.univ.notice.model.vo.Notice;
 
 @Repository("plDao")
 public class profLecDao {
@@ -39,6 +40,11 @@ public class profLecDao {
 		return sqlSession.delete("lectureMapper.lectureVideoDelete",lpw);
 	}
 
+	public int lectureVideoUpdate(LecturePlanWeek lpw)
+		{
+			return sqlSession.update("lectureMapper.lectureVideoUpdate",lpw);
+		}
+	
 	public ArrayList<LectureList> selectList(HttpSession session) {
 
 		return (ArrayList)sqlSession.selectList("lectureMapper.lecList", session);
@@ -51,6 +57,13 @@ public class profLecDao {
 	public LecturePlan selectSyllaOne1(String classNo) {
 		return sqlSession.selectOne("lectureMapper.sylla1", classNo);
 	}
+
+	public LecturePlanWeek updateAfter(LecturePlanWeek lpw)
+		{
+			return sqlSession.selectOne("lectureMapper.updateAfter",lpw);
+		}
+
+	
 
 
 

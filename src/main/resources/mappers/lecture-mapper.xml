@@ -187,4 +187,23 @@
 		FROM TB_CLASS_DETAIL
 		WHERE LECTURE_NO = #{lecNo}
 	</delete>
+	
+	<update id="lectureVideoUpdate" parameterType="LecturePlanWeek">
+	UPDATE TB_CLASS_DETAIL
+		       SET
+		       CLASS_NO = #{classNo},
+               LECTURE_NO = #{lecNo},
+               LECTURE_NAME = #{lecName},
+               LECTURE_REFERENCE = #{lecReference},
+               LECTURE_VIDEO = #{lecVideo},
+               LECTURE_EXPLANATION =#{lecExplanation},
+               LECTURE_ATTENDANCE = DEFAULT,LECTURE_LEARNINGRATE = DEFAULT,CLASS_ATTENDEES = DEFAULT,LECTURE_VIDEO_CREATE_DATE = SYSDATE
+		  WHERE LECTURE_NO = #{lecNo}
+	</update>
+	
+	<select id="updateAfter" resultMap="lecturePlanWeekResultSet">
+		SELECT *
+		FROM TB_CLASS_DETAIL
+		WHERE LECTURE_NO = #{lecNo}
+	</select>
 </mapper>
