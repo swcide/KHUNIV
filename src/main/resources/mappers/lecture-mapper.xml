@@ -57,16 +57,6 @@
  	 </resultMap>
  	 
  	 
- 	 <resultMap type="LecturePlanWeek" id="lecturePlanWeekResultSet">
- 	 <id property="classNo" column="CLASS_NO"/>
- 	 <id property="lecNo" column="LECTURE_NO"/>
- 	 <id property="lecName" column="LECTURE_NAME"/>
- 	 <id property="lecReference" column="LECTURE_REFERENCE"/>
- 	 <id property="lecVideo" column="LECTURE_VIDEO"/>
- 	 <id property="lecExplanation" column="LECTURE_EXPLANATION"/>
- 	 <id property="lecVideoCreateDate" column="LECTURE_VIDEO_CREATE_DATE"/>
- 	 </resultMap>
- 	 
  	  <resultMap type="LecturePlan" id="Sylla1ResultSet">
  	 <id property="classNo" column="CLASS_NO"/>
  	 <result property="className" column="CLASS_NAME"/>
