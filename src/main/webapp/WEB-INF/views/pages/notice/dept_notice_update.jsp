@@ -49,8 +49,8 @@
 										<div>
 										<select class ="form-control populate float-left mb-2" name="nType" style="width:200px;">
 												<option value="${n.nType }">게시글 이동</option>
-												<option value="1">학사공지게시판</option>
-												<option value="2">일반공지게시판</option>
+												<option value="3">학사공지게시판</option>
+												<option value="4">일반공지게시판</option>
 										</select>
 										</div>
 										<div>

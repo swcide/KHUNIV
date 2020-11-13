@@ -146,7 +146,7 @@
 											<div class="row">
 												<div class="col">
 												<div ></div>
-												<a class="btn btn-dark font-weight-bold text-3 rounded-0 px-5 btn-py-3 align-items-center d-inline-flex"href="tMain.do" >시험페이지 가기</a>
+											
 													<h1
 														class="font-weight-extra-bold text-color-light text-md-10 text-lg-12 line-height-2 mb-4 pb-2 appear-animation"
 														data-appear-animation="fadeInRightShorter"

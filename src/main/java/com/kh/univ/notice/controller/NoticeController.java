@@ -254,7 +254,7 @@ public class NoticeController {
 
 		}else if(nType==2){
 			mv.addObject("n",nService.selectUpdateNotice(n)).setViewName("notice/gener_notice_update");
-
+			
 		}
 		return mv;
 		
@@ -287,13 +287,14 @@ public class NoticeController {
 		}
 		System.out.println(n);
 		
+		
 		int result = nService.updateNotice(n);
-		ArrayList<Notice> list = nService.selectTopList();
-		
-		int lastIndex = list.size();
-		
-		int nId= list.get(lastIndex-1).getnId();
-		
+	
+		System.out.println("result="+result);
+		Notice upN = nService.updateAfterNotice(n);
+		System.out.println(upN);
+		int nId= upN.getnId();
+		System.out.println(nId);
 		
 		
 		
@@ -304,7 +305,16 @@ public class NoticeController {
 			}else if (n.getnType()==2) {
 			mv.addObject("nId",nId).setViewName("redirect:nDetail.do?nType=2");
 			System.out.println("nId tpye=2::::" +n.getnId());
+			}else if (n.getnType()==3) {
+				mv.addObject("nId",nId).setViewName("redirect:nDetail.do?nType=1");
+				System.out.println("nId tpye=3::::" +n.getnId());
 			}
+			else if (n.getnType()==4) {
+				mv.addObject("nId",nId).setViewName("redirect:nDetail.do?nType=2");
+				System.out.println("nId tpye=4::::" +n.getnId());
+			}
+			
+			
 		}else {
 			mv.addObject("msg","수정실패").setViewName("common/errorPage");
 		}

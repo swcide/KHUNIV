@@ -86,6 +86,7 @@
 						<div class="header-column">
 							<div class="header-row">
 								<div class="header-logo">
+									<a class="btn btn-dark font-weight-bold text-3 rounded-0 px-5 btn-py-3 align-items-center d-inline-flex"href="tMain.do" >시험페이지 가기</a>
 									<a href="main.do"> <img alt="Porto" width="140" height="40" data-sticky-width="140" data-sticky-height="40" src="resources/img/white-kr-logo.png">
 									</a>
 								</div>
