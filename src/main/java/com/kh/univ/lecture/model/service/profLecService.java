@@ -8,6 +8,7 @@ import com.kh.univ.lecture.model.vo.LectureClass;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
+import com.kh.univ.member.model.vo.Professor;
 
 public interface profLecService {
 
@@ -50,6 +51,10 @@ public interface profLecService {
 	ArrayList<LecturePlanWeek> selectSyllaOne2(String classNo);
 
 	LecturePlan selectSyllaOne1(String classNo);
+
+	LecturePlan selectSyllainsertform(String pNo);
+
+	ArrayList<LectureList> SyllaPlanList(Professor pNo);
 
 	
 

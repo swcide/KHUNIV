@@ -12,6 +12,7 @@ import com.kh.univ.lecture.model.vo.LectureClass;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
+import com.kh.univ.member.model.vo.Professor;
 
 @Repository("plDao")
 public class profLecDao {
@@ -51,6 +52,16 @@ public class profLecDao {
 	public LecturePlan selectSyllaOne1(String classNo) {
 		return sqlSession.selectOne("lectureMapper.sylla1", classNo);
 	}
+
+	public LecturePlan selectSyllainsertform(String pNo) {
+		return sqlSession.selectOne("lectureMapper.syllainsertform", pNo);
+	}
+
+	public ArrayList<LectureList> SyllaPlanList(Professor pNo) {
+		return (ArrayList)sqlSession.selectList("lectureMapper.SyllaPlanList", pNo);
+	}
+
+
 
 
 

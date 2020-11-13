@@ -17,8 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.lecture.model.service.profLecService;
 import com.kh.univ.lecture.model.vo.LectureClass;
+import com.kh.univ.lecture.model.vo.LectureList;
+import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.member.model.vo.Professor;
+import com.kh.univ.member.model.vo.Student;
 
 @SessionAttributes({ "loginProf" })
 @Controller
@@ -190,10 +193,19 @@ public class prof_LectureController {
 		}
 
 	@RequestMapping(value = "prof_Syllabus_LectureWrite.do")
-	public String prof_Syllabus_LectureWrite(Model model)
-		{
-			return "prof_lecture/prof_Syllabus_LectureWrite";
+	public ModelAndView prof_Syllabus_LectureWrite(ModelAndView mv, @RequestParam(value="pNo")String pNo) {
+//		ArrayList <LecturePlanWeek> lpw = plService.selectSyllaOne2(profNo);
+		LecturePlan lp = plService.selectSyllainsertform(pNo);
+		if(lp !=null) {
+		mv.addObject("lp",lp);
+//		mv.addObject("lpw",lpw);
+		mv.setViewName("prof_lecture/prof_Syllabus_LectureWrite");
+		}else {
+			mv.addObject("msg","로그인 실패");
+			mv.setViewName("common/errorPage");
 		}
+		return mv;
+	}
 
 	@RequestMapping(value = "prof_learningprogress.do")
 	public String prof_learningprogress(Model model)
@@ -202,9 +214,20 @@ public class prof_LectureController {
 		}
 
 	@RequestMapping(value = "prof_lecturePlanList.do")
-	public String prof_lecturePlanList(Model model)
-		{
-			return "prof_lecture/prof_lecturePlanList";
+	public ModelAndView prof_lecturePlanList(ModelAndView mv, HttpSession session) {
+		Professor pNo = (Professor) session.getAttribute("loginProf");
+		System.out.println(pNo);
+		ArrayList <LectureList> plpl = plService.SyllaPlanList(pNo);
+		if(plpl !=null) {
+		mv.addObject("plpl",plpl);
+		mv.setViewName("prof_lecture/prof_lecturePlanList");
+		}else {
+			mv.addObject("msg","로그인 실패");
+			mv.setViewName("common/errorPage");
 		}
-
+		return mv;
+	}
+	
+	
 }
+

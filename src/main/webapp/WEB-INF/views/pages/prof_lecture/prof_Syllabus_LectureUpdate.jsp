@@ -112,6 +112,14 @@
 								</tbody>
 							</table>
 							
+							<c:forEach var="l" items="${lpw}">
+								<tr>
+									<th>제 ${l.lecNo }주</th>
+									<td style="text-align: center;">${l.lecName }</td>
+									<td style="text-align: center;">${l.lecExplanation}</td>
+									<td style="text-align: center;">${l.lecReference }</td>
+								</tr>
+							</c:forEach>
 							
 							<table class="table table-hover">
 								<thead>
@@ -206,7 +214,7 @@
 								<tbody>
 									<tr>
 										<td>
-											<input class="form-control" width="600px">
+											<input class="form-control" width="600px">${lp.lecTextbook}
 										</td>
 									</tr>
 								</tbody>

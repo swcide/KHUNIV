@@ -12,6 +12,7 @@ import com.kh.univ.lecture.model.vo.LectureClass;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
+import com.kh.univ.member.model.vo.Professor;
 
 @Service("plService")
 public class profLecServiceImpl implements profLecService {
@@ -70,6 +71,18 @@ public class profLecServiceImpl implements profLecService {
 	public LecturePlan selectSyllaOne1(String classNo) {
 		return plDao.selectSyllaOne1(classNo);
 	}
+
+	@Override
+	public LecturePlan selectSyllainsertform(String pNo) {
+		return plDao.selectSyllainsertform(pNo);
+	}
+
+	@Override
+	public ArrayList<LectureList> SyllaPlanList(Professor pNo) {
+		return plDao.SyllaPlanList(pNo);
+	}
+
+
 
 	
 	
