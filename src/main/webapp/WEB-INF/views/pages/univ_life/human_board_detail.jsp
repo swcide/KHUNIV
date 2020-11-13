@@ -269,8 +269,8 @@ ul.comments li {
 			
 			
 			 var rContent = $("#rContent").val();
-			 var refNid = ${h.hId};
-			 var hType =${h.hType};
+			 var refHid = ${h.hId};
+			 var hType =${h.hType}; 
 			 var rWriter;
 			 var rName;
 			 var type= "<%=type%>";
@@ -278,14 +278,15 @@ ul.comments li {
 				
 				 if(type !=null){
 					if (type==1){
-					rName = "<%=sName%>";
-					rWriter = "<%=sNo%>";
-				 	}
+						rName = "<%=sName%>";
+						rWriter = "<%=sNo%>";
+						
+					}
 					 else if(type==2){
 						rName = "<%=pName%>";
 						rWriter = "<%=pNo%>";
 			    	}else if(type==3){
-						rName = "<%=aName%>";
+			    		rName = "<%=aName%>";
 						rWriter = "<%=aId%>";
 				 	}
 			
@@ -615,7 +616,7 @@ ul.comments li {
 			
 			
 			$.ajax({
-				url:"noticeUpdateReply.do",
+				url:"hBoardUpdateReply.do",
 				data:{
 					rId:rId,
 					rContent:rContent},

@@ -2,6 +2,8 @@ package com.kh.univ.lecture.model.service;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,18 +21,18 @@ public class profLecServiceImpl implements profLecService {
 	 * 내동영상강의목록 클릭 시 DB 출력
 	 */
 	@Override
-	public ArrayList<LectureClass> selectValue(LectureClass lc)
+	public ArrayList<LectureClass> selectValue(String pNo)
 		{
-			return plDao.selectValue(lc);
+			return plDao.selectValue(pNo);
 		}
 
 	/**
 	 *강의 업로드 화면
 	 */
 	@Override
-	public ArrayList<LecturePlanWeek> lecVideoWrite(LecturePlanWeek lpw)
+	public ArrayList<LecturePlanWeek> lectureVideo(String classNo)
 		{
-			return plDao.lecVideoWrite(lpw);
+			return plDao.lectureVideo(classNo);
 		}
 
 	/**
@@ -40,6 +42,15 @@ public class profLecServiceImpl implements profLecService {
 	public int lectureVideoInsert(LecturePlanWeek lpw)
 		{
 			return plDao.lectureVideoInsert(lpw);
+		}
+
+	/**
+	 *강의 삭제
+	 */
+	@Override
+	public int lectureVideoDelete(LecturePlanWeek lpw)
+		{
+			return plDao.lectureVideoDelete(lpw);
 		}
 
 

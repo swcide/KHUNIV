@@ -2,6 +2,8 @@ package com.kh.univ.lecture.model.dao;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,20 +17,25 @@ public class profLecDao {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 
-	public ArrayList<LectureClass> selectValue(LectureClass lc)
+	public ArrayList<LectureClass> selectValue(String pNo)
 		{
-			return (ArrayList)sqlSession.selectList("lectureMapper.selectValue", lc);
+			return (ArrayList)sqlSession.selectList("lectureMapper.selectValue", pNo);
 		}
 
-	public ArrayList<LecturePlanWeek> lecVideoWrite(LecturePlanWeek lpw)
+	public ArrayList<LecturePlanWeek> lectureVideo(String classNo)
 		{
-			return (ArrayList)sqlSession.selectList("lectureMapper.lecVideoWrite", lpw);
+			return (ArrayList)sqlSession.selectList("lectureMapper.lecVideo", classNo);
 		}
 
 	public int lectureVideoInsert(LecturePlanWeek lpw)
 		{
 			return sqlSession.insert("lectureMapper.lectureVideoInsert",lpw);
 		}
-	
+
+	public int lectureVideoDelete(LecturePlanWeek lpw)
+		{
+			return sqlSession.delete("lectureMapper.lectureVideoDelete",lpw);
+		}
+
 
 }

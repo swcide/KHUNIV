@@ -44,18 +44,22 @@
  	 <select id="selectValue" resultMap="lectureClassResultSet">
  	 
  	     SELECT * 
- 	 	    FROM TB_CLASS C
-			JOIN TB_CLASS_DETAIL CD USING(CLASS_NO)
-			JOIN TB_CLASS_PROFESSOR CP USING(CLASS_NO)
-			JOIN TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
-			JOIN TB_DEPARTMENT D ON(D.DEPT_NO = C.DEPT_NO)
+  FROM TB_CLASS C
+  JOIN TB_DEPARTMENT D USING(DEPT_NO)
+  JOIN TB_CLASS_PROFESSOR CP USING(CLASS_NO)
+  JOIN TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
+ WHERE PROF_NO = #{pNo}
+  
  	 	
  	 </select>
  	 
- 	 <select id="lecVideoWrite" resultMap="lecturePlanWeekResultSet">
+ 	 
+ 	 <select id="lecVideo" resultMap="lecturePlanWeekResultSet">
 	 	 SELECT  *
 		    FROM TB_CLASS_DETAIL
-		    ORDER BY LECTURE_NO DESC
+            JOIN TB_CLASS USING(CLASS_NO)
+		   WHERE CLASS_NO = #{classNo }
+            ORDER BY LECTURE_NO DESC
  	 
  	 </select>
  	 
@@ -72,5 +76,11 @@
 		WHERE CLASS_PROF=#{classProf}
 		AND CLASS_NO=#{classNo}
  	</select>
+ 	
+ 	<delete id="lectureVideoDelete" parameterType="LecturePlanWeek">
+ 		DELETE 
+ 		   FROM TB_CLASS_DETAIL 
+ 		WHERE LECTURE_NO = #{lecNo}
+ 	</delete>
  	 
 </mapper>

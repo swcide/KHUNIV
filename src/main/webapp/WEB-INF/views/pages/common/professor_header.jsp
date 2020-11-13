@@ -113,19 +113,23 @@
 													<li><a class="dropdown-item" href="prof_lecturelist.do"> 내 동영상 강의 목록 </a></li>
 													<li class="dropdown-submenu"><a class="dropdown-item" href="#">수업 관리</a>
 														<ul class="dropdown-menu">
+															
 															<li><a class="dropdown-item" href="prof_lectureList2.do">내 강의 목록</a></li>
 															<li><a class="dropdown-item" href="prof_lecturePlanList.do">강의 개설 정보</a></li>
-														</ul></li>
-												</ul></li>
-											<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="$|#"> 시험및 과제 </a>
+														</ul>
+													</li>
+												</ul>
+											</li>
+											<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"> 시험및 과제 </a>
 												<ul class="dropdown-menu">
 													<li><a class="dropdown-item" href="TestInsert.do">시험</a>
 													</li>
 													<li class="dropdown-submenu"><a class="dropdown-item" href="#">과제 및 퀴즈</a>
 														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="#">퀴즈</a></li>
+															<li><a class="dropdown-item" href="TestInsert.do">퀴즈</a></li>
 															<li><a class="dropdown-item" href="prof_homeworklist.do">과제</a></li>
-														</ul></li>
+														</ul>
+													</li>
 												</ul>
 											</li>
 										</ul>
