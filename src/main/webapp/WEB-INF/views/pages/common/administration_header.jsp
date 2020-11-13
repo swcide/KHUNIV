@@ -93,13 +93,20 @@
 											<div class="header-extra-info-text">
 												<div class="row">
 													<div class="col-md-6">
-														<c:if test="${!empty sessionScope.loginUser }"><a href="mypage.do"><label><strong style="color:#008995">${loginUser.sName }</strong></label></a></c:if>
-														<c:if test="${!empty sessionScope.loginProf }"><a href="mypage.do"><label><strong style="color:#008995">${loginProf.pName }</strong></label></a></c:if>
-														<c:if test="${!empty sessionScope.loginAdmin }"><a href="mypage.do"><label><strong style="color:#008995">${loginAdmin.aId }</strong></label></a></c:if>
+														<c:if test="${!empty sessionScope.loginUser }">
+															<a href="mypage.do"><label><strong style="color: #008995">${loginUser.sName }</strong></label></a>
+														</c:if>
+														<c:if test="${!empty sessionScope.loginProf }">
+															<a href="mypage.do"><label><strong style="color: #008995">${loginProf.pName }</strong></label></a>
+														</c:if>
+														<c:if test="${!empty sessionScope.loginAdmin }">
+															<a href="mypage.do"><label><strong style="color: #008995">${loginAdmin.aId }</strong></label></a>
+														</c:if>
 													</div>
 													<div class="col-md-6" style="text-align: right">
-<!-- 														<a href="mypage.do"><label><strong>내 정보</strong></label></a>
- -->														<a href="ad_logout.do"><label><strong>로그아웃</strong></label></a>
+														<!-- 														<a href="mypage.do"><label><strong>내 정보</strong></label></a>
+ -->
+														<a href="ad_logout.do"><label><strong>로그아웃</strong></label></a>
 													</div>
 												</div>
 												<strong class="text-uppercase text-2"> <label><strong>학사행정사이트 방문을 환영합니다</strong></label>
@@ -108,7 +115,7 @@
 										</li>
 									</ul>
 								</div>
-							</div> 
+							</div>
 						</div>
 					</div>
 				</div>
@@ -130,8 +137,7 @@
 														</ul></li>
 													<li><a class="dropdown-item" href="speciallecture.do"> 특강 목록 </a></li>
 												</ul></li>
-											<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"> 시험 </a>
-												</li>
+											<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"> 시험 </a></li>
 											<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"> 학적 관리 </a>
 												<ul class="dropdown-menu">
 													<li class="dropdown-submenu"><a class="dropdown-item" href="#">강의</a>

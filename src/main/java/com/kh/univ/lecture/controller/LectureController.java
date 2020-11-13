@@ -52,19 +52,7 @@ public class LectureController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	
-	@RequestMapping(value = "learningprogress.do")
-	public ModelAndView learningprogress(ModelAndView mv, LectureClass lc, HttpSession session) {
-			ArrayList<LectureClass> aLc = plService.selectValue(lc);
-			System.out.println(aLc);
-			if(aLc != null) {
-			mv.addObject("aLc",aLc);
-			mv.setViewName("ad_lecture/ad_learning_progress");
-			}else {
-				mv.addObject("msg","로그인 실패");
-				mv.setViewName("common/errorPage");
-			}
-			return mv;
-	}
+	
 	
 	/**
 	 * Simply selects the home view to render by returning its name.

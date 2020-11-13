@@ -31,6 +31,16 @@
  	 <result property="deptName" column="DEPT_NAME"/>
  	 </resultMap>
  	 
+ 	 <resultMap type="LecturePlanWeek" id="lecturePlanWeekResultSet">
+ 	 <id property="classNo" column="CLASS_NO"/>
+ 	 <id property="lecNo" column="LECTURE_NO"/>
+ 	 <id property="lecName" column="LECTURE_NAME"/>
+ 	 <id property="lecReference" column="LECTURE_REFERENCE"/>
+ 	 <id property="lecVideo" column="LECTURE_VIDEO"/>
+ 	 <id property="lecExplanation" column="LECTURE_EXPLANATION"/>
+ 	 <id property="lecVideoCreateDate" column="LECTURE_VIDEO_CREATE_DATE"/>
+ 	 </resultMap>
+ 	 
  	 <resultMap type="LectureList" id="lectureListResultSet">
  	 <id property="classNo" column="CLASS_NO"/>
  	 <result property="className" column="CLASS_NAME"/>
@@ -118,12 +128,12 @@
  	 
  	 <select id="selectValue" resultMap="lectureClassResultSet">
  	 
- 	     SELECT * 
- 	 	    FROM TB_CLASS C
-			JOIN TB_CLASS_DETAIL CD USING(CLASS_NO)
-			JOIN TB_CLASS_PROFESSOR CP USING(CLASS_NO)
-			JOIN TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
-			JOIN TB_DEPARTMENT D ON(D.DEPT_NO = C.DEPT_NO)
+ 	      SELECT * 
+  FROM TB_CLASS C
+  JOIN TB_DEPARTMENT D USING(DEPT_NO)
+  JOIN TB_CLASS_PROFESSOR CP USING(CLASS_NO)
+  JOIN TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
+ WHERE PROF_NO = #{pNo}
  	 	
  	 </select>
  	 

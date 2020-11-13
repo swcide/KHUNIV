@@ -13,10 +13,10 @@ public interface profLecService {
 
 	/**
 	 * 내 동영상 강의 목록 첫페이지 출력 값 호출
-	 * @param lc
+	 * @param pNo
 	 * @return
 	 */
-	ArrayList<LectureClass> selectValue(LectureClass lc);
+	ArrayList<LectureClass> selectValue(String pNo);
 	
 	/**
 	 * 내 강의 목록 첫페이지 출력 값 호출
@@ -27,14 +27,30 @@ public interface profLecService {
 
 	/**
 	 * 강의 등록 페이지
+	 * @param cNo
+	 * @return
+	 */
+	ArrayList<LecturePlanWeek> lectureVideo(String classNo);
+
+	/**
+	 * 강의등록 로직
 	 * @param lpw
 	 * @return
 	 */
-	ArrayList<LecturePlanWeek> lecVideoWrite(LecturePlanWeek lpw);
+	int lectureVideoInsert(LecturePlanWeek lpw);
+
+	/**
+	 * 강의 삭제
+	 * @param lpw
+	 * @return
+	 */
+	int lectureVideoDelete(LecturePlanWeek lpw);
+	
 
 	ArrayList<LecturePlanWeek> selectSyllaOne2(String classNo);
 
 	LecturePlan selectSyllaOne1(String classNo);
 
+	
 
 }

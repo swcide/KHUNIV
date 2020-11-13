@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/professor_header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!-- Content Wrapper. Contains page content -->
 <div class="body">
 	<div role="main" class="main">
@@ -31,7 +30,7 @@
 										<div class="post-content">
 
 											<h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2">
-												<a href="prof_lectureVideoWrite.do">${lc.className }</a>
+												<a href="prof_lectureVideo.do?classNo=${lc.classNo }">${lc.className }</a> <!--  주소창 클래스명 ... ㅅㅂ -->
 											</h2>
 
 											<p>${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }</p>

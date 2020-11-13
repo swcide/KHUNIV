@@ -5,32 +5,32 @@ import java.sql.Date;
 public class LecturePlanWeek {
 	
 	// 과목 번호
-	protected String classNo;
+	private String classNo;
 	
 	// 강의 주차별
-	protected String lecNo;
+	private int lecNo;
 	
 	//아래로는 강의 주차별 제목
-	protected String lecName; 
+	private String lecName; 
 	
 	// 다운로드 가능한 주차별 참고자료 경로
-	protected String lecReference;
+	private String lecReference;
 	
 	//강의 설명
-	protected String lecExplanation;
+	private String lecExplanation;
 	
 	//강의 비디오
-	protected String lecVideo;
+	private String lecVideo;
 	
 	//강의 비디오 업로드 일자
-	protected Date lecVideoCreateDate;
+	private Date lecVideoCreateDate;
 	
 
 	public LecturePlanWeek() {
 	}
 
 
-	public LecturePlanWeek(String classNo, String lecNo, String lecName, String lecReference, String lecExplanation, String lecVideo, Date lecVideoCreateDate) {
+	public LecturePlanWeek(String classNo, int lecNo, String lecName, String lecReference, String lecExplanation, String lecVideo, Date lecVideoCreateDate) {
 		super();
 		this.classNo = classNo;
 		this.lecNo = lecNo;
@@ -54,13 +54,13 @@ public class LecturePlanWeek {
 		}
 
 
-	public String getLecNo()
+	public int getLecNo()
 		{
 			return lecNo;
 		}
 
 
-	public void setLecNo(String lecNo)
+	public void setLecNo(int lecNo)
 		{
 			this.lecNo = lecNo;
 		}
@@ -133,5 +133,7 @@ public class LecturePlanWeek {
 					+ lecVideo + ", lecVideoCreateDate=" + lecVideoCreateDate + "]";
 		}
 
+
+	
 	
 }

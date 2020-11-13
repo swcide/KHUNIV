@@ -39,6 +39,7 @@ public class indexController {
 		
 		ArrayList<Notice> nList = nService.selectTopList();
 		
+		System.out.println(nList);
 		
 		
 		mv.addObject("nList",nList);
@@ -68,15 +69,7 @@ public class indexController {
 	}
 	
 	@RequestMapping(value = "prof_main.do", method = RequestMethod.GET)
-	public String prof_main(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
+	public String prof_main() {
 		
 		return "professor_main";
 	}

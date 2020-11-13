@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ad_Register_Controller {
 	
-	private static final Logger logger = LoggerFactory.getLogger(ad_Register_Controller.class);
-	
 	
 	/**
 	 * 학사행정 > 학적관리 > 강의 > 강의개설정보
@@ -26,12 +24,7 @@ public class ad_Register_Controller {
 	 * @param model
 	 * @return
 	 */
-	/*
-	 * @RequestMapping(value = "ad_lect_list.do") public String ad_lec(Locale
-	 * locale, Model model) {
-	 * 
-	 * return "ad_register/ad_Lecture_List"; }
-	 */
+
 	
 	/**
 	 * 학사행정 > 학적관리 > 강의 > 수강신청현황
@@ -40,7 +33,7 @@ public class ad_Register_Controller {
 	 * @return
 	 */
 	@RequestMapping(value = "ad_appl_stat.do")
-	public String ad_appl_stat(Locale locale, Model model) {
+	public String ad_appl_stat() {
 		
 		return "ad_register/ad_Application_Status";
 	}
@@ -51,6 +44,7 @@ public class ad_Register_Controller {
 	 * @param model
 	 * @return
 	 */
+
 	
 	
 	/**

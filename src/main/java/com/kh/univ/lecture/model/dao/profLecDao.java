@@ -19,15 +19,25 @@ public class profLecDao {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 
-	public ArrayList<LectureClass> selectValue(LectureClass lc)
-		{
-			return (ArrayList)sqlSession.selectList("lectureMapper.selectValue", lc);
-		}
+	public ArrayList<LectureClass> selectValue(String pNo)
+	    {
+		return (ArrayList)sqlSession.selectList("lectureMapper.selectValue", pNo);
+	}
 
-	public ArrayList<LecturePlanWeek> lecVideoWrite(LecturePlanWeek lpw)
-		{
-			return (ArrayList)sqlSession.selectList("lectureMapper.lecVideoWrite", lpw);
-		}
+    public ArrayList<LecturePlanWeek> lectureVideo(String classNo)
+	{
+		return (ArrayList)sqlSession.selectList("lectureMapper.lecVideo", classNo);
+	}
+
+    public int lectureVideoInsert(LecturePlanWeek lpw)
+	{
+		return sqlSession.insert("lectureMapper.lectureVideoInsert",lpw);
+	}
+
+    public int lectureVideoDelete(LecturePlanWeek lpw)
+	{
+		return sqlSession.delete("lectureMapper.lectureVideoDelete",lpw);
+	}
 
 	public ArrayList<LectureList> selectList(HttpSession session) {
 		

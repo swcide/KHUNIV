@@ -62,25 +62,25 @@ public class HumanBoardServiceImpl implements HumanBoardService {
 		return hDao.deleteHumanBoard(hId);
 	}
 
-//	@Override
-//	public ArrayList<hReply> selectReplyList(int hId) {
-//		return hDao.selectReplyList(hId);
-//	}
-//
-//	@Override
-//	public int insertReply(hReply r) {
-//		return hDao.insertReply(r);
-//	}
-//
-//	@Override
-//	public int deleteReply(hReply r) {
-//		return hDao.deleteReply(r);
-//	}
-//
-//	@Override
-//	public int updateReply(hReply r) {
-//		return hDao.updateReply(r);
-//	}
+	@Override
+	public ArrayList<hReply> selectReplyList(int hId) {
+		return hDao.selectReplyList(hId);
+	}
+
+	@Override
+	public int insertReply(hReply r) {
+		return hDao.insertReply(r);
+	}
+
+	@Override
+	public int deleteReply(hReply r) {
+		return hDao.deleteReply(r);
+	}
+
+	@Override
+	public int updateReply(hReply r) {
+		return hDao.updateReply(r);
+	}
 
 
 }

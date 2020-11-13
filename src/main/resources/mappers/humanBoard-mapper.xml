@@ -19,18 +19,18 @@
 		<result property="hStatus" column="H_SECRET"/>
  	 </resultMap>
  	 
- 	<!--    <resultMap type="hReply" id="replyResultSet">
- 	 	<id property="hId" column="H_RID"/>
-		<result property="hContent" column="H_RCONTENT"/>
-		<result property="hefNid" column="H_REF_NID"/>
-		<result property="hWriter" column="H_RWRITER"/>
-		<result property="hCreateDate" column="H_R_CREATE_DATE"/>
-		<result property="hmodifyDate" column="H_R_MODIFY_DATE"/>
-		<result property="hStatus" column="H_R_STATUS"/>
-		<result property="hName" column="H_RNAME"/>
-		<result property="refHid" column="H_REF_RID"/>
+ 	    <resultMap type="hReply" id="replyResultSet">
+ 	 	<id property="rId" column="H_RID"/>
+		<result property="rContent" column="H_RCONTENT"/>
+		<result property="refHid" column="H_REF_HID"/>
+		<result property="rWriter" column="H_RWRITER"/>
+		<result property="rCreateDate" column="H_R_CREATE_DATE"/>
+		<result property="rmodifyDate" column="H_R_MODIFY_DATE"/>
+		<result property="rStatus" column="H_R_STATUS"/>
+		<result property="rName" column="H_RNAME"/>
+		<result property="refRid" column="H_REF_RID"/>
 		<result property="hType" column="HTYPE"/>
- 	 </resultMap> -->
+ 	 </resultMap>
  	 
  	 	<select id="getListCount"  resultType="_int">
   		SELECT COUNT(*)
@@ -70,28 +70,26 @@
  	 	SET H_STATUS ='N'
  	 	WHERE HID= #{hId}
  	 </update>
-<!--  	 <select id="selectHumanReplyList" parameterType="_int" resultMap="replyResultSet"> -->
-<!--  	 	SELECT * -->
-<!--  	 	FROM TB_HUMAN_REPLY -->
-<!--  	 	WHERE H_REF_HID=#{nId} -->
-<!--  	 	AND H_R_STATUS='Y' -->
-<!--  	 	AND HTYPE=1 -->
-<!--  	 	ORDER BY H_RID DESC -->
-<!--  	 </select> -->
+ 	 <select id="selectHumanReplyList" parameterType="_int" resultMap="replyResultSet">
+ 	 	SELECT *
+ 	 	FROM TB_HUMANBOARD_REPLY
+ 	 	WHERE H_REF_HID=#{hId}
+ 	 	ORDER BY H_RID DESC
+ 	 </select>
  	 
-<!--  	  <insert id="insertReply" parameterType="Reply"> -->
-<!--  	 	INSERT INTO TB_HUMAN_REPLY -->
-<!--  	 	VALUES(SEQ_H_RID.NEXTVAL,#{rContent},#{refNid},SYSDATE,SYSDATE,#{rWriter},DEFAULT,#{rName},#{refRid}) -->
-<!--  	 </insert> -->
-<!--  	 <insert id="deleteReply" parameterType="Reply"> -->
-<!--  	 	UPDATE TB_NOTICE_REPLY -->
-<!--  	 	SET  N_R_STATUS='N' -->
-<!--  		WHERE N_RID= #{rId} -->
-<!--  		OR N_REF_RID =#{rId} -->
-<!--  	 </insert> -->
-<!--  	 <insert id="updateReply" parameterType="Reply"> -->
-<!--  	 	UPDATE TB_NOTICE_REPLY -->
-<!--  	 	SET  N_RCONTENT=#{rContent} -->
-<!--  		WHERE N_RID= #{rId} -->
-<!--  	 </insert> -->
+ 	  <insert id="insertReply" parameterType="Reply">
+ 	 	INSERT INTO TB_HUMANBOARD_REPLY
+ 	 	VALUES(SEQ_HUMAN_RID.NEXTVAL,#{rContent},#{refHid},SYSDATE,SYSDATE,#{rWriter},DEFAULT,#{rName},#{refRid},#{hType})
+ 	 </insert>
+ 	 <insert id="deleteReply" parameterType="Reply">
+ 	 	UPDATE TB_HUMANBOARD_REPLY
+ 	 	SET  H_R_STATUS='N'
+ 		WHERE H_RID= #{rId}
+ 		OR H_REF_RID =#{rId}
+ 	 </insert>
+ 	 <insert id="updateReply" parameterType="Reply">
+ 	 	UPDATE TB_HUMANBOARD_REPLY
+ 	 	SET  H_RCONTENT=#{rContent}
+ 		WHERE H_RID= #{rId}
+ 	 </insert>
 </mapper>

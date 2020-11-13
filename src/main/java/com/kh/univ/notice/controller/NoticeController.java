@@ -285,6 +285,7 @@ public class NoticeController {
 				n.setRenameFileName(renameFileName);
 			}
 		}
+		System.out.println(n);
 		
 		int result = nService.updateNotice(n);
 		ArrayList<Notice> list = nService.selectTopList();
