@@ -27,9 +27,6 @@
 						<div class="row">
 							<div class="col">
 								<div class="tabs">
-									<ul class="nav nav-tabs nav-justified flex-column flex-md-row">
-										<li class="nav-item active"><a class="nav-link" href="#popular10" data-toggle="tab" class="text-center">전공 강의</a></li>
-									</ul>
 									<div class="tab-content" style="height: 300px;">
 										<div id="popular10" class="tab-pane active">
 											<div class="form-group row">

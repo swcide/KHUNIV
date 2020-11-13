@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,41 +75,43 @@
 					</div>
 				</div>
 			</section>
-
+			
 			<div class="container py-2">
 				<div class="row">
 					<div class="col">
+					
 						<table class="table table-hover">
+						
 							<tbody>
 								<tr>
 									<th style="width: 118px;">교과목명(국문)</th>
-									<td colspan="3" style="text-align: center;">아리랑</td>
+									<td colspan="3" style="text-align: center;">${lp.className }</td>
 
 								</tr>
-
+	
 								<tr>
 									<th style="width: 118px;">과목번호</th>
-									<td style="width: 252px; text-align: center;">-</td>
+									<td style="width: 252px; text-align: center;">${lp.classNo}</td>
 									<th style="width: 118px;">이수구분</th>
-									<td style="text-align: center;">-</td>
+									<td style="text-align: center;">${lp.classType}</td>
 								</tr>
 								<tr>
 									<th>학점</th>
-									<td style="text-align: center;">-</td>
+									<td style="text-align: center;">${lp.credit}</td>
 									<th>선수과목</th>
 									<td style="text-align: center;">-</td>
 								</tr>
 								<tr>
 									<th>교수</th>
-									<td style="text-align: center;">-</td>
+									<td style="text-align: center;">${lp.profName}</td>
 									<th>연구실</th>
-									<td style="text-align: center;">-</td>
+									<td style="text-align: center;">${lp.profLab}</td>
 								</tr>
 								<tr>
 									<th>연락처</th>
 									<td style="text-align: center;">-</td>
 									<th>E-mail</th>
-									<td style="text-align: center;">-</td>
+									<td style="text-align: center;">${lp.profEmail}</td>
 								</tr>
 							</tbody>
 						</table>
@@ -121,7 +124,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td>-</td>
+									<td>${lp.classSummary}</td>
 								</tr>
 							</tbody>
 							<thead>
@@ -131,7 +134,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td>-</td>
+									<td>${lp.classGoal}</td>
 								</tr>
 							</tbody>
 							<thead>
@@ -141,7 +144,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td>-</td>
+									<td>${lp.lecMethod}</td>
 								</tr>
 							</tbody>
 							<thead>
@@ -151,7 +154,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td>-</td>
+									<td>${lp.evalMethod}</td>
 								</tr>
 							</tbody>
 							<thead>
@@ -161,7 +164,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td>-</td>
+									<td>${lp.assignment}</td>
 								</tr>
 							</tbody>
 							<thead>
@@ -171,7 +174,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td>-</td>
+									<td>${lp.lecExperiment}</td>
 								</tr>
 							</tbody>
 							<thead>
@@ -181,7 +184,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td>-</td>
+									<td>${lp.relatedLec}</td>
 								</tr>
 							</tbody>
 							<thead>
@@ -191,7 +194,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td>-</td>
+									<td>${lp.lecTextbook}</td>
 								</tr>
 							</tbody>
 
@@ -206,13 +209,15 @@
 								</tr>
 							</thead>
 							<tbody>
+							<c:forEach var="l" items="${lpw}">
 								<tr>
-									<th>제 1주</th>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
-									<td style="text-align: center;">-</td>
+									<th>제 ${l.lecNo }주</th>
+									<td style="text-align: center;">${l.lecName }</td>
+									<td style="text-align: center;">${l.lecExplanation}</td>
+									<td style="text-align: center;">${l.lecReference }</td>
 								</tr>
-								<tr>
+							</c:forEach>
+								<!-- <tr>
 									<th>제 2주</th>
 									<td style="text-align: center;">-</td>
 									<td style="text-align: center;">-</td>
@@ -285,14 +290,15 @@
 									<th>제 15주</th>
 									<td style="text-align: center;">-</td>
 									<td style="text-align: center;">-</td>
-								</tr>
+								</tr> -->
 							</tbody>
+							
 						</table>
-
 					</div>
 				</div>
 
 			</div>
+			
 		</div>
 
 

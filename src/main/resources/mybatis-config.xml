@@ -19,6 +19,7 @@
 		<typeAlias type="com.kh.univ.lecture.model.vo.LectureClass" alias="LectureClass" />
 		<typeAlias type="com.kh.univ.lecture.model.vo.LecturePlan" alias="LecturePlan" />
 		<typeAlias type="com.kh.univ.lecture.model.vo.LecturePlanWeek" alias="LecturePlanWeek" />
+		<typeAlias type="com.kh.univ.lecture.model.vo.LectureList" alias="LectureList" />
 
 	</typeAliases>
 	<!-- environments 엘리먼트로 dataSource 등의 DB정보를 작성했었다. => 스프링에서는 그 정보를 여기서는 안쓴다. root-context.xml에 작성하게된다.(DataSource 등록은 ) -->

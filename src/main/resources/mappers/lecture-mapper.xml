@@ -31,6 +31,22 @@
  	 <result property="deptName" column="DEPT_NAME"/>
  	 </resultMap>
  	 
+ 	 <resultMap type="LectureList" id="lectureListResultSet">
+ 	 <id property="classNo" column="CLASS_NO"/>
+ 	 <result property="className" column="CLASS_NAME"/>
+ 	 <result property="lecAttendance" column="LECTURE_ATTENDANCE"/>
+ 	 <result property="lecLearningRate" column="LECTURE_LEARNINGRATE"/>
+ 	 <result property="Attendees" column="CLASS_ATTENDEES"/>
+ 	 <result property="classSummary" column="CLASS_SUMMARY"/>
+ 	 <result property="classImg" column="CLASS_IMG"/>
+ 	 <result property="profName" column="PROF_NAME"/>
+ 	 <result property="profEmail" column="PROF_EMAIL"/>
+ 	 <result property="deptName" column="DEPT_NAME"/>
+ 	 <result property="credit" column="CREDIT"/>
+ 	 <result property="classType" column="CLASS_TYPE"/>
+ 	 </resultMap>
+ 	 
+ 	 
  	 <resultMap type="LecturePlanWeek" id="lecturePlanWeekResultSet">
  	 <id property="classNo" column="CLASS_NO"/>
  	 <id property="lecNo" column="LECTURE_NO"/>
@@ -40,6 +56,65 @@
  	 <id property="lecExplanation" column="LECTURE_EXPLANATION"/>
  	 <id property="lecVideoCreateDate" column="LECTURE_VIDEO_CREATE_DATE"/>
  	 </resultMap>
+ 	 
+ 	  <resultMap type="LecturePlan" id="Sylla1ResultSet">
+ 	 <id property="classNo" column="CLASS_NO"/>
+ 	 <result property="className" column="CLASS_NAME"/>
+ 	 <result property="classType" column="CLASS_TYPE"/>
+ 	 <result property="credit" column="CREDIT"/>
+ 	 <result property="profName" column="PROF_NAME"/>
+ 	 <result property="profLab" column="PROF_LAB"/>
+ 	 <result property="profEmail" column="PROF_EMAIL"/>
+ 	 <result property="classSummary" column="CLASS_SUMMARY"/>
+ 	 <result property="classGoal" column="CLASS_GOAL"/>
+ 	 <result property="lecMethod" column="LEC_METHOD"/>
+ 	 <result property="evalMethod" column="EVAL_METHOD"/>
+ 	 <result property="assignment" column="ASSIGNMENT"/>
+ 	 <result property="lecExperiment" column="LEC_EXPERIMENT"/>
+ 	 <result property="relatedLec" column="RELATED_LEC"/>
+ 	 <result property="lecTextbook" column="LEC_TEXTBOOK"/>
+ 	 </resultMap>
+ 	 
+ 	  <resultMap type="LecturePlanWeek" id="Sylla2ResultSet">
+ 	 <id property="classNo" column="CLASS_NO"/>
+ 	 <id property="lecNo" column="LECTURE_NO"/>
+ 	 <id property="lecName" column="LECTURE_NAME"/>
+ 	 <id property="lecReference" column="LECTURE_REFERENCE"/>
+ 	 </resultMap>
+ 	 
+ 	 <select id="sylla2" resultMap="Sylla2ResultSet">
+ 	 
+ 	     SELECT LECTURE_NO,LECTURE_NAME,LECTURE_REFERENCE
+ 	 	    FROM TB_CLASS
+			JOIN TB_CLASS_DETAIL USING(CLASS_NO)
+            WHERE CLASS_NO =#{classNo}
+            ORDER BY LECTURE_NO ASC
+ 	 	
+ 	 </select>
+ 	  <select id="sylla1" resultMap="Sylla1ResultSet">
+ 	 
+ 	    SELECT CLASS_NO, 
+        CLASS_NAME, 
+        CLASS_TYPE, 
+        CREDIT, 
+        PROF_NAME,
+        PROF_LAB,
+        PROF_EMAIL,
+        CLASS_SUMMARY,
+        CLASS_GOAL,
+        LEC_METHOD,
+        EVAL_METHOD,
+        ASSIGNMENT,
+        LEC_EXPERIMENT,
+        RELATED_LEC,
+        LEC_TEXTBOOK
+ 	 	    FROM TB_CLASS C
+			JOIN TB_CLASS_PROFESSOR CP USING(CLASS_NO)
+            LEFT JOIN TB_LECTURE_PLAN LP USING(CLASS_NO)
+			JOIN TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
+            WHERE CLASS_NO=#{classNo}
+ 	 	
+ 	 </select>
  	 
  	 <select id="selectValue" resultMap="lectureClassResultSet">
  	 
@@ -58,6 +133,15 @@
  	 
  	 </select>
  	 
+ 	 <select id="lecSyllaDetail" resultMap="lecturePlanResultSet">
+ 	  SELECT * 
+ 	 	    FROM TB_CLASS C
+			JOIN TB_CLASS_DETAIL CD USING(CLASS_NO)
+			JOIN TB_CLASS_PROFESSOR CP USING(CLASS_NO)
+			JOIN TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
+			JOIN TB_DEPARTMENT D ON(D.DEPT_NO = C.DEPT_NO)
+            WHERE CLASS_NO=#{classNo}
+ 	 </select>
  	 
  	 <select id="selectlpList" resultMap="lecturePlanResultSet">
  		SELECT *
@@ -65,5 +149,15 @@
 		WHERE CLASS_PROF=#{classProf}
 		AND CLASS_NO=#{classNo}
  	</select>
- 	 
+ 	
+ 	 <select id="lecList" resultMap="lectureListResultSet">
+ 	  SELECT * 
+ 	 	    FROM TB_CLASS C
+			JOIN TB_CLASS_DETAIL CD USING(CLASS_NO)
+			JOIN TB_CLASS_PROFESSOR CP USING(CLASS_NO)
+			JOIN TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
+			JOIN TB_DEPARTMENT D ON(D.DEPT_NO = C.DEPT_NO)
+			
+            
+ 	 </select>
 </mapper>

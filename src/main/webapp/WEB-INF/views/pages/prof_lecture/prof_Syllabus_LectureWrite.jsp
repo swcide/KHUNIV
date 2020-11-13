@@ -82,7 +82,7 @@
 							<table class="table table-hover">
 								<tbody>
 									<tr>
-										<th style="width: 118px;">교과목명(공학)</th>
+										<th style="width: 118px;"><select name="className"> <option value=""></option></select></th>
 										<td colspan="3" style="text-align: center;">자바</td>
 
 									</tr>

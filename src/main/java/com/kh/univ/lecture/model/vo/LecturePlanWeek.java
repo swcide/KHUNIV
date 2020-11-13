@@ -5,25 +5,25 @@ import java.sql.Date;
 public class LecturePlanWeek {
 	
 	// 과목 번호
-	private String classNo;
+	protected String classNo;
 	
 	// 강의 주차별
-	private String lecNo;
+	protected String lecNo;
 	
 	//아래로는 강의 주차별 제목
-	private String lecName; 
+	protected String lecName; 
 	
 	// 다운로드 가능한 주차별 참고자료 경로
-	private String lecReference;
+	protected String lecReference;
 	
 	//강의 설명
-	private String lecExplanation;
+	protected String lecExplanation;
 	
 	//강의 비디오
-	private String lecVideo;
+	protected String lecVideo;
 	
 	//강의 비디오 업로드 일자
-	private Date lecVideoCreateDate;
+	protected Date lecVideoCreateDate;
 	
 
 	public LecturePlanWeek() {
