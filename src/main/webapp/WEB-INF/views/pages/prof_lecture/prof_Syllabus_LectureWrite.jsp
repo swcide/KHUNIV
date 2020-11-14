@@ -114,8 +114,8 @@
 							</tbody>
 						</table>
 
-						<form action="prof_Syllabus_LectureUpdate.do" id="" method="post">
-						<input name="classNo"  type="hidden" value="${lp.classNo}">
+						<form action="prof_Syllabus_LectureUpdate.do" name="formSylla" onsubmit="return validate();" id="" method="post">
+							<input name="classNo" type="hidden" value="${lp.classNo}">
 							<table class="table table-hover">
 								<thead>
 									<tr>
@@ -125,7 +125,7 @@
 								<tbody>
 									<tr>
 										<td>
-											<input name="classSummary"  size=90 placeholder="${lp.classSummary}">
+											<input name="classSummary" size=90 placeholder="${lp.classSummary}">
 										</td>
 									</tr>
 								</tbody>
@@ -214,8 +214,8 @@
 									</tr>
 								</tbody>
 							</table>
-<!-- 							onclick="location.href= 'javascript:self.close();'"
- -->							<button  type="submit" class="btn btn-dark"   style="float: right; margin-bottom: 20px;">
+
+							<button type="submit" class="btn btn-dark" style="float: right; margin-bottom: 20px;">
 								<i class="fas fa-pencil-alt"></i> 제출하기
 							</button>
 						</form>
@@ -225,4 +225,47 @@
 		</div>
 	</div>
 </body>
+<script>
+	function validate() {
+		if (formSylla.classSummary.value == "") {
+			alert("빈칸을 채워주세요");
+			formSylla.classSummary.focus();
+			return false;
+		}else if (formSylla.classGoal.value == "") {
+			alert("빈칸을 채워주세요");
+			formSylla.classGoal.focus();
+			return false;
+		}else if (formSylla.lecMethod.value == "") {
+			alert("빈칸을 채워주세요");
+			formSylla.lecMethod.focus();
+			return false;
+		}else if (formSylla.evalMethod.value == "") {
+			alert("빈칸을 채워주세요");
+			formSylla.evalMethod.focus();
+			return false;
+		}else if (formSylla.assignment.value == "") {
+			alert("빈칸을 채워주세요");
+			formSylla.assignment.focus();
+			return false;
+		}else if (formSylla.lecExperiment.value == "") {
+			alert("빈칸을 채워주세요");
+			formSylla.lecExperiment.focus();
+			return false;
+		}else if (formSylla.relatedLec.value == "") {
+			alert("빈칸을 채워주세요");
+			formSylla.relatedLec.focus();
+			return false;
+		}else if (formSylla.lecTextbook.value == "") {
+			alert("빈칸을 채워주세요");
+			formSylla.lecTextbook.focus();
+			return false;
+		}else{
+			window.open('', '_self').close();
+			alert("완료 되었습니다.")
+		}
+	}
+	/* 퀵메뉴 창닫기 기능 */
+
+	
+</script>
 </html>
