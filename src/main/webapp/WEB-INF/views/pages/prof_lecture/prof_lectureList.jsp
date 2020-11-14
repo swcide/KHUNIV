@@ -2,6 +2,17 @@
 <%@ include file="../common/professor_header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Content Wrapper. Contains page content -->
+<style>
+#className{
+color:#008995;
+	font-weight:bold;
+}
+#className:hover{
+	cursor:pointer;
+	color:#005de8;
+	font-weight:bold;
+}
+</style>
 <div class="body">
 	<div role="main" class="main">
 		<section class="page-header page-header-modern page-header-background page-header-background-md overlay overlay-color-dark overlay-show overlay-op-3" style="background-image: url(resources/img/page-header/KakaoTalk_20201026_130729067.jpg); padding: 70px;">
@@ -28,16 +39,31 @@
 											</a>
 										</div>
 										<div class="post-content">
-
-											<h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2">
-												<a href="prof_lectureVideo.do?classNo=${lc.classNo }">${lc.className }</a> <!--  주소창 클래스명 ... ㅅㅂ -->
-											</h2>
-
+											<form id="frm" action="prof_lectureVideo.do" method="post">
+												<h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2">
+												<input type="hidden" name="classNo" value="${lc.classNo }">
+													<label id="className"><input type="submit" style="display:none;" >${lc.className }</label>
+												</h2>
+											</form>
 											<p>${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }</p>
 
 
 											<div class="post-meta">
-												<span><i class="far fa-user"></i> 교수: ${lc.profName } </span> <span><i class="far fa-folder"></i> 수강대상: ${lc.deptName } </span> <span><i class="far fa-comments"></i> <a href="#">${lc.profEmail }</a></span> <span class="d-block mt-2"><a href="#" class="btn btn-xs btn-light text-1 text-uppercase">강의 계획서</a></span>
+												<span>
+													<i class="far fa-user"></i> 교수: ${lc.profName }
+												</span>
+												<br>
+												<span>
+													<i class="far fa-folder"></i> 수강대상: ${lc.deptName }
+												</span>
+												<br>
+												<span>
+													<i class="far fa-comments"></i> <a href="#">${lc.profEmail }</a>
+												</span>
+												<br>
+												<span class="d-block mt-2">
+													<a href="#" class="btn btn-xs btn-light text-1 text-uppercase">강의 계획서</a>
+												</span>
 											</div>
 										</div>
 									</article>
