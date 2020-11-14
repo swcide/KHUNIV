@@ -137,6 +137,42 @@
 		WHERE
 		CLASS_NO=#{classNo}
 	</select>
+	<select id="syllainsertform" resultMap="Sylla1ResultSet">
+		SELECT CLASS_NO,
+		CLASS_NAME,
+		CLASS_TYPE,
+		CREDIT,
+		PROF_NAME,
+		PROF_LAB,
+		PROF_EMAIL,
+		CLASS_SUMMARY,
+		CLASS_GOAL,
+		LEC_METHOD,
+		EVAL_METHOD,
+		ASSIGNMENT,
+		LEC_EXPERIMENT,
+		RELATED_LEC,
+		LEC_TEXTBOOK
+		FROM TB_CLASS C
+		JOIN TB_CLASS_PROFESSOR CP
+		USING(CLASS_NO)
+		LEFT JOIN TB_LECTURE_PLAN LP USING(CLASS_NO)
+		JOIN
+		TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
+		WHERE PROF_NO=#{pNo}
+	</select>
+	
+	<select id="SyllaPlanList" resultMap="lectureListResultSet">
+		SELECT CLASS_NO,
+		CLASS_NAME,
+		CLASS_TYPE
+		FROM TB_CLASS C
+		JOIN TB_CLASS_PROFESSOR CP
+		USING(CLASS_NO)
+		LEFT JOIN TB_LECTURE_PLAN LP USING(CLASS_NO)
+		JOIN TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
+		WHERE PROF_NO=#{pNo} 
+	</select>
 
 	<select id="lecList" resultMap="lectureListResultSet">
 		SELECT *
@@ -187,4 +223,23 @@
 		FROM TB_CLASS_DETAIL
 		WHERE LECTURE_NO = #{lecNo}
 	</delete>
+	
+	<update id="lectureVideoUpdate" parameterType="LecturePlanWeek">
+	UPDATE TB_CLASS_DETAIL
+		       SET
+		       CLASS_NO = #{classNo},
+               LECTURE_NO = #{lecNo},
+               LECTURE_NAME = #{lecName},
+               LECTURE_REFERENCE = #{lecReference},
+               LECTURE_VIDEO = #{lecVideo},
+               LECTURE_EXPLANATION =#{lecExplanation},
+               LECTURE_ATTENDANCE = DEFAULT,LECTURE_LEARNINGRATE = DEFAULT,CLASS_ATTENDEES = DEFAULT,LECTURE_VIDEO_CREATE_DATE = SYSDATE
+		  WHERE LECTURE_NO = #{lecNo}
+	</update>
+	
+	<select id="updateAfter" resultMap="lecturePlanWeekResultSet">
+		SELECT *
+		FROM TB_CLASS_DETAIL
+		WHERE LECTURE_NO = #{lecNo}
+	</select>
 </mapper>

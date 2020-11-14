@@ -82,9 +82,8 @@
 							<table class="table table-hover">
 								<tbody>
 									<tr>
-										<th style="width: 118px;"><select name="className"> <option value=""></option></select></th>
-										<td colspan="3" style="text-align: center;">자바</td>
-
+										<th style="width: 118px;">교과목명(국문)</th>
+										<th style="width: 118px;"><input><select name="className"><option value=""></option></select></th>
 									</tr>
 									<tr>
 										<th style="width: 118px;">과목번호</th>
@@ -112,7 +111,8 @@
 									</tr>
 								</tbody>
 							</table>
-
+							
+							
 							<table class="table table-hover">
 								<thead>
 									<tr>
@@ -212,162 +212,7 @@
 								</tbody>
 
 							</table>
-							<table class="table table-hover">
-								<thead>
-									<tr>
-										<th>주차</th>
-										<th style="text-align: center;">단원명</th>
-										<th style="text-align: center;">설명</th>
-										<th style="text-align: center;">참고자료</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<th style="vertical-align: middle;">제 1주</th>
-										<td style="text-align: center; vertical-align: middle;">
-											<input class="form-control">
-										</td>
-										<td style="text-align: center;">
-											<textarea class="form-control"></textarea>
-										</td>
-										<td style="text-align: center; vertical-align: middle;">
-											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
-											</label>
-										</td>
-									</tr>
-									<tr>
-										<th style="vertical-align: middle;">제 1주</th>
-										<td style="text-align: center; vertical-align: middle;">
-											<input class="form-control">
-										</td>
-										<td style="text-align: center;">
-											<textarea class="form-control"></textarea>
-										</td>
-										<td style="text-align: center; vertical-align: middle;">
-											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
-											</label>
-										</td>
-									</tr>
-									<tr>
-										<th style="vertical-align: middle;">제 1주</th>
-										<td style="text-align: center; vertical-align: middle;">
-											<input class="form-control">
-										</td>
-										<td style="text-align: center;">
-											<textarea class="form-control"></textarea>
-										</td>
-										<td style="text-align: center; vertical-align: middle;">
-											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
-											</label>
-										</td>
-									</tr>
-									<tr>
-										<th style="vertical-align: middle;">제 1주</th>
-										<td style="text-align: center; vertical-align: middle;">
-											<input class="form-control">
-										</td>
-										<td style="text-align: center;">
-											<textarea class="form-control"></textarea>
-										</td>
-										<td style="text-align: center; vertical-align: middle;">
-											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
-											</label>
-										</td>
-									</tr>
-									<tr>
-										<th style="vertical-align: middle;">제 1주</th>
-										<td style="text-align: center; vertical-align: middle;">
-											<input class="form-control">
-										</td>
-										<td style="text-align: center;">
-											<textarea class="form-control"></textarea>
-										</td>
-										<td style="text-align: center; vertical-align: middle;">
-											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
-											</label>
-										</td>
-									</tr>
-									<tr>
-										<th style="vertical-align: middle;">제 1주</th>
-										<td style="text-align: center; vertical-align: middle;">
-											<input class="form-control">
-										</td>
-										<td style="text-align: center;">
-											<textarea class="form-control"></textarea>
-										</td>
-										<td style="text-align: center; vertical-align: middle;">
-											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
-											</label>
-										</td>
-									</tr>
-									<tr>
-										<th style="vertical-align: middle;">제 1주</th>
-										<td style="text-align: center; vertical-align: middle;">
-											<input class="form-control">
-										</td>
-										<td style="text-align: center;">
-											<textarea class="form-control"></textarea>
-										</td>
-										<td style="text-align: center; vertical-align: middle;">
-											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
-											</label>
-										</td>
-									</tr>
-									<tr>
-										<th style="vertical-align: middle;">제 1주</th>
-										<td style="text-align: center; vertical-align: middle;">
-											<input class="form-control">
-										</td>
-										<td style="text-align: center;">
-											<textarea class="form-control"></textarea>
-										</td>
-										<td style="text-align: center; vertical-align: middle;">
-											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
-											</label>
-										</td>
-									</tr>
-									<tr>
-										<th style="vertical-align: middle;">제 1주</th>
-										<td style="text-align: center; vertical-align: middle;">
-											<input class="form-control">
-										</td>
-										<td style="text-align: center;">
-											<textarea class="form-control"></textarea>
-										</td>
-										<td style="text-align: center; vertical-align: middle;">
-											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
-											</label>
-										</td>
-									</tr>
-									<tr>
-										<th style="vertical-align: middle;">제 1주</th>
-										<td style="text-align: center; vertical-align: middle;">
-											<input class="form-control">
-										</td>
-										<td style="text-align: center;">
-											<textarea class="form-control"></textarea>
-										</td>
-										<td style="text-align: center; vertical-align: middle;">
-											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
-											</label>
-										</td>
-									</tr>
-									<tr>
-										<th style="vertical-align: middle;">제 1주</th>
-										<td style="text-align: center; vertical-align: middle;">
-											<input class="form-control">
-										</td>
-										<td style="text-align: center;">
-											<textarea class="form-control"></textarea>
-										</td>
-										<td style="text-align: center; vertical-align: middle;">
-											<label class="btn btn-primary btn-file"> 자료 추가 <input type="file" style="display: none;">
-											</label>
-										</td>
-									</tr>
-									
-								</tbody>
-							</table>
+							
 							<button type="button" class="btn btn-dark" onclick="location.href= 'javascript:self.close();'" style="float: right; margin-bottom: 20px;">
 								<i class="fas fa-pencil-alt"></i> 등록
 							</button>

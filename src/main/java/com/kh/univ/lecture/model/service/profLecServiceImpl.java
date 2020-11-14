@@ -14,6 +14,8 @@ import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.member.model.vo.Professor;
+import com.kh.univ.member.model.vo.Professor;
+import com.kh.univ.notice.model.vo.Notice;
 
 @Service("plService")
 public class profLecServiceImpl implements profLecService {
@@ -56,6 +58,16 @@ public class profLecServiceImpl implements profLecService {
 		{
 			return plDao.lectureVideoDelete(lpw);
 		}
+	
+	
+	/**
+	 * 강의 수정
+	 */
+	@Override
+	public int lectureVideoUpdate(LecturePlanWeek lpw)
+		{
+			return plDao.lectureVideoUpdate(lpw);
+		}
 
 	@Override
 	public ArrayList<LectureList> selectList(HttpSession session) {
@@ -72,6 +84,25 @@ public class profLecServiceImpl implements profLecService {
 	public LecturePlan selectSyllaOne1(String classNo) {
 		return plDao.selectSyllaOne1(classNo);
 	}
+
+	
+	@Override
+	public LecturePlan selectSyllainsertform(String pNo) {
+		return plDao.selectSyllainsertform(pNo);
+	}
+
+	@Override
+	public ArrayList<LectureList> SyllaPlanList(Professor pNo) {
+		return plDao.SyllaPlanList(pNo);
+	}
+
+
+
+	@Override
+	public LecturePlanWeek updateAfter(LecturePlanWeek lpw)
+		{
+			return plDao.updateAfter(lpw);
+		}
 
 	@Override
 	public ArrayList<ClassTest> classSelectList(Professor p, int currentPage) {

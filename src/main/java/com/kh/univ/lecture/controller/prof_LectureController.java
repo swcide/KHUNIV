@@ -19,8 +19,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.univ.lecture.model.service.profLecService;
 import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
+import com.kh.univ.lecture.model.vo.LectureList;
+import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.member.model.vo.Professor;
+import com.kh.univ.notice.model.vo.Notice;
+import com.kh.univ.member.model.vo.Student;
 
 @SessionAttributes({ "loginProf" })
 @Controller
@@ -96,7 +100,8 @@ public class prof_LectureController {
 		}
 
 	/**
-	 *  동영상 / 첨부파일 업로드 
+	 * 동영상 / 첨부파일 업로드
+	 * 
 	 * @param lpw
 	 * @param request
 	 * @param file
@@ -105,8 +110,8 @@ public class prof_LectureController {
 	 * @return
 	 */
 	@RequestMapping("prof_lectureVideoInsert.do")
-	public String prof_lectureVideoInsert(LecturePlanWeek lpw, HttpServletRequest request, @RequestParam(name = "lecVideo1", required = false) MultipartFile file,
-			@RequestParam(name = "lecRef", required = false) MultipartFile refFile, @RequestParam(name = "classNo", required = false) String classNo)
+	public String prof_lectureVideoInsert(LecturePlanWeek lpw, HttpServletRequest request, @RequestParam(name = "lecVideoInsert", required = false) MultipartFile file,
+			@RequestParam(name = "lecReferenceInsert", required = false) MultipartFile refFile, @RequestParam(name = "classNo", required = false) String classNo)
 		{
 			System.out.println("in");
 			System.out.println(classNo);
@@ -168,7 +173,72 @@ public class prof_LectureController {
 		}
 
 	/**
+	 * 강의 영상 수정
+	 * @param mv
+	 * @param lpw
+	 * @param request
+	 * @param file
+	 * @param refFile
+	 * @return
+	 */
+	@RequestMapping("prof_lectureVideoUpdate.do")
+	public ModelAndView lectureVideoUpdate(ModelAndView mv, LecturePlanWeek lpw, HttpServletRequest request, @RequestParam(name = "lecVideoUpdate", required = false) MultipartFile file,
+			@RequestParam(name = "lecReferenceUpdate", required = false) MultipartFile refFile, @RequestParam(name = "classNo", required = false) String classNo){
+			
+			// 영상 파일 ----------------------------------------------------
+			if (file != null && !file.isEmpty()) { // 새로 업로드 된 파일이 있다면 - 의 조건
+				if (lpw.getLecVideo() != null) {// 기존의 파일이 존재했을 경우 파일 삭제하는 조건
+					deleteFile(lpw.getLecVideo(), request);
+				}
+				String renameFileName = saveFile(file, request);
+				if (renameFileName != null) {
+					lpw.setLecVideo(file.getOriginalFilename());
+					lpw.setLecVideo(renameFileName);
+				}
+			}
+			// 첨부 파일 ----------------------------------------------------
+			if (refFile != null && !refFile.isEmpty()) { // 새로 업로드 된 파일이 있다면 - 의 조건
+				if (lpw.getLecVideo() != null) {// 기존의 파일이 존재했을 경우 파일 삭제하는 조건
+					deleteFile(lpw.getLecReference(), request);
+				}
+				String renameFileName = saveFile(refFile, request);
+				if (renameFileName != null) {
+					lpw.setLecReference(refFile.getOriginalFilename());
+					lpw.setLecReference(renameFileName);
+				}
+			}
+			
+			int result = plService.lectureVideoUpdate(lpw);
+			System.out.println(result);
+//			LecturePlanWeek lecDB = plService.updateAfter(lpw);
+//			System.out.println("이거 ? " + lecDB);
+//			int lecNum= lecDB.getLecNo();
+//			System.out.println(lecNum);
+			
+			if (result > 0) {
+				mv.addObject("lecNo", lpw.getLecNo()).setViewName("prof_lectureVideo.do?classNo=" + classNo); //여기서부터 다시해야겠다././..
+				
+			} else {
+				mv.addObject("msg", "수정실패").setViewName("common/errorPage");
+			}
+			return mv;
+		}
+
+	public void deleteFile(String fileName, HttpServletRequest request)
+		{
+			String root = request.getSession().getServletContext().getRealPath("resources");
+			String savePath = root + "\\lectureUploadFile";
+
+			File f = new File(savePath + "\\" + fileName); // 기존에 업로드된 파일의 실제 경로를 이용해서 file 객체 생성
+
+			if (f.exists()) {
+				f.delete();
+			}
+		}
+
+	/**
 	 * 동영상 삭제
+	 * 
 	 * @param model
 	 * @param lecNo
 	 * @param classNo
@@ -178,9 +248,9 @@ public class prof_LectureController {
 	public String prof_lectureVideoDelete(LecturePlanWeek lpw, @RequestParam(name = "lecNo", required = false) int lecNo, @RequestParam(name = "classNo", required = false) String classNo)
 		{
 			int result = plService.lectureVideoDelete(lpw);
-			if(result > 0) {
+			if (result > 0) {
 				return "redirect:prof_lectureVideo.do?classNo=" + classNo;
-			}else {
+			} else {
 				return "common/errorPage";
 			}
 		}
@@ -192,10 +262,19 @@ public class prof_LectureController {
 		}
 
 	@RequestMapping(value = "prof_Syllabus_LectureWrite.do")
-	public String prof_Syllabus_LectureWrite(Model model)
-		{
-			return "prof_lecture/prof_Syllabus_LectureWrite";
+	public ModelAndView prof_Syllabus_LectureWrite(ModelAndView mv, @RequestParam(value="pNo")String pNo) {
+//		ArrayList <LecturePlanWeek> lpw = plService.selectSyllaOne2(profNo);
+		LecturePlan lp = plService.selectSyllainsertform(pNo);
+		if(lp !=null) {
+		mv.addObject("lp",lp);
+//		mv.addObject("lpw",lpw);
+		mv.setViewName("prof_lecture/prof_Syllabus_LectureWrite");
+		}else {
+			mv.addObject("msg","로그인 실패");
+			mv.setViewName("common/errorPage");
 		}
+		return mv;
+	}
 
 	@RequestMapping(value = "prof_learningprogress.do")
 	public String prof_learningprogress(Model model)
@@ -204,13 +283,22 @@ public class prof_LectureController {
 		}
 
 	@RequestMapping(value = "prof_lecturePlanList.do")
-	public String prof_lecturePlanList(Model model)
-		{
-			return "prof_lecture/prof_lecturePlanList";
+	public ModelAndView prof_lecturePlanList(ModelAndView mv, HttpSession session) {
+		Professor pNo = (Professor) session.getAttribute("loginProf");
+		System.out.println(pNo);
+		ArrayList <LectureList> plpl = plService.SyllaPlanList(pNo);
+		if(plpl !=null) {
+		mv.addObject("plpl",plpl);
+		mv.setViewName("prof_lecture/prof_lecturePlanList");
+		}else {
+			mv.addObject("msg","로그인 실패");
+			mv.setViewName("common/errorPage");
 		}
+		return mv;
+	}
 	
 	
-	
+
 	
 	
 	

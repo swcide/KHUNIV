@@ -44,7 +44,7 @@
 <link rel="stylesheet" href="resources/css/theme.css">
 <link rel="stylesheet" href="resources/css/theme-elements.css">
 <link rel="stylesheet" href="resources/css/theme-blog.css">
-<link rel="stylesheet" href="resources/css/theme-shop.css">
+<link rel="stylesheet" href="resources/css/theme-shop.css"> 
 
 <!-- Current Page CSS -->
 <link rel="stylesheet" href="resources/vendor/rs-plugin/css/settings.css">

@@ -1,7 +1,0 @@
-jquery
-$("#hd1).val() --> getter
-$("#hd1).val("값") --> setter
-javascript
-
-document.getElementById("hd1").value > getter
-document.getElementById("hd1").value = "값:"> setter

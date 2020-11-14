@@ -27,25 +27,21 @@
 
 								<div class="custom-box-details bg-color-light custom-box-shadow-1 col-lg-12 ml-5 mb-5 mb-lg-4 float-right clearfix">
 									<h4>QnA 수정</h4>
-									<form id="fm"class="contact-form"	action="qnaUpdate.do" method="post" enctype="multipart/form-data">
+									<form id="fm" class="contact-form" action="qnaUpdate.do" method="post" enctype="multipart/form-data">
 										<div class="form-group">
-											<input class="form-control"  name="qnaTitle" value="${b.qnaTitle }">
+											<input class="form-control" name="qnaTitle" value="${b.qnaTitle }">
 										</div>
 										<div class="form-row">
 											<div class="form-group col">
-											<input type="hidden" name="qnaWriter" value="${loginUser.sNo}">
-											<input type="hidden" name="qnaName"value="${loginUser.sName}">
-											<input type="hidden" name="qnaId"value="${b.qnaId}">
-												  <div class=" ">
-										              <div class="mb-3">
-										                <textarea class="textarea" name="qnaContent"  value="${b.qnaContent }"
-										                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">${b.qnaContent }</textarea>
-										              </div>
-										            </div>
+												<input type="hidden" name="qnaWriter" value="${loginUser.sNo}"> <input type="hidden" name="qnaName" value="${loginUser.sName}"> <input type="hidden" name="qnaId" value="${b.qnaId}">
+												<div class=" ">
+													<div class="mb-3">
+														<textarea class="textarea" name="qnaContent" value="${b.qnaContent }" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">${b.qnaContent }</textarea>
+													</div>
+												</div>
 											</div>
 										</div>
-										<input  type="button" onclick="history.back()" value="뒤로가기"	class="btn btn-quaternary mb-2">
-										<input	type="submit" value="수정하기"class="btn btn-dark btn-modern float-right">
+										<input type="button" onclick="history.back()" value="뒤로가기" class="btn btn-quaternary mb-2"> <input type="submit" value="수정하기" class="btn btn-dark btn-modern float-right">
 									</form>
 									<script>
 									

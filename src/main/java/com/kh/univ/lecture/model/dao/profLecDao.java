@@ -42,6 +42,11 @@ public class profLecDao {
 		return sqlSession.delete("lectureMapper.lectureVideoDelete",lpw);
 	}
 
+	public int lectureVideoUpdate(LecturePlanWeek lpw)
+		{
+			return sqlSession.update("lectureMapper.lectureVideoUpdate",lpw);
+		}
+	
 	public ArrayList<LectureList> selectList(HttpSession session) {
 
 		return (ArrayList)sqlSession.selectList("lectureMapper.lecList", session);
@@ -56,17 +61,34 @@ public class profLecDao {
 	}
 
 	public ArrayList<ClassTest> classSelectList(Professor p,int currentPage) {
-		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+//		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
 //		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
 		
-		return (ArrayList)sqlSession.selectList("noticeMapper.selectnList",nType,rowBounds);
+//		return (ArrayList)sqlSession.selectList("noticeMapper.selectnList",nType,rowBounds);
 		
-		return sqlSession.selectList("lecturemapper.classSelectList",p)
+//		return sqlSession.selectList("lecturemapper.classSelectList",p)
+		return null;
 	}
 
 	public int getListCount() {
 		return 0;
 	}
+
+
+	public LecturePlan selectSyllainsertform(String pNo) {
+		return sqlSession.selectOne("lectureMapper.syllainsertform", pNo);
+	}
+
+	public ArrayList<LectureList> SyllaPlanList(Professor pNo) {
+		return (ArrayList)sqlSession.selectList("lectureMapper.SyllaPlanList", pNo);
+	}
+
+
+
+	public LecturePlanWeek updateAfter(LecturePlanWeek lpw)
+		{
+			return sqlSession.selectOne("lectureMapper.updateAfter",lpw);
+		}
 
 
 

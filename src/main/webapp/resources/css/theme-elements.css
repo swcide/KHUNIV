@@ -14340,7 +14340,7 @@ section.timeline .timeline-box .owl-carousel {
 	border-left: 3px solid #CCC;
 	border-radius: 5px;
 	color: #CCC;
-	display: block;
+/* 	display: block; */
 	min-height: 20px;
 	padding: 12px 20px 12px 10px;
 	position: relative;
@@ -14366,7 +14366,7 @@ section.timeline .timeline-box .owl-carousel {
 .toggle > label:before,
 		.toggle > .toggle-title:before {
 	content: " ";
-	position: absolute;
+/* 	position: absolute; */
 	top: calc(50% + 1px);
 	right: 14px;
 	border-color: #CCC;
@@ -14472,13 +14472,12 @@ section.timeline .timeline-box .owl-carousel {
 	padding-left: 32px;
 	margin-bottom: -10px;
 	font-size: 1em;
-	font-weight: 600;
-	color: #212529;
+	color: #008995;
 }
 
 .toggle.toggle-simple .toggle > label:after,
 		.toggle.toggle-simple .toggle > .toggle-title:after {
-	content: '';
+/* 	content: ''; */
 	position: absolute;
 	left: 0;
 	display: block;
@@ -14503,10 +14502,11 @@ section.timeline .timeline-box .owl-carousel {
 	content: "\f067";
 	z-index: 2;
 	color: #FFF;
-	font-size: 7px;
+/* 	font-size: 7px; */
 	width: auto;
 	height: auto;
 	transform: none;
+	display:none;
 }
 
 .toggle.toggle-simple .toggle.active > label,
