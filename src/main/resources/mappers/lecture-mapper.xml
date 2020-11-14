@@ -48,8 +48,7 @@
 		<id property="classNo" column="CLASS_NO" />
 		<result property="className" column="CLASS_NAME" />
 		<result property="lecAttendance" column="LECTURE_ATTENDANCE" />
-		<result property="lecLearningRate"
-			column="LECTURE_LEARNINGRATE" />
+		<result property="lecLearningRate" column="LECTURE_LEARNINGRATE" />
 		<result property="Attendees" column="CLASS_ATTENDEES" />
 		<result property="classSummary" column="CLASS_SUMMARY" />
 		<result property="classImg" column="CLASS_IMG" />
@@ -89,7 +88,7 @@
 	<select id="sylla2" resultMap="Sylla2ResultSet">
 
 		SELECT
-		LECTURE_NO,LECTURE_NAME,LECTURE_REFERENCE
+		LECTURE_NO,LECTURE_NAME,LECTURE_REFERENCE,LECTURE_EXPLANATION
 		FROM TB_CLASS
 		JOIN
 		TB_CLASS_DETAIL USING(CLASS_NO)
@@ -165,7 +164,8 @@
 	<select id="SyllaPlanList" resultMap="lectureListResultSet">
 		SELECT CLASS_NO,
 		CLASS_NAME,
-		CLASS_TYPE
+		CLASS_TYPE,
+		CLASS_SUMMARY
 		FROM TB_CLASS C
 		JOIN TB_CLASS_PROFESSOR CP
 		USING(CLASS_NO)
@@ -184,6 +184,57 @@
 		JOIN TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
 		JOIN TB_DEPARTMENT D ON(D.DEPT_NO = C.DEPT_NO)
 	</select>
+	
+	<select id="lectureWeekSelect" resultMap="lecturePlanWeekResultSet">
+		SELECT
+		LECTURE_NO,LECTURE_NAME,LECTURE_REFERENCE,LECTURE_EXPLANATION
+		FROM TB_CLASS
+		JOIN
+		TB_CLASS_DETAIL USING(CLASS_NO)
+		WHERE CLASS_NO =#{classNo}
+		ORDER BY
+		LECTURE_NO ASC
+	</select>
+	
+	<select id="lectureSelect" resultMap="Sylla1ResultSet">
+		SELECT CLASS_NO,
+		CLASS_NAME,
+		CLASS_TYPE,
+		CREDIT,
+		PROF_NAME,
+		PROF_LAB,
+		PROF_EMAIL,
+		CLASS_SUMMARY,
+		CLASS_GOAL,
+		LEC_METHOD,
+		EVAL_METHOD,
+		ASSIGNMENT,
+		LEC_EXPERIMENT,
+		RELATED_LEC,
+		LEC_TEXTBOOK
+		FROM TB_CLASS C
+		JOIN TB_CLASS_PROFESSOR CP
+		USING(CLASS_NO)
+		LEFT JOIN TB_LECTURE_PLAN LP USING(CLASS_NO)
+		JOIN
+		TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
+		WHERE
+		CLASS_NO=#{classNo}
+	</select>
+	<select id="SyllaUpdate" resultMap="Sylla1ResultSet">
+		UPDATE TB_LECTURE_PLAN
+        SET
+        CLASS_SUMMARY=#{classSummary},
+		CLASS_GOAL=#{classGoal},
+		LEC_METHOD=#{lecMethod},
+		EVAL_METHOD=#{evalMethod},
+		ASSIGNMENT=#{assignment},
+		LEC_EXPERIMENT=#{lecExperiment},
+		RELATED_LEC=#{relatedLec},
+		LEC_TEXTBOOK=#{lecTextbook}
+		WHERE CLASS_NO=#{classNo}
+	</select>
+	
 	<!-- **************************************************************** -->
 	<select id="selectValue" resultMap="lectureClassResultSet">
 

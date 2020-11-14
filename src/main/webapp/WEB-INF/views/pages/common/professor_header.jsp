@@ -125,7 +125,7 @@
 														<ul class="dropdown-menu">
 
 															<li><a class="dropdown-item" href="prof_lectureList2.do">내 강의 목록</a></li>
-															<li><a class="dropdown-item" href="prof_lecturePlanList.do">강의 개설 정보</a></li>
+															<li><a class="dropdown-item" href="prof_lecturePlanList.do">내 강의계획서 관리</a></li>
 														</ul></li>
 												</ul></li>
 											<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"> 시험및 과제 </a>

@@ -74,6 +74,19 @@ public class profLecDao {
 		{
 			return sqlSession.selectOne("lectureMapper.updateAfter",lpw);
 		}
+	//======================================================
+	public ArrayList<LecturePlanWeek> prof_Syllabus_LectureWeekSelect(String classNo) {
+		return (ArrayList)sqlSession.selectList("lectureMapper.lectureWeekSelect", classNo);
+	}
+
+	public LecturePlan prof_Syllabus_LectureSelect(String classNo) {
+		return sqlSession.selectOne("lectureMapper.lectureSelect", classNo);
+
+	}
+
+	public int prof_Syllabus_LectureUpdate(LecturePlan lp) {
+		return sqlSession.update("lectureMapper.SyllaUpdate",lp);
+	}
 
 
 

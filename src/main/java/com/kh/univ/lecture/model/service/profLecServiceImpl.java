@@ -100,6 +100,22 @@ public class profLecServiceImpl implements profLecService {
 		{
 			return plDao.updateAfter(lpw);
 		}
+	//==========================================================
+	@Override
+	public ArrayList<LecturePlanWeek> prof_Syllabus_LectureWeekSelect(String classNo) {
+		return plDao.prof_Syllabus_LectureWeekSelect(classNo);
+	}
+
+	@Override
+	public LecturePlan prof_Syllabus_LectureSelect(String classNo) {
+		return plDao.prof_Syllabus_LectureSelect(classNo);
+
+	}
+
+	@Override
+	public int prof_Syllabus_LectureUpdate(LecturePlan lp) {
+		return plDao.prof_Syllabus_LectureUpdate(lp);
+	}
 
 	
 

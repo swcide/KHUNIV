@@ -77,6 +77,17 @@ public interface profLecService {
 	LecturePlan selectSyllainsertform(String pNo);
 
 	ArrayList<LectureList> SyllaPlanList(Professor pNo);
+	
+	//==========================================================
+	ArrayList<LecturePlanWeek> prof_Syllabus_LectureWeekSelect(String classNo);
+
+	LecturePlan prof_Syllabus_LectureSelect(String classNo);
+
+	int prof_Syllabus_LectureUpdate(LecturePlan lp);
+	/**
+	 * @param lpw
+	 * @return
+	 */
 
 	
 

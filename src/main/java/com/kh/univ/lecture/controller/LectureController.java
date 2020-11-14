@@ -64,33 +64,6 @@ public class LectureController {
 	}
 	
 	
-	@RequestMapping(value = "ad_lect_list.do")
-	public ModelAndView ad_Lecture_List(ModelAndView mv, HttpSession session ) {
-			ArrayList<LectureList> aLc = plService.selectList(session);
-			System.out.println(aLc);
-			if(aLc != null) {
-			mv.addObject("aLc",aLc);
-			mv.setViewName("ad_register/ad_Lecture_List");
-			}else {
-				mv.addObject("msg","로그인 실패");
-				mv.setViewName("common/errorPage");
-			}
-			return mv;
-	}
 	
 	
-	@RequestMapping(value = "ad_syllabus.do")
-	public ModelAndView ad_syllabus(ModelAndView mv, @RequestParam(value="classNo")String classNo) {
-			ArrayList <LecturePlanWeek> lpw = plService.selectSyllaOne2(classNo);
-			LecturePlan lp = plService.selectSyllaOne1(classNo);
-			if(lpw != null && lp !=null) {
-			mv.addObject("lp",lp);
-			mv.addObject("lpw",lpw);
-			mv.setViewName("ad_register/ad_Syllabus_Lecture");
-			}else {
-				mv.addObject("msg","로그인 실패");
-				mv.setViewName("common/errorPage");
-			}
-			return mv;
-	}
 }
