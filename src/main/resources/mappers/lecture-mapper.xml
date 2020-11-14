@@ -86,6 +86,39 @@
 		<id property="lecReference" column="LECTURE_REFERENCE" />
 	</resultMap>
 
+	<resultMap type="Attendance" id="AttendanceResultSet">
+		<id property="classNo" column="CLASS_NO" />
+		<result property="stdNo" column="STD_NO" />
+		<result property="1Week" column="FIRSTWEEK" />
+		<result property="2Week" column="SECONDWEEK" />
+		<result property="3Week" column="THIRDWEEK" />
+		<result property="4Week" column="FOURTHWEEK" />
+		<result property="5Week" column="FIFTHWEEK" />
+		<result property="6Week" column="SIXTHWEEK" />
+		<result property="7Week" column="SEVENTHWEEK" />
+		<result property="8Week" column="EIGHTTHWEEK" />
+		<result property="9Week" column="NINTHWEEK" />
+		<result property="10Week" column="TENTHWEEK" />
+		<result property="11Week" column="ELEVENTHWEEK" />
+		<result property="12Week" column="TWELFTHWEEK" />
+	</resultMap>
+
+	<select id="getListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM TB_ATTENDANCE
+		
+	</select>
+	
+	<select id="attendance" resultMap="AttendanceResultSet">
+		SELECT
+		CLASS_NO,STD_NO
+		FROM TB_ATTENDANCE
+		
+	</select>
+
+
+
+
 	<select id="sylla2" resultMap="Sylla2ResultSet">
 
 		SELECT
