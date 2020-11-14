@@ -110,7 +110,7 @@ public class prof_LectureController {
 	 * @return
 	 */
 	@RequestMapping("prof_lectureVideoInsert.do")
-	public String prof_lectureVideoInsert(LecturePlanWeek lpw, HttpServletRequest request, @RequestParam(name = "lecVideoInsert", required = false) MultipartFile file,
+	public String prof_lectureVideoInsert(Model m, LecturePlanWeek lpw, HttpServletRequest request, @RequestParam(name = "lecVideoInsert", required = false) MultipartFile file,
 			@RequestParam(name = "lecReferenceInsert", required = false) MultipartFile refFile, @RequestParam(name = "classNo", required = false) String classNo)
 		{
 			System.out.println("in");
@@ -137,7 +137,10 @@ public class prof_LectureController {
 			int result = plService.lectureVideoInsert(lpw);
 
 			if (result > 0) {
-				return "redirect:prof_lectureVideo.do?classNo=" + classNo;
+				ArrayList<LecturePlanWeek> aLpw = plService.lectureVideo(classNo);
+				m.addAttribute("classNo", classNo);
+				m.addAttribute(aLpw);
+				return "redirect:prof_lectureVideo.do";
 			} else {
 				return "common/errorPage";
 			}
@@ -173,7 +176,7 @@ public class prof_LectureController {
 		}
 
 	/**
-	 * 강의 영상 수정
+	 * 동영상 / 첨부파일 업데이트
 	 * @param mv
 	 * @param lpw
 	 * @param request
@@ -216,8 +219,10 @@ public class prof_LectureController {
 //			System.out.println(lecNum);
 			
 			if (result > 0) {
-				mv.addObject("lecNo", lpw.getLecNo()).setViewName("prof_lectureVideo.do?classNo=" + classNo); //여기서부터 다시해야겠다././..
-				
+				ArrayList<LecturePlanWeek> aLpw = plService.lectureVideo(classNo);
+				mv.addObject("classNo", classNo);
+				mv.addObject("aLpw", aLpw);
+				mv.setViewName("prof_lecture/prof_lectureVideo");
 			} else {
 				mv.addObject("msg", "수정실패").setViewName("common/errorPage");
 			}
