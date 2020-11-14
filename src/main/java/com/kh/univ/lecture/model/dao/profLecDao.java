@@ -4,16 +4,17 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.member.model.vo.Professor;
-import com.kh.univ.notice.model.vo.Notice;
 
 @Repository("plDao")
 public class profLecDao {
@@ -59,6 +60,20 @@ public class profLecDao {
 		return sqlSession.selectOne("lectureMapper.sylla1", classNo);
 	}
 
+	public ArrayList<ClassTest> classSelectList(Professor p,int currentPage) {
+//		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+//		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
+//		return (ArrayList)sqlSession.selectList("noticeMapper.selectnList",nType,rowBounds);
+		
+//		return sqlSession.selectList("lecturemapper.classSelectList",p)
+		return null;
+	}
+
+	public int getListCount() {
+		return 0;
+	}
+
 
 	public LecturePlan selectSyllainsertform(String pNo) {
 		return sqlSession.selectOne("lectureMapper.syllainsertform", pNo);
@@ -74,6 +89,19 @@ public class profLecDao {
 		{
 			return sqlSession.selectOne("lectureMapper.updateAfter",lpw);
 		}
+	//======================================================
+	public ArrayList<LecturePlanWeek> prof_Syllabus_LectureWeekSelect(String classNo) {
+		return (ArrayList)sqlSession.selectList("lectureMapper.lectureWeekSelect", classNo);
+	}
+
+	public LecturePlan prof_Syllabus_LectureSelect(String classNo) {
+		return sqlSession.selectOne("lectureMapper.lectureSelect", classNo);
+
+	}
+
+	public int prof_Syllabus_LectureUpdate(LecturePlan lp) {
+		return sqlSession.update("lectureMapper.SyllaUpdate",lp);
+	}
 
 
 

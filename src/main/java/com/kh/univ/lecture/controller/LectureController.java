@@ -71,4 +71,9 @@ public class LectureController {
 	}
 	
 	
+<<<<<<< HEAD
+=======
+	
+	
+>>>>>>> branch 'master' of https://github.com/KHunivesity/khuniv.git
 }

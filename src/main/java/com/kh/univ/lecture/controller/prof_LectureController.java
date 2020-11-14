@@ -10,12 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.lecture.model.service.profLecService;
+import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
@@ -265,12 +267,15 @@ public class prof_LectureController {
 		}
 
 	@RequestMapping(value = "prof_Syllabus_LectureWrite.do")
-	public ModelAndView prof_Syllabus_LectureWrite(ModelAndView mv, @RequestParam(value="pNo")String pNo) {
-//		ArrayList <LecturePlanWeek> lpw = plService.selectSyllaOne2(profNo);
-		LecturePlan lp = plService.selectSyllainsertform(pNo);
-		if(lp !=null) {
+	public ModelAndView prof_Syllabus_LectureWrite(ModelAndView mv, @RequestParam(name="classNo", required= false) String classNo ) {
+		System.out.println("컨트롤러에 들어가는 값"+classNo);
+		ArrayList <LecturePlanWeek> lpw = plService.prof_Syllabus_LectureWeekSelect(classNo);
+		LecturePlan lp = plService.prof_Syllabus_LectureSelect(classNo);
+		System.out.println(lpw);
+		System.out.println(lp);
+		if(lp !=null&& lpw!= null) {
 		mv.addObject("lp",lp);
-//		mv.addObject("lpw",lpw);
+		mv.addObject("lpw",lpw);
 		mv.setViewName("prof_lecture/prof_Syllabus_LectureWrite");
 		}else {
 			mv.addObject("msg","로그인 실패");
@@ -278,6 +283,22 @@ public class prof_LectureController {
 		}
 		return mv;
 	}
+	
+	@RequestMapping(value = "prof_Syllabus_LectureUpdate.do")
+	public ModelAndView prof_Syllabus_LectureUpdate(ModelAndView mv, LecturePlan lp ) {
+		System.out.println(lp);
+		int result = plService.prof_Syllabus_LectureUpdate(lp);
+		System.out.println(result);
+		if(result>0) {
+		mv.addObject("lp",lp);
+		mv.setViewName("prof_lecture/prof_lecturePlanList");
+		}else {
+			mv.addObject("msg","로그인 실패");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+
 
 	@RequestMapping(value = "prof_learningprogress.do")
 	public String prof_learningprogress(Model model)
@@ -285,10 +306,13 @@ public class prof_LectureController {
 			return "prof_lecture/prof_learnig_progress";
 		}
 
+	
+	
 	@RequestMapping(value = "prof_lecturePlanList.do")
 	public ModelAndView prof_lecturePlanList(ModelAndView mv, HttpSession session) {
 		Professor pNo = (Professor) session.getAttribute("loginProf");
 		System.out.println(pNo);
+		System.out.println("게시판들어왔다");
 		ArrayList <LectureList> plpl = plService.SyllaPlanList(pNo);
 		if(plpl !=null) {
 		mv.addObject("plpl",plpl);
@@ -300,6 +324,88 @@ public class prof_LectureController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "ad_syllabus.do")
+	public ModelAndView ad_syllabus(ModelAndView mv, @RequestParam(value="classNo")String classNo) {
+			ArrayList <LecturePlanWeek> lpw = plService.selectSyllaOne2(classNo);
+			LecturePlan lp = plService.selectSyllaOne1(classNo);
+			if(lpw != null && lp !=null) {
+			mv.addObject("lp",lp);
+			mv.addObject("lpw",lpw);
+			mv.setViewName("ad_register/ad_Syllabus_Lecture");
+			}else {
+				mv.addObject("msg","로그인 실패");
+				mv.setViewName("common/errorPage");
+			}
+			return mv;
+	}
 	
+	@RequestMapping(value = "ad_lect_list.do")
+	public ModelAndView ad_Lecture_List(ModelAndView mv, HttpSession session ) {
+			ArrayList<LectureList> aLc = plService.selectList(session);
+			System.out.println(aLc);
+			if(aLc != null) {
+			mv.addObject("aLc",aLc);
+			mv.setViewName("ad_register/ad_Lecture_List");
+			}else {
+				mv.addObject("msg","로그인 실패");
+				mv.setViewName("common/errorPage");
+			}
+			return mv;
+	}
+
+	
+	
+	
+	/**
+	 * 
+	 * 시험리스트
+	 * @param mv
+	 * @param session
+	 * @param currentPage
+	 * @return
+	 */
+	@RequestMapping("prof_testList.do")
+	public ModelAndView prof_testList(ModelAndView mv,HttpSession session,
+			@RequestParam(value="currentPage",required = false,defaultValue = "1") int currentPage) {
+		
+		Professor p= (Professor)session.getAttribute("loginProf");
+//		int listCount = plService.getListCount();
+		
+//		ArrayList<ClassTest> ct = plService.classSelectList(p,currentPage);
+		
+		
+		
+		mv.setViewName("prof_lecture/prof_testList");
+		return mv;
+	}
+
+	
+	@RequestMapping(value = "prof_testInsert.do", method = RequestMethod.GET)
+	public String TestInsert2(Model model) {
+		
+		return "prof_lecture/prof_test_insert";
+	}
+	@RequestMapping(value = "prof_homeworklist.do", method = RequestMethod.GET)
+	public String homeworklist(Model model) {
+		
+		return "prof_lecture/prof_homework_list";
+		
+		
+	}
+	@RequestMapping(value = "prof_homeworkInsert.do", method = RequestMethod.GET)
+	public String homework(Model model) {
+		
+		return "prof_lecture/prof_homework_insert";
+		
+		
+	}
+	@RequestMapping(value = "prof_studentEvaluation.do", method = RequestMethod.GET)
+	public String homeworkEvaludation(Model model) {
+		
+		return "prof_lecture/prof_homework_Evaluation";
+		
+		
+	}
+
 }
 

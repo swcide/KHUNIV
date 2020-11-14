@@ -95,42 +95,7 @@ public class TestPageController {
 		
 		
 	}
-	@RequestMapping(value = "TestInsert.do", method = RequestMethod.GET)
-	public String TestInsert(Model model) {
-		
-		return "prof_lecture/prof_testList";
-		
-		
-	}
-	@RequestMapping(value = "prof_testInsert.do", method = RequestMethod.GET)
-	public String TestInsert2(Model model) {
-		
-		return "prof_lecture/prof_test_insert";
-		
-		
-	}
-	@RequestMapping(value = "prof_homeworklist.do", method = RequestMethod.GET)
-	public String homeworklist(Model model) {
-		
-		return "prof_lecture/prof_homework_list";
-		
-		
-	}
-	@RequestMapping(value = "prof_homeworkInsert.do", method = RequestMethod.GET)
-	public String homework(Model model) {
-		
-		return "prof_lecture/prof_homework_insert";
-		
-		
-	}
-	@RequestMapping(value = "prof_studentEvaluation.do", method = RequestMethod.GET)
-	public String homeworkEvaludation(Model model) {
-		
-		return "prof_lecture/prof_homework_Evaluation";
-		
-		
-	}
-	
+
 	
 	
 }

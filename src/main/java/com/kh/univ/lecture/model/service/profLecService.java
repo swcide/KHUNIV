@@ -4,17 +4,15 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 
+import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.member.model.vo.Professor;
+import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.notice.model.vo.Notice;
 
-/**
- * @author admin
- *
- */
 /**
  * @author admin
  *
@@ -73,10 +71,28 @@ public interface profLecService {
 	ArrayList<LecturePlanWeek> selectSyllaOne2(String classNo);
 
 	LecturePlan selectSyllaOne1(String classNo);
-
+	
 	LecturePlan selectSyllainsertform(String pNo);
 
 	ArrayList<LectureList> SyllaPlanList(Professor pNo);
+	
+	//==========================================================
+	ArrayList<LecturePlanWeek> prof_Syllabus_LectureWeekSelect(String classNo);
+
+	LecturePlan prof_Syllabus_LectureSelect(String classNo);
+
+	int prof_Syllabus_LectureUpdate(LecturePlan lp);
+	/**
+	 * @param lpw
+	 * @return
+	 */
+
+	
+
+
+	ArrayList<ClassTest> classSelectList(Professor p, int currentPage);
+
+	int getListCount();
 
 	
 
