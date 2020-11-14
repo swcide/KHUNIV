@@ -27,7 +27,7 @@
 								<table class="table table-hover" >
 									<thead>
 										<tr>
-											<th>주차<th>
+											<th>타입<th>
 											<th>제목</th>
 											<th>진행</th>
 											<th>배점</th>

@@ -31,6 +31,7 @@
 								<form class="form-horizontal form-bordered" action="prof_testInsert.do" method="get">
 								
 									<div id="text">	
+									
 										<div class="form-group row">
 											<label class="col-lg-3 control-label text-lg-right pt-2" >과목 명</label>
 											<div class="col-lg-6">
@@ -134,78 +135,75 @@
 						    		</div>
 						    		
 						    		<div id="exam"style="display:none;" >  
-						    		  			
-						    			<div class="form-group row">
-											<label class="col-lg-3 control-label text-lg-right pt-2" ></label>
-											<div class="col-lg-6">
-												<a href='javascript:void(0);' onclick='add(this);' class="btn btn-sm btn-primary float-right">문제 추가</a>
-											</div>
-										</div>	
-									
-											
-											
-									  	<div class="form-group row">
-											<label class="col-lg-3 control-label text-lg-right pt-2" >문제 번호</label>
-											<div class="col-lg-6">
-												<input class="col-lg-5 form-control" type="text" style="width:100px">
-											</div>
-										</div>
+					    		  		<div>		
+							    			<div class="form-group row">
+												<label class="col-lg-3 control-label text-lg-right pt-2" ></label>
+												<div class="col-lg-6">
+													<a href='javascript:void(0);' onclick='add(this);' class="btn btn-sm btn-primary float-right">문제 추가</a>
+												</div>
+											</div>	
 										
-						    			<div class="form-group row">
-											<label class="col-lg-3 control-label text-lg-right pt-2" >문제 명</label>											<div class="col-lg-6">
-											<textarea class="textarea"></textarea>
+												
+												
+										  	<div class="form-group row">
+												<label class="col-lg-3 control-label text-lg-right pt-2" >문제 번호</label>
+												<div class="col-lg-6">
+													<input class="col-lg-5 form-control" type="text" style="width:100px">
+												</div>
 											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-lg-3 control-label text-lg-right pt-2" >보기 1)</label>
-											<div class="col-lg-6">
-												<input class="form-control" name="" type="text">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-lg-3 control-label text-lg-right pt-2" >보기 2)</label>
-											<div class="col-lg-6">
-												<input class="form-control" name="" type="text">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-lg-3 control-label text-lg-right pt-2" >보기 3)</label>
-											<div class="col-lg-6">
-												<input class="form-control" name="" type="text">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-lg-3 control-label text-lg-right pt-2" >보기 4)</label>
-											<div class="col-lg-6">
-												<input class="form-control" name="" type="text">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-lg-3 control-label text-lg-right pt-2" > 배점 </label>
-											<div class="col-lg-6">
-												<input class="col-lg-5 form-control" type="text" style="width:100px">
-											</div>
-										</div>	
-										<div class="form-group row">
-											<label class="col-lg-3 control-label text-lg-right pt-2" > 정답 번호 </label>
-											<div class="col-lg-6">
-												<input class="col-lg-5 form-control" type="text" style="width:100px">
-											</div>
-										</div>	
-						    			<hr>
-				    					
-			    					
-
-										<div class="form-group row">
-											<label class="col-lg-3 control-label text-lg-right pt-2" ></label>
-											<div class="col-lg-6">
-											<a href='javascript:void(0);' onclick='back(this);' class="btn btn-quaternary mb-2">뒤로가기</a>
 											
-											<input id="submit"	type="submit" value="완료"class="btn btn-dark btn-modern float-right">
-
+							    			<div class="form-group row">
+												<label class="col-lg-3 control-label text-lg-right pt-2" >문제 명</label>											<div class="col-lg-6">
+												<textarea class="textarea"></textarea>
+												</div>
 											</div>
-										</div>
-																																    		
+											<div class="form-group row">
+												<label class="col-lg-3 control-label text-lg-right pt-2" >보기 1)</label>
+												<div class="col-lg-6">
+													<input class="form-control" name="" type="text">
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-lg-3 control-label text-lg-right pt-2" >보기 2)</label>
+												<div class="col-lg-6">
+													<input class="form-control" name="" type="text">
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-lg-3 control-label text-lg-right pt-2" >보기 3)</label>
+												<div class="col-lg-6">
+													<input class="form-control" name="" type="text">
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-lg-3 control-label text-lg-right pt-2" >보기 4)</label>
+												<div class="col-lg-6">
+													<input class="form-control" name="" type="text">
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-lg-3 control-label text-lg-right pt-2" > 배점 </label>
+												<div class="col-lg-6">
+													<input class="col-lg-5 form-control" type="text" style="width:100px">
+												</div>
+											</div>	
+											<div class="form-group row">
+												<label class="col-lg-3 control-label text-lg-right pt-2" > 정답 번호 </label>
+												<div class="col-lg-6">
+													<input class="col-lg-5 form-control" type="text" style="width:100px">
+												</div>
+											</div>	
+							    			<hr>
+					    					<div class="form-group row">
+												<label class="col-lg-3 control-label text-lg-right pt-2" ></label>
+												<div class="col-lg-6">
+												<a id="back" href='javascript:void(0);' onclick='back(this);' class="btn btn-quaternary mb-2">뒤로가기</a>
+												
+												<input id="submit"	type="submit" value="완료"class="btn btn-dark btn-modern float-right">
+	
+												</div>
+											</div>			
+										</div>		
 						    		</div>
 								</form>
 							</div>	
@@ -230,6 +228,8 @@
 	
 
 	function add(obj){
+		
+		alert("zzzzzzz")
 		var aa =$('#back').parent().parent();
 		var test = 
 				'<div>'+
@@ -299,6 +299,7 @@
 
 		
 		aa.before(test);
+				
 		  $('.textarea').summernote();
 		
 		
@@ -310,7 +311,17 @@
 		
 		
 	}
+	
 
+	function back(obj){
+		var text = $('#text')
+		var exam =$('#exam')		
+		text.css("display","block");
+		exam.css('display','none');
+		
+			 
+		
+	}
 
 </script>
 <%@ include file="../common/footer.jsp"%>

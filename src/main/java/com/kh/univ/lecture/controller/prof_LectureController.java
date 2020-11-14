@@ -10,12 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.lecture.model.service.profLecService;
+import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
@@ -350,5 +352,60 @@ public class prof_LectureController {
 			}
 			return mv;
 	}
+
+	
+	
+	
+	/**
+	 * 
+	 * 시험리스트
+	 * @param mv
+	 * @param session
+	 * @param currentPage
+	 * @return
+	 */
+	@RequestMapping("prof_testList.do")
+	public ModelAndView prof_testList(ModelAndView mv,HttpSession session,
+			@RequestParam(value="currentPage",required = false,defaultValue = "1") int currentPage) {
+		
+		Professor p= (Professor)session.getAttribute("loginProf");
+//		int listCount = plService.getListCount();
+		
+//		ArrayList<ClassTest> ct = plService.classSelectList(p,currentPage);
+		
+		
+		
+		mv.setViewName("prof_lecture/prof_testList");
+		return mv;
+	}
+
+	
+	@RequestMapping(value = "prof_testInsert.do", method = RequestMethod.GET)
+	public String TestInsert2(Model model) {
+		
+		return "prof_lecture/prof_test_insert";
+	}
+	@RequestMapping(value = "prof_homeworklist.do", method = RequestMethod.GET)
+	public String homeworklist(Model model) {
+		
+		return "prof_lecture/prof_homework_list";
+		
+		
+	}
+	@RequestMapping(value = "prof_homeworkInsert.do", method = RequestMethod.GET)
+	public String homework(Model model) {
+		
+		return "prof_lecture/prof_homework_insert";
+		
+		
+	}
+	@RequestMapping(value = "prof_studentEvaluation.do", method = RequestMethod.GET)
+	public String homeworkEvaludation(Model model) {
+		
+		return "prof_lecture/prof_homework_Evaluation";
+		
+		
+	}
+
 }
 

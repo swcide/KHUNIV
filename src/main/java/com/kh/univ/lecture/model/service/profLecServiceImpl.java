@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.univ.lecture.model.dao.profLecDao;
+import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
+import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.notice.model.vo.Notice;
 
@@ -83,6 +85,7 @@ public class profLecServiceImpl implements profLecService {
 		return plDao.selectSyllaOne1(classNo);
 	}
 
+	
 	@Override
 	public LecturePlan selectSyllainsertform(String pNo) {
 		return plDao.selectSyllainsertform(pNo);
@@ -117,7 +120,17 @@ public class profLecServiceImpl implements profLecService {
 		return plDao.prof_Syllabus_LectureUpdate(lp);
 	}
 
-	
+	@Override
+	public ArrayList<ClassTest> classSelectList(Professor p, int currentPage) {
+		
+		return plDao.classSelectList(p,currentPage);
+
+	}
+
+	@Override
+	public int getListCount() {
+		return plDao.getListCount();
+	}
 
 	
 	
