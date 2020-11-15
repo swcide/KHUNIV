@@ -77,9 +77,6 @@ public interface profLecService {
 	ArrayList<LectureList> SyllaPlanList(Professor pNo);
 	
 	//==========================================================
-	ArrayList<LecturePlanWeek> prof_Syllabus_LectureWeekSelect(String classNo);
-
-	LecturePlan prof_Syllabus_LectureSelect(String classNo);
 
 	int prof_Syllabus_LectureUpdate(LecturePlan lp);
 	/**
@@ -87,12 +84,16 @@ public interface profLecService {
 	 * @return
 	 */
 
-	
-
 
 	ArrayList<ClassTest> classSelectList(Professor p, int currentPage);
 
 	int getListCount();
+
+	ArrayList<LecturePlanWeek> prof_Syllabus_LectureWeekSelect(LectureList ll);
+
+	LecturePlan prof_Syllabus_LectureSelect(LectureList ll);
+
+	
 
 	
 

@@ -26,7 +26,7 @@ public class LectureClass {
 		this.className = className;
 		this.lecAttendance = lecAttendance;
 		this.lecLearningRate = lecLearningRate;
-		Attendees = attendees;
+		this.Attendees = attendees;
 		this.classSummary = classSummary;
 		this.classImg = classImg;
 		this.profName = profName;

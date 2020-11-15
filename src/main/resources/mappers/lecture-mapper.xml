@@ -271,7 +271,7 @@
 		JOIN
 		TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
 		WHERE
-		CLASS_NO=#{classNo}
+		CLASS_NO=#{classNo} AND PROF_NO=#{pNo}
 	</select>
 	<select id="SyllaUpdate" resultMap="Sylla1ResultSet">
 		UPDATE TB_LECTURE_PLAN

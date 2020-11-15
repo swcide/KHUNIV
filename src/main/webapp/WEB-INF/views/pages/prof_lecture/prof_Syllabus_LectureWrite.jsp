@@ -228,35 +228,35 @@
 <script>
 	function validate() {
 		if (formSylla.classSummary.value == "") {
-			alert("빈칸을 채워주세요");
+			shake()
 			formSylla.classSummary.focus();
 			return false;
 		}else if (formSylla.classGoal.value == "") {
-			alert("빈칸을 채워주세요");
+			shake()
 			formSylla.classGoal.focus();
 			return false;
 		}else if (formSylla.lecMethod.value == "") {
-			alert("빈칸을 채워주세요");
+			shake()
 			formSylla.lecMethod.focus();
 			return false;
 		}else if (formSylla.evalMethod.value == "") {
-			alert("빈칸을 채워주세요");
+			shake()
 			formSylla.evalMethod.focus();
 			return false;
 		}else if (formSylla.assignment.value == "") {
-			alert("빈칸을 채워주세요");
+			shake()
 			formSylla.assignment.focus();
 			return false;
 		}else if (formSylla.lecExperiment.value == "") {
-			alert("빈칸을 채워주세요");
+			shake()
 			formSylla.lecExperiment.focus();
 			return false;
 		}else if (formSylla.relatedLec.value == "") {
-			alert("빈칸을 채워주세요");
+			shake()
 			formSylla.relatedLec.focus();
 			return false;
 		}else if (formSylla.lecTextbook.value == "") {
-			alert("빈칸을 채워주세요");
+			shake()
 			formSylla.lecTextbook.focus();
 			return false;
 		}else{
@@ -265,7 +265,15 @@
 		}
 	}
 	/* 퀵메뉴 창닫기 기능 */
-
+function shake(){
+	for(i=10; i>0; i--){
+		window.moveBy(0,i);
+		window.moveBy(i,0);
+		window.moveBy(0,-i);
+		window.moveBy(-i,0);
+	}
+	alert("빈칸을 채워주세요");
+	}
 	
 </script>
 </html>

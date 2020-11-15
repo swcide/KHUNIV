@@ -267,10 +267,13 @@ public class prof_LectureController {
 		}
 
 	@RequestMapping(value = "prof_Syllabus_LectureWrite.do")
-	public ModelAndView prof_Syllabus_LectureWrite(ModelAndView mv, @RequestParam(name="classNo", required= false) String classNo ) {
-		System.out.println("컨트롤러에 들어가는 값"+classNo);
-		ArrayList <LecturePlanWeek> lpw = plService.prof_Syllabus_LectureWeekSelect(classNo);
-		LecturePlan lp = plService.prof_Syllabus_LectureSelect(classNo);
+	public ModelAndView prof_Syllabus_LectureWrite(ModelAndView mv, LectureList ll,@RequestParam(name = "pNo", required = false) String pNo, @RequestParam(name = "classNo", required = false) String classNo, HttpSession session ) {
+		System.out.println(pNo);
+		System.out.println(classNo);
+		ll.setpNo(pNo);
+		ll.setClassNo(classNo);
+		ArrayList <LecturePlanWeek> lpw = plService.prof_Syllabus_LectureWeekSelect(ll);
+		LecturePlan lp = plService.prof_Syllabus_LectureSelect(ll);
 		System.out.println(lpw);
 		System.out.println(lp);
 		if(lp !=null&& lpw!= null) {
