@@ -9,5 +9,6 @@ public interface LectureService {
 	ArrayList<Attendance> selectList(PageInfo pi);
 
 	int getListCount();
+	int attendanceRate();
 	
 }

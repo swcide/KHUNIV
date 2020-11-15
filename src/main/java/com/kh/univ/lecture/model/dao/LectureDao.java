@@ -27,5 +27,10 @@ public class LectureDao {
 		
 		return (ArrayList)sqlSession.selectList("lectureMapper.attendance",null,rowBounds);
 	}
+	
+
+	public int attendanceRate() {
+		return sqlSession.selectOne("lectureMapper.attendanceRate");
+	}
 
 }

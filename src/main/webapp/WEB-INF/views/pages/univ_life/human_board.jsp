@@ -31,7 +31,7 @@
 							<table class="table table-hover">
 								<thead>
 									<tr>
-										<th>#</th>
+										<th>번호</th>
 										<th>제목</th>
 										<th>작성자</th>
 										<th>조회수</th>

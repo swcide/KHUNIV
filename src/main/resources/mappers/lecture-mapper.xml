@@ -86,8 +86,8 @@
 	</resultMap>
 
 	<resultMap type="Attendance" id="AttendanceResultSet">
-		<id property="classNo" column="CLASS_NO" />
-		<result property="stdNo" column="STD_NO" />
+		<id property="classType" column="CLASSTYPE" />
+		<result property="className" column="CLASSNAME" />
 		<result property="1Week" column="FIRSTWEEK" />
 		<result property="2Week" column="SECONDWEEK" />
 		<result property="3Week" column="THIRDWEEK" />
@@ -110,8 +110,27 @@
 	
 	<select id="attendance" resultMap="AttendanceResultSet">
 		SELECT
-		CLASS_NO,STD_NO
+		CLASSTYPE,CLASSNAME
 		FROM TB_ATTENDANCE
+		
+	</select>
+
+	<select id="attendanceRate" resultType="_int">
+		SELECT 
+     SUM(FIRSTWEEK)
+    +SUM(SECONDWEEK)
+    +SUM(THIRDWEEK)
+    +SUM(FOURTHWEEK)
+    +SUM(FIFTHWEEK)
+    +SUM(SIXTHWEEK)
+    +SUM(SEVENTHWEEK)
+    +SUM(EIGHTTHWEEK)
+    +SUM(NINTHWEEK)
+    +SUM(TENTHWEEK)
+    +SUM(ELEVENTHWEEK)
+    +SUM(TWELFTHWEEK)
+   
+	FROM TB_ATTENDANCE
 		
 	</select>
 
