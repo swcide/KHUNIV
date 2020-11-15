@@ -25,4 +25,10 @@ public class LetureServiceImpl implements LectureService {
 		return lDao.getListCount();
 	}
 
+	@Override
+	public int attendanceRate() {
+
+		return lDao.attendanceRate();
+	}
+
 }

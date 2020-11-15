@@ -46,15 +46,16 @@
 											</tr>
 										</thead>
 										<tbody>
+											<c:forEach var="a" items="${list}">
 											<tr>
 												<td>
-													전공선택
+													${a.classType }
 												</td>
 												<td>
-													서양주거사
+													${a.className }
 												</td>
 												<td>
-													50%(6/12주)
+													${a.attendanceRate }
 												</td>
 												<td>
 													50%(6/12주)
@@ -107,7 +108,7 @@
 												</td>
 											</tr>
 											
-											
+											</c:forEach>
 										</tbody>
 									</table>
 						
