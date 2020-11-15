@@ -12,17 +12,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.univ.common.PageInfo;
+import com.kh.univ.common.Pagination;
+import com.kh.univ.lecture.model.service.LectureService;
 import com.kh.univ.lecture.model.service.profLecService;
+import com.kh.univ.lecture.model.vo.Attendance;
 import com.kh.univ.lecture.model.vo.LectureClass;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
+import com.kh.univ.univlife.board.human.model.vo.HumanBoard;
 
 @Controller //이거 안쓰면 에러남 
 public class LectureController {
 	
 	@Autowired
-	profLecService plService;
+	LectureService lService;
 	
 	@RequestMapping(value = "lecturelist.do")
 	public String signup( Model model) {
@@ -31,27 +36,29 @@ public class LectureController {
 	}
 	
 	/**
-	 * Simply selects the home view to render by returning its name.
+	 * 1.출석현황다떼
+	 * 
+	 * @param mv
+	 * @param currentPage
+	 * @return
 	 */
 	@RequestMapping(value = "attendance.do")
-	public String attendance( Model model) {
+	public ModelAndView humanBoardList(ModelAndView mv,
+			@RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage) {
+
+		int listCount = lService.getListCount();
+
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
-		return "ad_lecture/ad_attendance";
-	}
-	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	@RequestMapping(value = "grade.do")
-	public String grade(Model model) {
 		
-		return "ad_lecture/ad_grade";
+
+		ArrayList<Attendance> list = lService.selectList(pi);
+
+		mv.addObject("list", list);
+		mv.addObject("pi", pi);
+		mv.setViewName("ad_lecture/ad_attendance");
+		return mv;
 	}
-	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	
 	
 	
 	/**
@@ -62,8 +69,6 @@ public class LectureController {
 		
 		return "ad_lecture/ad_special_lecture";
 	}
-	
-	
 	
 	
 }
