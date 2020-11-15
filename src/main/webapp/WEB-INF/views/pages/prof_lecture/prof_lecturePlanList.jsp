@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ page import="com.kh.univ.member.model.vo.Professor"%>
+<%
+
+Professor loginProf = (Professor)session.getAttribute("loginProf");
+String pNo = null;
+pNo =loginProf.getpNo();
+
+%>
 <%@include file="../common/professor_header.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -34,6 +43,7 @@
 					</div>
 				</div>
 			</section>
+			
 			<div class="container py-2">
 				<div class="row">
 					<!-- 컨텐츠 -->
@@ -50,12 +60,14 @@
 												<th style="text-align: center;"></th>
 											</tr>
 										</thead>
-										<c:forEach var="l" items="${plpl}">
+										<input id="pNo" type="hidden" value="<%=pNo%>"></input>
+										<c:forEach var="l" items="${plpl}" varStatus="l2">
 											<tbody>
-												<tr id="popular10" class="cursor_on_finger">
-													<td style="text-align: center;">${l.classNo }
-														<input id="classNo" type="hidden" value="${l.classNo}">
-													</td>
+												
+												<tr onclick="openNew(this)"class="cursor_on_finger">
+													<input type="hidden" value="${l.classNo}">
+													
+													<td class="check"style="text-align: center;">${l.classNo }</td>
 													<td style="text-align: center;">${l.className }</td>
 													<td style="text-align: center;">${l.classType }</td>
 													<td style="text-align: center;">
@@ -76,6 +88,7 @@
 					</div>
 				</div>
 			</div>
+			
 		</div>
 	</div>
 
@@ -83,12 +96,22 @@
 
 </body>
 <script>
-	$("#popular10 td").click(function(){ 	
-		var classNo = $('#classNo').val()
-		console.log(classNo)
-		window.open(this.href='prof_Syllabus_LectureWrite.do?classNo='+classNo, '', 'resizable=yes, width=900, height=800 left=700px top=100px')
+	function openNew(obj){
+		var classNo = $(obj).children().siblings('input').val();
+		var pNo=$('#pNo').val();
+		console.log(pNo)		
+		console.log(pNo)		
+		window.open(this.href='prof_Syllabus_LectureWrite.do?classNo='+classNo+'&pNo='+pNo,'', 'resizable=yes, width=900, height=800 left=700px top=100px')
 		return false;
-	});
+		
+	} ;
+	
+// 	$("#popular10").click(function(){ 
+		
+		
+		
+	
+// 	});
    </script>
 <%@include file="../common/footer.jsp"%>
 </html>

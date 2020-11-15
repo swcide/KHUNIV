@@ -105,13 +105,13 @@ public class profLecServiceImpl implements profLecService {
 		}
 	//==========================================================
 	@Override
-	public ArrayList<LecturePlanWeek> prof_Syllabus_LectureWeekSelect(String classNo) {
-		return plDao.prof_Syllabus_LectureWeekSelect(classNo);
+	public ArrayList<LecturePlanWeek> prof_Syllabus_LectureWeekSelect(LectureList ll) {
+		return plDao.prof_Syllabus_LectureWeekSelect(ll);
 	}
 
 	@Override
-	public LecturePlan prof_Syllabus_LectureSelect(String classNo) {
-		return plDao.prof_Syllabus_LectureSelect(classNo);
+	public LecturePlan prof_Syllabus_LectureSelect(LectureList ll) {
+		return plDao.prof_Syllabus_LectureSelect(ll);
 
 	}
 
@@ -132,9 +132,4 @@ public class profLecServiceImpl implements profLecService {
 		return plDao.getListCount();
 	}
 
-	
-	
-
-
-	
 }
