@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -288,15 +289,19 @@ public class prof_LectureController {
 	}
 	
 	@RequestMapping(value = "prof_Syllabus_LectureUpdate.do")
+	@ResponseBody
 	public ModelAndView prof_Syllabus_LectureUpdate(ModelAndView mv, LecturePlan lp ) {
-		System.out.println(lp);
+		System.out.println("컨트롤러"+lp);
 		int result = plService.prof_Syllabus_LectureUpdate(lp);
 		System.out.println(result);
 		if(result>0) {
+			System.out.println(lp);
 		mv.addObject("lp",lp);
 		mv.setViewName("prof_lecture/prof_lecturePlanList");
+		
 		}else {
-			mv.addObject("msg","로그인 실패");
+			System.out.println(lp);
+			mv.addObject("msg","수정실패");
 			mv.setViewName("common/errorPage");
 		}
 		return mv;

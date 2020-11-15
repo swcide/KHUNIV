@@ -61,6 +61,7 @@ pNo =loginProf.getpNo();
 											</tr>
 										</thead>
 										<input id="pNo" type="hidden" value="<%=pNo%>"></input>
+										
 										<c:forEach var="l" items="${plpl}" varStatus="l2">
 											<tbody>
 												
@@ -81,6 +82,7 @@ pNo =loginProf.getpNo();
 												</tr>
 											</tbody>
 										</c:forEach>
+										
 									</table>
 								</div>
 							</div>

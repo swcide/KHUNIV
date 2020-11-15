@@ -55,6 +55,10 @@
 
 <!-- Head Libs -->
 <script src="resources/vendor/modernizr/modernizr.min.js"></script>
+
+<script  src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+
 </head>
 <body onresize="parent.resizeTo(900,800)" onload="parent.resizeTo(700,100)">
 	<div class="body">
@@ -114,7 +118,7 @@
 							</tbody>
 						</table>
 
-						<form action="prof_Syllabus_LectureUpdate.do" name="formSylla" onsubmit="return validate();" id="" method="post">
+						<form action="prof_Syllabus_LectureUpdate.do" name="formSylla"  id="formSylla" method="post">
 							<input name="classNo" type="hidden" value="${lp.classNo}">
 							<table class="table table-hover">
 								<thead>
@@ -215,7 +219,7 @@
 								</tbody>
 							</table>
 
-							<button type="submit" class="btn btn-dark" style="float: right; margin-bottom: 20px;">
+							<button type="submit" class="btn btn-dark" id="btnForm" onclick="checkForm(); return false" style="float: right; margin-bottom: 20px;">
 								<i class="fas fa-pencil-alt"></i> 제출하기
 							</button>
 						</form>
@@ -226,54 +230,75 @@
 	</div>
 </body>
 <script>
-	function validate() {
+function checkForm() {
+	
 		if (formSylla.classSummary.value == "") {
 			shake()
 			formSylla.classSummary.focus();
 			return false;
-		}else if (formSylla.classGoal.value == "") {
+		} else if (formSylla.classGoal.value == "") {
 			shake()
 			formSylla.classGoal.focus();
 			return false;
-		}else if (formSylla.lecMethod.value == "") {
+		} else if (formSylla.lecMethod.value == "") {
 			shake()
 			formSylla.lecMethod.focus();
 			return false;
-		}else if (formSylla.evalMethod.value == "") {
+		} else if (formSylla.evalMethod.value == "") {
 			shake()
 			formSylla.evalMethod.focus();
 			return false;
-		}else if (formSylla.assignment.value == "") {
+		} else if (formSylla.assignment.value == "") {
 			shake()
 			formSylla.assignment.focus();
 			return false;
-		}else if (formSylla.lecExperiment.value == "") {
+		} else if (formSylla.lecExperiment.value == "") {
 			shake()
 			formSylla.lecExperiment.focus();
 			return false;
-		}else if (formSylla.relatedLec.value == "") {
+		} else if (formSylla.relatedLec.value == "") {
 			shake()
 			formSylla.relatedLec.focus();
 			return false;
-		}else if (formSylla.lecTextbook.value == "") {
+		} else if (formSylla.lecTextbook.value == "") {
 			shake()
 			formSylla.lecTextbook.focus();
 			return false;
-		}else{
-			window.open('', '_self').close();
-			alert("완료 되었습니다.")
+		} else {
+			ajaxFormSylla()
+			return true;
+			
 		}
-	}
-	/* 퀵메뉴 창닫기 기능 */
-function shake(){
-	for(i=10; i>0; i--){
-		window.moveBy(0,i);
-		window.moveBy(i,0);
-		window.moveBy(0,-i);
-		window.moveBy(-i,0);
-	}
-	alert("빈칸을 채워주세요");
-	}
+	};
 	
+	function ajaxFormSylla()
+	{
+		var params = $("form[name=formSylla]").serialize();
+		$.ajax({
+			type: "POST",
+			url : 'prof_Syllabus_LectureUpdate.do',
+			data : params,
+			dataType : "html",
+			success : function(data)
+					{	
+						alert("수정이 완료되었습니다.")
+						window.opener.location.reload();
+						self.close();
+					}
+			,error:function(request, status, error){
+
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+		});
+	}
+	function shake() {
+		for (i = 10; i > 0; i--) {
+			window.moveBy(0, i);
+			window.moveBy(i, 0);
+			window.moveBy(0, -i);
+			window.moveBy(-i, 0);
+		}
+		alert("빈칸을 채워주세요");
+	}
 </script>
 </html>
