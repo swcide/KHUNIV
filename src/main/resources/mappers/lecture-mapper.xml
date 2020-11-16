@@ -22,7 +22,8 @@
 		<id property="classNo" column="CLASS_NO" />
 		<result property="className" column="CLASS_NAME" />
 		<result property="lecAttendance" column="LECTURE_ATTENDANCE" />
-		<result property="lecLearningRate" column="LECTURE_LEARNINGRATE" />
+		<result property="lecLearningRate"
+			column="LECTURE_LEARNINGRATE" />
 		<result property="Attendees" column="CLASS_ATTENDEES" />
 		<result property="classSummary" column="CLASS_SUMMARY" />
 		<result property="classImg" column="CLASS_IMG" />
@@ -31,7 +32,8 @@
 		<result property="deptName" column="DEPT_NAME" />
 	</resultMap>
 
-	<resultMap type="LecturePlanWeek" id="lecturePlanWeekResultSet">
+	<resultMap type="LecturePlanWeek"
+		id="lecturePlanWeekResultSet">
 		<id property="classNo" column="CLASS_NO" />
 		<id property="lecNo" column="LECTURE_NO" />
 		<id property="lecName" column="LECTURE_NAME" />
@@ -46,7 +48,8 @@
 		<id property="classNo" column="CLASS_NO" />
 		<result property="className" column="CLASS_NAME" />
 		<result property="lecAttendance" column="LECTURE_ATTENDANCE" />
-		<result property="lecLearningRate" column="LECTURE_LEARNINGRATE" />
+		<result property="lecLearningRate"
+			column="LECTURE_LEARNINGRATE" />
 		<result property="Attendees" column="CLASS_ATTENDEES" />
 		<result property="classSummary" column="CLASS_SUMMARY" />
 		<result property="classImg" column="CLASS_IMG" />
@@ -56,7 +59,7 @@
 		<result property="deptName" column="DEPT_NAME" />
 		<result property="credit" column="CREDIT" />
 		<result property="classType" column="CLASS_TYPE" />
-		
+
 	</resultMap>
 
 
@@ -319,10 +322,13 @@
 	<!-- 강의 리스트카운트 -->
 	<select id="getLCount" resultType="_int">
 		SELECT COUNT(CLASS_NO)
-		FROM TB_CLASS C
+		FROM
+		TB_CLASS C
 		JOIN TB_CLASS_PROFESSOR USING(CLASS_NO)
-		JOIN TB_PROFESSOR ON TB_CLASS_PROFESSOR.PROFESSOR_NO=TB_PROFESSOR.PROF_NO
-		WHERE CLASS_TYPE LIKE '전공%'
+		JOIN TB_PROFESSOR ON
+		TB_CLASS_PROFESSOR.PROFESSOR_NO=TB_PROFESSOR.PROF_NO
+		WHERE CLASS_TYPE
+		LIKE '전공%'
 		AND C.DEPT_NO=#{dNo}
 	</select>
 
@@ -375,12 +381,12 @@
 		UPDATE
 		TB_CLASS_DETAIL
 		SET
-		CLASS_NO = #{classNo},
-		LECTURE_NO = #{lecNo},
 		LECTURE_NAME = #{lecName},
-		LECTURE_REFERENCE = #{lecReference},
+		LECTURE_REFERENCE =
+		#{lecReference},
 		LECTURE_VIDEO = #{lecVideo},
-		LECTURE_EXPLANATION =#{lecExplanation},
+		LECTURE_EXPLANATION
+		=#{lecExplanation},
 		LECTURE_ATTENDANCE = DEFAULT,LECTURE_LEARNINGRATE =
 		DEFAULT,CLASS_ATTENDEES =
 		DEFAULT,LECTURE_VIDEO_CREATE_DATE = SYSDATE

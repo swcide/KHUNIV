@@ -368,7 +368,13 @@ public class prof_LectureController {
 		System.out.println(listCount);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		System.out.println("아마 여기까진");
-		ArrayList<LectureList> ll = plService.selectList(dNo,pi);
+		
+		
+		ArrayList<LectureList> ll = plService.selectList(dNo,pi); // 전공과목용 
+		
+		ArrayList<LectureList> lp = plService.selectList(dNo,pi); // 교양과목용 
+			
+				
 		System.out.println(ll);
 		if(ll != null) {
 			mv.addObject("ll",ll);

@@ -61,7 +61,6 @@
 															<td style="text-align: center;">${ll.classType }</td>
 															<td style="text-align: center;">${ll.profName }</td>
 														</tr>
-
 													</tbody>
 												</c:forEach>
 											</table>
@@ -126,45 +125,79 @@
 											<table class="table table-hover">
 												<thead>
 													<tr>
-														<th>#</th>
-														<th style="text-align: center;">학년</th>
+														<th style="text-align: center;">강의번호</th>
 														<th style="text-align: center;">강의명</th>
-														<th style="text-align: center;">시험일자</th>
 														<th style="text-align: center;">학점</th>
+														<th style="text-align: center;">과목분류</th>
 														<th style="text-align: center;">담당교수</th>
 													</tr>
 												</thead>
-												<tbody>
-													<tr>
-														<td>1</td>
-														<td style="text-align: center;">4</td>
-														<td style="text-align: center;">Mark</td>
-														<td style="text-align: center;">Otto</td>
-														<td style="text-align: center;">1</td>
-														<td style="text-align: center;">이성호</td>
-													</tr>
-													<tr>
-														<td>2</td>
-														<td style="text-align: center;">1</td>
-														<td style="text-align: center;">Mark</td>
-														<td style="text-align: center;">Otto</td>
-														<td style="text-align: center;">2</td>
-														<td style="text-align: center;">@mdo</td>
-													</tr>
-													<tr>
-														<td>3</td>
-														<td style="text-align: center;">3</td>
-														<td style="text-align: center;">Mark</td>
-														<td style="text-align: center;">Otto</td>
-														<td style="text-align: center;">2</td>
-														<td style="text-align: center;">@mdo</td>
-													</tr>
-												</tbody>
+												<c:forEach var="lp" items="${lp}">
+													<tbody>
+														<tr>
+															<td style="text-align: center;">${lp.classNo }
+																<input id="classNo" type="hidden" value="${lp.classNo}">
+															</td>
+															<td style="text-align: center;">${lp.className }</td>
+															<td style="text-align: center;">${lp.credit }</td>
+															<td style="text-align: center;">${lp.classType }</td>
+															<td style="text-align: center;">${lp.profName }</td>
+														</tr>
+													</tbody>
+												</c:forEach>
 											</table>
+											<div class="card-tools" align="center">
+												<ul class="pagination pagination-sm" style="display: inline-flex">
+													<!-- 이전데스요 -->
+													<c:if test="${ pi.currentPage eq 1 }">
+
+														<li class="page-item"><a class="page-link"> <i class="fas fa-angle-left"></i>
+														</a></li>
+
+													</c:if>
+													<c:if test="${ pi.currentPage ne 1 }">
+														<c:url var="before" value="/ad_lect_list.do">
+															<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
+														</c:url>
+														<li class="page-item"><a class="page-link" href="${ before }"> <i class="fas fa-angle-left"></i>
+														</a></li>
+													</c:if>
+
+													<!-- 페이징처리데스요 -->
+													<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+														<c:if test="${ p eq pi.currentPage }">
+
+															<li class="page-item active"><a class="page-link" href="${ pagination }">${p}</a></li>
+														</c:if>
+														<c:if test="${ p ne pi.currentPage }">
+															<c:url var="pagination" value="/ad_lect_list.do">
+																<c:param name="currentPage" value="${ p }" />
+															</c:url>
+															<li class="page-item "><a class="page-link" href="${ pagination }">${p}</a></li>
+														</c:if>
+													</c:forEach>
+													<c:if test="${ pi.currentPage eq pi.maxPage }">
+
+														<li class="page-item"><a class="page-link"> <i class="fas fa-angle-right"></i>
+														</a></li>
+
+													</c:if>
+
+													<!-- 				            	다음대음다음대음 -->
+													<c:if test="${pi.currentPage ne pi.maxPage }">
+														<c:url var="after" value="/ad_lect_list.do">
+															<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
+														</c:url>
+
+														<li class="page-item"><a class="page-link" href="${after}"> <i class="fas fa-angle-right"></i>
+														</a></li>
+													</c:if>
+												</ul>
+											</div>
 										</div>
 									</div>
-
 								</div>
+
 							</div>
 						</div>
 					</div>
