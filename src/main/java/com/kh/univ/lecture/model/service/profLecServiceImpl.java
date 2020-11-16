@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.univ.common.PageInfo;
 import com.kh.univ.lecture.model.dao.profLecDao;
 import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
@@ -126,10 +127,17 @@ public class profLecServiceImpl implements profLecService {
 		return plDao.classSelectList(p,currentPage);
 
 	}
-
+	
+	// 리스트카운트
 	@Override
-	public int getListCount() {
-		return plDao.getListCount();
+	public int getListCount(String dNo) {
+		return plDao.getListCount(dNo);
+	}
+	
+	// 강의개설정보페이지
+	@Override
+	public ArrayList<LectureList> selectList(String dNo, PageInfo pi) {
+		return plDao.selectList(dNo, pi);
 	}
 
 }

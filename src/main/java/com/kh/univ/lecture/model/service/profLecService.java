@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 
+import com.kh.univ.common.PageInfo;
 import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
 import com.kh.univ.lecture.model.vo.LectureList;
@@ -86,12 +87,27 @@ public interface profLecService {
 
 
 	ArrayList<ClassTest> classSelectList(Professor p, int currentPage);
-
-	int getListCount();
-
+	
+	
+	
+	
 	ArrayList<LecturePlanWeek> prof_Syllabus_LectureWeekSelect(LectureList ll);
 
 	LecturePlan prof_Syllabus_LectureSelect(LectureList ll);
+	
+	/**
+	 * 강의 개설 정보 리스트카운트
+	 * @param dNo
+	 * @param pi
+	 * @return
+	 */
+	ArrayList<LectureList> selectList(String dNo, PageInfo pi);
+	
+	/**
+	 * 강의 개설 정보 리스트카운트
+	 * @return
+	 */
+	int getListCount(String dNo);
 
 	
 
