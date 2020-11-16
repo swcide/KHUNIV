@@ -375,8 +375,6 @@
 		UPDATE
 		TB_CLASS_DETAIL
 		SET
-		CLASS_NO = #{classNo},
-		LECTURE_NO = #{lecNo},
 		LECTURE_NAME = #{lecName},
 		LECTURE_REFERENCE = #{lecReference},
 		LECTURE_VIDEO = #{lecVideo},
