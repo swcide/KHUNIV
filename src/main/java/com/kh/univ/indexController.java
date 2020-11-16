@@ -83,4 +83,9 @@ public class indexController {
 		
 		return "administration_main";
 	}
+	
+	@RequestMapping(value="pwSearch.do")
+	public String pwSearch() {
+			return "member/pwSearch";
+	}
 }
