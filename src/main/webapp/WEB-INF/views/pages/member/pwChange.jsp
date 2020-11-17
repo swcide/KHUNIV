@@ -52,34 +52,41 @@
 		<script src="resources/vendor/modernizr/modernizr.min.js"></script>
 
 	</head>
-			<div class="main" style="background-image: url(resources/img/KakaoTalk_20201029_211816935_06.jpg);     background-size: cover; height: 937px;">
+			<div class="main" style="background-image: url(resources/img/KakaoTalk_20201029_211816935.jpg);     background-size: cover; height: 937px;">
 				<div class="container">
 					<div class="row">
 						<div class="col">
 						</div>
 					</div>
 					<div class="container py-4">
-					<img src="resources/img/big-logo.png" style="width: 300px;height: 300px; margin-left: 35%; margin-top: 8%;">
+					<img src="resources/img/big-logo.png" style="width: 300px;height: 300px; margin-left: 36.5%; margin-top: 8%;">
 						<div class="row justify-content-center">
-							<div class="col-md-6 col-lg-5 mb-5 mb-lg-0">
-								<img src="">
-								<h4 style="text-align: center;">비밀번호 변경</h4>
+							<div class="col-md-6 col-lg-5 mb-5 mb-lg-0" style="background:rgba(255,255,255,0.3); border-radius:5px">
+								<h4 style="text-align: center; margin-top: 20px;">비밀번호 변경</h4>
 								<hr>
-								<form action="/" id="frmSignIn" method="post" class="needs-validation">
+								<form action="pwChange.do" id="pwChange" method="post" class="needs-validation">
 									<div class="form-row">
 										<div class="form-group col">
 											<label class="text-color-dark text-3">비밀번호 <span class="text-color-danger">*</span></label>
-											<input type="text" value="" class="form-control form-control-lg text-4" required>
+											<input type="password" name="password" id="pwd" class="form-control form-control-lg text-4" required>
 										</div>
 									</div>
 									<div class="form-row">
 										<div class="form-group col">
-											<label class="text-color-dark text-3">비밀번호 확인<span class="text-color-danger">*</span></label>
-											<input type="password" value="" class="form-control form-control-lg text-4" required>
+											<label class="text-color-dark text-3">비밀번호 확인<span class="text-color-danger">*</span>&nbsp;&nbsp;&nbsp;
+<!-- 											<span class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</span> -->
+<!-- 											<span class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</span> -->
+											<label style="color: rgb(23, 162, 184);border-radius: 4px; width: 321px;text-align: center; display:none;"id="alert-success" ><strong>비밀번호가 일치합니다.</strong></label>
+											<label style="color: #dc3545; border-radius: 4px;width: 321px;text-align: center;display:none;"  id="alert-danger"><strong>비밀번호가 일치하지 않습니다.</strong></label>
+											</label>
+											<input type="password" name="rePassword" id="rePwd" class="form-control form-control-lg text-4" required>
 										</div>
 									</div>
 									<div class="form-row">
 										<div class="form-group col">
+										<input type="hidden" name="e_mail" value="${e_mail }">
+										<input type="hidden" name="id" value="${id }">
+										<input type="hidden" name="type" value="${type }">
 											<button type="submit" class="btn btn-dark btn-modern btn-block text-uppercase rounded-0 font-weight-bold text-3 py-3" data-loading-text="Loading...">변경하기</button>
 										</div>
 									</div>
@@ -120,17 +127,27 @@
 		<!-- Theme Initialization Files -->
 		<script src="resources/js/theme.init.js"></script>
 
-		<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
 		<script>
-			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-			ga('create', 'UA-12345678-1', 'auto');
-			ga('send', 'pageview');
+		$(function(){
+			$("#alert-success").hide();
+			$("#alert-danger").hide();
+			$("input").keyup(function(){
+				var pwd = $("#pwd").val();
+				var rePwd = $("#rePwd").val();
+				if(pwd != "" || rePwd !=""){
+					if(pwd==rePwd){
+						$("#alert-success").show();
+						$("#alert-danger").hide();
+						$("#submit").removeAttr("disabled");
+					}else{
+						$("#alert-success").hide();
+						$("#alert-danger").show();
+						$("#submit").attr("disabled","disabled");
+					}
+				}
+			});
+		});
 		</script>
-		 -->
 
 	</body>
 </html>

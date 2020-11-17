@@ -98,5 +98,39 @@
       FROM MEMBER
       WHERE ID=#{id}
    </select>
+   
+   <!--  email 전송을 위한 값 출력 -->
+	<select id="sendEmailS" resultMap="studentResultSet">
+		SELECT STD_NO, STD_PWD, STD_NAME
+		FROM TB_STUDENT
+		WHERE STD_NO = #{sNo}
+		AND STD_EMAIL = #{sEmail}
+	</select>
+
+	<select id="sendEmailP" resultMap="professorResultSet">
+		SELECT PROF_NO,PROF_PWD,PROF_NAME
+		FROM TB_PROFESSOR
+		WHERE PROF_NO = #{pNo}
+		AND PROF_EMAIL = #{pEmail}
+	</select>
+
+<!--  비밀번호 찾기 후 ==>> 암호화 변경  -->
+	<update id = "pwChangeS" parameterType="Student">
+	UPDATE TB_STUDENT 
+	SET 
+	STD_PWD = #{sPwd}
+	WHERE STD_EMAIL = #{sEmail}
+	AND STD_NO = #{sNo}
+	AND LOGIN_TYPE = 1
+    </update>
+    
+    <update id="pwChangeP" parameterType="Professor">
+	UPDATE TB_PROFESSOR
+	SET
+	PROF_PWD = #{pPwd}
+	WHERE PROF_EMAIL = #{pEmail}
+	AND PROF_NO = #{pNo}
+	AND LOGIN_TYPE = 2
+    </update>
 
 </mapper>

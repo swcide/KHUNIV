@@ -1,5 +1,7 @@
 package com.kh.univ.member.model.service;
 
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -41,6 +43,37 @@ public class MemberServiceImpl implements MemberService {
   public int updateMember(Student s) {
     return 0;
   }
+
+@Override
+public Student sendEmailS(Student s)
+	{
+		return mDao.sendEmailS(s);
+	}
+
+@Override
+public Professor sendEmailP(Professor p)
+	{
+		return mDao.sendEmailP(p);
+	}
+
+@Override
+public int updatePwd(String newPwd)
+	{
+		return mDao.updatePwd(newPwd);
+	}
+
+@Override
+public int pwChangeS(Student s)
+	{
+		return mDao.pwChangeS(s);
+	}
+
+@Override
+public int pwChangeP(Professor p)
+	{
+		return mDao.pwChangeP(p);
+	}
+
 
 
 }

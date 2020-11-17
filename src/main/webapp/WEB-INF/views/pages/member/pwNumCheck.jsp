@@ -61,26 +61,25 @@
 			<div class="row justify-content-center">
 				<div class="col-md-6 col-lg-5 mb-5 mb-lg-0">
 					<img src="">
-					<h4 style="text-align: center;">비밀번호 찾기</h4>
+					<h4 style="text-align: center;">인증번호 입력</h4>
 					<hr>
-					<form action="pwChange.do" id="frmSearch" method="post" class="needs-validation">
+					<form action="pwNumCheck.do" id="frmSearch" method="post" class="needs-validation">
+						<div id="numCheck">
 						<div class="form-row">
 							<div class="form-group col">
-								<label class="text-color-dark text-3">학번 <span class="text-color-danger">*</span></label>
-								<input type="text" id="id" name="id" class="form-control form-control-lg text-4" required>
-								<input type="hidden" id="hd" name="type">
+								<label class="text-color-dark text-3">인증번호 입력 <span class="text-color-danger">*</span></label>
+								<input type="text"name="insertPassCode" class="form-control form-control-lg text-4" required>
+								<input type="hidden" name="passCode" value="${newPwd }">
+								<input type="hidden" name="e_mail" value="${e_mail }">
+								<input type="hidden" name="id" value="${id }">
+								<input type="hidden" name="type" value="${type }">
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="form-group col">
-								<label class="text-color-dark text-3">E-mail <span class="text-color-danger">*</span></label>
-								<input type="email" id="e_mail" name="e_mail" class="form-control form-control-lg text-4" required>
+								<button type="submit" class="btn btn-dark btn-modern btn-block text-uppercase rounded-0 font-weight-bold text-3 py-3" data-loading-text="Loading...">확인</button>
 							</div>
 						</div>
-						<div class="form-row">
-							<div class="form-group col">
-								<button id="sendMail" type="button" class="btn btn-dark btn-modern btn-block text-uppercase rounded-0 font-weight-bold text-3 py-3" data-loading-text="Loading...">인증번호 받기</button>
-							</div>
 						</div>
 					</form>
 				</div>
@@ -132,23 +131,7 @@
 		</script>
 		 -->
 <script>
-$('#sendMail').on('click',function() {
-// 			if ($('#dlswmd').css('display') == 'none') {
-// 				$('#dlswmd').show();
-				
-				if ($("#id").val().indexOf("P") > -1) {
-					//교수
-					alert("prof");
-					$("#hd").val("2");
-					$("#frmSearch").attr("action", "pwEmail.do").submit();
-				} else {
-					//학생
-					alert("std");
-					$("#hd").val("1");
-					$("#frmSearch").attr("action", "pwEmail.do").submit();
-				}
-			
-		});
+
 		
 </script>
 </body>
