@@ -112,7 +112,7 @@ public class profLecDao {
 	}
 
 	public int getListCount(Professor p) {
-		return sqlSession.selectOne("lectureMapper.getListCount",p);
+		return sqlSession.selectOne("lectureMapper.getQListCount",p);
 	}
 
 

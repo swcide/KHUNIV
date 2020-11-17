@@ -425,7 +425,28 @@
 		WHERE LECTURE_NO = #{lecNo}
 	</select>
 	
-	<select id="getListCount" resultType="int">
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<select id="getQListCount" resultType="int">
 		SELECT count(*)
 		FROM TB_PROF_TEST P
 		WHERE PROF_NO = #{pNo}
@@ -485,7 +506,7 @@
                QUESTION_CONTENT3 = #{qContent3},
                QUESTION_CONTENT4 =#{qContent4},
                QUESTION_ANSWER = #{qAnswer},
-               QUESTION_WORTH = #{qWorth},
+               QUESTION_WORTH = #{qWorth}
 		  WHERE QID = #{qId}
 	</update>
 	<insert id="insertTest" parameterType="Test">

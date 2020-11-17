@@ -111,7 +111,6 @@ margin:0;}
 														</div>
 													</div>
 												</div>
-												<input  type="hidden" value="${t.tNo }">
 											</div>
 
 											</c:forEach>
@@ -148,21 +147,22 @@ margin:0;}
 												</div>
 											</div>	
 											
-											<c:if test="${!empty Test }">
-											<c:forEach var="t" items="${t}">
-												<input type="hidden" name="tNo" value="${t.tNo }">
-												<input type="hidden" name="cNo" value="${t.cNo }">
-												<input type="hidden" name="pNo" value="${t.pNo }">
-												<input type="hidden" name="cName" value="${t.cName }">
-											</c:forEach>
-											</c:if>
-											<c:if test="${empty Test }">
-											<input type="hidden" name="tNo" value="${ct.tNo }">
-											<input type="hidden" name="cNo" value="${ct.cNo }">
-											<input type="hidden" name="pNo" value="${ct.pNo }">
-											<input type="hidden" name="cName" value="${ct.cName }">
-											<span>zzzzzz222222222zz${ct.cNo }"</span>
-											</c:if>
+											<c:choose>
+												<c:when  test="${!empty Test }">
+													<c:forEach var="t" end="0" items="${t}">
+														<input type="hidden" name="tNo" value="${t.tNo }">
+														<input type="hidden" name="cNo" value="${t.cNo }">
+														<input type="hidden" name="pNo" value="${t.pNo }">
+														<input type="hidden" name="cName" value="${t.cName }">
+													</c:forEach>
+												</c:when>
+												<c:otherwise>
+												<input type="hidden" name="tNo" value="${ct.tNo }">
+												<input type="hidden" name="cNo" value="${ct.cNo }">
+												<input type="hidden" name="pNo" value="${ct.pNo }">
+												<input type="hidden" name="cName" value="${ct.cName }">
+												</c:otherwise>
+											</c:choose>
 										
 												
 												
