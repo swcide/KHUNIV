@@ -1,9 +1,15 @@
 package com.kh.univ.lecture.controller;
 
 import java.io.File;
+import java.io.IOException;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +18,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
+import com.kh.univ.common.PageInfo;
+import com.kh.univ.common.Pagination;
 import com.kh.univ.lecture.model.service.profLecService;
 import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
@@ -24,6 +36,7 @@ import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.notice.model.vo.Notice;
+import com.kh.univ.testPage.model.vo.Test;
 import com.kh.univ.member.model.vo.Student;
 
 @SessionAttributes({ "loginProf" })
@@ -303,8 +316,8 @@ public class prof_LectureController {
 	}
 	
 	
-
 	
+//---------------------------------------------------------------------------------------------------
 	
 	
 	/**
@@ -320,22 +333,337 @@ public class prof_LectureController {
 			@RequestParam(value="currentPage",required = false,defaultValue = "1") int currentPage) {
 		
 		Professor p= (Professor)session.getAttribute("loginProf");
-//		int listCount = plService.getListCount();
 		
-//		ArrayList<ClassTest> ct = plService.classSelectList(p,currentPage);
+		int listCount = plService.getListCount(p);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+
 		
 		
+		ArrayList<ClassTest> cTList = plService.classSelectList(p,pi);
 		
+//		System.out.println(cTList);
+		
+		
+		mv.addObject("cTList",cTList);
+		mv.addObject("pi",pi);
 		mv.setViewName("prof_lecture/prof_testList");
 		return mv;
 	}
 
 	
-	@RequestMapping(value = "prof_testInsert.do", method = RequestMethod.GET)
-	public String TestInsert2(Model model) {
+	/**
+	 * 
+	 * 인서트 뷰
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping( "prof_testInsertView.do")
+	public ModelAndView prof_testInsertView(ModelAndView mv, HttpSession session) {
 		
-		return "prof_lecture/prof_test_insert";
+		Professor p= (Professor)session.getAttribute("loginProf");
+		String pNo =p.getpNo();
+		
+		ArrayList<LectureClass> lc = plService.selectValue(pNo);
+		
+
+		
+		mv.addObject("lc",lc);
+		mv.addObject("p",p);
+		mv.setViewName("prof_lecture/prof_test_insert"); 
+		
+		return mv;
 	}
+		
+
+	
+	
+
+
+	/**
+	 * 
+	 * 스케쥴 insert
+	 * @param mv
+	 * @param ct
+	 * @param openDate
+	 * @param openTime
+	 * @return
+	 */
+	@RequestMapping( "prof_testScheduleInsert.do")
+	public ModelAndView prof_testInsert(ModelAndView mv, ClassTest ct,
+			@RequestParam(value="openDate",required = false)String openDate, @RequestParam(value="openTime",required = false)String openTime
+//			@RequestParam(value="startDate",required = false)String startDate1, @RequestParam(value="startTime",required = false)Date startTime,
+//			@RequestParam(value="endDate",required = false)String endDate1, @RequestParam(value="endTime",required = false)Date endTime ) {
+		 ){
+		String openDate2 = openDate+" "+openTime;
+		ct.setOpenDate(openDate2);
+//		--------------------------------------------------
+		String str = ct.getcName(); 
+		String[] arr = str.split(",");
+		ct.setcName(arr[0]);
+		ct.setcNo(arr[1]);
+		
+		
+		
+		
+//		-------------------------------------------------------
+		String str2 =openDate;
+		String str3 =openTime;
+		
+		
+		String[] arr2 = str2.split("-");
+		String[] arr3 = str3.split(":");
+		
+		System.out.println(arr2[0]);
+		System.out.println(arr2[1]);
+		System.out.println(arr2[2]);
+		
+		
+		String tNo=ct.gettType()+arr2[0]+arr2[1]+arr2[2]+arr3[0]+arr3[1];
+		ct.settNo(tNo);//시험 번호
+		
+		
+		
+		
+		System.out.println("---------스케쥴 인서트--------");
+		System.out.println(ct);
+		int result = plService.insertTestSchedule(ct);
+		
+		if(result>0) {
+			mv.addObject("cNo",ct.getcNo());
+			mv.addObject("tNo",ct.gettNo());
+			mv.setViewName("redirect:qList.do");
+		}
+		return mv;
+	}
+	
+	/**
+	 * 시험스케쥴 디테일
+	 * @param mv
+	 * @param tNo
+	 * @param currentPage
+	 * @return
+	 */
+	@RequestMapping("ctDetail.do")
+	public ModelAndView prof_TestDetail(ModelAndView mv,String tNo ,@RequestParam(value="currentPage",required = false,defaultValue = "1") int currentPage) {
+		System.out.println(tNo);
+		ClassTest ct = plService.selectClassOne(tNo);
+	
+		mv.addObject("ct",ct);
+		mv.addObject("currentPage",currentPage);
+		mv.setViewName("prof_lecture/prof_test_detail");
+		
+		return mv;
+	}
+	
+	
+	
+	
+	/**
+	 * 스케쥴 업데이트 뷰
+	 * @param mv
+	 * @param tNo
+	 * @return
+	 */
+	@RequestMapping("tUpScheduleView.do")
+	public ModelAndView boardUpdateView(ModelAndView mv, String tNo) {
+		mv.addObject("ct",plService.selectClassOne(tNo)).setViewName("prof_lecture/prof_tSchedule_update");
+		return mv;
+		
+	}
+	
+	@RequestMapping("tUpSchedule.do")
+	public ModelAndView boardUpdate(ModelAndView mv, ClassTest ct,
+			@RequestParam(value="openDate",required = false)String openDate, @RequestParam(value="openTime",required = false)String openTime
+//			@RequestParam(value="startDate",required = false)String startDate1, @RequestParam(value="startTime",required = false)Date startTime,
+//			@RequestParam(value="endDate",required = false)String endDate1, @RequestParam(value="endTime",required = false)Date endTime ) {
+		 ) {
+		System.out.println("tast ---------스케쥴 업데이트-----------insert");
+
+		System.out.println("======update+====");
+		System.out.println(ct);
+		String openDate2 = openDate+" "+openTime;
+		ct.setOpenDate(openDate2);
+
+
+		
+		
+		
+		
+		ArrayList<Test> t = plService.selectClassList(ct.getcNo());
+		System.out.println("-----------------");
+		System.out.println(t);
+		int result = plService.updateTestSchedule(ct);
+		
+		if(result>0) {
+			mv.addObject("cNo",ct.getcNo());
+			mv.addObject("tNo",ct.gettNo());
+			mv.setViewName("redirect:qList.do");
+		}
+		return mv;
+	}
+	
+	/**
+	 * 
+	 * 문제 업데이트
+	 * @param t
+	 * @param cNo
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("prof_testUpdate.do")
+	public String prof_TestUpdate(Test t ,String cNo) {
+
+		System.out.println("tast ---------------------업데이트");
+
+//		ArrayList<Test> t1 = plService.selectClassList(cNo);
+		
+//		System.out.println(t1);
+		
+		System.out.println(t);
+		
+		int result = plService.updateTest(t);
+		System.out.println(result);
+		
+		if(result>0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+		
+	}
+	
+	
+	
+	
+	/**
+	 * 
+	 * 문제 저장
+	 * @param mv
+	 * @param t
+	 * @return
+	 */
+	@RequestMapping( "testInsert.do")
+	public ModelAndView prof_TestInsert(ModelAndView mv,Test t) {
+		
+		System.out.println("tast ---------------------insert");
+		System.out.println(t); 
+		String cNo =t.getcNo();
+		String tNo =t.gettNo();
+		t.getqTitle();
+		
+		int result = plService.insertTest(t);
+		
+		if (result>0) {
+			mv.addObject("cNo",cNo);
+			mv.addObject("tNo",tNo);
+			mv.setViewName("redirect:qList.do");
+		}
+		
+		
+		return mv;
+	}
+
+	/**
+	 * 문제 리스트
+	 * @param mv
+	 * @param cNo
+	 * @param tNo
+	 * @return
+	 */
+	@RequestMapping("qList.do")
+	public ModelAndView qList(ModelAndView mv, String cNo,String tNo) {
+		System.out.println("qList-------------");
+		
+//		
+//		
+		System.out.println(cNo);
+		System.out.println(tNo);
+		ArrayList<Test> t = plService.selectClassList(tNo);
+		ClassTest ct = plService.selectClassOne(tNo);
+		System.out.println(t);
+		System.out.println("--------------ct---------");
+		System.out.println(ct);
+		mv.addObject("t",t);
+		mv.addObject("ct",ct)
+		.setViewName("prof_lecture/prof_test_after_insert");
+		return mv;	
+		
+	}
+	
+	/**
+	 * 문제 리스트 ajax
+	 * @param mv
+	 * @param cNo
+	 * @param tNo
+	 * @return
+	 */
+	@RequestMapping("takeQList.do")
+	public void takeQlistAjax( Test t1,HttpServletResponse response) throws JsonIOException, IOException  {
+		response.setContentType("application/json; charset=UTF-8");
+		System.out.println("takeqList-------------");
+		System.out.println(t1.getcNo());
+		System.out.println(t1.gettNo());
+		ArrayList<Test> t = plService.takeClassList(t1);
+		System.out.println(t);
+		System.out.println("--------------ct---------");
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(t,response.getWriter());
+	}
+	/**
+	 * 문제 리스트 불러오기 저장
+	 * @param cNo
+	 * @param response
+	 * @throws JsonIOException
+	 * @throws IOException
+	 */
+	@ResponseBody
+	@RequestMapping("takeQListAdd.do")
+	public String takeQListAddAjax(Test t)   {
+		
+		System.out.println("qid-------takeQAdd------");
+		System.out.println(t.getqId());
+		System.out.println(t.gettNo());
+		Test t1 = plService.selectTest(t.getqId());
+		
+		t1.settNo(t.gettNo());
+		System.out.println(t);
+//		
+		int result = plService.takeAddQ(t1);
+		System.out.println(result);
+		
+		if(result>0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
+	
+
+	
+	@RequestMapping("qdelete.do")
+	public String testDelete(Test t, HttpServletRequest request) {
+		
+		System.out.println(t);
+		int result = plService.deleteTest(t);
+		System.out.println(result);
+		if (result>0) {
+			return "redirect:qList.do?=cNo"+t.getcNo();
+		}else {
+			return "common/errorPage";
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value = "prof_homeworklist.do", method = RequestMethod.GET)
 	public String homeworklist(Model model) {
 		

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 
+import com.kh.univ.common.PageInfo;
 import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
 import com.kh.univ.lecture.model.vo.LectureList;
@@ -12,6 +13,7 @@ import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.notice.model.vo.Notice;
+import com.kh.univ.testPage.model.vo.Test;
 
 /**
  * @author admin
@@ -79,9 +81,30 @@ public interface profLecService {
 	
 
 
-	ArrayList<ClassTest> classSelectList(Professor p, int currentPage);
+	ArrayList<ClassTest> classSelectList(Professor p, PageInfo pi);
 
-	int getListCount();
+	int getListCount(Professor p);
+
+	int insertTestSchedule(ClassTest ct);
+
+	ArrayList<Test> selectClassList(String tNo);
+
+	int updateTest(Test t);
+
+	int insertTest(Test t);
+
+	ClassTest selectClassOne(String tNo);
+
+	int deleteTest(Test t);
+
+	int updateTestSchedule(ClassTest ct);
+
+	Test selectTest(int qId);
+
+	ArrayList<Test> takeClassList(Test t1);
+
+	int takeAddQ(Test t);
+
 
 	
 

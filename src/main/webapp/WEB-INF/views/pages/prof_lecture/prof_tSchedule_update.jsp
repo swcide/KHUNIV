@@ -30,26 +30,24 @@
 				<div class="col">
 					<div class="image-hotspots">
 						<div class="row">
-
 							<div class="custom-box-details bg-color-light col-lg-12 ml-5 mb-5 mb-lg-4 float-right clearfix">
-								<h4 class="text-lg-center">시험 </h4> <hr>
-								<form  onsubmit="return check()" class="form-horizontal form-bordered" action="prof_testScheduleInsert.do" method="get">
+								<form  onsubmit="return check()" class="form-horizontal form-bordered" action="tUpSchedule.do" method="get">
+									<h4 class="text-lg-center">${ct.cName } 시험 정보 </h4> <hr>
 									<div id="text">	
 										<div class="form-group row">
 											<label class="col-lg-3 control-label text-lg-right pt-2" >과목 명</label>
 											<div class="col-lg-6">
-												<input type="hidden" name ="pNo" value="${p.pNo }">
-												<select id ="select"class="form-control" name="cName" id="inputDefault">
-													<c:forEach var="lc" items="${lc}">
-														<option value="${lc.className},${lc.classNo }">${lc.className }	</option>
-													</c:forEach>
-												</select>
+												<input type="hidden" name ="pNo" value="${ct.pNo }">
+												<input type="hidden" name ="cNo" value="${ct.cNo }">
+												<input type="hidden" name ="cName" value="${ct.cName }">
+												<input type="hidden" name ="tNo" value="${ct.tNo}">
+												<p class="form-control-static pt-2">${ct.cName }</p>
 											</div>
 										</div>
 										<div class="form-group row">
-											<label class="col-lg-3 control-label text-lg-right pt-2" >제목</label>
+											<label class="col-lg-3 control-label text-lg-right pt-2" >제목 ${ct.openDate}</label>
 											<div class="col-lg-6">
-												<input class="form-control" name="tTitle" type="text" >
+												<input class="form-control" name="tTitle" value="${ct.tTitle }" type="text" >
 											</div>
 										</div>
 										<div class="form-group row">
@@ -64,8 +62,8 @@
 										<div class="form-group row" >
 											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputHelpText">공개일</label>
 											<div class="col-lg-6" style="display: flex;">
-												<input type="date" name="openDate" class="form-control" max="9999-12-31" style=" width: 50%; margin-right: 20px;">
-												<input type="time" name="openTime" class="form-control" max="9999-12-31" style=" width: 50%;">
+												<input type="date" name="openDate"  class="form-control" max="9999-12-31" style=" width: 50%; margin-right: 20px;">
+												<input type="time" name="openTime"  class="form-control" max="9999-12-31" style=" width: 50%;">
 											</div>
 										</div>
 <!-- 										<div class="form-group row "style="margin-bottom: 0"> -->
@@ -86,22 +84,22 @@
 										<div class="form-group row">
 											<label class="col-lg-3 control-label text-lg-right pt-2" >시험시간</label>
 											<div class="col-lg-6" style="display: flex">
-												<input name="tTime"class="form-control" type="text" style="width:50px"><span style="padding-left:20px;align-self: center; font-size: 15px">분</span> 
+												<input name="tTime"value="${ct.tTime }" class="form-control" type="text" style="width:50px"><span style="padding-left:20px;align-self: center; font-size: 15px">분</span> 
 											</div>
 										</div>
 										<div class="form-group row">
-										<div class="form-group col-lg-3">
-												<a class="btn btn-sm btn-primary float-right" href="prof_testList.do">목록보기</a>
-										</div>
-										<div class="form-group col-lg-3">
-										</div>
-										<div class="form-group col-lg-3">
-											<input type="submit" value="저장 후 시험문제 출제하기" class="btn btn-primary btn-sm btn-modern float-right" data-loading-text="Loading...">
-										</div>
+											<div class="form-group col-lg-3">
+													<a class="btn btn-sm btn-primary float-right" href="javascript:history.go(-1)">취소</a>
+											</div>
+											<div class="form-group col-lg-3">
+											</div>
+											<div class="form-group col-lg-3">
+												<input type="submit" value="저장 후 시험문제  수정하기" class="btn btn-primary btn-sm btn-modern float-right" data-loading-text="Loading...">
+											</div>
 							    		</div>
 						    		</div>
-						    	</form>
-							</div>	
+					    		</form>
+				    		</div>
 						</div>
 					</div>
 				</div>
@@ -109,43 +107,7 @@
 		</div>
 	</div>
 </div>
-<script>
 
 
-	
-    function check (){
-    	var test = $('#select').val().split(",");
-    	var cNo = test[1];
-    	var empty1 =$('input[name=tTitle]').val();
-    	var empty2 =$('input[name=openDate]').val();
-    	var empty3 =$('input[name=openTime]').val();
-    	var empty4 =$('input[name=tTime]').val();
-    	
-    	console.log(test[1]);
-    	console.log(empty1);
-    	if(empty1==""){
-    		
-    		alert("제목을 작성해주세요!");
-    		return false;
-    	}else if(empty2==""){
-    		alert("공개일을 작성해주세요!");
-    		return false;
-    	}else if(empty3==""){
-    		alert("공개시간을 작성해주세요!");
-    		return false;
-    	}else if(empty4==""){
-    		alert("시험시간을 작성해주세요!");
-    		return false;
-    	}else{
-    	
-    	}
-    }
-		
-	
-
-
-
-
-</script>
 <%@ include file="../common/footer.jsp"%>
 

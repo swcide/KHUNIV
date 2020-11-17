@@ -22,8 +22,7 @@
 		<id property="classNo" column="CLASS_NO" />
 		<result property="className" column="CLASS_NAME" />
 		<result property="lecAttendance" column="LECTURE_ATTENDANCE" />
-		<result property="lecLearningRate"
-			column="LECTURE_LEARNINGRATE" />
+		<result property="lecLearningRate"	column="LECTURE_LEARNINGRATE" />
 		<result property="Attendees" column="CLASS_ATTENDEES" />
 		<result property="classSummary" column="CLASS_SUMMARY" />
 		<result property="classImg" column="CLASS_IMG" />
@@ -40,16 +39,14 @@
 		<id property="lecReference" column="LECTURE_REFERENCE" />
 		<id property="lecVideo" column="LECTURE_VIDEO" />
 		<id property="lecExplanation" column="LECTURE_EXPLANATION" />
-		<id property="lecVideoCreateDate"
-			column="LECTURE_VIDEO_CREATE_DATE" />
+		<id property="lecVideoCreateDate"	column="LECTURE_VIDEO_CREATE_DATE" />
 	</resultMap>
 
 	<resultMap type="LectureList" id="lectureListResultSet">
 		<id property="classNo" column="CLASS_NO" />
 		<result property="className" column="CLASS_NAME" />
 		<result property="lecAttendance" column="LECTURE_ATTENDANCE" />
-		<result property="lecLearningRate"
-			column="LECTURE_LEARNINGRATE" />
+		<result property="lecLearningRate"	column="LECTURE_LEARNINGRATE" />
 		<result property="Attendees" column="CLASS_ATTENDEES" />
 		<result property="classSummary" column="CLASS_SUMMARY" />
 		<result property="classImg" column="CLASS_IMG" />
@@ -84,6 +81,35 @@
 		<id property="lecNo" column="LECTURE_NO" />
 		<id property="lecName" column="LECTURE_NAME" />
 		<id property="lecReference" column="LECTURE_REFERENCE" />
+	</resultMap>
+	
+	<resultMap type="ClassTest" id="ClassTestResultSet">
+		<id property="tNo" column="TEST_NO"/>
+		<result property="tType" column="TEST_TYPE" />
+		<result property="tTitle" column="TEST_TITLE" />
+		<result property="openDate" column="OPENDATE" />
+		<result property="startDate" column="STARTDATE" />
+		<result property="endDate" column="ENDDATE" />
+		<result property="tTime" column="TEST_TIME" />
+		<result property="cNo" column="CLASS_NO" />
+		<result property="pNo" column="PROF_NO" />
+		<result property="cName" column="CLASS_NAME" />
+	</resultMap>
+	
+		<resultMap type="Test" id="TestResultSet">
+		<id property="tNo" column="TEST_NO"/>
+		<result property="cNo" column="CLASS_NO" />
+		<result property="cName" column="CLASS_NAME" />
+		<result property="qNo" column="QUESTION_NO" />
+		<result property="qTitle" column="QUESTION_TITLE" />
+		<result property="qContent1" column="QUESTION_CONTENT1" />
+		<result property="qContent2" column="QUESTION_CONTENT2" />
+		<result property="qContent3" column="QUESTION_CONTENT3" />
+		<result property="qContent4" column="QUESTION_CONTENT4" />
+		<result property="qAnswer" column="QUESTION_ANSWER" />
+		<result property="qWorth" column="QUESTION_WORTH" />
+		<result property="pNo" column="PROF_NO" />
+		<result property="qId" column="QID" />
 	</resultMap>
 
 	<select id="sylla2" resultMap="Sylla2ResultSet">
@@ -242,4 +268,130 @@
 		FROM TB_CLASS_DETAIL
 		WHERE LECTURE_NO = #{lecNo}
 	</select>
+	
+	<select id="getListCount" resultType="int">
+		SELECT count(*)
+		FROM TB_PROF_TEST P
+		WHERE PROF_NO = #{pNo}
+	</select>
+
+	<select id="classSelectList" resultMap="ClassTestResultSet">
+		SELECT *
+		FROM TB_PROF_TEST P
+		WHERE PROF_NO = #{pNo}
+	</select>
+	<insert id="insertTestSchedule" parameterType="ClassTest">
+		INSERT INTO TB_PROF_TEST
+		VALUES( 
+		#{tNo},
+		#{tType},
+		#{tTitle},
+		 (to_date(#{openDate},'yyyy-mm-dd HH24:MI')),
+		#{startDate},
+		#{endDate},
+		#{tTime},
+		#{cNo},
+		#{cName},
+		#{pNo}
+		)
+	</insert>
+	
+
+	<update id="updateTestSchedule" parameterType="ClassTest">
+		UPDATE  TB_PROF_TEST
+		SET 
+		TEST_TITLE=#{tTitle},
+		OPENDATE= (to_date(#{openDate},'yyyy-mm-dd HH24:MI')),
+		STARTDATE=#{startDate},
+		ENDDATE=#{endDate},
+		TEST_TIME=#{tTime}
+		WHERE TEST_NO = #{tNo}
+		
+	</update>
+	
+	
+	<select id="selectClassList" resultMap="TestResultSet">
+		SELECT *
+		FROM TB_TEST 
+		WHERE TEST_NO= #{tNo}
+	</select>
+	
+
+	
+	<update id="updateTest" parameterType="Test">
+		UPDATE TB_TEST
+		       SET
+		       TEST_NO =#{tNo},
+		       QUESTION_NO = #{qNo},
+               QUESTION_TITLE = #{qTitle},
+               QUESTION_CONTENT1 = #{qContent1},
+               QUESTION_CONTENT2 = #{qContent2},
+               QUESTION_CONTENT3 = #{qContent3},
+               QUESTION_CONTENT4 =#{qContent4},
+               QUESTION_ANSWER = #{qAnswer},
+               QUESTION_WORTH = #{qWorth},
+		  WHERE QID = #{qId}
+	</update>
+	<insert id="insertTest" parameterType="Test">
+		INSERT INTO TB_TEST
+		VALUES(
+			#{tNo},
+			#{cNo},
+			#{cName},
+			#{qNo},
+            #{qTitle},
+            #{qContent1},
+            #{qContent2},
+            #{qContent3},
+            #{qContent4},
+            #{qAnswer},
+            #{qWorth},
+            #{pNo},
+            SEQ_QID.NEXTVAL
+		)
+		
+	</insert>
+	<select id="selectClassOne" resultMap="ClassTestResultSet">
+		SELECT *
+		FROM TB_PROF_TEST
+		WHERE TEST_NO =#{tNo}
+	</select>
+	<delete id="deleteTest" parameterType="Test">
+		DELETE FROM TB_TEST
+		WHERE TEST_NO =#{tNo}
+		AND   QUESTION_NO =#{qNo}
+		AND QID =#{qId}
+	</delete>
+	<select id="selectTest" resultMap="TestResultSet">
+		SELECT *
+		FROM TB_TEST
+		WHERE QID =#{qId}
+	</select>
+	<select id="takeClassList" resultMap="TestResultSet">
+		SELECT *
+		FROM TB_TEST 
+		WHERE CLASS_NO= #{cNo}
+		and  NOT test_no= #{tNo}
+	</select>
+	
+	<insert id="takeAddQ" parameterType="Test">
+		INSERT INTO TB_TEST
+		VALUES(
+			#{tNo},
+			#{cNo},
+			#{cName},
+			#{qNo},
+            #{qTitle},
+            #{qContent1},
+            #{qContent2},
+            #{qContent3},
+            #{qContent4},
+            #{qAnswer},
+            #{qWorth},
+            #{pNo},
+            SEQ_QID.NEXTVAL
+		)
+		
+	</insert>
+	
 </mapper>

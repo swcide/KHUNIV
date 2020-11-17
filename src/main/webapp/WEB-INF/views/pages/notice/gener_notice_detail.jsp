@@ -119,7 +119,7 @@ System.out.println(type);
 												<c:url var="nDelete" value="nDelete.do">
 													<c:param name="nId" value="${n.nId }"/>
 												</c:url>
-												<c:url var="nlist" value="dept_nList.do?nType=2">
+												<c:url var="nlist" value="nList.do?nType=2">
 													<c:param name="currentPage" value="${ currentPage }"/>
 												</c:url>
 											
