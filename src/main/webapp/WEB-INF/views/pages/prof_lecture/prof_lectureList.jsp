@@ -3,14 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Content Wrapper. Contains page content -->
 <style>
-#className{
-color:#008995;
-	font-weight:bold;
+#className {
+	color: #008995;
+	font-weight: bold;
 }
-#className:hover{
-	cursor:pointer;
-	color:#005de8;
-	font-weight:bold;
+
+#className:hover {
+	cursor: pointer;
+	color: #005de8;
+	font-weight: bold;
 }
 </style>
 <div class="body">
@@ -41,8 +42,10 @@ color:#008995;
 										<div class="post-content">
 											<form id="frm" action="prof_lectureVideo.do" method="post">
 												<h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2">
-												<input type="hidden" name="classNo" value="${lc.classNo }">
-													<label id="className"><input type="submit" style="display:none;" >${lc.className }</label>
+													<input type="hidden" name="classNo" value="${lc.classNo }">
+													<label id="className">
+														<input type="submit" style="display: none;">${lc.className }
+													</label>
 												</h2>
 											</form>
 											<p>${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }${lc.className }</p>

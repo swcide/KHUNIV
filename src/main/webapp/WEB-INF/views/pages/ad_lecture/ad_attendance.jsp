@@ -26,7 +26,7 @@
 										<thead>
 											<tr>
 												<th>
-													학기
+													이수구분
 												</th>
 												<th>
 													과목명
@@ -43,21 +43,19 @@
 												<th>
 													제출과제수
 												</th>
-												<th>
-													팀 참여여부
-												</th>
 											</tr>
 										</thead>
 										<tbody>
+											<c:forEach var="a" items="${list}">
 											<tr>
 												<td>
-													1
+													${a.classType }
 												</td>
 												<td>
-													서양주거사
+													${a.className }
 												</td>
 												<td>
-													50%(6/12주)
+													${a.attendanceRate }
 												</td>
 												<td>
 													50%(6/12주)
@@ -68,13 +66,10 @@
 												<td>
 													3/6회
 												</td>
-												<td>
-													y
-												</td>
 											</tr>
 											<tr>
 												<td>
-													1
+													전공선택
 												</td>
 												<td>
 													디자인 커뮤니케이션
@@ -91,13 +86,10 @@
 												<td>
 													3/6회
 												</td>
-												<td>
-													y
-												</td>
 											</tr>
 											<tr>
 												<td>
-													1
+													전공선택
 												</td>
 												<td>
 													색체
@@ -114,12 +106,9 @@
 												<td>
 													3/6회
 												</td>
-												<td>
-													y
-												</td>
 											</tr>
 											
-											
+											</c:forEach>
 										</tbody>
 									</table>
 						

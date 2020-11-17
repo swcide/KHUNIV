@@ -49,18 +49,59 @@ public class profLecDao {
 			return sqlSession.update("lectureMapper.lectureVideoUpdate",lpw);
 		}
 	
+	
+	
+	
+	
+	// 내 강의 목록 	
 	public ArrayList<LectureList> selectList(HttpSession session) {
 
 		return (ArrayList)sqlSession.selectList("lectureMapper.lecList", session);
 	}
-
-	public ArrayList<LecturePlanWeek> selectSyllaOne2(String classNo) {
-		return (ArrayList)sqlSession.selectList("lectureMapper.sylla2", classNo);
-	}
-
+	
+	// 강의계획서 윗부분
 	public LecturePlan selectSyllaOne1(String classNo) {
 		return sqlSession.selectOne("lectureMapper.sylla1", classNo);
 	}
+	
+	// 강의계획서 아랫부분
+	public ArrayList<LecturePlanWeek> selectSyllaOne2(String classNo) {
+		return (ArrayList)sqlSession.selectList("lectureMapper.sylla2", classNo);
+	}	
+	
+	//======================================================
+	@SuppressWarnings("unchecked")
+	public int prof_Syllabus_LectureUpdate(LecturePlan lp) {
+		return sqlSession.update("lectureMapper.SyllaUpdate",lp);
+	}
+
+	public ArrayList<LecturePlanWeek> prof_Syllabus_LectureWeekSelect(LectureList ll) {
+		return (ArrayList)sqlSession.selectList("lectureMapper.lectureWeekSelect", ll);
+	}
+
+	public LecturePlan prof_Syllabus_LectureSelect(LectureList ll) {
+		return sqlSession.selectOne("lectureMapper.lectureSelect", ll);
+	}
+	
+	// 강의 개설 정보 페이지
+	public ArrayList<LectureList> selectList(String dNo, PageInfo pi) {
+		int offset = (pi.getCurrentPage() -1 ) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("lectureMapper.lecPList",dNo, rowBounds);
+	}
+	
+	// 강의 개설 리스트카운트
+	public int getListCount(String dNo) {
+		return sqlSession.selectOne("lectureMapper.getLCount",dNo);
+	}
+	
+	public LecturePlanWeek updateAfter(LecturePlanWeek lpw)
+	{
+		return sqlSession.selectOne("lectureMapper.updateAfter",lpw);
+	}
+	
+
+//	-----------------------------------------교수 강의동 시험 출제 -------------------------------
 
 	public ArrayList<ClassTest> classSelectList(Professor p,PageInfo pi) {
 		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
@@ -85,10 +126,7 @@ public class profLecDao {
 
 
 
-	public LecturePlanWeek updateAfter(LecturePlanWeek lpw)
-		{
-			return sqlSession.selectOne("lectureMapper.updateAfter",lpw);
-		}
+	
 
 	public int insertTestSchedule(ClassTest ct) {
 		return sqlSession.insert("lectureMapper.insertTestSchedule",ct);

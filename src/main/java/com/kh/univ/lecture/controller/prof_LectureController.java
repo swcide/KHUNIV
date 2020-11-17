@@ -97,20 +97,20 @@ public class prof_LectureController {
 	 */
 	@RequestMapping(value = "prof_lectureVideo.do")
 	public ModelAndView prof_lectureVideo(ModelAndView mv, @RequestParam(name = "classNo", required = false) String classNo)
-		{
-			ArrayList<LecturePlanWeek> aLpw = plService.lectureVideo(classNo);
-			System.out.println(classNo);
-			System.out.println("classNo");
-			if (aLpw != null) {
-				mv.addObject("classNo", classNo);
-				mv.addObject("aLpw", aLpw);
-				mv.setViewName("prof_lecture/prof_lectureVideo");
-			} else {
-				mv.addObject("msg", "로그인 실패");
-				mv.setViewName("common/errorPage");
-			}
-			return mv;
+	{
+		ArrayList<LecturePlanWeek> aLpw = plService.lectureVideo(classNo);
+		System.out.println(classNo);
+		System.out.println("classNo");
+		if (aLpw != null) {
+			mv.addObject("classNo", classNo);
+			mv.addObject("aLpw", aLpw);
+			mv.setViewName("prof_lecture/prof_lectureVideo");
+		} else {
+			mv.addObject("msg", "로그인 실패");
+			mv.setViewName("common/errorPage");
 		}
+		return mv;
+	}
 
 	/**
 	 * 동영상 / 첨부파일 업로드
@@ -317,7 +317,7 @@ public class prof_LectureController {
 	
 	
 	
-//---------------------------------------------------------------------------------------------------
+//------------------------강의동 시험---------------------------------------------------------------------------
 	
 	
 	/**

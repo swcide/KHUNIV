@@ -51,10 +51,12 @@
 		<result property="classSummary" column="CLASS_SUMMARY" />
 		<result property="classImg" column="CLASS_IMG" />
 		<result property="profName" column="PROF_NAME" />
+		<result property="pNo" column="PROF_NO" />
 		<result property="profEmail" column="PROF_EMAIL" />
 		<result property="deptName" column="DEPT_NAME" />
 		<result property="credit" column="CREDIT" />
 		<result property="classType" column="CLASS_TYPE" />
+
 	</resultMap>
 
 
@@ -112,11 +114,66 @@
 		<result property="qId" column="QID" />
 	</resultMap>
 
+	<resultMap type="Attendance" id="AttendanceResultSet">
+		<id property="classType" column="CLASSTYPE" />
+		<result property="className" column="CLASSNAME" />
+		<result property="1Week" column="FIRSTWEEK" />
+		<result property="2Week" column="SECONDWEEK" />
+		<result property="3Week" column="THIRDWEEK" />
+		<result property="4Week" column="FOURTHWEEK" />
+		<result property="5Week" column="FIFTHWEEK" />
+		<result property="6Week" column="SIXTHWEEK" />
+		<result property="7Week" column="SEVENTHWEEK" />
+		<result property="8Week" column="EIGHTTHWEEK" />
+		<result property="9Week" column="NINTHWEEK" />
+		<result property="10Week" column="TENTHWEEK" />
+		<result property="11Week" column="ELEVENTHWEEK" />
+		<result property="12Week" column="TWELFTHWEEK" />
+	</resultMap>
+
+	<select id="getListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM
+		TB_ATTENDANCE
+
+	</select>
+
+	<select id="attendance" resultMap="AttendanceResultSet">
+		SELECT
+		CLASSTYPE,CLASSNAME
+		FROM
+		TB_ATTENDANCE
+
+	</select>
+
+	<select id="attendanceRate" resultType="_int">
+		SELECT
+		SUM(FIRSTWEEK)
+		+SUM(SECONDWEEK)
+		+SUM(THIRDWEEK)
+		+SUM(FOURTHWEEK)
+		+SUM(FIFTHWEEK)
+		+SUM(SIXTHWEEK)
+		+SUM(SEVENTHWEEK)
+		+SUM(EIGHTTHWEEK)
+		+SUM(NINTHWEEK)
+		+SUM(TENTHWEEK)
+		+SUM(ELEVENTHWEEK)
+		+SUM(TWELFTHWEEK)
+
+		FROM TB_ATTENDANCE
+
+	</select>
+
+
+
+
 	<select id="sylla2" resultMap="Sylla2ResultSet">
 
 		SELECT
-		LECTURE_NO,LECTURE_NAME,LECTURE_REFERENCE
-		FROM TB_CLASS
+		LECTURE_NO,LECTURE_NAME,LECTURE_REFERENCE,LECTURE_EXPLANATION
+		FROM
+		TB_CLASS
 		JOIN
 		TB_CLASS_DETAIL USING(CLASS_NO)
 		WHERE CLASS_NO =#{classNo}
@@ -180,24 +237,29 @@
 		RELATED_LEC,
 		LEC_TEXTBOOK
 		FROM TB_CLASS C
-		JOIN TB_CLASS_PROFESSOR CP
+		JOIN
+		TB_CLASS_PROFESSOR CP
 		USING(CLASS_NO)
-		LEFT JOIN TB_LECTURE_PLAN LP USING(CLASS_NO)
+		LEFT JOIN TB_LECTURE_PLAN LP
+		USING(CLASS_NO)
 		JOIN
 		TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
 		WHERE PROF_NO=#{pNo}
 	</select>
-	
+
 	<select id="SyllaPlanList" resultMap="lectureListResultSet">
 		SELECT CLASS_NO,
 		CLASS_NAME,
-		CLASS_TYPE
+		CLASS_TYPE,
+		CLASS_SUMMARY
 		FROM TB_CLASS C
-		JOIN TB_CLASS_PROFESSOR CP
+		JOIN
+		TB_CLASS_PROFESSOR CP
 		USING(CLASS_NO)
-		LEFT JOIN TB_LECTURE_PLAN LP USING(CLASS_NO)
+		LEFT JOIN TB_LECTURE_PLAN LP
+		USING(CLASS_NO)
 		JOIN TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
-		WHERE PROF_NO=#{pNo} 
+		WHERE PROF_NO=#{pNo}
 	</select>
 
 	<select id="lecList" resultMap="lectureListResultSet">
@@ -210,13 +272,101 @@
 		JOIN TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
 		JOIN TB_DEPARTMENT D ON(D.DEPT_NO = C.DEPT_NO)
 	</select>
+
+
+
+	<select id="lectureWeekSelect"
+		resultMap="lecturePlanWeekResultSet">
+		SELECT
+		LECTURE_NO,LECTURE_NAME,LECTURE_REFERENCE,LECTURE_EXPLANATION
+		FROM
+		TB_CLASS
+		JOIN
+		TB_CLASS_DETAIL USING(CLASS_NO)
+		WHERE CLASS_NO =#{classNo}
+		ORDER BY
+		LECTURE_NO ASC
+	</select>
+
+	<select id="lectureSelect" resultMap="Sylla1ResultSet">
+		SELECT CLASS_NO,
+		CLASS_NAME,
+		CLASS_TYPE,
+		CREDIT,
+		PROF_NAME,
+		PROF_LAB,
+		PROF_EMAIL,
+		CLASS_SUMMARY,
+		CLASS_GOAL,
+		LEC_METHOD,
+		EVAL_METHOD,
+		ASSIGNMENT,
+		LEC_EXPERIMENT,
+		RELATED_LEC,
+		LEC_TEXTBOOK
+		FROM TB_CLASS C
+		JOIN
+		TB_CLASS_PROFESSOR CP
+		USING(CLASS_NO)
+		LEFT JOIN TB_LECTURE_PLAN LP
+		USING(CLASS_NO)
+		JOIN
+		TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
+		WHERE
+		CLASS_NO=#{classNo} AND PROF_NO=#{pNo}
+	</select>
+	<select id="SyllaUpdate" resultMap="Sylla1ResultSet">
+		UPDATE TB_LECTURE_PLAN
+		SET
+		CLASS_SUMMARY=#{classSummary},
+		CLASS_GOAL=#{classGoal},
+		LEC_METHOD=#{lecMethod},
+		EVAL_METHOD=#{evalMethod},
+		ASSIGNMENT=#{assignment},
+		LEC_EXPERIMENT=#{lecExperiment},
+		RELATED_LEC=#{relatedLec},
+		LEC_TEXTBOOK=#{lecTextbook}
+		WHERE
+		CLASS_NO=#{classNo}
+	</select>
+
+
+	<!-- 강의개설정보 리스트 -->
+	<select id="lecPList" resultMap="lectureListResultSet">
+		SELECT
+		CLASS_NO,CLASS_NAME,CLASS_TYPE,PROF_NAME,PROF_NO
+		FROM TB_CLASS C
+		JOIN
+		TB_CLASS_PROFESSOR USING(CLASS_NO)
+		JOIN TB_PROFESSOR ON
+		TB_CLASS_PROFESSOR.PROFESSOR_NO=TB_PROFESSOR.PROF_NO
+		WHERE CLASS_TYPE
+		LIKE '전공%'
+		AND C.DEPT_NO=#{dNo}
+	</select>
+
+	<!-- 강의 리스트카운트 -->
+	<select id="getLCount" resultType="_int">
+		SELECT COUNT(CLASS_NO)
+		FROM
+		TB_CLASS C
+		JOIN TB_CLASS_PROFESSOR USING(CLASS_NO)
+		JOIN TB_PROFESSOR ON
+		TB_CLASS_PROFESSOR.PROFESSOR_NO=TB_PROFESSOR.PROF_NO
+		WHERE CLASS_TYPE
+		LIKE '전공%'
+		AND C.DEPT_NO=#{dNo}
+	</select>
+
 	<!-- **************************************************************** -->
 	<select id="selectValue" resultMap="lectureClassResultSet">
 
 		SELECT *
 		FROM TB_CLASS C
-		JOIN TB_DEPARTMENT D USING(DEPT_NO)
-		JOIN TB_CLASS_PROFESSOR CP USING(CLASS_NO)
+		JOIN
+		TB_DEPARTMENT D USING(DEPT_NO)
+		JOIN TB_CLASS_PROFESSOR CP
+		USING(CLASS_NO)
 		JOIN TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
 		WHERE PROF_NO = #{pNo}
 	</select>
@@ -227,11 +377,13 @@
 		FROM TB_CLASS_DETAIL
 		JOIN TB_CLASS USING(CLASS_NO)
 		WHERE CLASS_NO = #{classNo }
-		ORDER BY LECTURE_NO DESC
+		ORDER BY
+		LECTURE_NO DESC
 	</select>
 
 	<insert id="lectureVideoInsert" parameterType="LecturePlanWeek">
-		INSERT INTO TB_CLASS_DETAIL
+		INSERT INTO
+		TB_CLASS_DETAIL
 		VALUES(#{classNo},#{lecNo},#{lecName},#{lecReference},#{lecVideo},#{lecExplanation},DEFAULT,DEFAULT,DEFAULT,SYSDATE)
 
 	</insert>
@@ -246,23 +398,27 @@
 
 	<delete id="lectureVideoDelete" parameterType="LecturePlanWeek">
 		DELETE
-		FROM TB_CLASS_DETAIL
+		FROM
+		TB_CLASS_DETAIL
 		WHERE LECTURE_NO = #{lecNo}
 	</delete>
-	
+
 	<update id="lectureVideoUpdate" parameterType="LecturePlanWeek">
-	UPDATE TB_CLASS_DETAIL
-		       SET
-		       CLASS_NO = #{classNo},
-               LECTURE_NO = #{lecNo},
-               LECTURE_NAME = #{lecName},
-               LECTURE_REFERENCE = #{lecReference},
-               LECTURE_VIDEO = #{lecVideo},
-               LECTURE_EXPLANATION =#{lecExplanation},
-               LECTURE_ATTENDANCE = DEFAULT,LECTURE_LEARNINGRATE = DEFAULT,CLASS_ATTENDEES = DEFAULT,LECTURE_VIDEO_CREATE_DATE = SYSDATE
-		  WHERE LECTURE_NO = #{lecNo}
+		UPDATE
+		TB_CLASS_DETAIL
+		SET
+		LECTURE_NAME = #{lecName},
+		LECTURE_REFERENCE =
+		#{lecReference},
+		LECTURE_VIDEO = #{lecVideo},
+		LECTURE_EXPLANATION
+		=#{lecExplanation},
+		LECTURE_ATTENDANCE = DEFAULT,LECTURE_LEARNINGRATE =
+		DEFAULT,CLASS_ATTENDEES =
+		DEFAULT,LECTURE_VIDEO_CREATE_DATE = SYSDATE
+		WHERE LECTURE_NO = #{lecNo}
 	</update>
-	
+
 	<select id="updateAfter" resultMap="lecturePlanWeekResultSet">
 		SELECT *
 		FROM TB_CLASS_DETAIL

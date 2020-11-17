@@ -106,8 +106,37 @@ public class profLecServiceImpl implements profLecService {
 			return plDao.updateAfter(lpw);
 		}
 
+	//==========================================================
+	@Override
+	public ArrayList<LecturePlanWeek> prof_Syllabus_LectureWeekSelect(LectureList ll) {
+		return plDao.prof_Syllabus_LectureWeekSelect(ll);
+	}
+
+	@Override
+	public LecturePlan prof_Syllabus_LectureSelect(LectureList ll) {
+		return plDao.prof_Syllabus_LectureSelect(ll);
+
+	}
+
+	@Override
+	public int prof_Syllabus_LectureUpdate(LecturePlan lp) {
+		return plDao.prof_Syllabus_LectureUpdate(lp);
+	}
+
+	@Override
+	public int getListCount(String dNo) {
+		return plDao.getListCount(dNo);
+	}
+	
+	// 강의개설정보페이지
+	@Override
+	public ArrayList<LectureList> selectList(String dNo, PageInfo pi) {
+		return plDao.selectList(dNo, pi);
+	}
 	
 	
+	
+//	-------------------------------강의동 시험 -------------------
 	/**
 	 * 
 	 * 시험 리스트

@@ -55,6 +55,10 @@
 
 <!-- Head Libs -->
 <script src="resources/vendor/modernizr/modernizr.min.js"></script>
+
+<script  src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+
 </head>
 <body onresize="parent.resizeTo(900,800)" onload="parent.resizeTo(700,100)">
 	<div class="body">
@@ -78,41 +82,44 @@
 			<div class="container py-2">
 				<div class="row">
 					<div class="col">
-						<form action="" id="" method="post">
-							<table class="table table-hover">
-								<tbody>
-									<tr>
-										<th style="width: 118px;">교과목명(국문)</th>
-										<th style="width: 118px;"><input><select name="className"><option value=""></option></select></th>
-									</tr>
-									<tr>
-										<th style="width: 118px;">과목번호</th>
-										<td style="width: 252px; text-align: center;">c123414</td>
-										<th style="width: 118px;">이수구분</th>
-										<td style="text-align: center;">전공</td>
-									</tr>
-									<tr>
-										<th>학점</th>
-										<td style="text-align: center;">3</td>
-										<th>선수과목</th>
-										<td style="text-align: center;">없음</td>
-									</tr>
-									<tr>
-										<th>교수</th>
-										<td style="text-align: center;">유승제</td>
-										<th>연구실</th>
-										<td style="text-align: center;">공학관 402호</td>
-									</tr>
-									<tr>
-										<th>연락처</th>
-										<td style="text-align: center;">010-1212-1323</td>
-										<th>E-mail</th>
-										<td style="text-align: center;">youu123@gmail.com</td>
-									</tr>
-								</tbody>
-							</table>
-							
-							
+
+						<table class="table table-hover">
+							<tbody>
+								<tr>
+									<th style="width: 118px;">교과목명(국문)</th>
+									<td colspan="3" style="text-align: center;">${lp.className }</td>
+
+								</tr>
+
+								<tr>
+									<th style="width: 118px;">과목번호</th>
+									<td style="width: 252px; text-align: center;">${lp.classNo}</td>
+									<th style="width: 118px;">이수구분</th>
+									<td style="text-align: center;">${lp.classType}</td>
+								</tr>
+								<tr>
+									<th>학점</th>
+									<td style="text-align: center;">${lp.credit}</td>
+									<th>선수과목</th>
+									<td style="text-align: center;">-</td>
+								</tr>
+								<tr>
+									<th>교수</th>
+									<td style="text-align: center;">${lp.profName}</td>
+									<th>연구실</th>
+									<td style="text-align: center;">${lp.profLab}</td>
+								</tr>
+								<tr>
+									<th>연락처</th>
+									<td style="text-align: center;">-</td>
+									<th>E-mail</th>
+									<td style="text-align: center;">${lp.profEmail}</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<form action="prof_Syllabus_LectureUpdate.do" name="formSylla"  id="formSylla" method="post">
+							<input name="classNo" type="hidden" value="${lp.classNo}">
 							<table class="table table-hover">
 								<thead>
 									<tr>
@@ -122,7 +129,7 @@
 								<tbody>
 									<tr>
 										<td>
-											<input class="form-control" width="600px">
+											<input name="classSummary" size=90 placeholder="${lp.classSummary}">
 										</td>
 									</tr>
 								</tbody>
@@ -134,7 +141,7 @@
 								<tbody>
 									<tr>
 										<td>
-											<input class="form-control" width="600px">
+											<input name="classGoal" size=90 placeholder="${lp.classGoal}">
 										</td>
 									</tr>
 								</tbody>
@@ -146,7 +153,7 @@
 								<tbody>
 									<tr>
 										<td>
-											<input class="form-control" width="600px">
+											<input name="lecMethod" size=90 placeholder="${lp.lecMethod}">
 										</td>
 									</tr>
 								</tbody>
@@ -158,7 +165,7 @@
 								<tbody>
 									<tr>
 										<td>
-											<input class="form-control" width="600px">
+											<input name="evalMethod" size=90 placeholder="${lp.evalMethod}">
 										</td>
 									</tr>
 								</tbody>
@@ -170,7 +177,7 @@
 								<tbody>
 									<tr>
 										<td>
-											<input class="form-control" width="600px">
+											<input name="assignment" size=90 placeholder="${lp.assignment}">
 										</td>
 									</tr>
 								</tbody>
@@ -182,7 +189,7 @@
 								<tbody>
 									<tr>
 										<td>
-											<input class="form-control" width="600px">
+											<input name="lecExperiment" size=90 placeholder="${lp.lecExperiment}">
 										</td>
 									</tr>
 								</tbody>
@@ -194,7 +201,7 @@
 								<tbody>
 									<tr>
 										<td>
-											<input class="form-control" width="600px">
+											<input name="relatedLec" size=90 placeholder="${lp.relatedLec}">
 										</td>
 									</tr>
 								</tbody>
@@ -206,24 +213,92 @@
 								<tbody>
 									<tr>
 										<td>
-											<input class="form-control" width="600px">
+											<input name="lecTextbook" size=90 placeholder="${lp.lecTextbook}">
 										</td>
 									</tr>
 								</tbody>
-
 							</table>
-							
-							<button type="button" class="btn btn-dark" onclick="location.href= 'javascript:self.close();'" style="float: right; margin-bottom: 20px;">
-								<i class="fas fa-pencil-alt"></i> 등록
+
+							<button type="submit" class="btn btn-dark" id="btnForm" onclick="checkForm(); return false" style="float: right; margin-bottom: 20px;">
+								<i class="fas fa-pencil-alt"></i> 제출하기
 							</button>
 						</form>
 					</div>
 				</div>
-
 			</div>
 		</div>
-
-
 	</div>
 </body>
+<script>
+function checkForm() {
+	
+		if (formSylla.classSummary.value == "") {
+			shake()
+			formSylla.classSummary.focus();
+			return false;
+		} else if (formSylla.classGoal.value == "") {
+			shake()
+			formSylla.classGoal.focus();
+			return false;
+		} else if (formSylla.lecMethod.value == "") {
+			shake()
+			formSylla.lecMethod.focus();
+			return false;
+		} else if (formSylla.evalMethod.value == "") {
+			shake()
+			formSylla.evalMethod.focus();
+			return false;
+		} else if (formSylla.assignment.value == "") {
+			shake()
+			formSylla.assignment.focus();
+			return false;
+		} else if (formSylla.lecExperiment.value == "") {
+			shake()
+			formSylla.lecExperiment.focus();
+			return false;
+		} else if (formSylla.relatedLec.value == "") {
+			shake()
+			formSylla.relatedLec.focus();
+			return false;
+		} else if (formSylla.lecTextbook.value == "") {
+			shake()
+			formSylla.lecTextbook.focus();
+			return false;
+		} else {
+			ajaxFormSylla()
+			return true;
+			
+		}
+	};
+	
+	function ajaxFormSylla()
+	{
+		var params = $("form[name=formSylla]").serialize();
+		$.ajax({
+			type: "POST",
+			url : 'prof_Syllabus_LectureUpdate.do',
+			data : params,
+			dataType : "html",
+			success : function(data)
+					{	
+						alert("수정이 완료되었습니다.")
+						window.opener.location.reload();
+						self.close();
+					}
+			,error:function(request, status, error){
+
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+		});
+	}
+	function shake() {
+		for (i = 10; i > 0; i--) {
+			window.moveBy(0, i);
+			window.moveBy(i, 0);
+			window.moveBy(0, -i);
+			window.moveBy(-i, 0);
+		}
+		alert("빈칸을 채워주세요");
+	}
+</script>
 </html>

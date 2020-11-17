@@ -47,23 +47,7 @@ a:hover {
 					<div class="row">
 						<div class="col">
 							<label class="btn btn-primary btn-file" id="updateView">등록하기</label>
-							<script>
-								$('#updateView')
-										.on(
-												'click',
-												function() {
-													if ($('#updatefrm').css(
-															'display') == 'none') {
-														$('#updatefrm').show();
-														$('#updateView').html(
-																'숨기기');
-													} else {
-														$('#updatefrm').hide();
-														$('#updateView').html(
-																'등록하기');
-													}
-												});
-							</script>
+
 							<div id="updatefrm" class="row mt-lg-3" style="display: none;">
 								<form id="fm" class="col" action="prof_lectureVideoInsert.do" method="post" enctype="multipart/form-data">
 									<div class="row">
@@ -194,5 +178,21 @@ a:hover {
 			</div>
 		</div>
 	</div>
-
+	<script>
+								$('#updateView')
+										.on(
+												'click',
+												function() {
+													if ($('#updatefrm').css(
+															'display') == 'none') {
+														$('#updatefrm').show();
+														$('#updateView').html(
+																'숨기기');
+													} else {
+														$('#updatefrm').hide();
+														$('#updateView').html(
+																'등록하기');
+													}
+												});
+							</script>
 	<%@ include file="../common/footer.jsp"%>

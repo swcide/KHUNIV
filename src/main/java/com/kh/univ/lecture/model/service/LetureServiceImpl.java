@@ -1,0 +1,34 @@
+package com.kh.univ.lecture.model.service;
+
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.kh.univ.common.PageInfo;
+import com.kh.univ.lecture.model.dao.LectureDao;
+import com.kh.univ.lecture.model.vo.Attendance;
+@Service("lService")
+public class LetureServiceImpl implements LectureService {
+	
+	@Autowired
+	private LectureDao lDao;
+
+	@Override
+	public ArrayList<Attendance> selectList(PageInfo pi) {
+
+		return lDao.selectList(pi);
+	}
+
+	@Override
+	public int getListCount() {
+		return lDao.getListCount();
+	}
+
+	@Override
+	public int attendanceRate() {
+
+		return lDao.attendanceRate();
+	}
+
+}

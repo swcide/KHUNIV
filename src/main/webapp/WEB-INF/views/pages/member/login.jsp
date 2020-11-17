@@ -89,7 +89,7 @@
 								</div>
 							</div>
 							<div class="form-group col-md-auto">
-								<a class="text-decoration-none text-color-dark text-color-hover-primary font-weight-semibold text-2" href="ad_main.do">비밀번호 찾기</a>
+								<a class="text-decoration-none text-color-dark text-color-hover-primary font-weight-semibold text-2" href="pwSearch.do">비밀번호 찾기</a>
 							</div>
 						</div>
 						<div class="form-row">
