@@ -32,46 +32,41 @@
 						<div class="row">
 
 							<div class="custom-box-details bg-color-light col-lg-12 ml-5 mb-5 mb-lg-4 float-right clearfix">
-								<h4 class="text-lg-center">시험 </h4> <hr>
-								<form  onsubmit="return check()" class="form-horizontal form-bordered" action="prof_testScheduleInsert.do" method="get">
+								<h4 class="text-lg-center">${ct.cName } 시험 정보 </h4> <hr>
 									<div id="text">	
 										<div class="form-group row">
 											<label class="col-lg-3 control-label text-lg-right pt-2" >과목 명</label>
 											<div class="col-lg-6">
-												<input type="hidden" name ="pNo" value="${p.pNo }">
-												<select id ="select"class="form-control" name="cName" id="inputDefault">
-													<c:forEach var="lc" items="${lc}">
-														<option value="${lc.className},${lc.classNo }">${lc.className }	</option>
-													</c:forEach>
-												</select>
+												<p class="form-control-static pt-2">${ct.cName }</p>
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-lg-3 control-label text-lg-right pt-2" >제목</label>
 											<div class="col-lg-6">
-												<input class="form-control" name="tTitle" type="text" >
+												<p class="form-control-static pt-2">${ct.tTitle }</p>
 											</div>
 										</div>
 										<div class="form-group row">
-											<label class="col-lg-3 control-label text-lg-right pt-2" >시험구분</label>
+											<label class="col-lg-3 control-label text-lg-right pt-2" >시험구분 </label>
 											<div class="col-lg-6">
-												<select name="tType"class="form-control">
-													<option value="M">중간고사</option>
-													<option value="F">기말고사</option>
-												</select>
+												<c:if test="${ct.tType eq 'F'}">
+													<p class="form-control-static pt-2">기말고사</p>
+												</c:if>
+												<c:if test="${ct.tType eq 'M' }">
+													<p class="form-control-static pt-2">중간고사</p>
+												</c:if>
 											</div>
 										</div>
 										<div class="form-group row" >
 											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputHelpText">공개일</label>
 											<div class="col-lg-6" style="display: flex;">
-												<input type="date" name="openDate" class="form-control" max="9999-12-31" style=" width: 50%; margin-right: 20px;">
-												<input type="time" name="openTime" class="form-control" max="9999-12-31" style=" width: 50%;">
+												<p class="form-control-static pt-2">${ct.openDate }</p>
 											</div>
 										</div>
 <!-- 										<div class="form-group row "style="margin-bottom: 0"> -->
 <!-- 											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputRounded">응시 기간</label> -->
 <!-- 											<div class="col-lg-6" style="display: flex;"> -->
-<!-- 												<input type="date" name="startDate"  class="form-control" max="9999-12-31"   style=" width: 50%; margin-right: 20px;"> -->
+<!-- 												<input type="date" name="startDate1"  class="form-control" max="9999-12-31"   style=" width: 50%; margin-right: 20px;"> -->
 <!-- 												<input type="time" name="startTime"class="form-control" max="9999-12-31"   style=" width: 50%;"> -->
 <!-- 										</div> -->
 <!-- 										</div> -->
@@ -79,28 +74,53 @@
 <!-- 											<label class="col-lg-3 control-label text-lg-right pt-2" >부터</label> -->
 <!-- 											<div class="col-lg-6" style="display: flex;"> -->
 													
-<!-- 													<input type="date"	name="endDate" class=" form-control" max="9999-12-31"style=" width: 50%; margin-right: 20px;"> -->
+<!-- 													<input type="date"	name="endDate1" class=" form-control" max="9999-12-31"style=" width: 50%; margin-right: 20px;"> -->
 <!-- 													<input type="time" name="endTime"class="form-control" max="9999-12-31"style=" width: 50%;"> -->
 <!-- 											</div> -->
 <!-- 										</div> -->
 										<div class="form-group row">
 											<label class="col-lg-3 control-label text-lg-right pt-2" >시험시간</label>
 											<div class="col-lg-6" style="display: flex">
-												<input name="tTime"class="form-control" type="text" style="width:50px"><span style="padding-left:20px;align-self: center; font-size: 15px">분</span> 
+												<p class="form-control-static pt-2">${ct.tTime }분</p>
 											</div>
 										</div>
 										<div class="form-group row">
-										<div class="form-group col-lg-3">
-												<a class="btn btn-sm btn-primary float-right" href="prof_testList.do">목록보기</a>
+											<label class="col-lg-3 control-label text-lg-right pt-2" ></label>
+											<div class="col-lg-3" >
+												<c:url var="tUpSchedule" value="tUpScheduleView.do">
+													<c:param name="cNo" value="${ct.cNo}"/>
+													<c:param name="tNo" value="${ct.tNo}"/>
+												</c:url>
+												<a class="btn btn-tertiary btn-with-arrow mb-2 float-right" href="${tUpSchedule }">수정<span><i class="fas fa-chevron-right"></i></span></a>
+											</div>
+											<div class="form-group col-lg-3">
+											</div>
 										</div>
-										<div class="form-group col-lg-3">
-										</div>
-										<div class="form-group col-lg-3">
-											<input type="submit" value="저장 후 시험문제 출제하기" class="btn btn-primary btn-sm btn-modern float-right" data-loading-text="Loading...">
-										</div>
+<!-- 										<div class="form-group row"> -->
+<!-- 											<label class="col-lg-3 control-label text-lg-right pt-2" >시험 문제 출제</label> -->
+<!-- 											<div class="col-lg-6" style="display: flex"> -->
+<!-- 												<a href='javascript:void(0)' onclick="addTest()"  style="   align-self: center;"> 출제하기</a> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
+										<hr>
+										<div class="form-group row">
+											<div class="form-group col-lg-3">
+											
+													<a class="btn btn-sm btn-primary float-right" href="prof_testList.do">목록보기</a>
+											</div>
+											<div class="form-group col-lg-3">
+											</div>
+											
+											<div class="form-group col-lg-3">
+												<c:url var="qList" value="qList.do">
+													<c:param name="cNo" value="${ct.cNo}"/>
+													<c:param name="tNo" value="${ct.tNo}"/>
+												</c:url>
+												<a  href='${qList}'class="btn btn-primary btn-sm btn-modern float-right" data-loading-text="Loading...">문제보기</a>
+											</div>
 							    		</div>
 						    		</div>
-						    	</form>
+						    		
 							</div>	
 						</div>
 					</div>
@@ -109,43 +129,5 @@
 		</div>
 	</div>
 </div>
-<script>
-
-
-	
-    function check (){
-    	var test = $('#select').val().split(",");
-    	var cNo = test[1];
-    	var empty1 =$('input[name=tTitle]').val();
-    	var empty2 =$('input[name=openDate]').val();
-    	var empty3 =$('input[name=openTime]').val();
-    	var empty4 =$('input[name=tTime]').val();
-    	
-    	console.log(test[1]);
-    	console.log(empty1);
-    	if(empty1==""){
-    		
-    		alert("제목을 작성해주세요!");
-    		return false;
-    	}else if(empty2==""){
-    		alert("공개일을 작성해주세요!");
-    		return false;
-    	}else if(empty3==""){
-    		alert("공개시간을 작성해주세요!");
-    		return false;
-    	}else if(empty4==""){
-    		alert("시험시간을 작성해주세요!");
-    		return false;
-    	}else{
-    	
-    	}
-    }
-		
-	
-
-
-
-
-</script>
 <%@ include file="../common/footer.jsp"%>
 

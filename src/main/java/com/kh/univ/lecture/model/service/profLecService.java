@@ -13,6 +13,7 @@ import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.notice.model.vo.Notice;
+import com.kh.univ.testPage.model.vo.Test;
 
 /**
  * @author admin
@@ -84,12 +85,6 @@ public interface profLecService {
 	 * @param lpw
 	 * @return
 	 */
-
-
-	ArrayList<ClassTest> classSelectList(Professor p, int currentPage);
-	
-	
-	
 	
 	ArrayList<LecturePlanWeek> prof_Syllabus_LectureWeekSelect(LectureList ll);
 
@@ -108,8 +103,38 @@ public interface profLecService {
 	 * @return
 	 */
 	int getListCount(String dNo);
-
 	
+	
+	
+	
+//-------------------강의동 교수 시험 ---------------------------
+	
+
+
+	ArrayList<ClassTest> classSelectList(Professor p, PageInfo pi);
+
+	int getListCount(Professor p);
+
+	int insertTestSchedule(ClassTest ct);
+
+	ArrayList<Test> selectClassList(String tNo);
+
+	int updateTest(Test t);
+
+	int insertTest(Test t);
+
+	ClassTest selectClassOne(String tNo);
+
+	int deleteTest(Test t);
+
+	int updateTestSchedule(ClassTest ct);
+
+	Test selectTest(int qId);
+
+	ArrayList<Test> takeClassList(Test t1);
+
+	int takeAddQ(Test t);
+
 
 	
 

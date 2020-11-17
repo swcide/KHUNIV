@@ -17,6 +17,7 @@ import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.notice.model.vo.Notice;
+import com.kh.univ.testPage.model.vo.Test;
 
 @Service("plService")
 public class profLecServiceImpl implements profLecService {
@@ -104,6 +105,7 @@ public class profLecServiceImpl implements profLecService {
 		{
 			return plDao.updateAfter(lpw);
 		}
+
 	//==========================================================
 	@Override
 	public ArrayList<LecturePlanWeek> prof_Syllabus_LectureWeekSelect(LectureList ll) {
@@ -122,14 +124,6 @@ public class profLecServiceImpl implements profLecService {
 	}
 
 	@Override
-	public ArrayList<ClassTest> classSelectList(Professor p, int currentPage) {
-		
-		return plDao.classSelectList(p,currentPage);
-
-	}
-	
-	// 리스트카운트
-	@Override
 	public int getListCount(String dNo) {
 		return plDao.getListCount(dNo);
 	}
@@ -139,5 +133,92 @@ public class profLecServiceImpl implements profLecService {
 	public ArrayList<LectureList> selectList(String dNo, PageInfo pi) {
 		return plDao.selectList(dNo, pi);
 	}
+	
+	
+	
+//	-------------------------------강의동 시험 -------------------
+	/**
+	 * 
+	 * 시험 리스트
+	 *
+	 */
+	@Override
+	public ArrayList<ClassTest> classSelectList(Professor p, PageInfo pi) {
+		
+		return plDao.classSelectList(p,pi);
 
+	}
+
+	/**
+	 * 시험 수
+	 */
+	@Override
+	public int getListCount(Professor p) {
+		return plDao.getListCount(p);
+	}
+
+	/**
+	 * 시헙 인서트
+	 */
+	@Override
+	public int insertTestSchedule(ClassTest ct) {
+		// TODO Auto-generated method stub
+		return plDao.insertTestSchedule(ct);
+	}
+	@Override
+	public int updateTestSchedule(ClassTest ct) {
+		return plDao.updateTestSchedule(ct);
+	}
+
+
+	@Override
+	public ArrayList<Test> selectClassList(String tNo) {
+		// TODO Auto-generated method stub
+		return plDao.selectClassList(tNo);
+	}
+
+	@Override
+	public int updateTest(Test t) {
+		// TODO Auto-generated method stub
+		return plDao.updateTest(t);
+	}
+
+	@Override
+	public int insertTest(Test t) {
+		return plDao.insertTest(t);
+	}
+
+	@Override
+	public ClassTest selectClassOne(String tNo) {
+		return plDao.selectClassOne(tNo);
+	}
+
+	@Override
+	public int deleteTest(Test t) {
+		// TODO Auto-generated method stub
+		return plDao.deleteTest(t);
+	}
+
+	@Override
+	public Test selectTest(int qId) {
+		return plDao.selectTest(qId);
+	}
+
+	@Override
+	public ArrayList<Test> takeClassList(Test t1) {
+		return plDao.takeClassList(t1);
+	}
+
+	@Override
+	public int takeAddQ(Test t) {
+		return plDao.takeAddQ(t);
+	}
+
+	
+
+	
+	
+
+
+	
 }

@@ -91,9 +91,9 @@
 											
 											</div>
 										</div>
-										
-										<a href="javascript:history.go(-1)" class="btn btn-quaternary mb-2"/>뒤로가기</a>
-										
+										<div>
+										 <a href="javascript:history.go(-1)" class="btn btn-quaternary mb-2">뒤로가기</a>
+										</div>
 										<input	type="submit" value="수정하기"class="btn btn-dark btn-modern float-right">
 					
 										
