@@ -131,7 +131,7 @@
 													<li><a class="dropdown-item" href="lecturelist.do"> 내 강의 목록 </a></li>
 													<li class="dropdown-submenu"><a class="dropdown-item" href="#">수업 관리</a>
 														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="learningprogress.do">학습 현황</a></li>
+															<li><a class="dropdown-item" href="#">학습 현황</a></li>
 															<li><a class="dropdown-item" href="attendance.do">출석 현황</a></li>
 															<li><a class="dropdown-item" href="grade.do">성적 현황</a></li>
 														</ul></li>

@@ -22,6 +22,7 @@ import com.kh.univ.lecture.model.vo.LectureClass;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
+import com.kh.univ.member.model.vo.Student;
 import com.kh.univ.univlife.board.human.model.vo.HumanBoard;
 
 @Controller //이거 안쓰면 에러남 
@@ -37,28 +38,28 @@ public class LectureController {
 	}
 	
 	/**
-	 * 1.출석현황다떼
+	 * 1.나의출석현황
 	 * 
 	 * @param mv
-	 * @param currentPage
+	 * @param session
+	 * @param al
 	 * @return
 	 */
 	@RequestMapping(value = "attendance.do")
-	public ModelAndView humanBoardList(ModelAndView mv,
-			@RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage) {
+	public ModelAndView attendance(ModelAndView mv,HttpSession session)
+	{	
+		Student student = (Student)session.getAttribute("loginUser"); // 로긴세션에서 뽑은 정보를 학생객체에 넣기
+		String sNo = student.getsNo();
+		System.out.println("학생번호 컨트롤러"+sNo);
+		ArrayList<Attendance> al = lService.selectList(sNo);
+		System.out.println(al);
+		ArrayList<Attendance> ar = lService.attendRate(sNo);
+		System.out.println("나와라오바 : " + ar);
 
-		int listCount = lService.getListCount();
-		int attendanceRate = lService.attendanceRate();
-		
+//		System.out.print("attendanceRate: " + attendanceRate);
 
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-		
-		
-
-		ArrayList<Attendance> list = lService.selectList(pi);
-
-		mv.addObject("list", list);
-		mv.addObject("pi", pi);
+		mv.addObject("al", al);
+		mv.addObject("ar", ar);
 		mv.setViewName("ad_lecture/ad_attendance");
 		return mv;
 	}
