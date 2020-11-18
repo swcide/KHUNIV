@@ -101,14 +101,14 @@
    
    <!--  email 전송을 위한 값 출력 -->
 	<select id="sendEmailS" resultMap="studentResultSet">
-		SELECT STD_NO, STD_PWD, STD_NAME
+		SELECT STD_NO, STD_PWD, STD_NAME,STD_EMAIL
 		FROM TB_STUDENT
 		WHERE STD_NO = #{sNo}
 		AND STD_EMAIL = #{sEmail}
 	</select>
 
 	<select id="sendEmailP" resultMap="professorResultSet">
-		SELECT PROF_NO,PROF_PWD,PROF_NAME
+		SELECT PROF_NO,PROF_PWD,PROF_NAME,PROF_EMAIL
 		FROM TB_PROFESSOR
 		WHERE PROF_NO = #{pNo}
 		AND PROF_EMAIL = #{pEmail}

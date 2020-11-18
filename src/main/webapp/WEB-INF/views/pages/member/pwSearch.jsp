@@ -63,7 +63,7 @@
 					<img src="">
 					<h4 style="text-align: center;">비밀번호 찾기</h4>
 					<hr>
-					<form action="pwChange.do" id="frmSearch" method="post" class="needs-validation">
+					<form action="" id="frmSearch" method="post" class="needs-validation">
 						<div class="form-row">
 							<div class="form-group col">
 								<label class="text-color-dark text-3">학번 <span class="text-color-danger">*</span></label>
@@ -120,17 +120,6 @@
 <!-- Theme Initialization Files -->
 <script src="resources/js/theme.init.js"></script>
 
-<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
-		<script>
-			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-			ga('create', 'UA-12345678-1', 'auto');
-			ga('send', 'pageview');
-		</script>
-		 -->
 <script>
 $('#sendMail').on('click',function() {
 // 			if ($('#dlswmd').css('display') == 'none') {

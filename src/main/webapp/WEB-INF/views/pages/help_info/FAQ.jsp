@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="../common/header.jsp"%>
-
+<link rel="stylesheet" href="resources/css/theme-element.css">
 <div class="body">
 	<div role="main" class="main">
 		<section
