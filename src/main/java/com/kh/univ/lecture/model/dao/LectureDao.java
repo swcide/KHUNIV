@@ -16,21 +16,13 @@ public class LectureDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	public int getListCount() {
-		
-		return sqlSession.selectOne("lectureMapper.getListCount");
+	public ArrayList<Attendance> selectList(String sNo) {
+		return (ArrayList)sqlSession.selectList("lectureMapper.attendance",sNo);
 	}
 
-	public ArrayList<Attendance> selectList(PageInfo pi) {
-		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
-		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+	public ArrayList<Attendance> selectAttList(String sNo) {
 		
-		return (ArrayList)sqlSession.selectList("lectureMapper.attendance",null,rowBounds);
-	}
-	
-
-	public int attendanceRate() {
-		return sqlSession.selectOne("lectureMapper.attendanceRate");
+		return (ArrayList)sqlSession.selectList("lectureMapper.attendRate",sNo);
 	}
 
 }

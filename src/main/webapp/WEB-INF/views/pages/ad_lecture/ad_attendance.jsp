@@ -35,10 +35,7 @@
 													나의출석률
 												</th>
 												<th>
-													과정진행률
-												</th>
-												<th>
-													총결석률
+													총결석일
 												</th>
 												<th>
 													제출과제수
@@ -46,19 +43,17 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="a" items="${list}">
+											<c:forEach var="al" items="${al}" >
 											<tr>
 												<td>
-													${a.classType }
+													${al.classType }
 												</td>
 												<td>
-													${a.className }
+													${al.className }
 												</td>
 												<td>
-													${a.attendanceRate }
-												</td>
-												<td>
-													50%(6/12주)
+													
+
 												</td>
 												<td>
 													0일
@@ -67,46 +62,8 @@
 													3/6회
 												</td>
 											</tr>
-											<tr>
-												<td>
-													전공선택
-												</td>
-												<td>
-													디자인 커뮤니케이션
-												</td>
-												<td>
-													50%(6/12주)
-												</td>
-												<td>
-													50%(6/12주)
-												</td>
-												<td>
-													0일
-												</td>
-												<td>
-													3/6회
-												</td>
-											</tr>
-											<tr>
-												<td>
-													전공선택
-												</td>
-												<td>
-													색체
-												</td>
-												<td>
-													50%(6/12주)
-												</td>
-												<td>
-													50%(6/12주)
-												</td>
-												<td>
-													0일
-												</td>
-												<td>
-													3/6회
-												</td>
-											</tr>
+											
+											
 											
 											</c:forEach>
 										</tbody>

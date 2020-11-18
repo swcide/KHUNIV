@@ -15,20 +15,18 @@ public class LetureServiceImpl implements LectureService {
 	private LectureDao lDao;
 
 	@Override
-	public ArrayList<Attendance> selectList(PageInfo pi) {
-
-		return lDao.selectList(pi);
+	public ArrayList<Attendance> selectList(String sNo) {
+		return lDao.selectList(sNo);
 	}
 
 	@Override
-	public int getListCount() {
-		return lDao.getListCount();
+	public ArrayList<Attendance> attendRate(String sNo) {
+
+		return lDao.selectAttList(sNo);
 	}
 
-	@Override
-	public int attendanceRate() {
-
-		return lDao.attendanceRate();
-	}
+	
+	
+	
 
 }
