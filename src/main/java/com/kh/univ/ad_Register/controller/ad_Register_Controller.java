@@ -1,21 +1,25 @@
 package com.kh.univ.ad_Register.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
-/**
- * Handles requests for the application home page.
- */
+import com.kh.univ.ad_Register.model.service.ad_RegisterService;
+import com.kh.univ.ad_Register.model.vo.Absence;
+
+@SessionAttributes({ "loginUser" })
 @Controller
 public class ad_Register_Controller {
+	
+	@Autowired
+	private ad_RegisterService arService;
 	
 	
 	/**
@@ -113,9 +117,14 @@ public class ad_Register_Controller {
 	 * @return
 	 */
 	@RequestMapping(value = "ad_leave_absence_check.do")
-	public String leave_absence_check(Locale locale, Model model) {
-		
-		return "ad_register/ad_Leave_Absence_Check";
+	public ModelAndView leave_absence_check(ModelAndView mv,Absence ab ) {
+//			@RequestParam(name="sNo") String sNo
+			Absence view = arService.absenceCheck(ab);
+			
+			mv.addObject("view",view);
+			mv.setViewName("ad_register/ad_Leave_Absence_Check");
+			
+		return mv;
 	}
 	
 	/**
@@ -137,7 +146,8 @@ public class ad_Register_Controller {
 	 * @return
 	 */
 	@RequestMapping(value = "ad_return_absence_check.do")
-	public String return_absence_check(Locale locale, Model model) {
+	public String return_absence_check() {
+			
 		
 		return "ad_register/ad_Return_Absence_Check";
 	}

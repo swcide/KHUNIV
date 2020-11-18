@@ -95,12 +95,7 @@
 													<div class="col-md-6">
 														<c:if test="${!empty sessionScope.loginUser }">
 															<a href="mypage.do"><label><strong style="color: #008995">${loginUser.sName }</strong></label></a>
-														</c:if>
-														<c:if test="${!empty sessionScope.loginProf }">
-															<a href="mypage.do"><label><strong style="color: #008995">${loginProf.pName }</strong></label></a>
-														</c:if>
-														<c:if test="${!empty sessionScope.loginAdmin }">
-															<a href="mypage.do"><label><strong style="color: #008995">${loginAdmin.aId }</strong></label></a>
+															<input type="hidden" name="sNo" value="${loginUser.sNo }">
 														</c:if>
 													</div>
 													<div class="col-md-6" style="text-align: right">
