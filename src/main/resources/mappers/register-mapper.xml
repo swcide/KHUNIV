@@ -17,10 +17,17 @@
 </resultMap>
 
 <select id="absenceCheck" resultMap="absenceResultSet">
-SELECT STD_NO,ABS_STATUS,CURRENT_STATE,DEPT_NAME,STD_NAME,SEMESTER
+SELECT STD_NO,ABS_STATUS,CURRENT_STATE,DEPT_NAME,STD_NAME,SEMESTER,ABS_REASON,ABSENCE_FILE
 FROM TB_ABSENCE_STD AB
 JOIN TB_STUDENT S USING (STD_NO)
 JOIN TB_DEPARTMENT D ON(S.DEPT_NO = D.DEPT_NO)
 WHERE STD_NO = #{sNo}
 </select>
+
+<update id="absenceApply" parameterType="Absence">
+UPDATE TB_ABSENCE_STD
+SET ABSENCE_FILE=#{absenceFileName},ABS_STATUS='Y',ABS_REASON=#{absReason}
+WHERE  STD_NO = #{sNo}
+
+</update>
 </mapper>

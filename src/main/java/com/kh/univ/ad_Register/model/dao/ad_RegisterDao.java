@@ -11,9 +11,14 @@ public class ad_RegisterDao {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-
-	public Absence absenceCheck(Absence ab)
+	//휴학 확인
+	public Absence absenceCheck(String sNo)
 		{
-			return sqlSession.selectOne("registerMapper.absenceCheck",ab);
+			return sqlSession.selectOne("registerMapper.absenceCheck",sNo);
+		}
+	//휴학 신청
+	public int leave_absence_apply(Absence ab)
+		{
+			return sqlSession.update("registerMapper.absenceApply",ab);
 		}
 }

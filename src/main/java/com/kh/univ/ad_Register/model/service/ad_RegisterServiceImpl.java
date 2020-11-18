@@ -12,10 +12,24 @@ public class ad_RegisterServiceImpl implements ad_RegisterService{
 	@Autowired
 	private ad_RegisterDao arDao;
 
+
+	/**
+	 *휴학 확인
+	 */
 	@Override
-	public Absence absenceCheck(Absence ab)
+	public Absence absenceCheck(String sNo)
 		{
-			return arDao.absenceCheck(ab);
+			return arDao.absenceCheck(sNo);
+		}
+
+
+	/**
+	 *휴학 신청
+	 */
+	@Override
+	public int leave_absence_apply(Absence ab)
+		{
+			return arDao.leave_absence_apply(ab);
 		}
 	
 }
