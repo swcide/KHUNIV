@@ -161,7 +161,7 @@ public class ad_Register_Controller {
 			System.out.println("root : " + root);
 			//파일 경로
 			// \를 문자로 인식시키기 위해서는 "\\"를 사용한다.
-			String savePath = root + "\\lectureUploadFile";
+			String savePath = root + "\\AbsenceUploadFile";
 
 			File folder = new File(savePath);
 

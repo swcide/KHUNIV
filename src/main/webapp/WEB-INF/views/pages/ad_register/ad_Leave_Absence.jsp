@@ -84,6 +84,7 @@
 							<li><i class="fas fa-check"></i>종류별 신청 서류가 상이할 수 있으니 <br>안내를 읽고 신청하시길 바랍니다.</li>
 							<li><i class="fas fa-check"></i>파일 미첨부 시 진행이 되지 않으며, <br>별도 안내 또한 없으니 주의하시길 바랍니다.</li>
 							<li><i class="fas fa-check"></i>휴학 후 등록금 반환은 되지 않습니다.</li>
+							<li><i class="fas fa-check"></i>파일첨부 예시) 휴학(일반)_체육학과_윤기훈.</li>
 							<li><i class="fas fa-check"></i>행정팀 : 02) 111-2222</li>
 							<li><i class="fas fa-check"></i>
 							<select name="absReason" class="form-control" id="absReason">
