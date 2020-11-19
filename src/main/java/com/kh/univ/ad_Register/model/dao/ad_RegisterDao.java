@@ -11,14 +11,19 @@ import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 
 @Repository("adDao")
 public class ad_RegisterDao {
-
+	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-
-	public Absence absenceCheck(Absence ab)
-	{
-		return sqlSession.selectOne("registerMapper.absenceCheck",ab);
-	}
+	//휴학 확인
+	public Absence absenceCheck(String sNo)
+		{
+			return sqlSession.selectOne("registerMapper.absenceCheck",sNo);
+		}
+	//휴학 신청
+	public int leave_absence_apply(Absence ab)
+		{
+			return sqlSession.update("registerMapper.absenceApply",ab);
+		}
 	
 	
 	///////////////////////////////////강의계획서 관리//////////////////////////////////////////////////
