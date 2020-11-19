@@ -3,6 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="registerMapper">
 
+<!--  휴복학 관련 -->
 	<resultMap type="Absence" id="absenceResultSet">
 <id property="sNo" column="STD_NO"/>
 <result property="CurrentState" column="CURRENT_STATE"  />
@@ -11,6 +12,19 @@
 <result property="absenceFileName" column="ABSENCE_FILE"  />
 <result property="absenceStatus" column="ABS_STATUS"  />
 <result property="returnStatus" column="RETURN_STATUS"  />
+<result property="sName" column="STD_NAME"  />
+<result property="semester" column="SEMESTER"  />
+<result property="deptName" column="DEPT_NAME"  />
+</resultMap>
+<!-- 유예/자퇴 관련 -->
+	<resultMap type="grdExp" id="grdExpResultSet">
+<id property="sNo" column="STD_NO"/>
+<result property="CurrentState" column="CURRENT_STATE"  />
+<result property="expDate" column="EXPELLED_DATE"  />
+<result property="grdDelayDate" column="GRADUATE_DELAY_DATE"  />
+<result property="grdExpFileName" column="GRD_EXP_FILE"  />
+<result property="grdDelayStatus" column="GRADUATE_DELAY_STATUS"  />
+<result property="expStatus" column="EXPELLED_STATUS"  />
 <result property="sName" column="STD_NAME"  />
 <result property="semester" column="SEMESTER"  />
 <result property="deptName" column="DEPT_NAME"  />
@@ -140,19 +154,50 @@
 
 
 
-
+<!-- 휴복학 상태확인 -->
 <select id="absenceCheck" resultMap="absenceResultSet">
-SELECT STD_NO,ABS_STATUS,CURRENT_STATE,DEPT_NAME,STD_NAME,SEMESTER,ABS_REASON,ABSENCE_FILE
+SELECT STD_NO,RETURN_STATUS,ABS_STATUS,CURRENT_STATE,DEPT_NAME,STD_NAME,SEMESTER,ABS_REASON,ABSENCE_FILE
 FROM TB_ABSENCE_STD AB
 JOIN TB_STUDENT S USING (STD_NO)
 JOIN TB_DEPARTMENT D ON(S.DEPT_NO = D.DEPT_NO)
 WHERE STD_NO = #{sNo}
 </select>
 
+<!-- 유예/자퇴 상태확인 -->
+<select id="graduationDelayCheck" resultMap="grdExpResultSet">
+SELECT STD_NO,CURRENT_STATE,DEPT_NAME,STD_NAME,SEMESTER,GRADUATE_DELAY_STATUS,EXPELLED_STATUS,GRD_EXP_FILE,SEMESTER
+FROM TB_GRD_EXP_STD 
+JOIN TB_STUDENT S USING (STD_NO)
+JOIN TB_DEPARTMENT D ON(S.DEPT_NO = D.DEPT_NO)
+WHERE STD_NO = #{sNo}
+</select>
+
+<!-- 휴학신청 업데이트 -->
 <update id="absenceApply" parameterType="Absence">
 UPDATE TB_ABSENCE_STD
 SET ABSENCE_FILE=#{absenceFileName},ABS_STATUS='Y',ABS_REASON=#{absReason}
 WHERE  STD_NO = #{sNo}
-
 </update>
+
+<!-- 복학신청 업데이트 -->
+<update id="returnApply" parameterType="Absence">
+UPDATE TB_ABSENCE_STD
+SET ABSENCE_FILE=#{absenceFileName},RETURN_STATUS='Y',ABS_REASON='복학'
+WHERE  STD_NO = #{sNo}
+</update>
+
+<!-- 졸업유예 신청 업데이트 -->
+<update id="graduationDelayApply" parameterType="grdExp">
+UPDATE TB_GRD_EXP_STD
+SET GRD_EXP_FILE=#{grdExpFileName},GRADUATE_DELAY_STATUS='Y'
+WHERE STD_NO = #{sNo}
+</update>
+
+<!-- 자퇴 신청 업데이트 -->
+<update id="dropApply" parameterType="grdExp">
+UPDATE TB_GRD_EXP_STD
+SET GRD_EXP_FILE=#{grdExpFileName},EXPELLED_STATUS='Y'
+WHERE STD_NO = #{sNo}
+</update>
+
 </mapper>

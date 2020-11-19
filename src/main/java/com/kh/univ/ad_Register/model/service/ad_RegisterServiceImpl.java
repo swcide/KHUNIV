@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.univ.ad_Register.model.dao.ad_RegisterDao;
 import com.kh.univ.ad_Register.model.vo.Absence;
+import com.kh.univ.ad_Register.model.vo.grdExp;
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
@@ -20,7 +21,7 @@ public class ad_RegisterServiceImpl implements ad_RegisterService{
 
 
 	/**
-	 *휴학 확인
+	 *휴학/복학 확인
 	 */
 	@Override
 	public Absence absenceCheck(String sNo)
@@ -28,6 +29,11 @@ public class ad_RegisterServiceImpl implements ad_RegisterService{
 			return arDao.absenceCheck(sNo);
 		}
 
+	@Override
+	public grdExp graduationDelayCheck(String sNo)
+		{
+			return arDao.graduationDelayCheck(sNo);
+		}
 
 	/**
 	 *휴학 신청
@@ -36,6 +42,24 @@ public class ad_RegisterServiceImpl implements ad_RegisterService{
 	public int leave_absence_apply(Absence ab)
 		{
 			return arDao.leave_absence_apply(ab);
+		}
+	
+	/**
+	 *복학 신청
+	 */
+	@Override
+	public int return_absence_apply(Absence ab)
+		{
+			return arDao.return_absence_apply(ab);
+		}
+	
+	/**
+	 * 졸업유예 신청
+	 */
+	@Override
+	public int ad_deferment_graduation_apply(grdExp ge)
+		{
+			return arDao.ad_deferment_graduation_apply(ge);
 		}
 
 	@Override
@@ -62,6 +86,20 @@ public class ad_RegisterServiceImpl implements ad_RegisterService{
 	public ArrayList<LecturePlanWeek> selectSyllaOne2(LectureList ll) {
 		return arDao.selectSyllaOne2(ll);
 	}
+
+	@Override
+	public int ad_drop_absence_apply(grdExp ge)
+		{
+			return arDao.ad_drop_absence_apply(ge);
+		}
+
+
+
+
+	
+
+
+	
 
 	
 	
