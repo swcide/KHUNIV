@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ page import="java.util.Date" %>
 
 <%@ include file="../common/administration_header.jsp"%>
 
@@ -31,7 +31,8 @@
 									<th>이수구분</th>
 									<th>과목명</th>
 									<th>나의출석률</th>
-									<th>총결석일</th>
+									<th>과정진행률</th>
+									<th>결석일수</th>
 									<th>제출과제수</th>
 								</tr>
 							</thead>
@@ -41,10 +42,26 @@
 												<td>${a. classType }</td>
 												<td>${a. className }</td>
 												<td>
-												<c:set var= "ar" value="${a.attendRate/12*100}"/>
-												<c:set var= "ac" value="${a.attendRate}"/>
-												<fmt:formatNumber  value="${ar-(ar%1)}"/>%(${a. attendRate }/12주)</td>
-												<td><fmt:formatNumber  value="${12-ac}"/>일</td>
+													<c:set var= "ar" value="${a.attendRate/12*100}"/>
+													<c:set var= "ac" value="${a.attendRate}"/>
+													<fmt:formatNumber  value="${ar-(ar%1)}"/>%(${a. attendRate }/12주)
+												</td>
+												<td>
+													<c:set var="today" value="<%=new Date()%>"/>
+													<c:set var= "sd" value="${a.startDate}"/>
+													<fmt:formatDate var="nowDate" pattern="yyyy-MM-dd" value="${today }" />
+													<fmt:formatDate var="startDate" value="${sd}" pattern="yyyy-MM-dd" />
+													<fmt:parseNumber var="currentDate" value="${today.time / (1000*60*60*24)}" integerOnly="true" ></fmt:parseNumber>
+													<fmt:parseNumber var="strDate" value="${sd.time / (1000*60*60*24)}" integerOnly="true" ></fmt:parseNumber>
+	
+													<c:set var="days" value="${currentDate - strDate }"/>
+													<c:set var="dr" value="${days/84*100 }"/>
+													<c:set var="cw"  value="${days/7 }"/>
+													<fmt:parseNumber var="cw" value="${cw }" integerOnly="true"/>
+													<fmt:formatNumber  value="${dr-(dr%1)}"/>%(${cw-(cw%1)}/12주)
+														
+												</td>
+												<td>${sd }일</td>
 												<td>${a. assignment }/6회</td>
 										</tr>
 			    				</c:forEach>
