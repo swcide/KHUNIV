@@ -131,7 +131,7 @@ public class ad_Register_Controller {
 	
 	@RequestMapping(value = "ad_leave_absence_apply.do")
 	@ResponseBody
-	public String ad_leave_absence_apply(Model m,Absence ab, HttpServletRequest request, @RequestParam(name = "file", required = false) MultipartFile file, @RequestParam(name="sNo") String sNo,@RequestParam(name="absReason") String absReason) {
+	public String ad_leave_absence_apply(Model m,Absence ab, HttpServletRequest request, @RequestParam(name = "uploadFile", required = false) MultipartFile file, @RequestParam(name="sNo") String sNo,@RequestParam(name="absReason") String absReason) {
 			System.out.println("왔싸ㅃ ? ");
 			System.out.println(sNo);
 			System.out.println(file);
