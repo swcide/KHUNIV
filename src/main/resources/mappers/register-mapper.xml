@@ -59,13 +59,6 @@
 		<id property="lecReference" column="LECTURE_REFERENCE" />
 	</resultMap>
 
-	<select id="absenceCheck" resultMap="absenceResultSet">
-		SELECT STD_NO,ABS_STATUS,CURRENT_STATE,DEPT_NAME,STD_NAME,SEMESTER
-		FROM TB_ABSENCE_STD AB
-		JOIN TB_STUDENT S USING (STD_NO)
-		JOIN TB_DEPARTMENT D ON(S.DEPT_NO = D.DEPT_NO)
-		WHERE STD_NO = #{sNo}
-	</select>
 	<!-- 강의개설정보 리스트 //전공//-->
 	<select id="lecPList" resultMap="lectureListResultSet">
 		SELECT
