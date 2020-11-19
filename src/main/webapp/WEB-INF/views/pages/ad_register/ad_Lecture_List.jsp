@@ -38,7 +38,7 @@
 										<li class="nav-item"><a class="nav-link" href="#recent10" data-toggle="tab" class="text-center">교양 강의</a></li>
 									</ul>
 
-									<div class="tab-content" style="height: 600px;">
+									<div class="tab-content" style="height: 1400px;">
 										<div id="popular10" class="tab-pane active">
 											<table class="table table-hover">
 												<thead>
