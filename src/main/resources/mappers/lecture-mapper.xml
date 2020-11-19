@@ -123,6 +123,7 @@
 		<result property="attendance" column="ATTENDANCE" />
 		<result property="attendRate" column="COUNT(ATTENDANCE)" />
 		<result property="classType" column="CLASS_TYPE" />
+		<result property="startDate" column="START_DATE" />
 		<result property="assignment" column="ASSIGNMENT" />
 		<result property="week" column="WEEK" />
 	</resultMap>
@@ -132,12 +133,13 @@
 		 CLASS_TYPE,
 		 CLASS_NAME,
 		 CLASS_NO, 
+		 START_DATE,
 		 STD_NO, COUNT(ATTENDANCE),
 		 COUNT(ASSIGNMENT)
    		 FROM TB_ATTENDANCE
    		 JOIN TB_CLASS USING (CLASS_NO)
    		 WHERE STD_NO= #{sNo}
-   		 GROUP BY CLASS_NO, STD_NO, CLASS_TYPE, CLASS_NAME
+   		 GROUP BY CLASS_NO, STD_NO, CLASS_TYPE, CLASS_NAME, START_DATE
 	</select>
 	
 	
@@ -146,7 +148,7 @@
 	<select id="sylla2" resultMap="Sylla2ResultSet">
 
 		SELECT
-		LECTURE_NO,LECTURE_NAME,LECTURE_REFERENCE,LECTURE_EXPLANATION
+		LECTURE_NO,LECTURE_NAME,LECTURE_REFERENCE,LECTURE_EXPLANATION,START_DATE
 		FROM
 		TB_CLASS
 		JOIN
