@@ -102,7 +102,6 @@ pNo =loginProf.getpNo();
 		var classNo = $(obj).children().siblings('input').val();
 		var pNo=$('#pNo').val();
 		console.log(pNo)		
-		console.log(pNo)		
 		window.open(this.href='prof_Syllabus_LectureWrite.do?classNo='+classNo+'&pNo='+pNo,'', 'resizable=yes, width=900, height=800 left=700px top=100px')
 		return false;
 		

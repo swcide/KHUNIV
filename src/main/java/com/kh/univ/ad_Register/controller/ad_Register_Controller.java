@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.ad_Register.model.service.ad_RegisterService;
 import com.kh.univ.ad_Register.model.vo.Absence;
+import com.kh.univ.lecture.model.vo.LectureList;
+import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.member.model.vo.Student;
 
@@ -127,9 +128,9 @@ public class ad_Register_Controller {
 	 * @return
 	 */
 	
-	@ResponseBody
 	@RequestMapping(value = "ad_leave_absence_apply.do")
-	public String ad_leave_absence_apply(Model m,Absence ab, HttpServletRequest request, @RequestParam(name = "file", required = false) MultipartFile file, @RequestParam(name="sNo") String sNo,@RequestParam(name="absReason") String absReason) {
+	@ResponseBody
+	public String ad_leave_absence_apply(Model m,Absence ab, HttpServletRequest request, @RequestParam(name = "uploadFile", required = false) MultipartFile file, @RequestParam(name="sNo") String sNo,@RequestParam(name="absReason") String absReason) {
 			System.out.println("왔싸ㅃ ? ");
 			System.out.println(sNo);
 			System.out.println(file);
@@ -144,11 +145,13 @@ public class ad_Register_Controller {
 			}
 
 			int result = arService.leave_absence_apply(ab);
-
+            System.out.println("Result 체크 : " + result);
+           
+           
 			if (result > 0) {
-				return "ad_register/ad_leave_absence_check.do";
+				return "success";
 			} else {
-				return "common/errorPage";
+				return "fail";
 			}
 		}
 	
@@ -349,6 +352,70 @@ public class ad_Register_Controller {
 	}
 	
 	
-	
+	//========================================================================
+	/**
+	    * 학사행정 > 학적관리 > 강의 > 강의개설정보
+	    * @param currentPage
+	    * @param mv
+	    * @param session
+	    * @return
+	    */
+	   // 강의개설정보 페이지
+	   @RequestMapping(value = "ad_lect_list.do")
+	   public ModelAndView ad_Lecture_List(ModelAndView mv, HttpSession session,
+	         @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage ) {
+
+	      // 페이지수
+	      Student student = (Student)session.getAttribute("loginUser"); // 로긴세션에서 뽑은 정보를 학생객체에 넣기
+	      String dNo = student.getdNo();                          // 학생번호만 뽑기   
+	      int listCount = arService.getListCount(dNo);
+	      System.out.println(listCount);
+	      System.out.println("아마 여기까진");
+
+
+	      ArrayList<LectureList> ll = arService.selectList1(dNo); // 전공과목용 
+
+	      ArrayList<LectureList> lp = arService.selectList2(dNo); // 교양과목용 
+
+
+	      System.out.println(ll);
+	      if(ll != null && lp != null) {
+	         mv.addObject("ll",ll);
+	         mv.addObject("lp",lp);
+	         mv.setViewName("ad_register/ad_Lecture_List");
+	      }else {
+	         mv.addObject("msg","로그인 실패");
+	         mv.setViewName("common/errorPage");
+	      }
+	      return mv;
+	   }
+
+	   /**
+	    * 학사행정 > 학적관리 > 강의 > 강의계획서
+	    * @param classNo
+	    * @param pNo
+	    * @param mv
+	    * @return
+	    */
+	   // 학생용 강의계획서 팝업창
+	   @RequestMapping(value = "ad_syllabus.do")
+	   public ModelAndView ad_syllabus(ModelAndView mv,LectureList ll, @RequestParam(value="classNo")String classNo,@RequestParam(value="pNo")String pNo) {
+	      ll.setClassNo(classNo);
+	      ll.setpNo(pNo);
+	      System.out.println("컨트롤러에 들어옴"+ll);
+	      LecturePlan lp = arService.selectSyllaOne1(ll);
+	      ArrayList <LecturePlanWeek> lpw = arService.selectSyllaOne2(ll);
+	      System.out.println("디비갔다온"+lp);
+	      System.out.println(lpw);
+	      if(lpw != null && lp !=null) {
+	         mv.addObject("lp",lp);
+	         mv.addObject("lpw",lpw);
+	         mv.setViewName("ad_register/ad_Syllabus_Lecture");
+	      }else {
+	         mv.addObject("msg","로그인 실패");
+	         mv.setViewName("common/errorPage");
+	      }
+	      return mv;
+	   }
 	
 }

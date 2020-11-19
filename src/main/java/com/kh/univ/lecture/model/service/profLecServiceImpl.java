@@ -123,19 +123,6 @@ public class profLecServiceImpl implements profLecService {
 		return plDao.prof_Syllabus_LectureUpdate(lp);
 	}
 
-	@Override
-	public int getListCount(String dNo) {
-		return plDao.getListCount(dNo);
-	}
-	
-	// 강의개설정보페이지
-	@Override
-	public ArrayList<LectureList> selectList(String dNo, PageInfo pi) {
-		return plDao.selectList(dNo, pi);
-	}
-	
-	
-	
 //	-------------------------------강의동 시험 -------------------
 	/**
 	 * 

@@ -106,8 +106,7 @@
 		function openNew() {
 			var sNo = $('#sNo').val();
 			console.log(sNo)
-			window
-					.open(this.href = 'ad_leave_absence.do?sNo=' + sNo, '',
+			window.open(this.href = 'ad_leave_absence.do?sNo=' + sNo, '',
 							'resizable=yes, width=900, height=800 left=700px top=100px')
 			return false;
 

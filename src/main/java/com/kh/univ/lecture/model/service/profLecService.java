@@ -90,22 +90,6 @@ public interface profLecService {
 
 	LecturePlan prof_Syllabus_LectureSelect(LectureList ll);
 	
-	/**
-	 * 강의 개설 정보 리스트카운트
-	 * @param dNo
-	 * @param pi
-	 * @return
-	 */
-	ArrayList<LectureList> selectList(String dNo, PageInfo pi);
-	
-	/**
-	 * 강의 개설 정보 리스트카운트
-	 * @return
-	 */
-	int getListCount(String dNo);
-	
-	
-	
 	
 //-------------------강의동 교수 시험 ---------------------------
 	
