@@ -292,7 +292,7 @@ function checkForm() {
 		});
 	}
 	function shake() {
-		for (i = 10; i > 0; i--) {
+		for (i = 30; i > 0; i--) {
 			window.moveBy(0, i);
 			window.moveBy(i, 0);
 			window.moveBy(0, -i);

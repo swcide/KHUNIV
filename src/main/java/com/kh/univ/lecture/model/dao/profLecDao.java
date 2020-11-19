@@ -83,17 +83,6 @@ public class profLecDao {
 		return sqlSession.selectOne("lectureMapper.lectureSelect", ll);
 	}
 	
-	// 강의 개설 정보 페이지
-	public ArrayList<LectureList> selectList(String dNo, PageInfo pi) {
-		int offset = (pi.getCurrentPage() -1 ) * pi.getBoardLimit();
-		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("lectureMapper.lecPList",dNo, rowBounds);
-	}
-	
-	// 강의 개설 리스트카운트
-	public int getListCount(String dNo) {
-		return sqlSession.selectOne("lectureMapper.getLCount",dNo);
-	}
 	
 	public LecturePlanWeek updateAfter(LecturePlanWeek lpw)
 	{

@@ -3,24 +3,148 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="registerMapper">
 
-<resultMap type="Absence" id="absenceResultSet">
-<id property="sNo" column="STD_NO"/>
-<result property="CurrentState" column="CURRENT_STATE"  />
-<result property="absDate" column="ABS_DATE"  />
-<result property="absReason" column="ABS_REASON"  />
-<result property="absenceFileName" column="ABSENCE_FILE"  />
-<result property="absenceStatus" column="ABS_STATUS"  />
-<result property="returnStatus" column="RETURN_STATUS"  />
-<result property="sName" column="STD_NAME"  />
-<result property="semester" column="SEMESTER"  />
-<result property="deptName" column="DEPT_NAME"  />
-</resultMap>
+	<resultMap type="Absence" id="absenceResultSet">
+		<id property="sNo" column="STD_NO" />
+		<result property="CurrentState" column="CURRENT_STATE" />
+		<result property="absDate" column="ABS_DATE" />
+		<result property="absReason" column="ABS_REASON" />
+		<result property="absenceFileName" column="ABSENCE_FILE" />
+		<result property="absenceStatus" column="ABS_STATUS" />
+		<result property="returnStatus" column="RETURN_STATUS" />
+		<result property="sName" column="STD_NAME" />
+		<result property="semester" column="SEMESTER" />
+		<result property="deptName" column="DEPT_NAME" />
+	</resultMap>
+	
+	<resultMap type="LectureList" id="lectureListResultSet">
+		<id property="classNo" column="CLASS_NO" />
+		<result property="className" column="CLASS_NAME" />
+		<result property="lecAttendance" column="LECTURE_ATTENDANCE" />
+		<result property="lecLearningRate" column="LECTURE_LEARNINGRATE" />
+		<result property="Attendees" column="CLASS_ATTENDEES" />
+		<result property="classSummary" column="CLASS_SUMMARY" />
+		<result property="classImg" column="CLASS_IMG" />
+		<result property="profName" column="PROF_NAME" />
+		<result property="pNo" column="PROF_NO" />
+		<result property="profEmail" column="PROF_EMAIL" />
+		<result property="deptName" column="DEPT_NAME" />
+		<result property="credit" column="CREDIT" />
+		<result property="classType" column="CLASS_TYPE" />
+	</resultMap>
+	
+	<!-- 강의계획서 상위부분 -->
+	<resultMap type="LecturePlan" id="Sylla1ResultSet">
+		<id property="classNo" column="CLASS_NO" />
+		<result property="className" column="CLASS_NAME" />
+		<result property="classType" column="CLASS_TYPE" />
+		<result property="credit" column="CREDIT" />
+		<result property="profName" column="PROF_NAME" />
+		<result property="profLab" column="PROF_LAB" />
+		<result property="profEmail" column="PROF_EMAIL" />
+		<result property="classSummary" column="CLASS_SUMMARY" />
+		<result property="classGoal" column="CLASS_GOAL" />
+		<result property="lecMethod" column="LEC_METHOD" />
+		<result property="evalMethod" column="EVAL_METHOD" />
+		<result property="assignment" column="ASSIGNMENT" />
+		<result property="lecExperiment" column="LEC_EXPERIMENT" />
+		<result property="relatedLec" column="RELATED_LEC" />
+		<result property="lecTextbook" column="LEC_TEXTBOOK" />
+	</resultMap>
 
-<select id="absenceCheck" resultMap="absenceResultSet">
-SELECT STD_NO,ABS_STATUS,CURRENT_STATE,DEPT_NAME,STD_NAME,SEMESTER
-FROM TB_ABSENCE_STD AB
-JOIN TB_STUDENT S USING (STD_NO)
-JOIN TB_DEPARTMENT D ON(S.DEPT_NO = D.DEPT_NO)
-WHERE STD_NO = #{sNo}
-</select>
+	<!-- 강의계획서 하위부분 -->
+	<resultMap type="LecturePlanWeek" id="Sylla2ResultSet">
+		<id property="classNo" column="CLASS_NO" />
+		<id property="lecNo" column="LECTURE_NO" />
+		<id property="lecName" column="LECTURE_NAME" />
+		<id property="lecReference" column="LECTURE_REFERENCE" />
+	</resultMap>
+
+	<select id="absenceCheck" resultMap="absenceResultSet">
+		SELECT STD_NO,ABS_STATUS,CURRENT_STATE,DEPT_NAME,STD_NAME,SEMESTER
+		FROM TB_ABSENCE_STD AB
+		JOIN TB_STUDENT S USING (STD_NO)
+		JOIN TB_DEPARTMENT D ON(S.DEPT_NO = D.DEPT_NO)
+		WHERE STD_NO = #{sNo}
+	</select>
+	<!-- 강의개설정보 리스트 //전공//-->
+	<select id="lecPList" resultMap="lectureListResultSet">
+		SELECT
+		CLASS_NO,CLASS_NAME,CLASS_TYPE,PROF_NAME,PROF_NO
+		FROM TB_CLASS C
+		JOIN
+		TB_CLASS_PROFESSOR USING(CLASS_NO)
+		JOIN TB_PROFESSOR ON
+		TB_CLASS_PROFESSOR.PROFESSOR_NO=TB_PROFESSOR.PROF_NO
+		WHERE CLASS_TYPE
+		LIKE '전공%'
+		AND C.DEPT_NO=#{dNo}
+	</select>
+	<!-- 강의개설정보 리스트 //교양//-->
+	<select id="lecPList2" resultMap="lectureListResultSet">
+		SELECT
+		CLASS_NO,CLASS_NAME,CLASS_TYPE,PROF_NAME,PROF_NO
+		FROM TB_CLASS C
+		JOIN
+		TB_CLASS_PROFESSOR USING(CLASS_NO)
+		JOIN TB_PROFESSOR ON
+		TB_CLASS_PROFESSOR.PROFESSOR_NO=TB_PROFESSOR.PROF_NO
+		WHERE CLASS_TYPE
+		LIKE '교양%'
+		AND C.DEPT_NO=#{dNo}
+	</select>
+
+	<!-- 강의 리스트카운트 -->
+	<select id="getLCount" resultType="_int">
+		SELECT COUNT(CLASS_NO)
+		FROM
+		TB_CLASS C
+		JOIN TB_CLASS_PROFESSOR USING(CLASS_NO)
+		JOIN TB_PROFESSOR ON
+		TB_CLASS_PROFESSOR.PROFESSOR_NO=TB_PROFESSOR.PROF_NO
+		WHERE CLASS_TYPE
+		LIKE '전공%'
+		AND C.DEPT_NO=#{dNo}
+	</select>
+	
+	
+	<select id="sylla2" resultMap="Sylla2ResultSet">
+		SELECT
+		LECTURE_NO,LECTURE_NAME,LECTURE_REFERENCE,LECTURE_EXPLANATION
+		FROM
+        TB_CLASS_DETAIL
+        LEFT JOIN TB_CLASS_PROFESSOR USING(CLASS_NO)
+		WHERE CLASS_NO=#{classNo}
+		AND PROFESSOR_NO=#{pNo}
+		ORDER BY
+		LECTURE_NO ASC
+	</select>
+	<select id="sylla1" resultMap="Sylla1ResultSet">
+		SELECT CLASS_NO,
+		CLASS_NAME,
+		CLASS_TYPE,
+		CREDIT,
+		PROF_NAME,
+		PROF_LAB,
+		PROF_EMAIL,
+		CLASS_SUMMARY,
+		CLASS_GOAL,
+		LEC_METHOD,
+		EVAL_METHOD,
+		ASSIGNMENT,
+		LEC_EXPERIMENT,
+		RELATED_LEC,
+		LEC_TEXTBOOK
+		FROM TB_CLASS C
+		JOIN TB_CLASS_PROFESSOR CP
+		USING(CLASS_NO)
+		LEFT JOIN TB_LECTURE_PLAN LP USING(CLASS_NO)
+		JOIN
+		TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
+		WHERE
+		CLASS_NO=#{classNo}
+		AND PROF_NO=#{pNo}
+	</select>
+
+
+
 </mapper>
