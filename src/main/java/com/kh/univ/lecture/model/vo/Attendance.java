@@ -8,15 +8,15 @@ public class Attendance {
 	protected String classType; 		    // 이수구분 				TB_CLASS
 	protected String className; 		    // 과목명 					TB_CLASS
 	protected String sNo; 		    	    // 학생번호				TB_ATTENDANCE
-	protected int attendRate; 				// 출석률 					TB_ATTENDANCE
 	private Date attendance;				// 출석일자				TB_ATTENDANCE
 	private Date startDate;					// 개강일자				TB_CLASS
+	protected int attendRate; 				// 출석률 					TB_ATTENDANCE
 	private int assignment;					// 과제제출수				TB_ATTENDANCE
 	private int week;						// 주차					TB_ATTENDANCE
 	
 	public Attendance() {
 	}
-
+	
 	public Attendance(String classNo, String classType, String className, String sNo, int attendRate, Date attendance,
 			Date startDate, int assignment, int week) {
 		super();

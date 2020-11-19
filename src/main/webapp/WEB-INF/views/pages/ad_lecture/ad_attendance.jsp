@@ -30,7 +30,7 @@
 								<tr>
 									<th>이수구분</th>
 									<th>과목명</th>
-									<th>나의출석률</th>
+									<th>현재출석률</th>
 									<th>과정진행률</th>
 									<th>결석일수</th>
 									<th>제출과제수</th>
@@ -42,8 +42,9 @@
 												<td>${a. classType }</td>
 												<td>${a. className }</td>
 												<td>
-													<c:set var= "ar" value="${a.attendRate/12*100}"/>
+													<c:set var="wc" value="${a.week}"/>
 													<c:set var= "ac" value="${a.attendRate}"/>
+													<c:set var= "ar" value="${ac/(wc-1)*100}"/>
 													<fmt:formatNumber  value="${ar-(ar%1)}"/>%(${a. attendRate }/12주)
 												</td>
 												<td>
@@ -61,7 +62,11 @@
 													<fmt:formatNumber  value="${dr-(dr%1)}"/>%(${cw-(cw%1)}/12주)
 														
 												</td>
-												<td>${sd }일</td>
+												<td>
+												
+												
+												<c:out value=" ${wc-1-ac }"/>일
+												</td>
 												<td>${a. assignment }/6회</td>
 										</tr>
 			    				</c:forEach>

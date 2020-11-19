@@ -120,28 +120,47 @@
 		<result property="className" column="CLASS_NAME" />
 		<result property="attendance" column="ATTENDANCE" />
 		<result property="attendRate" column="COUNT(ATTENDANCE)" />
+		<result property="assignment" column="COUNT(ASSIGNMENT)" />
+		<result property="week" column="COUNT(WEEK)" />
 		<result property="classType" column="CLASS_TYPE" />
 		<result property="startDate" column="START_DATE" />
 		<result property="assignment" column="ASSIGNMENT" />
-		<result property="week" column="WEEK" />
 	</resultMap>
 
 	<select id="attendance" resultMap="AttendanceResultSet">
-		 SELECT 
-		 CLASS_TYPE,
-		 CLASS_NAME,
-		 CLASS_NO, 
-		 START_DATE,
-		 STD_NO, COUNT(ATTENDANCE),
-		 COUNT(ASSIGNMENT)
-   		 FROM TB_ATTENDANCE
-   		 JOIN TB_CLASS USING (CLASS_NO)
-   		 WHERE STD_NO= #{sNo}
-   		 GROUP BY CLASS_NO, STD_NO, CLASS_TYPE, CLASS_NAME, START_DATE
+		SELECT 
+         CLASS_TYPE,
+         CLASS_NAME,
+         CLASS_NO, 
+         START_DATE,
+         STD_NO, 
+         COUNT(ATTENDANCE),
+         COUNT(ASSIGNMENT),
+         COUNT(WEEK)
+         FROM TB_ATTENDANCE
+         JOIN TB_CLASS USING (CLASS_NO)
+         WHERE WEEKDATE 
+         BETWEEN 
+         TO_NUMBER(TO_CHAR(START_DATE,'IW'))
+         AND 
+         TO_NUMBER(TO_CHAR(SYSDATE,'IW')) 
+         AND STD_NO= #{sNo}
+         GROUP BY CLASS_NO, STD_NO, CLASS_TYPE, CLASS_NAME, START_DATE
 	</select>
 	
+	 
 	
-
+<!--  SELECT  -->
+<!-- 		 CLASS_TYPE, -->
+<!-- 		 CLASS_NAME, -->
+<!-- 		 CLASS_NO,  -->
+<!-- 		 START_DATE, -->
+<!-- 		 STD_NO, COUNT(ATTENDANCE), -->
+<!-- 		 COUNT(ASSIGNMENT) -->
+<!--    		 FROM TB_ATTENDANCE -->
+<!--    		 JOIN TB_CLASS USING (CLASS_NO) -->
+<!--    		 WHERE STD_NO= #{sNo} -->
+<!--    		 GROUP BY CLASS_NO, STD_NO, CLASS_TYPE, CLASS_NAME, START_DATE -->
 
 	<select id="sylla1" resultMap="Sylla1ResultSet">
 		SELECT CLASS_NO,
