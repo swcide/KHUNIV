@@ -20,9 +20,5 @@ public class LectureDao {
 		return (ArrayList)sqlSession.selectList("lectureMapper.attendance",sNo);
 	}
 
-	public ArrayList<Attendance> selectAttList(String sNo) {
-		
-		return (ArrayList)sqlSession.selectList("lectureMapper.attendRate",sNo);
-	}
 
 }

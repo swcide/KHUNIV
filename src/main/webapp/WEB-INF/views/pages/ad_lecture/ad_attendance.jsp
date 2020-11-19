@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
 <%@ include file="../common/administration_header.jsp"%>
 
@@ -23,56 +26,42 @@
 				<div class="col">
 					<div class="image-hotspots">
 						<table class="table table-hover">
-										<thead>
-											<tr>
-												<th>
-													이수구분
-												</th>
-												<th>
-													과목명
-												</th>
-												<th>
-													나의출석률
-												</th>
-												<th>
-													총결석일
-												</th>
-												<th>
-													제출과제수
-												</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach var="al" items="${al}" >
-											<tr>
+							<thead>
+								<tr>
+									<th>이수구분</th>
+									<th>과목명</th>
+									<th>나의출석률</th>
+									<th>총결석일</th>
+									<th>제출과제수</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="a" items="${al}">
+										<tr>
+												<td>${a. classType }</td>
+												<td>${a. className }</td>
 												<td>
-													${al.classType }
-												</td>
-												<td>
-													${al.className }
-												</td>
-												<td>
-													
+												<c:set var= "ar" value="${a.attendRate/12*100}"/>
+												<c:set var= "ac" value="${a.attendRate}"/>
+												<fmt:formatNumber  value="${ar-(ar%1)}"/>%(${a. attendRate }/12주)</td>
+												<td><fmt:formatNumber  value="${12-ac}"/>일</td>
+												<td>${a. assignment }/6회</td>
+										</tr>
+			    				</c:forEach>
 
-												</td>
-												<td>
-													0일
-												</td>
-												<td>
-													3/6회
-												</td>
-											</tr>
-											
-											
-											
-											</c:forEach>
-										</tbody>
-									</table>
-						
 
-								
-								
-									</div>
+
+
+
+
+
+							</tbody>
+						</table>
+
+
+
+
+					</div>
 				</div>
 			</div>
 		</div>
@@ -81,4 +70,3 @@
 <%@ include file="../common/footer.jsp"%>
 
 
-		

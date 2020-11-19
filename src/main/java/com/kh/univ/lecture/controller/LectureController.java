@@ -1,6 +1,7 @@
 package com.kh.univ.lecture.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -53,13 +54,11 @@ public class LectureController {
 		System.out.println("학생번호 컨트롤러"+sNo);
 		ArrayList<Attendance> al = lService.selectList(sNo);
 		System.out.println(al);
-		ArrayList<Attendance> ar = lService.attendRate(sNo);
-		System.out.println("나와라오바 : " + ar);
 
 //		System.out.print("attendanceRate: " + attendanceRate);
 
+		
 		mv.addObject("al", al);
-		mv.addObject("ar", ar);
 		mv.setViewName("ad_lecture/ad_attendance");
 		return mv;
 	}

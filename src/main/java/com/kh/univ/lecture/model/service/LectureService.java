@@ -13,6 +13,5 @@ public interface LectureService {
 	 */
 	ArrayList<Attendance> selectList(String sNo);
 
-	ArrayList<Attendance> attendRate(String sNo);
 	
 }
