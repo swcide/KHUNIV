@@ -319,15 +319,13 @@ public class prof_LectureController {
 	 * @return
 	 */
 	@RequestMapping(value = "prof_Syllabus_LectureUpdate.do")
-	@ResponseBody
 	public ModelAndView prof_Syllabus_LectureUpdate(ModelAndView mv, LecturePlan lp ) {
 		System.out.println("컨트롤러"+lp);
 		int result = plService.prof_Syllabus_LectureUpdate(lp);
 		System.out.println(result);
 		if(result>0) {
 			System.out.println(lp);
-			mv.addObject("lp",lp);
-			mv.setViewName("prof_lecture/prof_lecturePlanList");
+			mv.setViewName("prof_lecture/prof_lecturePlanList"); // 어느페이지로
 
 		}else {
 			System.out.println(lp);
