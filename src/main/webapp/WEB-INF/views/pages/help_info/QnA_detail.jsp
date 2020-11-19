@@ -91,13 +91,13 @@ int type = 0;
 									<a href="${ qnaUpview }">수정하기</a>&nbsp;            
 					               <a href="${ qnaDelete }">삭제하기</a>&nbsp;            
 					            </c:if>
-								<c:if test="${ loginAdmin.aId eq b.qnaWriter}">
+								<c:if test="${!empty sessionScope.loginAdmin}">
 									<a href="${ qnaUpview }">수정하기</a>&nbsp;      
 					              <a href="${ qnaDelete }">삭제하기</a>&nbsp;     
 					            </c:if>
 
 								<!-- 댓글댓글댓글댓글댓글댓글 -->
-								<c:if test="${!empty sessionScope.loginUser  }">
+								<c:if test="${!empty sessionScope.loginAdmin || sessionScope.loginUser  }">
 								<div id="comments" class="post-block mt-5 post-comments">
 											<h4 id ="rCount"class="mb-3"></h4>
 											<ul class="comments">

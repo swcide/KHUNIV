@@ -2,8 +2,6 @@ package com.kh.univ.member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -273,7 +270,7 @@ public class MemberController {
 				System.out.println(sendEmailS);
 				String userName = s.getsName();
 				
-				if (sendEmailS.getsNo().equals(id)) {
+				if (sendEmailS.getsNo().equals(id) && sendEmailS.getsEmail().equals(e_mail)) {
 					System.out.println("여기까지 못와 ?");
 					email.setContent("비밀번호 찾기 인증번호 입니다." + System.getProperty("line.separator") + System.getProperty("line.separator") + "인증번호는 " + newPwd + " 입니다."
 							+ System.getProperty("line.separator") + System.getProperty("line.separator") + " 인증번호를 올바르게 입력해주시길 바랍니다." + System.getProperty("line.separator")
@@ -297,7 +294,8 @@ public class MemberController {
 		            PrintWriter out = response.getWriter();
 					out.println("<script>alert('아이디와 이메일이 일치하지 않습니다.'); history.go(-1);</script>");
 					out.flush();
-					return null;
+					mv.setViewName("member/pwChange");
+					return mv;
 				}
 				//교수 ------------------------------------------------------------------------------
 			} else {

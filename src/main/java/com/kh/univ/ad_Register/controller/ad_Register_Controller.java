@@ -1,21 +1,34 @@
 package com.kh.univ.ad_Register.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Locale;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
-/**
- * Handles requests for the application home page.
- */
+import com.kh.univ.ad_Register.model.service.ad_RegisterService;
+import com.kh.univ.ad_Register.model.vo.Absence;
+import com.kh.univ.lecture.model.vo.LecturePlanWeek;
+import com.kh.univ.member.model.vo.Student;
+
+@SessionAttributes({ "loginUser" })
 @Controller
 public class ad_Register_Controller {
+	
+	@Autowired
+	private ad_RegisterService arService;
 	
 	
 	/**
@@ -101,10 +114,72 @@ public class ad_Register_Controller {
 	 * @return
 	 */
 	@RequestMapping(value = "ad_leave_absence.do")
-	public String leave_absence(Locale locale, Model model) {
-		
-		return "ad_register/ad_Leave_Absence";
+	public ModelAndView leave_absence(ModelAndView mv, @RequestParam(name="sNo") String sNo) {
+		System.out.println(sNo);
+		mv.addObject("sNo",sNo);
+		mv.setViewName("ad_register/ad_Leave_Absence");
+		return mv;
 	}
+	/**
+	 * 휴학신청 학생 정보 업데이트
+	 * @param mv
+	 * @param sNo
+	 * @return
+	 */
+	
+	@ResponseBody
+	@RequestMapping(value = "ad_leave_absence_apply.do")
+	public String ad_leave_absence_apply(Model m,Absence ab, HttpServletRequest request, @RequestParam(name = "file", required = false) MultipartFile file, @RequestParam(name="sNo") String sNo,@RequestParam(name="absReason") String absReason) {
+			System.out.println("왔싸ㅃ ? ");
+			System.out.println(sNo);
+			System.out.println(file);
+			System.out.println(absReason);
+			if (!file.getOriginalFilename().equals(" ")) {
+				//서버에 업로드 해야한다.
+				String renameRefFileName = saveFile(file, request);
+				if (renameRefFileName != null) { //파일이 잘 저장된 경우
+					ab.setAbsenceFileName(file.getOriginalFilename()); // 파일명만 DB에 저장
+					ab.setAbsenceFileName(renameRefFileName);
+				}
+			}
+
+			int result = arService.leave_absence_apply(ab);
+
+			if (result > 0) {
+				return "ad_register/ad_leave_absence_check.do";
+			} else {
+				return "common/errorPage";
+			}
+		}
+	
+	public String saveFile(MultipartFile file, HttpServletRequest request)
+		{
+			//파일이 저장될 경로를 설정하기
+			//웹 서버의 ContextPath 불러와서 폴더의 경로를 가져온다
+			//webapp 하위의 resources
+			String root = request.getSession().getServletContext().getRealPath("resources");
+			System.out.println("root : " + root);
+			//파일 경로
+			// \를 문자로 인식시키기 위해서는 "\\"를 사용한다.
+			String savePath = root + "\\AbsenceUploadFile";
+
+			File folder = new File(savePath);
+
+			if (!folder.exists()) {
+				folder.mkdirs(); // 폴더가 없다면 생성한다. 
+			}
+
+			String fileName = file.getOriginalFilename();
+
+			String renamePath = folder + "\\" + fileName;//실제 저장될 파일 경로 + 파일명
+
+			try {
+				file.transferTo(new File(renamePath)); // 전달 받은 file이 rename명으로 이때 파일이 저장된다.
+			} catch (Exception e) {
+				System.out.println("파일 전송 에러 : " + e.getMessage());
+			}
+			return fileName;
+		}
 	
 	/**
 	 * 학사행정 > 학적관리 > 강의 > 휴학신청 확인
@@ -113,9 +188,18 @@ public class ad_Register_Controller {
 	 * @return
 	 */
 	@RequestMapping(value = "ad_leave_absence_check.do")
-	public String leave_absence_check(Locale locale, Model model) {
-		
-		return "ad_register/ad_Leave_Absence_Check";
+	public ModelAndView leave_absence_check(ModelAndView mv, HttpSession session) {
+			
+			Student s = (Student) session.getAttribute("loginUser");
+			String sNo = s.getsNo();
+			
+			Absence view = arService.absenceCheck(sNo);
+			System.out.println(view);
+			
+			mv.addObject("view",view);
+			mv.setViewName("ad_register/ad_Leave_Absence_Check");
+			
+		return mv;
 	}
 	
 	/**
@@ -137,7 +221,8 @@ public class ad_Register_Controller {
 	 * @return
 	 */
 	@RequestMapping(value = "ad_return_absence_check.do")
-	public String return_absence_check(Locale locale, Model model) {
+	public String return_absence_check() {
+			
 		
 		return "ad_register/ad_Return_Absence_Check";
 	}

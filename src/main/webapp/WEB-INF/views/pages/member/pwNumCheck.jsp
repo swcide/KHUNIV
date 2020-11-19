@@ -68,8 +68,8 @@
 						<div class="form-row">
 							<div class="form-group col">
 								<label class="text-color-dark text-3">인증번호 입력 <span class="text-color-danger">*</span></label>
-								<input type="text"name="insertPassCode" class="form-control form-control-lg text-4" required>
-								<input type="hidden" name="passCode" value="${newPwd }">
+								<input type="text" id="insertPassCode" name="insertPassCode" class="form-control form-control-lg text-4" required>
+								<input type="hidden" id="passCode" name="passCode" value="${newPwd }">
 								<input type="hidden" name="e_mail" value="${e_mail }">
 								<input type="hidden" name="id" value="${id }">
 								<input type="hidden" name="type" value="${type }">
@@ -77,7 +77,7 @@
 						</div>
 						<div class="form-row">
 							<div class="form-group col">
-								<button type="submit" class="btn btn-dark btn-modern btn-block text-uppercase rounded-0 font-weight-bold text-3 py-3" data-loading-text="Loading...">확인</button>
+								<button id="numCheck" type="button" class="btn btn-dark btn-modern btn-block text-uppercase rounded-0 font-weight-bold text-3 py-3" data-loading-text="Loading...">확인</button>
 							</div>
 						</div>
 						</div>
@@ -119,19 +119,21 @@
 <!-- Theme Initialization Files -->
 <script src="resources/js/theme.init.js"></script>
 
-<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
-		<script>
-			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-			ga('create', 'UA-12345678-1', 'auto');
-			ga('send', 'pageview');
-		</script>
-		 -->
 <script>
-
+$('#numCheck').on('click',function() {
+//		if ($('#dlswmd').css('display') == 'none') {
+//			$('#dlswmd').show();
+		
+		if ($("#insertPassCode").val()===$('#passCode').val()) {
+			//교수
+			alert("통과");
+			$("#frmSearch").attr("action", "pwNumCheck.do").submit();
+		} else {
+			//학생
+			alert("불일치");
+		}
+	
+});
 		
 </script>
 </body>

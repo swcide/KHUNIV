@@ -1,7 +1,6 @@
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.kh.univ.member.model.vo.Student"%>
 <%@ page import="com.kh.univ.member.model.vo.Admin"%>
 <%@ page import="com.kh.univ.member.model.vo.Professor"%>
@@ -55,19 +54,22 @@ System.out.println(type);
 <%@ include file="../common/header.jsp"%>
 
 <style>
-.mailbox-attachment-info{
+.mailbox-attachment-info {
 	background: #f8f9fa;
-    padding: 10px;
-	}
+	padding: 10px;
 }
-.mailbox-attachment-name{
-    color: #666;
-    font-weight: 700;
+
 }
+.mailbox-attachment-name {
+	color: #666;
+	font-weight: 700;
+}
+
 ul.comments li {
 	clear: both;
-    padding: 10px 0px 0px 20px!important;
-}}
+	padding: 10px 0px 0px 20px !important;
+}
+}
 </style>
 
 
@@ -75,13 +77,10 @@ ul.comments li {
 <div class="body">
 	<div role="main" class="main">
 
-		<section
-			class="page-header page-header-modern page-header-background page-header-background-md overlay overlay-color-dark overlay-show overlay-op-3"
-			>
+		<section class="page-header page-header-modern page-header-background page-header-background-md overlay overlay-color-dark overlay-show overlay-op-3">
 			<div class="container">
 				<div class="row mt-3">
-					<div
-						class="col-md-12 align-self-center p-static order-2 text-center">
+					<div class="col-md-12 align-self-center p-static order-2 text-center">
 						<h1 class="text-9 font-weight-bold">학사공지${n.nId}</h1>
 						<span class="sub-title">Department Notice</span>
 					</div>
@@ -98,141 +97,129 @@ ul.comments li {
 
 							<div class="post-content ml-0">
 
-								<h2 class="font-weight-bold">
-									${ n.nTitle }    
-								</h2>
+								<h2 class="font-weight-bold">${ n.nTitle }</h2>
 
 								<div class="post-meta">
-									<span><i class="far fa-user fl"></i> By ${n.nWriter }
-									</span> <span class="date float-right">${n.nCreateDate }</span>
+									<span>
+										<i class="far fa-user fl"></i> By ${n.nWriter }
+									</span>
+									<span class="date float-right">${n.nCreateDate }</span>
 								</div>
 
 								<p class="text-5">${n.nContent }</p>
-								
+
 								<div class="mt-5 ">
 									<hr>
-									<h4 >첨부파일</h4>
+									<h4>첨부파일</h4>
 								</div>
-								
-								
+
+
 								<c:if test="${ !empty n.originalFileName }">
-								<ul class=" d-flex align-items-stretch clearfix" style="list-style:none; padding: 0;">
-					                <li>		
-					                  <div class="mailbox-attachment-info">
-					                    <a href="/spring/resources/uploadFiles/${n.renameFileName}" download="${n.originalFileName }" class="mailbox-attachment-name">
-					                    	<i class="fas fa-paperclip"></i>${n.originalFileName }
-				                    	</a>
-					                        <span class="mailbox-attachment-size clearfix mt-">
-					                          <a href="#" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
-					                        </span>
-					                    
-					                  </div>
-					                </li>
-								</ul>
-								
-								
+									<ul class=" d-flex align-items-stretch clearfix" style="list-style: none; padding: 0;">
+										<li>
+											<div class="mailbox-attachment-info">
+												<a href="/spring/resources/uploadFiles/${n.renameFileName}" download="${n.originalFileName }" class="mailbox-attachment-name"> <i class="fas fa-paperclip"></i>${n.originalFileName }
+												</a>
+												<span class="mailbox-attachment-size clearfix mt-">
+													<a href="#" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
+												</span>
+
+											</div>
+										</li>
+									</ul>
+
+
 								</c:if>
-							
+
 								<c:if test="${ loginAdmin != null }">
-									<div class=" float-right">											
+									<div class=" float-right">
 										<div>
 											<c:url var="nupview" value="nUpView.do">
-												<c:param name="nId" value="${n.nId }"/>
-												<c:param name="nType" value="${n.nType}"/>
+												<c:param name="nId" value="${n.nId }" />
+												<c:param name="nType" value="${n.nType}" />
 											</c:url>
 											<c:url var="nDelete" value="nDelete.do">
-												<c:param name="nId" value="${n.nId }"/>
+												<c:param name="nId" value="${n.nId }" />
 											</c:url>
 											<c:url var="nList" value="nList.do?nType=1">
-												<c:param name="currentPage" value="${ currentPage }"/>
+												<c:param name="currentPage" value="${ currentPage }" />
 											</c:url>
-										
-											<a href="${nDelete}" class="mb-1 mt-1 mr-1 btn btn-primary">
-												삭제하기${nupview}
-											</a>
-											<a href="${nupview }" class="mb-1 mt-1 mr-1 btn btn-primary">
-												수정하기
-											</a>											
+
+											<a href="${nDelete}" class="mb-1 mt-1 mr-1 btn btn-primary"> 삭제하기${nupview} </a> <a href="${nupview }" class="mb-1 mt-1 mr-1 btn btn-primary"> 수정하기 </a>
 										</div>
 									</div>
-										
+
 								</c:if>
 								<c:if test="${ loginProf.pNo eq n.nWriter }">
-								<div class=" float-right">											
-											<div>
-												<c:url var="nupview" value="nUpView.do">
-													<c:param name="nId" value="${n.nId }"/>
-													<c:param name="nType" value="${n.nType}"/>
-												</c:url>
-												<c:url var="nDelete" value="nDelete.do?nType=1">
-													<c:param name="nId" value="${n.nId }"/>
-												</c:url>
-												<c:url var="nList" value="nList.do">
-													<c:param name="currentPage" value="${ currentPage }"/>
-												</c:url>
-										
-												<c:set var="test" value="${n.nType }"/>
-											
-											
-												<a href="${nDelete}" class="mb-1 mt-1 mr-1 btn btn-primary">
-													삭제하기 ${test }
-												</a>
-												<a href="${nupview }" class="mb-1 mt-1 mr-1 btn btn-primary">
-													수정하기
-												</a>											
-											</div>
+									<div class=" float-right">
+										<div>
+											<c:url var="nupview" value="nUpView.do">
+												<c:param name="nId" value="${n.nId }" />
+												<c:param name="nType" value="${n.nType}" />
+											</c:url>
+											<c:url var="nDelete" value="nDelete.do?nType=1">
+												<c:param name="nId" value="${n.nId }" />
+											</c:url>
+											<c:url var="nList" value="nList.do">
+												<c:param name="currentPage" value="${ currentPage }" />
+											</c:url>
+
+											<c:set var="test" value="${n.nType }" />
+
+
+											<a href="${nDelete}" class="mb-1 mt-1 mr-1 btn btn-primary"> 삭제하기 </a>
+											<a href="${nupview }" class="mb-1 mt-1 mr-1 btn btn-primary"> 수정하기 </a>
 										</div>
-										
+									</div>
+
 								</c:if>
-								
-								
+
+
 								<div id="comments" class="post-block mt-5 post-comments">
-											<h4 id ="rCount"class="mb-3"></h4>
+									<h4 id="rCount" class="mb-3"></h4>
 
-											<ul class="comments">
-												
+									<ul class="comments">
 
-											</ul>
+
+									</ul>
 
 								</div>
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-						
- 								<c:if test="${!empty sessionScope  }">
- 								<div class="post-block mt-5 post-leave-comment">
- 									<h4 class="mb-3">Leave a comment</h4> 									
- 										<div class="p-2"> 
- 											<div class="form-row"> 
- 												<div class="form-group col"> 
- 													<label class="required font-weight-bold text-dark">Comment</label> 
- 													<textarea id="rContent" maxlength="5000" rows="2" class="form-control" name="message" ></textarea> 
-											</div> 
- 											</div> 
- 											<div class="form-row"> 
- 											
- 												<div class="form-group col mb-0">
-													<input id="rSubmit"type="button" value="등록"  class="btn btn-dark btn-modern float-right" data-loading-text="Loading..."> 
-												<a href="${nList }" class="mb-1 mt-1 mr-1 btn btn-primary float-left">
-												목록으로
-										</a>
-												</div> 
-											</div> 
-										</div> 								
-								</div> 
-								</c:if>	
-								
-						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+								<c:if test="${!empty sessionScope  }">
+									<div class="post-block mt-5 post-leave-comment">
+										<h4 class="mb-3">Leave a comment</h4>
+										<div class="p-2">
+											<div class="form-row">
+												<div class="form-group col">
+													<label class="required font-weight-bold text-dark">Comment</label>
+													<textarea id="rContent" maxlength="5000" rows="2" class="form-control" name="message"></textarea>
+												</div>
+											</div>
+											<div class="form-row">
+
+												<div class="form-group col mb-0">
+													<input id="rSubmit" type="button" value="등록" class="btn btn-dark btn-modern float-right" data-loading-text="Loading...">
+													<a href="${nList }" class="mb-1 mt-1 mr-1 btn btn-primary float-left"> 목록으로 </a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</c:if>
+
+
 							</div>
 						</article>
 					</div>
@@ -240,12 +227,12 @@ ul.comments li {
 			</div>
 		</div>
 	</div>
-	
+
 	<div class=" commentList "></div>
-	
+
 
 	<script src="resources/vendor/jquery/jquery.min.js"></script>
-<script>
+	<script>
 
 	$(function(){
 		getReplyList();

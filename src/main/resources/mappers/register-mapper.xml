@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="registerMapper">
+
+<resultMap type="Absence" id="absenceResultSet">
+<id property="sNo" column="STD_NO"/>
+<result property="CurrentState" column="CURRENT_STATE"  />
+<result property="absDate" column="ABS_DATE"  />
+<result property="absReason" column="ABS_REASON"  />
+<result property="absenceFileName" column="ABSENCE_FILE"  />
+<result property="absenceStatus" column="ABS_STATUS"  />
+<result property="returnStatus" column="RETURN_STATUS"  />
+<result property="sName" column="STD_NAME"  />
+<result property="semester" column="SEMESTER"  />
+<result property="deptName" column="DEPT_NAME"  />
+</resultMap>
+
+<select id="absenceCheck" resultMap="absenceResultSet">
+SELECT STD_NO,ABS_STATUS,CURRENT_STATE,DEPT_NAME,STD_NAME,SEMESTER,ABS_REASON,ABSENCE_FILE
+FROM TB_ABSENCE_STD AB
+JOIN TB_STUDENT S USING (STD_NO)
+JOIN TB_DEPARTMENT D ON(S.DEPT_NO = D.DEPT_NO)
+WHERE STD_NO = #{sNo}
+</select>
+
+<update id="absenceApply" parameterType="Absence">
+UPDATE TB_ABSENCE_STD
+SET ABSENCE_FILE=#{absenceFileName},ABS_STATUS='Y',ABS_REASON=#{absReason}
+WHERE  STD_NO = #{sNo}
+
+</update>
+</mapper>

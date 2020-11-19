@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,36 +36,62 @@
 										<li class="nav-item active"><a class="nav-link">휴학신청상태</a></li>
 									</ul>
 									<div class="tab-content">
-										<div id="popular10" class="tab-pane active">
-											<table class="table table-hover">
+										<div id="popular10">
+											<table class="table table">
 												<thead>
 													<tr>
 														<th>학과</th>
 														<th style="text-align: center;">학년</th>
 														<th style="text-align: center;">학번</th>
 														<th style="text-align: center;">이름</th>
+														<th style="text-align: center;">신청분류</th>
 														<th style="text-align: center;">파일첨부</th>
 														<th style="text-align: center;">신청여부</th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
-														<td>호주캥거루학과</td>
-														<td style="text-align: center;">2</td>
-														<td style="text-align: center;">201801001</td>
-														<td style="text-align: center;">조원영</td>
-														<td style="text-align: center;">
-															<span class="badge badge-primary badge-md" style="padding: 5px;">미첨부</span>
-														</td>
-														<td style="text-align: center;">
-															<span class="badge badge-primary badge-md" style="padding: 5px;">미신청</span>
-														</td>
+														<td>${view.deptName }</td>
+														<td style="text-align: center;">${view.semester / 2}</td>
+														<td style="text-align: center;">${view.sNo }</td>
+														<td style="text-align: center;">${view.sName }</td>
+														<c:if test="${!empty view.absReason }">
+															<td style="text-align: center;">
+																<span class="badge badge-primary badge-md" style="padding: 5px;">${view.absReason }</span>
+															</td>
+														</c:if>
+														<c:if test="${empty view.absReason }">
+															<td style="text-align: center;">
+																<span class="badge badge-primary badge-md" style="padding: 5px;">미신청</span>
+															</td>
+														</c:if>
+														<c:if test="${empty view.absenceFileName }">
+															<td style="text-align: center;">
+																<a href=""><span class="badge badge-primary badge-md" style="padding: 5px;">미첨부</span></a>
+															</td>
+														</c:if>
+														<c:if test="${!empty view.absenceFileName }">
+															<td style="text-align: center;">
+																<a href=""><span class="badge badge-primary badge-md" style="padding: 5px;">첨부</span></a>
+															</td>
+														</c:if>
+														<c:if test="${view.absenceStatus eq 'N' || empty view.absenceStatus }">
+															<td style="text-align: center;">
+																<span class="badge badge-primary badge-md" style="padding: 5px;">미신청</span>
+															</td>
+														</c:if>
+														<c:if test="${view.absenceStatus eq 'Y'}">
+															<td style="text-align: center;">
+																<span class="badge badge-primary badge-md" style="padding: 5px;">신청</span>
+															</td>
+														</c:if>
 													</tr>
 												</tbody>
 											</table>
 										</div>
 										<div align="right">
-										<button type="button" class="btn btn-primary btn-xs mb-2" onClick="window.open(this.href='ad_leave_absence.do', '', 'resizable=yes, width=900, height=800 left=700px top=100px'); return false;">휴학신청 바로가기</button>
+											<input type="hidden" name="sNo" id="sNo" value="${view.sNo }">
+											<button type="button" class="btn btn-primary btn-xs mb-2" onClick="openNew()">휴학신청 바로가기</button>
 										</div>
 									</div>
 								</div>
@@ -75,48 +102,17 @@
 			</div>
 		</div>
 	</div>
-	<%@include file="../common/footer.jsp"%>
 	<script>
-		// 테이블의 Row 클릭시 값 가져오기
-		$("#popular10 tr")
-				.click(
-						function() {
+		function openNew() {
+			var sNo = $('#sNo').val();
+			console.log(sNo)
+			window
+					.open(this.href = 'ad_leave_absence.do?sNo=' + sNo, '',
+							'resizable=yes, width=900, height=800 left=700px top=100px')
+			return false;
 
-							window
-									.open(this.href = 'ad_point_search.do', '',
-											'resizable=yes, width=900, height=800 left=700px top=100px');
-							return false;
-							// 		var str = ""
-							// 		var tdArr = new Array();	// 배열 선언
-
-							// 		// 현재 클릭된 Row(<tr>)
-							// 		var tr = $(this);
-							// 		var td = tr.children();
-
-							// 		// tr.text()는 클릭된 Row 즉 tr에 있는 모든 값을 가져온다.
-							// 		console.log("클릭한 Row의 모든 데이터 : "+tr.text());
-
-							// 		// 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
-							// 		td.each(function(i){
-							// 			tdArr.push(td.eq(i).text());
-							// 		});
-
-							// 		console.log("배열에 담긴 값 : "+tdArr);
-
-							// 		// td.eq(index)를 통해 값을 가져올 수도 있다.
-							// 		var no = td.eq(0).text();
-							// 		var userid = td.eq(1).text();
-							// 		var name = td.eq(2).text();
-							// 		var email = td.eq(3).text();
-
-							// 		str +=	" * 클릭된 Row의 td값 = No. : <font color='red'>" + no + "</font>" +
-							// 				", 아이디 : <font color='red'>" + userid + "</font>" +
-							// 				", 이름 : <font color='red'>" + name + "</font>" +
-							// 				", 이메일 : <font color='red'>" + email + "</font>";		
-
-							// 		$("#ex1_Result1").html(" * 클릭한 Row의 모든 데이터 = " + tr.text());		
-							// 		$("#ex1_Result2").html(str);
-						});
+		};
 	</script>
+	<%@include file="../common/footer.jsp"%>
 </body>
 </html>
