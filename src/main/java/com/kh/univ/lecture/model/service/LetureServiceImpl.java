@@ -19,11 +19,6 @@ public class LetureServiceImpl implements LectureService {
 		return lDao.selectList(sNo);
 	}
 
-	@Override
-	public ArrayList<Attendance> attendRate(String sNo) {
-
-		return lDao.selectAttList(sNo);
-	}
 
 	
 	

@@ -128,28 +128,19 @@
 	</resultMap>
 
 	<select id="attendance" resultMap="AttendanceResultSet">
-		SELECT
-		CLASS_TYPE,
-		CLASS_NO,
-		CLASS_NAME
-		FROM TB_CLASS
-		RIGHT JOIN TB_GRADE USING (CLASS_NO)
-		WHERE
-		STD_NO=#{sNo}
+		 SELECT 
+		 CLASS_TYPE,
+		 CLASS_NAME,
+		 CLASS_NO, 
+		 STD_NO, COUNT(ATTENDANCE),
+		 COUNT(ASSIGNMENT)
+   		 FROM TB_ATTENDANCE
+   		 JOIN TB_CLASS USING (CLASS_NO)
+   		 WHERE STD_NO= #{sNo}
+   		 GROUP BY CLASS_NO, STD_NO, CLASS_TYPE, CLASS_NAME
 	</select>
 	
-	<select id="attendRate" resultMap="AttendanceResultSet">
-	SELECT
-	CLASS_NO,
-	STD_NO,
-	COUNT(ATTENDANCE)
-	FROM
-	TB_ATTENDANCE
-	WHERE STD_NO=#{sNo}
-	GROUP BY
-	CLASS_NO,
-	STD_NO
-	</select>
+	
 
 	<!-- =================================================================== -->
 	<select id="sylla2" resultMap="Sylla2ResultSet">
