@@ -2,6 +2,7 @@ package com.kh.univ.ad_Register.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.kh.univ.ad_Register.model.service.ad_RegisterService;
 import com.kh.univ.ad_Register.model.vo.Absence;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
@@ -127,8 +129,8 @@ public class ad_Register_Controller {
 	 * @return
 	 */
 	
-	@ResponseBody
 	@RequestMapping(value = "ad_leave_absence_apply.do")
+	@ResponseBody
 	public String ad_leave_absence_apply(Model m,Absence ab, HttpServletRequest request, @RequestParam(name = "file", required = false) MultipartFile file, @RequestParam(name="sNo") String sNo,@RequestParam(name="absReason") String absReason) {
 			System.out.println("왔싸ㅃ ? ");
 			System.out.println(sNo);
@@ -144,11 +146,13 @@ public class ad_Register_Controller {
 			}
 
 			int result = arService.leave_absence_apply(ab);
-
+            System.out.println("Result 체크 : " + result);
+           
+           
 			if (result > 0) {
-				return "ad_register/ad_leave_absence_check.do";
+				return "success";
 			} else {
-				return "common/errorPage";
+				return "fail";
 			}
 		}
 	

@@ -139,9 +139,9 @@
 						if(!file){
 							alert('파일을 첨부하지 않았습니다.');
 							return false;
-						}
+					}
 
-						function ajaxFormSylla() {
+				
 							$.ajax({
 								type : "POST",
 								url : 'ad_leave_absence_apply.do',
@@ -150,18 +150,29 @@
 								contentType: false,
 								dataType : "html",
 								success : function(data) {
-									alert('휴학신청ㄱㄱ');
-									window.opener.location.reload();
-									self.close();
+									// callback function--> data로 값이 들어온다 ( success, fail)
+									alert(data);
+									console.log(data);
+									if(data == success){
+										// 정상 페이지 이동
+										// 
+										alert('휴학신청ㄱㄱ');
+										//window.opener.location.reload("ad_leave_absence_check.do");
+										window.close();
+									}else{
+										// 오류 페이지로 이동
+									}
+									
 								},
 								error : function(request, status, error) {
-
-									alert("code:" + request.status + "\n"
+	
+									console.log("code:" + request.status + "\n"
 											+ "message:" + request.responseText
 											+ "\n" + "error:" + error);
+									
 								}
 							});
-						}
+						
 					}
 				});
 	</script>
