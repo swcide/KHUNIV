@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="registrationMapper">
+
+	<resultMap type="Registration" id="RegistrationResultSet">
+		<id property="dNo" column="DEPT_NO" />
+		<result property="dName" column="DEPT_NAME" />
+		<result property="cNo" column="CLASS_NO" />
+		<result property="cName" column="CLASS_NAME" />
+		<result property="cType" column="CLASS_TYPE" />
+		<result property="pName" column="PROF_NAME" />
+		<result property="credit" column="CREDIT" />
+	</resultMap>
+	
+
+
+	<select id="rSelectList" resultMap="RegistrationResultSet">
+	
+		SELECT  PROF_NAME,CLASS_NO,CLASS_NAME,CLASS_TYPE,P.DEPT_NO,DEPT_NAME,CREDIT
+			FROM TB_CLASS C
+			JOIN TB_DEPARTMENT D USING(DEPT_NO)
+			JOIN TB_CLASS_PROFESSOR CP USING(CLASS_NO)
+			JOIN TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
+			WHERE TO_NUMBER(P.DEPT_NO) = #{dNo} 
+	</select>
+	
+	
+
+</mapper>

@@ -66,11 +66,11 @@ public class ad_Register_Controller {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "ad_lect_appl.do")
-	public String ad_lect_appl(Locale locale, Model model) {
-		
-		return "ad_register/ad_Lecture_Application";
-	}
+//	@RequestMapping(value = "ad_lect_appl.do")
+//	public String ad_lect_appl(Locale locale, Model model) {
+//		
+//		return "ad_register/ad_Lecture_Application";
+//	}
 	/**
 	 * 학사행정 > 학적관리 > 강의 > 청강신청
 	 * @param locale

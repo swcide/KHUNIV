@@ -14,6 +14,7 @@ import com.kh.univ.member.model.vo.Admin;
 
 @Repository("nDao")
 public class NoticeDao {
+	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	

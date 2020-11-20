@@ -62,6 +62,9 @@
 <!-- Theme Base, Components and Settings -->
 <script src="resources/js/theme.js"></script>
 
+<!-- Bootstrap Data Table Plugin -->
+<script src="resources/js/bs-datatable.js"></script>
+
 
 <!-- Theme Initialization Files -->
 <script src="resources/js/theme.init.js"></script>

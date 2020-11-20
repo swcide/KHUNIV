@@ -58,6 +58,8 @@
 <script src="resources/vendor/modernizr/modernizr.min.js"></script>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
+<!-- Bootstrap Data Table Plugin -->
+	<link rel="stylesheet" href="resources/css/components/bs-datatable.css" type="text/css" />
 
 
 <style>
