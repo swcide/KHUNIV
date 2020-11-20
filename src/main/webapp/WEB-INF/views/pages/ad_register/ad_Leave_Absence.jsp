@@ -75,7 +75,7 @@
 				</div>
 			</section>
 
-			<form id="leaveAbsence" name="leaveAbsence" action="ad_leave_absence_apply.do" method="POST" enctype="multipart/form-data">
+			<form id="leaveAbsence" name="leaveAbsence" method="POST" enctype="multipart/form-data">
 				<div class="col-lg-9 order-1 order-lg-2" style="padding-left: 40px; padding-right: 40px;">
 					<div class="offset-anchor" id="contact-sent"></div>
 					<div class="col-lg-6 mb-lg-0">
@@ -84,10 +84,10 @@
 							<li><i class="fas fa-check"></i>종류별 신청 서류가 상이할 수 있으니 <br>안내를 읽고 신청하시길 바랍니다.</li>
 							<li><i class="fas fa-check"></i>파일 미첨부 시 진행이 되지 않으며, <br>별도 안내 또한 없으니 주의하시길 바랍니다.</li>
 							<li><i class="fas fa-check"></i>휴학 후 등록금 반환은 되지 않습니다.</li>
-							<li><i class="fas fa-check"></i>파일첨부 예시) 휴학(일반)_체육학과_윤기훈.</li>
+							<li><i class="fas fa-check"></i><a href="resources/AbsenceUploadFile/파일명" download="파일명"> 휴학신청서 다운로드 </a></li>
+							<li><i class="fas fa-check"></i>파일명 예시) 휴학(일반)_체육학과_윤기훈.</li>
 							<li><i class="fas fa-check"></i>행정팀 : 02) 111-2222</li>
-							<li><i class="fas fa-check"></i>
-							<select name="absReason" class="form-control" id="absReason">
+							<li><i class="fas fa-check"></i> <select name="absReason" class="form-control" id="absReason">
 									<option value="0">휴학종류</option>
 									<option value="일반">일반</option>
 									<option value="병역">병역</option>
@@ -101,7 +101,7 @@
 					<input type="hidden" value="true" name="emailSent" id="emailSent">
 					<div class="col-lg-6 mb-4 mb-lg-0">
 
-						<input class="file" type="file" name="file" id="file">
+						<input class="file" type="file" name="uploadFile" id="uploadFile">
 					</div>
 					<div class="col-lg-6 mb-4 mb-lg-0">
 						<div class="form-check form-check-inline">
@@ -121,16 +121,13 @@
 		</div>
 	</div>
 	<script>
-		$('#contactFormSubmit').on(
-				'click',
-				function() {
+		$('#contactFormSubmit').on('click',	function() {
 					var sNo = $('#sNo').val();
-					var file = $('#file').val();				
+					var file = $('#uploadFile').val();	
+					console.log(file);
 					var absReason = $('#absReason').val();
-					var formData = new FormData();
-					formData.append("sNo",$('input[name=sNo]').val());
-					formData.append("file",$('input[name=file]').val());
-					formData.append("absReason",$('select[name=absReason]').val());
+					//폼안에 있는 값 전체를 폼데이터에 묶음
+					var formData = new FormData($('form')[0]);
 					
 					if ($('#checkbox').is(":checked") == false || $('#absCategory option:selected').val() == '0') {
 						alert('휴학종류 혹은 체크박스를 선택하지 않았습니다.');
@@ -139,29 +136,41 @@
 						if(!file){
 							alert('파일을 첨부하지 않았습니다.');
 							return false;
-						}
-
-						function ajaxFormSylla() {
-							$.ajax({
+					}
+							 $.ajax({
 								type : "POST",
 								url : 'ad_leave_absence_apply.do',
 								data : formData,
 								processData: false, 
 								contentType: false,
-								dataType : "html",
+								// 비동기 false가 없으면 submit 따로 페이지따로 움직이기 때문에 success를 받지 못함
+								// 따라서 비동기 false를 해주어야 로직을 다 타고 진행됨 ...............
+								async:false,
 								success : function(data) {
-									alert('휴학신청ㄱㄱ');
-									window.opener.location.reload();
-									self.close();
+									// callback function--> data로 값이 들어온다 ( success, fail)
+									if(data == 'success'){
+										// 정상 페이지 이동
+										alert('휴학신청 접수가 완료되었습니다.');
+										window.opener.location.reload();
+										window.close();
+									}else{
+										// 오류 페이지로 이동
+										alert('서버가 원활하지 않습니다.');
+										window.opener.location.reload();
+										window.close();
+									}
+									
 								},
 								error : function(request, status, error) {
-
-									alert("code:" + request.status + "\n"
+	
+									console.log("code:" + request.status + "\n"
 											+ "message:" + request.responseText
 											+ "\n" + "error:" + error);
+									
 								}
-							});
-						}
+							}); 
+						
+						
 					}
 				});
 	</script>

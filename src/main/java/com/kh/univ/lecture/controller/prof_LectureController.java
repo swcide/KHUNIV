@@ -279,43 +279,94 @@ public class prof_LectureController {
 			return "prof_lecture/prof_lectureVideoList";
 		}
 
+//=====================================================================================//
+	//교 수 강 의 계 획 서 관련 메소드///////////////////////////////
+//=====================================================================================//
+	/**
+	 * 강의계획서 관리 리스트 페이지 
+	 * 
+	 * @param mv
+	 * @param ll
+	 * @param classNo
+	 * @param pNo
+	 * @return
+	 */
 	@RequestMapping(value = "prof_Syllabus_LectureWrite.do")
-	public ModelAndView prof_Syllabus_LectureWrite(ModelAndView mv, @RequestParam(value="pNo")String pNo) {
-//		ArrayList <LecturePlanWeek> lpw = plService.selectSyllaOne2(profNo);
-		LecturePlan lp = plService.selectSyllainsertform(pNo);
-		if(lp !=null) {
-		mv.addObject("lp",lp);
-//		mv.addObject("lpw",lpw);
-		mv.setViewName("prof_lecture/prof_Syllabus_LectureWrite");
+	public ModelAndView prof_Syllabus_LectureWrite(ModelAndView mv, LectureList ll,@RequestParam(name = "pNo", required = false) String pNo, @RequestParam(name = "classNo", required = false) String classNo, HttpSession session ) {
+		System.out.println(pNo);
+		System.out.println(classNo);
+		ll.setpNo(pNo);
+		ll.setClassNo(classNo);
+		ArrayList <LecturePlanWeek> lpw = plService.prof_Syllabus_LectureWeekSelect(ll);
+		LecturePlan lp = plService.prof_Syllabus_LectureSelect(ll);
+		System.out.println(lpw);
+		System.out.println(lp);
+		if(lp !=null&& lpw!= null) {
+			mv.addObject("lp",lp);
+			mv.addObject("lpw",lpw);
+			mv.setViewName("prof_lecture/prof_Syllabus_LectureWrite");
 		}else {
 			mv.addObject("msg","로그인 실패");
 			mv.setViewName("common/errorPage");
 		}
 		return mv;
 	}
+	/**
+	 * 교수용 강의계획서 등록/수정
+	 * 
+	 * @param mv
+	 * @param lp
+	 * @return
+	 */
+	@RequestMapping(value = "prof_Syllabus_LectureUpdate.do")
+	public ModelAndView prof_Syllabus_LectureUpdate(ModelAndView mv, LecturePlan lp ) {
+		System.out.println("컨트롤러"+lp);
+		int result = plService.prof_Syllabus_LectureUpdate(lp);
+		System.out.println(result);
+		if(result>0) {
+			System.out.println(lp);
+			mv.setViewName("prof_lecture/prof_lecturePlanList"); // 어느페이지로
+
+		}else {
+			System.out.println(lp);
+			mv.addObject("msg","수정실패");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+
 
 	@RequestMapping(value = "prof_learningprogress.do")
 	public String prof_learningprogress(Model model)
-		{
-			return "prof_lecture/prof_learnig_progress";
-		}
+	{
+		return "prof_lecture/prof_learnig_progress";
+	}
 
+	/**
+	 * 교수용 강의계획서 등록/수정
+	 * 
+	 * @param mv
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "prof_lecturePlanList.do")
 	public ModelAndView prof_lecturePlanList(ModelAndView mv, HttpSession session) {
 		Professor pNo = (Professor) session.getAttribute("loginProf");
 		System.out.println(pNo);
+		System.out.println("게시판들어왔다");
 		ArrayList <LectureList> plpl = plService.SyllaPlanList(pNo);
 		if(plpl !=null) {
-		mv.addObject("plpl",plpl);
-		mv.setViewName("prof_lecture/prof_lecturePlanList");
+			mv.addObject("plpl",plpl);
+			mv.setViewName("prof_lecture/prof_lecturePlanList");
 		}else {
 			mv.addObject("msg","로그인 실패");
 			mv.setViewName("common/errorPage");
 		}
 		return mv;
 	}
+
 	
-	
+
 	
 //------------------------강의동 시험---------------------------------------------------------------------------
 	

@@ -101,7 +101,7 @@
 														</c:if>
 													</div>
 													<div class="col-md-6" style="text-align: right">
-														<!-- 														<a href="mypage.do"><label><strong>내 정보</strong></label></a>
+<!-- 																												<a href="mypage.do"><label><strong>내 정보</strong></label></a>
  -->
 														<a href="ad_logout.do"><label><strong>로그아웃</strong></label></a>
 													</div>
@@ -147,8 +147,8 @@
 													<li><a class="dropdown-item" href="ad_point_search_list.do">성적조회</a></li>
 													<li class="dropdown-submenu"><a class="dropdown-item" href="#">휴학</a>
 														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" onClick="window.open(this.href='ad_leave_absence.do', '', 'resizable=yes, width=900, height=800 left=700px top=100px'); return false;">휴학신청 바로가기</a></li>
-															<li><a class="dropdown-item" href="ad_leave_absence_check.do">휴학신청 확인</a></li>
+															<li><a class="dropdown-item" onClick="open_leave_check()">휴학신청 바로가기</a></li>
+															<li><a class="dropdown-item"  href="ad_leave_absence_check.do">휴학신청 확인</a></li>
 														</ul></li>
 													<li class="dropdown-submenu"><a class="dropdown-item" href="#">복학</a>
 														<ul class="dropdown-menu">
@@ -227,5 +227,14 @@
 			</div>
 		</header>
 	</div>
+	<script>
+		function open_leave_check() {
+			var sNo = $('#sNo').val();
+			console.log(sNo)
+			window.open(this.href='ad_leave_absence.do?sNo='+ sNo, '', 'resizable=yes, width=900, height=800 left=700px top=100px'); 
+			return false;
+
+		};
+	</script>
 </body>
 </html>

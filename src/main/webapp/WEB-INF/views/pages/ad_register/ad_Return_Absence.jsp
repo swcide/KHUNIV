@@ -55,6 +55,7 @@
 
 <!-- Head Libs -->
 <script src="resources/vendor/modernizr/modernizr.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body onresize="parent.resizeTo(620,740)" onload="parent.resizeTo(700,100)">
 	<div class="body">
@@ -74,46 +75,98 @@
 					</div>
 				</div>
 			</section>
-
-			<div class="col-lg-9 order-1 order-lg-2" style="
-    padding-left: 40px;
-    padding-right: 40px;
-">
-							<div class="offset-anchor" id="contact-sent"></div>
-							<div class="col-lg-6 mb-lg-0">
-									<h4 style="margin-top:15px">주의사항</h4>
-									<ul class="list list-icons list-primary list-borders">
-										<li><i class="fas fa-check"></i>복학신청서는 반드시 작성하여 파일 첨부를 해주시기 바랍니다.</li>
-										<li><i class="fas fa-check"></i>서류 누락 시 자퇴 신청이 진행되지 않으며 별도 연락 또한 취하지 않습니다.</li>
-										<li><i class="fas fa-check"></i>복학 신청 후 30일 이내 등록금 납부를 해주셔야 합니다.</li>
-										<li><i class="fas fa-check"></i>복학 신청 승인 후 본인의 이메일로 전송됩니다.</li>
-										<li><i class="fas fa-check"></i>행정팀 : 02) 111-2222 </li>
-									</ul>
-								</div>
-								<div class="form-group col-md-12">
-										<hr>
-									</div>
-							<form id="contactFormAdvanced" action="elements-forms-advanced-contact.php#contact-sent" method="POST" enctype="multipart/form-data" novalidate="novalidate">
-								<input type="hidden" value="true" name="emailSent" id="emailSent">
-									<div class="col-lg-6 mb-4 mb-lg-0">
-										<input class="d-block" type="file" name="attachment" id="attachment">
-								</div>
-									<div class="col-lg-6 mb-4 mb-lg-0">
-										<div class="form-check form-check-inline">
-												<input class="form-check-input" name="checkboxes[]" type="checkbox" data-msg-required="Please select at least one option." id="inlineCheckbox1" value="option1">
-											<label class="font-weight-bold text-dark text-3 float-center" style="margin: 0;">정말 복학 신청을 하시겠습니까?</label>
-										</div>
-									</div>
-									<div class="form-group col-md-12">
-										<hr>
-									</div>
-									<div class="form-group col-md-12 mb-5">
-										<input type="submit" id="contactFormSubmit" value="신청하기" class="btn btn-primary btn-modern pull-right float-right" data-loading-text="Loading...">
-									</div>
-							</form>
-
+			<form id="leaveAbsence" name="leaveAbsence" method="POST" enctype="multipart/form-data">
+				<div class="col-lg-9 order-1 order-lg-2" style="padding-left: 40px; padding-right: 40px;">
+					<div class="offset-anchor" id="contact-sent"></div>
+					<div class="col-lg-6 mb-lg-0">
+						<h4 style="margin-top: 15px">주의사항</h4>
+						<ul class="list list-icons list-primary list-borders">
+							<li><i class="fas fa-check"></i>복학신청서는 반드시 작성하여 파일 첨부를 해주시기 바랍니다.</li>
+							<li><i class="fas fa-check"></i>서류 누락 시 자퇴 신청이 진행되지 않으며 별도 연락 또한 취하지 않습니다.</li>
+							<li><i class="fas fa-check"></i>복학 신청 후 30일 이내 등록금 납부를 해주셔야 합니다.</li>
+							<li><i class="fas fa-check"></i>복학 신청 승인 후 본인의 이메일로 전송됩니다.</li>
+							<li><i class="fas fa-check"></i><a href="resources/AbsenceUploadFile/파일명" download="파일명"> 복학신청서 다운로드 </a></li>
+							<li><i class="fas fa-check"></i>파일명 예시) 복학_체육학과_윤기훈.</li>
+							<li><i class="fas fa-check"></i>행정팀 : 02) 111-2222</li>
+						</ul>
+					</div>
+					<div class="form-group col-md-12">
+						<hr>
+					</div>
+					<input type="hidden" value="true" name="emailSent" id="emailSent">
+					<div class="col-lg-6 mb-4 mb-lg-0">
+						<input class="file" type="file" name="uploadFile" id="uploadFile">
+					</div>
+					<div class="col-lg-6 mb-4 mb-lg-0">
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" id="checkbox" type="checkbox" data-msg-required="Please select at least one option.">
+							<label class="font-weight-bold text-dark text-3 float-center" style="margin: 0;">정말 복학 신청을 하시겠습니까?</label>
 						</div>
+					</div>
+					<div class="form-group col-md-12">
+						<hr>
+					</div>
+					<div class="form-group col-md-12 mb-5">
+						<input type="hidden" name="absReason" id="sNo" value="">
+						<input type="hidden" name="sNo" id="sNo" value="${sNo }">
+						<input type="submit" id="contactFormSubmit" value="신청하기" class="btn btn-primary btn-modern pull-right float-right" data-loading-text="Loading...">
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
+	<script>
+		$('#contactFormSubmit').on('click',function() {
+					var sNo = $('#sNo').val();
+					var file = $('#uploadFile').val();
+					console.log(file);
+					//폼안에 있는 값 전체를 폼데이터에 묶음
+					var formData = new FormData($('form')[0]);
+
+					if ($('#checkbox').is(":checked") == false) {
+						alert('체크박스를 선택하지 않았습니다.');
+						return false;
+					}
+					if (!file) {
+						alert('파일을 첨부하지 않았습니다.');
+						return false;
+					} else {
+
+						$.ajax({
+							type : "POST",
+							url : 'ad_return_absence_apply.do',
+							data : formData,
+							processData : false,
+							contentType : false,
+							// 비동기 false가 없으면 submit 따로 페이지따로 움직이기 때문에 success를 받지 못함
+							// 따라서 비동기 false를 해주어야 로직을 다 타고 진행됨 ...............
+							async : false,
+							success : function(data) {
+								// callback function--> data로 값이 들어온다 ( success, fail)
+								if (data == 'success') {
+									// 정상 페이지 이동
+									alert('복학신청 접수가 완료되었습니다.');
+									window.opener.location.reload();
+									window.close();
+								} else {
+									// 오류 페이지로 이동
+									alert('서버가 원활하지 않습니다.');
+									window.opener.location.reload();
+									window.close();
+								}
+
+							},
+							error : function(request, status, error) {
+
+								console.log("code:" + request.status + "\n"
+										+ "message:" + request.responseText
+										+ "\n" + "error:" + error);
+
+							}
+						});
+
+					}
+				});
+	</script>
 </body>
 </html>
