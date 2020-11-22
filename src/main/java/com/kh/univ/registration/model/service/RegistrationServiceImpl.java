@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.kh.univ.member.model.vo.Student;
 import com.kh.univ.registration.model.dao.RegistrationDao;
 import com.kh.univ.registration.model.vo.Registration;
+import com.kh.univ.testPage.model.vo.Grade;
 
 @Service("rService")
 public class RegistrationServiceImpl implements RegistrationService {
@@ -17,14 +18,16 @@ public class RegistrationServiceImpl implements RegistrationService {
 	
 	@Override
 	public ArrayList<Registration> rSelectList(Student s) {
-		System.out.println("service");
 		return rDao.rSelectList(s);
 	}
 
+
 	@Override
-	public int getListCount(int nType) {
-		System.out.println("service");
-		  return rDao.getListCount(nType);
+	public int insertRegistration(ArrayList<Grade> gList) {
+		return rDao.insertRegistration(gList);
 	}
+
+
+
 
 }

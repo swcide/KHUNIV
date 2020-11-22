@@ -1,8 +1,10 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import com.kh.univ.member.model.vo.Student;
+import com.kh.univ.testPage.model.vo.Grade;
 
 //import java.util.Date;
 import java.sql.Date;
@@ -33,11 +35,22 @@ public class test {
 	
 	public static void main(String[] args) {
 		
-		String s ="001";
+		String [] arr = {"a","b","c","d"};
 		
-	   int num = Integer.parseInt(s);
-	   
-	   System.out.println(num);
+		ArrayList<Grade> list = new ArrayList<Grade>();
+		
+		Grade g = new Grade();
+		
+		for (int i = 0; i < arr.length; i++) {
+			g.setcNo(arr[i]);
+			list.add(g);
+		}
+	
+		
+		
+		
+		System.out.println(list);
+		
 		
 //		Student
 //		

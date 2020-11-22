@@ -1,12 +1,17 @@
 package com.kh.univ.registration.model.vo;
 
+import java.util.ArrayList;
+
+import com.kh.univ.testPage.model.vo.Grade;
+
 public class Registration {
 	
 	private String cNo;       // 강의 번호
 	private String cName;     // 강의 이름
 	private String cType;     // 강의 타입  
 	private String pName;     // 교수 이름
-//	private String sNo;       // 학생 번호
+	private String pNo;     // 교수 이름
+	private String sNo;       // 학생 번호
 	private int credit;       // 학점
 	private String dNo;       // 학과번호 
 	private String dName;     // 학과이름
@@ -20,12 +25,15 @@ public class Registration {
 
 
 
-	public Registration(String cNo, String cName, String cType, String pName, int credit, String dNo, String dName) {
+	public Registration(String cNo, String cName, String cType, String pName, String pNo, String sNo, int credit,
+			String dNo, String dName) {
 		super();
 		this.cNo = cNo;
 		this.cName = cName;
 		this.cType = cType;
 		this.pName = pName;
+		this.pNo = pNo;
+		this.sNo = sNo;
 		this.credit = credit;
 		this.dNo = dNo;
 		this.dName = dName;
@@ -81,6 +89,30 @@ public class Registration {
 
 
 
+	public String getpNo() {
+		return pNo;
+	}
+
+
+
+	public void setpNo(String pNo) {
+		this.pNo = pNo;
+	}
+
+
+
+	public String getsNo() {
+		return sNo;
+	}
+
+
+
+	public void setsNo(String sNo) {
+		this.sNo = sNo;
+	}
+
+
+
 	public int getCredit() {
 		return credit;
 	}
@@ -119,10 +151,10 @@ public class Registration {
 
 	@Override
 	public String toString() {
-		return "Registration [cNo=" + cNo + ", cName=" + cName + ", cType=" + cType + ", pName=" + pName + ", credit="
-				+ credit + ", dNo=" + dNo + ", dName=" + dName + "]";
+		return "Registration [cNo=" + cNo + ", cName=" + cName + ", cType=" + cType + ", pName=" + pName + ", pNo="
+				+ pNo + ", sNo=" + sNo + ", credit=" + credit + ", dNo=" + dNo + ", dName=" + dName + "]";
 	}
 
-	
+
 
 }
