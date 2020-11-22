@@ -97,7 +97,6 @@
 		TB_CLASS_PROFESSOR.PROFESSOR_NO=TB_PROFESSOR.PROF_NO
 		WHERE CLASS_TYPE
 		LIKE '교양%'
-		AND C.DEPT_NO=#{dNo}
 	</select>
 
 	<!-- 강의 리스트카운트 -->

@@ -197,7 +197,6 @@
 									<td>${lp.lecTextbook}</td>
 								</tr>
 							</tbody>
-
 						</table>
 						<table class="table table-hover">
 							<thead>
