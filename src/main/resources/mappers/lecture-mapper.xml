@@ -127,6 +127,27 @@
 		<result property="assignment" column="ASSIGNMENT" />
 	</resultMap>
 
+	<resultMap type="LectureList" id="LectureListResultSet">
+		<id property="classType" column="CLASS_TYPE" />
+		<result property="className" column="CLASS_NAME" />
+		<result property="profEmail" column="PROF_EMAIL" />
+		<result property="profName" column="PROF_NAME" />
+		<result property="className" column="CLASS_NAME" />
+	</resultMap>
+	
+	<select id="lectureList" resultMap="LectureListResultSet">
+		SELECT  
+   		CLASS_TYPE,
+    	CLASS_NAME,
+    	PROF_EMAIL,
+   	    PROF_NAME
+		FROM TB_ATTENDANCE 
+		JOIN TB_CLASS USING (CLASS_NO)
+		JOIN TB_CLASS_PROFESSOR CP USING(CLASS_NO)
+		JOIN TB_PROFESSOR P ON(CP.PROFESSOR_NO = P.PROF_NO)
+		WHERE STD_NO = #{sNo}
+		GROUP BY  CLASS_TYPE, CLASS_NAME, PROF_EMAIL, PROF_NAME
+	</select>
 	<select id="attendance" resultMap="AttendanceResultSet">
 		SELECT 
          CLASS_TYPE,
