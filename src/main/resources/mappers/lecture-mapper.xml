@@ -127,8 +127,7 @@
       <result property="assignment" column="ASSIGNMENT" />
    </resultMap>
 
-<<<<<<< HEAD
-	<resultMap type="LectureList" id="LectureListResultSet">
+   <resultMap type="LectureList" id="LectureListResultSet">
 		<id property="classType" column="CLASS_TYPE" />
 		<result property="className" column="CLASS_NAME" />
 		<result property="profEmail" column="PROF_EMAIL" />
@@ -160,42 +159,8 @@
         PROF_NO,
         CLASS_IMG
 	</select>
-	<select id="attendance" resultMap="AttendanceResultSet">
-		SELECT 
-=======
-   <resultMap type="LectureList" id="LectureListResultSet">
-      <id property="classType" column="CLASS_TYPE" />
-      <result property="className" column="CLASS_NAME" />
-      <result property="profEmail" column="PROF_EMAIL" />
-      <result property="profName" column="PROF_NAME" />
-      <result property="className" column="CLASS_NAME" />
-   </resultMap>
-   
-   <select id="lectureList" resultMap="LectureListResultSet">
-      SELECT 
-		CLASS_NO,
-		CLASS_NAME, 
-		CLASS_TYPE,
-		PROF_EMAIL,
-        PROF_NAME, 
-        PROF_NO,
-        CLASS_IMG
-		FROM TB_ATTENDANCE
-        JOIN TB_CLASS USING(CLASS_NO)
-		JOIN TB_LECTURE_PLAN USING(CLASS_NO)
-		LEFT JOIN TB_PROFESSOR USING(PROF_NO)
-		WHERE STD_NO= #{sNo}
-		GROUP BY 
-		CLASS_NO, 
-		CLASS_NAME, 
-		CLASS_TYPE, 
-		PROF_EMAIL,
-        PROF_NAME, 
-        PROF_NO,
-        CLASS_IMG
-   </select>
    <select id="attendance" resultMap="AttendanceResultSet">
-         SELECT 
+      SELECT 
          CLASS_TYPE,
          CLASS_NAME,
          CLASS_NO, 
