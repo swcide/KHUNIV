@@ -29,6 +29,22 @@
 <result property="semester" column="SEMESTER"  />
 <result property="deptName" column="DEPT_NAME"  />
 </resultMap>
+<!-- 증명서 발급 관련 -->
+<resultMap type="Certificate" id="CertificateResultSet">
+<id property="sNo" column="STD_NO"/>
+<result property="seqPrint" column="SEQ_PRINT"  />
+<result property="sName" column="STD_NAME"  />
+<result property="semester" column="SEMESTER"  />
+<result property="deptName" column="DEPT_NAME"  />
+<result property="year" column="YEAR"  />
+<result property="month" column="MONTH"  />
+<result property="day" column="DAY"  />
+<result property="sysYear" column="SYSYEAR"  />
+<result property="sysMonth" column="SYSMONTH"  />
+<result property="sysDay" column="SYSDAY"  />
+</resultMap>
+
+
 	
 	<resultMap type="LectureList" id="lectureListResultSet">
 		<id property="classNo" column="CLASS_NO" />
@@ -199,5 +215,19 @@ UPDATE TB_GRD_EXP_STD
 SET GRD_EXP_FILE=#{grdExpFileName},EXPELLED_STATUS='Y'
 WHERE STD_NO = #{sNo}
 </update>
+
+<select id="certificate_list" resultMap="grdExpResultSet">
+SELECT DEPT_NAME, SEMESTER, STD_NO, STD_NAME
+         FROM TB_STUDENT S
+         JOIN TB_DEPARTMENT D USING(DEPT_NO)
+         WHERE STD_NO = #{sNo}
+</select>
+
+<select id="certificate_inschool" resultMap = "CertificateResultSet">
+SELECT STD_NAME, DEPT_NAME,SEMESTER, SUBSTR(STD_SSN,1,2) AS YEAR, SUBSTR(STD_SSN,3,2) AS MONTH,SUBSTR(STD_SSN,5,2) AS DAY,SUBSTR(SYSDATE,1,2) AS SYSYEAR,SUBSTR(SYSDATE,4,2) AS SYSMONTH,SUBSTR(SYSDATE,7,2) AS SYSDAY
+         FROM TB_STUDENT S 
+         JOIN TB_DEPARTMENT D ON(S.DEPT_NO = D.DEPT_NO)
+         WHERE STD_NO = #{sNo}
+</select>
 
 </mapper>

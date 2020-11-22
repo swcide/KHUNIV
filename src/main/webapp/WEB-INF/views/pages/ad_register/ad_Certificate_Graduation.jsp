@@ -55,7 +55,7 @@
 <!-- Head Libs -->
 <script src="resources/vendor/modernizr/modernizr.min.js"></script>
 </head>
-<body onresize="parent.resizeTo(800,1040)" onload="parent.resizeTo(600,100)">
+<body onresize="parent.resizeTo(900,1100)" onload="parent.resizeTo(600,100)">
 	<div class="body">
 		<div role="main" class="main">
 			<section class="page-header page-header-modern bg-color-light-scale-3 page-header-sm section-overlay-dot" style="margin: 0; background-image: url(resources/img/custom-header-bg.jpg);">

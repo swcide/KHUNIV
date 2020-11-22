@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.ad_Register.model.service.ad_RegisterService;
 import com.kh.univ.ad_Register.model.vo.Absence;
+import com.kh.univ.ad_Register.model.vo.Certificate;
 import com.kh.univ.ad_Register.model.vo.grdExp;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
@@ -28,93 +29,106 @@ import com.kh.univ.member.model.vo.Student;
 @SessionAttributes({ "loginUser" })
 @Controller
 public class ad_Register_Controller {
-	
+
 	@Autowired
 	private ad_RegisterService arService;
 
-	
 	/**
 	 * 학사행정 > 학적관리 > 강의 > 수강신청현황
+	 * 
 	 * @param locale
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "ad_appl_stat.do")
-	public String ad_appl_stat() {
-		
-		return "ad_register/ad_Application_Status";
-	}
-	
+	public String ad_appl_stat()
+		{
+
+			return "ad_register/ad_Application_Status";
+		}
+
 	/**
 	 * 학사행정 > 학적관리 > 강의 > 수강신청
+	 * 
 	 * @param locale
 	 * @param model
 	 * @return
 	 */
-//	@RequestMapping(value = "ad_lect_appl.do")
-//	public String ad_lect_appl(Locale locale, Model model) {
-//		
-//		return "ad_register/ad_Lecture_Application";
-//	}
+	//	@RequestMapping(value = "ad_lect_appl.do")
+	//	public String ad_lect_appl(Locale locale, Model model) {
+	//		
+	//		return "ad_register/ad_Lecture_Application";
+	//	}
 	/**
 	 * 학사행정 > 학적관리 > 강의 > 청강신청
+	 * 
 	 * @param locale
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "ad_audit_lect_appl.do")
-	public String ad_audit_lect_appl(Locale locale, Model model) {
-		
-		return "ad_register/ad_AuditLecture_Application";
-	}
-	
+	public String ad_audit_lect_appl(Locale locale, Model model)
+		{
+
+			return "ad_register/ad_AuditLecture_Application";
+		}
+
 	/**
 	 * 학사행정 > 학적관리 > 강의 > 성적조회
+	 * 
 	 * @param locale
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "ad_point_search_list.do")
-	public String point_Search_List(Locale locale, Model model) {
-		
-		return "ad_register/ad_Point_Search_List";
-	}
-	
+	public String point_Search_List(Locale locale, Model model)
+		{
+
+			return "ad_register/ad_Point_Search_List";
+		}
+
 	/**
 	 * 학사행정 > 학적관리 > 강의 > 학기별 성적 조회 디테일
+	 * 
 	 * @param locale
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "ad_point_search.do")
-	public String point_Search(Locale locale, Model model) {
-		
-		return "ad_register/ad_Point_Search";
-	}
-	
+	public String point_Search(Locale locale, Model model)
+		{
+
+			return "ad_register/ad_Point_Search";
+		}
+
 	/**
 	 * 학사행정 > 학적관리 > 강의 > 휴학신청 바로가기
+	 * 
 	 * @param locale
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "ad_leave_absence.do")
-	public ModelAndView leave_absence(ModelAndView mv, @RequestParam(name="sNo") String sNo) {
-		System.out.println(sNo);
-		mv.addObject("sNo",sNo);
-		mv.setViewName("ad_register/ad_Leave_Absence");
-		return mv;
-	}
-	
+	public ModelAndView leave_absence(ModelAndView mv, @RequestParam(name = "sNo") String sNo)
+		{
+			System.out.println(sNo);
+			mv.addObject("sNo", sNo);
+			mv.setViewName("ad_register/ad_Leave_Absence");
+			return mv;
+		}
+
 	/**
 	 * 휴학신청 학생 정보 업데이트
+	 * 
 	 * @param mv
 	 * @param sNo
 	 * @return
 	 */
 	@RequestMapping(value = "ad_leave_absence_apply.do")
 	@ResponseBody
-	public String ad_leave_absence_apply(Model m,Absence ab, HttpServletRequest request, @RequestParam(name = "uploadFile", required = false) MultipartFile file, @RequestParam(name="sNo") String sNo,@RequestParam(name="absReason") String absReason) {
+	public String ad_leave_absence_apply(Model m, Absence ab, HttpServletRequest request, @RequestParam(name = "uploadFile", required = false) MultipartFile file,
+			@RequestParam(name = "sNo") String sNo, @RequestParam(name = "absReason") String absReason)
+		{
 			System.out.println("휴학신청");
 			System.out.println(sNo);
 			System.out.println(file);
@@ -128,14 +142,14 @@ public class ad_Register_Controller {
 				}
 			}
 			int result = arService.leave_absence_apply(ab);
-            System.out.println("Result 체크 : " + result);
+			System.out.println("Result 체크 : " + result);
 			if (result > 0) {
 				return "success";
 			} else {
 				return "fail";
 			}
 		}
-	
+
 	public String saveFile(MultipartFile file, HttpServletRequest request)
 		{
 			//파일이 저장될 경로를 설정하기
@@ -159,40 +173,45 @@ public class ad_Register_Controller {
 			}
 			return fileName;
 		}
-	
+
 	/**
 	 * 학사행정 > 학적관리 > 강의 > 휴학신청 확인
+	 * 
 	 * @param locale
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "ad_leave_absence_check.do")
-	public ModelAndView leave_absence_check(ModelAndView mv, HttpSession session) {
+	public ModelAndView leave_absence_check(ModelAndView mv, HttpSession session)
+		{
 			Student s = (Student) session.getAttribute("loginUser");
 			String sNo = s.getsNo();
 			Absence view = arService.absenceCheck(sNo);
 			System.out.println(view);
-			mv.addObject("view",view);
+			mv.addObject("view", view);
 			mv.setViewName("ad_register/ad_Leave_Absence_Check");
-		return mv;
-	}
-	
+			return mv;
+		}
+
 	/**
 	 * 학사행정 > 학적관리 > 강의 > 복학신청 바로가기
+	 * 
 	 * @param locale
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "ad_return_absence.do")
-	public ModelAndView return_absence(ModelAndView mv, @RequestParam(name="sNo") String sNo) {
+	public ModelAndView return_absence(ModelAndView mv, @RequestParam(name = "sNo") String sNo)
+		{
 			System.out.println(sNo);
-			mv.addObject("sNo",sNo);
+			mv.addObject("sNo", sNo);
 			mv.setViewName("ad_register/ad_Return_Absence");
 			return mv;
-	}
-	
+		}
+
 	/**
 	 * 복학신청 학생 정보 업데이트
+	 * 
 	 * @param m
 	 * @param ab
 	 * @param request
@@ -203,7 +222,9 @@ public class ad_Register_Controller {
 	 */
 	@RequestMapping(value = "ad_return_absence_apply.do")
 	@ResponseBody
-	public String ad_return_absence_apply(Model m,Absence ab, HttpServletRequest request, @RequestParam(name = "uploadFile", required = false) MultipartFile file, @RequestParam(name="sNo") String sNo,@RequestParam(name="absReason") String absReason) {
+	public String ad_return_absence_apply(Model m, Absence ab, HttpServletRequest request, @RequestParam(name = "uploadFile", required = false) MultipartFile file,
+			@RequestParam(name = "sNo") String sNo, @RequestParam(name = "absReason") String absReason)
+		{
 			System.out.println("복학신청");
 			System.out.println(sNo);
 			System.out.println(file);
@@ -217,54 +238,61 @@ public class ad_Register_Controller {
 				}
 			}
 			int result = arService.return_absence_apply(ab);
-            System.out.println("Result 체크 : " + result);
+			System.out.println("Result 체크 : " + result);
 			if (result > 0) {
 				return "success";
 			} else {
 				return "fail";
 			}
 		}
-	
+
 	/**
 	 * 학사행정 > 학적관리 > 강의 > 복학신청 확인
+	 * 
 	 * @param locale
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "ad_return_absence_check.do")
-	public ModelAndView return_absence_check(ModelAndView mv, HttpSession session) {
+	public ModelAndView return_absence_check(ModelAndView mv, HttpSession session)
+		{
 			Student s = (Student) session.getAttribute("loginUser");
 			String sNo = s.getsNo();
 			Absence view = arService.absenceCheck(sNo);
 			System.out.println(view);
-			mv.addObject("view",view);
-			mv.setViewName("ad_register/ad_Return_Absence_Check");		
+			mv.addObject("view", view);
+			mv.setViewName("ad_register/ad_Return_Absence_Check");
 			return mv;
-	}
-	
+		}
+
 	/**
 	 * 학사행정 > 학적관리 > 강의 > 졸업유예 바로가기
+	 * 
 	 * @param locale
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "ad_deferment_graduation.do")
-	public ModelAndView deferment_graduation(ModelAndView mv, @RequestParam(name="sNo") String sNo) {
+	public ModelAndView deferment_graduation(ModelAndView mv, @RequestParam(name = "sNo") String sNo)
+		{
 			System.out.println(sNo);
-			mv.addObject("sNo",sNo);
+			mv.addObject("sNo", sNo);
 			mv.setViewName("ad_register/ad_Deferment_Graduation");
 			return mv;
-	}
-	
+		}
+
 	/**
 	 * 졸업유예신청 학생 정보 업데이트
+	 * 
 	 * @param mv
 	 * @param sNo
 	 * @return
 	 */
 	@RequestMapping(value = "ad_deferment_graduation_apply.do")
 	@ResponseBody
-	public String ad_deferment_graduation_apply(Model m,grdExp ge, HttpServletRequest request, @RequestParam(name = "uploadFile", required = false) MultipartFile file, @RequestParam(name="sNo") String sNo) {
+	public String ad_deferment_graduation_apply(Model m, grdExp ge, HttpServletRequest request, @RequestParam(name = "uploadFile", required = false) MultipartFile file,
+			@RequestParam(name = "sNo") String sNo)
+		{
 			System.out.println("졸업유예신청");
 			System.out.println(sNo);
 			System.out.println(file);
@@ -277,14 +305,14 @@ public class ad_Register_Controller {
 				}
 			}
 			int result = arService.ad_deferment_graduation_apply(ge);
-            System.out.println("Result 체크 : " + result);
+			System.out.println("Result 체크 : " + result);
 			if (result > 0) {
 				return "success";
 			} else {
 				return "fail";
 			}
 		}
-	
+
 	public String geSaveFile(MultipartFile file, HttpServletRequest request)
 		{
 			//파일이 저장될 경로를 설정하기
@@ -308,40 +336,45 @@ public class ad_Register_Controller {
 			}
 			return fileName;
 		}
-	
+
 	/**
 	 * 학사행정 > 학적관리 > 강의 > 졸업유예 확인
+	 * 
 	 * @param locale
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "ad_deferment_graduation_check.do")
-	public ModelAndView deferment_graduation_check(ModelAndView mv, HttpSession session) {
+	public ModelAndView deferment_graduation_check(ModelAndView mv, HttpSession session)
+		{
 			Student s = (Student) session.getAttribute("loginUser");
 			String sNo = s.getsNo();
 			grdExp view = arService.graduationDelayCheck(sNo);
 			System.out.println(view);
-			mv.addObject("view",view);
-			mv.setViewName("ad_register/ad_Deferment_Graduation_Check");		
+			mv.addObject("view", view);
+			mv.setViewName("ad_register/ad_Deferment_Graduation_Check");
 			return mv;
-	}
-	
+		}
+
 	/**
 	 * 학사행정 > 학적관리 > 강의 > 자퇴 바로가기
+	 * 
 	 * @param locale
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "ad_drop_absence.do")
-	public ModelAndView drop_absence(ModelAndView mv, @RequestParam(name="sNo") String sNo) {
+	public ModelAndView drop_absence(ModelAndView mv, @RequestParam(name = "sNo") String sNo)
+		{
 			System.out.println(sNo);
-			mv.addObject("sNo",sNo);
+			mv.addObject("sNo", sNo);
 			mv.setViewName("ad_register/ad_Drop_Absence");
 			return mv;
-	}
-	
+		}
+
 	/**
 	 * 자퇴신청 학생 정보 업데이트
+	 * 
 	 * @param m
 	 * @param ge
 	 * @param request
@@ -351,7 +384,8 @@ public class ad_Register_Controller {
 	 */
 	@RequestMapping(value = "ad_drop_absence_apply.do")
 	@ResponseBody
-	public String ad_drop_absence_apply(Model m,grdExp ge, HttpServletRequest request, @RequestParam(name = "uploadFile", required = false) MultipartFile file, @RequestParam(name="sNo") String sNo) {
+	public String ad_drop_absence_apply(Model m, grdExp ge, HttpServletRequest request, @RequestParam(name = "uploadFile", required = false) MultipartFile file, @RequestParam(name = "sNo") String sNo)
+		{
 			System.out.println("졸업유예신청");
 			System.out.println(sNo);
 			System.out.println(file);
@@ -364,169 +398,196 @@ public class ad_Register_Controller {
 				}
 			}
 			int result = arService.ad_drop_absence_apply(ge);
-            System.out.println("Result 체크 : " + result);
+			System.out.println("Result 체크 : " + result);
 			if (result > 0) {
 				return "success";
 			} else {
 				return "fail";
 			}
 		}
-	
+
 	/**
 	 * 학사행정 > 학적관리 > 강의 > 자퇴 확인
+	 * 
 	 * @param locale
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "ad_drop_absence_check.do")
-	public ModelAndView drop_absence_check(ModelAndView mv, HttpSession session) {
+	public ModelAndView drop_absence_check(ModelAndView mv, HttpSession session)
+		{
 			Student s = (Student) session.getAttribute("loginUser");
 			String sNo = s.getsNo();
 			grdExp view = arService.graduationDelayCheck(sNo);
 			System.out.println(view);
-			mv.addObject("view",view);
-			mv.setViewName("ad_register/ad_Drop_Absence_Check");		
+			mv.addObject("view", view);
+			mv.setViewName("ad_register/ad_Drop_Absence_Check");
 			return mv;
-	}
-	
+		}
+
 	/**
 	 * 학사행정 > 학적관리 > 강의 > 등록금 고지서
+	 * 
 	 * @param locale
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "ad_tuition_bill.do")
-	public String tuition_bill(Locale locale, Model model) {
-		
-		return "ad_register/ad_Tuition_Bill";
-	}
-	
+	public String tuition_bill(Model model)
+		{
+
+			return "ad_register/ad_Tuition_Bill";
+		}
+
 	/**
 	 * 학사행정 > 학적관리 > 강의 > 등록금 납부
+	 * 
 	 * @param locale
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "ad_tuition_payment.do")
-	public String tuition_payment(Locale locale, Model model) {
-		
-		return "ad_register/ad_Tuition_Payment";
-	}
-	
+	public String tuition_payment(Locale locale, Model model)
+		{
+
+			return "ad_register/ad_kakaoPay";
+		}
+
 	/**
 	 * 학사행정 > 학적관리 > 강의 > 등록금 납부 확인
+	 * 
 	 * @param locale
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "ad_tuition_payment_check.do")
-	public String tuition_payment_check(Locale locale, Model model) {
-		
-		return "ad_register/ad_Tuition_Payment_Check";
-	}
-	
-	
+	public String tuition_payment_check(Locale locale, Model model)
+		{
+
+			return "ad_register/ad_Tuition_Payment_Check";
+		}
+
 	/**
 	 * 학사행정 > 학적관리 > 강의 > 증명서 발급 목록
+	 * 
 	 * @param locale
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "ad_certificate_list.do")
-	public String certificate_list(Locale locale, Model model) {
-		
-		return "ad_register/ad_Certificate_List";
-	}
-	
+	public ModelAndView certificate_list(ModelAndView mv, HttpSession session)
+		{
+			System.out.println("증명서발급목록");
+			Student s = (Student) session.getAttribute("loginUser");
+			String sNo = s.getsNo();
+			System.out.println(sNo);
+			grdExp certificateCheck = arService.certificate_list(sNo);
+			mv.addObject("certificateCheck", certificateCheck);
+			mv.setViewName("ad_register/ad_Certificate_List");
+			return mv;
+		}
+
 	/**
 	 * 학사행정 > 학적관리 > 강의 > 재학증명서 확인
+	 * 
 	 * @param locale
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "ad_certificate_inschool.do")
-	public String certificate_inschool(Locale locale, Model model) {
-		
-		return "ad_register/ad_Certificate_InSchool";
-	}
-	
+	@ResponseBody
+	public ModelAndView certificate_inschool(ModelAndView mv, HttpSession session)
+		{
+			System.out.println("재학증명서발급");
+			Student s = (Student) session.getAttribute("loginUser");
+			String sNo = s.getsNo();
+			System.out.println(sNo);
+			Certificate c = arService.certificate_inschool(sNo);
+			mv.addObject("c", c);
+			mv.setViewName("ad_register/ad_Certificate_InSchool");
+			return mv;
+			//		return "ad_register/ad_Certificate_InSchool";
+		}
+
 	/**
 	 * 학사행정 > 학적관리 > 강의 > 졸업증명서 확인
+	 * 
 	 * @param locale
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "ad_certificate_graduation.do")
-	public String certificate_graduation(Locale locale, Model model) {
-		
-		return "ad_register/ad_Certificate_Graduation";
-	}
-	
-	
+	public String certificate_graduation(Locale locale, Model model)
+		{
+
+			return "ad_register/ad_Certificate_Graduation";
+		}
+
 	//========================================================================
 	/**
-	    * 학사행정 > 학적관리 > 강의 > 강의개설정보
-	    * @param currentPage
-	    * @param mv
-	    * @param session
-	    * @return
-	    */
-	   // 강의개설정보 페이지
-	   @RequestMapping(value = "ad_lect_list.do")
-	   public ModelAndView ad_Lecture_List(ModelAndView mv, HttpSession session,
-	         @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage ) {
+	 * 학사행정 > 학적관리 > 강의 > 강의개설정보
+	 * 
+	 * @param currentPage
+	 * @param mv
+	 * @param session
+	 * @return
+	 */
+	// 강의개설정보 페이지
+	@RequestMapping(value = "ad_lect_list.do")
+	public ModelAndView ad_Lecture_List(ModelAndView mv, HttpSession session, @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage)
+		{
 
-	      // 페이지수
-	      Student student = (Student)session.getAttribute("loginUser"); // 로긴세션에서 뽑은 정보를 학생객체에 넣기
-	      String dNo = student.getdNo();                          // 학생번호만 뽑기   
-	      int listCount = arService.getListCount(dNo);
-	      System.out.println(listCount);
-	      System.out.println("아마 여기까진");
+			// 페이지수
+			Student student = (Student) session.getAttribute("loginUser"); // 로긴세션에서 뽑은 정보를 학생객체에 넣기
+			String dNo = student.getdNo(); // 학생번호만 뽑기   
+			int listCount = arService.getListCount(dNo);
+			System.out.println(listCount);
+			System.out.println("아마 여기까진");
 
+			ArrayList<LectureList> ll = arService.selectList1(dNo); // 전공과목용 
 
-	      ArrayList<LectureList> ll = arService.selectList1(dNo); // 전공과목용 
+			ArrayList<LectureList> lp = arService.selectList2(dNo); // 교양과목용 
 
-	      ArrayList<LectureList> lp = arService.selectList2(dNo); // 교양과목용 
+			System.out.println(ll);
+			if (ll != null && lp != null) {
+				mv.addObject("ll", ll);
+				mv.addObject("lp", lp);
+				mv.setViewName("ad_register/ad_Lecture_List");
+			} else {
+				mv.addObject("msg", "로그인 실패");
+				mv.setViewName("common/errorPage");
+			}
+			return mv;
+		}
 
+	/**
+	 * 학사행정 > 학적관리 > 강의 > 강의계획서
+	 * 
+	 * @param classNo
+	 * @param pNo
+	 * @param mv
+	 * @return
+	 */
+	// 학생용 강의계획서 팝업창
+	@RequestMapping(value = "ad_syllabus.do")
+	public ModelAndView ad_syllabus(ModelAndView mv, LectureList ll, @RequestParam(value = "classNo") String classNo, @RequestParam(value = "pNo") String pNo)
+		{
+			ll.setClassNo(classNo);
+			ll.setpNo(pNo);
+			System.out.println("컨트롤러에 들어옴" + ll);
+			LecturePlan lp = arService.selectSyllaOne1(ll);
+			ArrayList<LecturePlanWeek> lpw = arService.selectSyllaOne2(ll);
+			System.out.println("디비갔다온" + lp);
+			System.out.println(lpw);
+			if (lpw != null && lp != null) {
+				mv.addObject("lp", lp);
+				mv.addObject("lpw", lpw);
+				mv.setViewName("ad_register/ad_Syllabus_Lecture");
+			} else {
+				mv.addObject("msg", "로그인 실패");
+				mv.setViewName("common/errorPage");
+			}
+			return mv;
+		}
 
-	      System.out.println(ll);
-	      if(ll != null && lp != null) {
-	         mv.addObject("ll",ll);
-	         mv.addObject("lp",lp);
-	         mv.setViewName("ad_register/ad_Lecture_List");
-	      }else {
-	         mv.addObject("msg","로그인 실패");
-	         mv.setViewName("common/errorPage");
-	      }
-	      return mv;
-	   }
-
-	   /**
-	    * 학사행정 > 학적관리 > 강의 > 강의계획서
-	    * @param classNo
-	    * @param pNo
-	    * @param mv
-	    * @return
-	    */
-	   // 학생용 강의계획서 팝업창
-	   @RequestMapping(value = "ad_syllabus.do")
-	   public ModelAndView ad_syllabus(ModelAndView mv,LectureList ll, @RequestParam(value="classNo")String classNo,@RequestParam(value="pNo")String pNo) {
-	      ll.setClassNo(classNo);
-	      ll.setpNo(pNo);
-	      System.out.println("컨트롤러에 들어옴"+ll);
-	      LecturePlan lp = arService.selectSyllaOne1(ll);
-	      ArrayList <LecturePlanWeek> lpw = arService.selectSyllaOne2(ll);
-	      System.out.println("디비갔다온"+lp);
-	      System.out.println(lpw);
-	      if(lpw != null && lp !=null) {
-	         mv.addObject("lp",lp);
-	         mv.addObject("lpw",lpw);
-	         mv.setViewName("ad_register/ad_Syllabus_Lecture");
-	      }else {
-	         mv.addObject("msg","로그인 실패");
-	         mv.setViewName("common/errorPage");
-	      }
-	      return mv;
-	   }
-	
 }

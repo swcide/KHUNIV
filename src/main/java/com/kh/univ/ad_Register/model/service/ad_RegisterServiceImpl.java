@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.univ.ad_Register.model.dao.ad_RegisterDao;
 import com.kh.univ.ad_Register.model.vo.Absence;
+import com.kh.univ.ad_Register.model.vo.Certificate;
 import com.kh.univ.ad_Register.model.vo.grdExp;
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.lecture.model.vo.LectureList;
@@ -62,6 +63,24 @@ public class ad_RegisterServiceImpl implements ad_RegisterService{
 			return arDao.ad_deferment_graduation_apply(ge);
 		}
 
+	
+	/**
+	 *증명서 발급 전 학생 정보 출력 테이블
+	 */
+	@Override
+	public grdExp certificate_list(String sNo)
+		{
+			return arDao.certificate_list(sNo);
+		}
+
+	/**
+	 * 재학증명서 발급
+	 */
+	@Override
+	public Certificate certificate_inschool(String sNo)
+		{
+			return arDao.certificate_inschool(sNo);
+		}
 	@Override
 	public int getListCount(String dNo) {
 		return arDao.getListCount(dNo);
@@ -92,6 +111,8 @@ public class ad_RegisterServiceImpl implements ad_RegisterService{
 		{
 			return arDao.ad_drop_absence_apply(ge);
 		}
+
+	
 
 
 
