@@ -33,9 +33,14 @@ public class LectureController {
 	LectureService lService;
 	
 	@RequestMapping(value = "lecturelist.do")
-	public String signup( Model model) {
-		
-		return "ad_lecture/ad_lectureList";
+	public ModelAndView lectureList(ModelAndView mv,HttpSession session) {
+	Student student = (Student)session.getAttribute("loginUser"); // 로긴세션에서 뽑은 정보를 학생객체에 넣기
+	String sNo = student.getsNo();
+	ArrayList<LectureList> ll = lService.selectList1(sNo);
+	
+	mv.addObject("ll", ll);
+	mv.setViewName("ad_lecture/ad_lectureList");
+		return mv;
 	}
 	
 	/**
