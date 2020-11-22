@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="registrationMapper">
+
+	<resultMap type="Registration" id="RegistrationResultSet">
+		<id property="dNo" column="DEPT_NO" />
+		<result property="dName" column="DEPT_NAME" />
+		<result property="cNo" column="CLASS_NO" />
+		<result property="cName" column="CLASS_NAME" />
+		<result property="cType" column="CLASS_TYPE" />
+		<result property="pName" column="PROF_NAME" />
+		<result property="pNo" column="PROF_NO" />
+		<result property="credit" column="CREDIT" />
+		<result property="sNo" column="STUDENT_No" />
+	</resultMap>
+	
+	<resultMap type="Grade" id="GradeResultSet">
+		<id property="sNo" column="STD_NO" />
+		<result property="cNo" column="CLASS_NO" />
+		<result property="semester" column="STD_SEMESTER" />
+		<result property="point" column="POINT" />
+		<result property="pNo" column="PROF_NO" />
+		
+	
+	</resultMap>
+	
+	<resultMap type="RegistrationSNO" id="RegistrationSNOResultSet">
+		<id property="dNo" column="DEPT_NO" />
+		<result property="dName" column="DEPT_NAME" />
+	</resultMap>
+	
+
+
+	<select id="rSelectList" resultMap="RegistrationResultSet">
+		SELECT  
+			 PROF_NAME,
+	        P.PROF_NO,
+	        CLASS_NO,
+	        CLASS_NAME,
+	        CLASS_TYPE,
+	        P.DEPT_NO,
+	        DEPT_NAME,
+	        CREDIT
+			FROM TB_CLASS C
+			JOIN TB_DEPARTMENT D USING(DEPT_NO)
+			JOIN TB_CLASS_PROFESSOR CP USING(CLASS_NO)
+			JOIN TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
+            AND TO_NUMBER(P.DEPT_NO) =#{dNo}
+	</select>
+	
+	<insert id="insertRegistration" parameterType="java.util.ArrayList">
+			<foreach collection="list" item="item"  separator=" " open="INSERT ALL" close="SELECT * FROM DUAL"> 
+			
+			INTO TB_GRADE	( 
+				STD_SEMESTER 
+			  , STD_NO 
+			  , POINT
+			  , CLASS_NO 
+			  , PROF_NO
+			  
+			)VALUES (
+		
+			 (SELECT NVL(MAX(STD_SEMESTER),0)+1 FROM TB_GRADE)
+			 , #{item.sNo} 
+			 , DEFAULT
+			 , #{item.cNo} 
+			 , #{item.pNo}
+			 )
+		 </foreach>
+		   
+	</insert>
+	
+	
+
+</mapper>

@@ -1,7 +1,11 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Random;
+
+import com.kh.univ.member.model.vo.Student;
+import com.kh.univ.testPage.model.vo.Grade;
+
 //import java.util.Date;
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -31,31 +35,52 @@ public class test {
 	
 	public static void main(String[] args) {
 		
+		String [] arr = {"a","b","c","d"};
 		
+		ArrayList<Grade> list = new ArrayList<Grade>();
 		
-		StringBuffer temp = new StringBuffer();
-		Random rnd = new Random();
-		for (int i = 0; i < 2; i++) {
-			int rIndex = rnd.nextInt(3);
-			switch (rIndex) {
-			case 0:
-				// a-z
-				temp.append((char) ((int) (rnd.nextInt(26)) + 97));
-				break;
-			case 1:
-				// A-Z
-				temp.append((char) ((int) (rnd.nextInt(26)) + 65));
-				break;
-			case 2:
-				// 0-9
-				temp.append((rnd.nextInt(10)));
-				break;
-			}
+		Grade g = new Grade();
+		
+		for (int i = 0; i < arr.length; i++) {
+			g.setcNo(arr[i]);
+			list.add(g);
 		}
+	
 		
 		
-		String AuthenticationKey = temp.toString();
-		System.out.println("랜덤 비번 : "+ AuthenticationKey );
+		
+		System.out.println(list);
+		
+		
+//		Student
+//		
+////		   데이트 입력
+//	       String day2 = "2016-11-22"; // 형식을 지켜야 함
+////	       Date t = Date.valueOf(day2);
+//	       
+////	       시간 입력 
+//	       
+//	       String time = "10:23:00";
+//	       
+//	       String startTime = day2+" "+time;
+//	       	       
+//
+//	       System.out.println(startTime);
+//	       
+////	       Date d = Date.valueOf(startTime);
+//	       Timestamp d = Timestamp.valueOf(startTime);
+//	       
+//	       
+//	       
+//
+//	       System.out.println(d);
+//
+//	       
+//	       
+////	       test ts = new test();
+//	       
+////	       Date last= ts.transformDate(startTime);
+//	       
 
 
 	
