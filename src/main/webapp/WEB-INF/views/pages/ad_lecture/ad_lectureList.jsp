@@ -38,7 +38,7 @@
 
 											<h2
 												class="font-weight-semibold text-5 line-height-6 mt-3 mb-2">
-												<a href="blog-post.html">${l.className }</a>
+												<a href="mylectureVideolist.do">${l.className }</a>
 											</h2>
 											<p>${l.className }</p>
 
