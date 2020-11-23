@@ -85,9 +85,9 @@
 			</section>
 			<div id="pdf_wrap">
 				<div class="container py-2">
-					<div class="row">
+					<div class="row"style="border: 1px solid;">
 						<div class="col">
-							<h1 align="center" style="font-weight: bolder">재학 증명서</h1>
+							<h1 align="center" style="font-weight: bolder;margin-top: 30px;">재학 증명서</h1>
 							<div class="row">
 								<div class="col-md-12">
 									<div style="background-image: url(resources/img/big-logo.png); background-size: contain; background-repeat: no-repeat; background-position: 50% 0;">
@@ -164,7 +164,7 @@
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-md-12" align="center" style="margin-top: 40px; background-image: url(resources/img/seal.png); background-size: contain; background-repeat: no-repeat; background-position: 70%;">
+										<div class="col-md-12" align="center" style="margin-top: 40px; margin-bottom: 20px; background-image: url(resources/img/seal.png); background-size: contain; background-repeat: no-repeat; background-position: 70%;">
 											<h2 style="font-weight: bolder; margin-bottom: 9px; margin-top: 18px;">
 												<label> KH 사이버 대학교 총장</label>
 											</h2>
@@ -176,7 +176,7 @@
 					</div>
 				</div>
 			</div>
-			<button id="create_pdf" class="btn btn-primary btn-lg mb-2 float-right" style="margin-right: 100px;">다운로드</button>
+			<button id="create_pdf" class="btn btn-primary btn-lg mb-2 float-right" style="margin-right: 40px;">다운로드</button>
 		</div>
 	</div>
 	<script>
@@ -197,7 +197,7 @@
 			    doc.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight);
 			    heightLeft -= pageHeight;
 			    // 파일 저장
-			    doc.save('file-name.pdf');
+			    doc.save('재학증명서.pdf');
 			});
 			});
 		});
