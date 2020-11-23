@@ -503,10 +503,10 @@ public class ad_Register_Controller {
 			String sNo = s.getsNo();
 			System.out.println(sNo);
 			Certificate c = arService.certificate_inschool(sNo);
+			System.out.println(c);
 			mv.addObject("c", c);
 			mv.setViewName("ad_register/ad_Certificate_InSchool");
 			return mv;
-			//		return "ad_register/ad_Certificate_InSchool";
 		}
 
 	/**
@@ -517,10 +517,18 @@ public class ad_Register_Controller {
 	 * @return
 	 */
 	@RequestMapping(value = "ad_certificate_graduation.do")
-	public String certificate_graduation(Locale locale, Model model)
+	@ResponseBody
+	public ModelAndView certificate_graduation(ModelAndView mv, HttpSession session)
 		{
-
-			return "ad_register/ad_Certificate_Graduation";
+			System.out.println("졸업증명서발급");
+			Student s = (Student) session.getAttribute("loginUser");
+			String sNo = s.getsNo();
+			System.out.println(sNo);
+			Certificate g = arService.certificate_graduation(sNo);
+			System.out.println(g);
+			mv.addObject("g", g);
+			mv.setViewName("ad_register/ad_Certificate_Graduation");
+			return mv;
 		}
 
 	//========================================================================

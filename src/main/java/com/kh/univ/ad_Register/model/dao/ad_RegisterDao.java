@@ -61,6 +61,12 @@ public class ad_RegisterDao {
 		{
 			return sqlSession.selectOne("registerMapper.certificate_inschool",sNo);
 		}
+	
+	//졸업증명서 발급 화면
+	public Certificate certificate_graduation(String sNo)
+		{
+			return sqlSession.selectOne("registerMapper.certificate_graduation",sNo);
+		}
 	///////////////////////////////////강의계획서 관리//////////////////////////////////////////////////
 	// 강의 개설 리스트카운트
 	public int getListCount(String dNo) {
@@ -88,6 +94,7 @@ public class ad_RegisterDao {
 		return (ArrayList)sqlSession.selectList("registerMapper.sylla2",ll);
 	}
 	///////////////////////////////////////////////////////////////////////////////////////
+
 	
 
 

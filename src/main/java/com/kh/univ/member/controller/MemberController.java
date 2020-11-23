@@ -241,8 +241,50 @@ public class MemberController {
 
 			return "member/prof_mypage";
 		}
+	
+	@RequestMapping(value="updateMyPage.do", method = RequestMethod.POST)
+	public String updateMyPage(Student s, Model model,@RequestParam("address") String addr1,@RequestParam("address_detail") String addr2,@RequestParam("check_pw") String pwd,@RequestParam("email") String email,@RequestParam("sNo") String sNo,@RequestParam("phone") String phone) {
+			if(!addr1.equals("")) {
+				s.setsAddress( addr1 + "," + addr2);
+				s.setsEmail(email);
+				s.setsPhone(phone);
+				s.setsNo(sNo);
+			   }
+			//암호화
+			BCryptPasswordEncoder bcpt = new BCryptPasswordEncoder();
+			s.setsPwd(pwd);
+			String encodingPwd = bcpt.encode(s.getsPwd());
+			System.out.println(encodingPwd);
+			System.out.println(s.getsAddress());
+			System.out.println(s.getsEmail());
+			System.out.println(s.getsPhone());
+			System.out.println(s.getsNo());
+			//다시 셋터 사용
+			s.setsPwd(encodingPwd);
+			int result = mService.updateMember(s);
+			   if(	result > 0) {
+				   model.addAttribute("loginUser", s);
+				   return "member/mypage";
+			   }else {
+				   model.addAttribute("msg", "회원정보수정 실패");
+				   return "common/errorPage";
+			   }
+	}
 
 	//******************************************************
+	/**
+	 * 인증번호(난수생성) 후 메일 발송
+	 * @param s
+	 * @param p
+	 * @param email
+	 * @param mv
+	 * @param id
+	 * @param e_mail
+	 * @param type
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("pwEmail.do")
 	public ModelAndView sendEmailAction(Student s, Professor p, Email email, ModelAndView mv, @RequestParam(value = "id") String id, @RequestParam(value = "e_mail") String e_mail,
 			@RequestParam(value = "type") int type, HttpServletResponse response) throws Exception
@@ -331,6 +373,17 @@ public class MemberController {
 			}
 		}
 
+	/**
+	 * 발송된 난수와 입력값이 일치할 때 비밀번호 변경창으로 이동
+	 * @param insertPassCode
+	 * @param type
+	 * @param id
+	 * @param passCode
+	 * @param e_mail
+	 * @param response_equals
+	 * @return
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "pwNumCheck.do", method = RequestMethod.POST)
 	public ModelAndView pass_injeung(@RequestParam(value = "insertPassCode") String insertPassCode, @RequestParam(value = "type") int type, @RequestParam(value = "id") String id,
 			@RequestParam(value = "passCode") String passCode, @RequestParam(value = "e_mail") String e_mail, HttpServletResponse response_equals) throws IOException
@@ -370,6 +423,20 @@ public class MemberController {
 			}
 		}
 
+	/**
+	 * 변경할 비밀번호 값 받고 비밀번호 암호화 및 업데이트
+	 * @param mv
+	 * @param s
+	 * @param p
+	 * @param type
+	 * @param id
+	 * @param email
+	 * @param pwd
+	 * @param request
+	 * @param pass
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "pwChange.do", method = RequestMethod.POST)
 	public ModelAndView pwChange(ModelAndView mv, Student s, Professor p, @RequestParam(value = "type") int type, @RequestParam(value = "id") String id, @RequestParam(value = "e_mail") String email,
 			@RequestParam(value = "password") String pwd, HttpServletRequest request, HttpServletResponse pass) throws Exception

@@ -3,49 +3,57 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="registerMapper">
 
-<!--  휴복학 관련 -->
+	<!-- 휴복학 관련 -->
 	<resultMap type="Absence" id="absenceResultSet">
-<id property="sNo" column="STD_NO"/>
-<result property="CurrentState" column="CURRENT_STATE"  />
-<result property="absDate" column="ABS_DATE"  />
-<result property="absReason" column="ABS_REASON"  />
-<result property="absenceFileName" column="ABSENCE_FILE"  />
-<result property="absenceStatus" column="ABS_STATUS"  />
-<result property="returnStatus" column="RETURN_STATUS"  />
-<result property="sName" column="STD_NAME"  />
-<result property="semester" column="SEMESTER"  />
-<result property="deptName" column="DEPT_NAME"  />
-</resultMap>
-<!-- 유예/자퇴 관련 -->
+		<id property="sNo" column="STD_NO" />
+		<result property="CurrentState" column="CURRENT_STATE" />
+		<result property="absDate" column="ABS_DATE" />
+		<result property="absReason" column="ABS_REASON" />
+		<result property="absenceFileName" column="ABSENCE_FILE" />
+		<result property="absenceStatus" column="ABS_STATUS" />
+		<result property="returnStatus" column="RETURN_STATUS" />
+		<result property="sName" column="STD_NAME" />
+		<result property="semester" column="SEMESTER" />
+		<result property="deptName" column="DEPT_NAME" />
+	</resultMap>
+	<!-- 유예/자퇴 관련 -->
 	<resultMap type="grdExp" id="grdExpResultSet">
-<id property="sNo" column="STD_NO"/>
-<result property="CurrentState" column="CURRENT_STATE"  />
-<result property="expDate" column="EXPELLED_DATE"  />
-<result property="grdDelayDate" column="GRADUATE_DELAY_DATE"  />
-<result property="grdExpFileName" column="GRD_EXP_FILE"  />
-<result property="grdDelayStatus" column="GRADUATE_DELAY_STATUS"  />
-<result property="expStatus" column="EXPELLED_STATUS"  />
-<result property="sName" column="STD_NAME"  />
-<result property="semester" column="SEMESTER"  />
-<result property="deptName" column="DEPT_NAME"  />
-</resultMap>
-<!-- 증명서 발급 관련 -->
-<resultMap type="Certificate" id="CertificateResultSet">
-<id property="sNo" column="STD_NO"/>
-<result property="seqPrint" column="SEQ_PRINT"  />
-<result property="sName" column="STD_NAME"  />
-<result property="semester" column="SEMESTER"  />
-<result property="deptName" column="DEPT_NAME"  />
-<result property="year" column="YEAR"  />
-<result property="month" column="MONTH"  />
-<result property="day" column="DAY"  />
-<result property="sysYear" column="SYSYEAR"  />
-<result property="sysMonth" column="SYSMONTH"  />
-<result property="sysDay" column="SYSDAY"  />
-</resultMap>
+		<id property="sNo" column="STD_NO" />
+		<result property="CurrentState" column="CURRENT_STATE" />
+		<result property="expDate" column="EXPELLED_DATE" />
+		<result property="grdDelayDate" column="GRADUATE_DELAY_DATE" />
+		<result property="grdExpFileName" column="GRD_EXP_FILE" />
+		<result property="grdDelayStatus" column="GRADUATE_DELAY_STATUS" />
+		<result property="expStatus" column="EXPELLED_STATUS" />
+		<result property="sName" column="STD_NAME" />
+		<result property="semester" column="SEMESTER" />
+		<result property="deptName" column="DEPT_NAME" />
+	</resultMap>
+	<!-- 증명서 발급 관련 -->
+	<resultMap type="Certificate" id="CertificateResultSet">
+		<id property="sNo" column="STD_NO" />
+		<result property="seqPrint" column="SEQ_PRINT" />
+		<result property="sName" column="STD_NAME" />
+		<result property="semester" column="SEMESTER" />
+		<result property="deptName" column="DEPT_NAME" />
+		<result property="grdNo" column="GRD_NO" />
+		<result property="degree" column="DEGREE" />
+		<result property="year" column="YEAR" />
+		<result property="month" column="MONTH" />
+		<result property="day" column="DAY" />
+		<result property="sysYear" column="SYSYEAR" />
+		<result property="sysMonth" column="SYSMONTH" />
+		<result property="sysDay" column="SYSDAY" />
+		<result property="enYear" column="ENYEAR" />
+		<result property="enMonth" column="ENMONTH" />
+		<result property="enDay" column="ENDAY" />
+		<result property="gYear" column="GYEAR" />
+		<result property="gMonth" column="GMONTH" />
+		<result property="gDay" column="GDAY" />
+	</resultMap>
 
 
-	
+
 	<resultMap type="LectureList" id="lectureListResultSet">
 		<id property="classNo" column="CLASS_NO" />
 		<result property="className" column="CLASS_NAME" />
@@ -61,7 +69,7 @@
 		<result property="credit" column="CREDIT" />
 		<result property="classType" column="CLASS_TYPE" />
 	</resultMap>
-	
+
 	<!-- 강의계획서 상위부분 -->
 	<resultMap type="LecturePlan" id="Sylla1ResultSet">
 		<id property="classNo" column="CLASS_NO" />
@@ -89,7 +97,7 @@
 		<id property="lecReference" column="LECTURE_REFERENCE" />
 	</resultMap>
 
-	<!-- 강의개설정보 리스트 //전공//-->
+	<!-- 강의개설정보 리스트 //전공// -->
 	<select id="lecPList" resultMap="lectureListResultSet">
 		SELECT
 		CLASS_NO,CLASS_NAME,CLASS_TYPE,PROF_NAME,PROF_NO
@@ -102,7 +110,7 @@
 		LIKE '전공%'
 		AND C.DEPT_NO=#{dNo}
 	</select>
-	<!-- 강의개설정보 리스트 //교양//-->
+	<!-- 강의개설정보 리스트 //교양// -->
 	<select id="lecPList2" resultMap="lectureListResultSet">
 		SELECT
 		CLASS_NO,CLASS_NAME,CLASS_TYPE,PROF_NAME,PROF_NO
@@ -127,14 +135,14 @@
 		LIKE '전공%'
 		AND C.DEPT_NO=#{dNo}
 	</select>
-	
-	
+
+
 	<select id="sylla2" resultMap="Sylla2ResultSet">
 		SELECT
 		LECTURE_NO,LECTURE_NAME,LECTURE_REFERENCE,LECTURE_EXPLANATION
 		FROM
-        TB_CLASS_DETAIL
-        LEFT JOIN TB_CLASS_PROFESSOR USING(CLASS_NO)
+		TB_CLASS_DETAIL
+		LEFT JOIN TB_CLASS_PROFESSOR USING(CLASS_NO)
 		WHERE CLASS_NO=#{classNo}
 		AND PROFESSOR_NO=#{pNo}
 		ORDER BY
@@ -169,64 +177,72 @@
 
 
 
-<!-- 휴복학 상태확인 -->
-<select id="absenceCheck" resultMap="absenceResultSet">
-SELECT STD_NO,RETURN_STATUS,ABS_STATUS,CURRENT_STATE,DEPT_NAME,STD_NAME,SEMESTER,ABS_REASON,ABSENCE_FILE
-FROM TB_ABSENCE_STD AB
-JOIN TB_STUDENT S USING (STD_NO)
-JOIN TB_DEPARTMENT D ON(S.DEPT_NO = D.DEPT_NO)
-WHERE STD_NO = #{sNo}
-</select>
+	<!-- 휴복학 상태확인 -->
+	<select id="absenceCheck" resultMap="absenceResultSet">
+		SELECT STD_NO,RETURN_STATUS,ABS_STATUS,CURRENT_STATE,DEPT_NAME,STD_NAME,SEMESTER,ABS_REASON,ABSENCE_FILE
+		FROM TB_ABSENCE_STD AB
+		JOIN TB_STUDENT S USING (STD_NO)
+		JOIN TB_DEPARTMENT D ON(S.DEPT_NO = D.DEPT_NO)
+		WHERE STD_NO = #{sNo}
+	</select>
 
-<!-- 유예/자퇴 상태확인 -->
-<select id="graduationDelayCheck" resultMap="grdExpResultSet">
-SELECT STD_NO,CURRENT_STATE,DEPT_NAME,STD_NAME,SEMESTER,GRADUATE_DELAY_STATUS,EXPELLED_STATUS,GRD_EXP_FILE,SEMESTER
-FROM TB_GRD_EXP_STD 
-JOIN TB_STUDENT S USING (STD_NO)
-JOIN TB_DEPARTMENT D ON(S.DEPT_NO = D.DEPT_NO)
-WHERE STD_NO = #{sNo}
-</select>
+	<!-- 유예/자퇴 상태확인 -->
+	<select id="graduationDelayCheck" resultMap="grdExpResultSet">
+		SELECT STD_NO,CURRENT_STATE,DEPT_NAME,STD_NAME,SEMESTER,GRADUATE_DELAY_STATUS,EXPELLED_STATUS,GRD_EXP_FILE,SEMESTER
+		FROM TB_GRD_EXP_STD
+		JOIN TB_STUDENT S USING (STD_NO)
+		JOIN TB_DEPARTMENT D ON(S.DEPT_NO = D.DEPT_NO)
+		WHERE STD_NO = #{sNo}
+	</select>
 
-<!-- 휴학신청 업데이트 -->
-<update id="absenceApply" parameterType="Absence">
-UPDATE TB_ABSENCE_STD
-SET ABSENCE_FILE=#{absenceFileName},ABS_STATUS='Y',ABS_REASON=#{absReason}
-WHERE  STD_NO = #{sNo}
-</update>
+	<!-- 휴학신청 업데이트 -->
+	<update id="absenceApply" parameterType="Absence">
+		UPDATE TB_ABSENCE_STD
+		SET ABSENCE_FILE=#{absenceFileName},ABS_STATUS='Y',ABS_REASON=#{absReason}
+		WHERE STD_NO = #{sNo}
+	</update>
 
-<!-- 복학신청 업데이트 -->
-<update id="returnApply" parameterType="Absence">
-UPDATE TB_ABSENCE_STD
-SET ABSENCE_FILE=#{absenceFileName},RETURN_STATUS='Y',ABS_REASON='복학'
-WHERE  STD_NO = #{sNo}
-</update>
+	<!-- 복학신청 업데이트 -->
+	<update id="returnApply" parameterType="Absence">
+		UPDATE TB_ABSENCE_STD
+		SET ABSENCE_FILE=#{absenceFileName},RETURN_STATUS='Y',ABS_REASON='복학'
+		WHERE STD_NO = #{sNo}
+	</update>
 
-<!-- 졸업유예 신청 업데이트 -->
-<update id="graduationDelayApply" parameterType="grdExp">
-UPDATE TB_GRD_EXP_STD
-SET GRD_EXP_FILE=#{grdExpFileName},GRADUATE_DELAY_STATUS='Y'
-WHERE STD_NO = #{sNo}
-</update>
+	<!-- 졸업유예 신청 업데이트 -->
+	<update id="graduationDelayApply" parameterType="grdExp">
+		UPDATE TB_GRD_EXP_STD
+		SET GRD_EXP_FILE=#{grdExpFileName},GRADUATE_DELAY_STATUS='Y'
+		WHERE STD_NO = #{sNo}
+	</update>
 
-<!-- 자퇴 신청 업데이트 -->
-<update id="dropApply" parameterType="grdExp">
-UPDATE TB_GRD_EXP_STD
-SET GRD_EXP_FILE=#{grdExpFileName},EXPELLED_STATUS='Y'
-WHERE STD_NO = #{sNo}
-</update>
+	<!-- 자퇴 신청 업데이트 -->
+	<update id="dropApply" parameterType="grdExp">
+		UPDATE TB_GRD_EXP_STD
+		SET GRD_EXP_FILE=#{grdExpFileName},EXPELLED_STATUS='Y'
+		WHERE STD_NO = #{sNo}
+	</update>
 
-<select id="certificate_list" resultMap="grdExpResultSet">
-SELECT DEPT_NAME, SEMESTER, STD_NO, STD_NAME
-         FROM TB_STUDENT S
-         JOIN TB_DEPARTMENT D USING(DEPT_NO)
-         WHERE STD_NO = #{sNo}
-</select>
+	<select id="certificate_list" resultMap="grdExpResultSet">
+		SELECT DEPT_NAME, SEMESTER, STD_NO, STD_NAME
+		FROM TB_STUDENT S
+		JOIN TB_DEPARTMENT D USING(DEPT_NO)
+		WHERE STD_NO = #{sNo}
+	</select>
 
-<select id="certificate_inschool" resultMap = "CertificateResultSet">
-SELECT STD_NAME, DEPT_NAME,SEMESTER, SUBSTR(STD_SSN,1,2) AS YEAR, SUBSTR(STD_SSN,3,2) AS MONTH,SUBSTR(STD_SSN,5,2) AS DAY,SUBSTR(SYSDATE,1,2) AS SYSYEAR,SUBSTR(SYSDATE,4,2) AS SYSMONTH,SUBSTR(SYSDATE,7,2) AS SYSDAY
-         FROM TB_STUDENT S 
-         JOIN TB_DEPARTMENT D ON(S.DEPT_NO = D.DEPT_NO)
-         WHERE STD_NO = #{sNo}
-</select>
+	<select id="certificate_inschool" resultMap="CertificateResultSet">
+		SELECT STD_NAME, DEPT_NAME,SEMESTER, SUBSTR(STD_SSN,1,2) AS YEAR, SUBSTR(STD_SSN,3,2) AS MONTH,SUBSTR(STD_SSN,5,2) AS DAY,SUBSTR(SYSDATE,1,2) AS SYSYEAR,SUBSTR(SYSDATE,4,2) AS SYSMONTH,SUBSTR(SYSDATE,7,2) AS SYSDAY
+		FROM TB_STUDENT S
+		JOIN TB_DEPARTMENT D ON(S.DEPT_NO = D.DEPT_NO)
+		WHERE STD_NO = #{sNo}
+	</select>
+
+	<select id="certificate_graduation" resultMap="CertificateResultSet">
+		SELECT STD_NAME, DEPT_NAME,SEMESTER,SUBSTR(ENT_DATE,1,2) AS ENYEAR, SUBSTR(ENT_DATE,4,2) AS ENMONTH,SUBSTR(ENT_DATE,7,2) AS ENDAY,SUBSTR(GRADUATION_DATE,1,4) AS GYEAR, SUBSTR(GRADUATION_DATE,6,2) AS GMONTH,SUBSTR(GRADUATION_DATE,9,2) AS GDAY,GRD_NO,DEGREE, SUBSTR(STD_SSN,1,2) AS YEAR, SUBSTR(STD_SSN,3,2) AS MONTH,SUBSTR(STD_SSN,5,2) AS DAY,SUBSTR(SYSDATE,1,2) AS SYSYEAR,SUBSTR(SYSDATE,4,2) AS SYSMONTH,SUBSTR(SYSDATE,7,2) AS SYSDAY
+		FROM TB_STUDENT S
+		JOIN TB_DEPARTMENT D ON(S.DEPT_NO = D.DEPT_NO)
+		JOIN TB_GRADUATE_STD G USING(STD_NO)
+		WHERE STD_NO = #{sNo}
+	</select>
 
 </mapper>

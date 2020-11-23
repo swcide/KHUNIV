@@ -81,6 +81,16 @@ public class ad_RegisterServiceImpl implements ad_RegisterService{
 		{
 			return arDao.certificate_inschool(sNo);
 		}
+	
+	/**
+	 *졸업증명서 발급
+	 */
+	@Override
+	public Certificate certificate_graduation(String sNo)
+		{
+			return arDao.certificate_graduation(sNo);
+		}
+	
 	@Override
 	public int getListCount(String dNo) {
 		return arDao.getListCount(dNo);
@@ -111,6 +121,8 @@ public class ad_RegisterServiceImpl implements ad_RegisterService{
 		{
 			return arDao.ad_drop_absence_apply(ge);
 		}
+
+	
 
 	
 
