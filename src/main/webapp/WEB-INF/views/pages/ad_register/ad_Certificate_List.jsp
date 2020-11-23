@@ -79,7 +79,7 @@
 														<td style="text-align: center;">
 															<input type="hidden" id="sNo" value="${loginUser.sNo }">
 															<span class="badge badge-primary badge-md" style="padding: 5px;" onClick="open_certi_inschool()">재학</span>
-															<span class="badge badge-primary badge-md" style="padding: 5px;" onClick="window.open(this.href='ad_certificate_graduation.do', '', 'resizable=yes, width=900, height=800 left=700px top=100px'); return false;">졸업</span>
+															<span class="badge badge-primary badge-md" style="padding: 5px;" onClick="open_certi_grduate()">졸업</span>
 														</td>
 													</tr>
 												</tbody>
@@ -103,11 +103,11 @@
 		$
 				.ajax({
 					type : "POST",
-					url : 'ad_certificate_inschool.do?sNo=' + sNo,
+					url : 'ad_certificate_inschool.do',
 					success : function(data) {
 						// callback function--> data로 값이 들어온다 ( success, fail)
 						// 정상 페이지 이동
-						window.open(this.href = 'ad_certificate_inschool.do?sNo='+ sNo, '','resizable=yes, width=1000, height=800 left=700px top=100px');
+						window.open(this.href = 'ad_certificate_inschool.do', '','resizable=yes, width=1000, height=800 left=700px top=100px');
 						return false;
 					},
 					error : function(request, status, error) {
@@ -117,7 +117,28 @@
 								+ "error:" + error);
 					}
 				});
+	};
+	
+	function open_certi_grduate() {
+		var sNo = $('#sNo').val();
+		console.log(sNo)
+		$
+				.ajax({
+					type : "POST",
+					url : 'ad_certificate_graduation.do',
+					success : function(data) {
+						// callback function--> data로 값이 들어온다 ( success, fail)
+						// 정상 페이지 이동
+						window.open(this.href='ad_certificate_graduation.do', '','resizable=yes, width=1000, height=800 left=700px top=100px');
+						return false;
+					},
+					error : function(request, status, error) {
 
+						console.log("code:" + request.status + "\n"
+								+ "message:" + request.responseText + "\n"
+								+ "error:" + error);
+					}
+				});
 	};
 </script>
 </html>

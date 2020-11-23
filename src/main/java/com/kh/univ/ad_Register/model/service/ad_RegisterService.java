@@ -82,6 +82,13 @@ public interface ad_RegisterService {
 	 */
 	Certificate certificate_inschool(String sNo);
 
+	/**
+	 * 졸업증명서 발급 화면
+	 * @param sNo
+	 * @return
+	 */
+	Certificate certificate_graduation(String sNo);
+
 
 
 	

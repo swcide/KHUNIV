@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,6 +55,13 @@
 
 <!-- Head Libs -->
 <script src="resources/vendor/modernizr/modernizr.min.js"></script>
+
+<!-- pdf -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+
 </head>
 <body onresize="parent.resizeTo(900,1100)" onload="parent.resizeTo(600,100)">
 	<div class="body">
@@ -73,11 +81,10 @@
 					</div>
 				</div>
 			</section>
-
+<div id="pdf_wrap">
 			<div class="container py-2">
 				<div class="row">
 					<div class="col">
-					<h6 align="left">제 123호</h6>
 						<h1 align="center" style="font-weight: bolder">졸업 증명서</h1>
 						<div class="row">
 							<div class="col-md-12">
@@ -116,25 +123,25 @@
 											<table class="table">
 												<tbody align="right">
 													<tr>
-														<td align="left" style="border-top: none;">유승제</td>
+														<td align="left" style="border-top: none;">${g.sName }</td>
 													<tr>
 													<tr>
-														<td align="left" style="border-top: none;">1984年 11月 11日</td>
+														<td align="left" style="border-top: none;">${g.year }年${g.month }月${g.day }日</td>
 													<tr>
 													<tr>
-														<td align="left" style="border-top: none;">오전반대장학과</td>
+														<td align="left" style="border-top: none;">${g.deptName }</td>
 													<tr>
 													<tr>
-														<td align="left" style="border-top: none;">2014年 03月 02日</td>
+														<td align="left" style="border-top: none;">${g.enYear }年${g.enMonth }月${g.enDay }日</td>
 													<tr>
 													<tr>
-														<td align="left" style="border-top: none;">2019年 02月 28日</td>
+														<td align="left" style="border-top: none;">${g.gYear }年${g.gMonth }月${g.gDay }日</td>
 													<tr>
 													<tr>
-														<td align="left" style="border-top: none;">KH대14(학)2203</td>
+														<td align="left" style="border-top: none;">${g.grdNo }</td>
 													<tr>
 													<tr>
-														<td align="left" style="border-top: none;">소프트웨어학사</td>
+														<td align="left" style="border-top: none;">${g.degree }</td>
 													<tr>
 												</tbody>
 											</table>
@@ -147,7 +154,7 @@
 												<label> 위 사실을 증명함.</label>
 											</h2>
 											<h4>
-												<label>2020年 11月 02日</label>
+												<label>20${g.sysYear }年 ${g.sysMonth }月 ${g.sysDay }日</label>
 											</h4>
 										</div>
 									</div>
@@ -161,11 +168,34 @@
 								</div>
 							</div>
 						</div>
-								<button type="submit" class="btn btn-primary btn-lg mb-2 float-right" onClick="window.open(this.href='ad_tuition_payment.do', '', 'resizable=yes, width=900, height=800 left=700px top=100px'); return false;">다운로드</button>
 					</div>
 				</div>
 			</div>
+			</div>
+								<button id="create_pdf" class="btn btn-primary btn-lg mb-2 float-right"  style="margin-right: 100px;">다운로드</button>
 		</div>
 	</div>
+	<script>
+	$(document).ready(function() {
+		$('#create_pdf').click(function() { // pdf저장 button id
+		    html2canvas($('#pdf_wrap')[0]).then(function(canvas) { //저장 영역 div id
+		    // 캔버스를 이미지로 변환
+		    var imgData = canvas.toDataURL('image/png');
+		    var imgWidth = 190; // 이미지 가로 길이(mm) / A4 기준 210mm
+		    var pageHeight = imgWidth * 1.414;  // 출력 페이지 세로 길이 계산 A4 기준
+		    var imgHeight = canvas.height * imgWidth / canvas.width;
+		    var heightLeft = imgHeight;
+		    var margin = 10; // 출력 페이지 여백설정
+		    var doc = new jsPDF('p', 'mm');
+		    var position = 0;
+		    // 첫 페이지 출력
+		    doc.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight);
+		    heightLeft -= pageHeight;
+		    // 파일 저장
+		    doc.save('file-name.pdf');
+		});
+		});
+	});
+	</script>
 </body>
 </html>
