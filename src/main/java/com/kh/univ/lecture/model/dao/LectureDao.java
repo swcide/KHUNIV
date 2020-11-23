@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.lecture.model.vo.Attendance;
 import com.kh.univ.lecture.model.vo.LectureList;
+import com.kh.univ.lecture.model.vo.MyLectureVideoList;
 
 @Repository("lDao")
 public class LectureDao {
@@ -22,6 +23,11 @@ public class LectureDao {
 	}
 
 	public ArrayList<LectureList> selectList1(String sNo) {
+		
+		return (ArrayList)sqlSession.selectList("lectureMapper.lectureList",sNo);
+	}
+
+	public ArrayList<MyLectureVideoList> selectList2(String sNo) {
 		
 		return (ArrayList)sqlSession.selectList("lectureMapper.lectureList",sNo);
 	}

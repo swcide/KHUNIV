@@ -23,6 +23,7 @@ import com.kh.univ.lecture.model.vo.LectureClass;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
+import com.kh.univ.lecture.model.vo.MyLectureVideoList;
 import com.kh.univ.member.model.vo.Student;
 import com.kh.univ.univlife.board.human.model.vo.HumanBoard;
 
@@ -40,6 +41,17 @@ public class LectureController {
 	System.out.println("ll: " + ll);
 	mv.addObject("ll", ll);
 	mv.setViewName("ad_lecture/ad_lectureList");
+		return mv;
+	}
+
+	@RequestMapping(value = "mylectureVideolist.do")
+	public ModelAndView myLectureVideoList(ModelAndView mv,HttpSession session) {
+		Student student = (Student)session.getAttribute("loginUser"); // 로긴세션에서 뽑은 정보를 학생객체에 넣기
+		String sNo = student.getsNo();
+		ArrayList<MyLectureVideoList> ml = lService.selectList2(sNo);
+		System.out.println("ml: " + ml);
+		mv.addObject("ml", ml);
+		mv.setViewName("ad_lecture/ad_myLectureVideoList");
 		return mv;
 	}
 	
