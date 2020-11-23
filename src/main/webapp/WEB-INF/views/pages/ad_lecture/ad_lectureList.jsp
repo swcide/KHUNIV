@@ -28,9 +28,9 @@
 									<article class="post post-medium border-0 pb-0 mb-5">
 										<div class="post-image">
 											<a href="blog-post.html"> <img
-												src="resources/img/컴퓨터네트워킹.jpg"
+												src="resources/img/${l.classImg }"
 												class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0"
-												alt="강의이미지" />
+												alt="강의이미지" style="width: 190px; height: 280px;" />
 											</a>
 										</div>
 
@@ -43,10 +43,23 @@
 											<p>${l.className }</p>
 
 											<div class="post-meta">
-												<span><i class="far fa-user"></i> 교수: 정윤찬 </span> <span><i
-													class="far fa-folder"></i> 수강대상: 정보통신전자공학부 3,4 </span> <span><i
-													class="far fa-comments"></i> <a href="#">ycjung@khcu.ac.kr</a></span>
-												<span class="d-block mt-2"><a href="blog-post.html"
+												<span><i class="far fa-user"></i> 교수: <c:choose>
+														<c:when test="${empty l.profName }"> 교수님이 추후에 배정됩니다.
+												</c:when>
+														<c:otherwise>
+												${l.profName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												</c:otherwise>
+													</c:choose> </span> <span><i class="fas fa-school"></i> 이수구분:
+													${l.classType } </span> <span><i class="far fa-envelope"></i>
+													<a href="#"> <c:set var="pe" value="${l.profEmail}" />
+														<c:choose>
+															<c:when test="${empty pe }"> 현재 가용한 이메일이 없습니다.
+														</c:when>
+															<c:otherwise>
+														${l.profEmail}
+														</c:otherwise>
+														</c:choose>
+												</a></span> <span class="d-block mt-2"><a href="blog-post.html"
 													class="btn btn-xs btn-light text-1 text-uppercase">강의
 														계획서</a></span>
 											</div>
