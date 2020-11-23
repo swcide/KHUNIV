@@ -48,6 +48,15 @@
             AND TO_NUMBER(P.DEPT_NO) =#{dNo}
 	</select>
 	
+	   	
+	
+	<select id="myRSelectList" resultMap="RegistrationResultSet">
+	
+         SELECT * FROM TESTT T
+         LEFT JOIN TB_CLASS C ON(C.CLASS_NO=T.CLASS_NO)
+         WHERE STD_NO = #{sNo} 
+	</select>
+	
 	<insert id="insertRegistration" parameterType="java.util.ArrayList">
 			<foreach collection="list" item="item"  separator=" " open="INSERT ALL" close="SELECT * FROM DUAL"> 
 			

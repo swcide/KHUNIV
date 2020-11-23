@@ -25,6 +25,10 @@ public class RegistrationDao {
 		return sqlSession.insert("registrationMapper.insertRegistration",gList);
 	}
 
+	public ArrayList<Registration> myRSelectList(Student s) {
+		return (ArrayList)sqlSession.selectList("registrationMapper.myRSelectList",s);
+	}
+
 
 
 		

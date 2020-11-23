@@ -44,10 +44,43 @@ public class RegistrationController {
 		
 		
 		
-	
+		ArrayList<Registration> beforeR = new ArrayList<Registration>();
 		
-		ArrayList<Registration> r = rService.rSelectList(s);
 		
+		
+		ArrayList<Registration> list = rService.rSelectList(s);
+		
+		ArrayList<Registration> list2 = rService.myRSelectList(s);
+			
+		System.out.println("===============list==============");
+		System.out.println(list);
+		System.out.println("=============list2--================");
+		System.out.println(list2);
+			
+		System.out.println(list.size());
+		System.out.println(list2.size());
+		int count = 0;
+			for(int i=0; i<list.size();i++) { // 18
+				for(int j=0; j<list2.size();j++) { //3
+			
+					if(!list.get(i).getcNo().equals(list2.get(j).getcNo()) ){
+						System.out.println("값 다를 때");
+						
+						beforeR.add(list.get(i));	
+					}
+				}
+				
+			}
+			ArrayList<Registration> r = new ArrayList<Registration>();
+		
+			System.out.println(count);
+			System.out.println(beforeR);
+			
+			for (int i = 0; i < beforeR.size(); i++) {
+				if(!r.contains(beforeR.get(i)))
+					r.add(beforeR.get(i));
+				
+			}  
 		
 		mv.addObject("r",r).setViewName("ad_register/ad_AuditLecture_Application");
 		

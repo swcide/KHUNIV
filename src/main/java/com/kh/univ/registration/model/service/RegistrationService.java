@@ -13,6 +13,8 @@ public interface RegistrationService {
 
 	int insertRegistration(ArrayList<Grade> gList);
 
+	ArrayList<Registration> myRSelectList(Student s);
+
 
 
 
