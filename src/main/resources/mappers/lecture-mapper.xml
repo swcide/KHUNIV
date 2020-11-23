@@ -77,6 +77,11 @@
       <result property="lecExperiment" column="LEC_EXPERIMENT" />
       <result property="relatedLec" column="RELATED_LEC" />
       <result property="lecTextbook" column="LEC_TEXTBOOK" />
+      <result property="examPoints" column="EXAM_POINTS" />
+      <result property="assignmentPoints" column="ASSIGN_POINTS" />
+      <result property="attendancePoints" column="ATTEND_POINTS" />
+      
+      
    </resultMap>
 
    <resultMap type="LecturePlanWeek" id="Sylla2ResultSet">
@@ -347,7 +352,10 @@
       ASSIGNMENT=#{assignment},
       LEC_EXPERIMENT=#{lecExperiment},
       RELATED_LEC=#{relatedLec},
-      LEC_TEXTBOOK=#{lecTextbook}
+      LEC_TEXTBOOK=#{lecTextbook},
+      EXAM_POINTS=#{examPoints},
+      ASSIGN_POINTS=#{assignmentPoints},
+      ATTEND_POINTS=#{attendancePoints}
       WHERE
       CLASS_NO=#{classNo}
    </select>
