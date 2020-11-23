@@ -71,7 +71,6 @@
       <!-- 암호화 후 -->
       <!-- SELECT * FROM MEMBER WHERE ID=#{id} AND M_STATUS='Y' -->
    </select>
-
    <!-- 교수 로그인 -->
    <select id="loginProf" parameterType="Professor" resultMap="professorResultSet">
       <!--=================암호화 전===================== -->
@@ -85,12 +84,11 @@
       <!-- SELECT * FROM MEMBER WHERE ID=#{id} AND M_STATUS='Y' -->
    </select>
 
-
    <!-- 회원정보수정 -->
    <update id="updateMember" parameterType="Student">
-      UPDATE MEMBER
-      SET EMAIL=#{email},AGE=#{age},PHONE=#{phone},ADDRESS=#{address},UPDATE_DATE=SYSDATE
-      WHERE ID=#{id}
+      UPDATE TB_STUDENT
+      SET STD_EMAIL=#{sEmail},STD_PHONE=#{sPhone},STD_ADDRESS=#{sAddress},STD_PWD=#{sPwd}
+      WHERE STD_NO=#{sNo}
    </update>
 
    <select id="idCheck" parameterType="string" resultType="_int">

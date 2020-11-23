@@ -301,10 +301,18 @@
 									</div>
 								</c:if>
 								<c:url var="ad_login" value="ad_login.do" />
-								<button class="header-nav-features header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2 btn btn-outline btn-primary  btn-with-arrow" onclick="location.href='${ad_login}'">
+								<c:if test="${empty loginUser }">
+								<button class="header-nav-features header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2 btn btn-outline btn-primary  btn-with-arrow" onclick="location.href='login_page.do'">
 									등교하기 <span> <i class="fas fa-chevron-right"></i>
 									</span>
 								</button>
+								</c:if>
+								<c:if test="${!empty loginUser }">
+								<button class="header-nav-features header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2 btn btn-outline btn-primary  btn-with-arrow" onclick="location.href='ad_main.do'">
+									등교하기 <span> <i class="fas fa-chevron-right"></i>
+									</span>
+								</button>
+								</c:if>
 							</div>
 						</div>
 					</div>
