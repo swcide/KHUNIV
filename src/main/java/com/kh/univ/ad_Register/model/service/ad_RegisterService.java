@@ -3,12 +3,17 @@ package com.kh.univ.ad_Register.model.service;
 import java.util.ArrayList;
 
 import com.kh.univ.ad_Register.model.vo.Absence;
+import com.kh.univ.ad_Register.model.vo.Certificate;
 import com.kh.univ.ad_Register.model.vo.grdExp;
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 
+/**
+ * @author admin
+ *
+ */
 public interface ad_RegisterService {
 
 	/**
@@ -62,6 +67,27 @@ public interface ad_RegisterService {
 	LecturePlan selectSyllaOne1(LectureList ll);
 
 	ArrayList<LecturePlanWeek> selectSyllaOne2(LectureList ll);
+
+	/**
+	 * 증명서 발급 전 학생 정보 테이블 출력
+	 * @param sNo
+	 * @return
+	 */
+	grdExp certificate_list(String sNo);
+
+	/**
+	 * 재학증명서 발급 화면
+	 * @param sNo
+	 * @return
+	 */
+	Certificate certificate_inschool(String sNo);
+
+	/**
+	 * 졸업증명서 발급 화면
+	 * @param sNo
+	 * @return
+	 */
+	Certificate certificate_graduation(String sNo);
 
 
 

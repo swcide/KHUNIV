@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.lecture.model.vo.Attendance;
+import com.kh.univ.lecture.model.vo.LectureList;
 
 @Repository("lDao")
 public class LectureDao {
@@ -18,6 +19,11 @@ public class LectureDao {
 
 	public ArrayList<Attendance> selectList(String sNo) {
 		return (ArrayList)sqlSession.selectList("lectureMapper.attendance",sNo);
+	}
+
+	public ArrayList<LectureList> selectList1(String sNo) {
+		
+		return (ArrayList)sqlSession.selectList("lectureMapper.lectureList",sNo);
 	}
 
 

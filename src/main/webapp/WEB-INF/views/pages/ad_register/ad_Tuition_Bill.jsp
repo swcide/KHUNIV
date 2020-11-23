@@ -1,10 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+<% 
+ System.out.println("name: "+(String)request.getAttribute("sNo"));
+//     System.out.println("email: "+email);
+//      System.out.println("phone: "+phone);
+//      System.out.println("address: "+address);
+//      System.out.println("stotalPrice: "+stotalPrice);
+//      System.out.println("totalPrice: "+totalPrice);
+     %>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>KHCU | 등록금 납부</title>
 </head>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <body>
 	<%@include file="../common/administration_header.jsp"%>
 	<div class="body">
@@ -90,7 +101,7 @@
 											</tr>
 											<tr>
 											<th style="text-align: center;" colspan="2">납부할 금액</th>
-											<td colspan="2">480,000원</td>
+											<td colspan="2" id="pay">1.000</td>
 											</tr>
 											<tr>
 											<th style="text-align: center;" colspan="2">납부 계좌</th>
@@ -101,6 +112,11 @@
 										</div>
 									</div>
 								</div>
+								<input type="hidden" id="sNo" value=${loginUser.sNo }>
+								<input type="hidden" id="sEmail" value=${loginUser.sEmail }>
+								<input type="hidden" id="sName" value=${loginUser.sName }>
+								<input type="hidden" id="sPhone" value=${loginUser.sPhone }>
+								<input type="hidden" id="sAddress" value=${loginUser.sAddress }>
 											<button type="submit" class="btn btn-primary btn-xs mb-2 float-right" onClick="window.open(this.href='ad_tuition_payment.do', '', 'resizable=yes, width=900, height=800 left=700px top=100px'); return false;" >즉시 납부하기</button>
 							</div>
 						</div>

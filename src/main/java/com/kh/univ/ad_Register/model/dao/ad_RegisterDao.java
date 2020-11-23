@@ -5,6 +5,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.kh.univ.ad_Register.model.vo.Absence;
+import com.kh.univ.ad_Register.model.vo.Certificate;
 import com.kh.univ.ad_Register.model.vo.grdExp;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
@@ -46,6 +47,26 @@ public class ad_RegisterDao {
 			return sqlSession.update("registerMapper.dropApply",ge);
 		}
 
+	// 등록금납부해야댐
+	
+	
+	// 증명서발급 학생정보 테이블 출력
+	public grdExp certificate_list(String sNo)
+		{
+			return sqlSession.selectOne("registerMapper.certificate_list",sNo);
+		}
+	
+	// 재학증명서 발급 화면
+	public Certificate certificate_inschool(String sNo)
+		{
+			return sqlSession.selectOne("registerMapper.certificate_inschool",sNo);
+		}
+	
+	//졸업증명서 발급 화면
+	public Certificate certificate_graduation(String sNo)
+		{
+			return sqlSession.selectOne("registerMapper.certificate_graduation",sNo);
+		}
 	///////////////////////////////////강의계획서 관리//////////////////////////////////////////////////
 	// 강의 개설 리스트카운트
 	public int getListCount(String dNo) {
@@ -73,6 +94,9 @@ public class ad_RegisterDao {
 		return (ArrayList)sqlSession.selectList("registerMapper.sylla2",ll);
 	}
 	///////////////////////////////////////////////////////////////////////////////////////
+
+	
+
 
 	
 	
