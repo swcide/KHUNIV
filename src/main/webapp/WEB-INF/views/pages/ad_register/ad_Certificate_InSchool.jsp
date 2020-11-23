@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +56,7 @@
 <!-- Head Libs -->
 <script src="resources/vendor/modernizr/modernizr.min.js"></script>
 </head>
-<body onresize="parent.resizeTo(800,900)" onload="parent.resizeTo(600,100)">
+<body onresize="parent.resizeTo(900,1100)" onload="parent.resizeTo(600,100)">
 	<div class="body">
 		<div role="main" class="main">
 			<section class="page-header page-header-modern bg-color-light-scale-3 page-header-sm section-overlay-dot" style="margin: 0; background-image: url(resources/img/custom-header-bg.jpg);">
@@ -107,16 +108,23 @@
 											<table class="table">
 												<tbody align="right">
 													<tr>
-														<td align="left" style="border-top: none;">조원영</td>
+														<td align="left" style="border-top: none;">${c.sName }</td>
 													<tr>
 													<tr>
-														<td align="left" style="border-top: none;">1991年 11月 01日</td>
+														<td align="left" style="border-top: none;">${c.year }年 ${c.month }月 ${c.day }日</td>
 													<tr>
 													<tr>
-														<td align="left" style="border-top: none;">호주캥거루학과</td>
+														<td align="left" style="border-top: none;">${c.deptName }</td>
 													<tr>
 													<tr>
-														<td align="left" style="border-top: none;">제 2학년</td>
+													<c:if test="${c.semester eq 8 }"><td align="left" style="border-top: none;">제 4학년 2학기</td>	</c:if>
+														<c:if test="${c.semester eq 7 }"><td align="left" style="border-top: none;">제 4학년 1학기</td>	</c:if>
+														<c:if test="${c.semester eq 6 }"><td align="left" style="border-top: none;">제 3학년 2학기</td>	</c:if>
+														<c:if test="${c.semester eq 5 }"><td align="left" style="border-top: none;">제 3학년 1학기</td>	</c:if>
+														<c:if test="${c.semester eq 4 }"><td align="left" style="border-top: none;">제 2학년 2학기</td>	</c:if>
+														<c:if test="${c.semester eq 3 }"><td align="left" style="border-top: none;">제 2학년 1학기</td>	</c:if>
+														<c:if test="${c.semester eq 2 }"><td align="left" style="border-top: none;">제 1학년 2학기</td>	</c:if>
+														<c:if test="${c.semester eq 1 }"><td align="left" style="border-top: none;">제 1학년 1학기</td>	</c:if>
 													<tr>
 												</tbody>
 											</table>
@@ -129,7 +137,7 @@
 												<label> 위 사실을 증명함.</label>
 											</h2>
 											<h4>
-												<label>2020年 11月 02日</label>
+												<label>20${c.sysYear }年 ${c.sysMonth }月 ${c.sysDay }日</label>
 											</h4>
 										</div>
 									</div>
@@ -143,7 +151,7 @@
 								</div>
 							</div>
 						</div>
-								<button type="submit" class="btn btn-primary btn-lg mb-2 float-right" onClick="window.open(this.href='ad_tuition_payment.do', '', 'resizable=yes, width=900, height=800 left=700px top=100px'); return false;">다운로드</button>
+								<button type="submit" class="btn btn-primary btn-lg mb-2 float-right" onClick="">다운로드</button>
 					</div>
 				</div>
 			</div>

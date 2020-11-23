@@ -23,276 +23,52 @@
 				<div class="col">
 					<div class="image-hotspots">
 						<div class="row">
-
-							<div class="col-md-4 col-lg-3">
-								<article class="post post-medium border-0 pb-0 mb-5">
-									<div class="post-image">
-										<a href="blog-post.html"> <img
-											src="resources/img/컴퓨터네트워킹.jpg"
-											class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0"
-											alt="강의이미지" />
-										</a>
-									</div>
-
-									<div class="post-content">
-
-										<h2
-											class="font-weight-semibold text-5 line-height-6 mt-3 mb-2">
-											<a href="blog-post.html">컴퓨터네트워킹</a>
-										</h2>
-										<p>컴퓨터 네트워크의전체적인기술을먼저 이해한다. 모바일 기기가 통신을 하려면 무선 LAN이나 LTE
-											망을 통하여 억세스가 이루어진다.</p>
-
-										<div class="post-meta">
-											<span><i class="far fa-user"></i> 교수: 정윤찬 </span> <span><i
-												class="far fa-folder"></i> 수강대상: 정보통신전자공학부 3,4 </span> <span><i
-												class="far fa-comments"></i> <a href="#">ycjung@khcu.ac.kr</a></span>
-											<span class="d-block mt-2"><a href="blog-post.html"
-												class="btn btn-xs btn-light text-1 text-uppercase">강의
-													계획서</a></span>
+							<c:forEach var="l" items="${ll}">
+								<div class="col-md-4 col-lg-3">
+									<article class="post post-medium border-0 pb-0 mb-5">
+										<div class="post-image">
+											<a href="blog-post.html"> <img
+												src="resources/img/${l.classImg }"
+												class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0"
+												alt="강의이미지" style="width: 190px; height: 280px;" />
+											</a>
 										</div>
 
-									</div>
-								</article>
-							</div>
-							<div class="col-md-4 col-lg-3">
-								<article class="post post-medium border-0 pb-0 mb-5">
-									<div class="post-image">
-										<a href="blog-post.html"> <img
-											src="resources/img/컴퓨터네트워킹.jpg"
-											class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0"
-											alt="강의이미지" />
-										</a>
-									</div>
+										<div class="post-content">
 
-									<div class="post-content">
+											<h2
+												class="font-weight-semibold text-5 line-height-6 mt-3 mb-2">
+												<a href="blog-post.html">${l.className }</a>
+											</h2>
+											<p>${l.className }</p>
 
-										<h2
-											class="font-weight-semibold text-5 line-height-6 mt-3 mb-2">
-											<a href="blog-post.html">컴퓨터네트워킹</a>
-										</h2>
-										<p>컴퓨터 네트워크의전체적인기술을먼저 이해한다. 모바일 기기가 통신을 하려면 무선 LAN이나 LTE
-											망을 통하여 억세스가 이루어진다.</p>
+											<div class="post-meta">
+												<span><i class="far fa-user"></i> 교수: <c:choose>
+														<c:when test="${empty l.profName }"> 교수님이 추후에 배정됩니다.
+												</c:when>
+														<c:otherwise>
+												${l.profName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												</c:otherwise>
+													</c:choose> </span> <span><i class="fas fa-school"></i> 이수구분:
+													${l.classType } </span> <span><i class="far fa-envelope"></i>
+													<a href="#"> <c:set var="pe" value="${l.profEmail}" />
+														<c:choose>
+															<c:when test="${empty pe }"> 현재 가용한 이메일이 없습니다.
+														</c:when>
+															<c:otherwise>
+														${l.profEmail}
+														</c:otherwise>
+														</c:choose>
+												</a></span> <span class="d-block mt-2"><a href="blog-post.html"
+													class="btn btn-xs btn-light text-1 text-uppercase">강의
+														계획서</a></span>
+											</div>
 
-										<div class="post-meta">
-											<span><i class="far fa-user"></i> 교수: 정윤찬 </span> <span><i
-												class="far fa-folder"></i> 수강대상: 정보통신전자공학부 3,4 </span> <span><i
-												class="far fa-comments"></i> <a href="#">ycjung@khcu.ac.kr</a></span>
-											<span class="d-block mt-2"><a href="blog-post.html"
-												class="btn btn-xs btn-light text-1 text-uppercase">강의
-													계획서</a></span>
 										</div>
-
-									</div>
-								</article>
-							</div>
-							<div class="col-md-4 col-lg-3">
-								<article class="post post-medium border-0 pb-0 mb-5">
-									<div class="post-image">
-										<a href="blog-post.html"> <img
-											src="resources/img/컴퓨터네트워킹.jpg"
-											class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0"
-											alt="강의이미지" />
-										</a>
-									</div>
-
-									<div class="post-content">
-
-										<h2
-											class="font-weight-semibold text-5 line-height-6 mt-3 mb-2">
-											<a href="blog-post.html">컴퓨터네트워킹</a>
-										</h2>
-										<p>컴퓨터 네트워크의전체적인기술을먼저 이해한다. 모바일 기기가 통신을 하려면 무선 LAN이나 LTE
-											망을 통하여 억세스가 이루어진다.</p>
-
-										<div class="post-meta">
-											<span><i class="far fa-user"></i> 교수: 정윤찬 </span> <span><i
-												class="far fa-folder"></i> 수강대상: 정보통신전자공학부 3,4 </span> <span><i
-												class="far fa-comments"></i> <a href="#">ycjung@khcu.ac.kr</a></span>
-											<span class="d-block mt-2"><a href="blog-post.html"
-												class="btn btn-xs btn-light text-1 text-uppercase">강의
-													계획서</a></span>
-										</div>
-
-									</div>
-								</article>
-							</div>
-							<div class="col-md-4 col-lg-3">
-								<article class="post post-medium border-0 pb-0 mb-5">
-									<div class="post-image">
-										<a href="blog-post.html"> <img
-											src="resources/img/컴퓨터네트워킹.jpg"
-											class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0"
-											alt="강의이미지" />
-										</a>
-									</div>
-
-									<div class="post-content">
-
-										<h2
-											class="font-weight-semibold text-5 line-height-6 mt-3 mb-2">
-											<a href="blog-post.html">컴퓨터네트워킹</a>
-										</h2>
-										<p>컴퓨터 네트워크의전체적인기술을먼저 이해한다. 모바일 기기가 통신을 하려면 무선 LAN이나 LTE
-											망을 통하여 억세스가 이루어진다.</p>
-
-										<div class="post-meta">
-											<span><i class="far fa-user"></i> 교수: 정윤찬 </span> <span><i
-												class="far fa-folder"></i> 수강대상: 정보통신전자공학부 3,4 </span> <span><i
-												class="far fa-comments"></i> <a href="#">ycjung@khcu.ac.kr</a></span>
-											<span class="d-block mt-2"><a href="blog-post.html"
-												class="btn btn-xs btn-light text-1 text-uppercase">강의
-													계획서</a></span>
-										</div>
-
-									</div>
-								</article>
-							</div>
-							<div class="col-md-4 col-lg-3">
-								<article class="post post-medium border-0 pb-0 mb-5">
-									<div class="post-image">
-										<a href="blog-post.html"> <img
-											src="resources/img/컴퓨터네트워킹.jpg"
-											class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0"
-											alt="강의이미지" />
-										</a>
-									</div>
-
-									<div class="post-content">
-
-										<h2
-											class="font-weight-semibold text-5 line-height-6 mt-3 mb-2">
-											<a href="blog-post.html">컴퓨터네트워킹</a>
-										</h2>
-										<p>컴퓨터 네트워크의전체적인기술을먼저 이해한다. 모바일 기기가 통신을 하려면 무선 LAN이나 LTE
-											망을 통하여 억세스가 이루어진다.</p>
-
-										<div class="post-meta">
-											<span><i class="far fa-user"></i> 교수: 정윤찬 </span> <span><i
-												class="far fa-folder"></i> 수강대상: 정보통신전자공학부 3,4 </span> <span><i
-												class="far fa-comments"></i> <a href="#">ycjung@khcu.ac.kr</a></span>
-											<span class="d-block mt-2"><a href="blog-post.html"
-												class="btn btn-xs btn-light text-1 text-uppercase">강의
-													계획서</a></span>
-										</div>
-
-									</div>
-								</article>
-							</div>
-							<div class="col-md-4 col-lg-3">
-								<article class="post post-medium border-0 pb-0 mb-5">
-									<div class="post-image">
-										<a href="blog-post.html"> <img
-											src="resources/img/컴퓨터네트워킹.jpg"
-											class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0"
-											alt="강의이미지" />
-										</a>
-									</div>
-
-									<div class="post-content">
-
-										<h2
-											class="font-weight-semibold text-5 line-height-6 mt-3 mb-2">
-											<a href="blog-post.html">컴퓨터네트워킹</a>
-										</h2>
-										<p>컴퓨터 네트워크의전체적인기술을먼저 이해한다. 모바일 기기가 통신을 하려면 무선 LAN이나 LTE
-											망을 통하여 억세스가 이루어진다.</p>
-
-										<div class="post-meta">
-											<span><i class="far fa-user"></i> 교수: 정윤찬 </span> <span><i
-												class="far fa-folder"></i> 수강대상: 정보통신전자공학부 3,4 </span> <span><i
-												class="far fa-comments"></i> <a href="#">ycjung@khcu.ac.kr</a></span>
-											<span class="d-block mt-2"><a href="blog-post.html"
-												class="btn btn-xs btn-light text-1 text-uppercase">강의
-													계획서</a></span>
-										</div>
-
-									</div>
-								</article>
-							</div>
-							<div class="col-md-4 col-lg-3">
-								<article class="post post-medium border-0 pb-0 mb-5">
-									<div class="post-image">
-										<a href="blog-post.html"> <img
-											src="resources/img/컴퓨터네트워킹.jpg"
-											class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0"
-											alt="강의이미지" />
-										</a>
-									</div>
-
-									<div class="post-content">
-
-										<h2
-											class="font-weight-semibold text-5 line-height-6 mt-3 mb-2">
-											<a href="blog-post.html">컴퓨터네트워킹</a>
-										</h2>
-										<p>컴퓨터 네트워크의전체적인기술을먼저 이해한다. 모바일 기기가 통신을 하려면 무선 LAN이나 LTE
-											망을 통하여 억세스가 이루어진다.</p>
-
-										<div class="post-meta">
-											<span><i class="far fa-user"></i> 교수: 정윤찬 </span> <span><i
-												class="far fa-folder"></i> 수강대상: 정보통신전자공학부 3,4 </span> <span><i
-												class="far fa-comments"></i> <a href="#">ycjung@khcu.ac.kr</a></span>
-											<span class="d-block mt-2"><a href="blog-post.html"
-												class="btn btn-xs btn-light text-1 text-uppercase">강의
-													계획서</a></span>
-										</div>
-
-									</div>
-								</article>
-							</div>
-							<div class="col-md-4 col-lg-3">
-								<article class="post post-medium border-0 pb-0 mb-5">
-									<div class="post-image">
-										<a href="blog-post.html"> <img
-											src="resources/img/컴퓨터네트워킹.jpg"
-											class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0"
-											alt="강의이미지" />
-										</a>
-									</div>
-
-									<div class="post-content">
-
-										<h2
-											class="font-weight-semibold text-5 line-height-6 mt-3 mb-2">
-											<a href="blog-post.html">컴퓨터네트워킹</a>
-										</h2>
-										<p>컴퓨터 네트워크의전체적인기술을먼저 이해한다. 모바일 기기가 통신을 하려면 무선 LAN이나 LTE
-											망을 통하여 억세스가 이루어진다.</p>
-
-										<div class="post-meta">
-											<span><i class="far fa-user"></i> 교수: 정윤찬 </span> <span><i
-												class="far fa-folder"></i> 수강대상: 정보통신전자공학부 3,4 </span> <span><i
-												class="far fa-comments"></i> <a href="#">ycjung@khcu.ac.kr</a></span>
-											<span class="d-block mt-2"><a href="blog-post.html"
-												class="btn btn-xs btn-light text-1 text-uppercase">강의
-													계획서</a></span>
-										</div>
-
-									</div>
-								</article>
-							</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+									</article>
+								</div>
+							</c:forEach>
 						</div>
-
-
-
-
 					</div>
 				</div>
 			</div>
@@ -300,6 +76,34 @@
 	</div>
 </div>
 <%@ include file="../common/footer.jsp"%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
