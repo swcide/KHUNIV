@@ -55,10 +55,12 @@
 														<tr onclick="openNew(this)" class="cursor_on_finger">
 															<td style="text-align: center;">${ll.classNo }</td>
 															<td style="text-align: center;">${ll.className }</td>
-															<td style="text-align: center;">${ll.credit }</td>
+															<td style="text-align: center;">3</td>
 															<td style="text-align: center;">${ll.classType }</td>
 															<td style="text-align: center;">${ll.profName }
 																<input type="hidden" value="${ll.pNo}">
+																<input type="hidden" value="${ll.classSummary}">
+															</td>
 														</tr>
 													</c:forEach>
 												</tbody>
@@ -79,34 +81,29 @@
 												<tbody>
 													<c:forEach var="lp" items="${lp}">
 														<tr onclick="openNew(this)" class="cursor_on_finger">
-															<input type="hidden" value="${lp.classNo}">
 															<td style="text-align: center;">${lp.classNo }</td>
 															<td style="text-align: center;">${lp.className }</td>
-															<td style="text-align: center;">${lp.credit }</td>
+															<td style="text-align: center;">3</td>
 															<td style="text-align: center;">${lp.classType }</td>
 															<td style="text-align: center;">${lp.profName }
 																<input type="hidden" value="${lp.pNo}">
+																<input type="hidden" value="${lp.classSummary}">
 															</td>
 														</tr>
 													</c:forEach>
 												</tbody>
 											</table>
 										</div>
-										<!-- 											recent -->
 									</div>
-									<!-- 									tabcontent -->
+									<!--tabcontent -->
 								</div>
-								<!-- 								tabs -->
-
+								<!--tabs -->
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	</div>
 	</div>
 
 	<%@include file="../common/footer.jsp"%>
@@ -121,22 +118,31 @@
 	<script src="resources/js/bs-datatable2.js"></script>
 
 	<script>
-		$(document).ready(function() {
-			$('#datatable1').dataTable();
-			$('#datatable2').dataTable();
-		});
-
 		function openNew(obj) {
-			var classNo = $(obj).children().siblings('input').val();
-			var pNo = $(obj).children().children('input').val();
+			var classNo = $(obj).find("td:eq(0)").text();
+			var pNo = $(obj).children().children('input:eq(0)').val();
+			var cSum = $(obj).find('input:eq(1)').val();
+			
 			console.log(classNo);
 			console.log(pNo);
+			console.log(cSum);
+			if(cSum != ""){
 			window
 					.open(this.href = 'ad_syllabus.do?classNo=' + classNo
 							+ '&pNo=' + pNo, '',
 							'resizable=yes, width=900, height=800 left=700px top=100px');
 			return false;
-		};
+			}else{
+				alert("강의계획서가 아직 작성되지 않았습니다.");
+				return false;
+			} 
+		}
+	</script>
+	<script>
+		$(document).ready(function() {
+			$('#datatable1').dataTable();
+			$('#datatable2').dataTable();
+		});
 	</script>
 </body>
 </html>

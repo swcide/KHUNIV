@@ -24,6 +24,8 @@ public class LecturePlan extends LectureClass{
 	}
 
 
+
+
 	public LecturePlan(String classProf, String classType, String classGoal, String lecMethod, String evalMethod, String assignment,
 			String lecExperiment, String relatedLec, String lecTextbook, int examPoints, int assignmentPoints, int attendancePoints, String profLab,
 			int credit) {
@@ -45,35 +47,6 @@ public class LecturePlan extends LectureClass{
 	}
 
 
-
-	public int getexamPoints() {
-		return examPoints;
-	}
-
-
-	public void setexamPoints(int examPoints) {
-		this.examPoints = examPoints;
-	}
-
-
-	public int getassignmentPoints() {
-		return assignmentPoints;
-	}
-
-
-	public void setassignmentPoints(int assignmentPoints) {
-		this.assignmentPoints = assignmentPoints;
-	}
-
-
-	public int getattendancePoints() {
-		return attendancePoints;
-	}
-
-
-	public void setattendancePoints(int attendancePoints) {
-		this.attendancePoints = attendancePoints;
-	}
 
 
 	public String getClassProf() {
@@ -126,12 +99,12 @@ public class LecturePlan extends LectureClass{
 	}
 
 
-	public String getassignment() {
+	public String getAssignment() {
 		return assignment;
 	}
 
 
-	public void setassignment(String assignment) {
+	public void setAssignment(String assignment) {
 		this.assignment = assignment;
 	}
 
@@ -166,6 +139,36 @@ public class LecturePlan extends LectureClass{
 	}
 
 
+	public int getExamPoints() {
+		return examPoints;
+	}
+
+
+	public void setExamPoints(int examPoints) {
+		this.examPoints = examPoints;
+	}
+
+
+	public int getAssignmentPoints() {
+		return assignmentPoints;
+	}
+
+
+	public void setAssignmentPoints(int assignmentPoints) {
+		this.assignmentPoints = assignmentPoints;
+	}
+
+
+	public int getAttendancePoints() {
+		return attendancePoints;
+	}
+
+
+	public void setAttendancePoints(int attendancePoints) {
+		this.attendancePoints = attendancePoints;
+	}
+
+
 	public String getProfLab() {
 		return profLab;
 	}
@@ -188,7 +191,6 @@ public class LecturePlan extends LectureClass{
 
 
 
-
 	@Override
 	public String toString() {
 		return "LecturePlan [classProf=" + classProf + ", classType=" + classType + ", classGoal=" + classGoal + ", lecMethod=" + lecMethod
@@ -199,6 +201,12 @@ public class LecturePlan extends LectureClass{
 				+ classSummary + ", classImg=" + classImg + ", profName=" + profName + ", profEmail=" + profEmail + ", deptName=" + deptName + "]";
 	}
 
+
+
+
+	
+
+	
 
 
 

@@ -91,10 +91,6 @@ public class ad_RegisterServiceImpl implements ad_RegisterService{
 			return arDao.certificate_graduation(sNo);
 		}
 	
-	@Override
-	public int getListCount(String dNo) {
-		return arDao.getListCount(dNo);
-	}
 
 	@Override
 	public ArrayList<LectureList> selectList1(String dNo) {

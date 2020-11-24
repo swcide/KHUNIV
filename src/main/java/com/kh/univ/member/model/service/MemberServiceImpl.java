@@ -75,5 +75,12 @@ public int pwChangeP(Professor p)
 	}
 
 
+@Override
+public int myImgUpload(Student s)
+	{
+		return mDao.myImgUpload(s);
+	}
+
+
 
 }

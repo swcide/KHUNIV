@@ -87,6 +87,9 @@
 		<result property="lecExperiment" column="LEC_EXPERIMENT" />
 		<result property="relatedLec" column="RELATED_LEC" />
 		<result property="lecTextbook" column="LEC_TEXTBOOK" />
+		<result property="examPoints" column="EXAM_POINTS" />
+        <result property="assignmentPoints" column="ASSIGN_POINTS" />
+        <result property="attendancePoints" column="ATTEND_POINTS" />
 	</resultMap>
 
 	<!-- 강의계획서 하위부분 -->
@@ -95,17 +98,19 @@
 		<id property="lecNo" column="LECTURE_NO" />
 		<id property="lecName" column="LECTURE_NAME" />
 		<id property="lecReference" column="LECTURE_REFERENCE" />
+		<id property="lecExplanation" column="LECTURE_EXPLANATION"/>
 	</resultMap>
 
 	<!-- 강의개설정보 리스트 //전공// -->
 	<select id="lecPList" resultMap="lectureListResultSet">
 		SELECT
-		CLASS_NO,CLASS_NAME,CLASS_TYPE,PROF_NAME,PROF_NO
+		CLASS_NO,CLASS_NAME,CLASS_TYPE,PROF_NAME,PROF_NO,CLASS_SUMMARY
 		FROM TB_CLASS C
 		JOIN
 		TB_CLASS_PROFESSOR USING(CLASS_NO)
 		JOIN TB_PROFESSOR ON
 		TB_CLASS_PROFESSOR.PROFESSOR_NO=TB_PROFESSOR.PROF_NO
+        JOIN TB_LECTURE_PLAN USING(CLASS_NO)
 		WHERE CLASS_TYPE
 		LIKE '전공%'
 		AND C.DEPT_NO=#{dNo}
@@ -113,41 +118,18 @@
 	<!-- 강의개설정보 리스트 //교양// -->
 	<select id="lecPList2" resultMap="lectureListResultSet">
 		SELECT
-		CLASS_NO,CLASS_NAME,CLASS_TYPE,PROF_NAME,PROF_NO
+		CLASS_NO,CLASS_NAME,CLASS_TYPE,PROF_NAME,PROF_NO,CLASS_SUMMARY
 		FROM TB_CLASS C
 		JOIN
 		TB_CLASS_PROFESSOR USING(CLASS_NO)
 		JOIN TB_PROFESSOR ON
 		TB_CLASS_PROFESSOR.PROFESSOR_NO=TB_PROFESSOR.PROF_NO
+        JOIN TB_LECTURE_PLAN USING(CLASS_NO)
 		WHERE CLASS_TYPE
 		LIKE '교양%'
 	</select>
-
-	<!-- 강의 리스트카운트 -->
-	<select id="getLCount" resultType="_int">
-		SELECT COUNT(CLASS_NO)
-		FROM
-		TB_CLASS C
-		JOIN TB_CLASS_PROFESSOR USING(CLASS_NO)
-		JOIN TB_PROFESSOR ON
-		TB_CLASS_PROFESSOR.PROFESSOR_NO=TB_PROFESSOR.PROF_NO
-		WHERE CLASS_TYPE
-		LIKE '전공%'
-		AND C.DEPT_NO=#{dNo}
-	</select>
-
-
-	<select id="sylla2" resultMap="Sylla2ResultSet">
-		SELECT
-		LECTURE_NO,LECTURE_NAME,LECTURE_REFERENCE,LECTURE_EXPLANATION
-		FROM
-		TB_CLASS_DETAIL
-		LEFT JOIN TB_CLASS_PROFESSOR USING(CLASS_NO)
-		WHERE CLASS_NO=#{classNo}
-		AND PROFESSOR_NO=#{pNo}
-		ORDER BY
-		LECTURE_NO ASC
-	</select>
+	
+	<!-- 강의계획서 강의설명파트 (윗부분) -->
 	<select id="sylla1" resultMap="Sylla1ResultSet">
 		SELECT CLASS_NO,
 		CLASS_NAME,
@@ -163,7 +145,10 @@
 		ASSIGNMENT,
 		LEC_EXPERIMENT,
 		RELATED_LEC,
-		LEC_TEXTBOOK
+		LEC_TEXTBOOK,
+		EXAM_POINTS,
+     	ASSIGN_POINTS,
+      	ATTEND_POINTS
 		FROM TB_CLASS C
 		JOIN TB_CLASS_PROFESSOR CP
 		USING(CLASS_NO)
@@ -173,6 +158,19 @@
 		WHERE
 		CLASS_NO=#{classNo}
 		AND PROF_NO=#{pNo}
+	</select>
+	
+	<!-- 강의계획서 주차별 강의명 파트 (아랫부분)-->
+	<select id="sylla2" resultMap="Sylla2ResultSet">
+		SELECT
+		LECTURE_NO,LECTURE_NAME,LECTURE_REFERENCE,LECTURE_EXPLANATION
+		FROM
+		TB_CLASS_DETAIL
+		LEFT JOIN TB_CLASS_PROFESSOR USING(CLASS_NO)
+		WHERE CLASS_NO=#{classNo}
+		AND PROFESSOR_NO=#{pNo}
+		ORDER BY
+		LECTURE_NO ASC
 	</select>
 
 

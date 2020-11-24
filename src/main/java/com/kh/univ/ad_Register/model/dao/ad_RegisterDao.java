@@ -68,11 +68,6 @@ public class ad_RegisterDao {
 			return sqlSession.selectOne("registerMapper.certificate_graduation",sNo);
 		}
 	///////////////////////////////////강의계획서 관리//////////////////////////////////////////////////
-	// 강의 개설 리스트카운트
-	public int getListCount(String dNo) {
-		return sqlSession.selectOne("registerMapper.getLCount",dNo);
-	}
-
 
 	// 강의 개설 정보 페이지
 	public ArrayList<LectureList> selectList1(String dNo) {
