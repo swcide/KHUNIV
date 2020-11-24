@@ -21,7 +21,7 @@
 				<div class="row mt-3">
 					<div class="col-md-12 align-self-center p-static order-2 text-center">
 						<h1 class="text-9 font-weight-bold">내 강의 목록</h1>
-						<span class="sub-title">my lecture list</span>
+						<span class="sub-title">prof lecture list</span>
 					</div>
 				</div>
 			</div>
