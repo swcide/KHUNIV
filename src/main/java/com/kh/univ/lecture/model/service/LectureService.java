@@ -3,6 +3,7 @@ package com.kh.univ.lecture.model.service;
 import java.util.ArrayList;
 import com.kh.univ.lecture.model.vo.Attendance;
 import com.kh.univ.lecture.model.vo.LectureList;
+import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.lecture.model.vo.MyLectureVideoList;
 
 public interface LectureService {
@@ -17,12 +18,12 @@ public interface LectureService {
 
 	/**
 	 * 내 강의목록 페이지
-	 * @param sNo
+	 * @param cNo
 	 * @return
 	 */
 	ArrayList<LectureList> selectList1(String sNo);
 
-	ArrayList<MyLectureVideoList> selectList2(String sNo);
-
+	ArrayList<LecturePlanWeek> selectList2(String classNo);
+	
 	
 }

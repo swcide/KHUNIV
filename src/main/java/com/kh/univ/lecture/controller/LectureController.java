@@ -44,14 +44,20 @@ public class LectureController {
 		return mv;
 	}
 
-	@RequestMapping(value = "mylectureVideolist.do")
-	public ModelAndView myLectureVideoList(ModelAndView mv,HttpSession session) {
-		Student student = (Student)session.getAttribute("loginUser"); // 로긴세션에서 뽑은 정보를 학생객체에 넣기
-		String sNo = student.getsNo();
-		ArrayList<MyLectureVideoList> ml = lService.selectList2(sNo);
-		System.out.println("ml: " + ml);
-		mv.addObject("ml", ml);
-		mv.setViewName("ad_lecture/ad_myLectureVideoList");
+	@RequestMapping(value = "stdVideoList.do")
+	public ModelAndView myLectureVideoList(ModelAndView mv,@RequestParam(name = "classNo", required = false) String classNo)
+	{
+		System.out.println("classNo: " + classNo);
+		ArrayList<LecturePlanWeek> aLpw = lService.selectList2(classNo);
+		System.out.println("aLpw: " + aLpw);
+		if (aLpw != null) {
+			mv.addObject("classNo", classNo);
+			mv.addObject("aLpw", aLpw);
+			mv.setViewName("ad_lecture/ad_myLectureVideoList");
+		}else {
+			mv.addObject("msg","로그인실패");
+			mv.setViewName("common/errorPage");
+		}
 		return mv;
 	}
 	
