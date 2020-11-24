@@ -133,7 +133,8 @@
    </resultMap>
 
    <resultMap type="LectureList" id="LectureListResultSet">
-		<id property="classType" column="CLASS_TYPE" />
+		<id property="classNo" column="CLASS_NO" />
+		<result property="classType" column="CLASS_TYPE" />
 		<result property="className" column="CLASS_NAME" />
 		<result property="profEmail" column="PROF_EMAIL" />
 		<result property="profName" column="PROF_NAME" />
@@ -141,30 +142,14 @@
 		<result property="classImg" column="CLASS_IMG" />
 	</resultMap>
 	
-	<resultMap type="MyLectureVideoList" id="MyLectureVideoListResultSet">
-      <id property="classNo" column="CLASS_NO" />
-      <result property="lecNo" column="LECTURE_NO" />
-      <result property="sNo" column="SNO" />
-      <result property="lecName" column="LECTURE_NAME" />
-      <result property="lecReference" column="LECTURE_REFERENCE" />
-      <result property="lecVideo" column="LECTURE_VIDEO" />
-      <result property="lecExplanation" column="LECTURE_EXPLANATION" />
-      <result property="lecVideoCreateDate" column="LECTURE_VIDEO_CREATE_DATE" />
-   </resultMap>
    
-   <select id="MyLectureVideoList" resultMap="MyLectureVideoListResultSet">
-      SELECT
-      LECTURE_NO,LECTURE_NAME,LECTURE_REFERENCE,LECTURE_EXPLANATION,STD
-      FROM
-      TB_CLASS
-      JOIN
-      TB_CLASS_DETAIL USING(CLASS_NO)
-      JOIN
-      TB_ATTENDANCE USDING(CLASS_NO)
-      WHERE CLASS_NO =#{classNo}
-      AND STD_NO=#{sNo}
+   <select id="stdVideoList" resultMap="lecturePlanWeekResultSet">
+      SELECT *
+      FROM TB_CLASS_DETAIL
+      JOIN TB_CLASS USING(CLASS_NO)
+      WHERE CLASS_NO = #{classNo }
       ORDER BY
-      LECTURE_NO ASC
+      LECTURE_NO DESC
    </select>
 	
 	<select id="lectureList" resultMap="LectureListResultSet">

@@ -58,4 +58,10 @@ public int updateMember(Student s)
 		return sqlSession.update("memberMapper.updateMember",s);
 	}
 
+//마이페이지 이미지 업로드
+public int myImgUpload(Student s)
+	{
+		return sqlSession.update("memberMapper.myImgUpload",s);
+	}
+
 }

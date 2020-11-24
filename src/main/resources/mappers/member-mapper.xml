@@ -19,7 +19,7 @@
       <result property="sStatus" column="STATUS" />
       <result property="cpNo" column="COACH_PROF_NO" />
       <result property="sCategory" column="CATEGORY" />
-      <result property="sDeptName" column="DEPARTMENT_NAME"/>
+      <result property="sDeptName" column="DEPT_NAME"/>
       <result property="type" column="LOGIN_TYPE" />
    </resultMap>
 
@@ -87,7 +87,7 @@
    <!-- 회원정보수정 -->
    <update id="updateMember" parameterType="Student">
       UPDATE TB_STUDENT
-      SET STD_EMAIL=#{sEmail},STD_PHONE=#{sPhone},STD_ADDRESS=#{sAddress},STD_PWD=#{sPwd}
+      SET STD_EMAIL=#{sEmail},STD_PHONE=#{sPhone},STD_ADDRESS=#{sAddress},STD_PWD=#{sPwd}, STD_IMAGE=#{sImage}
       WHERE STD_NO=#{sNo}
    </update>
 
@@ -131,4 +131,11 @@
 	AND LOGIN_TYPE = 2
     </update>
 
+
+<!-- 마이페이지 -->
+<update id="myImgUpload" parameterType="Student">
+UPDATE TB_STUDENT
+SET STD_IMAGE = #{sImage}
+WHERE STD_NO = #{sNo}
+</update>
 </mapper>
