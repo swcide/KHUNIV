@@ -77,6 +77,11 @@
       <result property="lecExperiment" column="LEC_EXPERIMENT" />
       <result property="relatedLec" column="RELATED_LEC" />
       <result property="lecTextbook" column="LEC_TEXTBOOK" />
+      <result property="examPoints" column="EXAM_POINTS" />
+      <result property="assignmentPoints" column="ASSIGN_POINTS" />
+      <result property="attendancePoints" column="ATTEND_POINTS" />
+      
+      
    </resultMap>
 
    <resultMap type="LecturePlanWeek" id="Sylla2ResultSet">
@@ -136,6 +141,32 @@
 		<result property="classImg" column="CLASS_IMG" />
 	</resultMap>
 	
+	<resultMap type="MyLectureVideoList" id="MyLectureVideoListResultSet">
+      <id property="classNo" column="CLASS_NO" />
+      <result property="lecNo" column="LECTURE_NO" />
+      <result property="sNo" column="SNO" />
+      <result property="lecName" column="LECTURE_NAME" />
+      <result property="lecReference" column="LECTURE_REFERENCE" />
+      <result property="lecVideo" column="LECTURE_VIDEO" />
+      <result property="lecExplanation" column="LECTURE_EXPLANATION" />
+      <result property="lecVideoCreateDate" column="LECTURE_VIDEO_CREATE_DATE" />
+   </resultMap>
+   
+   <select id="MyLectureVideoList" resultMap="MyLectureVideoListResultSet">
+      SELECT
+      LECTURE_NO,LECTURE_NAME,LECTURE_REFERENCE,LECTURE_EXPLANATION,STD
+      FROM
+      TB_CLASS
+      JOIN
+      TB_CLASS_DETAIL USING(CLASS_NO)
+      JOIN
+      TB_ATTENDANCE USDING(CLASS_NO)
+      WHERE CLASS_NO =#{classNo}
+      AND STD_NO=#{sNo}
+      ORDER BY
+      LECTURE_NO ASC
+   </select>
+	
 	<select id="lectureList" resultMap="LectureListResultSet">
 		SELECT 
 		CLASS_NO,
@@ -180,20 +211,6 @@
          GROUP BY CLASS_NO, STD_NO, CLASS_TYPE, CLASS_NAME, START_DATE
    </select>
    
-    
-   
-<!--  SELECT  -->
-<!--        CLASS_TYPE, -->
-<!--        CLASS_NAME, -->
-<!--        CLASS_NO,  -->
-<!--        START_DATE, -->
-<!--        STD_NO, COUNT(ATTENDANCE), -->
-<!--        COUNT(ASSIGNMENT) -->
-<!--           FROM TB_ATTENDANCE -->
-<!--           JOIN TB_CLASS USING (CLASS_NO) -->
-<!--           WHERE STD_NO= #{sNo} -->
-<!--           GROUP BY CLASS_NO, STD_NO, CLASS_TYPE, CLASS_NAME, START_DATE -->
-
    <select id="sylla1" resultMap="Sylla1ResultSet">
       SELECT CLASS_NO,
       CLASS_NAME,
@@ -347,7 +364,10 @@
       ASSIGNMENT=#{assignment},
       LEC_EXPERIMENT=#{lecExperiment},
       RELATED_LEC=#{relatedLec},
-      LEC_TEXTBOOK=#{lecTextbook}
+      LEC_TEXTBOOK=#{lecTextbook},
+      EXAM_POINTS=#{examPoints},
+      ASSIGN_POINTS=#{assignmentPoints},
+      ATTEND_POINTS=#{attendancePoints}
       WHERE
       CLASS_NO=#{classNo}
    </select>

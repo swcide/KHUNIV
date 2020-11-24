@@ -1,7 +1,7 @@
 package com.kh.univ.lecture.model.vo;
 
-import java.sql.Date;
-
+// 교수용 강의계획서
+// 학생용 강의계획서 
 public class LecturePlan extends LectureClass{
 	
 	private String classProf;		// 강의교수
@@ -13,6 +13,9 @@ public class LecturePlan extends LectureClass{
 	private String lecExperiment;	// 실험 및 실습계획
 	private String relatedLec; 		// 관련강의
 	private String lecTextbook; 	// 강의교재
+	private int examPoints;			// 과목의 시험 배점 (과목 배점 총합 100점)
+	private int assignmentPoints;	// 과목의 과제 배점 (과목 배점 총합 100점)
+	private int attendancePoints;	// 과목의 출석 배점 (과목 배점 총합 100점)
 	private String profLab;			// 과목담당교수 강의실
 	private int credit;				// 학점
 	
@@ -21,11 +24,10 @@ public class LecturePlan extends LectureClass{
 	}
 
 
-	public LecturePlan(String classNo, String className, String lecAttendance, String lecLearningRate, int attendees, String classSummary,
-			String classImg, String profName, String profEmail, String deptName, String classProf, String classType, String classGoal,
-			String lecMethod, String evalMethod, String assignment, String lecExperiment, String relatedLec, String lecTextbook, String profLab,
+	public LecturePlan(String classProf, String classType, String classGoal, String lecMethod, String evalMethod, String assignment,
+			String lecExperiment, String relatedLec, String lecTextbook, int examPoints, int assignmentPoints, int attendancePoints, String profLab,
 			int credit) {
-		super(classNo, className, lecAttendance, lecLearningRate, attendees, classSummary, classImg, profName, profEmail, deptName);
+		super();
 		this.classProf = classProf;
 		this.classType = classType;
 		this.classGoal = classGoal;
@@ -35,8 +37,42 @@ public class LecturePlan extends LectureClass{
 		this.lecExperiment = lecExperiment;
 		this.relatedLec = relatedLec;
 		this.lecTextbook = lecTextbook;
+		this.examPoints = examPoints;
+		this.assignmentPoints = assignmentPoints;
+		this.attendancePoints = attendancePoints;
 		this.profLab = profLab;
 		this.credit = credit;
+	}
+
+
+
+	public int getexamPoints() {
+		return examPoints;
+	}
+
+
+	public void setexamPoints(int examPoints) {
+		this.examPoints = examPoints;
+	}
+
+
+	public int getassignmentPoints() {
+		return assignmentPoints;
+	}
+
+
+	public void setassignmentPoints(int assignmentPoints) {
+		this.assignmentPoints = assignmentPoints;
+	}
+
+
+	public int getattendancePoints() {
+		return attendancePoints;
+	}
+
+
+	public void setattendancePoints(int attendancePoints) {
+		this.attendancePoints = attendancePoints;
 	}
 
 
@@ -90,12 +126,12 @@ public class LecturePlan extends LectureClass{
 	}
 
 
-	public String getAssignment() {
+	public String getassignment() {
 		return assignment;
 	}
 
 
-	public void setAssignment(String assignment) {
+	public void setassignment(String assignment) {
 		this.assignment = assignment;
 	}
 
@@ -150,18 +186,19 @@ public class LecturePlan extends LectureClass{
 	}
 
 
+
+
+
 	@Override
 	public String toString() {
 		return "LecturePlan [classProf=" + classProf + ", classType=" + classType + ", classGoal=" + classGoal + ", lecMethod=" + lecMethod
 				+ ", evalMethod=" + evalMethod + ", assignment=" + assignment + ", lecExperiment=" + lecExperiment + ", relatedLec=" + relatedLec
-				+ ", lecTextbook=" + lecTextbook + ", profLab=" + profLab + ", credit=" + credit + ", classNo=" + classNo + ", className=" + className
+				+ ", lecTextbook=" + lecTextbook + ", examPoints=" + examPoints + ", assignmentPoints=" + assignmentPoints + ", attendancePoints="
+				+ attendancePoints + ", profLab=" + profLab + ", credit=" + credit + ", classNo=" + classNo + ", className=" + className
 				+ ", lecAttendance=" + lecAttendance + ", lecLearningRate=" + lecLearningRate + ", Attendees=" + Attendees + ", classSummary="
 				+ classSummary + ", classImg=" + classImg + ", profName=" + profName + ", profEmail=" + profEmail + ", deptName=" + deptName + "]";
 	}
 
-
-
-	
 
 
 

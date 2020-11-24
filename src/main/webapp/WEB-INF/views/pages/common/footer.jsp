@@ -71,12 +71,12 @@
 
 <!-- Summernote -->
 <script src="resources/plugins/summernote/summernote-bs4.min.js"></script>
-<script>
-		  $(function () {
-		    // Summernote
-		    $('.textarea').summernote()
-		  })
-		</script>
+<!-- <script> -->
+// 		  $(function () {
+// 		    // Summernote
+// 		    $('.textarea').summernote()
+// 		  })
+<!-- 		</script> -->
 
 
 <!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.

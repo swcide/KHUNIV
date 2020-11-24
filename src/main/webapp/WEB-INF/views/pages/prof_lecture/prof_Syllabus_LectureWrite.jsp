@@ -56,9 +56,14 @@
 <!-- Head Libs -->
 <script src="resources/vendor/modernizr/modernizr.min.js"></script>
 
-<script  src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#AssignmentPoints").hide();
+		$("#AttendancePoints").hide();
+	})
+</script>
 </head>
 <body onresize="parent.resizeTo(900,800)" onload="parent.resizeTo(700,100)">
 	<div class="body">
@@ -118,7 +123,7 @@
 							</tbody>
 						</table>
 
-						<form action="prof_Syllabus_LectureUpdate.do" name="formSylla"  id="formSylla" method="post">
+						<form action="prof_Syllabus_LectureUpdate.do" name="formSylla" id="formSylla" method="post">
 							<input name="classNo" type="hidden" value="${lp.classNo}">
 							<table class="table table-hover">
 								<thead>
@@ -217,6 +222,41 @@
 										</td>
 									</tr>
 								</tbody>
+								<thead>
+									<tr>
+										<th>과목 배점</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<span>시험 : </span>
+											<select name="examPoints" id="examPoints" onchange="ExamPointsChange(this)">
+												<option value="0">0</option>
+												<option value="10">10</option>
+												<option value="20">20</option>
+												<option value="30">30</option>
+												<option value="40">40</option>
+												<option value="50">50</option>
+												<option value="60">60</option>
+												<option value="70">70</option>
+												<option value="80">80</option>
+												<option value="90">90</option>
+												<option value="100">100</option>
+											</select>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											<span>과제 : </span>
+											<select name="assignmentPoints" value="" id="AssignmentPoints" onchange="AssignmentPointsChange(this)">
+											</select>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											<span>출석 : </span>
+											<select name="attendancePoints" value="" id="AttendancePoints" onchange="AttendancePointsChange()">
+											</select>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											<span>합 : </span>
+											<span name="TotalPoint" id="TotalPoint" size=10></span>
+									</tr>
+								</tbody>
 							</table>
 
 							<button type="submit" class="btn btn-dark" id="btnForm" onclick="checkForm(); return false" style="float: right; margin-bottom: 20px;">
@@ -230,8 +270,110 @@
 	</div>
 </body>
 <script>
-function checkForm() {
+
+function ExamPointsChange(e) {
 	
+    var op00 = ["0", "10", "20", "30", "40", "50","60" ,"70", "80", "90", "100"];
+    var op10 = ["0", "10", "20", "30", "40", "50","60" ,"70", "80", "90"];
+    var op20 = ["0", "10", "20", "30", "40", "50","60" ,"70", "80"];
+    var op30 = ["0", "10", "20", "30", "40", "50","60" ,"70"];
+    var op40 = ["0", "10", "20", "30", "40", "50","60"];
+    var op50 = ["0", "10", "20", "30", "40", "50"];
+    var op60 = ["0", "10", "20", "30", "40"];
+    var op70 = ["0", "10", "20", "30"];
+    var op80 = ["0", "10", "20"];
+    var op90 = ["0", "10"];
+    var op100 = ["0"];
+    
+    var target = document.getElementById("AssignmentPoints");
+
+    if(e.value == "0") var d = op00;
+    else if(e.value == "10") var d = op10;
+    else if(e.value == "20") var d = op20;
+    else if(e.value == "30") var d = op30;
+    else if(e.value == "40") var d = op40;
+    else if(e.value == "50") var d = op50;
+    else if(e.value == "60") var d = op60;
+    else if(e.value == "70") var d = op70;
+    else if(e.value == "80") var d = op80;
+    else if(e.value == "90") var d = op90;
+    else if(e.value == "100") var d = op100;
+	
+
+
+    target.options.length = 0;
+    $("#TotalPoint").text(e.value);
+    console.log(d);
+    for (x in d) {
+        var opt = document.createElement("option");
+        opt.value = d[x];
+        opt.innerHTML = d[x];
+        $("#AssignmentPoints").show();
+        target.appendChild(opt);
+        $("#TotalPoint").text(e.value);
+        
+    }   
+}
+</script>
+<script>
+function AssignmentPointsChange(){
+	var op00 = ["0", "10", "20", "30", "40", "50","60" ,"70", "80", "90", "100"];
+    var op10 = ["0", "10", "20", "30", "40", "50","60" ,"70", "80", "90"];
+    var op20 = ["0", "10", "20", "30", "40", "50","60" ,"70", "80"];
+    var op30 = ["0", "10", "20", "30", "40", "50","60" ,"70"];
+    var op40 = ["0", "10", "20", "30", "40", "50","60"];
+    var op50 = ["0", "10", "20", "30", "40", "50"];
+    var op60 = ["0", "10", "20", "30", "40"];
+    var op70 = ["0", "10", "20", "30"];
+    var op80 = ["0", "10", "20"];
+    var op90 = ["0", "10"];
+    var op100 = ["0"];
+    
+    add = parseInt($("#examPoints option:selected").val())+parseInt($("#AssignmentPoints option:selected").val());
+    $("#TotalPoint").text(add);
+    var e = $("#TotalPoint").html();
+    
+    var target = document.getElementById("AttendancePoints");
+    
+    if(e == "0") var d = op00;
+    else if(e == "10") var d = op10;
+    else if(e == "20") var d = op20;
+    else if(e == "30") var d = op30;
+    else if(e == "40") var d = op40;
+    else if(e == "50") var d = op50;
+    else if(e == "60") var d = op60;
+    else if(e == "70") var d = op70;
+    else if(e == "80") var d = op80;
+    else if(e == "90") var d = op90;
+    else if(e == "100") var d = op100;
+    
+    target.options.length = 0;
+    for (x in d) {
+        var opt = document.createElement("option");
+        opt.value = d[x];
+        opt.innerHTML = d[x];
+        $("#AttendancePoints").show();
+        target.appendChild(opt);
+        
+        
+    }   
+}
+
+
+</script>
+<script>
+	function AttendancePointsChange(){
+	alert("송공");
+	add = parseInt($("#examPoints option:selected").val())+parseInt($("#AssignmentPoints option:selected").val())+parseInt($("#AttendancePoints option:selected").val());
+    alert(add);
+    $("#TotalPoint").text(add);
+	}
+</script>
+
+<script>
+	
+	function checkForm() {
+
 		if (formSylla.classSummary.value == "") {
 			shake()
 			formSylla.classSummary.focus();
@@ -267,27 +409,26 @@ function checkForm() {
 		} else {
 			ajaxFormSylla()
 			return true;
-			
+
 		}
 	};
-	
-	function ajaxFormSylla()
-	{
+
+	function ajaxFormSylla() {
 		var params = $("form[name=formSylla]").serialize();
 		$.ajax({
-			type: "POST",
+			type : "POST",
 			url : 'prof_Syllabus_LectureUpdate.do',
 			data : params,
 			dataType : "html",
-			success : function(data)
-					{	
-						alert("수정이 완료되었습니다.")
-						window.opener.location.reload();
-						self.close();
-					}
-			,error:function(request, status, error){
+			success : function(data) {
+				alert("수정이 완료되었습니다.")
+				window.opener.location.reload();
+				self.close();
+			},
+			error : function(request, status, error) {
 
-				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				alert("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n" + "error:" + error);
 			}
 		});
 	}
