@@ -47,7 +47,6 @@ a:hover {
 					<div class="row">
 						<div class="col">
 							<label class="btn btn-primary btn-file" id="updateView">등록하기</label>
-
 							<div id="updatefrm" class="row mt-lg-3" style="display: none;">
 								<form id="fm" class="col" action="prof_lectureVideoInsert.do" method="post" enctype="multipart/form-data">
 									<div class="row">
@@ -62,7 +61,6 @@ a:hover {
 												<input type="hidden" name="profName" value="${loginProf.pName}">
 												<br>
 												<textarea id="lecExplanation" name="lecExplanation" style="width: 100%;" cols="30" rows="4" placeholder="강의 설명"></textarea>
-
 												<br>
 												<div class="col-md-12 ">
 													<span class="float-right">

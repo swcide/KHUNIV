@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.lecture.model.dao.LectureDao;
+import com.kh.univ.lecture.model.vo.Assignment;
 import com.kh.univ.lecture.model.vo.Attendance;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
@@ -34,7 +35,25 @@ public class LetureServiceImpl implements LectureService {
 		return lDao.selectList2(classNo);
 	}
 
+	
 
+	@Override
+	public int assignmentInsert(LecturePlanWeek lpw) {
+		
+		return lDao.assignmentInsert(lpw);
+	}
+
+	@Override
+	public ArrayList<LecturePlanWeek> assignment(String classNo) {
+		
+		return lDao.assigment(classNo);
+	}
+
+
+
+
+
+	
 	
 	
 	

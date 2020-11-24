@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.univ.common.PageInfo;
+import com.kh.univ.lecture.model.vo.Assignment;
 import com.kh.univ.lecture.model.vo.Attendance;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
@@ -32,6 +33,17 @@ public class LectureDao {
 		
 		return (ArrayList)sqlSession.selectList("lectureMapper.stdVideoList",classNo);
 	}
+
+	public int assignmentInsert(LecturePlanWeek lpw) {
+		
+		return sqlSession.update("lectureMapper.assignmentInsert",lpw);
+	}
+
+	public ArrayList<LecturePlanWeek> assigment(String classNo) {
+		
+		return (ArrayList)sqlSession.selectList("lectureMapper.lecVideo", classNo);
+	}
+
 
 
 }

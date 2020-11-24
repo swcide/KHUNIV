@@ -132,6 +132,7 @@
       <result property="assignment" column="ASSIGNMENT" />
    </resultMap>
 
+
    <resultMap type="LectureList" id="LectureListResultSet">
 		<id property="classNo" column="CLASS_NO" />
 		<result property="classType" column="CLASS_TYPE" />
@@ -142,6 +143,14 @@
 		<result property="classImg" column="CLASS_IMG" />
 	</resultMap>
 	
+	 
+	
+   <insert id="assignmentInsert" parameterType="LecturePlanWeek">
+      INSERT INTO
+      TB_ASSIGNMENT
+      VALUES(#{sNo}, #{classNo}, #{lecReference},#{lecNo},#{lecExplanation},SYSDATE)
+   </insert>
+   
    
    <select id="stdVideoList" resultMap="lecturePlanWeekResultSet">
       SELECT *
@@ -389,7 +398,7 @@
    <insert id="lectureVideoInsert" parameterType="LecturePlanWeek">
       INSERT INTO
       TB_CLASS_DETAIL
-      VALUES(#{classNo},#{lecNo},#{lecName},#{lecReference},#{lecVideo},#{lecExplanation},DEFAULT,DEFAULT,DEFAULT,SYSDATE)
+      VALUES(##{classNo},#{lecNo},#{lecName},#{lecReference},#{lecVideo},#{lecExplanation},DEFAULT,DEFAULT,DEFAULT,SYSDATE)
 
    </insert>
 

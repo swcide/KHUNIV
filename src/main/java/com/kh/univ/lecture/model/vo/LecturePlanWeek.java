@@ -2,7 +2,7 @@ package com.kh.univ.lecture.model.vo;
 
 import java.sql.Date;
 
-public class LecturePlanWeek {
+public class LecturePlanWeek extends Assignment{
 	
 	// 과목 번호
 	private String classNo;
