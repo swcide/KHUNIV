@@ -36,9 +36,7 @@
 							</div>
 						</div>
 					</form>
-					<aside class="sidebar mt-2" id="sidebar">
-					<input type="button" onclick="ChgImg()">이미지 등록하기
-					</aside>
+					<input type="button" onclick="ChgImg()" class="btn btn-primary btn-sm mb-2 float-right" value="이미지 등록하기">
 				</div>
 				<div class="col-lg-9">
 					<div class="overflow-hidden mb-1">
