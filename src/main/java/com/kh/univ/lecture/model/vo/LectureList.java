@@ -39,7 +39,6 @@ public class LectureList extends LectureClass {
 		return pNo;
 	}
 
-
 	public void setpNo(String pNo) {
 		this.pNo = pNo;
 	}
@@ -50,5 +49,8 @@ public class LectureList extends LectureClass {
 				+ ", lecAttendance=" + lecAttendance + ", lecLearningRate=" + lecLearningRate + ", Attendees=" + Attendees + ", classSummary="
 				+ classSummary + ", classImg=" + classImg + ", profName=" + profName + ", profEmail=" + profEmail + ", deptName=" + deptName + "]";
 	}
+
+	
+
 	
 }

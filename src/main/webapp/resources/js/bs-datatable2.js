@@ -23,7 +23,7 @@ $jscomp.polyfill = function (f, y, w, n) { if (y) { w = $jscomp.global; f = f.sp
     }); a._hungarianMap = d
   } function L(a, b, c) { a._hungarianMap || H(a); var d; f.each(b, function (e, h) { d = a._hungarianMap[e]; d === n || !c && b[d] !== n || ("o" === d.charAt(0) ? (b[d] || (b[d] = {}), f.extend(!0, b[d], b[e]), L(a[d], b[d], c)) : b[d] = b[e]) }) } function Fa(a) {
     var b = q.defaults.oLanguage, c = b.sDecimal; c && Ga(c); if (a) {
-      var d = a.sZeroRecords; !a.sEmptyTable && d && "No data available in table" === b.sEmptyTable && M(a, a, "sZeroRecords", "sEmptyTable"); !a.sLoadingRecords && d && "Loading..." === b.sLoadingRecords && M(a, a,
+      var d = a.sZeroRecords; !a.sEmptyTable && d && "수강할 수 있는 과목이 없습니다." === b.sEmptyTable && M(a, a, "sZeroRecords", "sEmptyTable"); !a.sLoadingRecords && d && "Loading..." === b.sLoadingRecords && M(a, a,
         "sZeroRecords", "sLoadingRecords"); a.sInfoThousands && (a.sThousands = a.sInfoThousands); (a = a.sDecimal) && c !== a && Ga(a)
     }
   } function ib(a) {
@@ -512,7 +512,7 @@ $jscomp.polyfill = function (f, y, w, n) { if (y) { w = $jscomp.global; f = f.sp
       oAria: { sSortAscending: ": activate to sort column ascending", sSortDescending: ": activate to sort column descending" }, oPaginate: {
         sFirst: "First", sLast: "Last",
         sNext: "Next", sPrevious: "Previous"
-      }, sEmptyTable: "No data available in table", sInfo: " _START_ ~ _END_ of _TOTAL_ pages", sInfoEmpty: "Showing 0 to 0 of 0 entries", sInfoFiltered: "(filtered from _MAX_ total entries)", sInfoPostFix: "", sDecimal: "", sThousands: ",", sLengthMenu: "Show _MENU_ entries", sLoadingRecords: "Loading...", sProcessing: "Processing...", sSearch: "Search:", sSearchPlaceholder: "", sUrl: "", sZeroRecords: "No matching records found"
+      }, sEmptyTable: "수강할 수 있는 과목이 없습니다.", sInfo: " _START_ ~ _END_ of _TOTAL_ pages", sInfoEmpty: "Showing 0 to 0 of 0 entries", sInfoFiltered: "(filtered from _MAX_ total entries)", sInfoPostFix: "", sDecimal: "", sThousands: ",", sLengthMenu: "Show _MENU_ entries", sLoadingRecords: "Loading...", sProcessing: "Processing...", sSearch: "Search:", sSearchPlaceholder: "", sUrl: "", sZeroRecords: "No matching records found"
     }, oSearch: f.extend({}, q.models.oSearch), sAjaxDataProp: "data",
     sAjaxSource: null, sDom: "lfrtip", searchDelay: null, sPaginationType: "simple_numbers", sScrollX: "", sScrollXInner: "", sScrollY: "", sServerMethod: "GET", renderer: null, rowId: "DT_RowId"
   }; H(q.defaults); q.defaults.column = { aDataSort: null, iDataSort: -1, asSorting: ["asc", "desc"], bSearchable: !0, bSortable: !0, bVisible: !0, fnCreatedCell: null, mData: null, mRender: null, sCellType: "td", sClass: "", sContentPadding: "", sDefaultContent: null, sName: "", sSortDataType: "std", sTitle: null, sType: null, sWidth: null }; H(q.defaults.column); q.models.oSettings =
