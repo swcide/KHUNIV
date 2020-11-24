@@ -62,7 +62,6 @@
 	$(document).ready(function(){
 		$("#AssignmentPoints").hide();
 		$("#AttendancePoints").hide();
-		$("#btnForm").disabled=true;
 	});
 </script>
 </head>
@@ -318,18 +317,22 @@
 
 		}
 	};
-
+</script>
+<script>
 	function ajaxFormSylla() {
-		var params = $("form[name=formSylla]").serialize();
+		var params = $("form[name=formSylla]");
 		$.ajax({
 			type : "POST",
 			url : 'prof_Syllabus_LectureUpdate.do',
 			data : params,
 			dataType : "html",
 			success : function(data) {
-				alert("수정이 완료되었습니다.")
-				window.opener.location.reload();
-				self.close();
+				if(confirm("주차별 자료를 이어서 등록하시겠습니까?")== true){
+					opener.location.href=''
+				} else{
+					opener.location.reload();
+					self.close();
+				}
 			},
 			error : function(request, status, error) {
 
