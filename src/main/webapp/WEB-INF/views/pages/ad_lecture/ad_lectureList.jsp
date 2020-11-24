@@ -2,7 +2,18 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="../common/administration_header.jsp"%>
+<style>
+#className {
+	color: #008995;
+	font-weight: bold;
+}
 
+#className:hover {
+	cursor: pointer;
+	color: #005de8;
+	font-weight: bold;
+}
+</style>
 <div class="body">
 	<div role="main" class="main">
 		<section
@@ -36,10 +47,14 @@
 
 										<div class="post-content">
 
-											<h2
-												class="font-weight-semibold text-5 line-height-6 mt-3 mb-2">
-												<a href="mylectureVideolist.do">${l.className }</a>
-											</h2>
+											<form id="frm" action="stdVideoList.do" method="post">
+												<h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2">
+													<input type="hidden" name="classNo" value="${l.classNo }">
+													<label id="className">
+														<input type="submit" style="display: none;">${l.className }
+													</label>
+												</h2>
+											</form>
 											<p>${l.className }</p>
 
 											<div class="post-meta">
@@ -76,45 +91,3 @@
 	</div>
 </div>
 <%@ include file="../common/footer.jsp"%>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
