@@ -6,6 +6,10 @@ import com.kh.univ.member.model.vo.Admin;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
 
+/**
+ * @author admin
+ *
+ */
 public interface MemberService {
 
 	/**
@@ -61,6 +65,14 @@ public interface MemberService {
 	 * @return
 	 */
 	int pwChangeP(Professor p);
+
+
+	/**
+	 * 마이페이지 이미지업로드
+	 * @param s
+	 * @return
+	 */
+	int myImgUpload(Student s);
 
 	
 
