@@ -39,50 +39,40 @@
 												<thead>
 													<tr>
 														<th>#</th>
-														<th style="text-align: center;">학년</th>
+														<th style="text-align: center;">학기</th>
 														<th style="text-align: center;">강의명</th>
-														<th style="text-align: center;">시험일자</th>
+														<th style="text-align: center;">학점</th>
 														<th style="text-align: center;">담당교수</th>
 													</tr>
 												</thead>
 												<tbody>
+												<c:set var = "total" value = "0" />
+													<c:forEach var="r" items="${r }" varStatus="status">
 													<tr>
-														<td>1</td>
-														<td style="text-align: center;">4</td>
-														<td style="text-align: center;">Mark</td>
-														<td style="text-align: center;">Otto</td>
-														<td style="text-align: center;">이성호</td>
+														<td style="text-align: center;">${status.index+1 }</td>
+														<td style="text-align: center;">${r.semester }</td>
+														<td style="text-align: center;">${r.cName }</td>
+														<td style="text-align: center;">${r.credit }</td>
+														<td style="text-align: center;">${r.pName }</td>
+														<c:set var= "total" value="${total + r.credit}"/>
 													</tr>
-													<tr>
-														<td>2</td>
-														<td style="text-align: center;">1</td>
-														<td style="text-align: center;">Mark</td>
-														<td style="text-align: center;">Otto</td>
-														<td style="text-align: center;">@mdo</td>
-													</tr>
-													<tr>
-														<td>3</td>
-														<td style="text-align: center;">3</td>
-														<td style="text-align: center;">Mark</td>
-														<td style="text-align: center;">Otto</td>
-														<td style="text-align: center;">@mdo</td>
-													</tr>
+													</c:forEach>
 												</tbody>
 											</table>
 											<div class="row mb-4 counters counters-sm text-dark">
 												<div class="col-sm-6 col-lg-3 mb-4 mb-lg-0">
 													<div class="counter">
-														<strong data-to="12">12</strong> <label>신청 가능 학점</label>
+														<strong data-to="18">18</strong> <label>신청 가능 학점</label>
 													</div>
 												</div>
 												<div class="col-sm-6 col-lg-3 mb-4 mb-lg-0">
 													<div class="counter">
-														<strong data-to="6">6</strong> <label>신청 학점</label>
+														<strong data-to="<c:out value="${total}"/>">12</strong> <label>신청 학점</label>
 													</div>
 												</div>
 												<div class="col-sm-6 col-lg-3 mb-4 mb-sm-0">
 													<div class="counter">
-														<strong data-to="6">6</strong> <label>남은 학점</label>
+														<strong data-to=" ">6</strong> <label>남은 학점</label>
 													</div>
 												</div>
 												<div class="col-sm-6 col-lg-3">

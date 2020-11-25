@@ -76,13 +76,13 @@ public class RegistrationController {
 			System.out.println(count);
 			System.out.println(beforeR);
 			
-			for (int i = 0; i < beforeR.size(); i++) {
-				if(!r.contains(beforeR.get(i)))
-					r.add(beforeR.get(i));
-				
-			}  
+//			for (int i = 0; i < beforeR.size(); i++) {
+//				if(!r.contains(beforeR.get(i)))
+//					r.add(beforeR.get(i));
+//				
+//			}  
 		
-		mv.addObject("r",r).setViewName("ad_register/ad_AuditLecture_Application");
+		mv.addObject("r",beforeR).setViewName("ad_register/ad_AuditLecture_Application");
 		
 			
 		return mv;
@@ -137,6 +137,23 @@ public class RegistrationController {
 		return "success";
 	}
 	
+	@RequestMapping("ad_appl_stat.do")
+	public ModelAndView GradeList (ModelAndView mv,HttpSession session,Grade g){
+		Student s = (Student) session.getAttribute("loginUser"); 
+		
+		int dNo = Integer.parseInt(s.getdNo());
+		String strDno =Integer.toString(dNo);
+		s.setdNo(strDno);
+		
+		ArrayList<Registration> r = rService.gradeList(s);
+		System.out.println(s);
+		System.out.println(r);
+		mv.addObject("r",r);
+		mv.setViewName("ad_register/ad_Application_Status");
+		
+		
+		return mv;
+	}
 	
 	
 

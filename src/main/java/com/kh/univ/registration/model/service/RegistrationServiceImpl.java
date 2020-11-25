@@ -34,6 +34,12 @@ public class RegistrationServiceImpl implements RegistrationService {
 	}
 
 
+	@Override
+	public ArrayList<Registration> gradeList(Student s) {
+		return rDao.gradeList(s);
+	}
+
+
 
 
 }

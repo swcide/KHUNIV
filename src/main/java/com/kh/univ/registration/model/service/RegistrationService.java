@@ -15,6 +15,8 @@ public interface RegistrationService {
 
 	ArrayList<Registration> myRSelectList(Student s);
 
+	ArrayList<Registration> gradeList(Student s);
+
 
 
 

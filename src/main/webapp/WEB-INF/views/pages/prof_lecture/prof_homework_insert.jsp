@@ -48,7 +48,7 @@ background-color: #f5f5f5;
 			<div class="container">
 				<div class="row mt-3">
 					<div class="col-md-12 align-self-center p-static order-2 text-center">
-						<h1 class="text-9 font-weight-bold text-lg-right">퀴즈 및 과제 </h1>
+						<h1 class="text-9 font-weight-bold text-lg-right"> 과제 </h1>
 						<span class="sub-title">my lecture insert</span>
 					</div>
 				</div>
@@ -61,42 +61,29 @@ background-color: #f5f5f5;
 						<div class="row">
 
 							<div class="custom-box-details bg-color-light col-lg-12 ml-5 mb-5 mb-lg-4 float-right clearfix">
-								<h4 class="text-lg-center">퀴즈 및 과제 </h4> <hr>
-								<form class="form-horizontal form-bordered" action="prof_testInsert.do" method="get">
+								<h4 class="text-lg-center"> 과제 </h4> <hr>
+								<form class="form-horizontal form-bordered" action="hInsert.do" method="post" enctype="multipart/form-data">
 								
 									<div id="text">	
-										<div class="form-group row">
-											<label class="col-lg-3 control-label text-lg-right pt-2" >과목 명</label>
-											<div class="col-lg-6">
-												<select class="form-control" id="inputDefault">
-													<option>판소리특강</option>
-													<option>나라사랑</option>
-													<option>국밥 세그릇 뚝딱</option>
-												</select>
-											</div>
-										</div>
+									<input type="hidden" name ="pNo" value="${lh.pNo }">
+									<input type="hidden" name ="cNo" value="${lh.cNo }">
 										
 										<div class="form-group row">
 											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">주차</label>
 											<div class="col-lg-6">
-												<select class="form-control" id="inputDefault">
-													<option>1주차</option>
-													<option>2주차</option>
-													<option>3주차</option>
-													<option>4주차</option>
-													<option>5주차</option>
-													<option>6주차</option>
-													<option>7주차</option>
-													<option>8주차</option>
-													<option>9주차</option>
-													<option>10주차</option>
-													<option>11주차</option>
-													<option>12주차</option>
-													<option>13주차</option>
-													<option>14주차</option>
-													<option>15주차</option>
-													<option>16주차</option>
-													<option>17주차</option>
+												<select class="form-control" name="lecNo" id="inputDefault">
+													<option value="1">1주차</option>
+													<option value="2">2주차</option>
+													<option value="3">3주차</option>
+													<option value="4">4주차</option>
+													<option value="5">5주차</option>
+													<option value="6">6주차</option>
+													<option value="7">7주차</option>
+													<option value="8">8주차</option>
+													<option value="9">9주차</option>
+													<option value="10" >10주차</option>
+													<option value="11">11주차</option>
+													<option value="12">12주차</option>
 												</select>
 											</div>
 										</div>
@@ -104,7 +91,7 @@ background-color: #f5f5f5;
 										<div class="form-group row">
 											<label class="col-lg-3 control-label text-lg-right pt-2" >과제 명</label>
 											<div class="col-lg-6">
-												<input class="form-control" name="" type="text" >
+												<input class="form-control" name="hTitle" type="text" >
 											</div>
 										</div>
 
@@ -112,30 +99,38 @@ background-color: #f5f5f5;
 										<div class="form-group row" >
 											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputHelpText">공개일</label>
 											<div class="col-lg-6" style="display: flex;">
-												<input type="date" class="form-control" max="9999-12-31"   >
+												<input type="date" name="openDate"class="form-control" max="9999-12-31"   >
 											</div>
 										</div>
 
 										<div class="form-group row "style="margin-bottom: 0">
 											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputRounded">마감일 </label>
 											<div class="col-lg-6" style="display: flex;">
-												<input type="date" class="form-control" max="9999-12-31"   >
+												<input type="date" name="endDate"class="form-control" max="9999-12-31"   >
 											</div>
 										</div>
 										<div class="form-group row "style="margin-bottom: 0">
 											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputRounded">과제 내용 </label>
 											<div class="col-lg-6" style="display: flex;">
-												<textarea class="textarea"></textarea>
+												<textarea name="hContent" class="textarea"></textarea>
 											</div>
 										</div>
+									
+										
 										
 										<hr>
+											<div class="form-group row">
+												<label class="col-lg-3 control-label text-lg-right pt-2" >배점</label>
+												<div class="col-lg-6" style="display: flex">
+													<input name="hPoint"class="form-control" type="text" style="width:50px"><span style="padding-left:20px;align-self: center; font-size: 15px">점</span> 
+												</div>
+											</div>
 											<div class="form-group row "style="margin-bottom: 0">
 													<label class="col-lg-3 control-label text-lg-right pt-2" for="inputRounded">첨부 파일 </label>
 													<div class="col-lg-6" style="display: flex;">
 														<div class="filebox">
 														<label class ="btn btn-md btn-modern"for="file" >업로드</label> 
-														<input type="file" id="file"> 
+														<input name="uploadFile" type="file" id="file"> 
 														<input class="upload-name" value="파일선택" disabled="disabled">
 														</div>
 													</div>
@@ -144,7 +139,7 @@ background-color: #f5f5f5;
 										<hr>
 										<div class="form-group row">
 											<div class="form-group col-lg-3">
-													<a class="btn btn-sm btn-primary float-right" href="prof_testInsert.do">돌아가기</a>
+													<a class="btn btn-sm btn-primary float-right" href="hWeekList.do">돌아가기</a>
 											</div>
 											<div class="form-group col-lg-3">
 											</div>
@@ -178,7 +173,11 @@ background-color: #f5f5f5;
 		  }); 
 		}); 
 
-
+	
+	  $(function () {
+		    // Summernote
+		    $('.textarea').summernote()
+		  })
 </script>
 <%@ include file="../common/footer.jsp"%>
 

@@ -25,6 +25,7 @@
 		<typeAlias type="com.kh.univ.lecture.model.vo.Attendance" alias="Attendance" />
 		<typeAlias type="com.kh.univ.lecture.model.vo.ClassTest" alias="ClassTest" />
 		<typeAlias type="com.kh.univ.lecture.model.vo.MyLectureVideoList" alias="MyLectureVideoList" />
+		<typeAlias type="com.kh.univ.lecture.model.vo.LectureHomeWork" alias="LectureHomeWork" />
 		<typeAlias type="com.kh.univ.testPage.model.vo.Test" alias="Test" />
 		<typeAlias type="com.kh.univ.ad_Register.model.vo.Absence" alias="Absence" />
 		<typeAlias type="com.kh.univ.ad_Register.model.vo.grdExp" alias="grdExp" />
@@ -32,6 +33,7 @@
 
 		<typeAlias type="com.kh.univ.registration.model.vo.Registration" alias="Registration" />
 		<typeAlias type="com.kh.univ.registration.model.vo.RegistrationSNO" alias="RegistrationSNO" />
+		<typeAlias type="com.kh.univ.testPage.model.vo.Grade" alias="Grade" />
 		<typeAlias type="com.kh.univ.testPage.model.vo.Grade" alias="Grade" />
 
 	</typeAliases>

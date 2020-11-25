@@ -29,6 +29,10 @@ public class RegistrationDao {
 		return (ArrayList)sqlSession.selectList("registrationMapper.myRSelectList",s);
 	}
 
+	public ArrayList<Registration> gradeList(Student s) {
+		return (ArrayList)sqlSession.selectList("registrationMapper.gradeList",s);
+	}
+
 
 
 		

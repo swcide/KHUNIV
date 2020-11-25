@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
+import com.kh.univ.lecture.model.vo.LectureHomeWork;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
@@ -162,6 +163,29 @@ public class profLecDao {
 	public int takeAddQ(Test t) {
 		return sqlSession.insert("lectureMapper.takeAddQ",t);
 	}
+
+	public ArrayList<ClassTest> quizSelectList(Professor p, PageInfo pi) {
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
+		
+		return (ArrayList)sqlSession.selectList("lectureMapper.quizSelectList",p,rowBounds);
+	}
+
+	public ArrayList<LectureList> hSelectList(Professor p) {
+		return (ArrayList)sqlSession.selectList("lectureMapper.hSelectList",p);
+
+	}
+
+	public int insertHomework(LectureHomeWork lh) {
+		return sqlSession.insert("lectureMapper.insertHomework",lh);
+	}
+
+	public ArrayList<LectureHomeWork> selectHList(LectureHomeWork lh) {
+		return (ArrayList)sqlSession.selectList("lectureMapper.selectHList",lh);
+	}
+
+	
 
 	
 

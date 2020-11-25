@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
+import com.kh.univ.lecture.model.vo.LectureHomeWork;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
@@ -118,6 +119,20 @@ public interface profLecService {
 	ArrayList<Test> takeClassList(Test t1);
 
 	int takeAddQ(Test t);
+
+	ArrayList<ClassTest> quizSelectList(Professor p, PageInfo pi);
+	
+	
+	
+	
+	
+
+
+	ArrayList<LectureList> hSelectList(Professor p);
+
+	int insertHomework(LectureHomeWork lh);
+
+	ArrayList<LectureHomeWork> selectHList(LectureHomeWork lh);
 
 
 	

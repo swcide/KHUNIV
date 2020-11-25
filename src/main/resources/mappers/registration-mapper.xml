@@ -5,6 +5,7 @@
 	<resultMap type="Registration" id="RegistrationResultSet">
 		<id property="dNo" column="DEPT_NO" />
 		<result property="dName" column="DEPT_NAME" />
+		<result property="semester" column="STD_SEMESTER" />
 		<result property="cNo" column="CLASS_NO" />
 		<result property="cName" column="CLASS_NAME" />
 		<result property="cType" column="CLASS_TYPE" />
@@ -78,7 +79,19 @@
 		 </foreach>
 		   
 	</insert>
+	<select id="gradeList" resultMap="RegistrationResultSet">
 	
+         SELECT  P.PROF_NO,CLASS_NO,CLASS_NAME,P.PROF_NAME,P.DEPT_NO,D.DEPT_NAME,CREDIT,C.CLASS_TYPE,std_no,std_semester
+
+         FROM TB_CLASS C
+         JOIN TB_DEPARTMENT D USING(DEPT_NO)
+         JOIN TB_CLASS_PROFESSOR CP USING(CLASS_NO)
+         join  TESTt T using(class_no)
+         JOIN TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
+         where std_no =#{sNo}
+         and std_semester =#{semester}
+         
+	</select>
 	
 
 </mapper>

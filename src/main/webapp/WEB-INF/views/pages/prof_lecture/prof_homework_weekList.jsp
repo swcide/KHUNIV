@@ -1,9 +1,6 @@
-<%@page import="com.kh.univ.lecture.model.vo.ClassTest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/professor_header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
 
 <!-- Content Wrapper. Contains page content -->
 <div class="body">
@@ -12,7 +9,7 @@
 			<div class="container">
 				<div class="row mt-3">
 					<div class="col-md-12 align-self-center p-static order-2 text-center">
-						<h1 class="text-9 font-weight-bold">시험 목록</h1>
+						<h1 class="text-9 font-weight-bold">과제 목록</h1>
 						<span class="sub-title">my lecture list</span>
 					</div>
 				</div>
@@ -30,45 +27,45 @@
 								<table class="table table-hover" >
 									<thead>
 										<tr>
-											<th>과목번호</th>
-											<th>학과명</th>
-											<th>강의 명</th>
-											<th>강의 구분</th>
-											<th>학점</th>
+											<th>주차</th>
+											<th>제목</th>
+											<th>진행</th>
+											<th>평가</th>
+											<th>응시 기간</th>
+											<th>평가</th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:set var="ll" value="${ll }"></c:set>
-										<c:if test="${empty ll}">
+<!-- 										<tr> -->
+<!-- 											<td colspan="8" align="center">조회할 자료가 없습니다.</td> -->
+<!-- 										</tr> -->
+										<c:forEach var="h" items="${hList }">
 										<tr>
-											<td colspan="8" align="center">조회할 자료가 없습니다.</td>
+											
+											<td>${h.lecNo}주차</td>
+											<td>${h.hTitle}</td>
+<%-- 											<c:if > --%>
+											<td>진행중</td>
+<%-- 											</c:if> --%>
+<%-- 											<c:if> --%>
+<!-- 											<td>마감</td> -->
+<%-- 											</c:if> --%>
+											<td>100%</td>
+											<td>${h.openDate } <br>${h.endDate }</td>
+											<th><a href="sEvaluation.do" class="btn btn-sm btn-default" >평가</a></th>
 										</tr>
-										</c:if>
-										<c:if test="${!empty ll}">
-											<c:forEach var="ll" items="${ll}">
-												<c:url var="week" value="hWeekList.do">
-													<c:param name="cNo" value="${ll.classNo}"/>
-													<c:param name="cName" value="${ll.className}"/>
-													<c:param name="pNo" value="${pNo}"/>
-												</c:url>
-											
-											
-												<tr onclick="location.href='${week}'" style="cursor: pointer;">
-													<td>${ll.classNo }	</td>
-													<td>${ll.deptName }</td>
-													<td>${ll.className }</td>
-													<td>${ll.classType }</td>
-													<td>${ll.credit}</td>
-												</tr>
-										
-											</c:forEach>
-										</c:if>
+										</c:forEach>
 									</tbody>
 								</table>
-												
-										
-								
+										<c:url var="hInsertView" value="hWeekInsertView.do">
+											<c:param name="cNo" value="${lh.cNo}"/>
+											<c:param name="cName" value="${lh.cName}"/>
+											<c:param name="pNo" value="${lh.pNo}"/>
+										</c:url>
+											
+										<a class="btn btn-sm btn-primary float-right" href="${hInsertView }">과제 추가하기</a>
 							</div>	
+							
 						</div>
 					</div>
 				</div>

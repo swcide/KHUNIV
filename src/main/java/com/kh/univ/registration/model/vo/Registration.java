@@ -6,6 +6,7 @@ import com.kh.univ.testPage.model.vo.Grade;
 
 public class Registration {
 	
+	private int semester;     // 학기 
 	private String cNo;       // 강의 번호
 	private String cName;     // 강의 이름
 	private String cType;     // 강의 타입  
@@ -25,9 +26,10 @@ public class Registration {
 
 
 
-	public Registration(String cNo, String cName, String cType, String pName, String pNo, String sNo, int credit,
-			String dNo, String dName) {
+	public Registration(int semester, String cNo, String cName, String cType, String pName, String pNo, String sNo,
+			int credit, String dNo, String dName) {
 		super();
+		this.semester = semester;
 		this.cNo = cNo;
 		this.cName = cName;
 		this.cType = cType;
@@ -37,6 +39,18 @@ public class Registration {
 		this.credit = credit;
 		this.dNo = dNo;
 		this.dName = dName;
+	}
+
+
+
+	public int getSemester() {
+		return semester;
+	}
+
+
+
+	public void setSemester(int semester) {
+		this.semester = semester;
 	}
 
 
@@ -151,9 +165,14 @@ public class Registration {
 
 	@Override
 	public String toString() {
-		return "Registration [cNo=" + cNo + ", cName=" + cName + ", cType=" + cType + ", pName=" + pName + ", pNo="
-				+ pNo + ", sNo=" + sNo + ", credit=" + credit + ", dNo=" + dNo + ", dName=" + dName + "]";
+		return "Registration [semester=" + semester + ", cNo=" + cNo + ", cName=" + cName + ", cType=" + cType
+				+ ", pName=" + pName + ", pNo=" + pNo + ", sNo=" + sNo + ", credit=" + credit + ", dNo=" + dNo
+				+ ", dName=" + dName + "]";
 	}
+
+
+
+	
 
 
 

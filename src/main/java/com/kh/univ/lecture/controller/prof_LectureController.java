@@ -31,6 +31,7 @@ import com.kh.univ.common.Pagination;
 import com.kh.univ.lecture.model.service.profLecService;
 import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
+import com.kh.univ.lecture.model.vo.LectureHomeWork;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
@@ -694,13 +695,13 @@ public class prof_LectureController {
 
 	
 	@RequestMapping("qdelete.do")
-	public String testDelete(Test t, HttpServletRequest request) {
+	public String testDelete(Test t) {
 		
 		System.out.println(t);
 		int result = plService.deleteTest(t);
 		System.out.println(result);
 		if (result>0) {
-			return "redirect:qList.do?=cNo"+t.getcNo();
+			return "redirect:qList.do?cNo="+t.getcNo()+"&tNo="+t.gettNo();
 		}else {
 			return "common/errorPage";
 		}
@@ -715,26 +716,112 @@ public class prof_LectureController {
 	
 	
 	
-	@RequestMapping(value = "prof_homeworklist.do", method = RequestMethod.GET)
-	public String homeworklist(Model model) {
+	/**
+	 * 
+	 * 과제 리스트
+	 * @param mv
+	 * @param session
+	 * @param currentPage
+	 * @return
+	 */
+	@RequestMapping("hlist.do")
+	public ModelAndView QuizList( ModelAndView mv, HttpSession session)  {
 		
-		return "prof_lecture/prof_homework_list";
+		
+		
+		Professor p= (Professor)session.getAttribute("loginProf");
+		
+		String pNo = p.getpNo();
+
+		ArrayList <LectureList> ll = plService.hSelectList(p);
+		
+		mv.addObject("pNo",pNo);
+		mv.addObject("ll",ll);
+		mv.setViewName("prof_lecture/prof_homework_list");
+		return mv;
+//		Professor p= (Professor)session.getAttribute("loginProf");
+//		
+//		
+//		ArrayList<LectureHomeWork> cTList = plService.hSelectList(p);
+//		
+////		System.out.println(cTList);
+//		
+//		
+//		mv.addObject("cTList",cTList);
+//		mv.setViewName("prof_lecture/prof_homework_list");
+//		return mv;
+//				"prof_lecture/prof_homework_list";
 		
 		
 	}
-	@RequestMapping(value = "prof_homeworkInsert.do", method = RequestMethod.GET)
-	public String homework(Model model) {
+	
+	@RequestMapping( "hWeekList.do")
+	public ModelAndView prof_homeworkWeekView(ModelAndView mv,LectureHomeWork lh) {
 		
-		return "prof_lecture/prof_homework_insert";
+		ArrayList <LectureHomeWork> hList = plService.selectHList(lh); 
+		
+		mv.addObject("hList",hList);
+		mv.setViewName("prof_lecture/prof_homework_weekList"); 
+		
+		return mv;
+	}
+	@RequestMapping("hWeekInsertView.do")
+	public ModelAndView QuizDelete2(ModelAndView mv, LectureHomeWork lh) {
+		
+		
+		mv.addObject("lh",lh);
+		mv.setViewName("prof_lecture/prof_homework_insert");
+		
+		return mv;
+	}
+	
+	@RequestMapping("hInsert.do")
+	public String homeworkEvaludation(LectureHomeWork lh,HttpServletRequest request,
+			 @RequestParam(name="uploadFile",required=false) MultipartFile file) {
+		
+		System.out.println(lh);
+		System.out.println(file);
+		
+		if(!file.getOriginalFilename().equals("")) {
+			//서버에 업로드를 해야한다.
+			String renameFIleName =  saveFile(file,request);
+			
+			if(renameFIleName != null) { // 파일이 잘 저장된 경우;
+				lh.setOriginalFileName(file.getOriginalFilename());
+				lh.setRenameFileName(renameFIleName);
+				
+			}
+		}
+		
+		System.out.println(lh);
+		java.util.Date now = new Date(System.currentTimeMillis());
+		
+		SimpleDateFormat fmt = new SimpleDateFormat ( "yyyyMMdd-HHmm");
+		
+		String str = fmt.format(now);
+		lh.sethNo("H"+str);
+		
+		int result = plService.insertHomework(lh);
+		
+		if(result>0) {
+			return "redirect:hWeekList.do";
+		}else {
+			return "common/errorPage";
+		}
 		
 		
 	}
-	@RequestMapping(value = "prof_studentEvaluation.do", method = RequestMethod.GET)
-	public String homeworkEvaludation(Model model) {
-		
-		return "prof_lecture/prof_homework_Evaluation";
+	@RequestMapping( "sEvaluation.do")
+	public ModelAndView prof_StdEvaluation(ModelAndView mv) {
 		
 		
+		
+		mv.setViewName("prof_lecture/prof_homework_Evaluation"); 
+		
+		return mv;
 	}
+	
+	
+	
 
 }
