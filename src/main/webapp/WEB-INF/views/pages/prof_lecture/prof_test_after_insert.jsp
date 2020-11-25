@@ -101,6 +101,7 @@ margin:0;}
 																	<c:param name="tNo" value="${t.tNo}"/>
 																	<c:param name="qNo" value="${t.qNo}"/>
 																	<c:param name="cNo" value="${t.cNo}"/>
+																	<c:param name="qId" value="${t.qId}"/>
 																</c:url>
 																<a href="javascript:void(0)"onclick="update(this);"><i class="icon-wrench icons mr-2"></i></a>
 																<a href="${qdelete}"class="close" style="cursor: pointer;" ><span >×</span></a>

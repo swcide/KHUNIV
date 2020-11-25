@@ -64,7 +64,6 @@
 					<h4 style="text-align: center;">인증번호 입력</h4>
 					<hr>
 					<form action="pwNumCheck.do" id="frmSearch" method="post" class="needs-validation">
-						<div id="numCheck">
 						<div class="form-row">
 							<div class="form-group col">
 								<label class="text-color-dark text-3">인증번호 입력 <span class="text-color-danger">*</span></label>
@@ -79,7 +78,6 @@
 							<div class="form-group col">
 								<button id="numCheck" type="button" class="btn btn-dark btn-modern btn-block text-uppercase rounded-0 font-weight-bold text-3 py-3" data-loading-text="Loading...">확인</button>
 							</div>
-						</div>
 						</div>
 					</form>
 				</div>

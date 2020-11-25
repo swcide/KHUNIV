@@ -134,7 +134,7 @@
 													<li class="dropdown-submenu"><a class="dropdown-item" href="#">과제 및 퀴즈</a>
 														<ul class="dropdown-menu">
 															<li><a class="dropdown-item" href="TestInsert.do">퀴즈</a></li>
-															<li><a class="dropdown-item" href="prof_homeworklist.do">과제</a></li>
+															<li><a class="dropdown-item" href="hlist.do">과제</a></li>
 														</ul></li>
 												</ul></li>
 										</ul>

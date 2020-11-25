@@ -1,14 +1,4 @@
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-
 import com.kh.univ.member.model.vo.Student;
-import com.kh.univ.testPage.model.vo.Grade;
-
-//import java.util.Date;
-import java.sql.Date;
-import java.sql.Timestamp;
 
 public class test {
 
@@ -32,24 +22,58 @@ public class test {
 ////	System.out.println(year);
 //	
 //	}
+//	@Autowired
+//	private static RegistrationService rService ;
 	
 	public static void main(String[] args) {
 		
-		String [] arr = {"a","b","c","d"};
 		
-		ArrayList<Grade> list = new ArrayList<Grade>();
+				
+				System.out.println('z');
+				
+				System.out.println('z');System.out.println('z');System.out.println('z');System.out.println('z');System.out.println('z');System.out.println('z');System.out.println('z');System.out.println('z');
+				
+//				ArrayList<Registration> r = new ArrayList<Registration>();
+//				
+//				ArrayList<Registration> list = rService.rSelectList(s);
+//				
+//				ArrayList<Registration> list2 = rService.myRSelectList(s);
+//					
+//				System.out.println("===============list==============");
+//				System.out.println(list);
+//				System.out.println("=============list2--================");
+//				System.out.println(list2);
+//					
+//				System.out.println(list.size());
+//				int count = 0;
+//					for(int i=0; i<list.size();i++) {
+//						for(int j=0; j<list2.size();j++) {
+//					
+//							if(list.get(i).getcNo().equals(list2.get(j).getcNo()) ){
+//								System.out.println("값 같은거");
+//								
+//								
+//								System.out.println("===========j=========");
+//								System.out.println(j);
+//								System.out.println("===========i=========");
+//								System.out.println(i);
+//						
+//							}else {
+//								System.out.println("값 다를 때");
+//								count++;
+//							
+//								r.add(list.get(i));	
+//							}
+//						}
+//					}
+				
+//					System.out.println(count);
+//					System.out.println(r);
+				
+				
 		
-		Grade g = new Grade();
-		
-		for (int i = 0; i < arr.length; i++) {
-			g.setcNo(arr[i]);
-			list.add(g);
-		}
-	
 		
 		
-		
-		System.out.println(list);
 		
 		
 //		Student

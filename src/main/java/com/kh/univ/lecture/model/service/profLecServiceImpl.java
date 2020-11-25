@@ -11,6 +11,7 @@ import com.kh.univ.common.PageInfo;
 import com.kh.univ.lecture.model.dao.profLecDao;
 import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
+import com.kh.univ.lecture.model.vo.LectureHomeWork;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
@@ -199,6 +200,28 @@ public class profLecServiceImpl implements profLecService {
 	@Override
 	public int takeAddQ(Test t) {
 		return plDao.takeAddQ(t);
+	}
+
+	@Override
+	public ArrayList<ClassTest> quizSelectList(Professor p, PageInfo pi) {
+		// TODO Auto-generated method stub
+		return plDao.quizSelectList(p,pi);
+	}
+
+
+	@Override
+	public ArrayList<LectureList> hSelectList(Professor p) {
+		return plDao.hSelectList(p);
+	}
+
+	@Override
+	public int insertHomework(LectureHomeWork lh) {
+		return plDao.insertHomework(lh);
+	}
+
+	@Override
+	public ArrayList<LectureHomeWork> selectHList(LectureHomeWork lh) {
+		return plDao.selectHList(lh);
 	}
 
 	

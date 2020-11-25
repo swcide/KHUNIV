@@ -152,6 +152,40 @@
    </insert>
    
    
+   	<resultMap type="LectureHomeWork" id="LectureHomeWorkResultSet">
+      <id property="hNo" column="HWORK_NO" />
+      <result property="lecNo" column="LEC_NO" />
+      <result property="hTitle" column="HWORK_TITLE" />
+      <result property="hContent" column="HWORK_CONTENT" />
+      <result property="originalFileName" column="ORIGINAL_FILENAME" />
+      <result property="renameFileName" column="RENAME_FILENAME" />
+      <result property="pNo" column="PROF_NO" />
+      <result property="cNo" column="CLASS_NO" />
+      <result property="cName" column="CLASS_NAME" />
+      <result property="eGrade" column="EVALUATION_GRADE" />
+      <result property="hStatus" column="H_STATUS" />
+      <result property="openDate" column="OPENDATE" />
+      <result property="endDate" column="ENDDATE" />
+      <result property="hPoint" column="HWORK_POINT" />
+   </resultMap>
+   
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
    <select id="stdVideoList" resultMap="lecturePlanWeekResultSet">
       SELECT *
       FROM TB_CLASS_DETAIL
@@ -398,7 +432,7 @@
    <insert id="lectureVideoInsert" parameterType="LecturePlanWeek">
       INSERT INTO
       TB_CLASS_DETAIL
-      VALUES(##{classNo},#{lecNo},#{lecName},#{lecReference},#{lecVideo},#{lecExplanation},DEFAULT,DEFAULT,DEFAULT,SYSDATE)
+      VALUES(#{classNo},#{lecNo},#{lecName},#{lecReference},#{lecVideo},#{lecExplanation},DEFAULT,DEFAULT,DEFAULT,SYSDATE)
 
    </insert>
 
@@ -595,5 +629,62 @@
       )
 
    </insert>
+   
+   <!-- 과제 listcount -->
+     <select id="gethListCount" resultType="int">
+      SELECT count(*)
+      FROM
+      TB_HOMEWORK
+      WHERE PROF_NO = #{pNo}
+   </select>
+   
+   
+    <select id="hSelectList" resultMap="lectureListResultSet">
+       select * 
+      from tb_class
+      join TB_CLASS_PROFESSOR using(class_no)
+      join TB_DEPARTMENT using (dept_no)
+      where PROFESSOR_NO =#{pNo}
+   </select>
+   
+   
+   
+   
+    <select id="quizSelectList" resultMap="LectureHomeWorkResultSet">
+      SELECT *
+      FROM TB_PROF_TEST
+      WHERE PROF_NO = #{pNo}
+   </select>
+   
+    <insert id="insertHomework" parameterType="LectureHomeWork">
+      INSERT INTO TB_HOMEWORK
+      VALUES(
+      #{hNo},
+      #{lecNo},
+      #{hTitle},
+      #{hContent},
+      #{originalFileName},
+      #{renameFileName},
+      #{pNo},
+      #{cNo},
+      #{cName},
+      #{eGrade},
+      #{hStatus},
+      #{openDate},
+      #{endDate},
+      #{hPoint},
+      SEQ_HID.NEXTVAL
+      )
+
+   </insert>
+ 
+ 	<select id="selectHList" resultMap="LectureHomeWorkResultSet">
+      SELECT *
+      FROM TB_HOMEWORK
+      WHERE PROF_NO = #{pNo}
+      AND CLASS_NO =#{cNo}
+   </select>
+ 
+   
 
 </mapper>

@@ -40,7 +40,7 @@ public class ad_Register_Controller {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "ad_appl_stat.do")
+//	@RequestMapping(value = "ad_appl_stat.do")
 	public String ad_appl_stat()
 		{
 
