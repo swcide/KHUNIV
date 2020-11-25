@@ -148,7 +148,7 @@
    <insert id="assignmentInsert" parameterType="LecturePlanWeek">
       INSERT INTO
       TB_ASSIGNMENT
-      VALUES(#{sNo},#{classNo},#{lecReference},#{lecNo},#{lecExplanation},SYSDATE,#{className},#{sName})
+      VALUES(#{sNo}, #{classNo}, #{lecReference},#{lecNo},#{lecExplanation},SYSDATE)
    </insert>
    
    
