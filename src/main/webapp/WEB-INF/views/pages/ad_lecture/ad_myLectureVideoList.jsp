@@ -102,8 +102,9 @@ a:hover {
 																					</c:if>
 																					<input class="text-uppercase mb-2 text-center  float-left col-md-12" style="text-align: right;" id="assignmentFile" name="assignmentFile" type="file" placeholder="${aLpw.lecReference  }">
 																					<input type="hidden" id="sNo" name="sNo" value="${loginUser.sNo}">
-																					<input type="hidden" id="profName" name="profName" value="${loginUser.sName}">
+																					<input type="hidden" id="sName" name="sName" value="${loginUser.sName}">
 																					<input type="hidden" name="lecNo" value="${aLpw.lecNo }">
+																					<input type="hidden" name="className" value="${aLpw.className }">
 																					<input type="hidden" name="classNo" value="${classNo }">
 
 																					<input type="submit" id="upSubmit" style="border-radius: 3px" class="btn btn-primary rounded-3 mb-2" value="제출하기">

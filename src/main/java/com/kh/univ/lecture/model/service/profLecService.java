@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpSession;
 
 import com.kh.univ.common.PageInfo;
+import com.kh.univ.lecture.model.vo.Assignment;
 import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
 import com.kh.univ.lecture.model.vo.LectureHomeWork;
@@ -14,6 +15,7 @@ import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.notice.model.vo.Notice;
+import com.kh.univ.testPage.model.vo.GradeBefore;
 import com.kh.univ.testPage.model.vo.Test;
 
 /**
@@ -133,6 +135,11 @@ public interface profLecService {
 	int insertHomework(LectureHomeWork lh);
 
 	ArrayList<LectureHomeWork> selectHList(LectureHomeWork lh);
+
+	ArrayList<LecturePlanWeek> selectSeList(LectureHomeWork lh);
+
+
+	int EvaluationInsert(GradeBefore gb);
 
 
 	
