@@ -95,7 +95,6 @@
 									<td colspan="3" style="text-align: center;">${lp.className }</td>
 
 								</tr>
-
 								<tr>
 									<th style="width: 118px;">과목번호</th>
 									<td style="width: 252px; text-align: center;">${lp.classNo}</td>
@@ -105,18 +104,12 @@
 								<tr>
 									<th>학점</th>
 									<td style="text-align: center;">${lp.credit}</td>
-									<th>선수과목</th>
-									<td style="text-align: center;">-</td>
-								</tr>
-								<tr>
-									<th>교수</th>
-									<td style="text-align: center;">${lp.profName}</td>
 									<th>연구실</th>
 									<td style="text-align: center;">${lp.profLab}</td>
 								</tr>
 								<tr>
-									<th>연락처</th>
-									<td style="text-align: center;">-</td>
+									<th>교수</th>
+									<td style="text-align: center;">${lp.profName}</td>
 									<th>E-mail</th>
 									<td style="text-align: center;">${lp.profEmail}</td>
 								</tr>
@@ -124,7 +117,7 @@
 						</table>
 
 						<form action="prof_Syllabus_LectureUpdate.do" name="formSylla" id="formSylla" method="post">
-							<input name="classNo" type="hidden" value="${lp.classNo}">
+							<input id="classNo" name="classNo" type="hidden" value="${lp.classNo}">
 							<table class="table table-hover">
 								<thead>
 									<tr>
@@ -252,7 +245,7 @@
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<span>출석 : </span>
 											<select name="attendancePoints" id="AttendancePoints"
-											>
+											onchange="AttendancePointsChange(this)">
 											</select>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<span>합 : </span>
@@ -308,9 +301,9 @@
 			shake()
 			formSylla.lecTextbook.focus();
 			return false;
-// 		} else if (formSylla.TotalPoint.value != ""){
-// 			shake()
-// 			formSylla.assignmentPoints.focus();
+ /* 		} else if (formSylla.TotalPoint.text != "100"){
+ 			shake()
+ 			formSylla.assignmentPoints.focus(); */
 		} else { 
 			ajaxFormSylla()
 			return true;
@@ -321,6 +314,7 @@
 <script>
 	function ajaxFormSylla() {
 		var params = $("form[name=formSylla]");
+		var classNo = $('#classNo').val();
 		$.ajax({
 			type : "POST",
 			url : 'prof_Syllabus_LectureUpdate.do',
@@ -330,11 +324,14 @@
 			contentType : false,
 			async : false,
 			success : function(data) {
+				self.close();
 				if(confirm("주차별 자료를 이어서 등록하시겠습니까?")== true){
-					window.close();
+					
+					window.opener.location.href="prof_lectureVideo.do?classNo="+classNo;
+					
 				} else{
+				window.opener.location.reload();
 					opener.location.reload();
-					self.close();
 				}
 			},
 			error : function(request, status, error) {
@@ -356,7 +353,7 @@
 </script>
 <script>
 function ExamPointsChange(e) {
-
+	console.log("시험점수" + parseInt($("#examPoints option:selected").val()) );
     if(e.value == "0") var d = ["0", "10", "20", "30", "40", "50","60" ,"70", "80", "90", "100"];
     else if(e.value == "10") var d = ["0", "10", "20", "30", "40", "50","60" ,"70", "80", "90"];
     else if(e.value == "20") var d = ["0", "10", "20", "30", "40", "50","60" ,"70", "80"];
@@ -388,8 +385,10 @@ function AssignmentPointsChange(e){
 	console.log(parseInt($("#AssignmentPoints option:selected").val()));
 	
     add = parseInt($("#examPoints option:selected").val())
-	+parseInt($("#AssignmentPoints option:selected").val());
-    console.log(parseInt($("#examPoints option:selected").val()) );
+		 +parseInt($("#AssignmentPoints option:selected").val());
+    
+    console.log("과제점수" + parseInt($("#AssignmentPoints option:selected").val()) );
+    
 		 $("#TotalPoint").text(add);
 	var e= $("#TotalPoint").html();
 	console.log(e);
@@ -416,6 +415,21 @@ function AssignmentPointsChange(e){
         target.appendChild(opt);
         
     }   
+}
+function AttendancePointsChange(e){
+	
+	console.log("출석점수" + parseInt($("#AttendancePoints option:selected").val()));
+	
+  /*   add = parseInt($("#examPoints option:selected").val())
+	+parseInt($("#AssignmentPoints option:selected").val())
+	+parseInt($("AttendancePoints option:selected").val()); */
+    
+    
+		 
+	var e= $("#TotalPoint").html();
+	add= parseInt(e) + parseInt($("#AttendancePoints option:selected").val())
+    $("#TotalPoint").text(add);
+	console.log(add);
 }
 </script>
 
