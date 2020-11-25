@@ -252,7 +252,7 @@
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<span>출석 : </span>
 											<select name="attendancePoints" id="AttendancePoints"
-											onchange="AttendancePointsChange(this)">
+											>
 											</select>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<span>합 : </span>
@@ -308,9 +308,9 @@
 			shake()
 			formSylla.lecTextbook.focus();
 			return false;
-		} else if (formSylla.TotalPoint.value != "100"){
-			shake()
-			formSylla.assignmentPoints.focus();
+// 		} else if (formSylla.TotalPoint.value != ""){
+// 			shake()
+// 			formSylla.assignmentPoints.focus();
 		} else { 
 			ajaxFormSylla()
 			return true;
@@ -326,9 +326,12 @@
 			url : 'prof_Syllabus_LectureUpdate.do',
 			data : params,
 			dataType : "html",
+			processData : false,
+			contentType : false,
+			async : false,
 			success : function(data) {
 				if(confirm("주차별 자료를 이어서 등록하시겠습니까?")== true){
-					opener.location.href=''
+					window.close();
 				} else{
 					opener.location.reload();
 					self.close();

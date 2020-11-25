@@ -357,9 +357,6 @@
 					$('#imgSecssion').children().remove();
 		            // Contents 영역 교체
 		            window.location.reload('#imgSecssion');
-// 		            $('#imgSecssion').html(data);
-
-
 				} else {
 					alert('서버가 원활하지 않습니다.');
 					window.opener.location.reload();
@@ -367,7 +364,6 @@
 				}
 			},
 			error : function(request, status, error) {
-
 				console.log("code:" + request.status + "\n"
 						+ "message:" + request.responseText
 						+ "\n" + "error:" + error);
@@ -377,7 +373,6 @@
 	
 	//이미지 미리보기
 	function readURL(input) {
-		
 	    if (input.files && input.files[0]) {
 	        var reader = new FileReader();
 	        reader.onload = function(e) {

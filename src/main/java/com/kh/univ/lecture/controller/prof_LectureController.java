@@ -320,20 +320,23 @@ public class prof_LectureController {
 	 * @return
 	 */
 	@RequestMapping(value = "prof_Syllabus_LectureUpdate.do")
-	public ModelAndView prof_Syllabus_LectureUpdate(ModelAndView mv, LecturePlan lp ) {
+	@ResponseBody
+	public String prof_Syllabus_LectureUpdate(Model m, LecturePlan lp ) {
 		System.out.println("컨트롤러"+lp);
 		int result = plService.prof_Syllabus_LectureUpdate(lp);
 		System.out.println(result);
 		if(result>0) {
 			System.out.println(lp);
-			mv.setViewName("prof_lecture/prof_lecturePlanList"); // 어느페이지로
+			return null;
+//			mv.addObject("msg","success");
+//			mv.setViewName("prof_lecture/prof_lecturePlanList"); // 어느페이지로
 
 		}else {
 			System.out.println(lp);
-			mv.addObject("msg","수정실패");
-			mv.setViewName("common/errorPage");
+//			mv.addObject("msg","수정실패");
+//			mv.setViewName("common/errorPage");
+			return "fail";
 		}
-		return mv;
 	}
 
 
