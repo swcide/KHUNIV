@@ -51,7 +51,7 @@
 													<c:param name="cName" value="${ll.className}"/>
 													<c:param name="pNo" value="${pNo}"/>
 												</c:url>
-											
+												<c:out value="${ll.classNo }"/>
 											
 												<tr onclick="location.href='${week}'" style="cursor: pointer;">
 													<td>${ll.classNo }	</td>

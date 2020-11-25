@@ -36,6 +36,11 @@
       <typeAlias type="com.kh.univ.registration.model.vo.RegistrationSNO" alias="RegistrationSNO" />
       <typeAlias type="com.kh.univ.testPage.model.vo.Grade" alias="Grade" />
       <typeAlias type="com.kh.univ.testPage.model.vo.GradeBefore" alias="GradeBefore" />
+		<typeAlias type="com.kh.univ.registration.model.vo.Registration" alias="Registration" />
+		<typeAlias type="com.kh.univ.registration.model.vo.RegistrationSNO" alias="RegistrationSNO" />
+		<typeAlias type="com.kh.univ.testPage.model.vo.Grade" alias="Grade" />
+		<typeAlias type="com.kh.univ.testPage.model.vo.GradeBefore" alias="GradeBefore" />
+
 
    </typeAliases>
    <!-- environments 엘리먼트로 dataSource 등의 DB정보를 작성했었다. => 스프링에서는 그 정보를 여기서는 안쓴다. root-context.xml에 작성하게된다.(DataSource 등록은 ) -->

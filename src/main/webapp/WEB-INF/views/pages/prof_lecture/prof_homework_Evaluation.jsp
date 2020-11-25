@@ -43,43 +43,24 @@ padding-left:20px
 										<img class="card-img-top" src="resources/img/parallax-bg.jpg" alt="Card Image">
 										<div class="card-body" style="padding:0">
 											<table class="table table-hover" style="border: 1px solid #dee2e6; margin:0; cursor: pointer;">
+												<c:forEach var ="ag" items="${ag }">
 												<tr>
-													
-													<td  onclick="Evaluation();">
-														
-														<span class="font-weight-bold">김진태</span><br>
-														<span>국어국문학과</span><br>
+													<td  onclick="Evaluation(this);">
+														<input type="hidden" value="${ag.sNo }">
+														<span class="font-weight-bold">${ag.sName }</span><br>
+														<span>${ag.sNo }</span><br>
+														<c:if test="${empty ag.assignFile  }">
 														<span style="color:red">미제출</span>
+														</c:if>
+														<c:if test="${!empty ag.assignFile  }">
+														<span style="color:red">제출</span>
+														<c:if test="${!empty gb }">
+														<span class="float-right" style="color:red">평가 완료</span>
+														</c:if>
+														</c:if>
 													</td>
-												
 												</tr>
-												<tr>
-														<td  onclick="Evaluation();">
-														
-														<span class="font-weight-bold">김진태</span><br>
-														<span>국어국문학과</span><br>
-														<span style="color:red">미제출</span>
-													</td>
-												
-												</tr>
-												<tr>
-														<td  onclick="Evaluation();">
-														
-														<span class="font-weight-bold">김진태</span><br>
-														<span>국어국문학과</span><br>
-														<span style="color:red">미제출</span>
-													</td>
-												
-												</tr>
-												<tr>
-														<td  onclick="Evaluation();">
-														
-														<span class="font-weight-bold">김진태</span><br>
-														<span>국어국문학과</span><br>
-														<span style="color:red">미제출</span>
-													</td>
-												
-												</tr>
+												</c:forEach>
 											</table>
 										</div>
 									</div>
@@ -89,67 +70,30 @@ padding-left:20px
 								
 								
 								<div class="col-lg-5 mb-5 mb-lg-0 appear-animation animated fadeInUpShorter appear-animation-visible" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="200" style="animation-delay: 200ms;">
-		
-									<div class="card" style="display:block">
-<!-- 										<img class="card-img-top" src="resources/img/parallax-bg.jpg" alt="Card Image"> -->
-										<div class="card-header">
-										<span>김진태 (20100321)</span> 
-										<span class="float-right">제출</span>
-										<br>
-										<span> 국어국문학과</span>
-										
-										
-										</div>
-										<div id="Evaluation" class="card-body" style="text-align: center">
-											
-											
-											<a href="/spring/resources/uploadFiles/20201113151113.PNG" download="국ㄱ국.PNG" class="mailbox-attachment-name">
-					                    	<i class="fas fa-paperclip"></i>국ㄱ국.PNG
-				                    	</a>
-											
-											
-											
-										</div>
-									</div>
-										<div class="card" style="display:block">
-<!-- 										<img class="card-img-top" src="resources/img/parallax-bg.jpg" alt="Card Image"> -->
-										<div class="card-header">
-										<span>김진태 (20100321)</span> 
-										<span class="float-right">미제출</span>
-										<br>
-										<span> 국어국문학과</span>
-										
-										
-										</div>
-										<div id="Evaluation" class="card-body" style="text-align: center">
-											
-											<span class="card-title mb-1 text-4 font-weight-bold">아직 제출하지 않았습니다</span>
-											
-											
-										</div>
-									</div>
-										
-										
-										<div class="card mt-4">
-<!-- 										<img class="card-img-top" src="resources/img/parallax-bg.jpg" alt="Card Image"> -->
-										<div class="card-header">
-										<span>김진태 (20100321)</span> 
-										<span class="float-right">미제출</span>
-										<br>
-										<span> 국어국문학과</span>
-										
-										
-										</div>
-										<div id="Evaluation" class="card-body" style="text-align: center">
-											
-											
-											
-											
-											<span class="card-title mb-1 text-4 font-weight-bold">평가할 학생을 선택해 주세요.</span>
-										</div>
-									</div>
+									<c:forEach var ="ag" items="${ag }">
+									<div id="in${ag.sNo}" class="card change" style="display:none">
+									<c:if test="${!empty ag.assignFile  }">
 									
-											<div class="card mt-4">
+									<div class="card">
+<!-- 										<img class="card-img-top" src="resources/img/parallax-bg.jpg" alt="Card Image"> -->
+										
+										<div class="card-header">
+											<span>${ag.sName }(${ag.sNo })</span> 
+											<span class="float-right" style="color:red">제출</span>
+										</div>
+										
+										<div id="Evaluation" class="card-body" style="text-align: center">
+											<span>${ag.assignExpl }</span>
+											<br>
+										
+										</div>
+										<div class="card-body">
+											<a class="float-right" href="/spring/resources/assignmentUploadFile/${ag.assignFile }" download="국ㄱ국.PNG" class="mailbox-attachment-name">
+					                    	<i class="fas fa-paperclip"></i>${ag.assignFile }
+				                    		</a>
+										</div>
+									</div>
+									<div class="card mt-4">
 <!-- 										<img class="card-img-top" src="resources/img/parallax-bg.jpg" alt="Card Image"> -->
 										
 										<div class="card-header text-4 font-weight-bold" style="background:rgba(0,0,0,0.2)">
@@ -164,14 +108,60 @@ padding-left:20px
 										
 										
 										</div>
+										<br>
+										<form action="sEvaluationInsert">
 										<div id="Evaluation" class="card-body" style="text-align: center">
 											<span>평가 점수</span>
-											<input  type="text">
+											<input name ="point" type="text">
 											<br>
 											<br>
-											<a class="btn btn-sm btn-primary float-right " href="prof_homeworkInsert.do">저장</a>
+											<input type="hidden" name ="sNo" value="${ag.sNo }">
+											<input type="hidden" name ="cNo" value="${ag.classNo }">
+											<input type="submit" class="btn btn-sm btn-primary float-right " value="저장">
+										
 										</div>
+										</form>
 									</div>
+										
+								
+										</c:if>
+										
+										<c:if test="${empty ag.assignFile  }">
+										<div class="card">
+											<div class="card-header">
+												<span>${ag.sName }(${ag.sNo })</span> 
+												<span  class="float-right" style="color:red">미제출</span>
+												<br>
+												
+											</div>
+											<div id="Evaluation" class="card-body" style="text-align: center">
+												<span class="card-title mb-1 text-4 font-weight-bold">아직 제출하지 않았습니다</span>
+											</div>
+										</div>
+										</c:if>
+										
+									</div>
+									
+									
+									
+
+									</c:forEach>
+										
+									
+									<div id="before" class="card mt-4">
+<!-- 										<img class="card-img-top" src="resources/img/parallax-bg.jpg" alt="Card Image"> -->
+										<div class="card-header">
+										<span>김진태 (20100321)</span> 
+										<span class="float-right">미제출</span>
+										<br>
+										</div>
+											<div class="card-body" style="text-align: center">
+												<span class="card-title mb-1 text-4 font-weight-bold">평가할 학생을 선택해 주세요.</span>
+											</div>
+									</div>
+									
+									
+									
 								</div>	
 						</div>
 					
@@ -183,9 +173,16 @@ padding-left:20px
 </div>
 <script>
 
-	function Evaluation(){
-		var remove = $('#Evaluation').children();
+	function Evaluation(obj){
+		var sNo = $(obj).find('input').val();
+		console.log(sNo);
+		var remove = $('#before');
 		remove.remove();
+		var none = $('.change');
+		var after = $('#in'+sNo);
+		none.css("display","none");
+		after.css("display","block");
+		
 		
 		
 		
