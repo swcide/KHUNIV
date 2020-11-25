@@ -35,13 +35,20 @@
    <resultMap type="LecturePlanWeek"
       id="lecturePlanWeekResultSet">
       <id property="classNo" column="CLASS_NO" />
+      <id property="className" column="CLASS_NAME" />
+      <id property="sNo" column="STD_NO" />
+      <id property="sName" column="STD_NO" />
+      <id property="assignExpl" column="ASSIGNMENT_EXPLANATION" />
+      <id property="submitDate" column="SUBMIT_DATE" />
+      <id property="assignFile" column="ASSIGNMENT_FILE_NAME" />
       <id property="lecNo" column="LECTURE_NO" />
+      
+      
       <id property="lecName" column="LECTURE_NAME" />
       <id property="lecReference" column="LECTURE_REFERENCE" />
       <id property="lecVideo" column="LECTURE_VIDEO" />
       <id property="lecExplanation" column="LECTURE_EXPLANATION" />
-      <id property="lecVideoCreateDate"
-         column="LECTURE_VIDEO_CREATE_DATE" />
+      <id property="lecVideoCreateDate"  column="LECTURE_VIDEO_CREATE_DATE" />
    </resultMap>
 
    <resultMap type="LectureList" id="lectureListResultSet">
@@ -144,12 +151,7 @@
 	</resultMap>
 	
 	 
-	
-   <insert id="assignmentInsert" parameterType="LecturePlanWeek">
-      INSERT INTO
-      TB_ASSIGNMENT
-      VALUES(#{sNo}, #{classNo}, #{lecReference},#{lecNo},#{lecExplanation},SYSDATE)
-   </insert>
+
    
    
    	<resultMap type="LectureHomeWork" id="LectureHomeWorkResultSet">
@@ -171,14 +173,29 @@
    
 
    
+ 	<resultMap type="GradeBefore" id="GradeBeforeResultSet"  >
+	 <id property="tNo" column="TEST_NO" />
+      <result property="sNo" column="STD_NO" />
+      <result property="pNo" column="PROF_NO" />
+      <result property="cNo" column="CLASS_NO" />
+      <result property="homework" column="HOMEWORK" />
+      <result property="homework" column="QUIZ" />
+      <result property="fTest" column="FINAL_TEST" />
+      <result property="mTest" column="MIDTERM_TEST" />
+ 	
+ 	</resultMap>
+ 
    
    
    
    
    
-   
-   
-   
+   	
+   <insert id="assignmentInsert" parameterType="LecturePlanWeek">
+      INSERT INTO
+      TB_ASSIGNMENT
+      VALUES(#{sNo}, #{classNo}, #{lecReference},#{lecNo},#{lecExplanation},SYSDATE,#{className},#{sName})
+   </insert>
    
    
    
@@ -654,7 +671,7 @@
       SELECT *
       FROM TB_PROF_TEST
       WHERE PROF_NO = #{pNo}
-   </select>
+    </select>
    
     <insert id="insertHomework" parameterType="LectureHomeWork">
       INSERT INTO TB_HOMEWORK
@@ -685,6 +702,36 @@
       AND CLASS_NO =#{cNo}
    </select>
  
+ 	<select id="selectSeList" resultMap="lecturePlanWeekResultSet">
+      SELECT *
+      FROM TB_ASSIGNMENT
+      where CLASS_NO =#{cNo}
+   </select>
+   
+     <insert id="EvaluationInsert" parameterType="GradeBefore">
+      INSERT INTO TB_GRADE_BEFORE
+      VALUES(
+      #{sNo},
+      #{lecNo},
+      #{hTitle},
+      #{hContent},
+      #{originalFileName},
+      #{renameFileName},
+      #{pNo},
+      #{cNo},
+      #{cName},
+      #{eGrade},
+      #{hStatus},
+      #{openDate},
+      #{endDate},
+      #{hPoint},
+      SEQ_HID.NEXTVAL
+      )
+
+   </insert>
+ 
+ 
    
 
 </mapper>
+
