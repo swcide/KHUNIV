@@ -58,8 +58,6 @@ public interface ad_RegisterService {
 	 */
 	int ad_drop_absence_apply(grdExp ge);
 
-	int getListCount(String dNo);
-
 	ArrayList<LectureList> selectList1(String dNo);
 
 	ArrayList<LectureList> selectList2(String dNo);

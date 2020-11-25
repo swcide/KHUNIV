@@ -548,12 +548,8 @@ public class ad_Register_Controller {
 			// 페이지수
 			Student student = (Student) session.getAttribute("loginUser"); // 로긴세션에서 뽑은 정보를 학생객체에 넣기
 			String dNo = student.getdNo(); // 학생번호만 뽑기   
-			int listCount = arService.getListCount(dNo);
-			System.out.println(listCount);
-			System.out.println("아마 여기까진");
-
 			ArrayList<LectureList> ll = arService.selectList1(dNo); // 전공과목용 
-
+			
 			ArrayList<LectureList> lp = arService.selectList2(dNo); // 교양과목용 
 
 			System.out.println(ll);
@@ -586,7 +582,8 @@ public class ad_Register_Controller {
 			LecturePlan lp = arService.selectSyllaOne1(ll);
 			ArrayList<LecturePlanWeek> lpw = arService.selectSyllaOne2(ll);
 			System.out.println("디비갔다온" + lp);
-			System.out.println(lpw);
+			System.out.println("디비갔다온"+lpw);
+			System.out.println(lp.getAssignmentPoints());
 			if (lpw != null && lp != null) {
 				mv.addObject("lp", lp);
 				mv.addObject("lpw", lpw);

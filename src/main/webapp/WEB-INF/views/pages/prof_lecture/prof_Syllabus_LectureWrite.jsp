@@ -62,7 +62,7 @@
 	$(document).ready(function(){
 		$("#AssignmentPoints").hide();
 		$("#AttendancePoints").hide();
-	})
+	});
 </script>
 </head>
 <body onresize="parent.resizeTo(900,800)" onload="parent.resizeTo(700,100)">
@@ -134,7 +134,7 @@
 								<tbody>
 									<tr>
 										<td>
-											<input name="classSummary" size=90 placeholder="${lp.classSummary}">
+											<input name="classSummary" size=90 value="${lp.classSummary}">
 										</td>
 									</tr>
 								</tbody>
@@ -146,7 +146,7 @@
 								<tbody>
 									<tr>
 										<td>
-											<input name="classGoal" size=90 placeholder="${lp.classGoal}">
+											<input name="classGoal" size=90 value="${lp.classGoal}">
 										</td>
 									</tr>
 								</tbody>
@@ -158,7 +158,7 @@
 								<tbody>
 									<tr>
 										<td>
-											<input name="lecMethod" size=90 placeholder="${lp.lecMethod}">
+											<input name="lecMethod" size=90 value="${lp.lecMethod}">
 										</td>
 									</tr>
 								</tbody>
@@ -170,7 +170,7 @@
 								<tbody>
 									<tr>
 										<td>
-											<input name="evalMethod" size=90 placeholder="${lp.evalMethod}">
+											<input name="evalMethod" size=90 value="${lp.evalMethod}">
 										</td>
 									</tr>
 								</tbody>
@@ -182,7 +182,7 @@
 								<tbody>
 									<tr>
 										<td>
-											<input name="assignment" size=90 placeholder="${lp.assignment}">
+											<input name="assignment" size=90 value="${lp.assignment}">
 										</td>
 									</tr>
 								</tbody>
@@ -194,7 +194,7 @@
 								<tbody>
 									<tr>
 										<td>
-											<input name="lecExperiment" size=90 placeholder="${lp.lecExperiment}">
+											<input name="lecExperiment" size=90 value="${lp.lecExperiment}">
 										</td>
 									</tr>
 								</tbody>
@@ -206,7 +206,7 @@
 								<tbody>
 									<tr>
 										<td>
-											<input name="relatedLec" size=90 placeholder="${lp.relatedLec}">
+											<input name="relatedLec" value="${lp.relatedLec}" size=90>
 										</td>
 									</tr>
 								</tbody>
@@ -218,7 +218,7 @@
 								<tbody>
 									<tr>
 										<td>
-											<input name="lecTextbook" size=90 placeholder="${lp.lecTextbook}">
+											<input name="lecTextbook" size=90 value="${lp.lecTextbook}">
 										</td>
 									</tr>
 								</tbody>
@@ -246,11 +246,13 @@
 											</select>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<span>과제 : </span>
-											<select name="assignmentPoints" value="" id="AssignmentPoints" onchange="AssignmentPointsChange(this)">
+											<select name="assignmentPoints" id="AssignmentPoints" 
+											onchange="AssignmentPointsChange(this)">
 											</select>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<span>출석 : </span>
-											<select name="attendancePoints" value="" id="AttendancePoints" onchange="AttendancePointsChange()">
+											<select name="attendancePoints" id="AttendancePoints"
+											onchange="AttendancePointsChange(this)">
 											</select>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<span>합 : </span>
@@ -259,7 +261,8 @@
 								</tbody>
 							</table>
 
-							<button type="submit" class="btn btn-dark" id="btnForm" onclick="checkForm(); return false" style="float: right; margin-bottom: 20px;">
+							<button type="submit" class="btn btn-dark" id="btnForm" onclick="checkForm(); return false" 
+									style="float: right; margin-bottom: 20px;">
 								<i class="fas fa-pencil-alt"></i> 제출하기
 							</button>
 						</form>
@@ -269,107 +272,6 @@
 		</div>
 	</div>
 </body>
-<script>
-
-function ExamPointsChange(e) {
-	
-    var op00 = ["0", "10", "20", "30", "40", "50","60" ,"70", "80", "90", "100"];
-    var op10 = ["0", "10", "20", "30", "40", "50","60" ,"70", "80", "90"];
-    var op20 = ["0", "10", "20", "30", "40", "50","60" ,"70", "80"];
-    var op30 = ["0", "10", "20", "30", "40", "50","60" ,"70"];
-    var op40 = ["0", "10", "20", "30", "40", "50","60"];
-    var op50 = ["0", "10", "20", "30", "40", "50"];
-    var op60 = ["0", "10", "20", "30", "40"];
-    var op70 = ["0", "10", "20", "30"];
-    var op80 = ["0", "10", "20"];
-    var op90 = ["0", "10"];
-    var op100 = ["0"];
-    
-    var target = document.getElementById("AssignmentPoints");
-
-    if(e.value == "0") var d = op00;
-    else if(e.value == "10") var d = op10;
-    else if(e.value == "20") var d = op20;
-    else if(e.value == "30") var d = op30;
-    else if(e.value == "40") var d = op40;
-    else if(e.value == "50") var d = op50;
-    else if(e.value == "60") var d = op60;
-    else if(e.value == "70") var d = op70;
-    else if(e.value == "80") var d = op80;
-    else if(e.value == "90") var d = op90;
-    else if(e.value == "100") var d = op100;
-	
-
-
-    target.options.length = 0;
-    $("#TotalPoint").text(e.value);
-    console.log(d);
-    for (x in d) {
-        var opt = document.createElement("option");
-        opt.value = d[x];
-        opt.innerHTML = d[x];
-        $("#AssignmentPoints").show();
-        target.appendChild(opt);
-        $("#TotalPoint").text(e.value);
-        
-    }   
-}
-</script>
-<script>
-function AssignmentPointsChange(){
-	var op00 = ["0", "10", "20", "30", "40", "50","60" ,"70", "80", "90", "100"];
-    var op10 = ["0", "10", "20", "30", "40", "50","60" ,"70", "80", "90"];
-    var op20 = ["0", "10", "20", "30", "40", "50","60" ,"70", "80"];
-    var op30 = ["0", "10", "20", "30", "40", "50","60" ,"70"];
-    var op40 = ["0", "10", "20", "30", "40", "50","60"];
-    var op50 = ["0", "10", "20", "30", "40", "50"];
-    var op60 = ["0", "10", "20", "30", "40"];
-    var op70 = ["0", "10", "20", "30"];
-    var op80 = ["0", "10", "20"];
-    var op90 = ["0", "10"];
-    var op100 = ["0"];
-    
-    add = parseInt($("#examPoints option:selected").val())+parseInt($("#AssignmentPoints option:selected").val());
-    $("#TotalPoint").text(add);
-    var e = $("#TotalPoint").html();
-    
-    var target = document.getElementById("AttendancePoints");
-    
-    if(e == "0") var d = op00;
-    else if(e == "10") var d = op10;
-    else if(e == "20") var d = op20;
-    else if(e == "30") var d = op30;
-    else if(e == "40") var d = op40;
-    else if(e == "50") var d = op50;
-    else if(e == "60") var d = op60;
-    else if(e == "70") var d = op70;
-    else if(e == "80") var d = op80;
-    else if(e == "90") var d = op90;
-    else if(e == "100") var d = op100;
-    
-    target.options.length = 0;
-    for (x in d) {
-        var opt = document.createElement("option");
-        opt.value = d[x];
-        opt.innerHTML = d[x];
-        $("#AttendancePoints").show();
-        target.appendChild(opt);
-        
-        
-    }   
-}
-
-
-</script>
-<script>
-	function AttendancePointsChange(){
-	alert("송공");
-	add = parseInt($("#examPoints option:selected").val())+parseInt($("#AssignmentPoints option:selected").val())+parseInt($("#AttendancePoints option:selected").val());
-    alert(add);
-    $("#TotalPoint").text(add);
-	}
-</script>
-
 <script>
 	
 	function checkForm() {
@@ -406,24 +308,31 @@ function AssignmentPointsChange(){
 			shake()
 			formSylla.lecTextbook.focus();
 			return false;
-		} else {
+		} else if (formSylla.TotalPoint.value != "100"){
+			shake()
+			formSylla.assignmentPoints.focus();
+		} else { 
 			ajaxFormSylla()
 			return true;
 
 		}
 	};
-
+</script>
+<script>
 	function ajaxFormSylla() {
-		var params = $("form[name=formSylla]").serialize();
+		var params = $("form[name=formSylla]");
 		$.ajax({
 			type : "POST",
 			url : 'prof_Syllabus_LectureUpdate.do',
 			data : params,
 			dataType : "html",
 			success : function(data) {
-				alert("수정이 완료되었습니다.")
-				window.opener.location.reload();
-				self.close();
+				if(confirm("주차별 자료를 이어서 등록하시겠습니까?")== true){
+					opener.location.href=''
+				} else{
+					opener.location.reload();
+					self.close();
+				}
 			},
 			error : function(request, status, error) {
 
@@ -442,4 +351,69 @@ function AssignmentPointsChange(){
 		alert("빈칸을 채워주세요");
 	}
 </script>
+<script>
+function ExamPointsChange(e) {
+
+    if(e.value == "0") var d = ["0", "10", "20", "30", "40", "50","60" ,"70", "80", "90", "100"];
+    else if(e.value == "10") var d = ["0", "10", "20", "30", "40", "50","60" ,"70", "80", "90"];
+    else if(e.value == "20") var d = ["0", "10", "20", "30", "40", "50","60" ,"70", "80"];
+    else if(e.value == "30") var d = ["0", "10", "20", "30", "40", "50","60" ,"70"];
+    else if(e.value == "40") var d = ["0", "10", "20", "30", "40", "50","60"];
+    else if(e.value == "50") var d = ["0", "10", "20", "30", "40", "50"];
+    else if(e.value == "60") var d = ["0", "10", "20", "30", "40"];
+    else if(e.value == "70") var d = ["0", "10", "20", "30"];
+    else if(e.value == "80") var d = ["0", "10", "20"];
+    else if(e.value == "90") var d = ["0", "10"];
+    else if(e.value == "100") var d = ["0"];
+
+    var target = document.getElementById("AssignmentPoints");
+    target.options.length = 0;
+    $("#TotalPoint").text(e.value);
+    for (x in d) {
+        var opt = document.createElement("option");
+        opt.value = d[x];
+        opt.innerHTML = d[x];
+        $("#AssignmentPoints").show();
+        target.appendChild(opt);
+        $("#TotalPoint").text(e.value);
+        
+    }   
+}
+
+function AssignmentPointsChange(e){
+	
+	console.log(parseInt($("#AssignmentPoints option:selected").val()));
+	
+    add = parseInt($("#examPoints option:selected").val())
+	+parseInt($("#AssignmentPoints option:selected").val());
+    console.log(parseInt($("#examPoints option:selected").val()) );
+		 $("#TotalPoint").text(add);
+	var e= $("#TotalPoint").html();
+	console.log(e);
+    if(e == "0") var d = ["0", "10", "20", "30", "40", "50","60" ,"70", "80", "90", "100"];
+    else if(e == "10") var d = ["0", "10", "20", "30", "40", "50","60" ,"70", "80", "90"];
+    else if(e == "20") var d = ["0", "10", "20", "30", "40", "50","60" ,"70", "80"];
+    else if(e == "30") var d = ["0", "10", "20", "30", "40", "50","60" ,"70"];
+    else if(e == "40") var d = ["0", "10", "20", "30", "40", "50","60"];
+    else if(e == "50") var d = ["0", "10", "20", "30", "40", "50"];
+    else if(e == "60") var d = ["0", "10", "20", "30", "40"];
+    else if(e == "70") var d = ["0", "10", "20", "30"];
+    else if(e == "80") var d = ["0", "10", "20"];
+    else if(e == "90") var d = ["0", "10"];
+    else if(e == "100") var d = ["0"];
+    
+    var target = document.getElementById("AttendancePoints");
+    target.options.length = 0;
+    
+    for (x in d) {
+        var opt = document.createElement("option");
+        opt.value = d[x];
+        opt.innerHTML = d[x];
+        $("#AttendancePoints").show();
+        target.appendChild(opt);
+        
+    }   
+}
+</script>
+
 </html>

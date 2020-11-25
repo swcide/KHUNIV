@@ -35,8 +35,8 @@ a:hover {
 			<div class="container">
 				<div class="row mt-3">
 					<div class="col-md-12 align-self-center p-static order-2 text-center">
-						<h1 class="text-9 font-weight-bold">강의 동영상 관리</h1>
-						<span class="sub-title">Adding Lecture video list</span>
+						<h1 class="text-9 font-weight-bold">나의 강의 동영상</h1>
+						<span class="sub-title">My Lecture video list</span>
 					</div>
 				</div>
 			</div>
@@ -46,9 +46,10 @@ a:hover {
 				<div class="col">
 					<div class="row">
 						<div class="col">
-							<!-- **********************************************  등록한 강의내역 확인하는 곳 ***************************************** -->
+
+							<!-- **********************************************  강의내역 확인하는 곳 ***************************************** -->
 							<hr>
-							<h4 class="text-uppercase mt-4">강의 업로드 현황</h4>
+							<h4 class="text-uppercase mt-4">주차별 강의 목록</h4>
 							<c:forEach var="aLpw" items="${aLpw }">
 								<div class="row mt-lg-3">
 									<div class="col">
@@ -81,31 +82,26 @@ a:hover {
 														<span>
 															<div class="toggle toggle-primary toggle-simple" data-plugin-toggle>
 																<section class="toggle">
-																	<a class="toggle-title" style="padding: 0;">과제제출</a> 
-																	<!--  ************ 수정하기 **************** -->
+																	<a class="toggle-title" style="background-color: #008995; border-radius: 3px; color:#ffffff; padding: 5px;">과제제출</a> 
+																	<!--  ************과제제출하기 **************** -->
 																	<div class="toggle-content" style="border: 1px ridge; border-radius: 3px;">
-																		<form id="frm" class="col" action="std_assignmentInsert.do" method="post" enctype="multipart/form-data">
+																		<form id="frm" class="col" action="assignmentInsert.do" method="post" enctype="multipart/form-data">
 																			<div class="row" style="padding-top: 8px;">
 																				<div class="col-md-9">
 																					<div class="col-md-12">
-																						<span class="text-uppercase mb-4 text-center  text-6 float-left col-md-3" style="font-weight: bold; color: black; margin-top: 3px;">${aLpw.lecNo }주차 강의명 :</span>
-																						<input class="text-uppercase mb-4 text-center text-6 float-right col-md-9" style="text-align: right;" id="lecName" name="lecName" placeholder="${aLpw.lecName  }">
-																						<textarea style="width: 100%;" cols="30" rows="4" id="lecExplanation" name="lecExplanation" placeholder="${aLpw.lecExplanation  }"></textarea>
+																						<span class="text-uppercase mb-4 text-center  text-6 float-left col-md-3" style="font-weight: bold; color: black; margin-top: 3px;">${aLpw.lecNo }주차 과제명 :</span>
+																						<input class="text-uppercase mb-4 text-center text-6 float-right col-md-9" style="text-align: right;" id="lecName" name="assignmentName" placeholder="과제명을 입력하세요">
+																						<textarea style="width: 100%;" cols="30" rows="4" id="assignExpl" name="assignExpl" placeholder="과제 관련 설명을 입력하세요."></textarea>
 																					</div>
 																				</div>
 																				<div class="col-md-3">
-																					<span class="text-uppercase mb-0 text-left  text-4 float-left col-md-12" style="font-weight: bold; color: black;">첨부자료</span>
-																					<c:if test="${!empty aLpw.lecReference }">
-																						<span class="text-uppercase mb-0 text-left  text-2 float-left col-md-12">
-																							현재 업로드한 파일 : <a href="${contextPath }/resources/assignmentUploadFile/${aLpw.lecReference  }">${aLpw.lecReference  }</a>
-																						</span>
-																					</c:if>
-																					<input class="text-uppercase mb-2 text-center  float-left col-md-12" style="text-align: right;" id="assignmentFile" name="assignmentFile" type="file" placeholder="${aLpw.lecReference  }">
-																					<input type="hidden" id="sNo" name="sNo" value="${loginUser.sNo}">
-																					<input type="hidden" id="profName" name="profName" value="${loginUser.sName}">
+																					<span class="text-uppercase mb-0 text-left  text-4 float-left col-md-12" style="font-weight: bold; color: black;">첨부파일</span>
+																					<input class="text-uppercase mb-2 text-center  float-left col-md-12" style="text-align: right;" id="assignmnetInsert" name="assignmnetInsert" type="file" placeholder="안녕안녕">
+																					<input type="hidden" id="profNo" name="profNo" value="${loginProf.pNo}">
+																					<input type="hidden" id="profName" name="profName" value="${loginProf.pName}">
 																					<input type="hidden" name="lecNo" value="${aLpw.lecNo }">
 																					<input type="hidden" name="classNo" value="${classNo }">
-
+																					<br><br><br><br><br><br>
 																					<input type="submit" id="upSubmit" style="border-radius: 3px" class="btn btn-primary rounded-3 mb-2" value="제출하기">
 
 																				</div>
@@ -128,4 +124,21 @@ a:hover {
 			</div>
 		</div>
 	</div>
+	<script>
+								$('#updateView')
+										.on(
+												'click',
+												function() {
+													if ($('#updatefrm').css(
+															'display') == 'none') {
+														$('#updatefrm').show();
+														$('#updateView').html(
+																'숨기기');
+													} else {
+														$('#updatefrm').hide();
+														$('#updateView').html(
+																'등록하기');
+													}
+												});
+	</script>
 	<%@ include file="../common/footer.jsp"%>
