@@ -329,14 +329,10 @@ public class prof_LectureController {
 		System.out.println(result);
 		if(result>0) {
 			System.out.println(lp);
-			return null;
-//			mv.addObject("msg","success");
-//			mv.setViewName("prof_lecture/prof_lecturePlanList"); // 어느페이지로
+			return "success";
 
 		}else {
 			System.out.println(lp);
-//			mv.addObject("msg","수정실패");
-//			mv.setViewName("common/errorPage");
 			return "fail";
 		}
 	}
