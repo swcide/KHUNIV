@@ -31,6 +31,7 @@
       <typeAlias type="com.kh.univ.ad_Register.model.vo.Absence" alias="Absence" />
       <typeAlias type="com.kh.univ.ad_Register.model.vo.grdExp" alias="grdExp" />
       <typeAlias type="com.kh.univ.ad_Register.model.vo.Certificate" alias="Certificate" />
+      <typeAlias type="com.kh.univ.ad_Register.model.vo.Bill" alias="Bill" />
 
       <typeAlias type="com.kh.univ.registration.model.vo.Registration" alias="Registration" />
       <typeAlias type="com.kh.univ.registration.model.vo.RegistrationSNO" alias="RegistrationSNO" />

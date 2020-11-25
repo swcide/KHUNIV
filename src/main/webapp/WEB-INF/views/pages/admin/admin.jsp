@@ -16,145 +16,21 @@
 </head>
 <body>
 	<div id="app">
-		<div id="sidebar" class='active'>
-			<div class="sidebar-wrapper active">
-				<div class="sidebar-header">
-					<img src="assets/images/logo.svg" alt="" srcset="">
-				</div>
-				<div class="sidebar-menu">
-					<ul class="menu">
-						<li class="sidebar-item  has-sub"><a href="#" class='sidebar-link'> <i data-feather="triangle" width="20"></i> <span>학생</span>
-						</a>
-							<ul class="submenu ">
-								<li><a href="component-alert.html">학적관리현황</a></li>
-								<li><a href="component-badge.html">등록금납부현황</a></li>
-								<li><a href="component-badge.html">신입생 등록</a></li>
-							</ul></li>
-
-						<li class="sidebar-item  has-sub"><a href="#" class='sidebar-link'> <i data-feather="briefcase" width="20"></i> <span>게시판</span>
-						</a>
-							<ul class="submenu ">
-								<li><a href="component-extra-avatar.html">공지 현황</a></li>
-								<li><a href="component-extra-avatar.html">계열별 게시판 현황</a></li>
-								<li><a href="component-extra-divider.html">취업정보 게시판 현황</a></li>
-								<li><a href="component-extra-divider.html">금칙어 관리</a></li>
-							</ul></li>
-
-						<li class="sidebar-item  has-sub"><a href="#" class='sidebar-link'> <i data-feather="briefcase" width="20"></i> <span>학과</span>
-						</a>
-							<ul class="submenu ">
-								<li><a href="component-extra-avatar.html">교양학과</a></li>
-								<li><a href="component-extra-divider.html">일반학과</a></li>
-							</ul></li>
-
-						<li class="sidebar-item  has-sub"><a href="#" class='sidebar-link'> <i data-feather="file-text" width="20"></i> <span>교수</span>
-						</a>
-							<ul class="submenu ">
-								<li><a href="form-element-input.html">Input</a></li>
-								<li><a href="form-element-input-group.html">Input Group</a></li>
-								<li><a href="form-element-select.html">Select</a></li>
-								<li><a href="form-element-radio.html">Radio</a></li>
-								<li><a href="form-element-checkbox.html">Checkbox</a></li>
-								<li><a href="form-element-textarea.html">Textarea</a></li>
-							</ul></li>
-					</ul>
-				</div>
-				<button class="sidebar-toggler btn x">
-					<i data-feather="x"></i>
-				</button>
-			</div>
-		</div>
+		<!-- side bar -->
+		<%@include file="adminSideBar.jsp" %>
+		<!-- header -->
 		<div id="main">
-			<nav class="navbar navbar-header navbar-expand navbar-light">
-				<a class="sidebar-toggler" href="#"><span class="navbar-toggler-icon"></span></a>
-				<button class="btn navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav d-flex align-items-center navbar-light ml-auto">
-						<li class="dropdown nav-icon"><a href="#" data-toggle="dropdown" class="nav-link  dropdown-toggle nav-link-lg nav-link-user">
-								<div class="d-lg-inline-block">
-									<i data-feather="bell"></i>
-								</div>
-						</a>
-							<div class="dropdown-menu dropdown-menu-right dropdown-menu-large">
-								<h6 class='py-2 px-4'>Notifications</h6>
-								<ul class="list-group rounded-none">
-									<li class="list-group-item border-0 align-items-start">
-										<div class="avatar bg-success mr-3">
-											<span class="avatar-content"><i data-feather="shopping-cart"></i></span>
-										</div>
-										<div>
-											<h6 class='text-bold'>New Order</h6>
-											<p class='text-xs'>An order made by Ahmad Saugi for product Samsung Galaxy S69</p>
-										</div>
-									</li>
-								</ul>
-							</div></li>
-						<li class="dropdown nav-icon mr-2"><a href="#" data-toggle="dropdown" class="nav-link  dropdown-toggle nav-link-lg nav-link-user">
-								<div class="d-lg-inline-block">
-									<i data-feather="mail"></i>
-								</div>
-						</a>
-							<div class="dropdown-menu dropdown-menu-right">
-								<a class="dropdown-item" href="#"><i data-feather="user"></i> Account</a> <a class="dropdown-item active" href="#"><i data-feather="mail"></i> Messages</a> <a class="dropdown-item" href="#"><i data-feather="settings"></i> Settings</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#"><i data-feather="log-out"></i> Logout</a>
-							</div></li>
-						<li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-								<div class="avatar mr-1">
-									<img src="assets/images/avatar/avatar-s-1.png" alt="" srcset="">
-								</div>
-								<div class="d-none d-md-block d-lg-inline-block">Hi, Saugi</div>
-						</a>
-							<div class="dropdown-menu dropdown-menu-right">
-								<a class="dropdown-item" href="#"><i data-feather="user"></i> Account</a> <a class="dropdown-item active" href="#"><i data-feather="mail"></i> Messages</a> <a class="dropdown-item" href="#"><i data-feather="settings"></i> Settings</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#"><i data-feather="log-out"></i> Logout</a>
-							</div></li>
-					</ul>
-				</div>
-			</nav>
-
+			<%@ include file="adminHeader.jsp" %>
+			<!--  contents -->
 			<div class="main-content container-fluid">
 				<div class="page-title">
-					<h3>Dashboard</h3>
-					<p class="text-subtitle text-muted">A good dashboard to display your statistics</p>
+					<h3>관리자 전용 화면입니다.</h3>
+					<p class="text-subtitle text-muted">모든 기능은 필요에 의해 이용하여 주시길 바랍니다.</p>
 				</div>
 				<section class="section">
 					<div class="row mb-4">
 						<div class="col-md-8">
-							<div class="card">
-								<div class="card-header">
-									<h3 class='card-heading p-1 pl-3'>사이트 접속 현황</h3>
-								</div>
-								<div class="card-body">
-									<div class="row">
-										<div class="col-md-4 col-12">
-											<div class="pl-3">
-												<h1 class='mt-5'>today 1502</h1>
-												<p class='text-xs'>
-													<span class="text-green"><i data-feather="bar-chart" width="15"></i> +19%</span> than last day
-												</p>
-												<div class="legends">
-													<div class="legend d-flex flex-row align-items-center">
-														<div class='w-3 h-3 rounded-full bg-info mr-2'></div>
-														<span class='text-xs'>Last Month</span>
-													</div>
-													<div class="legend d-flex flex-row align-items-center">
-														<div class='w-3 h-3 rounded-full bg-blue mr-2'></div>
-														<span class='text-xs'>Current Month</span>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-8 col-12">
-											<canvas id="bar"></canvas>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="card">
+							<div class="card" style="height: 94%;">
 								<div class="card-header d-flex justify-content-between align-items-center">
 									<h4 class="card-title">게시판 관리 현황</h4>
 								</div>
@@ -171,14 +47,6 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td>Graiden</td>
-													<td>vehicula.aliquet@semconsequat.co.uk</td>
-													<td>076 4820 8838</td>
-													<td>Offenburg</td>
-													<td>
-														<span class="badge bg-success">Active</span>
-													</td>
 												</tr>
 												<tr>
 													<td>Dale</td>
@@ -198,42 +66,6 @@
 														<span class="badge bg-danger">Inactive</span>
 													</td>
 												</tr>
-												<tr>
-													<td>Darius</td>
-													<td>velit@nec.com</td>
-													<td>0309 690 7871</td>
-													<td>Ways</td>
-													<td>
-														<span class="badge bg-success">Active</span>
-													</td>
-												</tr>
-												<tr>
-													<td>Ganteng</td>
-													<td>velit@nec.com</td>
-													<td>0309 690 7871</td>
-													<td>Ways</td>
-													<td>
-														<span class="badge bg-success">Active</span>
-													</td>
-												</tr>
-												<tr>
-													<td>Oleg</td>
-													<td>rhoncus.id@Aliquamauctorvelit.net</td>
-													<td>0500 441046</td>
-													<td>Rossignol</td>
-													<td>
-														<span class="badge bg-success">Active</span>
-													</td>
-												</tr>
-												<tr>
-													<td>Kermit</td>
-													<td>diam.Sed.diam@anteVivamusnon.org</td>
-													<td>(01653) 27844</td>
-													<td>Patna</td>
-													<td>
-														<span class="badge bg-success">Active</span>
-													</td>
-												</tr>
 											</tbody>
 										</table>
 									</div>
@@ -242,7 +74,7 @@
 						</div>
 						<div class="col-md-4">
 
-							<div class="card widget-todo">
+							<div class="card widget-todo" style="height: 62%;">
 								<div class="card-header border-bottom d-flex justify-content-between align-items-center">
 									<h4 class="card-title d-flex">
 										<i class='bx bx-check font-medium-5 pl-25 pr-75'></i>학적관리 현황
@@ -296,69 +128,25 @@
 											</td>
 											<td class='col-3 text-center'>80%</td>
 										</tr>
-
 									</table>
 								</div>
 							</div>
 							<div class="card">
-								<div class="card-header">
-									<h4 class="card-title">Q & A 게시판 현황</h4>
+								<div class="card-header d-flex justify-content-between align-items-center" style="margin-top: -4%;">
+									<h4>바로가기</h4>
 								</div>
-								<div class="card-content">
-									<div class="card-body">
-										<div class="table-responsive">
-											<table class="table">
-												<thead>
-													<tr>
-														<th>이름</th>
-														<th style="text-align: center;">질문내용</th>
-														<th style="text-align: center;">처리 상태</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td class="text-bold-500">Michael Right</td>
-														<td style="text-align: center;">$15/hr</td>
-														<td class="text-bold-500" style="text-align: center;">
-															<span class="badge bg-primary">Primary</span>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-bold-500">Morgan Vanblum</td>
-														<td style="text-align: center;">$13/hr</td>
-														<td class="text-bold-500" style="text-align: center;">
-															<a class="badge bg-danger">Danger</a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-bold-500">Tiffani Blogz</td>
-														<td style="text-align: center;">$15/hr</td>
-														<td class="text-bold-500" style="text-align: center;">
-															<span class="badge bg-primary">Primary</span>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-bold-500">Ashley Boul</td>
-														<td style="text-align: center;">$15/hr</td>
-														<td class="text-bold-500" style="text-align: center;">
-															<span class="badge bg-primary">Primary</span>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-bold-500">Mikkey Mice</td>
-														<td style="text-align: center;">$15/hr</td>
-														<td class="text-bold-500" style="text-align: center;">
-															<a class="badge bg-danger">Danger</a>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</div>
+								<div class="btn-group mb-2 float-center" role="group" aria-label="Basic example" style="margin: 0 6px 0 6px;">
+									<button type="button" class="btn btn-primary" style="border: 1px solid;">학생 관리</button>
+									<button type="button" class="btn btn-primary" style="border: 1px solid;">홈페이지</button>
+
+								</div>
+								<div class="btn-group mb-4" role="group" aria-label="Basic example" style="margin: 0 6px 0 6px;">
+									<button type="button" class="btn btn-primary" style="border: 1px solid;">학생 등록</button>
+									<button type="button" class="btn btn-primary" style="border: 1px solid;">교수 등록</button>
+									<button type="button" class="btn btn-primary" style="border: 1px solid;">강의 등록</button>
 								</div>
 							</div>
 						</div>
-					</div>
 				</section>
 			</div>
 		</div>

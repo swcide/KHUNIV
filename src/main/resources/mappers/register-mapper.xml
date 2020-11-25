@@ -51,6 +51,13 @@
 		<result property="gMonth" column="GMONTH" />
 		<result property="gDay" column="GDAY" />
 	</resultMap>
+	<!--  등록금 관련 -->
+	<resultMap type="Bill" id="BillResultSet">
+	<id property="cName" column="CLASS_NAME"/>
+	<result property="cType" column="CLASS_TYPE"/>
+	<result property="pName" column="PROF_NAME"/>
+	<result property="credit" column="CREDIT"/>
+	</resultMap>
 
 
 

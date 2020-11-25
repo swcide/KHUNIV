@@ -433,9 +433,9 @@ public class ad_Register_Controller {
 	 * @return
 	 */
 	@RequestMapping(value = "ad_tuition_bill.do")
-	public String tuition_bill(Model model)
+	public String tuition_bill(Model model,@RequestParam("sNo") String sNo)
 		{
-
+			
 			return "ad_register/ad_Tuition_Bill";
 		}
 
