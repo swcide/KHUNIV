@@ -7,6 +7,7 @@ public class Assignment  {
 	private String classNo;
 	private String className;
 	private String sNo;
+	private String sName;
 	private String assignExpl;
 	private String assignFile;
 	private Date submitDate;
@@ -16,16 +17,21 @@ public class Assignment  {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Assignment(String classNo, String className, String lecNo, String sNo, String assignExpl,
-			String assignFileName, Date submitDate) {
+
+
+	public Assignment(String classNo, String className, String sNo, String sName, String assignExpl, String assignFile,
+			Date submitDate) {
 		super();
 		this.classNo = classNo;
 		this.className = className;
 		this.sNo = sNo;
+		this.sName = sName;
 		this.assignExpl = assignExpl;
-		this.assignFile = assignFileName;
+		this.assignFile = assignFile;
 		this.submitDate = submitDate;
 	}
+
+
 
 	public String getClassNo() {
 		return classNo;
@@ -77,12 +83,39 @@ public class Assignment  {
 		this.submitDate = submitDate;
 	}
 
+
+
+	public String getsName() {
+		return sName;
+	}
+
+
+
+	public void setsName(String sName) {
+		this.sName = sName;
+	}
+
+
+
+	public String getAssignFile() {
+		return assignFile;
+	}
+
+
+
+	public void setAssignFile(String assignFile) {
+		this.assignFile = assignFile;
+	}
+
+
+
 	@Override
 	public String toString() {
-		return "Assignment [classNo=" + classNo + ", className=" + className + ", lecNo="  + ", sNo=" + sNo
-				+ ", assignExpl=" + assignExpl + ", assignFileName=" + assignFile + ", submitDate=" + submitDate
-				+ "]";
+		return "Assignment [classNo=" + classNo + ", className=" + className + ", sNo=" + sNo + ", sName=" + sName
+				+ ", assignExpl=" + assignExpl + ", assignFile=" + assignFile + ", submitDate=" + submitDate + "]";
 	}
+
+
 	
 	
 

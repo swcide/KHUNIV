@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.lecture.model.dao.profLecDao;
+import com.kh.univ.lecture.model.vo.Assignment;
 import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
 import com.kh.univ.lecture.model.vo.LectureHomeWork;
@@ -18,6 +19,7 @@ import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.notice.model.vo.Notice;
+import com.kh.univ.testPage.model.vo.GradeBefore;
 import com.kh.univ.testPage.model.vo.Test;
 
 @Service("plService")
@@ -222,6 +224,16 @@ public class profLecServiceImpl implements profLecService {
 	@Override
 	public ArrayList<LectureHomeWork> selectHList(LectureHomeWork lh) {
 		return plDao.selectHList(lh);
+	}
+
+	@Override
+	public ArrayList<LecturePlanWeek> selectSeList(LectureHomeWork lh) {
+		return plDao.selectSeList(lh);
+	}
+
+	@Override
+	public int EvaluationInsert(GradeBefore gb) {
+		return plDao.EvaluationInsert(gb);
 	}
 
 	

@@ -29,6 +29,7 @@ import com.google.gson.JsonIOException;
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.common.Pagination;
 import com.kh.univ.lecture.model.service.profLecService;
+import com.kh.univ.lecture.model.vo.Assignment;
 import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
 import com.kh.univ.lecture.model.vo.LectureHomeWork;
@@ -37,6 +38,7 @@ import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.notice.model.vo.Notice;
+import com.kh.univ.testPage.model.vo.GradeBefore;
 import com.kh.univ.testPage.model.vo.Test;
 import com.kh.univ.member.model.vo.Student;
 
@@ -762,12 +764,14 @@ public class prof_LectureController {
 	public ModelAndView prof_homeworkWeekView(ModelAndView mv,LectureHomeWork lh) {
 		
 		ArrayList <LectureHomeWork> hList = plService.selectHList(lh); 
-		
+		mv.addObject("lh",lh);
 		mv.addObject("hList",hList);
 		mv.setViewName("prof_lecture/prof_homework_weekList"); 
 		
 		return mv;
 	}
+	
+	
 	@RequestMapping("hWeekInsertView.do")
 	public ModelAndView QuizDelete2(ModelAndView mv, LectureHomeWork lh) {
 		
@@ -778,6 +782,13 @@ public class prof_LectureController {
 		return mv;
 	}
 	
+	/**
+	 * 과제 제출 - 교수
+	 * @param lh
+	 * @param request
+	 * @param file
+	 * @return
+	 */
 	@RequestMapping("hInsert.do")
 	public String homeworkEvaludation(LectureHomeWork lh,HttpServletRequest request,
 			 @RequestParam(name="uploadFile",required=false) MultipartFile file) {
@@ -807,15 +818,59 @@ public class prof_LectureController {
 		int result = plService.insertHomework(lh);
 		
 		if(result>0) {
-			return "redirect:hWeekList.do";
+			return "redirect:hWeekList.do?cNo="+lh.getcNo()+"&pNo="+lh.getpNo();
 		}else {
 			return "common/errorPage";
 		}
 		
 		
 	}
+	
+	
+	
+	
+	
+	/**
+	 * 평가 뷰
+	 * @param mv
+	 * @param lh
+	 * @return
+	 */
 	@RequestMapping( "sEvaluation.do")
-	public ModelAndView prof_StdEvaluation(ModelAndView mv) {
+	public ModelAndView prof_StdEvaluation(ModelAndView mv,LectureHomeWork lh) {
+		
+		
+		
+		
+		ArrayList<LecturePlanWeek> ag = plService.selectSeList(lh);
+		
+		System.out.println(ag);
+		
+		
+		mv.addObject("ag",ag);
+		mv.setViewName("prof_lecture/prof_homework_Evaluation"); 
+		
+		return mv;
+	}
+	
+	/**
+	 * 
+	 * 평가하기
+	 * @param mv
+	 * @param lh
+	 * @return
+	 */
+	@RequestMapping( "sEvaluationInsert.do")
+	public ModelAndView prof_StdEvaluationUpdate(HttpSession session, ModelAndView mv , GradeBefore gb ) {
+		
+		Professor p =  (Professor)session.getAttribute("loginProf");
+		
+		String pNo =p.getpNo();
+		
+		gb.setpNo(pNo);
+		
+
+		int result=plService.EvaluationInsert(gb);
 		
 		
 		

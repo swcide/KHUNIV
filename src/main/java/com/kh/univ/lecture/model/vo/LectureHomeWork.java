@@ -13,17 +13,15 @@ public class LectureHomeWork {
 	private String pNo;  //교수 번호
 	private String cNo;  //클래스 번호
 	private String cName; // 클래스이름
-	private String sNo;
-	private String sName;
+	private String sNo;   // 학생 번호
+	private String sName;  // 학생이름
 	
-	private String eGrade;
-	private String hStatus;
-	private String hPoint;
+	private String eGrade; // 배점
+	private String hStatus; // 상태
+	private String hPoint; // 점수
 	
 	private String openDate;
-	private String openTime;
 	private String endDate;
-	private String endTime;
 	
 	
 	public LectureHomeWork() {
@@ -34,7 +32,7 @@ public class LectureHomeWork {
 
 	public LectureHomeWork(String hNo, int lecNo, String hTitle, String hContent, String originalFileName,
 			String renameFileName, String pNo, String cNo, String cName, String sNo, String sName, String eGrade,
-			String hStatus, String hPoint, String openDate, String openTime, String endDate, String endTime) {
+			String hStatus, String hPoint, String openDate, String endDate) {
 		super();
 		this.hNo = hNo;
 		this.lecNo = lecNo;
@@ -51,11 +49,10 @@ public class LectureHomeWork {
 		this.hStatus = hStatus;
 		this.hPoint = hPoint;
 		this.openDate = openDate;
-		this.openTime = openTime;
 		this.endDate = endDate;
-		this.endTime = endTime;
 	}
 
+	
 
 	public String gethNo() {
 		return hNo;
@@ -207,16 +204,6 @@ public class LectureHomeWork {
 	}
 
 
-	public String getOpenTime() {
-		return openTime;
-	}
-
-
-	public void setOpenTime(String openTime) {
-		this.openTime = openTime;
-	}
-
-
 	public String getEndDate() {
 		return endDate;
 	}
@@ -227,25 +214,16 @@ public class LectureHomeWork {
 	}
 
 
-	public String getEndTime() {
-		return endTime;
-	}
-
-
-	public void setEndTime(String endTime) {
-		this.endTime = endTime;
-	}
-
-
 	@Override
 	public String toString() {
 		return "LectureHomeWork [hNo=" + hNo + ", lecNo=" + lecNo + ", hTitle=" + hTitle + ", hContent=" + hContent
 				+ ", originalFileName=" + originalFileName + ", renameFileName=" + renameFileName + ", pNo=" + pNo
 				+ ", cNo=" + cNo + ", cName=" + cName + ", sNo=" + sNo + ", sName=" + sName + ", eGrade=" + eGrade
-				+ ", hStatus=" + hStatus + ", hPoint=" + hPoint + ", openDate=" + openDate + ", openTime=" + openTime
-				+ ", endDate=" + endDate + ", endTime=" + endTime + "]";
+				+ ", hStatus=" + hStatus + ", hPoint=" + hPoint + ", openDate=" + openDate + ", endDate=" + endDate
+				+ "]";
 	}
-	
+
+
 	
 
 }

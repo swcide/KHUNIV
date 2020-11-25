@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.univ.common.PageInfo;
+import com.kh.univ.lecture.model.vo.Assignment;
 import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
 import com.kh.univ.lecture.model.vo.LectureHomeWork;
@@ -17,6 +18,7 @@ import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.member.model.vo.Professor;
+import com.kh.univ.testPage.model.vo.GradeBefore;
 import com.kh.univ.testPage.model.vo.Test;
 
 @Repository("plDao")
@@ -183,6 +185,15 @@ public class profLecDao {
 
 	public ArrayList<LectureHomeWork> selectHList(LectureHomeWork lh) {
 		return (ArrayList)sqlSession.selectList("lectureMapper.selectHList",lh);
+	}
+
+	public ArrayList<LecturePlanWeek> selectSeList(LectureHomeWork lh) {
+		return (ArrayList)sqlSession.selectList("lectureMapper.selectSeList",lh);
+
+	}
+
+	public int EvaluationInsert(GradeBefore gb) {
+		return sqlSession.insert("lectureMapper.EvaluationInsert",gb);
 	}
 
 	

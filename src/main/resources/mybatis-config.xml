@@ -2,51 +2,56 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
-	<settings>
-		<setting name="jdbcTypeForNull" value="NULL" />
-	</settings>
+   <settings>
+      <setting name="jdbcTypeForNull" value="NULL" />
+   </settings>
 
-	<!-- typeAliases -->
-	<typeAliases>
+   <!-- typeAliases -->
+   <typeAliases>
 
-		<typeAlias type="com.kh.univ.member.model.vo.Student" alias="Student" />
-		<typeAlias type="com.kh.univ.member.model.vo.Professor" alias="Professor" />
-		<typeAlias type="com.kh.univ.member.model.vo.Admin" alias="Admin" />
-		<typeAlias type="com.kh.univ.helpDesk.model.vo.QnA" alias="QnA" />
-		<typeAlias type="com.kh.univ.helpDesk.model.vo.Reply" alias="Reply" />
-		<typeAlias type="com.kh.univ.notice.model.vo.Notice" alias="Notice" />
-		<typeAlias type="com.kh.univ.notice.model.vo.nReply" alias="nReply" />
-		<typeAlias type="com.kh.univ.univlife.board.human.model.vo.HumanBoard" alias="HumanBoard" />
-		<typeAlias type="com.kh.univ.univlife.board.human.model.vo.hReply" alias="hReply"/>
-		<typeAlias type="com.kh.univ.lecture.model.vo.LectureClass" alias="LectureClass" />
-		<typeAlias type="com.kh.univ.lecture.model.vo.LecturePlan" alias="LecturePlan" />
-		<typeAlias type="com.kh.univ.lecture.model.vo.LecturePlanWeek" alias="LecturePlanWeek" />
-		<typeAlias type="com.kh.univ.lecture.model.vo.LectureList" alias="LectureList" />
-		<typeAlias type="com.kh.univ.lecture.model.vo.Attendance" alias="Attendance" />
-		<typeAlias type="com.kh.univ.lecture.model.vo.ClassTest" alias="ClassTest" />
-		<typeAlias type="com.kh.univ.lecture.model.vo.MyLectureVideoList" alias="MyLectureVideoList" />
-		<typeAlias type="com.kh.univ.lecture.model.vo.LectureHomeWork" alias="LectureHomeWork" />
-		<typeAlias type="com.kh.univ.lecture.model.vo.Assignment" alias="Assignment" />
-		<typeAlias type="com.kh.univ.testPage.model.vo.Test" alias="Test" />
-		<typeAlias type="com.kh.univ.ad_Register.model.vo.Absence" alias="Absence" />
-		<typeAlias type="com.kh.univ.ad_Register.model.vo.grdExp" alias="grdExp" />
-		<typeAlias type="com.kh.univ.ad_Register.model.vo.Certificate" alias="Certificate" />
+      <typeAlias type="com.kh.univ.member.model.vo.Student" alias="Student" />
+      <typeAlias type="com.kh.univ.member.model.vo.Professor" alias="Professor" />
+      <typeAlias type="com.kh.univ.member.model.vo.Admin" alias="Admin" />
+      <typeAlias type="com.kh.univ.helpDesk.model.vo.QnA" alias="QnA" />
+      <typeAlias type="com.kh.univ.helpDesk.model.vo.Reply" alias="Reply" />
+      <typeAlias type="com.kh.univ.notice.model.vo.Notice" alias="Notice" />
+      <typeAlias type="com.kh.univ.notice.model.vo.nReply" alias="nReply" />
+      <typeAlias type="com.kh.univ.univlife.board.human.model.vo.HumanBoard" alias="HumanBoard" />
+      <typeAlias type="com.kh.univ.univlife.board.human.model.vo.hReply" alias="hReply"/>
+      <typeAlias type="com.kh.univ.lecture.model.vo.LectureClass" alias="LectureClass" />
+      <typeAlias type="com.kh.univ.lecture.model.vo.LecturePlan" alias="LecturePlan" />
+      <typeAlias type="com.kh.univ.lecture.model.vo.LecturePlanWeek" alias="LecturePlanWeek" />
+      <typeAlias type="com.kh.univ.lecture.model.vo.LectureList" alias="LectureList" />
+      <typeAlias type="com.kh.univ.lecture.model.vo.Attendance" alias="Attendance" />
+      <typeAlias type="com.kh.univ.lecture.model.vo.ClassTest" alias="ClassTest" />
+      <typeAlias type="com.kh.univ.lecture.model.vo.MyLectureVideoList" alias="MyLectureVideoList" />
+      <typeAlias type="com.kh.univ.lecture.model.vo.LectureHomeWork" alias="LectureHomeWork" />
+      <typeAlias type="com.kh.univ.lecture.model.vo.Assignment" alias="Assignment" />
+      <typeAlias type="com.kh.univ.testPage.model.vo.Test" alias="Test" />
+      <typeAlias type="com.kh.univ.ad_Register.model.vo.Absence" alias="Absence" />
+      <typeAlias type="com.kh.univ.ad_Register.model.vo.grdExp" alias="grdExp" />
+      <typeAlias type="com.kh.univ.ad_Register.model.vo.Certificate" alias="Certificate" />
 
+      <typeAlias type="com.kh.univ.registration.model.vo.Registration" alias="Registration" />
+      <typeAlias type="com.kh.univ.registration.model.vo.RegistrationSNO" alias="RegistrationSNO" />
+      <typeAlias type="com.kh.univ.testPage.model.vo.Grade" alias="Grade" />
+      <typeAlias type="com.kh.univ.testPage.model.vo.GradeBefore" alias="GradeBefore" />
 		<typeAlias type="com.kh.univ.registration.model.vo.Registration" alias="Registration" />
 		<typeAlias type="com.kh.univ.registration.model.vo.RegistrationSNO" alias="RegistrationSNO" />
 		<typeAlias type="com.kh.univ.testPage.model.vo.Grade" alias="Grade" />
-		<typeAlias type="com.kh.univ.testPage.model.vo.Grade" alias="Grade" />
+		<typeAlias type="com.kh.univ.testPage.model.vo.GradeBefore" alias="GradeBefore" />
 
-	</typeAliases>
-	<!-- environments 엘리먼트로 dataSource 등의 DB정보를 작성했었다. => 스프링에서는 그 정보를 여기서는 안쓴다. root-context.xml에 작성하게된다.(DataSource 등록은 ) -->
-	<mappers>
-		<mapper resource="mappers/member-mapper.xml" />
-		<mapper resource="mappers/hdBoard-mapper.xml" />
-		<mapper resource="mappers/notice-mapper.xml" />
-		<mapper resource="mappers/humanBoard-mapper.xml" />
-		<mapper resource="mappers/lecture-mapper.xml" />
-		<mapper resource="mappers/register-mapper.xml" />
-		<mapper resource="mappers/registration-mapper.xml" />
-	</mappers>
+
+   </typeAliases>
+   <!-- environments 엘리먼트로 dataSource 등의 DB정보를 작성했었다. => 스프링에서는 그 정보를 여기서는 안쓴다. root-context.xml에 작성하게된다.(DataSource 등록은 ) -->
+   <mappers>
+      <mapper resource="mappers/member-mapper.xml" />
+      <mapper resource="mappers/hdBoard-mapper.xml" />
+      <mapper resource="mappers/notice-mapper.xml" />
+      <mapper resource="mappers/humanBoard-mapper.xml" />
+      <mapper resource="mappers/lecture-mapper.xml" />
+      <mapper resource="mappers/register-mapper.xml" />
+      <mapper resource="mappers/registration-mapper.xml" />
+   </mappers>
 
 </configuration>

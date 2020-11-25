@@ -36,6 +36,7 @@
 										</tr>
 									</thead>
 									<tbody>
+									<c:out value="${hList }"/>	
 <!-- 										<tr> -->
 <!-- 											<td colspan="8" align="center">조회할 자료가 없습니다.</td> -->
 <!-- 										</tr> -->
@@ -51,8 +52,15 @@
 <!-- 											<td>마감</td> -->
 <%-- 											</c:if> --%>
 											<td>100%</td>
+											
 											<td>${h.openDate } <br>${h.endDate }</td>
-											<th><a href="sEvaluation.do" class="btn btn-sm btn-default" >평가</a></th>
+											<th>
+											<c:url var="SeList" value="sEvaluation.do">
+												<c:param name="cNo" value="${lh.cNo}"/>
+												<c:param name="endDate" value="${lh.endDate}"/>
+												<c:param name="openDate" value="${lh.openDate}"/>
+											</c:url>
+											<a href="${SeList }" class="btn btn-sm btn-default" >평가</a></th>
 										</tr>
 										</c:forEach>
 									</tbody>
@@ -62,7 +70,7 @@
 											<c:param name="cName" value="${lh.cName}"/>
 											<c:param name="pNo" value="${lh.pNo}"/>
 										</c:url>
-											
+										<c:out value="${lh.cNo }zzzz"/>	
 										<a class="btn btn-sm btn-primary float-right" href="${hInsertView }">과제 추가하기</a>
 							</div>	
 							
