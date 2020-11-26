@@ -110,7 +110,7 @@
 								<tbody>
 									<tr>
 										<th>${st.semYear }/${st.semNo }</th>
-										<td style="text-align: center;">${st.count *3}</td>
+										<td style="text-align: center;">${st.credit *3}</td>
 										<td style="text-align: center;">${st.count *3}</td>
 										<td style="text-align: center;">
 											<fmt:formatNumber value="${st.avgPoint/4 }" pattern=".0" />
@@ -146,32 +146,32 @@
 											<td style="text-align: center;">A+</td>
 										</c:if>
 										<c:if test="${ sep.point le 94 && sep.point ge 90  }">
-											<td style="text-align: center;">A-</td>
+											<td style="text-align: center;">A</td>
 										</c:if>
 										<c:if test="${ sep.point le 89 && sep.point ge 85  }">
 											<td style="text-align: center;">B+</td>
 										</c:if>
 										<c:if test="${ sep.point le 84 && sep.point ge 80  }">
-											<td style="text-align: center;">B-</td>
+											<td style="text-align: center;">B</td>
 										</c:if>
 										<c:if test="${ sep.point le 79 && sep.point ge 75  }">
 											<td style="text-align: center;">C+</td>
 										</c:if>
 										<c:if test="${ sep.point le 74 && sep.point ge 70  }">
-											<td style="text-align: center;">C-</td>
+											<td style="text-align: center;">C</td>
 										</c:if>
 										<c:if test="${ sep.point le 69 && sep.point ge 65  }">
 											<td style="text-align: center;">D+</td>
 										</c:if>
 										<c:if test="${ sep.point le 64 && sep.point ge 60  }">
-											<td style="text-align: center;">D-</td>
+											<td style="text-align: center;">D</td>
 										</c:if>
 										<c:if test="${ sep.point le 60 }">
 											<td style="text-align: center;">F</td>
 										</c:if>
 
 										<td style="text-align: center;">
-											<fmt:formatNumber value="${sep.avgPoint }" pattern=".0" />
+											<fmt:formatNumber value="${sep.avgPoint }" pattern="0.0" />
 										</td>
 										<td style="text-align: center;">${sep.profName}</td>
 									</tr>

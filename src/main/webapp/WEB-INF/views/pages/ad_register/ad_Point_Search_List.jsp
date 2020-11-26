@@ -58,7 +58,7 @@
 															<c:param name="sNo" value="${sp.sNo }" />
 														</c:url>
 														<td>${sp.semYear }/${sp.semNo }</td>
-														<td style="text-align: center;">${sp.count *3}</td>
+														<td style="text-align: center;">${sp.credit *3}</td>
 														<td style="text-align: center;">${sp.count *3}</td>
 														<td style="text-align: center;">
 															<fmt:formatNumber value="${sp.avgPoint /4 }" pattern=".0" />

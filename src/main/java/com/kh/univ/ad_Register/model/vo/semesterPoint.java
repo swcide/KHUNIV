@@ -21,13 +21,14 @@ private String deptName;
 private String sName;
 private String cName;
 private Date sysdate;
+private int credit;
 
 
 public semesterPoint() {}
 
 
 public semesterPoint(String sNo, String semYear, String semNo, String cNo, String cType, double mTest, double fTest, double report, int attendance, double point, String pNo, int count,
-		double avgPoint, String profName, String deptName, String sName, String cName, Date sysdate) {
+		double avgPoint, String profName, String deptName, String sName, String cName, Date sysdate, int credit) {
 	super();
 	this.sNo = sNo;
 	this.semYear = semYear;
@@ -47,6 +48,7 @@ public semesterPoint(String sNo, String semYear, String semNo, String cNo, Strin
 	this.sName = sName;
 	this.cName = cName;
 	this.sysdate = sysdate;
+	this.credit = credit;
 }
 
 
@@ -266,19 +268,25 @@ public void setSysdate(Date sysdate)
 	}
 
 
+public int getCredit()
+	{
+		return credit;
+	}
+
+
+public void setCredit(int credit)
+	{
+		this.credit = credit;
+	}
+
+
 @Override
 public String toString()
 	{
 		return "semesterPoint [sNo=" + sNo + ", semYear=" + semYear + ", semNo=" + semNo + ", cNo=" + cNo + ", cType=" + cType + ", mTest=" + mTest + ", fTest=" + fTest + ", report=" + report
 				+ ", attendance=" + attendance + ", point=" + point + ", pNo=" + pNo + ", count=" + count + ", avgPoint=" + avgPoint + ", profName=" + profName + ", deptName=" + deptName + ", sName="
-				+ sName + ", cName=" + cName + ", sysdate=" + sysdate + "]";
+				+ sName + ", cName=" + cName + ", sysdate=" + sysdate + ", credit=" + credit + "]";
 	}
-
-
-
-
-
-
 
 
 

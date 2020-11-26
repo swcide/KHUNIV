@@ -78,6 +78,7 @@
 		<result property="sName" column="STD_NAME" />
 		<result property="cName" column="CLASS_NAME" />
 		<result property="sysdate" column="SYSDATE" />
+		<result property="credit" column="CREDIT" />
 	</resultMap>
 
 
@@ -272,7 +273,7 @@
 
 	<!-- 성적조회 -->
 	<select id="pointSearchList" resultMap="semesterPointResultSet">
-		SELECT STD_NO,SEM_YEAR, SEME_NO,COUNT(SEM_YEAR) AS COUNT ,AVG(POINT)AS POINT, SUM(AVG_POINT) AS AVG_POINT
+		SELECT STD_NO,SEM_YEAR, SEME_NO,COUNT(AVG_POINT) AS COUNT,COUNT(CLASS_NO) AS CREDIT, AVG(POINT)AS POINT, SUM(AVG_POINT) AS AVG_POINT
 		FROM TB_SEMESTER_POINT
 		WHERE STD_NO = #{sNo}
 		GROUP BY STD_NO,SEM_YEAR,SEME_NO
@@ -292,7 +293,7 @@
 
 <!-- 성적조회 디테일 탑부분 -->
 	<select id="pointSearchDetailTop" resultMap="semesterPointResultSet">
-		SELECT DEPT_NAME,STD_NAME,STD_NO,SEM_YEAR, SEME_NO,COUNT(SEM_YEAR) AS COUNT ,AVG(POINT)AS POINT, SUM(AVG_POINT) AVG_POINT, SYSDATE
+		SELECT DEPT_NAME,STD_NAME,STD_NO,SEM_YEAR, SEME_NO,COUNT(AVG_POINT) AS COUNT, COUNT(CLASS_NO) AS CREDIT, AVG(POINT)AS POINT, SUM(AVG_POINT) AVG_POINT, SYSDATE
 		FROM TB_SEMESTER_POINT
 		JOIN TB_CLASS USING(CLASS_NO)
 		JOIN TB_PROFESSOR USING(PROF_NO)
