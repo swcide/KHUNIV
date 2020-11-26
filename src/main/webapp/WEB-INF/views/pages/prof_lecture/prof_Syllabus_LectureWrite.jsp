@@ -416,18 +416,14 @@ function AttendancePointsChange(e){
     
 		 
 	var e= $("#TotalPoint").html();
-	add= parseInt(e) + parseInt($("#AttendancePoints option:selected").val())
+	add= parseInt($("#examPoints option:selected").val())
+	 +parseInt($("#AssignmentPoints option:selected").val()) + parseInt($("#AttendancePoints option:selected").val())
     $("#TotalPoint").text(add);
 	console.log(add);
 }
 </script>
 <script>
 
-	
-	function ajaxFormSylla() {
-		var params = $("form[name=formSylla]");
-		
-	}
 	function shake() {
 		for (i = 30; i > 0; i--) {
 			window.moveBy(0, i);
