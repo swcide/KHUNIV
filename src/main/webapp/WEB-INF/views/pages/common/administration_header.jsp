@@ -102,7 +102,7 @@
 													<div class="col-md-6">
 														<c:if test="${!empty sessionScope.loginUser }">
 															<a href="mypage.do"><label><strong style="color: #008995">${loginUser.sName }</strong></label></a>
-															<input type="hidden" name="sNo" value="${loginUser.sNo }">
+															<input type="hidden" id="sNo" name="sNo" value="${loginUser.sNo }">
 														</c:if>
 													</div>
 													<div class="col-md-6" style="text-align: right">
@@ -149,7 +149,7 @@
 															<li><a class="dropdown-item" href="ad_audit_lect_appl.do">청강신청</a></li>
 															<li><a class="dropdown-item" href="ad_appl_stat.do">신청현황</a></li>
 														</ul></li>
-													<li><a class="dropdown-item" href="ad_point_search_list.do">성적조회</a></li>
+													<li><a class="dropdown-item" onClick="point_search_list()">성적조회</a></li>
 													<li class="dropdown-submenu"><a class="dropdown-item" href="#">휴학</a>
 														<ul class="dropdown-menu">
 															<li><a class="dropdown-item" onClick="open_leave_check()">휴학신청 바로가기</a></li>
@@ -233,13 +233,19 @@
 		</header>
 	</div>
 	<script>
-		function open_leave_check() {
+	//휴학 확인 화면 
 			var sNo = $('#sNo').val();
+		function open_leave_check() {
 			console.log(sNo)
 			window.open(this.href='ad_leave_absence.do?sNo='+ sNo, '', 'resizable=yes, width=900, height=800 left=700px top=100px'); 
 			return false;
-
 		};
+		//성적조회 화면
+		function point_search_list(){
+			console.log(sNo)
+			location.href ='ad_point_search_list.do?sNo='+ sNo; 
+			return false;
+		}
 	</script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,81 +45,62 @@
 														<th style="text-align: center;">취득학점</th>
 														<th style="text-align: center;">평점평균</th>
 														<th style="text-align: center;">백점환산점수</th>
-														<th style="text-align: center;">학사경고여부</th>
 													</tr>
 												</thead>
+												<c:forEach var="sp" items="${sp }">
 												<tbody>
 													<tr>
-														<td>2019/01</td>
-														<td style="text-align: center;">12</td>
-														<td style="text-align: center;">12</td>
-														<td style="text-align: center;">3.22</td>
-														<td style="text-align: center;">77.22</td>
-														<td style="text-align: center;">N</td>
+														<td>${sp.semYear }/${sp.semNo }</td>
+														<td style="text-align: center;">${sp.count *3}</td>
+														<td style="text-align: center;">${sp.count *3}</td>
+														<td style="text-align: center;">${sp.avgPoint /4 }</td>
+														<td style="text-align: center;">${sp.point }</td>
 													</tr>
-													<tr>
-														<td>2019/02</td>
-														<td style="text-align: center;">12</td>
-														<td style="text-align: center;">12</td>
-														<td style="text-align: center;">3.24</td>
-														<td style="text-align: center;">82.31</td>
-														<td style="text-align: center;">N</td>
-														
-													</tr>
-													<tr>
-														<td>2020/01</td>
-														<td style="text-align: center;">12</td>
-														<td style="text-align: center;">12</td>
-														<td style="text-align: center;">3.7</td>
-														<td style="text-align: center;">88.25</td>
-														<td style="text-align: center;">N</td>
-													</tr>
+													</c:forEach>
 												</tbody>
 											</table>
 											</div>
 											
-											<table class="table table-hover">
-												<thead>
-													<tr>
-														<th style="width: 125px;">총</th>
-														<th style="text-align: center;width: 117px;">신청학점</th>
-														<th style="text-align: center;width: 117px;">취득학점</th>
-														<th style="text-align: center;width: 117px;">평점평균</th>
-														<th style="text-align: center;">백점환산점수</th>
-														<th style="text-align: center;">학사경고여부</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td></td>
-														<td style="text-align: center;">36</td>
-														<td style="text-align: center;">36</td>
-														<td style="text-align: center;">3.5</td>
-														<td style="text-align: center;">75.0</td>
-														<td style="text-align: center;">N</td>
-													</tr>
-												</tbody>
-											</table>
-											<table class="table table-hover">
-											<thead>
-													<tr>
-														<th style="text-align: center;" colspan="2">졸업이수학점</th>
-														<th style="text-align: center;">전공필요학점</th>
-														<th style="text-align: center;">전공취득학점</th>
-														<th style="text-align: center;">교양필요학점</th>
-														<th style="text-align: center;">교양취득학점</th>
-													</tr>
-													</thead>
-											<tbody>
-													<tr>
-														<td style="text-align: center;" colspan="2">80</td>
-														<td style="text-align: center;">50</td>
-														<td style="text-align: center;">12</td>
-														<td style="text-align: center;">30</td>
-														<td style="text-align: center;">24</td>
-													</tr>
-													</tbody>
-													</table>
+<!-- 											<table class="table table-hover"> -->
+<!-- 												<thead> -->
+<!-- 													<tr> -->
+<!-- 														<th style="width: 125px;">총</th> -->
+<!-- 														<th style="text-align: center;width: 117px;">신청학점</th> -->
+<!-- 														<th style="text-align: center;width: 117px;">취득학점</th> -->
+<!-- 														<th style="text-align: center;width: 117px;">평점평균</th> -->
+<!-- 														<th style="text-align: center;">백점환산점수</th> -->
+<!-- 													</tr> -->
+<!-- 												</thead> -->
+<!-- 												<tbody> -->
+<!-- 													<tr> -->
+<!-- 														<td></td> -->
+<!-- 														<td style="text-align: center;">36</td> -->
+<!-- 														<td style="text-align: center;">36</td> -->
+<!-- 														<td style="text-align: center;">3.5</td> -->
+<!-- 														<td style="text-align: center;">75.0</td> -->
+<!-- 													</tr> -->
+<!-- 												</tbody> -->
+<!-- 											</table> -->
+<!-- 											<table class="table table-hover"> -->
+<!-- 											<thead> -->
+<!-- 													<tr> -->
+<!-- 														<th style="text-align: center;" colspan="2">졸업이수학점</th> -->
+<!-- 														<th style="text-align: center;">전공필요학점</th> -->
+<!-- 														<th style="text-align: center;">전공취득학점</th> -->
+<!-- 														<th style="text-align: center;">교양필요학점</th> -->
+<!-- 														<th style="text-align: center;">교양취득학점</th> -->
+<!-- 													</tr> -->
+<!-- 													</thead> -->
+<!-- 											<tbody> -->
+<!-- 													<tr> -->
+<!-- 														<td style="text-align: center;" colspan="2">50</td> -->
+<!-- 														<td style="text-align: center;">30</td> -->
+<!-- 														<td style="text-align: center;">12</td> -->
+<!-- 														<td style="text-align: center;">20</td> -->
+<!-- 														<td style="text-align: center;">24</td> -->
+<!-- 													</tr> -->
+<!-- 													</tbody> -->
+<!-- 													</table> -->
 										
 									</div>
 								</div>

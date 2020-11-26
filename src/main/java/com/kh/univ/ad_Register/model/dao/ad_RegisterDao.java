@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.univ.ad_Register.model.vo.Absence;
 import com.kh.univ.ad_Register.model.vo.Certificate;
 import com.kh.univ.ad_Register.model.vo.grdExp;
+import com.kh.univ.ad_Register.model.vo.semesterPoint;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
@@ -89,6 +90,10 @@ public class ad_RegisterDao {
 		return (ArrayList)sqlSession.selectList("registerMapper.sylla2",ll);
 	}
 	///////////////////////////////////////////////////////////////////////////////////////
+	public ArrayList<semesterPoint> point_Search_List(String sNo)
+		{
+			return (ArrayList)sqlSession.selectList("registerMapper.pointSearchList",sNo);
+		}
 
 	
 

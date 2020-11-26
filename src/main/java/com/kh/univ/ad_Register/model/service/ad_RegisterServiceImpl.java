@@ -9,6 +9,7 @@ import com.kh.univ.ad_Register.model.dao.ad_RegisterDao;
 import com.kh.univ.ad_Register.model.vo.Absence;
 import com.kh.univ.ad_Register.model.vo.Certificate;
 import com.kh.univ.ad_Register.model.vo.grdExp;
+import com.kh.univ.ad_Register.model.vo.semesterPoint;
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
@@ -116,6 +117,12 @@ public class ad_RegisterServiceImpl implements ad_RegisterService{
 	public int ad_drop_absence_apply(grdExp ge)
 		{
 			return arDao.ad_drop_absence_apply(ge);
+		}
+
+	@Override
+	public ArrayList<semesterPoint> point_Search_List(String sNo)
+		{
+			return arDao.point_Search_List(sNo);
 		}
 
 	

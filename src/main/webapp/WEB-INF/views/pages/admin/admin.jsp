@@ -29,10 +29,10 @@
 				</div>
 				<section class="section">
 					<div class="row mb-4">
-						<div class="col-md-8">
+						<div class="col-md-7">
 							<div class="card" style="height: 94%;">
 								<div class="card-header d-flex justify-content-between align-items-center">
-									<h4 class="card-title">게시판 관리 현황</h4>
+									<h4 class="card-title">게시글 현황</h4>
 								</div>
 								<div class="card-body px-0 pb-0">
 									<div class="table-responsive">
@@ -40,9 +40,8 @@
 											<thead>
 												<tr>
 													<th>이름</th>
-													<th>신고 내용</th>
+													<th>신고 사유</th>
 													<th>연락처</th>
-													<th>신고 게시판</th>
 													<th>처리 상태</th>
 												</tr>
 											</thead>
@@ -52,7 +51,6 @@
 													<td>Dale</td>
 													<td>fringilla.euismod.enim@quam.ca</td>
 													<td>0500 527693</td>
-													<td>New Quay</td>
 													<td>
 														<span class="badge bg-success">Active</span>
 													</td>
@@ -61,7 +59,6 @@
 													<td>Nathaniel</td>
 													<td>mi.Duis@diam.edu</td>
 													<td>(012165) 76278</td>
-													<td>Grumo Appula</td>
 													<td>
 														<span class="badge bg-danger">Inactive</span>
 													</td>
@@ -72,63 +69,46 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-5">
 
 							<div class="card widget-todo" style="height: 62%;">
 								<div class="card-header border-bottom d-flex justify-content-between align-items-center">
 									<h4 class="card-title d-flex">
-										<i class='bx bx-check font-medium-5 pl-25 pr-75'></i>학적관리 현황
+										<i class='bx bx-check font-medium-5 pl-25 pr-75'></i>댓글신고현황
 									</h4>
-									<p>* 직전학기 기준</p>
 								</div>
-								<div class="card-body px-0 py-1">
-									<table class='table table-borderless'>
-										<tr>
-											<td class='col-3'>재학</td>
-											<td class='col-6'>
-												<div class="progress progress-secondary">
-													<div class="progress-bar" role="progressbar" style="width: 65%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-												</div>
-											</td>
-											<td class='col-3 text-center'>65%</td>
-										</tr>
-										<tr>
-											<td class='col-3'>휴학</td>
-											<td class='col-6'>
-												<div class="progress progress-info">
-													<div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-												</div>
-											</td>
-											<td class='col-3 text-center'>20%</td>
-										</tr>
-										<tr>
-											<td class='col-3'>복학</td>
-											<td class='col-6'>
-												<div class="progress progress-success">
-													<div class="progress-bar" role="progressbar" style="width: 35%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-												</div>
-											</td>
-											<td class='col-3 text-center'>40%</td>
-										</tr>
-										<tr>
-											<td class='col-3'>자퇴</td>
-											<td class='col-6'>
-												<div class="progress progress-danger">
-													<div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-												</div>
-											</td>
-											<td class='col-3 text-center'>10%</td>
-										</tr>
-										<tr>
-											<td class='col-4'>등록금 납부</td>
-											<td class='col-6'>
-												<div class="progress progress-primary">
-													<div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-												</div>
-											</td>
-											<td class='col-3 text-center'>80%</td>
-										</tr>
-									</table>
+								<div class="card-body px-0 pb-0">
+									<div class="table-responsive">
+										<table class='table mb-0' id="table1">
+											<thead>
+												<tr>
+													<th>이름</th>
+													<th>신고 사유</th>
+													<th>연락처</th>
+													<th>처리 상태</th>
+												</tr>
+											</thead>
+											<tbody>
+												</tr>
+												<tr>
+													<td>Dale</td>
+													<td>fringilla.euismod.enim@quam.ca</td>
+													<td>0500 527693</td>
+													<td>
+														<span class="badge bg-success">Active</span>
+													</td>
+												</tr>
+												<tr>
+													<td>Nathaniel</td>
+													<td>mi.Duis@diam.edu</td>
+													<td>(012165) 76278</td>
+													<td>
+														<span class="badge bg-danger">Inactive</span>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
 								</div>
 							</div>
 							<div class="card">
