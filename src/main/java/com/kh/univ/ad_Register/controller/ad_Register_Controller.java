@@ -101,10 +101,26 @@ public class ad_Register_Controller {
 	 * @return
 	 */
 	@RequestMapping(value = "ad_point_search.do")
-	public String point_Search(Locale locale, Model model)
+	public ModelAndView point_Search(ModelAndView mv, semesterPoint semp,@RequestParam(name="sNo") String sNo,@RequestParam(name="semYear") String semYear, @RequestParam(name="semNo") String semNo, HttpSession session)
 		{
-
-			return "ad_register/ad_Point_Search";
+			System.out.println("디테일");
+			System.out.println(semYear);
+			System.out.println(semNo);
+			semp.setSemYear(semYear);
+			semp.setSemNo(semNo);
+			semp.setsNo(sNo);
+			System.out.println(semp);
+			
+			
+			ArrayList<semesterPoint> sepTop = arService.point_Search_Top(semp);
+			System.out.println("sepTop =" + sepTop);
+			ArrayList<semesterPoint> sep = arService.point_Search(semp);
+			System.out.println(sep);
+			
+			mv.addObject("sepTop",sepTop);
+			mv.addObject("sep",sep);
+			mv.setViewName( "ad_register/ad_Point_Search");
+			return mv;
 		}
 
 	/**

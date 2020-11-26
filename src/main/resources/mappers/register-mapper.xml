@@ -72,7 +72,13 @@
 		<result property="point" column="POINT" />
 		<result property="pNo" column="PROF_NO" />
 		<result property="count" column="COUNT" />
-		<result property="avgPoint" column="AVGP" />
+		<result property="avgPoint" column="AVG_POINT" />
+		<result property="profName" column="PROF_NAME" />
+		<result property="deptName" column="DEPT_NAME" />
+		<result property="sName" column="STD_NAME" />
+		<result property="cName" column="CLASS_NAME" />
+		<result property="sysdate" column="SYSDATE" />
+		<result property="credit" column="CREDIT" />
 	</resultMap>
 
 
@@ -267,10 +273,36 @@
 
 	<!-- 성적조회 -->
 	<select id="pointSearchList" resultMap="semesterPointResultSet">
-		SELECT STD_NO,SEM_YEAR, SEME_NO,COUNT(SEM_YEAR) AS COUNT ,AVG(POINT)AS POINT, SUM(AVG_POINT) AS AVGP
+		SELECT STD_NO,SEM_YEAR, SEME_NO,COUNT(AVG_POINT) AS COUNT,COUNT(CLASS_NO) AS CREDIT, AVG(POINT)AS POINT, SUM(AVG_POINT) AS AVG_POINT
 		FROM TB_SEMESTER_POINT
 		WHERE STD_NO = #{sNo}
 		GROUP BY STD_NO,SEM_YEAR,SEME_NO
+		ORDER BY SEM_YEAR,SEME_NO
+	</select>
+	<!-- 성적조회 디테일 -->
+	<select id="pointSearchDetail" resultMap="semesterPointResultSet">
+		SELECT PROF_NAME,CLASS_NAME,CLASS_TYPE,STD_NO,SEM_YEAR,SEME_NO,POINT,AVG_POINT
+		FROM TB_SEMESTER_POINT
+		JOIN TB_CLASS USING(CLASS_NO)
+		JOIN TB_PROFESSOR USING(PROF_NO)
+		JOIN TB_STUDENT S USING(STD_NO)
+		JOIN TB_DEPARTMENT D ON(S.DEPT_NO = D.DEPT_NO)
+		WHERE SEM_YEAR = #{semYear}
+		AND SEME_NO = #{semNo}
+	</select>
+
+<!-- 성적조회 디테일 탑부분 -->
+	<select id="pointSearchDetailTop" resultMap="semesterPointResultSet">
+		SELECT DEPT_NAME,STD_NAME,STD_NO,SEM_YEAR, SEME_NO,COUNT(AVG_POINT) AS COUNT, COUNT(CLASS_NO) AS CREDIT, AVG(POINT)AS POINT, SUM(AVG_POINT) AVG_POINT, SYSDATE
+		FROM TB_SEMESTER_POINT
+		JOIN TB_CLASS USING(CLASS_NO)
+		JOIN TB_PROFESSOR USING(PROF_NO)
+		JOIN TB_STUDENT S USING(STD_NO)
+		JOIN TB_DEPARTMENT D ON(S.DEPT_NO = D.DEPT_NO)
+		WHERE STD_NO = #{sNo}
+		AND SEM_YEAR =#{semYear}
+		AND SEME_NO = #{semNo}
+		GROUP BY STD_NO,SEM_YEAR,SEME_NO,STD_NAME,DEPT_NAME
 		ORDER BY SEM_YEAR,SEME_NO
 	</select>
 </mapper>
