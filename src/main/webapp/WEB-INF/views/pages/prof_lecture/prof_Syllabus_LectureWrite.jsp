@@ -239,13 +239,11 @@
 											</select>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<span>과제 : </span>
-											<select name="assignmentPoints" id="AssignmentPoints" 
-											onchange="AssignmentPointsChange(this)">
+											<select name="assignmentPoints" id="AssignmentPoints" onchange="AssignmentPointsChange(this)">
 											</select>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<span>출석 : </span>
-											<select name="attendancePoints" id="AttendancePoints"
-											onchange="AttendancePointsChange(this)">
+											<select name="attendancePoints" id="AttendancePoints" onchange="AttendancePointsChange(this)">
 											</select>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<span>합 : </span>
@@ -255,8 +253,7 @@
 								</tbody>
 							</table>
 
-							<button type="submit" class="btn btn-dark" id="btnForm" onclick="checkForm(); return false" 
-									style="float: right; margin-bottom: 20px;">
+							<button type="submit" class="btn btn-dark" id="btnForm" onclick="checkForm(); return false" style="float: right; margin-bottom: 20px;">
 								<i class="fas fa-pencil-alt"></i> 제출하기
 							</button>
 						</form>
@@ -267,7 +264,7 @@
 	</div>
 </body>
 <script>
-	
+	// 빈칸 유효성 검사 기능
 	function checkForm() {
 
 		if (formSylla.classSummary.value == "") {
@@ -306,9 +303,11 @@
  			alert("배점의 총합이 100이 되어야 합니다.")
  			return false;
 		}else { 
-			var classNo = $("input[name=classNo]").val();
-			var formData = new FormData($('#formSylla')[0]);
+			
+			var classNo = $("input[name=classNo]").val();		// 동영강 강의추가페이지로 이동시 필요
+			var formData = new FormData($('#formSylla')[0]);	// 폼 데이터 값 가져올 시 필요
 			console.log(formData);
+			
 			$.ajax({
 				type : "POST",
 				url : 'prof_Syllabus_LectureUpdate.do',
@@ -316,26 +315,20 @@
 				contentType: false,
 				processData:false,
 				success : function(data) {
-					
 					if(confirm("주차별 자료를 이어서 등록하시겠습니까?")== true){
-						
 					window.opener.location.href="prof_lectureVideo.do?classNo="+classNo;
 					self.close();
-						
 					} else{
 						alert("등록이 완료되었습니다.")
 					window.opener.location.reload();
 					self.close();
-						
 					}
 				},
 				error : function(request, status, error) {
-
 					alert("code:" + request.status + "\n" + "message:"
 							+ request.responseText + "\n" + "error:" + error);
 				}
 			});
-
 		}
 	};
 </script>
@@ -371,16 +364,14 @@ function ExamPointsChange(e) {
 
 function AssignmentPointsChange(e){
 	
-	console.log(parseInt($("#AssignmentPoints option:selected").val()));
-	
     add = parseInt($("#examPoints option:selected").val())
 		 +parseInt($("#AssignmentPoints option:selected").val());
     
-    console.log("과제점수" + parseInt($("#AssignmentPoints option:selected").val()) );
     
-		 $("#TotalPoint").text(add);
+	$("#TotalPoint").text(add);
+	
 	var e= $("#TotalPoint").html();
-	console.log(e);
+	
     if(e == "0") var d = ["0", "100"];
     else if(e == "10") var d = ["0", "90"];
     else if(e == "20") var d = ["0", "80"];
@@ -393,9 +384,13 @@ function AssignmentPointsChange(e){
     else if(e == "90") var d = ["0", "10"];
     else if(e == "100") var d = ["0"];
     
+    // 출석 셀렉트 타겟으로 지정
     var target = document.getElementById("AttendancePoints");
+    
+    // 셀렉트 옵션 비워주기
     target.options.length = 0;
     
+    // 앞서 선택된 셀렉트 옵션값에 따라 추가해줄 출석 셀렉트 옵션 추가
     for (x in d) {
         var opt = document.createElement("option");
         opt.value = d[x];
@@ -407,20 +402,14 @@ function AssignmentPointsChange(e){
 }
 function AttendancePointsChange(e){
 	
-	console.log("출석점수" + parseInt($("#AttendancePoints option:selected").val()));
+	//배점 SELECT 최종 합 더하기
+	add=  parseInt($("#examPoints option:selected").val())
+	 	+ parseInt($("#AssignmentPoints option:selected").val())
+	 	+ parseInt($("#AttendancePoints option:selected").val());
 	
-  /*   add = parseInt($("#examPoints option:selected").val())
-	+parseInt($("#AssignmentPoints option:selected").val())
-	+parseInt($("AttendancePoints option:selected").val()); */
-    
-    
-		 
-	var e= $("#TotalPoint").html();
-	add= parseInt($("#examPoints option:selected").val())
-	 +parseInt($("#AssignmentPoints option:selected").val()) + parseInt($("#AttendancePoints option:selected").val())
-    $("#TotalPoint").text(add);
-	console.log(add);
-}
+	// 배점 최종 출력
+	$("#TotalPoint").text(add);
+	}
 </script>
 <script>
 

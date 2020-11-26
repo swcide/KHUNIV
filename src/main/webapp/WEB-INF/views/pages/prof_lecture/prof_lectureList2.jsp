@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/professor_header.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 
 <!-- Content Wrapper. Contains page content -->
 <div class="body">
@@ -22,36 +24,30 @@
 						<div class="custom-box-details bg-color-light col-lg-12 ml-5 mb-5 mb-lg-4 float-right clearfix">
 							<h4>내 강의 목록</h4>
 
-							<table class="table table-hover">
-								<thead>
-									<tr>
-										<th>강의번호<th>
-										<th>학기</th>
-										<th>과목명</th>
-										<th>수강인원</th>
-										<th>과제제출률</th>
-										<th>수업진행률</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>c12314123<td>
-										<td>2</td>
-										<th><a href="prof_lectureStudentList.do">컴퓨터네트워킹</a></th>
-										<td>20</td>
-										<td>100%</td>
-										<td>12%</td>
-									</tr>
-									<tr>
-										<td>c12364123<td>
-										<td>2</td>
-										<th><a href="prof_lectureStudentList.do">디자인 커뮤니케이션</a></th>
-										<td>18</td>
-										<td>80%</td>
-										<td>24%</td>
-									</tr>
-								</tbody>
-							</table>
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>강의번호<th>
+											<th>학기</th>
+											<th>과목명</th>
+											<th>수강인원</th>
+											<th>과제제출률</th>
+											<th>수업진행률</th>
+										</tr>
+									</thead>
+							<c:forEach var="lc" items="${aLc}">
+									<tbody>
+										<tr>
+											<td>${lc.classNo}<td>
+											<td>2</td>
+											<td>${lc.className}</td>
+											<td>20</td>
+											<td>100%</td>
+											<td>12%</td>
+										</tr>
+									</tbody>
+							</c:forEach>
+								</table>
 						</div>
 					</div>
 				</div>
@@ -59,5 +55,6 @@
 		</section>
 	</div>
 </div>
+<!-- <a href="prof_lectureStudentList.do"> -->
 <%@ include file="../common/footer.jsp"%>
 

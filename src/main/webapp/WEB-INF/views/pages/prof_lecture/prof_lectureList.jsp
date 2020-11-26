@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/professor_header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.kh.univ.member.model.vo.Professor"%>
+<%
+
+Professor loginProf = (Professor)session.getAttribute("loginProf");
+String pNo = null;
+pNo =loginProf.getpNo();
+
+%>
 <!-- Content Wrapper. Contains page content -->
 <style>
 #className {
@@ -64,9 +72,11 @@
 													<i class="far fa-comments"></i> <a href="#">${lc.profEmail }</a>
 												</span>
 												<br>
-												<span class="d-block mt-2">
-													<a href="#" class="btn btn-xs btn-light text-1 text-uppercase">강의 계획서</a>
-												</span>
+												<label onclick="openNew(this)" class="btn btn-xs btn-light text-1 text-uppercase">
+													<input type="hidden" name="classNo" value="${lc.classNo }">
+													<input type="hidden" name="pNo" value="<%=pNo%>">
+													강의 계획서
+												</label>
 											</div>
 										</div>
 									</article>
@@ -79,5 +89,18 @@
 		</div>
 	</div>
 </div>
+<script>
+	// 강의계획서 불러오는 스크립트
+	function openNew(obj) {
+		var classNo = $(obj).find('input:eq(0)').val();		// 과목번호
+		var pNo = $(obj).children('input:eq(1)').val();		// 세션에서 받아온 교수번호
+
+			window.open(this.href = 'ad_syllabus.do?classNo=' + classNo
+													+ '&pNo=' + pNo, '',
+							'resizable=yes, width=900, height=800 left=700px top=100px');
+			return false;
+		
+	}
+</script>
 <%@ include file="../common/footer.jsp"%>
 
