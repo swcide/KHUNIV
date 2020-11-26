@@ -73,50 +73,50 @@
 						<div class="col-md-5 align-self-center p-static order-2 text-center">
 							<img alt="Porto Website Template" src="resources/img/khculogo4.png" class="float-left" height="40">
 						</div>
-						
+
 						<div class="col-md-7 align-self-center p-static order-2 text-center">
 							<h1 class="text-dark text-uppercase float-left">
 								<strong style="color: white;">강의계획서</strong>
 							</h1>
 						</div>
-						
+
 					</div>
 				</div>
 			</section>
 
-			<div class="container py-2">
-				<div class="row">
-					<div class="col">
-<div id="pdf_wrap">
-						<table class="table table-hover">
+			<div id="pdf_wrap">
+				<div class="container py-2">
+					<div class="row">
+						<div class="col">
+							<table class="table table-hover">
 
-							<tbody>
-								<tr>
-									<th style="width: 118px;">교과목명(국문)</th>
-									<td colspan="3" style="text-align: center;">${lp.className }</td>
+								<tbody>
+									<tr>
+										<th style="width: 118px;">교과목명(국문)</th>
+										<td colspan="3" style="text-align: center;">${lp.className }</td>
 
-								</tr>
+									</tr>
 
-								<tr>
-									<th style="width: 118px;">과목번호</th>
-									<td style="width: 252px; text-align: center;">${lp.classNo}</td>
-									<th style="width: 118px;">이수구분</th>
-									<td style="text-align: center;">${lp.classType}</td>
-								</tr>
-								<tr>
-									<th>학점</th>
-									<td style="text-align: center;">${lp.credit}</td>
-									<th>연구실</th>
-									<td style="text-align: center;">${lp.profLab}</td>
-								</tr>
-								<tr>
-									<th>교수</th>
-									<td style="text-align: center;">${lp.profName}</td>
-									<th>E-mail</th>
-									<td style="text-align: center;">${lp.profEmail}</td>
-								</tr>
-							</tbody>
-						</table>
+									<tr>
+										<th style="width: 118px;">과목번호</th>
+										<td style="width: 252px; text-align: center;">${lp.classNo}</td>
+										<th style="width: 118px;">이수구분</th>
+										<td style="text-align: center;">${lp.classType}</td>
+									</tr>
+									<tr>
+										<th>학점</th>
+										<td style="text-align: center;">${lp.credit}</td>
+										<th>연구실</th>
+										<td style="text-align: center;">${lp.profLab}</td>
+									</tr>
+									<tr>
+										<th>교수</th>
+										<td style="text-align: center;">${lp.profName}</td>
+										<th>E-mail</th>
+										<td style="text-align: center;">${lp.profEmail}</td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
 						<table class="table table-hover">
 							<thead>
@@ -230,7 +230,7 @@
 									<tr>
 										<th>제 ${l.lecNo }주</th>
 										<td style="text-align: center;">${l.lecName }</td>
-										<td style="text-align: center; height:150px">${l.lecExplanation}</td>
+										<td style="text-align: center; height: 150px">${l.lecExplanation}</td>
 										<td style="text-align: center;">${l.lecReference }</td>
 									</tr>
 								</c:forEach>
@@ -239,37 +239,40 @@
 					</div>
 				</div>
 			</div>
-		<button id="create_pdf" class="btn btn-primary btn-lg mb-2 float-right" style="margin-right: 40px;">다운로드</button>
+			<button id="create_pdf" class="btn btn-primary btn-lg mb-2 float-right" style="margin-right: 40px;">다운로드</button>
 		</div>
 	</div>
-	
+
 	<script>
-	
-		$(document).ready(function() {
-			$('#create_pdf').click(function() { // pdf저장 button id
-			    html2canvas($('#pdf_wrap')[0]).then(function(canvas) { //저장 영역 div id
-			    // 캔버스를 이미지로 변환
-			    var imgData = canvas.toDataURL('image/png');
-			    var imgWidth = 190; // 이미지 가로 길이(mm) / A4 기준 210mm
-			    var pageHeight = imgWidth * 1.414;  // 출력 페이지 세로 길이 계산 A4 기준  
-			    var imgHeight = canvas.height * imgWidth / canvas.width;
-			    var heightLeft = imgHeight;
-			    var margin = 10; // 출력 페이지 여백설정
-			    var doc = new jsPDF('p', 'mm');
-			    var position = 0;
-			    // 첫 페이지 출력
-			    doc.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight);
-			    heightLeft -= pageHeight;
-			    // 파일 저장
-			    doc.save('*.pdf');
-			    
-			    pdf.addHTML(document.body, function() {
-			        pdf.save('*.pdf');
-			    });
-			});
-			});
-		});
-		
+		$(document).ready(
+				function() {
+					$('#create_pdf').click(
+							function() { // pdf저장 button id
+								html2canvas($('#pdf_wrap')[0]).then(
+										function(canvas) { //저장 영역 div id
+											// 캔버스를 이미지로 변환
+											var imgData = canvas
+													.toDataURL('image/png');
+											var imgWidth = 190; // 이미지 가로 길이(mm) / A4 기준 210mm
+											//var pageHeight = imgWidth * 1.414; // 출력 페이지 세로 길이 계산 A4 기준  
+											var pageHeight = imgWidth * 3; // 출력 페이지 세로 길이 계산 A4 기준  
+											var imgHeight = canvas.height
+													* imgWidth / canvas.width;
+											var heightLeft = imgHeight;
+											var margin = 10; // 출력 페이지 여백설정
+											var doc = new jsPDF('p', 'mm');
+											var position = 0;
+											// 첫 페이지 출력
+											doc.addImage(imgData, 'PNG',
+													margin, position, imgWidth,
+													imgHeight);
+											heightLeft -= pageHeight;
+											// 파일 저장
+											doc.save('강의계획서.pdf');
+
+										});
+							});
+				});
 	</script>
 </body>
 </html>
