@@ -92,4 +92,11 @@
  	 	SET  H_RCONTENT=#{rContent}
  		WHERE H_RID= #{rId}
  	 </insert>
+
+ 	 <insert id="reportReply" parameterType="Reply">
+ 	 	UPDATE TB_HUMANBOARD_REPLY
+ 	 	SET  H_RCONTENT=#{rContent}
+ 		WHERE H_RID= #{rId}
+ 	 </insert>
+
 </mapper>

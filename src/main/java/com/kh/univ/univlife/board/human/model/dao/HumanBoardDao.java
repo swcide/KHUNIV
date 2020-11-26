@@ -71,5 +71,10 @@ public class HumanBoardDao {
 		return sqlSession.update("humanBoardMapper.updateReply",r);
 	}
 
+	public int reportReply(hReply r) {
+
+		return sqlSession.update("humanBoardMapper.reportReply",r);
+	}
+
 
 }
