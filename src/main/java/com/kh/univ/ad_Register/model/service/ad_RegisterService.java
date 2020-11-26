@@ -95,6 +95,22 @@ public interface ad_RegisterService {
 	 */
 	ArrayList<semesterPoint> point_Search_List(String sNo);
 
+	/**
+	 * 학기별 성적조회 위에꺼
+	 * @param semp
+	 * @return
+	 */
+	ArrayList<semesterPoint> point_Search_Top(semesterPoint semp);
+	
+	/**
+	 * 학기별 성적조회
+	 * @param semp
+	 * @return
+	 */
+	ArrayList<semesterPoint> point_Search(semesterPoint semp);
+
+	
+
 
 
 	

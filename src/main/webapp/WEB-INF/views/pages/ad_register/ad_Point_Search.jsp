@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,46 +80,48 @@
 			<div class="container py-2">
 				<div class="row">
 					<div class="col">
-						<table class="table table-hover">
-							<tbody>
-								<tr>
-									<th>학과</th>
-									<td style="text-align: center;">호주캥거루학과</td>
-									<th>열람일</th>
-									<td style="text-align: center;">2020-10-30</td>
-								</tr>
-								<tr>
-									<th style="width: 118px;">성명</th>
-									<td style="width: 252px; text-align: center;">조원영</td>
-									<th style="width: 118px;">학번</th>
-									<td style="text-align: center;">201802023</td>
-								</tr>
-							</tbody>
-						</table>
-
-						<table class="table table-hover">
-							<thead>
-								<tr>
-									<th>년도 및 학기</th>
-									<th style="text-align: center;">신청학점</th>
-									<th style="text-align: center;">취득학점</th>
-									<th style="text-align: center;">평점평균</th>
-									<th style="text-align: center;">백점환산점수</th>
-									<th style="text-align: center;">학사경고여부</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<th>2019 / 01</th>
-									<td style="text-align: center;">12</td>
-									<td style="text-align: center;">12</td>
-									<td style="text-align: center;">3.24</td>
-									<td style="text-align: center;">80.22</td>
-									<td style="text-align: center;">N</td>
-								</tr>
-							</tbody>
-						</table>
-
+						<c:forEach var="st" items="${sepTop }">
+							<table class="table table-hover">
+								<tbody>
+									<tr>
+										<th>학과</th>
+										<td style="text-align: center;">${st.deptName }</td>
+										<th>열람일</th>
+										<td style="text-align: center;">${st.sysdate }</td>
+									</tr>
+									<tr>
+										<th style="width: 118px;">성명</th>
+										<td style="width: 252px; text-align: center;">${st.sName }</td>
+										<th style="width: 118px;">학번</th>
+										<td style="text-align: center;">${st.sNo }</td>
+									</tr>
+								</tbody>
+							</table>
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>년도 및 학기</th>
+										<th style="text-align: center;">신청학점</th>
+										<th style="text-align: center;">취득학점</th>
+										<th style="text-align: center;">평점평균</th>
+										<th style="text-align: center;">백점환산점수</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th>${st.semYear }/${st.semNo }</th>
+										<td style="text-align: center;">${st.count *3}</td>
+										<td style="text-align: center;">${st.count *3}</td>
+										<td style="text-align: center;">
+											<fmt:formatNumber value="${st.avgPoint/4 }" pattern=".0" />
+										</td>
+										<td style="text-align: center;">
+											<fmt:formatNumber value="${st.point }" pattern=".00" />
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</c:forEach>
 						<table class="table table-hover">
 							<thead>
 								<tr>
@@ -128,44 +132,52 @@
 									<th style="text-align: center;">취득학점</th>
 									<th style="text-align: center;">평점평균</th>
 									<th style="text-align: center;">담당교수</th>
-									<th style="text-align: center;">학사경고여부</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<th>2019 / 01</th>
-									<th style="text-align: center;">서핑(초급반)</th>
-									<td style="text-align: center;">교양</td>
-									<td style="text-align: center;">2</td>
-									<td style="text-align: center;">A-</td>
-									<td style="text-align: center;">3.9</td>
-									<td style="text-align: center;">이성호</td>
-									<td style="text-align: center;">N</td>
-								</tr>
-								<tr>
-									<th>2019 / 01</th>
-									<th style="text-align: center;">생활영어</th>
-									<td style="text-align: center;">교양</td>
-									<td style="text-align: center;">2</td>
-									<td style="text-align: center;">A+</td>
-									<td style="text-align: center;">4.4</td>
-									<td style="text-align: center;">이성호</td>
-									<td style="text-align: center;">N</td>
-								</tr>
-								<tr>
-									<th>2019 / 01</th>
-									<th style="text-align: center;">캥거루복싱</th>
-									<td style="text-align: center;">교양</td>
-									<td style="text-align: center;">2</td>
-									<td style="text-align: center;">B0</td>
-									<td style="text-align: center;">3.24</td>
-									<td style="text-align: center;">윤기훈</td>
-									<td style="text-align: center;">N</td>
-								</tr>
+								<c:forEach var="sep" items="${sep }">
+									<tr>
+										<th>${sep.semYear }/${sep.semNo }</th>
+										<th style="text-align: center;">${sep.cName }</th>
+										<td style="text-align: center;">${sep.cType }</td>
+										<td style="text-align: center;">3</td>
+										<!-- 학점 abc로 산출 -->
+										<c:if test="${sep.point ge 95 }">
+											<td style="text-align: center;">A+</td>
+										</c:if>
+										<c:if test="${ sep.point le 94 && sep.point ge 90  }">
+											<td style="text-align: center;">A-</td>
+										</c:if>
+										<c:if test="${ sep.point le 89 && sep.point ge 85  }">
+											<td style="text-align: center;">B+</td>
+										</c:if>
+										<c:if test="${ sep.point le 84 && sep.point ge 80  }">
+											<td style="text-align: center;">B-</td>
+										</c:if>
+										<c:if test="${ sep.point le 79 && sep.point ge 75  }">
+											<td style="text-align: center;">C+</td>
+										</c:if>
+										<c:if test="${ sep.point le 74 && sep.point ge 70  }">
+											<td style="text-align: center;">C-</td>
+										</c:if>
+										<c:if test="${ sep.point le 69 && sep.point ge 65  }">
+											<td style="text-align: center;">D+</td>
+										</c:if>
+										<c:if test="${ sep.point le 64 && sep.point ge 60  }">
+											<td style="text-align: center;">D-</td>
+										</c:if>
+										<c:if test="${ sep.point le 60 }">
+											<td style="text-align: center;">F</td>
+										</c:if>
+
+										<td style="text-align: center;">
+											<fmt:formatNumber value="${sep.avgPoint }" pattern=".0" />
+										</td>
+										<td style="text-align: center;">${sep.profName}</td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
-
-
 					</div>
 				</div>
 			</div>

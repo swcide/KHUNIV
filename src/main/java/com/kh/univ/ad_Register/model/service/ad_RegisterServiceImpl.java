@@ -125,6 +125,19 @@ public class ad_RegisterServiceImpl implements ad_RegisterService{
 			return arDao.point_Search_List(sNo);
 		}
 
+
+	@Override
+	public ArrayList<semesterPoint> point_Search(semesterPoint semp)
+		{
+			return  arDao.point_Search(semp);
+		}
+
+	@Override
+	public ArrayList<semesterPoint> point_Search_Top(semesterPoint semp)
+		{
+			return arDao.point_Search_Top(semp);
+		}
+
 	
 
 	

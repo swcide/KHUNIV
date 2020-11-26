@@ -94,6 +94,14 @@ public class ad_RegisterDao {
 		{
 			return (ArrayList)sqlSession.selectList("registerMapper.pointSearchList",sNo);
 		}
+	public ArrayList<semesterPoint> point_Search(semesterPoint semp)
+		{
+			return (ArrayList)sqlSession.selectList("registerMapper.pointSearchDetail",semp);
+		}
+	public ArrayList<semesterPoint> point_Search_Top(semesterPoint semp)
+		{
+			return (ArrayList)sqlSession.selectList("registerMapper.pointSearchDetailTop",semp);
+		}
 
 	
 
