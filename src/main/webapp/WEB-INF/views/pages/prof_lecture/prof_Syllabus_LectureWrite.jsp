@@ -116,8 +116,8 @@
 							</tbody>
 						</table>
 
-						<form action="prof_Syllabus_LectureUpdate.do" name="formSylla" id="formSylla" method="post">
-							<input id="classNo" name="classNo" type="hidden" value="${lp.classNo}">
+						<form name="formSylla" id="formSylla" method="post">
+							<input name="classNo" type="hidden" value="${lp.classNo}">
 							<table class="table table-hover">
 								<thead>
 									<tr>
@@ -249,7 +249,8 @@
 											</select>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<span>합 : </span>
-											<span name="TotalPoint" id="TotalPoint" size=10></span>
+											<label id="TotalPoint"></label>
+										</td>
 									</tr>
 								</tbody>
 							</table>
@@ -301,56 +302,44 @@
 			shake()
 			formSylla.lecTextbook.focus();
 			return false;
- /* 		} else if (formSylla.TotalPoint.text != "100"){
- 			shake()
- 			formSylla.assignmentPoints.focus(); */
-		} else { 
-			ajaxFormSylla()
-			return true;
+ 		} else if ($("#TotalPoint").html() != '100'){
+ 			alert("배점의 총합이 100이 되어야 합니다.")
+ 			return false;
+		}else { 
+			var classNo = $("input[name=classNo]").val();
+			var formData = new FormData($('#formSylla')[0]);
+			console.log(formData);
+			$.ajax({
+				type : "POST",
+				url : 'prof_Syllabus_LectureUpdate.do',
+				data : formData,
+				contentType: false,
+				processData:false,
+				success : function(data) {
+					
+					if(confirm("주차별 자료를 이어서 등록하시겠습니까?")== true){
+						
+					window.opener.location.href="prof_lectureVideo.do?classNo="+classNo;
+					self.close();
+						
+					} else{
+						alert("등록이 완료되었습니다.")
+					window.opener.location.reload();
+					self.close();
+						
+					}
+				},
+				error : function(request, status, error) {
+
+					alert("code:" + request.status + "\n" + "message:"
+							+ request.responseText + "\n" + "error:" + error);
+				}
+			});
 
 		}
 	};
 </script>
-<script>
-	function ajaxFormSylla() {
-		var params = $("form[name=formSylla]");
-		var classNo = $('#classNo').val();
-		$.ajax({
-			type : "POST",
-			url : 'prof_Syllabus_LectureUpdate.do',
-			data : params,
-			dataType : "html",
-			processData : false,
-			contentType : false,
-			async : false,
-			success : function(data) {
-				self.close();
-				if(confirm("주차별 자료를 이어서 등록하시겠습니까?")== true){
-					
-					window.opener.location.href="prof_lectureVideo.do?classNo="+classNo;
-					
-				} else{
-				window.opener.location.reload();
-					opener.location.reload();
-				}
-			},
-			error : function(request, status, error) {
 
-				alert("code:" + request.status + "\n" + "message:"
-						+ request.responseText + "\n" + "error:" + error);
-			}
-		});
-	}
-	function shake() {
-		for (i = 30; i > 0; i--) {
-			window.moveBy(0, i);
-			window.moveBy(i, 0);
-			window.moveBy(0, -i);
-			window.moveBy(-i, 0);
-		}
-		alert("빈칸을 채워주세요");
-	}
-</script>
 <script>
 function ExamPointsChange(e) {
 	console.log("시험점수" + parseInt($("#examPoints option:selected").val()) );
@@ -392,15 +381,15 @@ function AssignmentPointsChange(e){
 		 $("#TotalPoint").text(add);
 	var e= $("#TotalPoint").html();
 	console.log(e);
-    if(e == "0") var d = ["0", "10", "20", "30", "40", "50","60" ,"70", "80", "90", "100"];
-    else if(e == "10") var d = ["0", "10", "20", "30", "40", "50","60" ,"70", "80", "90"];
-    else if(e == "20") var d = ["0", "10", "20", "30", "40", "50","60" ,"70", "80"];
-    else if(e == "30") var d = ["0", "10", "20", "30", "40", "50","60" ,"70"];
-    else if(e == "40") var d = ["0", "10", "20", "30", "40", "50","60"];
-    else if(e == "50") var d = ["0", "10", "20", "30", "40", "50"];
-    else if(e == "60") var d = ["0", "10", "20", "30", "40"];
-    else if(e == "70") var d = ["0", "10", "20", "30"];
-    else if(e == "80") var d = ["0", "10", "20"];
+    if(e == "0") var d = ["0", "100"];
+    else if(e == "10") var d = ["0", "90"];
+    else if(e == "20") var d = ["0", "80"];
+    else if(e == "30") var d = ["0", "70"];
+    else if(e == "40") var d = ["0", "60"];
+    else if(e == "50") var d = ["0", "50"];
+    else if(e == "60") var d = ["0", "40"];
+    else if(e == "70") var d = ["0", "30"];
+    else if(e == "80") var d = ["0", "20"];
     else if(e == "90") var d = ["0", "10"];
     else if(e == "100") var d = ["0"];
     
@@ -427,10 +416,23 @@ function AttendancePointsChange(e){
     
 		 
 	var e= $("#TotalPoint").html();
-	add= parseInt(e) + parseInt($("#AttendancePoints option:selected").val())
+	add= parseInt($("#examPoints option:selected").val())
+	 +parseInt($("#AssignmentPoints option:selected").val()) + parseInt($("#AttendancePoints option:selected").val())
     $("#TotalPoint").text(add);
 	console.log(add);
 }
+</script>
+<script>
+
+	function shake() {
+		for (i = 30; i > 0; i--) {
+			window.moveBy(0, i);
+			window.moveBy(i, 0);
+			window.moveBy(0, -i);
+			window.moveBy(-i, 0);
+		}
+		alert("빈칸을 채워주세요");
+	}
 </script>
 
 </html>

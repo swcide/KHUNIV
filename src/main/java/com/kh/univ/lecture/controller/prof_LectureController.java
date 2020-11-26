@@ -29,16 +29,13 @@ import com.google.gson.JsonIOException;
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.common.Pagination;
 import com.kh.univ.lecture.model.service.profLecService;
-import com.kh.univ.lecture.model.vo.Assignment;
 import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
-import com.kh.univ.lecture.model.vo.LectureHomeWork;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.notice.model.vo.Notice;
-import com.kh.univ.testPage.model.vo.GradeBefore;
 import com.kh.univ.testPage.model.vo.Test;
 import com.kh.univ.member.model.vo.Student;
 
@@ -326,16 +323,17 @@ public class prof_LectureController {
 	public String prof_Syllabus_LectureUpdate(Model m, LecturePlan lp ) {
 		System.out.println("컨트롤러"+lp);
 		int result = plService.prof_Syllabus_LectureUpdate(lp);
-		System.out.println(result);
+		System.out.println("디비타면 1====="+result);
 		if(result>0) {
+			System.out.println("컨트롤러 무사통과");
 			System.out.println(lp);
 			return "success";
-
 		}else {
-			System.out.println(lp);
+			System.out.println("컨트롤러 통과실패했다");
 			return "fail";
 		}
 	}
+	
 
 
 	@RequestMapping(value = "prof_learningprogress.do")
@@ -696,13 +694,13 @@ public class prof_LectureController {
 
 	
 	@RequestMapping("qdelete.do")
-	public String testDelete(Test t) {
+	public String testDelete(Test t, HttpServletRequest request) {
 		
 		System.out.println(t);
 		int result = plService.deleteTest(t);
 		System.out.println(result);
 		if (result>0) {
-			return "redirect:qList.do?cNo="+t.getcNo()+"&tNo="+t.gettNo();
+			return "redirect:qList.do?=cNo"+t.getcNo();
 		}else {
 			return "common/errorPage";
 		}
@@ -717,165 +715,26 @@ public class prof_LectureController {
 	
 	
 	
-	/**
-	 * 
-	 * 과제 리스트
-	 * @param mv
-	 * @param session
-	 * @param currentPage
-	 * @return
-	 */
-	@RequestMapping("hlist.do")
-	public ModelAndView QuizList( ModelAndView mv, HttpSession session)  {
+	@RequestMapping(value = "prof_homeworklist.do", method = RequestMethod.GET)
+	public String homeworklist(Model model) {
 		
-		
-		
-		Professor p= (Professor)session.getAttribute("loginProf");
-		
-		String pNo = p.getpNo();
-
-		ArrayList <LectureList> ll = plService.hSelectList(p);
-		
-		mv.addObject("pNo",pNo);
-		mv.addObject("ll",ll);
-		mv.setViewName("prof_lecture/prof_homework_list");
-		return mv;
-//		Professor p= (Professor)session.getAttribute("loginProf");
-//		
-//		
-//		ArrayList<LectureHomeWork> cTList = plService.hSelectList(p);
-//		
-////		System.out.println(cTList);
-//		
-//		
-//		mv.addObject("cTList",cTList);
-//		mv.setViewName("prof_lecture/prof_homework_list");
-//		return mv;
-//				"prof_lecture/prof_homework_list";
+		return "prof_lecture/prof_homework_list";
 		
 		
 	}
-	
-	@RequestMapping( "hWeekList.do")
-	public ModelAndView prof_homeworkWeekView(ModelAndView mv,LectureHomeWork lh) {
+	@RequestMapping(value = "prof_homeworkInsert.do", method = RequestMethod.GET)
+	public String homework(Model model) {
 		
-		ArrayList <LectureHomeWork> hList = plService.selectHList(lh); 
-		mv.addObject("lh",lh);
-		mv.addObject("hList",hList);
-		mv.setViewName("prof_lecture/prof_homework_weekList"); 
-		
-		return mv;
-	}
-	
-	
-	@RequestMapping("hWeekInsertView.do")
-	public ModelAndView QuizDelete2(ModelAndView mv, LectureHomeWork lh) {
-		
-		
-		mv.addObject("lh",lh);
-		mv.setViewName("prof_lecture/prof_homework_insert");
-		
-		return mv;
-	}
-	
-	/**
-	 * 과제 제출 - 교수
-	 * @param lh
-	 * @param request
-	 * @param file
-	 * @return
-	 */
-	@RequestMapping("hInsert.do")
-	public String homeworkEvaludation(LectureHomeWork lh,HttpServletRequest request,
-			 @RequestParam(name="uploadFile",required=false) MultipartFile file) {
-		
-		System.out.println(lh);
-		System.out.println(file);
-		
-		if(!file.getOriginalFilename().equals("")) {
-			//서버에 업로드를 해야한다.
-			String renameFIleName =  saveFile(file,request);
-			
-			if(renameFIleName != null) { // 파일이 잘 저장된 경우;
-				lh.setOriginalFileName(file.getOriginalFilename());
-				lh.setRenameFileName(renameFIleName);
-				
-			}
-		}
-		
-		System.out.println(lh);
-		java.util.Date now = new Date(System.currentTimeMillis());
-		
-		SimpleDateFormat fmt = new SimpleDateFormat ( "yyyyMMdd-HHmm");
-		
-		String str = fmt.format(now);
-		lh.sethNo("H"+str);
-		
-		int result = plService.insertHomework(lh);
-		
-		if(result>0) {
-			return "redirect:hWeekList.do?cNo="+lh.getcNo()+"&pNo="+lh.getpNo();
-		}else {
-			return "common/errorPage";
-		}
+		return "prof_lecture/prof_homework_insert";
 		
 		
 	}
-	
-	
-	
-	
-	
-	/**
-	 * 평가 뷰
-	 * @param mv
-	 * @param lh
-	 * @return
-	 */
-	@RequestMapping( "sEvaluation.do")
-	public ModelAndView prof_StdEvaluation(ModelAndView mv,LectureHomeWork lh) {
+	@RequestMapping(value = "prof_studentEvaluation.do", method = RequestMethod.GET)
+	public String homeworkEvaludation(Model model) {
+		
+		return "prof_lecture/prof_homework_Evaluation";
 		
 		
-		
-		
-		ArrayList<LecturePlanWeek> ag = plService.selectSeList(lh);
-		
-		System.out.println(ag);
-		
-		
-		mv.addObject("ag",ag);
-		mv.setViewName("prof_lecture/prof_homework_Evaluation"); 
-		
-		return mv;
 	}
-	
-	/**
-	 * 
-	 * 평가하기
-	 * @param mv
-	 * @param lh
-	 * @return
-	 */
-	@RequestMapping( "sEvaluationInsert.do")
-	public ModelAndView prof_StdEvaluationUpdate(HttpSession session, ModelAndView mv , GradeBefore gb ) {
-		
-		Professor p =  (Professor)session.getAttribute("loginProf");
-		
-		String pNo =p.getpNo();
-		
-		gb.setpNo(pNo);
-		
-
-		int result=plService.EvaluationInsert(gb);
-		
-		
-		
-		mv.setViewName("prof_lecture/prof_homework_Evaluation"); 
-		
-		return mv;
-	}
-	
-	
-	
 
 }
