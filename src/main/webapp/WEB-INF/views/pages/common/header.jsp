@@ -117,26 +117,9 @@
 													</ul></li>
 												<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"> 대학 생활 </a>
 													<ul class="dropdown-menu">
-														<li class="dropdown-submenu"><a class="dropdown-item" href="emp.do">취업지원센터</a>
-															<ul class="dropdown-menu">
-																<li><a class="dropdown-item" href="emp.do">취업지원센터 바로가기</a></li>
-															</ul></li>
+														<li><a class="dropdown-item" href="emp.do">취업지원센터</a>
 
-														<li class="dropdown-submenu"><a class="dropdown-item" href="#">열린 광장</a>
-															<ul class="dropdown-menu">
-																<li class="dropdown-submenu"><a class="dropdown-item" href="dept_board.do">계열별 게시판</a>
-																	<ul class="dropdown-menu">
-																		<li><a class="dropdown-item" href="human.do">인문 사회 계열</a></li>
-																		<li><a class="dropdown-item" href="natural.do">자연 과학 계열</a></li>
-																		<li><a class="dropdown-item" href="engi.do">공학 계열</a></li>
-																		<li><a class="dropdown-item" href="arts.do">예체능 계열</a></li>
-																	</ul></li>
-																<li class="dropdown-submenu"><a class="dropdown-item" href="#">취업정보 게시판</a>
-																	<ul class="dropdown-menu">
-																		<li><a class="dropdown-item" href="job.do">구인 공고</a></li>
-																		<li><a class="dropdown-item" href="stu_sto.do">학생 이모저모</a></li>
-																	</ul></li>
-															</ul></li>
+														<li><a class="dropdown-item" href="human.do">학생 게시판</a>
 													</ul></li>
 												<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"> 상담 안내 </a>
 													<ul class="dropdown-menu">

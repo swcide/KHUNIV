@@ -56,36 +56,51 @@ public class prof_LectureController {
 	 */
 	@RequestMapping(value = "prof_lecturelist.do")
 	public ModelAndView prof_lecture(ModelAndView mv, HttpSession session)
-		{
+	{
 
-			Professor p = (Professor) session.getAttribute("loginProf");
-			String pNo = p.getpNo();
+		Professor p = (Professor) session.getAttribute("loginProf");
+		String pNo = p.getpNo();
 
-			ArrayList<LectureClass> aLc = plService.selectValue(pNo);
-			System.out.println(aLc);
-			System.out.println();
+		ArrayList<LectureClass> aLc = plService.selectValue(pNo);
+		System.out.println(aLc);
+		System.out.println();
 
-			if (aLc != null) {
-				mv.addObject("aLc", aLc);
-				mv.setViewName("prof_lecture/prof_lectureList");
-			} else {
-				mv.addObject("msg", "로그인 실패");
-				mv.setViewName("common/errorPage");
-			}
-			return mv;
+		if (aLc != null) {
+			mv.addObject("aLc", aLc);
+			mv.setViewName("prof_lecture/prof_lectureList");
+		} else {
+			mv.addObject("msg", "로그인 실패");
+			mv.setViewName("common/errorPage");
 		}
+		return mv;
+	}
 
+	// 강의동 >> 수업관리 >> 내 강의 목록
 	@RequestMapping(value = "prof_lectureList2.do")
-	public String prof_lecture2(Model model)
-		{
-			return "prof_lecture/prof_lectureList2";
+	public ModelAndView prof_lecture2(ModelAndView mv, HttpSession session)
+	{	
+		
+		Professor p = (Professor) session.getAttribute("loginProf");	// 세션에서 교수정보 불러오기
+		String pNo = p.getpNo();										// 교수번호 담기
+
+		ArrayList<LectureClass> aLc = plService.selectValue(pNo);		
+		System.out.println(aLc);
+
+		if (aLc != null) {
+			mv.addObject("aLc", aLc);
+			mv.setViewName("prof_lecture/prof_lectureList2");
+		} else {
+			mv.addObject("msg", "에러가 발생했습니다.");
+			mv.setViewName("common/errorPage");
 		}
+		return mv;
+	}
 
 	@RequestMapping(value = "prof_lectureStudentList.do")
 	public String prof_Studentlecture(Model model)
-		{
-			return "prof_lecture/prof_lectureStudentList";
-		}
+	{
+		return "prof_lecture/prof_lectureStudentList";
+	}
 
 	/**
 	 * 해당 과목의 주차별 내용만 출력
@@ -125,68 +140,68 @@ public class prof_LectureController {
 	@RequestMapping("prof_lectureVideoInsert.do")
 	public String prof_lectureVideoInsert(Model m, LecturePlanWeek lpw, HttpServletRequest request, @RequestParam(name = "lecVideoInsert", required = false) MultipartFile file,
 			@RequestParam(name = "lecReferenceInsert", required = false) MultipartFile refFile, @RequestParam(name = "classNo", required = false) String classNo)
-		{
-			System.out.println("in");
-			System.out.println(classNo);
-			if (!file.getOriginalFilename().equals(" ")) {
-				//서버에 업로드 해야한다.
+	{
+		System.out.println("in");
+		System.out.println(classNo);
+		if (!file.getOriginalFilename().equals(" ")) {
+			//서버에 업로드 해야한다.
 
-				String renameFileName = saveFile(file, request);
-				if (renameFileName != null) { //파일이 잘 저장된 경우
-					lpw.setLecVideo(file.getOriginalFilename()); // 파일명만 DB에 저장
-					lpw.setLecVideo(renameFileName);
-				}
-			}
-
-			if (!refFile.getOriginalFilename().equals(" ")) {
-				//서버에 업로드 해야한다.
-				String renameRefFileName = saveFile(refFile, request);
-				if (renameRefFileName != null) { //파일이 잘 저장된 경우
-					lpw.setLecReference(refFile.getOriginalFilename()); // 파일명만 DB에 저장
-					lpw.setLecReference(renameRefFileName);
-				}
-			}
-
-			int result = plService.lectureVideoInsert(lpw);
-
-			if (result > 0) {
-				ArrayList<LecturePlanWeek> aLpw = plService.lectureVideo(classNo);
-				m.addAttribute("classNo", classNo);
-				m.addAttribute(aLpw);
-				return "redirect:prof_lectureVideo.do";
-			} else {
-				return "common/errorPage";
+			String renameFileName = saveFile(file, request);
+			if (renameFileName != null) { //파일이 잘 저장된 경우
+				lpw.setLecVideo(file.getOriginalFilename()); // 파일명만 DB에 저장
+				lpw.setLecVideo(renameFileName);
 			}
 		}
+
+		if (!refFile.getOriginalFilename().equals(" ")) {
+			//서버에 업로드 해야한다.
+			String renameRefFileName = saveFile(refFile, request);
+			if (renameRefFileName != null) { //파일이 잘 저장된 경우
+				lpw.setLecReference(refFile.getOriginalFilename()); // 파일명만 DB에 저장
+				lpw.setLecReference(renameRefFileName);
+			}
+		}
+
+		int result = plService.lectureVideoInsert(lpw);
+
+		if (result > 0) {
+			ArrayList<LecturePlanWeek> aLpw = plService.lectureVideo(classNo);
+			m.addAttribute("classNo", classNo);
+			m.addAttribute(aLpw);
+			return "redirect:prof_lectureVideo.do";
+		} else {
+			return "common/errorPage";
+		}
+	}
 
 	public String saveFile(MultipartFile file, HttpServletRequest request)
-		{
-			//파일이 저장될 경로를 설정하기
-			//웹 서버의 ContextPath 불러와서 폴더의 경로를 가져온다
-			//webapp 하위의 resources
-			String root = request.getSession().getServletContext().getRealPath("resources");
-			System.out.println("root : " + root);
-			//파일 경로
-			// \를 문자로 인식시키기 위해서는 "\\"를 사용한다.
-			String savePath = root + "\\lectureUploadFile";
+	{
+		//파일이 저장될 경로를 설정하기
+		//웹 서버의 ContextPath 불러와서 폴더의 경로를 가져온다
+		//webapp 하위의 resources
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		System.out.println("root : " + root);
+		//파일 경로
+		// \를 문자로 인식시키기 위해서는 "\\"를 사용한다.
+		String savePath = root + "\\lectureUploadFile";
 
-			File folder = new File(savePath);
+		File folder = new File(savePath);
 
-			if (!folder.exists()) {
-				folder.mkdirs(); // 폴더가 없다면 생성한다. 
-			}
-
-			String fileName = file.getOriginalFilename();
-
-			String renamePath = folder + "\\" + fileName;//실제 저장될 파일 경로 + 파일명
-
-			try {
-				file.transferTo(new File(renamePath)); // 전달 받은 file이 rename명으로 이때 파일이 저장된다.
-			} catch (Exception e) {
-				System.out.println("파일 전송 에러 : " + e.getMessage());
-			}
-			return fileName;
+		if (!folder.exists()) {
+			folder.mkdirs(); // 폴더가 없다면 생성한다. 
 		}
+
+		String fileName = file.getOriginalFilename();
+
+		String renamePath = folder + "\\" + fileName;//실제 저장될 파일 경로 + 파일명
+
+		try {
+			file.transferTo(new File(renamePath)); // 전달 받은 file이 rename명으로 이때 파일이 저장된다.
+		} catch (Exception e) {
+			System.out.println("파일 전송 에러 : " + e.getMessage());
+		}
+		return fileName;
+	}
 
 	/**
 	 * 동영상 / 첨부파일 업데이트
@@ -200,59 +215,59 @@ public class prof_LectureController {
 	@RequestMapping("prof_lectureVideoUpdate.do")
 	public ModelAndView lectureVideoUpdate(ModelAndView mv, LecturePlanWeek lpw, HttpServletRequest request, @RequestParam(name = "lecVideoUpdate", required = false) MultipartFile file,
 			@RequestParam(name = "lecReferenceUpdate", required = false) MultipartFile refFile, @RequestParam(name = "classNo", required = false) String classNo){
-			
-			// 영상 파일 ----------------------------------------------------
-			if (file != null && !file.isEmpty()) { // 새로 업로드 된 파일이 있다면 - 의 조건
-				if (lpw.getLecVideo() != null) {// 기존의 파일이 존재했을 경우 파일 삭제하는 조건
-					deleteFile(lpw.getLecVideo(), request);
-				}
-				String renameFileName = saveFile(file, request);
-				if (renameFileName != null) {
-					lpw.setLecVideo(file.getOriginalFilename());
-					lpw.setLecVideo(renameFileName);
-				}
+
+		// 영상 파일 ----------------------------------------------------
+		if (file != null && !file.isEmpty()) { // 새로 업로드 된 파일이 있다면 - 의 조건
+			if (lpw.getLecVideo() != null) {// 기존의 파일이 존재했을 경우 파일 삭제하는 조건
+				deleteFile(lpw.getLecVideo(), request);
 			}
-			// 첨부 파일 ----------------------------------------------------
-			if (refFile != null && !refFile.isEmpty()) { // 새로 업로드 된 파일이 있다면 - 의 조건
-				if (lpw.getLecVideo() != null) {// 기존의 파일이 존재했을 경우 파일 삭제하는 조건
-					deleteFile(lpw.getLecReference(), request);
-				}
-				String renameFileName = saveFile(refFile, request);
-				if (renameFileName != null) {
-					lpw.setLecReference(refFile.getOriginalFilename());
-					lpw.setLecReference(renameFileName);
-				}
+			String renameFileName = saveFile(file, request);
+			if (renameFileName != null) {
+				lpw.setLecVideo(file.getOriginalFilename());
+				lpw.setLecVideo(renameFileName);
 			}
-			
-			int result = plService.lectureVideoUpdate(lpw);
-			System.out.println(result);
-//			LecturePlanWeek lecDB = plService.updateAfter(lpw);
-//			System.out.println("이거 ? " + lecDB);
-//			int lecNum= lecDB.getLecNo();
-//			System.out.println(lecNum);
-			
-			if (result > 0) {
-				ArrayList<LecturePlanWeek> aLpw = plService.lectureVideo(classNo);
-				mv.addObject("classNo", classNo);
-				mv.addObject("aLpw", aLpw);
-				mv.setViewName("prof_lecture/prof_lectureVideo");
-			} else {
-				mv.addObject("msg", "수정실패").setViewName("common/errorPage");
-			}
-			return mv;
 		}
+		// 첨부 파일 ----------------------------------------------------
+		if (refFile != null && !refFile.isEmpty()) { // 새로 업로드 된 파일이 있다면 - 의 조건
+			if (lpw.getLecVideo() != null) {// 기존의 파일이 존재했을 경우 파일 삭제하는 조건
+				deleteFile(lpw.getLecReference(), request);
+			}
+			String renameFileName = saveFile(refFile, request);
+			if (renameFileName != null) {
+				lpw.setLecReference(refFile.getOriginalFilename());
+				lpw.setLecReference(renameFileName);
+			}
+		}
+
+		int result = plService.lectureVideoUpdate(lpw);
+		System.out.println(result);
+		//			LecturePlanWeek lecDB = plService.updateAfter(lpw);
+		//			System.out.println("이거 ? " + lecDB);
+		//			int lecNum= lecDB.getLecNo();
+		//			System.out.println(lecNum);
+
+		if (result > 0) {
+			ArrayList<LecturePlanWeek> aLpw = plService.lectureVideo(classNo);
+			mv.addObject("classNo", classNo);
+			mv.addObject("aLpw", aLpw);
+			mv.setViewName("prof_lecture/prof_lectureVideo");
+		} else {
+			mv.addObject("msg", "수정실패").setViewName("common/errorPage");
+		}
+		return mv;
+	}
 
 	public void deleteFile(String fileName, HttpServletRequest request)
-		{
-			String root = request.getSession().getServletContext().getRealPath("resources");
-			String savePath = root + "\\lectureUploadFile";
+	{
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\lectureUploadFile";
 
-			File f = new File(savePath + "\\" + fileName); // 기존에 업로드된 파일의 실제 경로를 이용해서 file 객체 생성
+		File f = new File(savePath + "\\" + fileName); // 기존에 업로드된 파일의 실제 경로를 이용해서 file 객체 생성
 
-			if (f.exists()) {
-				f.delete();
-			}
+		if (f.exists()) {
+			f.delete();
 		}
+	}
 
 	/**
 	 * 동영상 삭제
@@ -264,24 +279,24 @@ public class prof_LectureController {
 	 */
 	@RequestMapping(value = "prof_lectureVideoDelete.do")
 	public String prof_lectureVideoDelete(LecturePlanWeek lpw, @RequestParam(name = "lecNo", required = false) int lecNo, @RequestParam(name = "classNo", required = false) String classNo)
-		{
-			int result = plService.lectureVideoDelete(lpw);
-			if (result > 0) {
-				return "redirect:prof_lectureVideo.do?classNo=" + classNo;
-			} else {
-				return "common/errorPage";
-			}
+	{
+		int result = plService.lectureVideoDelete(lpw);
+		if (result > 0) {
+			return "redirect:prof_lectureVideo.do?classNo=" + classNo;
+		} else {
+			return "common/errorPage";
 		}
+	}
 
 	@RequestMapping(value = "prof_lectureVideoList.do")
 	public String prof_lectureVideoList(Model model)
-		{
-			return "prof_lecture/prof_lectureVideoList";
-		}
+	{
+		return "prof_lecture/prof_lectureVideoList";
+	}
 
-//=====================================================================================//
-								//교 수 강 의 계 획 서 //
-//=====================================================================================//
+	//=====================================================================================//
+	//교 수 강 의 계 획 서 //
+	//=====================================================================================//
 	/**
 	 * 강의계획서 관리 리스트 페이지 
 	 * 
@@ -333,7 +348,7 @@ public class prof_LectureController {
 			return "fail";
 		}
 	}
-	
+
 
 
 	@RequestMapping(value = "prof_learningprogress.do")
@@ -365,12 +380,12 @@ public class prof_LectureController {
 		return mv;
 	}
 
-	
 
-	
-//------------------------강의동 시험---------------------------------------------------------------------------
-	
-	
+
+
+	//------------------------강의동 시험---------------------------------------------------------------------------
+
+
 	/**
 	 * 
 	 * 시험리스트
@@ -382,26 +397,26 @@ public class prof_LectureController {
 	@RequestMapping("prof_testList.do")
 	public ModelAndView prof_testList(ModelAndView mv,HttpSession session,
 			@RequestParam(value="currentPage",required = false,defaultValue = "1") int currentPage) {
-		
+
 		Professor p= (Professor)session.getAttribute("loginProf");
-		
+
 		int listCount = plService.getListCount(p);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 
-		
-		
+
+
 		ArrayList<ClassTest> cTList = plService.classSelectList(p,pi);
-		
-//		System.out.println(cTList);
-		
-		
+
+		//		System.out.println(cTList);
+
+
 		mv.addObject("cTList",cTList);
 		mv.addObject("pi",pi);
 		mv.setViewName("prof_lecture/prof_testList");
 		return mv;
 	}
 
-	
+
 	/**
 	 * 
 	 * 인서트 뷰
@@ -410,24 +425,24 @@ public class prof_LectureController {
 	 */
 	@RequestMapping( "prof_testInsertView.do")
 	public ModelAndView prof_testInsertView(ModelAndView mv, HttpSession session) {
-		
+
 		Professor p= (Professor)session.getAttribute("loginProf");
 		String pNo =p.getpNo();
-		
-		ArrayList<LectureClass> lc = plService.selectValue(pNo);
-		
 
-		
+		ArrayList<LectureClass> lc = plService.selectValue(pNo);
+
+
+
 		mv.addObject("lc",lc);
 		mv.addObject("p",p);
 		mv.setViewName("prof_lecture/prof_test_insert"); 
-		
+
 		return mv;
 	}
-		
 
-	
-	
+
+
+
 
 
 	/**
@@ -442,43 +457,43 @@ public class prof_LectureController {
 	@RequestMapping( "prof_testScheduleInsert.do")
 	public ModelAndView prof_testInsert(ModelAndView mv, ClassTest ct,
 			@RequestParam(value="openDate",required = false)String openDate, @RequestParam(value="openTime",required = false)String openTime
-//			@RequestParam(value="startDate",required = false)String startDate1, @RequestParam(value="startTime",required = false)Date startTime,
-//			@RequestParam(value="endDate",required = false)String endDate1, @RequestParam(value="endTime",required = false)Date endTime ) {
-		 ){
+			//			@RequestParam(value="startDate",required = false)String startDate1, @RequestParam(value="startTime",required = false)Date startTime,
+			//			@RequestParam(value="endDate",required = false)String endDate1, @RequestParam(value="endTime",required = false)Date endTime ) {
+			){
 		String openDate2 = openDate+" "+openTime;
 		ct.setOpenDate(openDate2);
-//		--------------------------------------------------
+		//		--------------------------------------------------
 		String str = ct.getcName(); 
 		String[] arr = str.split(",");
 		ct.setcName(arr[0]);
 		ct.setcNo(arr[1]);
-		
-		
-		
-		
-//		-------------------------------------------------------
+
+
+
+
+		//		-------------------------------------------------------
 		String str2 =openDate;
 		String str3 =openTime;
-		
-		
+
+
 		String[] arr2 = str2.split("-");
 		String[] arr3 = str3.split(":");
-		
+
 		System.out.println(arr2[0]);
 		System.out.println(arr2[1]);
 		System.out.println(arr2[2]);
-		
-		
+
+
 		String tNo=ct.gettType()+arr2[0]+arr2[1]+arr2[2]+arr3[0]+arr3[1];
 		ct.settNo(tNo);//시험 번호
-		
-		
-		
-		
+
+
+
+
 		System.out.println("---------스케쥴 인서트--------");
 		System.out.println(ct);
 		int result = plService.insertTestSchedule(ct);
-		
+
 		if(result>0) {
 			mv.addObject("cNo",ct.getcNo());
 			mv.addObject("tNo",ct.gettNo());
@@ -486,7 +501,7 @@ public class prof_LectureController {
 		}
 		return mv;
 	}
-	
+
 	/**
 	 * 시험스케쥴 디테일
 	 * @param mv
@@ -498,17 +513,17 @@ public class prof_LectureController {
 	public ModelAndView prof_TestDetail(ModelAndView mv,String tNo ,@RequestParam(value="currentPage",required = false,defaultValue = "1") int currentPage) {
 		System.out.println(tNo);
 		ClassTest ct = plService.selectClassOne(tNo);
-	
+
 		mv.addObject("ct",ct);
 		mv.addObject("currentPage",currentPage);
 		mv.setViewName("prof_lecture/prof_test_detail");
-		
+
 		return mv;
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * 스케쥴 업데이트 뷰
 	 * @param mv
@@ -519,15 +534,15 @@ public class prof_LectureController {
 	public ModelAndView boardUpdateView(ModelAndView mv, String tNo) {
 		mv.addObject("ct",plService.selectClassOne(tNo)).setViewName("prof_lecture/prof_tSchedule_update");
 		return mv;
-		
+
 	}
-	
+
 	@RequestMapping("tUpSchedule.do")
 	public ModelAndView boardUpdate(ModelAndView mv, ClassTest ct,
 			@RequestParam(value="openDate",required = false)String openDate, @RequestParam(value="openTime",required = false)String openTime
-//			@RequestParam(value="startDate",required = false)String startDate1, @RequestParam(value="startTime",required = false)Date startTime,
-//			@RequestParam(value="endDate",required = false)String endDate1, @RequestParam(value="endTime",required = false)Date endTime ) {
-		 ) {
+			//			@RequestParam(value="startDate",required = false)String startDate1, @RequestParam(value="startTime",required = false)Date startTime,
+			//			@RequestParam(value="endDate",required = false)String endDate1, @RequestParam(value="endTime",required = false)Date endTime ) {
+			) {
 		System.out.println("tast ---------스케쥴 업데이트-----------insert");
 
 		System.out.println("======update+====");
@@ -536,15 +551,15 @@ public class prof_LectureController {
 		ct.setOpenDate(openDate2);
 
 
-		
-		
-		
-		
+
+
+
+
 		ArrayList<Test> t = plService.selectClassList(ct.getcNo());
 		System.out.println("-----------------");
 		System.out.println(t);
 		int result = plService.updateTestSchedule(ct);
-		
+
 		if(result>0) {
 			mv.addObject("cNo",ct.getcNo());
 			mv.addObject("tNo",ct.gettNo());
@@ -552,7 +567,7 @@ public class prof_LectureController {
 		}
 		return mv;
 	}
-	
+
 	/**
 	 * 
 	 * 문제 업데이트
@@ -566,26 +581,26 @@ public class prof_LectureController {
 
 		System.out.println("tast ---------------------업데이트");
 
-//		ArrayList<Test> t1 = plService.selectClassList(cNo);
-		
-//		System.out.println(t1);
-		
+		//		ArrayList<Test> t1 = plService.selectClassList(cNo);
+
+		//		System.out.println(t1);
+
 		System.out.println(t);
-		
+
 		int result = plService.updateTest(t);
 		System.out.println(result);
-		
+
 		if(result>0) {
 			return "success";
 		}else {
 			return "fail";
 		}
-		
+
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * 
 	 * 문제 저장
@@ -595,22 +610,22 @@ public class prof_LectureController {
 	 */
 	@RequestMapping( "testInsert.do")
 	public ModelAndView prof_TestInsert(ModelAndView mv,Test t) {
-		
+
 		System.out.println("tast ---------------------insert");
 		System.out.println(t); 
 		String cNo =t.getcNo();
 		String tNo =t.gettNo();
 		t.getqTitle();
-		
+
 		int result = plService.insertTest(t);
-		
+
 		if (result>0) {
 			mv.addObject("cNo",cNo);
 			mv.addObject("tNo",tNo);
 			mv.setViewName("redirect:qList.do");
 		}
-		
-		
+
+
 		return mv;
 	}
 
@@ -624,9 +639,9 @@ public class prof_LectureController {
 	@RequestMapping("qList.do")
 	public ModelAndView qList(ModelAndView mv, String cNo,String tNo) {
 		System.out.println("qList-------------");
-		
-//		
-//		
+
+		//		
+		//		
 		System.out.println(cNo);
 		System.out.println(tNo);
 		ArrayList<Test> t = plService.selectClassList(tNo);
@@ -638,9 +653,9 @@ public class prof_LectureController {
 		mv.addObject("ct",ct)
 		.setViewName("prof_lecture/prof_test_after_insert");
 		return mv;	
-		
+
 	}
-	
+
 	/**
 	 * 문제 리스트 ajax
 	 * @param mv
@@ -657,7 +672,7 @@ public class prof_LectureController {
 		ArrayList<Test> t = plService.takeClassList(t1);
 		System.out.println(t);
 		System.out.println("--------------ct---------");
-		
+
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		gson.toJson(t,response.getWriter());
 	}
@@ -671,31 +686,31 @@ public class prof_LectureController {
 	@ResponseBody
 	@RequestMapping("takeQListAdd.do")
 	public String takeQListAddAjax(Test t)   {
-		
+
 		System.out.println("qid-------takeQAdd------");
 		System.out.println(t.getqId());
 		System.out.println(t.gettNo());
 		Test t1 = plService.selectTest(t.getqId());
-		
+
 		t1.settNo(t.gettNo());
 		System.out.println(t);
-//		
+		//		
 		int result = plService.takeAddQ(t1);
 		System.out.println(result);
-		
+
 		if(result>0) {
 			return "success";
 		}else {
 			return "fail";
 		}
 	}
-	
-	
 
-	
+
+
+
 	@RequestMapping("qdelete.do")
 	public String testDelete(Test t, HttpServletRequest request) {
-		
+
 		System.out.println(t);
 		int result = plService.deleteTest(t);
 		System.out.println(result);
@@ -704,37 +719,37 @@ public class prof_LectureController {
 		}else {
 			return "common/errorPage";
 		}
-		
+
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
 	@RequestMapping(value = "prof_homeworklist.do", method = RequestMethod.GET)
 	public String homeworklist(Model model) {
-		
+
 		return "prof_lecture/prof_homework_list";
-		
-		
+
+
 	}
 	@RequestMapping(value = "prof_homeworkInsert.do", method = RequestMethod.GET)
 	public String homework(Model model) {
-		
+
 		return "prof_lecture/prof_homework_insert";
-		
-		
+
+
 	}
 	@RequestMapping(value = "prof_studentEvaluation.do", method = RequestMethod.GET)
 	public String homeworkEvaludation(Model model) {
-		
+
 		return "prof_lecture/prof_homework_Evaluation";
-		
-		
+
+
 	}
 
 }

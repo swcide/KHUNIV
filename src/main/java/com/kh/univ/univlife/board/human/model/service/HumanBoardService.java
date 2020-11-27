@@ -35,6 +35,8 @@ public interface HumanBoardService {
 
 	int deleteHumanBoard(int hId);
 
+	int reportReply(hReply r);
+
 
 
 

@@ -267,4 +267,21 @@ public class HumanBoardController {
 		}
 	}
 
+	@ResponseBody
+	@RequestMapping("report_reply.do")
+	public String reportReply(hReply r) {
+		
+		
+		int result = hService.reportReply(r);
+		
+		
+		System.out.println(result);
+		if(result>0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
+
 }

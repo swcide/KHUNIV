@@ -1,0 +1,43 @@
+<select id="attendance" resultMap="AttendanceResultSet">
+		SELECT
+		CLASS_TYPE,
+		CLASS_NO,
+		CLASS_NAME
+		FROM TB_CLASS
+		RIGHT JOIN TB_GRADE USING (CLASS_NO)
+		WHERE
+		STD_NO=#{sNo}
+	</select>
+	
+	<select id="attendRate" resultMap="AttendanceResultSet">
+	SELECT
+	CLASS_NO,
+	STD_NO,
+	COUNT(ATTENDANCE)
+	FROM
+	TB_ATTENDANCE
+	WHERE STD_NO=#{sNo}
+	GROUP BY
+	CLASS_NO,
+	STD_NO
+	</select>
+
+	<%-- 											<c:forEach var="al" items="${al}" var="ar" items="${ar }"> --%>
+								<c:forEach var="items" items="${map}">
+									<c:forEach var="item" items="${items.value}">
+										<tr>
+											<c:if test="${items.key eq 'al' }">
+
+
+												<td><c:out value="${item.classType}" /></td>
+												<td><c:out value="${item.className}" /></td>
+											</c:if>
+											<c:if test="${items.key eq 'ar' }">
+												<td><c:out value="${item.attendRate}" /></td>
+											</c:if>
+										</tr>
+
+
+
+									</c:forEach>
+								</c:forEach>

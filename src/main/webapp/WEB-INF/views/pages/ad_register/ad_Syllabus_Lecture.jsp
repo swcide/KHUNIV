@@ -73,7 +73,6 @@
 						<div class="col-md-5 align-self-center p-static order-2 text-center">
 							<img alt="Porto Website Template" src="resources/img/khculogo4.png" class="float-left" height="40">
 						</div>
-
 						<div class="col-md-7 align-self-center p-static order-2 text-center">
 							<h1 class="text-dark text-uppercase float-left">
 								<strong style="color: white;">강의계획서</strong>
@@ -83,164 +82,158 @@
 					</div>
 				</div>
 			</section>
-
-			<div id="pdf_wrap">
-				<div class="container py-2">
-					<div class="row">
-						<div class="col">
-							<table class="table table-hover">
-
-								<tbody>
-									<tr>
-										<th style="width: 118px;">교과목명(국문)</th>
-										<td colspan="3" style="text-align: center;">${lp.className }</td>
-
-									</tr>
-
-									<tr>
-										<th style="width: 118px;">과목번호</th>
-										<td style="width: 252px; text-align: center;">${lp.classNo}</td>
-										<th style="width: 118px;">이수구분</th>
-										<td style="text-align: center;">${lp.classType}</td>
-									</tr>
-									<tr>
-										<th>학점</th>
-										<td style="text-align: center;">${lp.credit}</td>
-										<th>연구실</th>
-										<td style="text-align: center;">${lp.profLab}</td>
-									</tr>
-									<tr>
-										<th>교수</th>
-										<td style="text-align: center;">${lp.profName}</td>
-										<th>E-mail</th>
-										<td style="text-align: center;">${lp.profEmail}</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
+			<div class="container py-2">
+				<div id="pdf_wrap"  class="row">
+					<div class="col">
 						<table class="table table-hover">
-							<thead>
-								<tr>
-									<th colspan="6">교과목개요</th>
-								</tr>
-							</thead>
 							<tbody>
 								<tr>
-									<td colspan="6">${lp.classSummary}</td>
+									<th style="width: 118px;">교과목명(국문)</th>
+									<td colspan="3" style="text-align: center;">${lp.className }</td>
 								</tr>
-							</tbody>
-							<thead>
 								<tr>
-									<th colspan="6">강의목표</th>
+									<th style="width: 118px;">과목번호</th>
+									<td style="width: 252px; text-align: center;">${lp.classNo}</td>
+									<th style="width: 118px;">이수구분</th>
+									<td style="text-align: center;">${lp.classType}</td>
 								</tr>
-							</thead>
-							<tbody>
 								<tr>
-									<td colspan="6">${lp.classGoal}</td>
+									<th>학점</th>
+									<td style="text-align: center;">${lp.credit}</td>
+									<th>연구실</th>
+									<td style="text-align: center;">${lp.profLab}</td>
 								</tr>
-							</tbody>
-							<thead>
 								<tr>
-									<th colspan="6">강의방법</th>
+									<th>교수</th>
+									<td style="text-align: center;">${lp.profName}</td>
+									<th>E-mail</th>
+									<td style="text-align: center;">${lp.profEmail}</td>
 								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td colspan="6">${lp.lecMethod}</td>
-								</tr>
-							</tbody>
-							<thead>
-								<tr>
-									<th colspan="6">평가방법</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td colspan="6">${lp.evalMethod}</td>
-								</tr>
-							</tbody>
-							<thead>
-								<tr>
-									<th colspan="6">과제물</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td colspan="6">${lp.assignment}</td>
-								</tr>
-							</tbody>
-							<thead>
-								<tr>
-									<th colspan="6">실험 및 실습계획</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td colspan="6">${lp.lecExperiment}</td>
-								</tr>
-							</tbody>
-							<thead>
-								<tr>
-									<th colspan="6">관련강의</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td colspan="6">${lp.relatedLec}</td>
-								</tr>
-							</tbody>
-							<thead>
-								<tr>
-									<th colspan="6">교재</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td colspan="6">${lp.lecTextbook}</td>
-								</tr>
-							</tbody>
-							<thead>
-								<tr>
-									<th colspan="6">과목 배점</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<th>시험 :</th>
-									<td>${lp.examPoints}%</td>
-									<th>과제 :</th>
-									<td>${lp.assignmentPoints}%</td>
-									<th>출석 :</th>
-									<td>${lp.attendancePoints}%</td>
-								</tr>
-							</tbody>
-						</table>
-						<br>
-						<table class="table table-hover">
-							<thead>
-								<tr>
-									<th style="width: 75px;">주차</th>
-									<th style="text-align: center; width: 190px;">단원명</th>
-									<th style="text-align: center; width: 200px;">설명</th>
-									<th style="text-align: center;">참고자료</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="l" items="${lpw}">
-									<tr>
-										<th>제 ${l.lecNo }주</th>
-										<td style="text-align: center;">${l.lecName }</td>
-										<td style="text-align: center; height: 150px">${l.lecExplanation}</td>
-										<td style="text-align: center;">${l.lecReference }</td>
-									</tr>
-								</c:forEach>
 							</tbody>
 						</table>
 					</div>
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th colspan="6">교과목개요</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="6">${lp.classSummary}</td>
+							</tr>
+						</tbody>
+						<thead>
+							<tr>
+								<th colspan="6">강의목표</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="6">${lp.classGoal}</td>
+							</tr>
+						</tbody>
+						<thead>
+							<tr>
+								<th colspan="6">강의방법</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="6">${lp.lecMethod}</td>
+							</tr>
+						</tbody>
+						<thead>
+							<tr>
+								<th colspan="6">평가방법</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="6">${lp.evalMethod}</td>
+							</tr>
+						</tbody>
+						<thead>
+							<tr>
+								<th colspan="6">과제물</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="6">${lp.assignment}</td>
+							</tr>
+						</tbody>
+						<thead>
+							<tr>
+								<th colspan="6">실험 및 실습계획</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="6">${lp.lecExperiment}</td>
+							</tr>
+						</tbody>
+						<thead>
+							<tr>
+								<th colspan="6">관련강의</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="6">${lp.relatedLec}</td>
+							</tr>
+						</tbody>
+						<thead>
+							<tr>
+								<th colspan="6">교재</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="6">${lp.lecTextbook}</td>
+							</tr>
+						</tbody>
+						<thead>
+							<tr>
+								<th colspan="6">과목 배점</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>시험 :</th>
+								<td>${lp.examPoints}%</td>
+								<th>과제 :</th>
+								<td>${lp.assignmentPoints}%</td>
+								<th>출석 :</th>
+								<td>${lp.attendancePoints}%</td>
+							</tr>
+						</tbody>
+					</table>
+					<br>
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th style="width: 75px;">주차</th>
+								<th style="text-align: center; width: 190px;">단원명</th>
+								<th style="text-align: center; width: 200px;">설명</th>
+								<th style="text-align: center;">참고자료</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="l" items="${lpw}">
+								<tr>
+									<th>제 ${l.lecNo }주</th>
+									<td style="text-align: center;">${l.lecName }</td>
+									<td style="text-align: center; height: 150px">${l.lecExplanation}</td>
+									<td style="text-align: center;">${l.lecReference }</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
 				</div>
 			</div>
-			<button id="create_pdf" class="btn btn-primary btn-lg mb-2 float-right" style="margin-right: 40px;">다운로드</button>
 		</div>
+		<button id="create_pdf" class="btn btn-primary btn-lg mb-2 float-right" style="margin-right: 40px;">다운로드</button>
 	</div>
 
 	<script>
@@ -248,25 +241,31 @@
 				function() {
 					$('#create_pdf').click(
 							function() { // pdf저장 button id
-								html2canvas($('#pdf_wrap')[0]).then(
-										function(canvas) { //저장 영역 div id
+								html2canvas($('#pdf_wrap')[0]).then(function(canvas) { //저장 영역 div id
 											// 캔버스를 이미지로 변환
-											var imgData = canvas
-													.toDataURL('image/png');
+											var imgData = canvas.toDataURL('image/png');
 											var imgWidth = 190; // 이미지 가로 길이(mm) / A4 기준 210mm
+											
 											//var pageHeight = imgWidth * 1.414; // 출력 페이지 세로 길이 계산 A4 기준  
-											var pageHeight = imgWidth * 3; // 출력 페이지 세로 길이 계산 A4 기준  
+											var pageHeight = imgWidth * 1.414; // 출력 페이지 세로 길이 계산 A4 기준  
 											var imgHeight = canvas.height
 													* imgWidth / canvas.width;
 											var heightLeft = imgHeight;
 											var margin = 10; // 출력 페이지 여백설정
 											var doc = new jsPDF('p', 'mm');
 											var position = 0;
-											// 첫 페이지 출력
-											doc.addImage(imgData, 'PNG',
-													margin, position, imgWidth,
-													imgHeight);
-											heightLeft -= pageHeight;
+											
+											 // 첫 페이지 출력
+										    doc.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight);
+										    heightLeft -= pageHeight;
+										         
+										    // 한 페이지 이상일 경우 루프 돌면서 출력
+										    while (heightLeft >= 100) {
+										        position = heightLeft - imgHeight;
+										        doc.addPage();
+										        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+										        heightLeft -= pageHeight;
+										    }
 											// 파일 저장
 											doc.save('강의계획서.pdf');
 
