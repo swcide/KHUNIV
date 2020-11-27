@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="resources/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
 <link rel="stylesheet" href="resources/assets/css/app.css">
 <link rel="shortcut icon" href="resources/assets/images/favicon.svg" type="image/x-icon">
+<link rel="stylesheet" href="resources/vendor/fontawesome-free/css/all.min.css">
 </head>
 <body>
 			<nav class="navbar navbar-header navbar-expand navbar-light">

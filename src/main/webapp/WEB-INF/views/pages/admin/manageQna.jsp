@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +21,7 @@
 		<%@include file="adminSideBar.jsp"%>
 		<!-- header -->
 		<div id="main">
-			<%@ include file="adminHeader.jsp" %>
+			<%@ include file="adminHeader.jsp"%>
 			<!--  contents -->
 			<div class="main-content container-fluid">
 				<div class="page-title">
@@ -33,36 +34,78 @@
 							<div class="card">
 								<div class="card-content">
 									<div class="card-body"></div>
-									<!-- table hover -->
 									<div class="table-responsive">
 										<table class="table table-hover mb-0" style="text-align: center">
 											<thead>
 												<tr>
 													<th style="text-align: left">#</th>
-													<th>제목</th>
+													<th style="text-align: left">제목</th>
 													<th>작성자</th>
 													<th>답변상태</th>
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td class="text-bold-500" style="text-align: left">Michael Right</td>
-													<td>$15/hr</td>
-													<td class="text-bold-500">UI/UX</td>
-													<td>
-														<span class="badge bg-secondary">답변완료</span>
-													</td>
-												</tr>
-												<tr>
-													<td class="text-bold-500" style="text-align: left">Michael Right</td>
-													<td>$15/hr</td>
-													<td class="text-bold-500">UI/UX</td>
-													<td>
-														<span class="badge bg-warning">답변대기</span>
-													</td>
-												</tr>
+												<c:forEach var="aq" items="${list }">
+													<tr>
+														<td class="text-bold-500" style="text-align: left">${aq.qnaId }</td>
+														<td style="text-align: left">
+																<c:url var="QnA_detail" value="manageQnA_detail.do">
+																	<c:param name="qnaId" value="${aq.qnaId}" />
+																	<c:param name="currentPage" value="${pi.currentPage }" />
+																</c:url>
+																<a href="${QnA_detail }">${aq.qnaTitle }</a>
+														</td>
+														<td class="text-bold-500">${aq.qnaName }</td>
+														<td>
+															<c:if test="${aq.rCount > 0}">
+																<span class="badge bg-secondary">답변완료</span>
+															</c:if>
+															<c:if test="${aq.rCount== 0}">
+																<span class="badge bg-warning">답변대기</span>
+															</c:if>
+														</td>
+													</tr>
+												</c:forEach>
 											</tbody>
 										</table>
+										<!-- pageNation -->
+										<div class="card-tools" align="center">
+											<ul class="pagination pagination-sm" style="display: inline-flex">
+												<c:if test="${ pi.currentPage eq 1 }">
+													<a class="page-link" href="#"><i class="fas fa-angle-left"></i></a>
+												</c:if>
+												<c:if test="${ pi.currentPage ne 1 }">
+													<c:url var="before" value="manageQna.do">
+														<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
+													</c:url>
+													<li class="page-item"><a class="page-link" href="${ before }"><i class="fas fa-angle-left"></i></a></li>
+												</c:if>
+
+												<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+													<c:if test="${ p eq pi.currentPage }">
+														<li class="page-item active"><a class="page-link" href="${ pagination }">${ p }</a></li>
+													</c:if>
+
+													<c:if test="${ p ne pi.currentPage }">
+														<c:url var="pagination" value="manageQna.do">
+															<c:param name="currentPage" value="${ p }" />
+														</c:url>
+														<li class="page-item"><a class="page-link" href="${ pagination }">${ p }</a></li>
+													</c:if>
+												</c:forEach>
+
+												<c:if test="${ pi.currentPage eq pi.maxPage }">
+													<li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
+												</c:if>
+												<c:if test="${ pi.currentPage ne pi.maxPage }">
+													<c:url var="after" value="manageQna.do">
+														<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
+													</c:url>
+													<li class="page-item"><a class="page-link" href="${ after }"><i class="fas fa-angle-right"></i></a></li>
+												</c:if>
+
+											</ul>
+										</div>
 									</div>
 								</div>
 							</div>

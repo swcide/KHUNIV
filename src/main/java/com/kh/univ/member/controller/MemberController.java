@@ -194,7 +194,7 @@ public class MemberController {
 						if (loginAdmin != null) {
 							model.addAttribute("loginAdmin", loginAdmin);
 							model.addAttribute("type2", type2);
-							return "redirect:admin.do";
+							return "admin/admin";
 						} else {
 							response.setContentType("text/html; charset=UTF-8");
 

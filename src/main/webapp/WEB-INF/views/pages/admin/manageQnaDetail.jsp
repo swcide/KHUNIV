@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.kh.univ.member.model.vo.Student"%>
 <%@ page import="com.kh.univ.member.model.vo.Admin"%>
 <%@ page import="com.kh.univ.member.model.vo.Professor"%>
@@ -41,103 +42,121 @@ int type = 0;
 	}
 	
 
-
-     
-
 %>
-<%@ include file="../common/header.jsp"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KHCU | ADMIN</title>
 
-<div class="body">
-	<div role="main" class="main">
-		<section class="page-header page-header-modern page-header-background page-header-background-md overlay overlay-color-dark overlay-show overlay-op-3" style="background-image: url(img/page-header/page-header-background-transparent.jpg); padding: 70px;">
-			<div class="container">
-				<div class="row mt-3">
-					<div class="col-md-12 align-self-center p-static order-2 text-center">
-						<h1 class="text-9 font-weight-bold">Q&A</h1>
-						<span class="sub-title">Question & Answer > Detail</span>
-					</div>
+<link rel="stylesheet" href="resources/assets/css/bootstrap.css">
+
+<link rel="stylesheet" href="resources/assets/vendors/chartjs/Chart.min.css">
+
+<link rel="stylesheet" href="resources/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+<link rel="stylesheet" href="resources/assets/css/app.css">
+<link rel="shortcut icon" href="resources/assets/images/favicon.svg" type="image/x-icon">
+
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- side bar -->
+		<%@include file="adminSideBar.jsp"%>
+		<!-- header -->
+		<div id="main">
+			<%@ include file="adminHeader.jsp"%>
+			<!--  contents -->
+			<div class="main-content container-fluid">
+				<div class="page-title">
+					<h3>QnA</h3>
+					<p class="text-subtitle text-muted">모든 기능은 필요에 의해 이용하여 주시길 바랍니다.</p>
 				</div>
-			</div>
-		</section>
-
-		<div class="container py-4">
-
-			<div class="row">
-				<div class="col">
-					<div class="blog-posts single-post">
-						<article class="post post-large blog-single-post border-0 m-0 p-0">
-
-							<div class="post-content ml-0">
-
-								<h2 class="font-weight-bold">
-									<span>${b.qnaTitle }</span>
-								</h2>
-
-								<div class="post-meta">
-									<span><i class="far fa-user fl"></i> By ${b.qnaName} </span> <span class="date float-right">${b.qnaCreateDate }</span> <span class=" float-right">조회수 : ${b.qnaCount } |</span>
-								</div>
-								<p>${b.qnaContent}</p>
-								<c:url var="qnaUpview" value="qnaUpView.do">
-									<c:param name="qnaId" value="${b.qnaId }" />
-								</c:url>
-								<c:url var="qnaDelete" value="qnaDelete.do">
-									<c:param name="qnaId" value="${b.qnaId }" />
-								</c:url>
-								<c:url var="blist" value="blist.do">
-									<c:param name="currentPage" value="${ currentPage }" />
-								</c:url>
-								
-								<c:if test="${ loginUser.sNo eq b.qnaWriter}">
-									<a href="${ qnaUpview }">수정하기</a>&nbsp;            
+				<section class="section">
+					<div class="row mb-4">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-content">
+									<div class="card-body"></div>
+									<div class="container py-4">
+										<div class="row">
+											<div class="col">
+												<div class="blog-posts single-post">
+													<article class="post post-large blog-single-post border-0 m-0 p-0">
+														<div class="post-content ml-0">
+															<h2 class="font-weight-bold">
+																<span>${b.qnaTitle }</span>
+															</h2>
+															<div class="post-meta">
+																<span>
+																	<i class="far fa-user fl"></i> By ${b.qnaName}
+																</span>
+																<span class="date float-right">${b.qnaCreateDate }</span>
+																<span class=" float-right">조회수 : ${b.qnaCount } |</span>
+															</div>
+															<p>${b.qnaContent}</p>
+															<c:url var="qnaUpview" value="qnaUpView.do">
+																<c:param name="qnaId" value="${b.qnaId }" />
+															</c:url>
+															<c:url var="qnaDelete" value="manageQnaDelete.do">
+																<c:param name="qnaId" value="${b.qnaId }" />
+															</c:url>
+															<c:url var="blist" value="blist.do">
+																<c:param name="currentPage" value="${ currentPage }" />
+															</c:url>
+															<c:if test="${ loginUser.sNo eq b.qnaWriter}">
+																<a href="${ qnaUpview }">수정하기</a>&nbsp;            
 					               <a href="${ qnaDelete }">삭제하기</a>&nbsp;            
 					            </c:if>
-								<c:if test="${!empty sessionScope.loginAdmin}">
-									<a href="${ qnaUpview }">수정하기</a>&nbsp;      
+															<c:if test="${!empty sessionScope.loginAdmin}">
+																<a href="${ qnaUpview }">수정하기</a>&nbsp;      
 					              <a href="${ qnaDelete }">삭제하기</a>&nbsp;     
 					            </c:if>
 
-								<!-- 댓글댓글댓글댓글댓글댓글 -->
-								<c:if test="${!empty sessionScope.loginAdmin ||!empty sessionScope.loginUser  }">
-								<div id="comments" class="post-block mt-5 post-comments">
-											<h4 id ="rCount"class="mb-3"></h4>
-											<ul class="comments">
-											</ul>
+															<!-- 댓글댓글댓글댓글댓글댓글 -->
+															<c:if test="${empty sessionScope.loginAdmin || !empty sessionScope.loginUser  }">
+																<div id="comments" class="post-block mt-5 post-comments">
+																	<h4 id="rCount" class="mb-3"></h4>
+																	<ul class="comments">
+																	</ul>
+																</div>
+
+
+																<div class="post-block mt-5 post-leave-comment">
+																	<h4 class="mb-3">Leave a comment</h4>
+																	<div class="p-2">
+																		<div class="form-row">
+																			<div class="form-group col">
+																				<label class="required font-weight-bold text-dark">Comment</label>
+																				<textarea id="rContent" maxlength="5000" rows="2" class="form-control" name="message"></textarea>
+																			</div>
+																		</div>
+																		<div class="form-row">
+
+																			<div class="form-group col mb-0">
+																				<input id="rSubmit" type="button" value="등록" class="btn btn-dark btn-modern float-right" data-loading-text="Loading...">
+																				<a href="javascript:history.back()" class="mb-1 mt-1 mr-1 btn btn-primary float-left"> 목록으로 </a>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</c:if>
+														</div>
+													</article>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
-						
- 								
- 								<div class="post-block mt-5 post-leave-comment">
- 									<h4 class="mb-3">Leave a comment</h4> 									
- 										<div class="p-2"> 
- 											<div class="form-row"> 
- 												<div class="form-group col"> 
- 													<label class="required font-weight-bold text-dark">Comment</label> 
- 													<textarea id="rContent" maxlength="5000" rows="2" class="form-control" name="message" ></textarea> 
-											</div> 
- 											</div> 
- 											<div class="form-row"> 
- 											
- 												<div class="form-group col mb-0">
-													<input id="rSubmit"type="button" value="등록"  class="btn btn-dark btn-modern float-right" data-loading-text="Loading..."> 
-												<a href="javascript:history.back()" class="mb-1 mt-1 mr-1 btn btn-primary float-left">
-												목록으로
-										</a>
-												</div> 
-											</div> 
-										</div> 								
-								</div> 
-								</c:if>	
 							</div>
-						</article>
+						</div>
 					</div>
-				</div>
+				</section>
 			</div>
 		</div>
 	</div>
-</div>
-	
-	<div class=" commentList "></div>
-
-<script>
+	<script>
 
 $(function(){
 	getReplyList();
@@ -179,7 +198,7 @@ $(function(){
 		
 		if (type != null){
 		$.ajax({
-			url:"qna_addReply.do",
+			url:"manageQna_addReply.do",
 			data:{
 				rContent:rContent,
 				refQid:refQid,
@@ -208,10 +227,12 @@ $(function(){
 	function getReplyList() {
 		var qnaId = ${b.qnaId};
 		$.ajax({
-			url:"qnarList.do",
+			url:"manageQnarList.do",
 			data:{qnaId:qnaId},
 			dataType:"json",
 			success:function(data){
+				console.log(qnaId);
+				console.log(data);
 				$ul = $('#comments ul');
 				$li1 = $('#comments ul li');
 				$ul.html("");
@@ -231,6 +252,7 @@ $(function(){
 				$("#rCount").text("댓글("+data.length+")");
 				
 				if(data.length>0){
+					
 					for(var i  in data){
 						$rId = data[i].rId;
 						$rIdCheck = $('<input type="hidden" value="'+data[i].rId+'">') //참조 댓글의 rid
@@ -252,7 +274,7 @@ $(function(){
 									'					<strong >'+$rName+'</strong>'+
 									'				<span class="date float-right" style=" margin-left: 10px;">'+$rCreateDate+'</span>'+			
 									'				</span>'+
-									'				<p style="margin-bottom:15px;">'+$rContent+'</p>'+ 
+									'				<p style="margin-bottom:15px;">'+$rContent+'<a href="" style="float:right;">삭제하기</a>'+'</p>'+ 
 									'				<textarea style="width:85%; display: none;"></textarea>'+
 									' 				<span class="float-right">'+
 									'				</span>'+
@@ -360,7 +382,7 @@ $(function(){
 		var rId = $(obj).parent().siblings('input').val();
 		
 		$.ajax({
-			url:"qna_DeleteReply.do",
+			url:"manageQna_DeleteReply.do",
 			data:{
 				rId:rId},
 			type:"post",
@@ -405,7 +427,7 @@ $(function(){
          }
 		
 		$.ajax({
-			url:"qna_UpdateReply.do",
+			url:"manageQna_UpdateReply.do",
 			data:{
 				rId:rId,
 				rContent:rContent},
@@ -442,4 +464,13 @@ $(function(){
 
 			
 </script>
-<%@ include file="../common/footer.jsp"%>
+	<script src="resources/assets/js/feather-icons/feather.min.js"></script>
+	<script src="resources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script src="resources/assets/js/app.js"></script>
+
+	<script src="resources/assets/vendors/chartjs/Chart.min.js"></script>
+	<script src="resources/assets/vendors/apexcharts/apexcharts.min.js"></script>
+
+	<script src="resources/assets/js/main.js"></script>
+</body>
+</html>
