@@ -218,36 +218,60 @@ ul.comments li {
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title" id="formModalLabel">Large Modal Title</h4>
+					<h4 class="modal-title" id="formModalLabel">게시글 신고</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
 					<form id="demo-form" class="mb-4" novalidate="novalidate">
+					 	<thead> 
+					 		<tr> 
+					 			<th colspan="2">게시물 신고 사유 선택</th>
+					 		</tr>	
+					 	</thead>
+					 	<tbody>
+						<tr>
+						<td>
 						<div class="form-group row align-items-center">
-							<label class="col-sm-3 text-left text-sm-right mb-0">Name</label>
+								<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" style="margin-left:140px; margin-right:-50px"/>							
+								<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">욕설/비방</label>
 							<div class="col-sm-9">
-								<input type="text" name="name" class="form-control" placeholder="Type your name..." required />
+							</div>
+						</div>
+						</td>
+						</tr>
+						<div class="form-group row align-items-center">
+								<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" style="margin-left:140px; margin-right:-50px"/>							
+								<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">광고/홍보물</label>
+							<div class="col-sm-9">
 							</div>
 						</div>
 						<div class="form-group row align-items-center">
-							<label class="col-sm-3 text-left text-sm-right mb-0">Email</label>
+								<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" style="margin-left:140px; margin-right:-50px"/>							
+								<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">저작권침해</label>
 							<div class="col-sm-9">
-								<input type="email" name="email" class="form-control" placeholder="Type your email..." required />
 							</div>
 						</div>
 						<div class="form-group row align-items-center">
-							<label class="col-sm-3 text-left text-sm-right mb-0">URL</label>
+								<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" style="margin-left:140px; margin-right:-50px"/>							
+								<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">음란성게시물</label>
 							<div class="col-sm-9">
-								<input type="url" name="url" class="form-control" placeholder="Type an URL..." />
 							</div>
 						</div>
+						<div class="form-group row align-items-center">
+								<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" style="margin-left:140px; margin-right:-50px"/>							
+								<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">기타</label>
+							<div class="col-sm-9">
+							</div>
+						</div>
+						</tbody>
 						<div class="form-group row">
-							<label class="col-sm-3 text-left text-sm-right mb-0">Comment</label>
+							<label class="col-sm-3 text-left text-sm-right mb-0">신고내용 입력(필수)</label>
 							<div class="col-sm-9">
 								<textarea rows="5" class="form-control" placeholder="Type your comment..." required></textarea>
 							</div>
 						</div>
 					</form>
+					<p>fdasfdsafd</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
@@ -261,7 +285,7 @@ ul.comments li {
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title" id="formModalLabel">Large Modal Title</h4>
+					<h4 class="modal-title" id="formModalLabel">댓글 신고</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">

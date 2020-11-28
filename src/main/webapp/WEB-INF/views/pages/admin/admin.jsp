@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,20 +8,22 @@
 <title>KHCU | ADMIN</title>
 
 <link rel="stylesheet" href="resources/assets/css/bootstrap.css">
-
 <link rel="stylesheet" href="resources/assets/vendors/chartjs/Chart.min.css">
-
 <link rel="stylesheet" href="resources/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
 <link rel="stylesheet" href="resources/assets/css/app.css">
 <link rel="shortcut icon" href="resources/assets/images/favicon.svg" type="image/x-icon">
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
 </head>
 <body>
 	<div id="app">
 		<!-- side bar -->
-		<%@include file="adminSideBar.jsp" %>
+		<%@include file="adminSideBar.jsp"%>
 		<!-- header -->
 		<div id="main">
-			<%@ include file="adminHeader.jsp" %>
+			<%@ include file="adminHeader.jsp"%>
 			<!--  contents -->
 			<div class="main-content container-fluid">
 				<div class="page-title">
@@ -74,7 +77,8 @@
 							<div class="card widget-todo" style="height: 62%;">
 								<div class="card-header border-bottom d-flex justify-content-between align-items-center">
 									<h4 class="card-title d-flex">
-										<i class='bx bx-check font-medium-5 pl-25 pr-75'></i>댓글신고현황
+										<i class='bx bx-check font-medium-5 pl-25 pr-75'></i>
+										댓글신고현황
 									</h4>
 								</div>
 								<div class="card-body px-0 pb-0">

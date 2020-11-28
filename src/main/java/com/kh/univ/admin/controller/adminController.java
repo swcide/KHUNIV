@@ -1,5 +1,6 @@
 package com.kh.univ.admin.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -29,130 +32,150 @@ public class adminController {
 	adminService aService;
 
 	@RequestMapping("manageStudent.do")
-	public String manageStudent()
-		{
-			return "admin/manageStudent";
-		}
+	public String manageStudent() {
+		return "admin/manageStudent";
+	}
 
 	@RequestMapping("manageBoard.do")
-	public String manageBoard()
-		{
-			return "admin/manageBoard";
-		}
+	public String manageBoard() {
+		return "admin/manageBoard";
+	}
 
 	@RequestMapping("manageQna.do")
-	public ModelAndView manageQna(ModelAndView mv, @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage)
-		{
-			int listCount = aService.getListCount();
-			System.out.println(listCount);
+	public ModelAndView manageQna(ModelAndView mv,
+			@RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage) {
+		int listCount = aService.getListCount();
+		System.out.println(listCount);
 
-			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 
-			ArrayList<QnA> list = aService.selectList(pi);
+		ArrayList<QnA> list = aService.selectList(pi);
 
-			System.out.println(list);
-			mv.addObject("list", list);
-			mv.addObject("pi", pi);
-			mv.setViewName("admin/manageQna");
+		System.out.println(list);
+		mv.addObject("list", list);
+		mv.addObject("pi", pi);
+		mv.setViewName("admin/manageQna");
 
-			return mv;
-		}
+		return mv;
+	}
 
 	@RequestMapping(value = "manageQnA_detail.do", method = RequestMethod.GET)
-	public ModelAndView manageQnA_detail(ModelAndView mv, int qnaId, @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage)
-		{
-			System.out.println("야야야야야야야" + qnaId);
-			QnA qna = aService.manageQnA_detail(qnaId);
-			System.out.println(qna);
-			if (qna != null) {
-				mv.addObject("b", qna).addObject("currentPage", currentPage).setViewName("admin/manageQnaDetail");
-			} else {
-				mv.addObject("msg", "게시글 상세조회 실패").setViewName("common/errorPage");
-			}
-			return mv;
+	public ModelAndView manageQnA_detail(ModelAndView mv, int qnaId,
+			@RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage) {
+		System.out.println("야야야야야야야" + qnaId);
+		QnA qna = aService.manageQnA_detail(qnaId);
+		System.out.println(qna);
+		if (qna != null) {
+			mv.addObject("b", qna).addObject("currentPage", currentPage).setViewName("admin/manageQnaDetail");
+		} else {
+			mv.addObject("msg", "게시글 상세조회 실패").setViewName("common/errorPage");
 		}
+		return mv;
+	}
 
 	@RequestMapping("manageQnaDelete.do")
-	public String boardDelete(int qnaId, HttpServletRequest request)
-		{
-			System.out.println("deleteController");
-			int result = aService.deleteBoard(qnaId);
-			if (result > 0) {
-				return "redirect:QnA.do";
-			} else {
-				return "common/errorPage";
-			}
+	public String boardDelete(int qnaId, HttpServletRequest request) {
+		System.out.println("deleteController");
+		int result = aService.deleteBoard(qnaId);
+		if (result > 0) {
+			return "redirect:QnA.do";
+		} else {
+			return "common/errorPage";
 		}
+	}
 
 	@RequestMapping(value = "manageQnarList.do")
-	public void getReplyList(HttpServletResponse response, int qnaId) throws JsonIOException, IOException
-		{
+	public void getReplyList(HttpServletResponse response, int qnaId) throws JsonIOException, IOException {
 
-			ArrayList<Reply> rList = aService.selectReplyList(qnaId);
-			response.setContentType("application/json; charset=UTF-8");
-			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-			gson.toJson(rList, response.getWriter());
-		}
+		ArrayList<Reply> rList = aService.selectReplyList(qnaId);
+		response.setContentType("application/json; charset=UTF-8");
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(rList, response.getWriter());
+	}
 
 	@ResponseBody
 	@RequestMapping("manageQna_addReply.do")
-	public String addReply(Reply r)
-		{
-			int result = aService.insertReply(r);
-			if (result > 0) {
-				return "success";
-			} else {
-				return "fail";
-			}
+	public String addReply(Reply r) {
+		int result = aService.insertReply(r);
+		if (result > 0) {
+			return "success";
+		} else {
+			return "fail";
 		}
+	}
 
 	@ResponseBody
 	@RequestMapping("manageQna_DeleteReply.do")
-	public String deleteReply(Reply r)
-		{
-			int result = aService.deleteReply(r);
-			if (result > 0) {
-				return "success";
-			} else {
-				return "fail";
-			}
+	public String deleteReply(Reply r) {
+		int result = aService.deleteReply(r);
+		if (result > 0) {
+			return "success";
+		} else {
+			return "fail";
 		}
+	}
 
 	@ResponseBody
 	@RequestMapping("manageQna_UpdateReply.do")
-	public String updateReply(Reply r)
-		{
-			int result = aService.updateReply(r);
+	public String updateReply(Reply r) {
+		int result = aService.updateReply(r);
 
-			if (result > 0) {
-				return "success";
-			} else {
-				return "fail";
-			}
+		if (result > 0) {
+			return "success";
+		} else {
+			return "fail";
 		}
+	}
 
 	@RequestMapping("manageNotice.do")
-	public String manageNotice()
-		{
-			return "admin/manageNotice";
-		}
+	public String manageNotice() {
+		return "admin/manageNotice";
+	}
 
 	@RequestMapping("insertStudent.do")
-	public String insertStudent()
-		{
-			return "admin/insertStudent";
-		}
+	public String insertStudent() {
+		return "admin/insertStudent";
+	}
 
 	@RequestMapping("insertProfessor.do")
-	public String insertProfessor()
-		{
-			return "admin/insertProfessor";
-		}
+	public String insertProfessor() {
+		return "admin/insertProfessor";
+	}
 
 	@RequestMapping("insertLecture.do")
-	public String insertLecture()
-		{
-			return "admin/insertLecture";
+	public String insertLecture() {
+		return "admin/insertLecture";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/excelUploadAjax.do", method = RequestMethod.POST)
+	public ModelAndView excelUploadAjax(MultipartFile testFile, MultipartHttpServletRequest request) throws Exception {
+
+		System.out.println("업로드 진행");
+
+		MultipartFile excelFile = request.getFile("excelFile");
+
+		if (excelFile == null || excelFile.isEmpty()) {
+			throw new RuntimeException("엑셀파일을 선택해 주세요");
 		}
 
+		File destFile = new File("D:\\upload\\" + excelFile.getOriginalFilename());
+
+		try {
+			// 내가 설정한 위치에 내가 올린 파일을 만들고
+			excelFile.transferTo(destFile);
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+
+		// 업로드를 진행하고 다시 지우기
+		aService.excelUpload(destFile);
+
+		destFile.delete();
+
+		ModelAndView view = new ModelAndView();
+		view.setViewName("/insertStudent.do");
+
+		return view;
+	}
 }

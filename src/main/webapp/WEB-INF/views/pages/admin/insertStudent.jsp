@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,12 +8,14 @@
 <title>KHCU | ADMIN</title>
 
 <link rel="stylesheet" href="resources/assets/css/bootstrap.css">
-
 <link rel="stylesheet" href="resources/assets/vendors/chartjs/Chart.min.css">
-
 <link rel="stylesheet" href="resources/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
 <link rel="stylesheet" href="resources/assets/css/app.css">
 <link rel="shortcut icon" href="resources/assets/images/favicon.svg" type="image/x-icon">
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
 </head>
 <body>
 	<div id="app">
@@ -218,6 +221,21 @@
 								</div>
 								<div class="card-body px-0 pb-0">
 									<div class="table-responsive">
+								<form id="excelUploadForm" name="excelUploadForm" enctype="multipart/form-data" method="post" action= "excelUploadAjax.do">
+									<div>
+										<c:set var="excel " value="${efu }" />
+										<c:if test="${!empty efu }">
+											<span class="text-uppercase mb-0 text-left  text-2 float-left col-md-12">
+												현재 업로드한 파일 :
+												<a href="${contextPath }/resources/excelUploadFile/${efu  }">${efu  }</a>
+											</span>
+										</c:if>
+										<input class="text-uppercase mb-2 text-center  float-left col-md-12" style="text-align: right;" id="excelFile" name="excelFile" type="file">
+										<button type="button" id="addExcelImpoartBtn" class="btn" onclick="check()">
+											<span>추가</span>
+										</button>
+									</div>
+								</form>
 										<div class="form-file">
 											<input type="file" class="form-file-input" id="customFile">
 											<label class="form-file-label" for="customFile" style="margin: 0px 10px 17px 10px;"> <span class="form-file-text">학생정보 엑셀파일을 첨부해주세요.</span> <span class="form-file-button btn-primary ">
@@ -237,6 +255,52 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javaScript" language="javascript" defer="defer">
+		/*************excel upload*************/
+
+		function checkFileType(filePath) {
+			var fileFormat = filePath.split(".");
+
+			if (fileFormat.indexOf("xls") > -1
+					|| fileFormat.indexOf("xlsx") > -1) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		function check() {
+
+			var file = $("#excelFile").val();
+
+			if (file == "" || file == null) {
+				alert("파일을 선택해주세요.");
+
+				return false;
+			} else if (!checkFileType(file)) {
+				alert("엑셀 파일만 업로드 가능합니다.");
+
+				return false;
+			}
+
+			if (confirm("업로드 하시겠습니까?")) {
+
+				var options = {
+
+					success : function(data) {
+						console.log(data);
+						alert("모든 데이터가 업로드 되었습니다.");
+
+					},
+					type : "POST"
+				};
+
+				$("#excelUploadForm").ajaxSubmit(options);
+
+			}
+		}
+	</script>
+	
 	<script src="resources/assets/js/feather-icons/feather.min.js"></script>
 	<script src="resources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script src="resources/assets/js/app.js"></script>
@@ -246,5 +310,6 @@
 	<script src="resources/assets/js/pages/dashboard.js"></script>
 
 	<script src="resources/assets/js/main.js"></script>
+	
 </body>
 </html>

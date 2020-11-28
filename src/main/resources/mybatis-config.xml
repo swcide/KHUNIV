@@ -33,6 +33,7 @@
       <typeAlias type="com.kh.univ.ad_Register.model.vo.Certificate" alias="Certificate" />
       <typeAlias type="com.kh.univ.ad_Register.model.vo.Bill" alias="Bill" />
       <typeAlias type="com.kh.univ.ad_Register.model.vo.semesterPoint" alias="semesterPoint" />
+      <typeAlias type="com.kh.univ.admin.model.vo.excel" alias="excel" />
 
       <typeAlias type="com.kh.univ.registration.model.vo.Registration" alias="Registration" />
       <typeAlias type="com.kh.univ.registration.model.vo.RegistrationSNO" alias="RegistrationSNO" />

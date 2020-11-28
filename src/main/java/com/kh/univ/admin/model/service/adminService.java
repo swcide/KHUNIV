@@ -1,5 +1,6 @@
  package com.kh.univ.admin.model.service;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import com.kh.univ.common.PageInfo;
@@ -23,5 +24,7 @@ public interface adminService {
 	int deleteReply(Reply r);
 
 	int updateReply(Reply r);
+
+	void excelUpload(File destFile);
 
 }
