@@ -60,9 +60,9 @@ pNo =loginProf.getpNo();
 												<th style="text-align: center;"></th>
 											</tr>
 										</thead>
-										<input id="pNo" type="hidden" value="<%=pNo%>"></input>
 										
 										<c:forEach var="l" items="${plpl}" varStatus="l2">
+										<input id="pNo" type="hidden" value="<%=pNo%>"></input>
 											<tbody>
 												
 												<tr onclick="openNew(this)"class="cursor_on_finger">
@@ -90,7 +90,6 @@ pNo =loginProf.getpNo();
 					</div>
 				</div>
 			</div>
-			
 		</div>
 	</div>
 

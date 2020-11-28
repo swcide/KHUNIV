@@ -82,5 +82,11 @@ public class HumanBoardServiceImpl implements HumanBoardService {
 		return hDao.updateReply(r);
 	}
 
+	@Override
+	public int reportReply(hReply r) {
+		
+		return  hDao.reportReply(r);
+	}
+
 
 }

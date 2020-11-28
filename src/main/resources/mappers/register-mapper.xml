@@ -51,7 +51,35 @@
 		<result property="gMonth" column="GMONTH" />
 		<result property="gDay" column="GDAY" />
 	</resultMap>
-
+	<!-- 등록금 관련 -->
+	<resultMap type="Bill" id="BillResultSet">
+		<id property="cName" column="CLASS_NAME" />
+		<result property="cType" column="CLASS_TYPE" />
+		<result property="pName" column="PROF_NAME" />
+		<result property="credit" column="CREDIT" />
+	</resultMap>
+	<!-- 성적조회페이지 관련 -->
+	<resultMap type="semesterPoint" id="semesterPointResultSet">
+		<id property="sNo" column="STD_NO" />
+		<result property="semYear" column="SEM_YEAR" />
+		<result property="semNo" column="SEME_NO" />
+		<result property="cNo" column="CLASS_NO" />
+		<result property="cType" column="CLASS_TYPE" />
+		<result property="mTest" column="MID_TEST" />
+		<result property="fTest" column="FINAL_TEST" />
+		<result property="report" column="REPORT" />
+		<result property="attendance" column="ATTENDANCE" />
+		<result property="point" column="POINT" />
+		<result property="pNo" column="PROF_NO" />
+		<result property="count" column="COUNT" />
+		<result property="avgPoint" column="AVG_POINT" />
+		<result property="profName" column="PROF_NAME" />
+		<result property="deptName" column="DEPT_NAME" />
+		<result property="sName" column="STD_NAME" />
+		<result property="cName" column="CLASS_NAME" />
+		<result property="sysdate" column="SYSDATE" />
+		<result property="credit" column="CREDIT" />
+	</resultMap>
 
 
 	<resultMap type="LectureList" id="lectureListResultSet">
@@ -88,8 +116,8 @@
 		<result property="relatedLec" column="RELATED_LEC" />
 		<result property="lecTextbook" column="LEC_TEXTBOOK" />
 		<result property="examPoints" column="EXAM_POINTS" />
-        <result property="assignmentPoints" column="ASSIGN_POINTS" />
-        <result property="attendancePoints" column="ATTEND_POINTS" />
+		<result property="assignmentPoints" column="ASSIGN_POINTS" />
+		<result property="attendancePoints" column="ATTEND_POINTS" />
 	</resultMap>
 
 	<!-- 강의계획서 하위부분 -->
@@ -98,7 +126,7 @@
 		<id property="lecNo" column="LECTURE_NO" />
 		<id property="lecName" column="LECTURE_NAME" />
 		<id property="lecReference" column="LECTURE_REFERENCE" />
-		<id property="lecExplanation" column="LECTURE_EXPLANATION"/>
+		<id property="lecExplanation" column="LECTURE_EXPLANATION" />
 	</resultMap>
 
 	<!-- 강의개설정보 리스트 //전공// -->
@@ -110,7 +138,7 @@
 		TB_CLASS_PROFESSOR USING(CLASS_NO)
 		JOIN TB_PROFESSOR ON
 		TB_CLASS_PROFESSOR.PROFESSOR_NO=TB_PROFESSOR.PROF_NO
-        JOIN TB_LECTURE_PLAN USING(CLASS_NO)
+		JOIN TB_LECTURE_PLAN USING(CLASS_NO)
 		WHERE CLASS_TYPE
 		LIKE '전공%'
 		AND C.DEPT_NO=#{dNo}
@@ -124,11 +152,11 @@
 		TB_CLASS_PROFESSOR USING(CLASS_NO)
 		JOIN TB_PROFESSOR ON
 		TB_CLASS_PROFESSOR.PROFESSOR_NO=TB_PROFESSOR.PROF_NO
-        JOIN TB_LECTURE_PLAN USING(CLASS_NO)
+		JOIN TB_LECTURE_PLAN USING(CLASS_NO)
 		WHERE CLASS_TYPE
 		LIKE '교양%'
 	</select>
-	
+
 	<!-- 강의계획서 강의설명파트 (윗부분) -->
 	<select id="sylla1" resultMap="Sylla1ResultSet">
 		SELECT CLASS_NO,
@@ -147,8 +175,8 @@
 		RELATED_LEC,
 		LEC_TEXTBOOK,
 		EXAM_POINTS,
-     	ASSIGN_POINTS,
-      	ATTEND_POINTS
+		ASSIGN_POINTS,
+		ATTEND_POINTS
 		FROM TB_CLASS C
 		JOIN TB_CLASS_PROFESSOR CP
 		USING(CLASS_NO)
@@ -159,8 +187,8 @@
 		CLASS_NO=#{classNo}
 		AND PROF_NO=#{pNo}
 	</select>
-	
-	<!-- 강의계획서 주차별 강의명 파트 (아랫부분)-->
+
+	<!-- 강의계획서 주차별 강의명 파트 (아랫부분) -->
 	<select id="sylla2" resultMap="Sylla2ResultSet">
 		SELECT
 		LECTURE_NO,LECTURE_NAME,LECTURE_REFERENCE,LECTURE_EXPLANATION
@@ -243,4 +271,38 @@
 		WHERE STD_NO = #{sNo}
 	</select>
 
+	<!-- 성적조회 -->
+	<select id="pointSearchList" resultMap="semesterPointResultSet">
+		SELECT STD_NO,SEM_YEAR, SEME_NO,COUNT(AVG_POINT) AS COUNT,COUNT(CLASS_NO) AS CREDIT, AVG(POINT)AS POINT, SUM(AVG_POINT) AS AVG_POINT
+		FROM TB_SEMESTER_POINT
+		WHERE STD_NO = #{sNo}
+		GROUP BY STD_NO,SEM_YEAR,SEME_NO
+		ORDER BY SEM_YEAR,SEME_NO
+	</select>
+	<!-- 성적조회 디테일 -->
+	<select id="pointSearchDetail" resultMap="semesterPointResultSet">
+		SELECT PROF_NAME,CLASS_NAME,CLASS_TYPE,STD_NO,SEM_YEAR,SEME_NO,POINT,AVG_POINT
+		FROM TB_SEMESTER_POINT
+		JOIN TB_CLASS USING(CLASS_NO)
+		JOIN TB_PROFESSOR USING(PROF_NO)
+		JOIN TB_STUDENT S USING(STD_NO)
+		JOIN TB_DEPARTMENT D ON(S.DEPT_NO = D.DEPT_NO)
+		WHERE SEM_YEAR = #{semYear}
+		AND SEME_NO = #{semNo}
+	</select>
+
+<!-- 성적조회 디테일 탑부분 -->
+	<select id="pointSearchDetailTop" resultMap="semesterPointResultSet">
+		SELECT DEPT_NAME,STD_NAME,STD_NO,SEM_YEAR, SEME_NO,COUNT(AVG_POINT) AS COUNT, COUNT(CLASS_NO) AS CREDIT, AVG(POINT)AS POINT, SUM(AVG_POINT) AVG_POINT, SYSDATE
+		FROM TB_SEMESTER_POINT
+		JOIN TB_CLASS USING(CLASS_NO)
+		JOIN TB_PROFESSOR USING(PROF_NO)
+		JOIN TB_STUDENT S USING(STD_NO)
+		JOIN TB_DEPARTMENT D ON(S.DEPT_NO = D.DEPT_NO)
+		WHERE STD_NO = #{sNo}
+		AND SEM_YEAR =#{semYear}
+		AND SEME_NO = #{semNo}
+		GROUP BY STD_NO,SEM_YEAR,SEME_NO,STD_NAME,DEPT_NAME
+		ORDER BY SEM_YEAR,SEME_NO
+	</select>
 </mapper>

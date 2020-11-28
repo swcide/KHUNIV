@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.kh.univ.member.model.vo.Student"%>
 <%@ page import="com.kh.univ.member.model.vo.Admin"%>
 <%@ page import="com.kh.univ.member.model.vo.Professor"%>
@@ -53,32 +52,32 @@ System.out.println(type);
 <%@ include file="../common/header.jsp"%>
 
 <style>
-.mailbox-attachment-info{
+.mailbox-attachment-info {
 	background: #f8f9fa;
-    padding: 10px;
-	}
+	padding: 10px;
 }
-.mailbox-attachment-name{
-    color: #666;
-    font-weight: 700;
+
 }
+.mailbox-attachment-name {
+	color: #666;
+	font-weight: 700;
+}
+
 ul.comments li {
 	clear: both;
-    padding: 10px 0px 0px 20px!important;
-}}
+	padding: 10px 0px 0px 20px !important;
+}
+}
 </style>
 
 <div class="body">
 	<div role="main" class="main">
-		<section
-			class="page-header page-header-modern page-header-background page-header-background-md overlay overlay-color-dark overlay-show overlay-op-3"
-			style="background-image: url(img/page-header/page-header-background-transparent.jpg); padding: 70px;">
+		<section class="page-header page-header-modern page-header-background page-header-background-md overlay overlay-color-dark overlay-show overlay-op-3" style="background-image: url(img/page-header/page-header-background-transparent.jpg); padding: 70px;">
 			<div class="container">
 				<div class="row mt-3">
-					<div
-						class="col-md-12 align-self-center p-static order-2 text-center">
-						<h1 class="text-9 font-weight-bold">인문 사회 게시판</h1>
-						<span class="sub-title">Humanities & Social Sciences Board</span>
+					<div class="col-md-12 align-self-center p-static order-2 text-center">
+						<h1 class="text-9 font-weight-bold">학생 게시판</h1>
+						<span class="sub-title">Studnet Board</span>
 					</div>
 				</div>
 			</div>
@@ -93,150 +92,118 @@ ul.comments li {
 
 							<div class="post-content ml-0">
 
-								<h2 class="font-weight-bold">
-									${ h.hTitle }
-								</h2>
+								<h2 class="font-weight-bold">${ h.hTitle }</h2>
 
 								<div class="post-meta">
-									<span><i class="far fa-user fl"></i> By ${h.hWriter }
-									</span> <span class="date float-right">${h.hCreateDate }</span>
+									<span>
+										<i class="far fa-user fl"></i>
+										By ${h.hWriter }
+									</span>
+									<span class="date float-right">${h.hCreateDate }</span>
 								</div>
 
 								<p clss="text-5">${h.hContent }</p>
-								
+								<span class="date float-right">
+									<a href= ""data-toggle="modal" data-target="#reportContent">신고하기</a>
+								</span>
 								<div class="mt-5 ">
 									<hr>
-									<h4 >첨부파일</h4>
+									<h4>첨부파일</h4>
 								</div>
-								
+
 								<c:if test="${ !empty h.originalFilename }">
-								<ul class=" d-flex align-items-stretch clearfix" style="list-style:none; padding: 0;">
-					                <li>		
-					                  <div class="mailbox-attachment-info">
-					                    <a href="/spring/resources/uploadFiles/${h.renameFilename}" download="${n.originalFilename }" class="mailbox-attachment-name">
-					                    	<i class="fas fa-paperclip"></i>${h.originalFilename }
-				                    	</a>
-					                        <span class="mailbox-attachment-size clearfix mt-">
-					                          <a href="#" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
-					                        </span>
-					                    
-					                  </div>
-					                </li>
-								</ul>
-								
-								
+									<ul class=" d-flex align-items-stretch clearfix" style="list-style: none; padding: 0;">
+										<li>
+											<div class="mailbox-attachment-info">
+												<a href="/spring/resources/uploadFiles/${h.renameFilename}" download="${n.originalFilename }" class="mailbox-attachment-name">
+													<i class="fas fa-paperclip"></i>${h.originalFilename }
+												</a>
+												<span class="mailbox-attachment-size clearfix mt-">
+													<a href="#" class="btn btn-default btn-sm float-right">
+														<i class="fas fa-cloud-download-alt"></i>
+													</a>
+												</span>
+
+											</div>
+										</li>
+									</ul>
+
+
 								</c:if>
 								<c:if test="${ loginUser != null }">
-									<div class=" float-right">											
+									<div class=" float-right">
 										<div>
 											<c:url var="nupview" value="nUpView.do">
-												<c:param name="hId" value="${h.hId }"/>
-												<c:param name="hType" value="${h.hType}"/>
+												<c:param name="hId" value="${h.hId }" />
+												<c:param name="hType" value="${h.hType}" />
 											</c:url>
 											<c:url var="nDelete" value="nDelete.do">
-												<c:param name="hId" value="${h.hId }"/>
+												<c:param name="hId" value="${h.hId }" />
 											</c:url>
 											<c:url var="nList" value="nList.do?nType=1">
-												<c:param name="currentPage" value="${ currentPage }"/>
+												<c:param name="currentPage" value="${ currentPage }" />
 											</c:url>
-										
-											<a href="${hDelete}" class="mb-1 mt-1 mr-1 btn btn-primary">
-												삭제하기${hupview}
-											</a>
-											<a href="${hupview }" class="mb-1 mt-1 mr-1 btn btn-primary">
-												수정하기
-											</a>											
+
+											<a href="${hDelete}" class="mb-1 mt-1 mr-1 btn btn-primary"> 삭제하기${hupview} </a>
+											<a href="${hupview }" class="mb-1 mt-1 mr-1 btn btn-primary"> 수정하기 </a>
 										</div>
 									</div>
-										
-								</c:if>
-								<c:if test="${ loginProf.pNo eq h.hWriter }">
-								<div class=" float-right">											
-											<div>
-												<c:url var="hupview" value="hUpView.do">
-													<c:param name="hId" value="${h.hId }"/>
-													<c:param name="hType" value="${h.hType}"/>
-												</c:url>
-												<c:url var="hDelete" value="hDelete.do?hType=1">
-													<c:param name="hId" value="${h.hId }"/>
-												</c:url>
-												<c:url var="hList" value="hList.do">
-													<c:param name="currentPage" value="${ currentPage }"/>
-												</c:url>
-										
-												<c:set var="test" value="${h.hType }"/>
-											
-											
-												<a href="${hDelete}" class="mb-1 mt-1 mr-1 btn btn-primary">
-													삭제하기 ${test }
-												</a>
-												<a href="${hupview }" class="mb-1 mt-1 mr-1 btn btn-primary">
-													수정하기
-												</a>											
-											</div>
-										</div>
-										
+
 								</c:if>
 								<c:if test="${ loginUser.sNo eq h.hWriter }">
-								<div class=" float-right">											
-											<div>
-												<c:url var="hupview" value="hUpView.do">
-													<c:param name="hId" value="${h.nId }"/>
-													<c:param name="hType" value="${h.hType}"/>
-												</c:url>
-												<c:url var="hDelete" value="hDelete.do?hType=1">
-													<c:param name="hId" value="${h.hId }"/>
-												</c:url>
-												<c:url var="hList" value="huamn.do">
-													<c:param name="currentPage" value="${ currentPage }"/>
-												</c:url>
-										
-												<c:set var="test" value="${h.hType }"/>
-											
-											
-												<a href="${hDelete}" class="mb-1 mt-1 mr-1 btn btn-primary">
-													삭제하기 ${test }
-												</a>
-												<a href="${hupview }" class="mb-1 mt-1 mr-1 btn btn-primary">
-													수정하기
-												</a>											
-											</div>
-										</div>
-										
-								</c:if>
-								
-								<div id="comments" class="post-block mt-5 post-comments">
-											<h4 id ="rCount"class="mb-3"></h4>
+									<div class=" float-right">
+										<div>
+											<c:url var="hupview" value="hUpView.do">
+												<c:param name="hId" value="${h.nId }" />
+												<c:param name="hType" value="${h.hType}" />
+											</c:url>
+											<c:url var="hDelete" value="hDelete.do?hType=1">
+												<c:param name="hId" value="${h.hId }" />
+											</c:url>
+											<c:url var="hList" value="huamn.do">
+												<c:param name="currentPage" value="${ currentPage }" />
+											</c:url>
 
-											<ul class="comments">
-											</ul>
+											<c:set var="test" value="${h.hType }" />
+
+
+											<a href="${hDelete}" class="mb-1 mt-1 mr-1 btn btn-primary"> 삭제하기 ${test } </a>
+											<a href="${hupview }" class="mb-1 mt-1 mr-1 btn btn-primary"> 수정하기 </a>
+										</div>
+									</div>
+
+								</c:if>
+
+								<div id="comments" class="post-block mt-5 post-comments">
+									<h4 id="rCount" class="mb-3"></h4>
+
+									<ul class="comments">
+									</ul>
 								</div>
 
 
- 								<c:if test="${!empty sessionScope.loginUser }">
- 								<div class="post-block mt-5 post-leave-comment">
- 									<h4 class="mb-3">Leave a comment</h4> 									
- 										<div class="p-2"> 
- 											<div class="form-row"> 
- 												<div class="form-group col"> 
- 													<label class="required font-weight-bold text-dark">Comment</label> 
- 													<textarea id="rContent" maxlength="5000" rows="2" class="form-control" name="message" ></textarea> 
-											</div> 
- 											</div> 
- 											<div class="form-row"> 
- 											
- 												<div class="form-group col mb-0">
-													<input id="rSubmit"type="button" value="등록"  class="btn btn-dark btn-modern float-right" data-loading-text="Loading..."> 
-												<a href="${hList }" class="mb-1 mt-1 mr-1 btn btn-primary float-left">
-												목록으로
-										</a>
-												</div> 
-											</div> 
-										</div> 								
-								</div> 
-								</c:if>	
-								
-						
+								<c:if test="${!empty sessionScope.loginUser }">
+									<div class="post-block mt-5 post-leave-comment">
+										<h4 class="mb-3">댓글을 입력하세요.</h4>
+										<div class="p-2">
+											<div class="form-row">
+												<div class="form-group col">
+													<label class="required font-weight-bold text-dark">댓글</label>
+													<textarea id="rContent" maxlength="5000" rows="2" class="form-control" name="message"></textarea>
+												</div>
+											</div>
+											<div class="form-row">
+
+												<div class="form-group col mb-0">
+													<input id="rSubmit" type="button" value="등록" class="btn btn-dark btn-modern float-right" data-loading-text="Loading...">
+													<a href="${hList }" class="mb-1 mt-1 mr-1 btn btn-primary float-left"> 목록으로 </a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</c:if>
+
+
 							</div>
 						</article>
 					</div>
@@ -244,12 +211,121 @@ ul.comments li {
 			</div>
 		</div>
 	</div>
-	
+
 	<div class=" commentList "></div>
-	
+	<!-- 	댓글모달 -->
+	<div class="modal fade" id="reportReply" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="formModalLabel">게시글 신고</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<form id="demo-form" class="mb-4" novalidate="novalidate">
+					 	<thead> 
+					 		<tr> 
+					 			<th colspan="2">게시물 신고 사유 선택</th>
+					 		</tr>	
+					 	</thead>
+					 	<tbody>
+						<tr>
+						<td>
+						<div class="form-group row align-items-center">
+								<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" style="margin-left:140px; margin-right:-50px"/>							
+								<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">욕설/비방</label>
+							<div class="col-sm-9">
+							</div>
+						</div>
+						</td>
+						</tr>
+						<div class="form-group row align-items-center">
+								<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" style="margin-left:140px; margin-right:-50px"/>							
+								<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">광고/홍보물</label>
+							<div class="col-sm-9">
+							</div>
+						</div>
+						<div class="form-group row align-items-center">
+								<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" style="margin-left:140px; margin-right:-50px"/>							
+								<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">저작권침해</label>
+							<div class="col-sm-9">
+							</div>
+						</div>
+						<div class="form-group row align-items-center">
+								<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" style="margin-left:140px; margin-right:-50px"/>							
+								<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">음란성게시물</label>
+							<div class="col-sm-9">
+							</div>
+						</div>
+						<div class="form-group row align-items-center">
+								<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" style="margin-left:140px; margin-right:-50px"/>							
+								<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">기타</label>
+							<div class="col-sm-9">
+							</div>
+						</div>
+						</tbody>
+						<div class="form-group row">
+							<label class="col-sm-3 text-left text-sm-right mb-0">신고내용 입력(필수)</label>
+							<div class="col-sm-9">
+								<textarea rows="5" class="form-control" placeholder="Type your comment..." required></textarea>
+							</div>
+						</div>
+					</form>
+					<p>fdasfdsafd</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save Changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 	게시글 모달 -->
+	<div class="modal fade" id="reportContent" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="formModalLabel">댓글 신고</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<form id="demo-form" class="mb-4" novalidate="novalidate">
+						<div class="form-group row align-items-center">
+							<label class="col-sm-3 text-left text-sm-right mb-0">Name</label>
+							<div class="col-sm-9">
+								<input type="text" name="name" class="form-control" placeholder="Type your name..." required />
+							</div>
+						</div>
+						<div class="form-group row align-items-center">
+							<label class="col-sm-3 text-left text-sm-right mb-0">Email</label>
+							<div class="col-sm-9">
+								<input type="email" name="email" class="form-control" placeholder="Type your email..." required />
+							</div>
+						</div>
+						<div class="form-group row align-items-center">
+							<label class="col-sm-3 text-left text-sm-right mb-0">URL</label>
+							<div class="col-sm-9">
+								<input type="url" name="url" class="form-control" placeholder="Type an URL..." />
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-3 text-left text-sm-right mb-0">Comment</label>
+							<div class="col-sm-9">
+								<textarea rows="5" class="form-control" placeholder="Type your comment..." required></textarea>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save Changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<script src="resources/vendor/jquery/jquery.min.js"></script>
-<script>
+	<script>
 
 	$(function(){
 		getReplyList();
@@ -391,7 +467,8 @@ ul.comments li {
 										'				<p style="margin-bottom:15px;">'+$rContent+'</p>'+ 
 										'				<textarea style="width:85%; display: none;"></textarea>'+
 										' 				<span class="float-right">'+
-										'						<span class="checkId"> <a href="javascript:void(0);" onclick="reAddReplyView(this);"><i class="fas fa-reply"></i> Reply</a></span>'+
+										'                       <span class="date float-right"><a href="javascript:void(0);" data-toggle="modal" data-target="#reportReply">&nbsp;신고하기</a></span>'+			
+										'						<span class="checkId"> <a href="javascript:void(0);" onclick="reAddReplyView(this);"><i class="fas fa-reply"></i> Reply | </a></span>'+
 										'				</span>'+
 										'			</div>'+
 										'		</div>' 
@@ -810,20 +887,20 @@ ul.comments li {
 <%@ include file="../common/footer.jsp"%>
 
 
-												
 
 
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -102,7 +102,7 @@
 													<div class="col-md-6">
 														<c:if test="${!empty sessionScope.loginUser }">
 															<a href="mypage.do"><label><strong style="color: #008995">${loginUser.sName }</strong></label></a>
-															<input type="hidden" name="sNo" value="${loginUser.sNo }">
+															<input type="hidden" id="sNo" name="sNo" value="${loginUser.sNo }">
 														</c:if>
 													</div>
 													<div class="col-md-6" style="text-align: right">
@@ -149,7 +149,7 @@
 															<li><a class="dropdown-item" href="ad_audit_lect_appl.do">청강신청</a></li>
 															<li><a class="dropdown-item" href="ad_appl_stat.do">신청현황</a></li>
 														</ul></li>
-													<li><a class="dropdown-item" href="ad_point_search_list.do">성적조회</a></li>
+													<li><a class="dropdown-item" onClick="point_search_list()">성적조회</a></li>
 													<li class="dropdown-submenu"><a class="dropdown-item" href="#">휴학</a>
 														<ul class="dropdown-menu">
 															<li><a class="dropdown-item" onClick="open_leave_check()">휴학신청 바로가기</a></li>
@@ -170,9 +170,9 @@
 															<li><a class="dropdown-item" onClick="window.open(this.href='ad_drop_absence.do', '', 'resizable=yes, width=900, height=800 left=700px top=100px'); return false;">자퇴신청 바로가기</a></li>
 															<li><a class="dropdown-item" href="ad_drop_absence_check.do">자퇴신청 확인</a></li>
 														</ul></li>
-													<li class="dropdown-submenu"><a class="dropdown-item" href="ad_tuition_bill.do">등록금</a>
+													<li class="dropdown-submenu"><a class="dropdown-item" onClick="tuition_Bill();">등록금</a>
 														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="ad_tuition_bill.do">등록금 납부</a></li>
+															<li><a class="dropdown-item" onClick="tuition_Bill();">등록금 납부</a></li>
 															<li><a class="dropdown-item" href="ad_tuition_payment_check.do">등록금 납부 확인</a></li>
 														</ul></li>
 													<li class="dropdown-submenu"><a class="dropdown-item" href="ad_certificate_list.do">증명서 발급</a>
@@ -187,41 +187,6 @@
 													<li><a class="dropdown-item" href="el.do">도서 목록</a></li>
 													<li><a class="dropdown-item" href="el.do">도서 대여 현황</a></li>
 												</ul></li>
-											<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"> Shop </a>
-												<ul class="dropdown-menu">
-													<li class="dropdown-submenu"><a class="dropdown-item" href="#">Single Product</a>
-														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="shop-product-full-width.html">Full Width</a></li>
-															<li><a class="dropdown-item" href="shop-product-sidebar-left.html">Left Sidebar</a></li>
-															<li><a class="dropdown-item" href="shop-product-sidebar-right.html">Right Sidebar</a></li>
-															<li><a class="dropdown-item" href="shop-product-sidebar-left-and-right.html">Left and Right Sidebar</a></li>
-														</ul></li>
-													<li><a class="dropdown-item" href="shop-4-columns.html">4 Columns</a></li>
-													<li class="dropdown-submenu"><a class="dropdown-item" href="#">3 Columns</a>
-														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="shop-3-columns-full-width.html">Full Width</a></li>
-															<li><a class="dropdown-item" href="shop-3-columns-sidebar-left.html">Left Sidebar</a></li>
-															<li><a class="dropdown-item" href="shop-3-columns-sidebar-right.html">Right Sidebar </a></li>
-														</ul></li>
-													<li class="dropdown-submenu"><a class="dropdown-item" href="#">2 Columns</a>
-														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="shop-2-columns-full-width.html">Full Width</a></li>
-															<li><a class="dropdown-item" href="shop-2-columns-sidebar-left.html">Left Sidebar</a></li>
-															<li><a class="dropdown-item" href="shop-2-columns-sidebar-right.html">Right Sidebar </a></li>
-															<li><a class="dropdown-item" href="shop-2-columns-sidebar-left-and-right.html">Left and Right Sidebar</a></li>
-														</ul></li>
-													<li class="dropdown-submenu"><a class="dropdown-item" href="#">1 Column</a>
-														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="shop-1-column-full-width.html">Full Width</a></li>
-															<li><a class="dropdown-item" href="shop-1-column-sidebar-left.html">Left Sidebar</a></li>
-															<li><a class="dropdown-item" href="shop-1-column-sidebar-right.html">Right Sidebar </a></li>
-															<li><a class="dropdown-item" href="shop-1-column-sidebar-left-and-right.html">Left and Right Sidebar</a></li>
-														</ul></li>
-													<li><a class="dropdown-item" href="shop-cart.html">Cart</a></li>
-													<li><a class="dropdown-item" href="shop-login.html">Login</a></li>
-													<li><a class="dropdown-item" href="shop-checkout.html">Checkout</a></li>
-													<li><a class="dropdown-item" href="shop-order-complete.html">Order Complete</a></li>
-												</ul></li>
 										</ul>
 									</nav>
 								</div>
@@ -233,13 +198,24 @@
 		</header>
 	</div>
 	<script>
-		function open_leave_check() {
+	//휴학 확인 화면 
 			var sNo = $('#sNo').val();
+		function open_leave_check() {
 			console.log(sNo)
 			window.open(this.href='ad_leave_absence.do?sNo='+ sNo, '', 'resizable=yes, width=900, height=800 left=700px top=100px'); 
 			return false;
-
 		};
+		//성적조회 화면
+		function point_search_list(){
+			console.log(sNo)
+			location.href ='ad_point_search_list.do?sNo='+ sNo; 
+			return false;
+		}
+		//등록금 납부 화면
+		function tuition_Bill(){
+			location.href='ad_tuition_bill.do?sNo='+ sNo; 
+			return false;
+		}
 	</script>
 </body>
 </html>

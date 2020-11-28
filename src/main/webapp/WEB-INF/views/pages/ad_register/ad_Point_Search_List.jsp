@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +22,7 @@
 					</div>
 				</div>
 			</section>
+
 			<div class="container py-2">
 				<div class="row">
 					<!--  학적관리 사이드바 -->
@@ -35,91 +38,81 @@
 										<li class="nav-item active"><a class="nav-link">성적 조회</a></li>
 									</ul>
 									<div class="tab-content">
-										<div id="popular10" class="tab-pane active">
-											<table class="table table-hover">
-												<thead>
-													<tr>
-														<th>년도/학기</th>
-														<th style="text-align: center;">신청학점</th>
-														<th style="text-align: center;">취득학점</th>
-														<th style="text-align: center;">평점평균</th>
-														<th style="text-align: center;">백점환산점수</th>
-														<th style="text-align: center;">학사경고여부</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>2019/01</td>
-														<td style="text-align: center;">12</td>
-														<td style="text-align: center;">12</td>
-														<td style="text-align: center;">3.22</td>
-														<td style="text-align: center;">77.22</td>
-														<td style="text-align: center;">N</td>
-													</tr>
-													<tr>
-														<td>2019/02</td>
-														<td style="text-align: center;">12</td>
-														<td style="text-align: center;">12</td>
-														<td style="text-align: center;">3.24</td>
-														<td style="text-align: center;">82.31</td>
-														<td style="text-align: center;">N</td>
-														
-													</tr>
-													<tr>
-														<td>2020/01</td>
-														<td style="text-align: center;">12</td>
-														<td style="text-align: center;">12</td>
-														<td style="text-align: center;">3.7</td>
-														<td style="text-align: center;">88.25</td>
-														<td style="text-align: center;">N</td>
-													</tr>
-												</tbody>
-											</table>
-											</div>
-											
-											<table class="table table-hover">
-												<thead>
-													<tr>
-														<th style="width: 125px;">총</th>
-														<th style="text-align: center;width: 117px;">신청학점</th>
-														<th style="text-align: center;width: 117px;">취득학점</th>
-														<th style="text-align: center;width: 117px;">평점평균</th>
-														<th style="text-align: center;">백점환산점수</th>
-														<th style="text-align: center;">학사경고여부</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td></td>
-														<td style="text-align: center;">36</td>
-														<td style="text-align: center;">36</td>
-														<td style="text-align: center;">3.5</td>
-														<td style="text-align: center;">75.0</td>
-														<td style="text-align: center;">N</td>
-													</tr>
-												</tbody>
-											</table>
-											<table class="table table-hover">
+										<table class="table ">
 											<thead>
+												<tr>
+													<th>년도/학기</th>
+													<th style="text-align: center;">신청학점</th>
+													<th style="text-align: center;">취득학점</th>
+													<th style="text-align: center;">평점평균</th>
+													<th style="text-align: center;">백점환산점수</th>
+													<th style="text-align: center;">상세보기</th>
+												</tr>
+											</thead>
+											<c:forEach var="sp" items="${sp }">
+												<tbody>
 													<tr>
-														<th style="text-align: center;" colspan="2">졸업이수학점</th>
-														<th style="text-align: center;">전공필요학점</th>
-														<th style="text-align: center;">전공취득학점</th>
-														<th style="text-align: center;">교양필요학점</th>
-														<th style="text-align: center;">교양취득학점</th>
+														<c:url var="detail" value="ad_point_search.do">
+															<c:param name="semYear" value="${sp.semYear }" />
+															<c:param name="semNo" value="${sp.semNo }" />
+															<c:param name="sNo" value="${sp.sNo }" />
+														</c:url>
+														<td>${sp.semYear }/${sp.semNo }</td>
+														<td style="text-align: center;">${sp.credit *3}</td>
+														<td style="text-align: center;">${sp.count *3}</td>
+														<td style="text-align: center;">
+															<fmt:formatNumber value="${sp.avgPoint /4 }" pattern=".0" />
+														</td>
+														<td style="text-align: center;">
+															<fmt:formatNumber value="${sp.point }" pattern=".00" />
+														</td>
+														<td style="text-align: center;">
+															<button class="btn btn-primary btn-xs mb-2" onClick="window.open('${detail}','', 'resizable=yes, width=900, height=800 left=700px top=100px');">상세보기</button>
+														</td>
 													</tr>
-													</thead>
-											<tbody>
-													<tr>
-														<td style="text-align: center;" colspan="2">80</td>
-														<td style="text-align: center;">50</td>
-														<td style="text-align: center;">12</td>
-														<td style="text-align: center;">30</td>
-														<td style="text-align: center;">24</td>
-													</tr>
-													</tbody>
-													</table>
-										
+											</c:forEach>
+											</tbody>
+										</table>
+										<!-- 											<table class="table table-hover"> -->
+										<!-- 												<thead> -->
+										<!-- 													<tr> -->
+										<!-- 														<th style="width: 125px;">총</th> -->
+										<!-- 														<th style="text-align: center;width: 117px;">신청학점</th> -->
+										<!-- 														<th style="text-align: center;width: 117px;">취득학점</th> -->
+										<!-- 														<th style="text-align: center;width: 117px;">평점평균</th> -->
+										<!-- 														<th style="text-align: center;">백점환산점수</th> -->
+										<!-- 													</tr> -->
+										<!-- 												</thead> -->
+										<!-- 												<tbody> -->
+										<!-- 													<tr> -->
+										<!-- 														<td></td> -->
+										<!-- 														<td style="text-align: center;">36</td> -->
+										<!-- 														<td style="text-align: center;">36</td> -->
+										<!-- 														<td style="text-align: center;">3.5</td> -->
+										<!-- 														<td style="text-align: center;">75.0</td> -->
+										<!-- 													</tr> -->
+										<!-- 												</tbody> -->
+										<!-- 											</table> -->
+										<!-- 											<table class="table table-hover"> -->
+										<!-- 											<thead> -->
+										<!-- 													<tr> -->
+										<!-- 														<th style="text-align: center;" colspan="2">졸업이수학점</th> -->
+										<!-- 														<th style="text-align: center;">전공필요학점</th> -->
+										<!-- 														<th style="text-align: center;">전공취득학점</th> -->
+										<!-- 														<th style="text-align: center;">교양필요학점</th> -->
+										<!-- 														<th style="text-align: center;">교양취득학점</th> -->
+										<!-- 													</tr> -->
+										<!-- 													</thead> -->
+										<!-- 											<tbody> -->
+										<!-- 													<tr> -->
+										<!-- 														<td style="text-align: center;" colspan="2">50</td> -->
+										<!-- 														<td style="text-align: center;">30</td> -->
+										<!-- 														<td style="text-align: center;">12</td> -->
+										<!-- 														<td style="text-align: center;">20</td> -->
+										<!-- 														<td style="text-align: center;">24</td> -->
+										<!-- 													</tr> -->
+										<!-- 													</tbody> -->
+										<!-- 													</table> -->
 									</div>
 								</div>
 							</div>
@@ -131,41 +124,47 @@
 	</div>
 	<%@include file="../common/footer.jsp"%>
 	<script>
-	// 테이블의 Row 클릭시 값 가져오기
-	$("#popular10 tr").click(function(){ 	
+		// 테이블의 Row 클릭시 값 가져오기
+		$("#popular10 tr").click(
+				function() {
+					// 		window.open(this.href='ad_point_search.do?sNo='+sNo, '', 'resizable=yes, width=900, height=800 left=700px top=100px'); return false;
 
-		window.open(this.href='ad_point_search.do', '', 'resizable=yes, width=900, height=800 left=700px top=100px'); return false;
-// 		var str = ""
-// 		var tdArr = new Array();	// 배열 선언
-		
-// 		// 현재 클릭된 Row(<tr>)
-// 		var tr = $(this);
-// 		var td = tr.children();
-		
-// 		// tr.text()는 클릭된 Row 즉 tr에 있는 모든 값을 가져온다.
-// 		console.log("클릭한 Row의 모든 데이터 : "+tr.text());
-		
-// 		// 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
-// 		td.each(function(i){
-// 			tdArr.push(td.eq(i).text());
-// 		});
-		
-// 		console.log("배열에 담긴 값 : "+tdArr);
-		
-// 		// td.eq(index)를 통해 값을 가져올 수도 있다.
-// 		var no = td.eq(0).text();
-// 		var userid = td.eq(1).text();
-// 		var name = td.eq(2).text();
-// 		var email = td.eq(3).text();
-		
-		
-// 		str +=	" * 클릭된 Row의 td값 = No. : <font color='red'>" + no + "</font>" +
-// 				", 아이디 : <font color='red'>" + userid + "</font>" +
-// 				", 이름 : <font color='red'>" + name + "</font>" +
-// 				", 이메일 : <font color='red'>" + email + "</font>";		
-		
-// 		$("#ex1_Result1").html(" * 클릭한 Row의 모든 데이터 = " + tr.text());		
-// 		$("#ex1_Result2").html(str);
-	});</script>
+					var semYear = $('#semYear').val();
+					var semNo = $('#semNo').val();
+					var sNo = $('#sNo').val();
+
+					$.ajax({
+						type : "POST",
+						url : 'ad_point_search.do',
+						data : {
+							semYear : semYear,
+							semNo : semNo,
+							sNo : sNo
+						},
+						success : function(data) {
+							// callback function--> data로 값이 들어온다 ( success, fail)
+							if (data == 'success') {
+								// 정상 페이지 이동
+								alert('휴학신청 접수가 완료되었습니다.');
+								window.opener.location.reload();
+								window.close();
+							} else {
+								// 오류 페이지로 이동
+								alert('서버가 원활하지 않습니다.');
+								window.opener.location.reload();
+								window.close();
+							}
+
+						},
+						error : function(request, status, error) {
+
+							console.log("code:" + request.status + "\n"
+									+ "message:" + request.responseText + "\n"
+									+ "error:" + error);
+
+						}
+					});
+				});
+	</script>
 </body>
 </html>

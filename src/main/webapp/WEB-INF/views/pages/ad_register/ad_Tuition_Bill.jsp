@@ -1,14 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<% 
- System.out.println("name: "+(String)request.getAttribute("sNo"));
-//     System.out.println("email: "+email);
-//      System.out.println("phone: "+phone);
-//      System.out.println("address: "+address);
-//      System.out.println("stotalPrice: "+stotalPrice);
-//      System.out.println("totalPrice: "+totalPrice);
-     %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -49,34 +41,26 @@
 											<table class="table table-hover">
 												<thead>
 													<tr>
-														<th>#</th>
-														<th style="text-align: center;">학년</th>
 														<th style="text-align: center;">강의명</th>
 														<th style="text-align: center;">학점</th>
-														<th style="text-align: center;">시험일자</th>
+														<th style="text-align: center;">이수구분</th>
 														<th style="text-align: center;">담당교수</th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
-														<td>1</td>
-														<td style="text-align: center;">4</td>
 														<td style="text-align: center;">Mark</td>
 														<td style="text-align: center;">Mark</td>
 														<td style="text-align: center;">Otto</td>
 														<td style="text-align: center;">이성호</td>
 													</tr>
 													<tr>
-														<td>2</td>
-														<td style="text-align: center;">1</td>
 														<td style="text-align: center;">Mark</td>
 														<td style="text-align: center;">Mark</td>
 														<td style="text-align: center;">Otto</td>
 														<td style="text-align: center;">@mdo</td>
 													</tr>
 													<tr>
-														<td>3</td>
-														<td style="text-align: center;">3</td>
 														<td style="text-align: center;">Mark</td>
 														<td style="text-align: center;">Mark</td>
 														<td style="text-align: center;">Otto</td>
@@ -117,7 +101,7 @@
 								<input type="hidden" id="sName" value=${loginUser.sName }>
 								<input type="hidden" id="sPhone" value=${loginUser.sPhone }>
 								<input type="hidden" id="sAddress" value=${loginUser.sAddress }>
-											<button type="submit" class="btn btn-primary btn-xs mb-2 float-right" onClick="window.open(this.href='ad_tuition_payment.do', '', 'resizable=yes, width=900, height=800 left=700px top=100px'); return false;" >즉시 납부하기</button>
+											<button type="submit" class="btn btn-primary btn-xs mb-2 float-right" onClick="window.open(this.href='ad_tuition_payment.do', '', 'resizable=yes, width=450px, height=600px	 left=700px top=100px'); return false;" >즉시 납부하기</button>
 							</div>
 						</div>
 					</div>

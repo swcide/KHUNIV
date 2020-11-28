@@ -95,7 +95,6 @@
 									<td colspan="3" style="text-align: center;">${lp.className }</td>
 
 								</tr>
-
 								<tr>
 									<th style="width: 118px;">과목번호</th>
 									<td style="width: 252px; text-align: center;">${lp.classNo}</td>
@@ -105,25 +104,19 @@
 								<tr>
 									<th>학점</th>
 									<td style="text-align: center;">${lp.credit}</td>
-									<th>선수과목</th>
-									<td style="text-align: center;">-</td>
-								</tr>
-								<tr>
-									<th>교수</th>
-									<td style="text-align: center;">${lp.profName}</td>
 									<th>연구실</th>
 									<td style="text-align: center;">${lp.profLab}</td>
 								</tr>
 								<tr>
-									<th>연락처</th>
-									<td style="text-align: center;">-</td>
+									<th>교수</th>
+									<td style="text-align: center;">${lp.profName}</td>
 									<th>E-mail</th>
 									<td style="text-align: center;">${lp.profEmail}</td>
 								</tr>
 							</tbody>
 						</table>
 
-						<form action="prof_Syllabus_LectureUpdate.do" name="formSylla" id="formSylla" method="post">
+						<form name="formSylla" id="formSylla" method="post">
 							<input name="classNo" type="hidden" value="${lp.classNo}">
 							<table class="table table-hover">
 								<thead>
@@ -246,23 +239,21 @@
 											</select>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<span>과제 : </span>
-											<select name="assignmentPoints" id="AssignmentPoints" 
-											onchange="AssignmentPointsChange(this)">
+											<select name="assignmentPoints" id="AssignmentPoints" onchange="AssignmentPointsChange(this)">
 											</select>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<span>출석 : </span>
-											<select name="attendancePoints" id="AttendancePoints"
-											onchange="AttendancePointsChange(this)">
-											</select>	
+											<select name="attendancePoints" id="AttendancePoints" onchange="AttendancePointsChange(this)">
+											</select>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<span>합 : </span>
-											<span name="TotalPoint" id="TotalPoint" size=10></span>
+											<label id="TotalPoint"></label>
+										</td>
 									</tr>
 								</tbody>
 							</table>
 
-							<button type="submit" class="btn btn-dark" id="btnForm" onclick="checkForm(); return false" 
-									style="float: right; margin-bottom: 20px;">
+							<button type="submit" class="btn btn-dark" id="btnForm" onclick="checkForm(); return false" style="float: right; margin-bottom: 20px;">
 								<i class="fas fa-pencil-alt"></i> 제출하기
 							</button>
 						</form>
@@ -273,7 +264,7 @@
 	</div>
 </body>
 <script>
-	
+	// 빈칸 유효성 검사 기능
 	function checkForm() {
 
 		if (formSylla.classSummary.value == "") {
@@ -308,52 +299,43 @@
 			shake()
 			formSylla.lecTextbook.focus();
 			return false;
-		} else if (formSylla.TotalPoint.value != "100"){
-			shake()
-			formSylla.assignmentPoints.focus();
-		} else { 
-			ajaxFormSylla()
-			return true;
-
+ 		} else if ($("#TotalPoint").html() != '100'){
+ 			alert("배점의 총합이 100이 되어야 합니다.")
+ 			return false;
+		}else { 
+			
+			var classNo = $("input[name=classNo]").val();		// 동영강 강의추가페이지로 이동시 필요
+			var formData = new FormData($('#formSylla')[0]);	// 폼 데이터 값 가져올 시 필요
+			console.log(formData);
+			
+			$.ajax({
+				type : "POST",
+				url : 'prof_Syllabus_LectureUpdate.do',
+				data : formData,
+				contentType: false,
+				processData:false,
+				success : function(data) {
+					if(confirm("주차별 자료를 이어서 등록하시겠습니까?")== true){
+					window.opener.location.href="prof_lectureVideo.do?classNo="+classNo;
+					self.close();
+					} else{
+						alert("등록이 완료되었습니다.")
+					window.opener.location.reload();
+					self.close();
+					}
+				},
+				error : function(request, status, error) {
+					alert("code:" + request.status + "\n" + "message:"
+							+ request.responseText + "\n" + "error:" + error);
+				}
+			});
 		}
 	};
 </script>
-<script>
-	function ajaxFormSylla() {
-		var params = $("form[name=formSylla]");
-		$.ajax({
-			type : "POST",
-			url : 'prof_Syllabus_LectureUpdate.do',
-			data : params,
-			dataType : "html",
-			success : function(data) {
-				if(confirm("주차별 자료를 이어서 등록하시겠습니까?")== true){
-					opener.location.href=''
-				} else{
-					opener.location.reload();
-					self.close();
-				}
-			},
-			error : function(request, status, error) {
 
-				alert("code:" + request.status + "\n" + "message:"
-						+ request.responseText + "\n" + "error:" + error);
-			}
-		});
-	}
-	function shake() {
-		for (i = 30; i > 0; i--) {
-			window.moveBy(0, i);
-			window.moveBy(i, 0);
-			window.moveBy(0, -i);
-			window.moveBy(-i, 0);
-		}
-		alert("빈칸을 채워주세요");
-	}
-</script>
 <script>
 function ExamPointsChange(e) {
-
+	console.log("시험점수" + parseInt($("#examPoints option:selected").val()) );
     if(e.value == "0") var d = ["0", "10", "20", "30", "40", "50","60" ,"70", "80", "90", "100"];
     else if(e.value == "10") var d = ["0", "10", "20", "30", "40", "50","60" ,"70", "80", "90"];
     else if(e.value == "20") var d = ["0", "10", "20", "30", "40", "50","60" ,"70", "80"];
@@ -382,29 +364,33 @@ function ExamPointsChange(e) {
 
 function AssignmentPointsChange(e){
 	
-	console.log(parseInt($("#AssignmentPoints option:selected").val()));
-	
     add = parseInt($("#examPoints option:selected").val())
-	+parseInt($("#AssignmentPoints option:selected").val());
-    console.log(parseInt($("#examPoints option:selected").val()) );
-		 $("#TotalPoint").text(add);
+		 +parseInt($("#AssignmentPoints option:selected").val());
+    
+    
+	$("#TotalPoint").text(add);
+	
 	var e= $("#TotalPoint").html();
-	console.log(e);
-    if(e == "0") var d = ["0", "10", "20", "30", "40", "50","60" ,"70", "80", "90", "100"];
-    else if(e == "10") var d = ["0", "10", "20", "30", "40", "50","60" ,"70", "80", "90"];
-    else if(e == "20") var d = ["0", "10", "20", "30", "40", "50","60" ,"70", "80"];
-    else if(e == "30") var d = ["0", "10", "20", "30", "40", "50","60" ,"70"];
-    else if(e == "40") var d = ["0", "10", "20", "30", "40", "50","60"];
-    else if(e == "50") var d = ["0", "10", "20", "30", "40", "50"];
-    else if(e == "60") var d = ["0", "10", "20", "30", "40"];
-    else if(e == "70") var d = ["0", "10", "20", "30"];
-    else if(e == "80") var d = ["0", "10", "20"];
+	
+    if(e == "0") var d = ["0", "100"];
+    else if(e == "10") var d = ["0", "90"];
+    else if(e == "20") var d = ["0", "80"];
+    else if(e == "30") var d = ["0", "70"];
+    else if(e == "40") var d = ["0", "60"];
+    else if(e == "50") var d = ["0", "50"];
+    else if(e == "60") var d = ["0", "40"];
+    else if(e == "70") var d = ["0", "30"];
+    else if(e == "80") var d = ["0", "20"];
     else if(e == "90") var d = ["0", "10"];
     else if(e == "100") var d = ["0"];
     
+    // 출석 셀렉트 타겟으로 지정
     var target = document.getElementById("AttendancePoints");
+    
+    // 셀렉트 옵션 비워주기
     target.options.length = 0;
     
+    // 앞서 선택된 셀렉트 옵션값에 따라 추가해줄 출석 셀렉트 옵션 추가
     for (x in d) {
         var opt = document.createElement("option");
         opt.value = d[x];
@@ -414,6 +400,28 @@ function AssignmentPointsChange(e){
         
     }   
 }
+function AttendancePointsChange(e){
+	
+	//배점 SELECT 최종 합 더하기
+	add=  parseInt($("#examPoints option:selected").val())
+	 	+ parseInt($("#AssignmentPoints option:selected").val())
+	 	+ parseInt($("#AttendancePoints option:selected").val());
+	
+	// 배점 최종 출력
+	$("#TotalPoint").text(add);
+	}
+</script>
+<script>
+
+	function shake() {
+		for (i = 30; i > 0; i--) {
+			window.moveBy(0, i);
+			window.moveBy(i, 0);
+			window.moveBy(0, -i);
+			window.moveBy(-i, 0);
+		}
+		alert("빈칸을 채워주세요");
+	}
 </script>
 
 </html>

@@ -21,6 +21,7 @@ import com.kh.univ.ad_Register.model.service.ad_RegisterService;
 import com.kh.univ.ad_Register.model.vo.Absence;
 import com.kh.univ.ad_Register.model.vo.Certificate;
 import com.kh.univ.ad_Register.model.vo.grdExp;
+import com.kh.univ.ad_Register.model.vo.semesterPoint;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
@@ -81,10 +82,15 @@ public class ad_Register_Controller {
 	 * @return
 	 */
 	@RequestMapping(value = "ad_point_search_list.do")
-	public String point_Search_List(Locale locale, Model model)
+	public ModelAndView point_Search_List(ModelAndView mv, @RequestParam(name="sNo") String sNo, HttpSession session)
 		{
-
-			return "ad_register/ad_Point_Search_List";
+			System.out.println("성적조회");
+			
+			ArrayList<semesterPoint> sp = arService.point_Search_List(sNo);
+			System.out.println(sp);
+			mv.addObject("sp",sp);
+			mv.setViewName( "ad_register/ad_Point_Search_List");
+			return mv;
 		}
 
 	/**
@@ -95,10 +101,26 @@ public class ad_Register_Controller {
 	 * @return
 	 */
 	@RequestMapping(value = "ad_point_search.do")
-	public String point_Search(Locale locale, Model model)
+	public ModelAndView point_Search(ModelAndView mv, semesterPoint semp,@RequestParam(name="sNo") String sNo,@RequestParam(name="semYear") String semYear, @RequestParam(name="semNo") String semNo, HttpSession session)
 		{
-
-			return "ad_register/ad_Point_Search";
+			System.out.println("디테일");
+			System.out.println(semYear);
+			System.out.println(semNo);
+			semp.setSemYear(semYear);
+			semp.setSemNo(semNo);
+			semp.setsNo(sNo);
+			System.out.println(semp);
+			
+			
+			ArrayList<semesterPoint> sepTop = arService.point_Search_Top(semp);
+			System.out.println("sepTop =" + sepTop);
+			ArrayList<semesterPoint> sep = arService.point_Search(semp);
+			System.out.println(sep);
+			
+			mv.addObject("sepTop",sepTop);
+			mv.addObject("sep",sep);
+			mv.setViewName( "ad_register/ad_Point_Search");
+			return mv;
 		}
 
 	/**
@@ -433,9 +455,9 @@ public class ad_Register_Controller {
 	 * @return
 	 */
 	@RequestMapping(value = "ad_tuition_bill.do")
-	public String tuition_bill(Model model)
+	public String tuition_bill(Model model,@RequestParam("sNo") String sNo)
 		{
-
+			
 			return "ad_register/ad_Tuition_Bill";
 		}
 

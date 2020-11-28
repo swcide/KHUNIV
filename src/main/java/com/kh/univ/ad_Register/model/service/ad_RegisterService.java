@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.kh.univ.ad_Register.model.vo.Absence;
 import com.kh.univ.ad_Register.model.vo.Certificate;
 import com.kh.univ.ad_Register.model.vo.grdExp;
+import com.kh.univ.ad_Register.model.vo.semesterPoint;
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
@@ -86,6 +87,29 @@ public interface ad_RegisterService {
 	 * @return
 	 */
 	Certificate certificate_graduation(String sNo);
+
+	/**
+	 * 성적조회
+	 * @param sNo
+	 * @return
+	 */
+	ArrayList<semesterPoint> point_Search_List(String sNo);
+
+	/**
+	 * 학기별 성적조회 위에꺼
+	 * @param semp
+	 * @return
+	 */
+	ArrayList<semesterPoint> point_Search_Top(semesterPoint semp);
+	
+	/**
+	 * 학기별 성적조회
+	 * @param semp
+	 * @return
+	 */
+	ArrayList<semesterPoint> point_Search(semesterPoint semp);
+
+	
 
 
 
