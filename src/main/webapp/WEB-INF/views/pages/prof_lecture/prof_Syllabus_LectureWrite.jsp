@@ -335,7 +335,7 @@
 
 <script>
 function ExamPointsChange(e) {
-	console.log("시험점수" + parseInt($("#examPoints option:selected").val()) );
+
     if(e.value == "0") var d = ["0", "10", "20", "30", "40", "50","60" ,"70", "80", "90", "100"];
     else if(e.value == "10") var d = ["0", "10", "20", "30", "40", "50","60" ,"70", "80", "90"];
     else if(e.value == "20") var d = ["0", "10", "20", "30", "40", "50","60" ,"70", "80"];

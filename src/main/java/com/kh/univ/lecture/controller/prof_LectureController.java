@@ -77,35 +77,18 @@ public class prof_LectureController {
 			mv.addObject("msg", "로그인 실패");
 			mv.setViewName("common/errorPage");
 		}
-		return mv;
-	}
 
-	// 강의동 >> 수업관리 >> 내 강의 목록
 	@RequestMapping(value = "prof_lectureList2.do")
-	public ModelAndView prof_lecture2(ModelAndView mv, HttpSession session)
-	{	
-		
-		Professor p = (Professor) session.getAttribute("loginProf");	// 세션에서 교수정보 불러오기
-		String pNo = p.getpNo();										// 교수번호 담기
-
-		ArrayList<LectureClass> aLc = plService.selectValue(pNo);		
-		System.out.println(aLc);
-
-		if (aLc != null) {
-			mv.addObject("aLc", aLc);
-			mv.setViewName("prof_lecture/prof_lectureList2");
-		} else {
-			mv.addObject("msg", "에러가 발생했습니다.");
-			mv.setViewName("common/errorPage");
+	public String prof_lecture2(Model model)
+		{
+			return "prof_lecture/prof_lectureList2";
 		}
-		return mv;
-	}
 
 	@RequestMapping(value = "prof_lectureStudentList.do")
 	public String prof_Studentlecture(Model model)
-	{
-		return "prof_lecture/prof_lectureStudentList";
-	}
+		{
+			return "prof_lecture/prof_lectureStudentList";
+		}
 
 	/**
 	 * 해당 과목의 주차별 내용만 출력
@@ -145,68 +128,68 @@ public class prof_LectureController {
 	@RequestMapping("prof_lectureVideoInsert.do")
 	public String prof_lectureVideoInsert(Model m, LecturePlanWeek lpw, HttpServletRequest request, @RequestParam(name = "lecVideoInsert", required = false) MultipartFile file,
 			@RequestParam(name = "lecReferenceInsert", required = false) MultipartFile refFile, @RequestParam(name = "classNo", required = false) String classNo)
-	{
-		System.out.println("in");
-		System.out.println(classNo);
-		if (!file.getOriginalFilename().equals(" ")) {
-			//서버에 업로드 해야한다.
+		{
+			System.out.println("in");
+			System.out.println(classNo);
+			if (!file.getOriginalFilename().equals(" ")) {
+				//서버에 업로드 해야한다.
 
-			String renameFileName = saveFile(file, request);
-			if (renameFileName != null) { //파일이 잘 저장된 경우
-				lpw.setLecVideo(file.getOriginalFilename()); // 파일명만 DB에 저장
-				lpw.setLecVideo(renameFileName);
+				String renameFileName = saveFile(file, request);
+				if (renameFileName != null) { //파일이 잘 저장된 경우
+					lpw.setLecVideo(file.getOriginalFilename()); // 파일명만 DB에 저장
+					lpw.setLecVideo(renameFileName);
+				}
+			}
+
+			if (!refFile.getOriginalFilename().equals(" ")) {
+				//서버에 업로드 해야한다.
+				String renameRefFileName = saveFile(refFile, request);
+				if (renameRefFileName != null) { //파일이 잘 저장된 경우
+					lpw.setLecReference(refFile.getOriginalFilename()); // 파일명만 DB에 저장
+					lpw.setLecReference(renameRefFileName);
+				}
+			}
+
+			int result = plService.lectureVideoInsert(lpw);
+
+			if (result > 0) {
+				ArrayList<LecturePlanWeek> aLpw = plService.lectureVideo(classNo);
+				m.addAttribute("classNo", classNo);
+				m.addAttribute(aLpw);
+				return "redirect:prof_lectureVideo.do";
+			} else {
+				return "common/errorPage";
 			}
 		}
-
-		if (!refFile.getOriginalFilename().equals(" ")) {
-			//서버에 업로드 해야한다.
-			String renameRefFileName = saveFile(refFile, request);
-			if (renameRefFileName != null) { //파일이 잘 저장된 경우
-				lpw.setLecReference(refFile.getOriginalFilename()); // 파일명만 DB에 저장
-				lpw.setLecReference(renameRefFileName);
-			}
-		}
-
-		int result = plService.lectureVideoInsert(lpw);
-
-		if (result > 0) {
-			ArrayList<LecturePlanWeek> aLpw = plService.lectureVideo(classNo);
-			m.addAttribute("classNo", classNo);
-			m.addAttribute(aLpw);
-			return "redirect:prof_lectureVideo.do";
-		} else {
-			return "common/errorPage";
-		}
-	}
 
 	public String saveFile(MultipartFile file, HttpServletRequest request)
-	{
-		//파일이 저장될 경로를 설정하기
-		//웹 서버의 ContextPath 불러와서 폴더의 경로를 가져온다
-		//webapp 하위의 resources
-		String root = request.getSession().getServletContext().getRealPath("resources");
-		System.out.println("root : " + root);
-		//파일 경로
-		// \를 문자로 인식시키기 위해서는 "\\"를 사용한다.
-		String savePath = root + "\\lectureUploadFile";
+		{
+			//파일이 저장될 경로를 설정하기
+			//웹 서버의 ContextPath 불러와서 폴더의 경로를 가져온다
+			//webapp 하위의 resources
+			String root = request.getSession().getServletContext().getRealPath("resources");
+			System.out.println("root : " + root);
+			//파일 경로
+			// \를 문자로 인식시키기 위해서는 "\\"를 사용한다.
+			String savePath = root + "\\lectureUploadFile";
 
-		File folder = new File(savePath);
+			File folder = new File(savePath);
 
-		if (!folder.exists()) {
-			folder.mkdirs(); // 폴더가 없다면 생성한다. 
+			if (!folder.exists()) {
+				folder.mkdirs(); // 폴더가 없다면 생성한다. 
+			}
+
+			String fileName = file.getOriginalFilename();
+
+			String renamePath = folder + "\\" + fileName;//실제 저장될 파일 경로 + 파일명
+
+			try {
+				file.transferTo(new File(renamePath)); // 전달 받은 file이 rename명으로 이때 파일이 저장된다.
+			} catch (Exception e) {
+				System.out.println("파일 전송 에러 : " + e.getMessage());
+			}
+			return fileName;
 		}
-
-		String fileName = file.getOriginalFilename();
-
-		String renamePath = folder + "\\" + fileName;//실제 저장될 파일 경로 + 파일명
-
-		try {
-			file.transferTo(new File(renamePath)); // 전달 받은 file이 rename명으로 이때 파일이 저장된다.
-		} catch (Exception e) {
-			System.out.println("파일 전송 에러 : " + e.getMessage());
-		}
-		return fileName;
-	}
 
 	/**
 	 * 동영상 / 첨부파일 업데이트
@@ -220,59 +203,59 @@ public class prof_LectureController {
 	@RequestMapping("prof_lectureVideoUpdate.do")
 	public ModelAndView lectureVideoUpdate(ModelAndView mv, LecturePlanWeek lpw, HttpServletRequest request, @RequestParam(name = "lecVideoUpdate", required = false) MultipartFile file,
 			@RequestParam(name = "lecReferenceUpdate", required = false) MultipartFile refFile, @RequestParam(name = "classNo", required = false) String classNo){
-
-		// 영상 파일 ----------------------------------------------------
-		if (file != null && !file.isEmpty()) { // 새로 업로드 된 파일이 있다면 - 의 조건
-			if (lpw.getLecVideo() != null) {// 기존의 파일이 존재했을 경우 파일 삭제하는 조건
-				deleteFile(lpw.getLecVideo(), request);
+			
+			// 영상 파일 ----------------------------------------------------
+			if (file != null && !file.isEmpty()) { // 새로 업로드 된 파일이 있다면 - 의 조건
+				if (lpw.getLecVideo() != null) {// 기존의 파일이 존재했을 경우 파일 삭제하는 조건
+					deleteFile(lpw.getLecVideo(), request);
+				}
+				String renameFileName = saveFile(file, request);
+				if (renameFileName != null) {
+					lpw.setLecVideo(file.getOriginalFilename());
+					lpw.setLecVideo(renameFileName);
+				}
 			}
-			String renameFileName = saveFile(file, request);
-			if (renameFileName != null) {
-				lpw.setLecVideo(file.getOriginalFilename());
-				lpw.setLecVideo(renameFileName);
+			// 첨부 파일 ----------------------------------------------------
+			if (refFile != null && !refFile.isEmpty()) { // 새로 업로드 된 파일이 있다면 - 의 조건
+				if (lpw.getLecVideo() != null) {// 기존의 파일이 존재했을 경우 파일 삭제하는 조건
+					deleteFile(lpw.getLecReference(), request);
+				}
+				String renameFileName = saveFile(refFile, request);
+				if (renameFileName != null) {
+					lpw.setLecReference(refFile.getOriginalFilename());
+					lpw.setLecReference(renameFileName);
+				}
 			}
+			
+			int result = plService.lectureVideoUpdate(lpw);
+			System.out.println(result);
+//			LecturePlanWeek lecDB = plService.updateAfter(lpw);
+//			System.out.println("이거 ? " + lecDB);
+//			int lecNum= lecDB.getLecNo();
+//			System.out.println(lecNum);
+			
+			if (result > 0) {
+				ArrayList<LecturePlanWeek> aLpw = plService.lectureVideo(classNo);
+				mv.addObject("classNo", classNo);
+				mv.addObject("aLpw", aLpw);
+				mv.setViewName("prof_lecture/prof_lectureVideo");
+			} else {
+				mv.addObject("msg", "수정실패").setViewName("common/errorPage");
+			}
+			return mv;
 		}
-		// 첨부 파일 ----------------------------------------------------
-		if (refFile != null && !refFile.isEmpty()) { // 새로 업로드 된 파일이 있다면 - 의 조건
-			if (lpw.getLecVideo() != null) {// 기존의 파일이 존재했을 경우 파일 삭제하는 조건
-				deleteFile(lpw.getLecReference(), request);
-			}
-			String renameFileName = saveFile(refFile, request);
-			if (renameFileName != null) {
-				lpw.setLecReference(refFile.getOriginalFilename());
-				lpw.setLecReference(renameFileName);
-			}
-		}
-
-		int result = plService.lectureVideoUpdate(lpw);
-		System.out.println(result);
-		//			LecturePlanWeek lecDB = plService.updateAfter(lpw);
-		//			System.out.println("이거 ? " + lecDB);
-		//			int lecNum= lecDB.getLecNo();
-		//			System.out.println(lecNum);
-
-		if (result > 0) {
-			ArrayList<LecturePlanWeek> aLpw = plService.lectureVideo(classNo);
-			mv.addObject("classNo", classNo);
-			mv.addObject("aLpw", aLpw);
-			mv.setViewName("prof_lecture/prof_lectureVideo");
-		} else {
-			mv.addObject("msg", "수정실패").setViewName("common/errorPage");
-		}
-		return mv;
-	}
 
 	public void deleteFile(String fileName, HttpServletRequest request)
-	{
-		String root = request.getSession().getServletContext().getRealPath("resources");
-		String savePath = root + "\\lectureUploadFile";
+		{
+			String root = request.getSession().getServletContext().getRealPath("resources");
+			String savePath = root + "\\lectureUploadFile";
 
-		File f = new File(savePath + "\\" + fileName); // 기존에 업로드된 파일의 실제 경로를 이용해서 file 객체 생성
+			File f = new File(savePath + "\\" + fileName); // 기존에 업로드된 파일의 실제 경로를 이용해서 file 객체 생성
 
-		if (f.exists()) {
-			f.delete();
+			if (f.exists()) {
+				f.delete();
+			}
 		}
-	}
 
 	/**
 	 * 동영상 삭제
@@ -284,24 +267,24 @@ public class prof_LectureController {
 	 */
 	@RequestMapping(value = "prof_lectureVideoDelete.do")
 	public String prof_lectureVideoDelete(LecturePlanWeek lpw, @RequestParam(name = "lecNo", required = false) int lecNo, @RequestParam(name = "classNo", required = false) String classNo)
-	{
-		int result = plService.lectureVideoDelete(lpw);
-		if (result > 0) {
-			return "redirect:prof_lectureVideo.do?classNo=" + classNo;
-		} else {
-			return "common/errorPage";
+		{
+			int result = plService.lectureVideoDelete(lpw);
+			if (result > 0) {
+				return "redirect:prof_lectureVideo.do?classNo=" + classNo;
+			} else {
+				return "common/errorPage";
+			}
 		}
-	}
 
 	@RequestMapping(value = "prof_lectureVideoList.do")
 	public String prof_lectureVideoList(Model model)
-	{
-		return "prof_lecture/prof_lectureVideoList";
-	}
+		{
+			return "prof_lecture/prof_lectureVideoList";
+		}
 
-	//=====================================================================================//
-	//교 수 강 의 계 획 서 //
-	//=====================================================================================//
+//=====================================================================================//
+								//교 수 강 의 계 획 서 //
+//=====================================================================================//
 	/**
 	 * 강의계획서 관리 리스트 페이지 
 	 * 
@@ -339,21 +322,21 @@ public class prof_LectureController {
 	 * @return
 	 */
 	@RequestMapping(value = "prof_Syllabus_LectureUpdate.do")
-	@ResponseBody
-	public String prof_Syllabus_LectureUpdate(Model m, LecturePlan lp ) {
+	public ModelAndView prof_Syllabus_LectureUpdate(ModelAndView mv, LecturePlan lp ) {
 		System.out.println("컨트롤러"+lp);
 		int result = plService.prof_Syllabus_LectureUpdate(lp);
-		System.out.println("디비타면 1====="+result);
+		System.out.println(result);
 		if(result>0) {
-			System.out.println("컨트롤러 무사통과");
 			System.out.println(lp);
-			return "success";
-		}else {
-			System.out.println("컨트롤러 통과실패했다");
-			return "fail";
-		}
-	}
+			mv.setViewName("prof_lecture/prof_lecturePlanList"); // 어느페이지로
 
+		}else {
+			System.out.println(lp);
+			mv.addObject("msg","수정실패");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
 
 
 	@RequestMapping(value = "prof_learningprogress.do")
@@ -384,6 +367,7 @@ public class prof_LectureController {
 		}
 		return mv;
 	}
+
 	
 
 	
