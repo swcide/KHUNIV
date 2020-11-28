@@ -43,6 +43,15 @@ padding-left:20px
 										<img class="card-img-top" src="resources/img/parallax-bg.jpg" alt="Card Image">
 										<div class="card-body" style="padding:0">
 											<table class="table table-hover" style="border: 1px solid #dee2e6; margin:0; cursor: pointer;">
+												
+												<c:if test="${empty ag }">
+												
+													<div class="card-body" style="text-align: center">
+														<span class="card-title mb-1 text-4 font-weight-bold">평가할 학생이 없습니다.</span>
+													</div>
+												</c:if>
+												<c:if test="${empty ag }">
+												
 												<c:forEach var ="ag" items="${ag }">
 												<tr>
 													<td  onclick="Evaluation(this);">
@@ -54,13 +63,15 @@ padding-left:20px
 														</c:if>
 														<c:if test="${!empty ag.assignFile  }">
 														<span style="color:red">제출</span>
-														<c:if test="${!empty gb }">
-														<span class="float-right" style="color:red">평가 완료</span>
+															<c:if test="${!empty gb }">
+															<span class="float-right" style="color:red">평가 완료</span>
+															</c:if>
 														</c:if>
-														</c:if>
+														<c:out value="${ag.lecNo }" />
 													</td>
 												</tr>
 												</c:forEach>
+												</c:if>
 											</table>
 										</div>
 									</div>
@@ -109,12 +120,14 @@ padding-left:20px
 										
 										</div>
 										<br>
-										<form action="sEvaluationInsert">
+										<form action="sEvaluationInsert.do">
 										<div id="Evaluation" class="card-body" style="text-align: center">
 											<span>평가 점수</span>
 											<input name ="point" type="text">
 											<br>
 											<br>
+											<input type="hidden" name ="lecNo" value="${ag.lecNo }">
+											<input type="hidden" name ="lecNo" value="${ag.tNo }">
 											<input type="hidden" name ="sNo" value="${ag.sNo }">
 											<input type="hidden" name ="cNo" value="${ag.classNo }">
 											<input type="submit" class="btn btn-sm btn-primary float-right " value="저장">
@@ -151,8 +164,7 @@ padding-left:20px
 									<div id="before" class="card mt-4">
 <!-- 										<img class="card-img-top" src="resources/img/parallax-bg.jpg" alt="Card Image"> -->
 										<div class="card-header">
-										<span>김진태 (20100321)</span> 
-										<span class="float-right">미제출</span>
+									
 										<br>
 										</div>
 											<div class="card-body" style="text-align: center">

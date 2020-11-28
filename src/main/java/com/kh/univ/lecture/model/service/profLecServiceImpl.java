@@ -19,7 +19,7 @@ import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.notice.model.vo.Notice;
-import com.kh.univ.testPage.model.vo.GradeBefore;
+import com.kh.univ.testPage.model.vo.HomeworkGrade;
 import com.kh.univ.testPage.model.vo.Test;
 
 @Service("plService")
@@ -200,7 +200,7 @@ public class profLecServiceImpl implements profLecService {
 	}
 
 	@Override
-	public int takeAddQ(Test t) {
+	public int takeAddQ(ArrayList<Test> t) {
 		return plDao.takeAddQ(t);
 	}
 
@@ -232,8 +232,13 @@ public class profLecServiceImpl implements profLecService {
 	}
 
 	@Override
-	public int EvaluationInsert(GradeBefore gb) {
+	public int EvaluationInsert(HomeworkGrade gb) {
 		return plDao.EvaluationInsert(gb);
+	}
+
+	@Override
+	public ArrayList<Test> takeQList(int qId) {
+		return plDao.takeQList(qId);
 	}
 
 	

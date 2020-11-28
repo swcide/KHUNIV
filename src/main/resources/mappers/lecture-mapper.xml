@@ -109,6 +109,8 @@
       <result property="cNo" column="CLASS_NO" />
       <result property="pNo" column="PROF_NO" />
       <result property="cName" column="CLASS_NAME" />
+      <result property="point" column="EXAM_POINTS" />
+      
    </resultMap>
 
    <resultMap type="Test" id="TestResultSet">
@@ -173,17 +175,7 @@
    
 
    
- 	<resultMap type="GradeBefore" id="GradeBeforeResultSet"  >
-	 <id property="tNo" column="TEST_NO" />
-      <result property="sNo" column="STD_NO" />
-      <result property="pNo" column="PROF_NO" />
-      <result property="cNo" column="CLASS_NO" />
-      <result property="homework" column="HOMEWORK" />
-      <result property="homework" column="QUIZ" />
-      <result property="fTest" column="FINAL_TEST" />
-      <result property="mTest" column="MIDTERM_TEST" />
- 	
- 	</resultMap>
+
  
    
    
@@ -519,10 +511,10 @@
    </select>
 
    <select id="classSelectList" resultMap="ClassTestResultSet">
-      SELECT *
+      SELECT TEST_NO, TEST_TYPE, TEST_TITLE, OPENDATE, STARTDATE, ENDDATE, TEST_TIME, CLASS_NO, CLASS_NAME, PROF_NO,lp.EXAM_POINTS/2
       FROM TB_PROF_TEST
-      P
-      WHERE PROF_NO = #{pNo}
+      join tb_lecture_plan lp using(class_no)
+      WHERE PROF_NO =  #{pNo}
    </select>
    <insert id="insertTestSchedule" parameterType="ClassTest">
       INSERT INTO
@@ -562,6 +554,7 @@
       SELECT *
       FROM TB_TEST
       WHERE TEST_NO= #{tNo}
+      ORDER BY QID DESC
    </select>
 
 
@@ -625,26 +618,53 @@
       WHERE
       CLASS_NO= #{cNo}
       and NOT test_no= #{tNo}
+      ORDER BY QID DESC
+   </select>
+   
+   <select id="takeQList" resultMap="TestResultSet">
+      SELECT *
+      FROM TB_TEST
+      WHERE
+      QID= #{qId}
+      ORDER BY QID DESC
    </select>
 
-   <insert id="takeAddQ" parameterType="Test">
-      INSERT INTO TB_TEST
-      VALUES(
-      #{tNo},
-      #{cNo},
-      #{cName},
-      #{qNo},
-      #{qTitle},
-      #{qContent1},
-      #{qContent2},
-      #{qContent3},
-      #{qContent4},
-      #{qAnswer},
-      #{qWorth},
-      #{pNo},
-      SEQ_QID.NEXTVAL
-      )
-
+   <insert id="takeAddQ" parameterType="java.util.ArrayList">
+		 
+   		insert
+       INTO TB_TEST(
+       TEST_NO, 
+       CLASS_NO, 
+       CLASS_NAME, 
+       QUESTION_NO, 
+       QUESTION_TITLE, 
+       QUESTION_CONTENT1, 
+       QUESTION_CONTENT2, 
+       QUESTION_CONTENT3, 
+       QUESTION_CONTENT4, 
+       QUESTION_ANSWER,
+       QUESTION_WORTH,
+       PROF_NO, 
+       QID
+       )SELECT A.* , SEQ_QID.NEXTVAL FROM(
+      <foreach collection="list" item="item"  separator="UNION ALL">
+       select #{item.tNo} AS TEST_NO,
+      #{item.cNo} AS CLASS_NO,
+      #{item.cName} AS CLASS_NAME,
+      #{item.qNo} AS QUESTION_NO,
+      #{item.qTitle} AS QUESTION_TITLE,
+      #{item.qContent1} AS QUESTION_CONTENT1,
+      #{item.qContent2} AS QUESTION_CONTENT2,
+      #{item.qContent3} AS QUESTION_CONTENT3,
+      #{item.qContent4} AS QUESTION_CONTENT4,
+      #{item.qAnswer} AS QUESTION_ANSWER,
+      #{item.qWorth} AS QUESTION_WORTH,
+      #{item.pNo} AS PROF_NO
+      
+       from dual
+      
+      
+ 	</foreach>)A
    </insert>
    
    <!-- 과제 listcount -->
@@ -706,29 +726,22 @@
       SELECT *
       FROM TB_ASSIGNMENT
       where CLASS_NO =#{cNo}
+      and LECTURE_NO =#{lecNo}
    </select>
    
-     <insert id="EvaluationInsert" parameterType="GradeBefore">
-      INSERT INTO TB_GRADE_BEFORE
+     <insert id="EvaluationInsert" parameterType="HomeworkGrade">
+      INSERT INTO TB_HOMEWORK_GRADE
       VALUES(
       #{sNo},
-      #{lecNo},
-      #{hTitle},
-      #{hContent},
-      #{originalFileName},
-      #{renameFileName},
-      #{pNo},
       #{cNo},
-      #{cName},
-      #{eGrade},
-      #{hStatus},
-      #{openDate},
-      #{endDate},
-      #{hPoint},
-      SEQ_HID.NEXTVAL
+      #{pNo},
+      #{tNo},
+      #{homework},
+      #{homeworkweek}
       )
 
    </insert>
+ 
  
  
    

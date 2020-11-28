@@ -58,7 +58,7 @@
 						<!-- Logo
 						============================================= -->
 						<div id="logo" >
-							<a class="standard-logo"><img src="resources/img/en-mini-logo.png"" style="height: 75px;"></a>
+							<a class="standard-logo"><img src="resources/img/en-mini-logo.png"style="height: 75px;"></a>
 						</div><!-- #logo end -->
 
 						<div id="primary-menu-trigger">

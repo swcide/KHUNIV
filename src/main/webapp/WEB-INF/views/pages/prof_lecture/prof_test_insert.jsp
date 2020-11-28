@@ -68,21 +68,7 @@
 												<input type="time" name="openTime" class="form-control" max="9999-12-31" style=" width: 50%;">
 											</div>
 										</div>
-<!-- 										<div class="form-group row "style="margin-bottom: 0"> -->
-<!-- 											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputRounded">응시 기간</label> -->
-<!-- 											<div class="col-lg-6" style="display: flex;"> -->
-<!-- 												<input type="date" name="startDate"  class="form-control" max="9999-12-31"   style=" width: 50%; margin-right: 20px;"> -->
-<!-- 												<input type="time" name="startTime"class="form-control" max="9999-12-31"   style=" width: 50%;"> -->
-<!-- 										</div> -->
-<!-- 										</div> -->
-<!-- 										<div class="form-group row"> -->
-<!-- 											<label class="col-lg-3 control-label text-lg-right pt-2" >부터</label> -->
-<!-- 											<div class="col-lg-6" style="display: flex;"> -->
-													
-<!-- 													<input type="date"	name="endDate" class=" form-control" max="9999-12-31"style=" width: 50%; margin-right: 20px;"> -->
-<!-- 													<input type="time" name="endTime"class="form-control" max="9999-12-31"style=" width: 50%;"> -->
-<!-- 											</div> -->
-<!-- 										</div> -->
+
 										<div class="form-group row">
 											<label class="col-lg-3 control-label text-lg-right pt-2" >시험시간</label>
 											<div class="col-lg-6" style="display: flex">

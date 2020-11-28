@@ -15,7 +15,7 @@ import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.notice.model.vo.Notice;
-import com.kh.univ.testPage.model.vo.GradeBefore;
+import com.kh.univ.testPage.model.vo.HomeworkGrade;
 import com.kh.univ.testPage.model.vo.Test;
 
 /**
@@ -120,7 +120,7 @@ public interface profLecService {
 
 	ArrayList<Test> takeClassList(Test t1);
 
-	int takeAddQ(Test t);
+	int takeAddQ(ArrayList<Test> tArr);
 
 	ArrayList<ClassTest> quizSelectList(Professor p, PageInfo pi);
 	
@@ -139,7 +139,9 @@ public interface profLecService {
 	ArrayList<LecturePlanWeek> selectSeList(LectureHomeWork lh);
 
 
-	int EvaluationInsert(GradeBefore gb);
+	int EvaluationInsert(HomeworkGrade gb);
+
+	ArrayList<Test> takeQList(int qId);
 
 
 	

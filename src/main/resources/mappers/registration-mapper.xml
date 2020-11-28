@@ -33,20 +33,20 @@
 
 
 	<select id="rSelectList" resultMap="RegistrationResultSet">
-		SELECT  
-			 PROF_NAME,
-	        P.PROF_NO,
+		    SELECT  
+            
 	        CLASS_NO,
 	        CLASS_NAME,
 	        CLASS_TYPE,
-	        P.DEPT_NO,
-	        DEPT_NAME,
+            d.dept_no,
+            p.prof_no,
+            p.prof_name,
 	        CREDIT
 			FROM TB_CLASS C
-			JOIN TB_DEPARTMENT D USING(DEPT_NO)
-			JOIN TB_CLASS_PROFESSOR CP USING(CLASS_NO)
-			JOIN TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
-            AND TO_NUMBER(P.DEPT_NO) =#{dNo}
+			JOIN TB_DEPARTMENT D on (D.DEPT_NO=c.dept_no)          
+			left outer JOIN TB_CLASS_PROFESSOR CP USING(CLASS_NO)
+            left JOIN TB_PROFESSOR P ON( p.prof_no= CP.PROFESSOR_NO)
+            where TO_NUMBER(D.DEPT_NO) =#{dNo}
 	</select>
 	
 	   	
@@ -61,12 +61,18 @@
 	<insert id="insertRegistration" parameterType="java.util.ArrayList">
 			<foreach collection="list" item="item"  separator=" " open="INSERT ALL" close="SELECT * FROM DUAL"> 
 			
-			INTO TB_GRADE	( 
-				STD_SEMESTER 
-			  , STD_NO 
-			  , POINT
+			INTO TB_SEMESTER_POINT	( 
+				STD_NO 
+			  , SEM_YEAR 
+			  , SEME_NO
 			  , CLASS_NO 
+			  , MID_TEST
+			  , FINAL_TEST
+			  , REPORT
+			  , ATTENDANCE
+			  , POINT
 			  , PROF_NO
+			  , AVG_POINT
 			  
 			)VALUES (
 		

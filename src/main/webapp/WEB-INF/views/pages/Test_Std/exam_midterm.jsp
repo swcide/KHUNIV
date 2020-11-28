@@ -69,7 +69,7 @@
                                     <td style="text-align: center;">10-21 00:00~ <br> 10-23 23:59</td>
                                     <td style="text-align: center;">50분</td>     
                                     <td style="text-align: center;">
-                                        <a class="button button-rounded button-reveal  button-small button-aqua button-border  text-right" onclick="(window.open('test.jsp','brank','width=1198,height=800'))">
+                                        <a class="button button-rounded button-reveal  button-small button-aqua button-border  text-right" onclick="(window.open('tMidtermTest.do','brank','width=1198,height=800'))">
                                             <i class="icon-line-arrow-right"></i>
                                             <span>응시하기</span>
                                         </a>

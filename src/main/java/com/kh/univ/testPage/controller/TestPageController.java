@@ -39,8 +39,9 @@ public class TestPageController {
 		
 		
 		
+		
 		mv.addObject("s",s);
-		mv.setViewName( "Test_Std/exam_Lecture_List");
+		mv.setViewName("Test_Std/exam_Lecture_List");
 		
 		return mv;
 	}
@@ -95,6 +96,14 @@ public class TestPageController {
 		
 		
 	}
+	@RequestMapping(value = "tMidtermTest.do", method = RequestMethod.GET)
+	public String TestOpen(Model model) {
+		
+		return "Test_Std/test";
+		
+		
+	}
+
 
 	
 	

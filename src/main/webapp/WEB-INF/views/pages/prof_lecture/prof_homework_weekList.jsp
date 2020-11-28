@@ -57,8 +57,7 @@
 											<th>
 											<c:url var="SeList" value="sEvaluation.do">
 												<c:param name="cNo" value="${lh.cNo}"/>
-												<c:param name="endDate" value="${lh.endDate}"/>
-												<c:param name="openDate" value="${lh.openDate}"/>
+												<c:param name="lecNo" value="${h.lecNo }"/>
 											</c:url>
 											<a href="${SeList }" class="btn btn-sm btn-default" >평가</a></th>
 										</tr>
@@ -70,7 +69,7 @@
 											<c:param name="cName" value="${lh.cName}"/>
 											<c:param name="pNo" value="${lh.pNo}"/>
 										</c:url>
-										<c:out value="${lh.cNo }zzzz"/>	
+										<c:out value="${lh.lecNo }zzzz"/>	
 										<a class="btn btn-sm btn-primary float-right" href="${hInsertView }">과제 추가하기</a>
 							</div>	
 							

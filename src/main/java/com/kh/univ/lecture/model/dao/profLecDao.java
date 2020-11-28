@@ -18,7 +18,7 @@ import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.member.model.vo.Professor;
-import com.kh.univ.testPage.model.vo.GradeBefore;
+import com.kh.univ.testPage.model.vo.HomeworkGrade;
 import com.kh.univ.testPage.model.vo.Test;
 
 @Repository("plDao")
@@ -162,7 +162,7 @@ public class profLecDao {
 		return (ArrayList)sqlSession.selectList("lectureMapper.takeClassList",t1);
 	}
 
-	public int takeAddQ(Test t) {
+	public int takeAddQ(ArrayList<Test> t) {
 		return sqlSession.insert("lectureMapper.takeAddQ",t);
 	}
 
@@ -192,8 +192,12 @@ public class profLecDao {
 
 	}
 
-	public int EvaluationInsert(GradeBefore gb) {
+	public int EvaluationInsert(HomeworkGrade gb) {
 		return sqlSession.insert("lectureMapper.EvaluationInsert",gb);
+	}
+
+	public ArrayList<Test> takeQList(int qId) {
+		return (ArrayList)sqlSession.selectList("lectureMapper.takeQList",qId);
 	}
 
 	

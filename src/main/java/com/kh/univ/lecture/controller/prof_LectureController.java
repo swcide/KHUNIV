@@ -4,9 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,7 +40,7 @@ import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.notice.model.vo.Notice;
-import com.kh.univ.testPage.model.vo.GradeBefore;
+import com.kh.univ.testPage.model.vo.HomeworkGrade;
 import com.kh.univ.testPage.model.vo.Test;
 import com.kh.univ.member.model.vo.Student;
 
@@ -467,9 +469,6 @@ public class prof_LectureController {
 		String[] arr2 = str2.split("-");
 		String[] arr3 = str3.split(":");
 		
-		System.out.println(arr2[0]);
-		System.out.println(arr2[1]);
-		System.out.println(arr2[2]);
 		
 		
 		String tNo=ct.gettType()+arr2[0]+arr2[1]+arr2[2]+arr3[0]+arr3[1];
@@ -478,8 +477,6 @@ public class prof_LectureController {
 		
 		
 		
-		System.out.println("---------스케쥴 인서트--------");
-		System.out.println(ct);
 		int result = plService.insertTestSchedule(ct);
 		
 		if(result>0) {
@@ -499,7 +496,6 @@ public class prof_LectureController {
 	 */
 	@RequestMapping("ctDetail.do")
 	public ModelAndView prof_TestDetail(ModelAndView mv,String tNo ,@RequestParam(value="currentPage",required = false,defaultValue = "1") int currentPage) {
-		System.out.println(tNo);
 		ClassTest ct = plService.selectClassOne(tNo);
 	
 		mv.addObject("ct",ct);
@@ -531,10 +527,7 @@ public class prof_LectureController {
 //			@RequestParam(value="startDate",required = false)String startDate1, @RequestParam(value="startTime",required = false)Date startTime,
 //			@RequestParam(value="endDate",required = false)String endDate1, @RequestParam(value="endTime",required = false)Date endTime ) {
 		 ) {
-		System.out.println("tast ---------스케쥴 업데이트-----------insert");
 
-		System.out.println("======update+====");
-		System.out.println(ct);
 		String openDate2 = openDate+" "+openTime;
 		ct.setOpenDate(openDate2);
 
@@ -544,8 +537,6 @@ public class prof_LectureController {
 		
 		
 		ArrayList<Test> t = plService.selectClassList(ct.getcNo());
-		System.out.println("-----------------");
-		System.out.println(t);
 		int result = plService.updateTestSchedule(ct);
 		
 		if(result>0) {
@@ -567,13 +558,12 @@ public class prof_LectureController {
 	@RequestMapping("prof_testUpdate.do")
 	public String prof_TestUpdate(Test t ,String cNo) {
 
-		System.out.println("tast ---------------------업데이트");
 
 //		ArrayList<Test> t1 = plService.selectClassList(cNo);
 		
-//		System.out.println(t1);
-		
 		System.out.println(t);
+		t.getqNo();
+		
 		
 		int result = plService.updateTest(t);
 		System.out.println(result);
@@ -599,8 +589,6 @@ public class prof_LectureController {
 	@RequestMapping( "testInsert.do")
 	public ModelAndView prof_TestInsert(ModelAndView mv,Test t) {
 		
-		System.out.println("tast ---------------------insert");
-		System.out.println(t); 
 		String cNo =t.getcNo();
 		String tNo =t.gettNo();
 		t.getqTitle();
@@ -626,17 +614,11 @@ public class prof_LectureController {
 	 */
 	@RequestMapping("qList.do")
 	public ModelAndView qList(ModelAndView mv, String cNo,String tNo) {
-		System.out.println("qList-------------");
 		
 //		
 //		
-		System.out.println(cNo);
-		System.out.println(tNo);
 		ArrayList<Test> t = plService.selectClassList(tNo);
 		ClassTest ct = plService.selectClassOne(tNo);
-		System.out.println(t);
-		System.out.println("--------------ct---------");
-		System.out.println(ct);
 		mv.addObject("t",t);
 		mv.addObject("ct",ct)
 		.setViewName("prof_lecture/prof_test_after_insert");
@@ -654,12 +636,7 @@ public class prof_LectureController {
 	@RequestMapping("takeQList.do")
 	public void takeQlistAjax( Test t1,HttpServletResponse response) throws JsonIOException, IOException  {
 		response.setContentType("application/json; charset=UTF-8");
-		System.out.println("takeqList-------------");
-		System.out.println(t1.getcNo());
-		System.out.println(t1.gettNo());
 		ArrayList<Test> t = plService.takeClassList(t1);
-		System.out.println(t);
-		System.out.println("--------------ct---------");
 		
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		gson.toJson(t,response.getWriter());
@@ -673,17 +650,38 @@ public class prof_LectureController {
 	 */
 	@ResponseBody
 	@RequestMapping("takeQListAdd.do")
-	public String takeQListAddAjax(Test t)   {
+	public String takeQListAddAjax(Test t,String [] qId)   {
 		
-		System.out.println("qid-------takeQAdd------");
-		System.out.println(t.getqId());
+		ArrayList<Test> tArr = new ArrayList<Test>();	
+		
+		System.out.println(t.getcNo());
 		System.out.println(t.gettNo());
-		Test t1 = plService.selectTest(t.getqId());
 		
-		t1.settNo(t.gettNo());
+		for (int i = 0; i < qId.length; i++) {
+			System.out.println(qId[i]+":qId "+i+"번쨰");
+		
+//			Test t1 = new Test();
+			
+			Test t1 = plService.selectTest(Integer.parseInt(qId[i]));
+			
+			t1.settNo(t.gettNo());
+			
+			tArr.add(t1);
+		}
+			
+		
+		
+		System.out.println(tArr);
 		System.out.println(t);
+		System.out.println("qid-------takeQAdd------");
+		
+
+//		Test t1 = plService.selectTest(t.getqId());
+		
+//		t1.settNo(t.gettNo());
+//		System.out.println(t);
 //		
-		int result = plService.takeAddQ(t1);
+		int result = plService.takeAddQ(tArr);
 		System.out.println(result);
 		
 		if(result>0) {
@@ -803,14 +801,19 @@ public class prof_LectureController {
 				
 			}
 		}
+		String openDate = lh.getOpenDate();
 		
-		System.out.println(lh);
-		java.util.Date now = new Date(System.currentTimeMillis());
+		String arr[] = openDate.split("-");
 		
-		SimpleDateFormat fmt = new SimpleDateFormat ( "yyyyMMdd-HHmm");
+		String str = arr[0]+arr[1]+arr[2];
 		
-		String str = fmt.format(now);
-		lh.sethNo("H"+str);
+		
+		
+		
+		
+
+		
+		lh.sethNo("H"+lh.getpNo()+str);
 		
 		int result = plService.insertHomework(lh);
 		
@@ -858,7 +861,7 @@ public class prof_LectureController {
 	 * @return
 	 */
 	@RequestMapping( "sEvaluationInsert.do")
-	public ModelAndView prof_StdEvaluationUpdate(HttpSession session, ModelAndView mv , GradeBefore gb ) {
+	public ModelAndView prof_StdEvaluationUpdate(HttpSession session, ModelAndView mv , HomeworkGrade gb ) {
 		
 		Professor p =  (Professor)session.getAttribute("loginProf");
 		
@@ -869,7 +872,7 @@ public class prof_LectureController {
 
 		int result=plService.EvaluationInsert(gb);
 		
-		
+		System.out.println(result);
 		
 		mv.setViewName("prof_lecture/prof_homework_Evaluation"); 
 		

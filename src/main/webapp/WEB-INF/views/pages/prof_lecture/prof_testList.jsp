@@ -65,7 +65,7 @@
 													<td>${ct.cName }</td>
 													<td>${ct.tTitle }</td>
 													<td>${ct.tType }</td>
-													<td>${ct.tType}</td>
+													<td>${ct.point}</td>
 													<td  style="width:200px">${ct.startDate} ~<br> ${ct.endDate }</td>
 												</tr>
 										

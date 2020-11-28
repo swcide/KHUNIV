@@ -253,7 +253,7 @@
 											<span>출석 : </span>
 											<select name="attendancePoints" id="AttendancePoints"
 											onchange="AttendancePointsChange(this)">
-											</select>
+											</select>	
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<span>합 : </span>
 											<span name="TotalPoint" id="TotalPoint" size=10></span>

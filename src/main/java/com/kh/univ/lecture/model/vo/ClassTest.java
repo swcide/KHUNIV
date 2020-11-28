@@ -15,6 +15,7 @@ public class ClassTest {
 	private Date startDate; 	// 시작일
 	private Date endDate;   	// 종료일
 	private int tTime;      	// 제한시간
+	private int point;          // 배점 
 	
 	public ClassTest() {
 		super();
@@ -22,7 +23,7 @@ public class ClassTest {
 	}
 
 	public ClassTest(String tNo, String tType, String tTitle, String pNo, String cNo, String cName, String openDate,
-			String openTime, Date startDate, Date endDate, int tTime) {
+			String openTime, Date startDate, Date endDate, int tTime, int point) {
 		super();
 		this.tNo = tNo;
 		this.tType = tType;
@@ -35,9 +36,9 @@ public class ClassTest {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.tTime = tTime;
+		this.point = point;
 	}
 
-	
 	public String gettNo() {
 		return tNo;
 	}
@@ -126,12 +127,21 @@ public class ClassTest {
 		this.tTime = tTime;
 	}
 
+	public int getPoint() {
+		return point;
+	}
+
+	public void setPoint(int point) {
+		this.point = point;
+	}
+
 	@Override
 	public String toString() {
 		return "ClassTest [tNo=" + tNo + ", tType=" + tType + ", tTitle=" + tTitle + ", pNo=" + pNo + ", cNo=" + cNo
 				+ ", cName=" + cName + ", openDate=" + openDate + ", openTime=" + openTime + ", startDate=" + startDate
-				+ ", endDate=" + endDate + ", tTime=" + tTime + "]";
+				+ ", endDate=" + endDate + ", tTime=" + tTime + ", point=" + point + "]";
 	}
+
 
 
 

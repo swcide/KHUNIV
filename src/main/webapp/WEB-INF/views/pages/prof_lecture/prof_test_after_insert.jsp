@@ -91,8 +91,11 @@ margin:0;}
 												<div class="col-lg-8">
 													<div class="card text-center">
 														<div class="card-header bg-color-grey text-2">
-															<span class="float-left">문제 ${t.qNo }</span>
-															<span class="float-right">${t.qWorth }점</span>
+															<span class ="float-left">문제 </span>
+															<span class=" float-left">${t.qNo }</span>
+<!-- 															<span class ="float-right"></span> -->
+															<span class="checkWorth float-right">${t.qWorth }점</span>
+															
 															
 														</div>
 														<div class="card-body" style="padding:0.75rem">
@@ -103,6 +106,7 @@ margin:0;}
 																	<c:param name="cNo" value="${t.cNo}"/>
 																	<c:param name="qId" value="${t.qId}"/>
 																</c:url>
+																<input type="hidden" value="${t.qId }">
 																<a href="javascript:void(0)"onclick="update(this);"><i class="icon-wrench icons mr-2"></i></a>
 																<a href="${qdelete}"class="close" style="cursor: pointer;" ><span >×</span></a>
 															</div>
@@ -115,7 +119,32 @@ margin:0;}
 											</div>
 
 											</c:forEach>
+									<script>
+									
+									 $(document).ready(function(){
+										 $('#tolist').on('click',function(event){
+												var all = $('.checkWorth').text()
+												console.log (all);
+												var split2 = all.split("점");
+												var test =0;	
+												for (var i = 0; i < split2.length-1; i++) {
+													console.log(split2[i])
+												test += Number(split2[i])
 												
+													
+												}
+												if (test != 100){
+													alert('배점의 총점은 꼭 100점이어야 합니다.')
+													event.preventDefault();
+													 
+												}
+										 })
+										
+									 })							
+										
+									
+									
+									</script>			
 											
 											
 											<div class="form-group row">
@@ -125,10 +154,11 @@ margin:0;}
 													<c:param name="currentPage" value="${ currentPage }"/>
 												</c:url>
 												
-												<a  href='${testList }'  class="btn btn-quaternary mb-2">목록으로</a>
+												<a id="tolist" href='${testList }' onclick="allWorth()" class="btn btn-quaternary mb-2">목록으로</a>
 												
-												<input 	type="submit" value="완료"class="btn btn-dark btn-modern float-right">
-	
+												<span class="float-right"> 문제 총점  </span>
+												<br>
+												<span id ="allWorth"class=" float-right">  </span>		
 												</div>
 											</div>
 											</c:if>
@@ -206,7 +236,19 @@ margin:0;}
 											<div class="form-group row">
 												<label class="col-lg-3 control-label text-lg-right pt-2" > 배점 </label>
 												<div class="col-lg-6">
-													<input class="col-lg-5 form-control" name="qWorth"type="text" style="width:100px">
+													<select name="qWorth"  >
+														<option value="0">0</option>
+														<option value="10">10</option>
+														<option value="20">20</option>
+														<option value="30">30</option>
+														<option value="40">40</option>
+														<option value="50">50</option>
+														<option value="60">60</option>
+														<option value="70">70</option>
+														<option value="80">80</option>
+														<option value="90">90</option>
+														<option value="100">100</option>
+													</select>
 												</div>
 											</div>	
 											<div class="form-group row">
@@ -367,21 +409,36 @@ margin:0;}
 	
 	function addTakeQ(){
 		
+		 
 	
-		
-	
-		var qId = $("input:checkbox[name='check']:checked").val()
+		var qId = [];
 
+	
+
+		
+		$("input[name=check]:checked").each(function(i) {
+
+			qId.push($(this).val())
+
+
+
+		});
+		
+
+		
 		var tNo = $('input[name=tNo]').val();
+		var cNo = $('input[name=cNo]').val()
 		
 		console.log(qId);
 		console.log(tNo)
 		
 		$.ajax({
 			url:"takeQListAdd.do",
+			traditional : true,
 			data:{
 				qId:qId,
-				tNo:tNo
+				tNo:tNo,
+				cNo:cNo
 			},
 			dataType:"text",
 			success:function(data){
@@ -492,7 +549,19 @@ margin:0;}
 				'	<div class="form-group row">'+
 				'		<label class="col-lg-3 control-label text-lg-right pt-2" > 배점 </label>'+
 				'		<div class="col-lg-6">'+
-				'			<input class="col-lg-5 form-control" type="text" style="width:100px">'+
+				'					<select name="qWorth" >'+
+				'								<option value="0" selected>선택해주세요</option>'+
+				'								<option value="10">10</option>'+
+				'								<option value="20">20</option>'+
+				'								<option value="30">30</option>'+
+				'								<option value="40">40</option>'+
+				'								<option value="50">50</option>'+
+				'								<option value="60">60</option>'+
+				'								<option value="70">70</option>'+
+				'								<option value="80">80</option>'+
+				'								<option value="90">90</option>'+
+				'								<option value="100">100</option>'+
+				'					</select>'+					
 				'		</div>'+
 				'	</div>	'+
 				'	<div class="form-group row">'+
@@ -563,14 +632,15 @@ margin:0;}
 	
 	
 	function update(obj){
-		console.log('ggg')
 	
 		var me = $(obj).parent().parent().parent().parent().parent();
 		var fm =$('#examList')
+		var qId = $(obj).siblings('input').val();
 		
+		console.log(qId)
 		<c:forEach items="${t}" var="t">
 		
-
+		if(${t.qId} == qId){
 		var update =
 				'<form id="fm" action="prof_testUpdate.do" method="post">'+
 				'	<div class="form-group row">'+
@@ -579,13 +649,26 @@ margin:0;}
 				'			<div class="card text-center">'	+
 				'				<div class="card-header bg-color-grey text-2">'+
 				'					<span class="float-left">문제 </span>'+
-				'					<span class="float-right">배점<input style="width:50px" type="text" name="qWorth"value="${t.qWorth}">점</span>'+					
+				'					<span class="float-right">배점'+
+				'					<select name="qWorth" >'+
+				'								<option value="0" selected>선택해주세요</option>'+
+				'								<option value="10">10</option>'+
+				'								<option value="20">20</option>'+
+				'								<option value="30">30</option>'+
+				'								<option value="40">40</option>'+
+				'								<option value="50">50</option>'+
+				'								<option value="60">60</option>'+
+				'								<option value="70">70</option>'+
+				'								<option value="80">80</option>'+
+				'								<option value="90">90</option>'+
+				'								<option value="100">100</option>'+
+				'					</select>'+					
 				'				</div>'+
 				'				<div class="card-body" style="padding:0.75rem">'+
 				'	<div class="form-group row">'+
 				'		<label class="col-lg-2 control-label text-lg-right pt-2" >문제 번호</label>'+
 				'		<div class="col-lg-9">'+
-				'			<input class="col-lg-5 form-control"value="${t.qNo}" name="qNo" type="text" style="width:100px">'+
+				'			<input class="col-lg-5 form-control"value="${t.qNo}" name="qNo1" type="text" style="width:100px">'+
 				'		</div>'+
 				'	</div>'+
 	    		'	<div class="form-group row">'+
@@ -637,7 +720,7 @@ margin:0;}
 				'		</div>'+
 				'	</div>'+
 				'</form>';
-		
+		}
 		</c:forEach>
 		fm.after(update);
 		  $('.textarea').summernote();
@@ -658,21 +741,19 @@ function cancle(obj){
 
 function update2(obj){
 		
-		console.log('hhhhhh')
 		var values = $(obj).siblings('input').val()
 		
 		var arr =values.split(",");
 		
-		console.log(arr[0]+"??????");
-		console.log(values);
-		
-		var qNo = arr[0];
+		var qNo1 = arr[0];
 		var cNo = arr[1];
 		var tNo = arr[2];
 		var qId = arr[3];
+		
+		console.log(values);
 
-
-		var qWorth = $('input[name=qWorth]').val()
+		var qNo = $('input[name=qNo1]').val();
+		var qWorth = $('select[name=qWorth]').val()
 		var qTitle = $('textarea[name=qTitle]').val()
 		var qContent1 = $('input[name=qContent1]').val()
 		var qContent2 = $('input[name=qContent2]').val()
