@@ -295,10 +295,10 @@ public class HumanBoardController {
 		
 		
 		System.out.println(result);
-		if(result>0) {
-			return "success";
-		}else {
-			return "fail";
+		if (result > 0) {
+			return "redirect:human.do";
+		} else {
+			return "common/errorPage";
 		}
 	}
 	
