@@ -38,11 +38,12 @@
       <typeAlias type="com.kh.univ.registration.model.vo.Registration" alias="Registration" />
       <typeAlias type="com.kh.univ.registration.model.vo.RegistrationSNO" alias="RegistrationSNO" />
       <typeAlias type="com.kh.univ.testPage.model.vo.Grade" alias="Grade" />
-      <typeAlias type="com.kh.univ.testPage.model.vo.GradeBefore" alias="GradeBefore" />
-		<typeAlias type="com.kh.univ.registration.model.vo.Registration" alias="Registration" />
-		<typeAlias type="com.kh.univ.registration.model.vo.RegistrationSNO" alias="RegistrationSNO" />
-		<typeAlias type="com.kh.univ.testPage.model.vo.Grade" alias="Grade" />
-		<typeAlias type="com.kh.univ.testPage.model.vo.HomeworkGrade" alias="HomeworkGrade" />
+	  <typeAlias type="com.kh.univ.registration.model.vo.Registration" alias="Registration" />
+	  <typeAlias type="com.kh.univ.testPage.model.vo.HomeworkGrade" alias="HomeworkGrade" />
+
+
+	  <typeAlias type="com.kh.univ.testPage.model.vo.TestList" alias="TestList" />
+	  <typeAlias type="com.kh.univ.testPage.model.vo.TestGrade" alias="TestGrade" />
 
 
    </typeAliases>
@@ -55,6 +56,7 @@
       <mapper resource="mappers/lecture-mapper.xml" />
       <mapper resource="mappers/register-mapper.xml" />
       <mapper resource="mappers/registration-mapper.xml" />
+      <mapper resource="mappers/testpage-mapper.xml" />
    </mappers>
 
 </configuration>
