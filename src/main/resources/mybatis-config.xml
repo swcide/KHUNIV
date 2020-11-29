@@ -38,7 +38,7 @@
       <typeAlias type="com.kh.univ.registration.model.vo.Registration" alias="Registration" />
       <typeAlias type="com.kh.univ.registration.model.vo.RegistrationSNO" alias="RegistrationSNO" />
       <typeAlias type="com.kh.univ.testPage.model.vo.Grade" alias="Grade" />
-      <typeAlias type="com.kh.univ.testPage.model.vo.GradeBefore" alias="GradeBefore" />
+<!--       <typeAlias type="com.kh.univ.testPage.model.vo.GradeBefore" alias="GradeBefore" /> -->
 		<typeAlias type="com.kh.univ.registration.model.vo.Registration" alias="Registration" />
 		<typeAlias type="com.kh.univ.registration.model.vo.RegistrationSNO" alias="RegistrationSNO" />
 		<typeAlias type="com.kh.univ.testPage.model.vo.Grade" alias="Grade" />
