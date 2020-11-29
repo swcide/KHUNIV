@@ -257,7 +257,8 @@
 	</div>
 	<script type="text/javaScript" language="javascript" defer="defer">
 		/*************excel upload*************/
-
+		
+		
 		function checkFileType(filePath) {
 			var fileFormat = filePath.split(".");
 
@@ -286,7 +287,7 @@
 			if (confirm("업로드 하시겠습니까?")) {
 
 				var options = {
-
+			
 					success : function(data) {
 						console.log(data);
 						alert("모든 데이터가 업로드 되었습니다.");
@@ -299,6 +300,8 @@
 
 			}
 		}
+
+		
 	</script>
 	
 	<script src="resources/assets/js/feather-icons/feather.min.js"></script>

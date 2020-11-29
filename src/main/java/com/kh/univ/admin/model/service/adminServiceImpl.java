@@ -81,7 +81,7 @@ public class adminServiceImpl implements adminService {
 		}
 	/*******excel upload*********/
 	@Override
-	public void excelUpload(File destFile) {
+	public int excelUpload(File destFile) {
 		
 		ExcelReadOption excelReadOption = new ExcelReadOption();
 		
@@ -89,7 +89,7 @@ public class adminServiceImpl implements adminService {
 		excelReadOption.setFilePath(destFile.getAbsolutePath());
 		
 		//추출할 컬럼명 추가
-		excelReadOption.setOutputColumns("A", "B", "C");
+		excelReadOption.setOutputColumns("A","B","C","D","E","F","G","H","I","J","K","L","M","N");
 		
 		//시작행
 		excelReadOption.setStartRow(2);
@@ -104,6 +104,8 @@ public class adminServiceImpl implements adminService {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		return aDao.insertExcel(paramMap);
 	}
+		
 
 }

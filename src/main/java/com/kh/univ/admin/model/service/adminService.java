@@ -25,6 +25,6 @@ public interface adminService {
 
 	int updateReply(Reply r);
 
-	void excelUpload(File destFile);
+	int excelUpload(File destFile);
 
 }
