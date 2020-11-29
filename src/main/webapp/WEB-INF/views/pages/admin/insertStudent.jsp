@@ -232,7 +232,7 @@
 										</c:if>
 										<input class="text-uppercase mb-2 text-center  float-left col-md-12" style="text-align: right;" id="excelFile" name="excelFile" type="file">
 										<button type="button" id="addExcelImpoartBtn" class="btn" onclick="check()">
-											<span>추가</span>
+											<span>엑셀파일 업로드</span>
 										</button>
 									</div>
 								</form>
