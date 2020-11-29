@@ -77,7 +77,8 @@ public class prof_LectureController {
 			mv.addObject("msg", "로그인 실패");
 			mv.setViewName("common/errorPage");
 		}
-
+		return mv;
+	}
 	@RequestMapping(value = "prof_lectureList2.do")
 	public String prof_lecture2(Model model)
 		{
