@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.kh.univ.common.PageInfo;
 
 import com.kh.univ.univlife.board.human.model.vo.HumanBoard;
+import com.kh.univ.univlife.board.human.model.vo.Report;
 import com.kh.univ.univlife.board.human.model.vo.hReply;
 
 public interface HumanBoardService {
@@ -36,6 +37,12 @@ public interface HumanBoardService {
 	int deleteHumanBoard(int hId);
 
 	int reportReply(hReply r);
+
+
+
+	int reportInsert(Report rp);
+
+	
 
 
 

@@ -31,6 +31,19 @@
 		<result property="refRid" column="H_REF_RID"/>
 		<result property="hType" column="HTYPE"/>
  	 </resultMap>
+ 	    
+ 	    <resultMap type="report" id="reportResultSet">
+ 	 	<id property="rpWriter" column="RP_WRITER"/>
+		<result property="hId" column="HID"/>
+		<result property="rpName" column="RP_NAME"/>
+		<result property="rpCreateDate" column="RP_CREATE_DATE"/>
+ 	 </resultMap>
+ 	 
+ 	 	<insert id="reportInsert" parameterType="report">
+ 	 	INSERT INTO TB_REPORTBOARD
+ 	 	VALUES(#{hId},#{rpWriter},#{rpName},SYSDATE)
+ 	 </insert>
+ 	 
  	 
  	 	<select id="getListCount"  resultType="_int">
   		SELECT COUNT(*)

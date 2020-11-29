@@ -47,11 +47,6 @@
 										<input type="hidden" name="nWriter" value="${loginUser.sNo}">
 										<input type="hidden" name="nName"value="${loginUser.sName}">
 										<div>
-										<select class ="form-control populate float-left mb-2" name="hType" style="width:200px;">
-												<option value="${h.hType }">게시글 이동</option>
-												<option value="3">학사공지게시판</option>
-												<option value="4">일반공지게시판</option>
-										</select>
 										</div>
 										<div>
 										</div>

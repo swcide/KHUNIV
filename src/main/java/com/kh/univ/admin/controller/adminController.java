@@ -371,6 +371,7 @@ int listCount = aService.getListCount(nType);
 	
 	@RequestMapping(value = "insertStudent.do")
 	public String insertStudent(Model model) {
+		
 		return "admin/insertStudent";
 	}
 
