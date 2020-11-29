@@ -279,68 +279,67 @@ ul.comments li {
 					<h4 class="modal-title" id="formModalLabel">게시글 신고</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<form id="demo-form" class="mb-4" action="hboardupdate.do" method="post" novalidate="novalidate">
-					<div class="modal-body">
-						<thead>
-							<tr>
-								<th colspan="2">게시물 신고 사유 선택</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									<div class="form-group row align-items-center">
-										<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" style="margin-left: 140px; margin-right: -50px" />
-										<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">욕설/비방</label>
-										<div class="col-sm-9"></div>
-									</div>
-								</td>
-							</tr>
-							<div class="form-group row align-items-center">
-								<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" style="margin-left: 140px; margin-right: -50px" />
-								<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">광고/홍보물</label>
-								<div class="col-sm-9"></div>
+					<form id="demo-form" class="mb-4" action="reportInsert.do" method="post" novalidate="novalidate">
+						<div class="modal-body">
+							<thead>
+								<tr>
+									<th colspan="2">게시물 신고 사유 선택</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<div class="form-group row align-items-center">
+											<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" value="욕설/비방" style="margin-left: 140px; margin-right: -50px" />
+											<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">욕설/비방</label>
+											<div class="col-sm-9"></div>
+										</div>
+									</td>
+								</tr>
+								<div class="form-group row align-items-center">
+									<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" value="광고/홍보물" style="margin-left: 140px; margin-right: -50px" />
+									<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">광고/홍보물</label>
+									<div class="col-sm-9"></div>
+								</div>
+								<div class="form-group row align-items-center">
+									<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" value="저작권침해" style="margin-left: 140px; margin-right: -50px" />
+									<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">저작권침해</label>
+									<div class="col-sm-9"></div>
+								</div>
+								<div class="form-group row align-items-center">
+									<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" value="음란성게시물" style="margin-left: 140px; margin-right: -50px" />
+									<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">음란성게시물</label>
+									<div class="col-sm-9"></div>
+								</div>
+								<div class="form-group row align-items-center">
+									<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" value="기타" style="margin-left: 140px; margin-right: -50px" />
+									<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">기타</label>
+									<div class="col-sm-9"></div>
+								</div>
+							</tbody>
+							<div class="form-group row">
+								<label class="col-sm-3 text-left text-sm-right mb-0">신고내용 입력(필수)</label>
+								<div class="col-sm-9">
+									<textarea rows="5" class="form-control" name="reportContet" placeholder="내용을 작성하세요" required></textarea>
+								</div>
 							</div>
-							<div class="form-group row align-items-center">
-								<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" style="margin-left: 140px; margin-right: -50px" />
-								<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">저작권침해</label>
-								<div class="col-sm-9"></div>
-							</div>
-							<div class="form-group row align-items-center">
-								<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" style="margin-left: 140px; margin-right: -50px" />
-								<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">음란성게시물</label>
-								<div class="col-sm-9"></div>
-							</div>
-							<div class="form-group row align-items-center">
-								<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" style="margin-left: 140px; margin-right: -50px" />
-								<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">기타</label>
-								<div class="col-sm-9"></div>
-							</div>
-						</tbody>
-						<div class="form-group row">
-							<label class="col-sm-3 text-left text-sm-right mb-0">신고내용 입력(필수)</label>
-							<div class="col-sm-9">
-								<textarea rows="5" class="form-control" placeholder="Type your comment..." required></textarea>
-							</div>
+							<p>
+								<i class="fas fa-exclamation-triangle"></i>
+								<b>주의:</b> :신고된 게시물은 운영자의 확인 후 게시판에서 삭제될 수 있으며 게시물 작성자는 경고 / 이용 제한 등의 제재를 받게 됩니다. 상습적으로 잘못된 신고를 할 경우, 신고한 회원에게 불이익이 가해질 수 있습니다.
+							</p>
 						</div>
-						<p>
-							<i class="fas fa-exclamation-triangle"></i>
-							<b>주의:</b> :신고된 게시물은 운영자의 확인 후 게시판에서 삭제될 수 있으며 게시물 작성자는 경고 / 이용 제한 등의 제재를 받게 됩니다. 상습적으로 잘못된 신고를 할 경우, 신고한 회원에게 불이익이 가해질 수 있습니다.
-						</p>
-					</div>
-					<div class="form-group">
-						<input type="hidden" class="form-control" name="qnaTitle" value="${ h.hTitle }">
-					</div>
-					<div class="form-group col">
-						<input type="hidden" name="qnaWriter" value="${loginUser.sNo}">
-						<input type="hidden" name="qnaName" value="${loginUser.sName}">
-						<input type="hidden" name="qnaId" value="${h.hId}">
-					</div>
-					<div class="modal-footer">
-						<button type="submit" class="btn btn-primary">신고접수</button>
-						<button type="button" class="btn btn-light" data-dismiss="modal">취소</button>
-					</div>
-				</form>
+
+
+						<div class="form-group col">
+							<input id="hId" type="hidden" name="hId" value="${ h.hId}">
+							<input type="hidden" name="rpWriter" value="${loginUser.sNo}">
+							<input type="hidden" name="rpName" value="${loginUser.sName}">
+						</div>
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-primary">신고접수</button>
+							<button type="button" class="btn btn-light" data-dismiss="modal">취소</button>
+						</div>
+					</form>
 			</div>
 		</div>
 	</div>
@@ -894,6 +893,9 @@ ul.comments li {
 		}
 
 	</script>
+
+
+
 
 </div>
 

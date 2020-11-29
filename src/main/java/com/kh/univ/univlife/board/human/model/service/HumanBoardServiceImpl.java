@@ -11,6 +11,7 @@ import com.kh.univ.common.PageInfo;
 
 import com.kh.univ.univlife.board.human.model.dao.HumanBoardDao;
 import com.kh.univ.univlife.board.human.model.vo.HumanBoard;
+import com.kh.univ.univlife.board.human.model.vo.Report;
 import com.kh.univ.univlife.board.human.model.vo.hReply;
 
 @Service("hService")
@@ -87,6 +88,14 @@ public class HumanBoardServiceImpl implements HumanBoardService {
 		
 		return  hDao.reportReply(r);
 	}
+
+
+
+	@Override
+	public int reportInsert(Report rp) {
+		return hDao.reportInsert(rp);
+	}
+
 
 
 }
