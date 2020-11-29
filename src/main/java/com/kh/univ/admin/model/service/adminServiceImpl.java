@@ -15,6 +15,7 @@ import com.kh.univ.admin.model.dao.adminDao;
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.helpDesk.model.vo.QnA;
 import com.kh.univ.helpDesk.model.vo.Reply;
+import com.kh.univ.notice.model.vo.Notice;
 
 
 @Service("aService")
@@ -105,6 +106,55 @@ public class adminServiceImpl implements adminService {
 			e.printStackTrace();
 		}
 		return aDao.insertExcel(paramMap);
+	}
+
+	//공지
+	@Override
+	public int getListCount(int nType) {
+		return aDao.getListCount(nType);
+	}
+
+	@Override
+	public ArrayList<Notice> selectList(PageInfo pi, int nType) {
+		return aDao.selectList(pi, nType);
+	}
+
+	@Override
+	public Notice selectNotice(Notice n) {
+		int result=aDao.updateCount(n);
+	      
+	      
+	      if(result>0) {
+	    		return aDao.selectNotice(n);
+	      }else {
+	         return null;
+	      }
+	
+	}
+
+	@Override
+	public Notice selectUpdateNotice(Notice n) {
+		return aDao.selectNotice(n);
+	}
+
+	@Override
+	public int updateNotice(Notice n) {
+		return aDao.updateNotice(n);
+	}
+
+	@Override
+	public Notice updateAfterNotice(Notice n) {
+		return aDao.updateAfterNotice(n);
+		}
+
+	@Override
+	public int insertNotice(Notice n) {
+		 return aDao.insertNotice(n);
+	}
+
+	@Override
+	public int deleteNotice(Notice n) {
+		return aDao.deleteNotice(n);
 	}
 		
 

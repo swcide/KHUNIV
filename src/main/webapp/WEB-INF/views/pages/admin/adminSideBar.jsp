@@ -21,7 +21,8 @@
 							<ul class="submenu ">
 								<li><a href="manageBoard.do">게시판 신고현황</a></li>
 								<li><a href="manageQna.do">QnA 게시판</a></li>
-								<li><a href="manageNotice.do">공지사항 등록</a></li>
+								<li><a href="manageNotice.do?nType=1">학사공지사항 등록</a></li>
+								<li><a href="manageNotice.do?nType=2">일반공지사항 등록</a></li>
 							</ul></li>
 
 						<li class="sidebar-item  has-sub"><a href="#" class='sidebar-link'> <i data-feather="briefcase" width="20"></i> <span>등록</span>

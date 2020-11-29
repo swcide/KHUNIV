@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.helpDesk.model.vo.QnA;
 import com.kh.univ.helpDesk.model.vo.Reply;
+import com.kh.univ.notice.model.vo.Notice;
 
 @Repository("aDao")
 public class adminDao {
@@ -59,6 +60,42 @@ public class adminDao {
 	public int insertExcel(Map<String, Object> paramMap) {
 		System.out.println("paramMapDao: " + paramMap);
 		return sqlSession.insert("hdBoardMapper.insertExcel", paramMap);
+	}
+
+	public int getListCount(int nType) {
+		return sqlSession.selectOne("noticeMapper.getListCount",nType);
+	}
+
+	public ArrayList<Notice> selectList(PageInfo pi, int nType) {
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("noticeMapper.selectnList",nType,rowBounds);
+	}
+
+	//삭제
+	public Notice selectNotice(Notice n) {
+		return  sqlSession.selectOne("noticeMapper.selectNotice",n);
+	}
+
+	public int updateCount(Notice n) {
+		return sqlSession.update("noticeMapper.updateCount",n);
+	}
+
+	public int insertNotice(Notice n) {
+		return sqlSession.insert("noticeMapper.insertNotice",n);
+	}
+
+	public Notice updateAfterNotice(Notice n) {
+		return sqlSession.selectOne("noticeMapper.updateAfterNotice",n);
+	}
+
+	public int updateNotice(Notice n) {
+		return sqlSession.update("noticeMapper.updateNotice",n);
+	}
+
+	public int deleteNotice(Notice n) {
+		return sqlSession.update("noticeMapper.deleteNotice",n);
 	}
 
 }

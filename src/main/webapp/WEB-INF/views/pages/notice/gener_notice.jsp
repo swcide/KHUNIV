@@ -39,7 +39,6 @@
 									</tr>
 								</thead>
 								<tbody>
-								<!-- 이전이전이전 -->
 									<c:forEach var="n" items="${list}">
 									<c:set var="nSecret" value="${n.nSecret}"/>
 										<c:choose>
