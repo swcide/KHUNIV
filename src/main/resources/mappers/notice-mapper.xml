@@ -93,6 +93,8 @@
  	 	AND N_STATUS='Y'
  	 </select>
  	 
+ 	  
+ 	 
  	 
  	  <insert id="insertNotice" parameterType="Notice">
  	 	INSERT INTO TB_NOTICE_BOARD
@@ -128,7 +130,7 @@
  	 	</if>
  	 </update>
  	 
- 	  <update id="deleteNotice" parameterType="_int">
+ 	  <update id="deleteNotice" parameterType="Notice">
  	 	UPDATE TB_NOTICE_BOARD
  	 	SET N_STATUS ='N'
  	 	WHERE NID= #{nId}

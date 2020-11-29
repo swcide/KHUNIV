@@ -173,7 +173,7 @@ public class HumanBoardController {
 
 		if (result > 0) {
 			System.out.println(h.gethId());
-			mv.addObject("hId", h.gethId()).setViewName("redirect:humandetail.do");
+			mv.addObject("hId", h.gethId()).setViewName("redirect:human.do");
 		} else {
 			mv.addObject("msg", "수정실패").setViewName("common/errorPage");
 		}

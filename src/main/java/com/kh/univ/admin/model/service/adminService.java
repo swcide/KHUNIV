@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.helpDesk.model.vo.QnA;
 import com.kh.univ.helpDesk.model.vo.Reply;
+import com.kh.univ.notice.model.vo.Notice;
 
 public interface adminService {
 
@@ -25,6 +26,23 @@ public interface adminService {
 
 	int updateReply(Reply r);
 
-	void excelUpload(File destFile);
+	int excelUpload(File destFile);
+
+	// 공지
+	int getListCount(int nType);
+
+	ArrayList<Notice> selectList(PageInfo pi, int nType);
+
+	Notice selectNotice(Notice n);
+
+	Notice selectUpdateNotice(Notice n);
+
+	int updateNotice(Notice n);
+
+	Notice updateAfterNotice(Notice n);
+
+	int insertNotice(Notice n);
+
+	int deleteNotice(Notice n);
 
 }
