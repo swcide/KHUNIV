@@ -225,14 +225,15 @@ public class Test {
 	public String toString() {
 		return "Test [tNo=" + tNo + ", pNo=" + pNo + ", cNo=" + cNo + ", cName=" + cName + ", qNo=" + qNo + ", qTitle="
 				+ qTitle + ", qContent1=" + qContent1 + ", qContent2=" + qContent2 + ", qContent3=" + qContent3
-				+ ", qContent4=" + qContent4 + ", qAnswer=" + qAnswer + ", qWorth=" + qWorth + ", qId=" + qId
-				+ ", getqId()=" + getqId() + ", gettNo()=" + gettNo() + ", getpNo()=" + getpNo() + ", getcNo()="
-				+ getcNo() + ", getcName()=" + getcName() + ", getqNo()=" + getqNo() + ", getqTitle()=" + getqTitle()
-				+ ", getqContent1()=" + getqContent1() + ", getqContent2()=" + getqContent2() + ", getqContent3()="
-				+ getqContent3() + ", getqContent4()=" + getqContent4() + ", getqAnswer()=" + getqAnswer()
-				+ ", getqWorth()=" + getqWorth() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+				+ ", qContent4=" + qContent4 + ", qAnswer=" + qAnswer + ", qWorth=" + qWorth + ", qId=" + qId + "]";
 	}
+
+
+
+
+
+
+
 
 
 

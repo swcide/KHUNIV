@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="testPageMapper">
+  <resultMap type="TestList" id="TestListResultSet">
+		<id property="sNo" column="STD_NO" />
+		<result property="tNo" column="TEST_NO" />
+		<result property="semYear" column="SEM_YEAR" />
+		<result property="semNo" column="SEME_NO" />
+		<result property="cNo" column="CLASS_NO" />
+		<result property="cName" column="CLASS_NAME" />
+		<result property="cType" column="CLASS_TYPE" />
+		<result property="pNo" column="PROF_NO" />
+		<result property="pName" column="DEPT_NAME" />
+		<result property="sName" column="STD_NAME" />
+		<result property="openDate" column="OPENDATE" />
+		<result property="testTime" column="TEST_TIME" />
+		<result property="status" column="CREDIT" />
+		<result property="tType" column="test_type" />
+		<result property="status" column="CREDIT" />
+	</resultMap>
+	
+	<resultMap type="TestGrade" id="TestGradeResultSet">
+		<id property="sNo" column="STD_NO" />
+		<result property="tNo" column="TEST_NO" />
+		<result property="cNo" column="CLASS_NO" />
+		<result property="pNo" column="PROF_NO" />
+		<result property="point" column="Point" />
+	</resultMap>
+	
+   <resultMap type="Test" id="TestResultSet">
+      <id property="tNo" column="TEST_NO" />
+      <result property="cNo" column="CLASS_NO" />
+      <result property="cName" column="CLASS_NAME" />
+      <result property="qNo" column="QUESTION_NO" />
+      <result property="qTitle" column="QUESTION_TITLE" />
+      <result property="qContent1" column="QUESTION_CONTENT1" />
+      <result property="qContent2" column="QUESTION_CONTENT2" />
+      <result property="qContent3" column="QUESTION_CONTENT3" />
+      <result property="qContent4" column="QUESTION_CONTENT4" />
+      <result property="qAnswer" column="QUESTION_ANSWER" />
+      <result property="qWorth" column="QUESTION_WORTH" />
+      <result property="pNo" column="PROF_NO" />
+      <result property="qId" column="QID" />
+   </resultMap>
+   
+   <resultMap type="LecturePlan" id="Sylla1ResultSet">
+      <id property="classNo" column="CLASS_NO" />
+      <result property="className" column="CLASS_NAME" />
+      <result property="classType" column="CLASS_TYPE" />
+      <result property="credit" column="CREDIT" />
+      <result property="profName" column="PROF_NAME" />
+      <result property="profLab" column="PROF_LAB" />
+      <result property="profEmail" column="PROF_EMAIL" />
+      <result property="classSummary" column="CLASS_SUMMARY" />
+      <result property="classGoal" column="CLASS_GOAL" />
+      <result property="lecMethod" column="LEC_METHOD" />
+      <result property="evalMethod" column="EVAL_METHOD" />
+      <result property="assignment" column="ASSIGNMENT" />
+      <result property="lecExperiment" column="LEC_EXPERIMENT" />
+      <result property="relatedLec" column="RELATED_LEC" />
+      <result property="lecTextbook" column="LEC_TEXTBOOK" />
+      <result property="examPoints" column="EXAM_POINTS" />
+      <result property="assignmentPoints" column="ASSIGN_POINTS" />
+      <result property="attendancePoints" column="ATTEND_POINTS" />
+      
+      
+   </resultMap>
+   
+   <resultMap type="semesterPoint" id="semesterPointResultSet">
+		<id property="sNo" column="STD_NO" />
+		<result property="semYear" column="SEM_YEAR" />
+		<result property="semNo" column="SEME_NO" />
+		<result property="cNo" column="CLASS_NO" />
+		<result property="cType" column="CLASS_TYPE" />
+		<result property="mTest" column="MID_TEST" />
+		<result property="fTest" column="FINAL_TEST" />
+		<result property="report" column="REPORT" />
+		<result property="attendance" column="ATTENDANCE" />
+		<result property="point" column="POINT" />
+		<result property="pNo" column="PROF_NO" />
+		<result property="count" column="COUNT" />
+		<result property="avgPoint" column="AVG_POINT" />
+		<result property="profName" column="PROF_NAME" />
+		<result property="deptName" column="DEPT_NAME" />
+		<result property="sName" column="STD_NAME" />
+		<result property="cName" column="CLASS_NAME" />
+		<result property="sysdate" column="SYSDATE" />
+		<result property="credit" column="CREDIT" />
+	</resultMap>
+   
+   
+	<select id="getclassList" resultMap="TestListResultSet">
+		
+		     SELECT  
+     P.PROF_NO,
+     CLASS_NO,
+     c.CLASS_NAME,
+     P.PROF_NAME,
+     P.DEPT_NO,
+     D.DEPT_NAME,
+     C.CLASS_TYPE,
+     sp.std_no,
+     std_no,
+     test_type,
+     sp.SEM_YEAR,
+     sp.SEME_NO,
+     TEST_NO
+     
+
+         FROM TB_CLASS C
+         JOIN TB_DEPARTMENT D USING(DEPT_NO)
+         JOIN TB_CLASS_PROFESSOR CP USING(CLASS_NO)
+         JOIN TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
+         join  TB_SEMESTER_POINT sp using(class_no)
+         join TB_PROF_TEST tp using(class_no)
+         where std_no =#{sNo}
+         and SEM_YEAR =#{semYear}
+         and SEME_NO =#{semNo} 
+	
+	</select>
+	
+	<select id="getMyTest" resultMap="TestGradeResultSet">
+		
+	    SELECT * FROM TB_TEST_GRADE
+        where STD_NO = #{sNo}	
+        AND TEST_NO = #{tNo}
+	
+	</select>
+	
+	<select id="midList" resultMap="TestListResultSet">
+      	SELECT     
+      	STD_NO, 
+        SEM_YEAR, 
+        SEME_NO, 
+        CLASS_NO, 
+        pt.CLASS_NAME,
+        pt.PROF_NO,
+        class_type,
+        TEST_NO, 
+        TEST_TYPE,
+        OPENDATE 
+        TEST_TIME FROM TB_PROF_TEST pt
+        join TB_SEMESTER_POINT using(class_no)
+         join tb_class c using(class_no)
+        where std_no =#{sNo}
+        and TEST_TYPE='M'
+        AND SEM_YEAR =#{semYear}
+        AND SEME_NO =#{semNo}
+     </select>
+     
+     <select id="selectTest" resultMap ="TestListResultSet">
+    	SELECT
+        STD_NO, 
+        SEM_YEAR, 
+        SEME_NO, 
+        CLASS_NO, 
+        pt.CLASS_NAME,
+        pt.PROF_NO,
+        class_type,
+        TEST_NO, 
+        TEST_TYPE,
+        OPENDATE,
+        TEST_TIME
+       
+        
+        FROM TB_PROF_TEST pt
+        join TB_SEMESTER_POINT using(class_no)
+        join tb_class c using(class_no)
+        
+        WHERE TEST_NO =#{tNo}
+        AND STD_NO=#{sNo}
+     
+     </select>
+     
+     <select id="selectTestList" resultMap="TestResultSet">
+        select *
+        from tb_test
+        where test_no =#{tNo}
+        ORDER BY QUESTION_NO ASC
+     </select>
+     
+     <insert id="insertGrade" parameterType="TestGrade">
+     	INSERT INTO
+     	TB_TEST_GRADE
+     	VALUES(
+     	#{sNo},
+     	#{cNo},
+     	#{pNo},
+     	#{tNo},
+     	#{point}
+     	
+     	)
+     	
+     
+     
+     </insert>
+	 <select id="lpOne" resultMap="Sylla1ResultSet">
+	 SELECT	 EXAM_POINTS
+	 FROM TB_LECTURE_PLAN
+	 WHERE CLASS_NO =#{cNo}
+	 
+	 </select>
+
+	<select id="updateSp" resultMap="semesterPointResultSet">
+	 UPDATE  TB_SEMESTER_POINT
+	 SET MID_TEST =#{mTest}
+	 WHERE STD_NO =#{sNo}
+	 AND SEM_YEAR =#{semYear}
+	 AND SEME_NO =#{semNo}
+	 AND PROF_NO =#{pNo}
+	 AND CLASS_NO =#{cNo}
+	
+	</select>
+
+</mapper>

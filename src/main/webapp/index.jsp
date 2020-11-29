@@ -91,7 +91,8 @@
                   <div class="header-column">
                      <div class="header-row">
                         <div class="header-logo">
-                     <!--  -->      <a href=""> <img alt="Porto" width="140" height="40"
+                     <!-
+                     -  -->      <a href=""> <img alt="Porto" width="140" height="40"
                               src="resources/img/khculogo4.png">
                            </a>
                         </div>

@@ -52,6 +52,8 @@
 <link rel="stylesheet" href="resources/css/skins/ad_default.css">
 <link rel="stylesheet" href="resources/css/skins/skin-it-services.css">
 
+
+<link rel="stylesheet" href="resources/css/components/bs-datatable2.css" type="text/css" />
 <!-- Theme Custom CSS -->
 <link rel="stylesheet" href="resources/css/custom.css">
 

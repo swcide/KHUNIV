@@ -50,7 +50,7 @@
 													<c:forEach var="r" items="${r }" varStatus="status">
 													<tr>
 														<td style="text-align: center;">${status.index+1 }</td>
-														<td style="text-align: center;">${r.semester }</td>
+														<td style="text-align: center;">${r.semNo }</td>
 														<td style="text-align: center;">${r.cName }</td>
 														<td style="text-align: center;">${r.credit }</td>
 														<td style="text-align: center;">${r.pName }</td>

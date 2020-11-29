@@ -227,6 +227,7 @@ ul.tab2 li.current {
 															class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">
 																<button class="add">+</button>
 																<input type="hidden" value="${r.pNo }">
+																
 														</span></td>
 													</tr>
 												</c:forEach>
@@ -374,14 +375,14 @@ ul.tab2 li.current {
                 	
                 	
                 var str = '<tr class="cart_table_item" >'
-                	+'<input type="hidden"  name ="cNo" value="'+td.eq(0).text()+'" >'
+                	+'<input type="hidden"  name ="cNo" value="'+ $.trim(td.eq(0).text())+'" >'
 //                 	+'<input type="hidden"  name ="cName" value="'+td.eq(1).text()+'" >'
                 	+'<input type="hidden"  name ="pName" value="'+td.eq(2).text()+'" >'
                 	+'<input type="hidden"  name ="pNo" value="'+pNo+'" >'
                 	+'<input type="hidden"  name ="sNo" value="'+sNo+'" >'
 //                 	+'<input type="hidden"  name ="credit" value="'+td.eq(3).text()+'" >'
                		+'<td class="product-thumbnail" ><span class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">'
-                    + td.eq(0).text()
+                    + $.trim(td.eq(0).text())
                     + '    </span> </td><td class="product-thumbnail"><span class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase"> '
                     + td.eq(1).text()
                     + ' </td> <td class="product-thumbnail"> <span class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">'
@@ -401,13 +402,7 @@ ul.tab2 li.current {
                     var arr = $('#datatable2').find('tr');
                     for (var i = 1; i < arr.length; i++){
                     	
-
-                    	
-                    	
-                    	
                     	for (var j = 0; j < i; j++) {
-
-                    
                     
 	                    var arrI = $(arr[i]).find("td"); //비교하고 싶은 항목이 있는곳 찾아가기
 	                    var arrJ = $(arr[j]).find('td'); //비교하고 싶은 항목이 있는곳 찾아가기
@@ -418,12 +413,9 @@ ul.tab2 li.current {
 	                    if(arrItxt == arrJtxt) { //비교항목 텍스트 비교
 	                        alert("같은 과목을 추가하셨습니다."); 
 							$('.afterclassT tbody tr:last' ).remove();	    
-							
 	                    } else {
 	                        console.log("중복값이 없습니다.");
-	                        
 	                    }
-
 
                     	}
                    	 }
@@ -448,22 +440,7 @@ ul.tab2 li.current {
           			}
 
 
-          			
 
-
-          
-          
-//                     var check=0;
-//                     for(var i = 0; i<arr.length-1;i++){
-//                     	 var credit  = $('input[name=credit]').val();
-//                     	 var toInt = parseInt(credit);	
-                    	 
-//                     	 check  +=toInt
-                    	 
-//                     }
-                    
-//                     console.log(check);
-               	 
 
           });       
                
@@ -482,79 +459,6 @@ ul.tab2 li.current {
 
     </script>
 
-	<script>
-
-
-
-
-
-    
-
-// function paging(){
-	  
-	   
-
-//     var rowPerPage = 5;// 1 을  곱하여 문자열을 숫자형로 변환
-    
-//     //console.log(typeof rowPerPage);
-    
-  
-//     $('#nav').remove();
-//     var $products = $('#products');
-    
-//     $products.after('<div id="nav">');
-    
-    
-//     var $tr = $($products).find('tbody tr');
-//     var rowTotals = $tr.length;
-//     //console.log(rowTotals);
-    
-//     var pageTotal = Math.ceil(rowTotals/ rowPerPage);
-//     var i = 0;
-    
-//     for (; i < pageTotal; i++) {
-//     $('<a href="#"></a>')
-//     .attr('rel', i)
-//     .html(i + 1)
-//     .appendTo('#nav');
-//     }
-    
-//     $tr.addClass('off-screen')
-//     .slice(0, rowPerPage)
-//     .removeClass('off-screen');
-    
-//     var $pagingLink = $('#nav a');
-//     $pagingLink.on('click', function (evt) {
-//     evt.preventDefault();
-//     var $this = $(this);
-//     if ($this.hasClass('active')) {
-//     return;
-//     }
-//     $pagingLink.removeClass('active');
-//     $this.addClass('active');
-    
-//     // 0 => 0(0*4), 4(0*4+4)
-//     // 1 => 4(1*4), 8(1*4+4)
-//     // 2 => 8(2*4), 12(2*4+4)
-//     // 시작 행 = 페이지 번호 * 페이지당 행수
-//     // 끝 행 = 시작 행 + 페이지당 행수
-    
-//     var currPage = $this.attr('rel');
-//     var startItem = currPage * rowPerPage;
-//     var endItem = startItem + rowPerPage;
-    
-//     $tr.css('opacity', '0.0')
-//     .addClass('off-screen')
-//     .slice(startItem, endItem)
-//     .removeClass('off-screen')
-//     .animate({opacity: 1}, 300);
-    
-//     });
-
-//     $pagingLink.filter(':first').addClass('active');
-
-// }
-</script>
 
 
 </body>
