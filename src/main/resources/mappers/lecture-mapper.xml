@@ -131,6 +131,8 @@
 
    <resultMap type="Attendance" id="AttendanceResultSet">
       <id property="classNo" column="CLASS_NO" />
+      <id property="sName" column="STD_NAME" />
+      <id property="sNo" column="STD_NO" />
       <result property="className" column="CLASS_NAME" />
       <result property="attendance" column="ATTENDANCE" />
       <result property="attendRate" column="COUNT(ATTENDANCE)" />
@@ -139,6 +141,17 @@
       <result property="classType" column="CLASS_TYPE" />
       <result property="startDate" column="START_DATE" />
       <result property="assignment" column="ASSIGNMENT" />
+   </resultMap>
+   
+   <resultMap type="LectureStudent" id="lectureStudentResultSet">
+      <id property="classNo" column="CLASS_NO" />
+      <result property="className" column="CLASS_NAME" />
+      <result property="sNo" column="STD_NO" />
+      <result property="sName" column="STD_NAME" />
+      <result property="lecNo" column="WEEK" />
+      <result property="assignSubmitDate" column="ASSIGNMENT" />
+      <result property="attendDate" column="ATTENDANCE" />
+      <result property="startDate" column="START_DATE" />
    </resultMap>
 
 
@@ -246,6 +259,66 @@
          TO_NUMBER(TO_CHAR(SYSDATE,'IW')) 
          AND STD_NO= #{sNo}
          GROUP BY CLASS_NO, STD_NO, CLASS_TYPE, CLASS_NAME, START_DATE
+   </select>
+   
+   <select id="lectureAttendList" resultMap="AttendanceResultSet">
+   	    SELECT 
+         DISTINCT CLASS_NO, 
+         CLASS_TYPE,
+         CLASS_NAME, 
+         START_DATE
+       	 FROM TB_ATTENDANCE
+         JOIN TB_CLASS USING (CLASS_NO)
+         JOIN TB_CLASS_PROFESSOR USING (CLASS_NO)
+         WHERE WEEKDATE 
+         BETWEEN 
+         TO_NUMBER(TO_CHAR(START_DATE,'IW'))
+         AND 
+         TO_NUMBER(TO_CHAR(SYSDATE,'IW')) 
+         AND PROFESSOR_NO=#{pNo}
+   </select>
+   
+   <select id="lectureStudentAttendList" resultMap="AttendanceResultSet">
+   SELECT 
+         STD_NAME, 
+         STD_NO,
+         CLASS_NO,
+         CLASS_NAME, 
+          START_DATE,
+         COUNT(ATTENDANCE),
+         COUNT(ASSIGNMENT),
+         COUNT(WEEK)
+         FROM TB_ATTENDANCE
+         JOIN TB_CLASS USING (CLASS_NO)
+         JOIN TB_CLASS_PROFESSOR USING (CLASS_NO)
+         JOIN TB_STUDENT USING(STD_NO)
+         WHERE WEEKDATE 
+         BETWEEN 
+         TO_NUMBER(TO_CHAR(START_DATE,'IW'))
+         AND 
+         TO_NUMBER(TO_CHAR(SYSDATE,'IW')) 
+         AND PROFESSOR_NO=#{pNo}
+         AND CLASS_NO=#{classNo}
+         GROUP BY CLASS_NO, STD_NO,STD_NAME,CLASS_NAME, START_DATE
+   </select>
+   <select id="lectureStudentDetail" resultMap="lectureStudentResultSet">
+   	SELECT 
+         WEEK,
+         STD_NAME,
+         CLASS_NAME,
+         CLASS_NO, 
+         START_DATE,
+         STD_NO,
+         ATTENDANCE,
+         ASSIGNMENT
+         FROM TB_ATTENDANCE
+         JOIN TB_CLASS USING (CLASS_NO)
+         JOIN TB_STUDENT USING (STD_NO)
+         WHERE PROF_NO=#{pNo}
+         AND CLASS_NO=#{classNo}
+         AND STD_NO=#{sNo}
+         GROUP BY CLASS_NO, STD_NO, STD_NAME, CLASS_NAME, START_DATE, WEEK, ATTENDANCE, ASSIGNMENT
+         ORDER BY WEEK ASC
    </select>
    
    <select id="sylla1" resultMap="Sylla1ResultSet">

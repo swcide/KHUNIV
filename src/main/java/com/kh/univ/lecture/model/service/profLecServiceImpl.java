@@ -10,12 +10,14 @@ import org.springframework.stereotype.Service;
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.lecture.model.dao.profLecDao;
 import com.kh.univ.lecture.model.vo.Assignment;
+import com.kh.univ.lecture.model.vo.Attendance;
 import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
 import com.kh.univ.lecture.model.vo.LectureHomeWork;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
+import com.kh.univ.lecture.model.vo.LectureStudent;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.notice.model.vo.Notice;
@@ -239,6 +241,23 @@ public class profLecServiceImpl implements profLecService {
 	@Override
 	public ArrayList<Test> takeQList(int qId) {
 		return plDao.takeQList(qId);
+	}
+
+	// 교수의 내 강의 목록 1단계
+	@Override
+	public ArrayList<Attendance> AttendanceList(String pNo) {
+		return plDao.selectAttendList(pNo);
+	}
+	// 교수의 내 강의 목록 2단계
+	@Override
+	public ArrayList<Attendance> StudentAttendList(LectureList ll) {
+		return plDao.selectStudentAttendList(ll);
+	}
+	// 교수의 내 강의 목록 3단계
+	@Override
+	public ArrayList<LectureStudent> lectureStudentDetail(LectureStudent ls) {
+		System.out.println("서비스임플"+ls);
+		return plDao.selectlectureStudentDetail(ls);
 	}
 
 	

@@ -6,12 +6,14 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.lecture.model.vo.Assignment;
+import com.kh.univ.lecture.model.vo.Attendance;
 import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
 import com.kh.univ.lecture.model.vo.LectureHomeWork;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
+import com.kh.univ.lecture.model.vo.LectureStudent;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.notice.model.vo.Notice;
@@ -142,6 +144,16 @@ public interface profLecService {
 	int EvaluationInsert(HomeworkGrade gb);
 
 	ArrayList<Test> takeQList(int qId);
+
+	
+	// 교수용 강의 리스트(학생관리용 리스트) 1단계
+	ArrayList<Attendance> AttendanceList(String pNo);
+	
+	// 교수용 학생 리스트(학생리스트) 
+	ArrayList<Attendance> StudentAttendList(LectureList ll);
+	
+	// 교수용 학생 디테일 
+	ArrayList<LectureStudent> lectureStudentDetail(LectureStudent ls);
 
 
 	
