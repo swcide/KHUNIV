@@ -146,7 +146,7 @@
  				alert("admin");
  				$("#hd1").val("2");
  				$("#hd2").val("3");
- 				$("#fm").attr("action", "admin.do").submit();
+ 				$("#fm").attr("action", "login.do").submit();
  			} else if ($("#id").val().indexOf("P") > -1) {
  				//교수
  				alert("prof");

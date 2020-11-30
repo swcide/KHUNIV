@@ -62,6 +62,7 @@ public class indexController {
 		
 		return "member/login";
 	}
+	
 	@RequestMapping(value = "admin.do")
 	public String admin() {
 			return "admin/admin";

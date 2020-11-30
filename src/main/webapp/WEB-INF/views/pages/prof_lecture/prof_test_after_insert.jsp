@@ -106,7 +106,7 @@ margin:0;}
 																	<c:param name="cNo" value="${t.cNo}"/>
 																	<c:param name="qId" value="${t.qId}"/>
 																</c:url>
-																<input type="hidden" value="${t.qId }">
+																<input type="hidden" value="${t.qNo }">
 																<a href="javascript:void(0)"onclick="update(this);"><i class="icon-wrench icons mr-2"></i></a>
 																<a href="${qdelete}"class="close" style="cursor: pointer;" ><span >×</span></a>
 															</div>
@@ -291,7 +291,7 @@ margin:0;}
 			</div>
 			<div class="modal-body">
 				<div id="qList">
-					<table class='table table-hover'>
+					<table id="datatable" class='table table-hover'>
 						<thead>
 							<tr>
 								<th align="center">년도</th>
@@ -373,7 +373,7 @@ margin:0;}
 							$tr.append(hidden);
 							$tr.append(hidden3);
 							$tableBody.append($tr);
-						
+							
 						}else if($tType=="F"){
 							$tType= $("<td width='80' align='center'>").text("기말고사");
 							$tr = $("<tr>");
@@ -394,7 +394,7 @@ margin:0;}
 							$tableBody.append($tr);
 						}
 					}
-					
+					$('#datatable').dataTable();
 				}else{
 					alert("야 2오류나")
 				}

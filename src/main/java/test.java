@@ -31,14 +31,19 @@ public class test {
 	
 	public static void main(String[] args) {
 		
-		Date now = new Date();
+		int examPoints = 60 /2;  
+		int grade  = 100 ;
 		
-		now.getTime();
-		System.out.println(now);
-		arrayList<date> d
 		
-		if(  
-				
+		
+		
+		
+		
+		
+		double mTest = (int) (grade * (examPoints*0.01)) ;
+		
+		
+		System.out.println(mTest);
 
 
 	

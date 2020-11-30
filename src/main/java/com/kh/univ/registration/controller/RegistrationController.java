@@ -2,6 +2,8 @@ package com.kh.univ.registration.controller;
 
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.univ.ad_Register.model.vo.semesterPoint;
 import com.kh.univ.member.model.vo.Student;
 import com.kh.univ.notice.model.vo.Notice;
 import com.kh.univ.registration.model.service.RegistrationService;
@@ -93,62 +96,78 @@ public class RegistrationController {
 	
 	@ResponseBody
 	@RequestMapping("rInsert.do")
-	public String RegistrationInsert (ModelAndView mv,HttpSession session,Grade g){
+	public String RegistrationInsert (ModelAndView mv,HttpSession session,semesterPoint sp){
 		
 		
 //		System.out.println(r);
 		
-		String [] cNo =g.getcNo().split(",");
-		String [] sNo =g.getsNo().split(",");
-		String [] pNo =g.getpNo().split(",");
-		
-		ArrayList<Grade> gList = new ArrayList<Grade>();
+		String [] cNo =sp.getcNo().split(",");
+		String [] sNo =sp.getsNo().split(",");
+		String [] pNo =sp.getpNo().split(",");
+		System.out.println(sp.getcNo());
+
+		Calendar cal = Calendar.getInstance();
+		String year = String.valueOf(cal.get(Calendar.YEAR));
+		String month = String.valueOf(cal.get(Calendar.MONTH+1));
+		ArrayList<semesterPoint> spList = new ArrayList<semesterPoint>();
 		
 		
 		for (int i = 0; i < cNo.length ; i++) {
 			
-			Grade g2 = new Grade();
-			g2.setcNo(cNo[i]);
+			semesterPoint sp2 = new semesterPoint();
+			sp2.setcNo(cNo[i]);
 			
-			System.out.println(g2.getcNo());
-			g2.setsNo(sNo[i]);
-			g2.setpNo(pNo[i]);
-			gList.add(g2);
+			System.out.println(sp2.getcNo());
+			sp2.setsNo(sNo[i]);
+			sp2.setpNo(pNo[i]);
+			sp2.setSemYear(year);
+			if(Integer.parseInt(month)>9) {
+				sp2.setSemNo("2");
+			}else if (Integer.parseInt(month)<8) {
+				sp2.setSemNo("1");
+			}
+
 			
-//				
-			System.out.println(i+"번쨰");
-			System.out.println(gList.toString());
+			spList.add(sp2);
+			
+			
+		
+			
 			
 		}
-		System.out.println(gList.toString());
-		int result = rService.insertRegistration(gList);
-//		
-		System.out.println(result);
-		System.out.println("===============");
-		System.out.println(gList);
-		System.out.println("1===============1");
+		
+		
+		
+		
+		int result = rService.insertRegistration(spList);
 
-		System.out.println(gList);
-//		
-		
-//		HashMap<"", V>
-		
-//		
 		return "success";
 	}
 	
 	@RequestMapping("ad_appl_stat.do")
-	public ModelAndView GradeList (ModelAndView mv,HttpSession session,Grade g){
+	public ModelAndView GradeList (ModelAndView mv,HttpSession session,semesterPoint sp){
 		Student s = (Student) session.getAttribute("loginUser"); 
 		
-		int dNo = Integer.parseInt(s.getdNo());
-		String strDno =Integer.toString(dNo);
-		s.setdNo(strDno);
+		sp.setsNo(s.getsNo());
+		Calendar cal = Calendar.getInstance();
+		String year = String.valueOf(cal.get(Calendar.YEAR));
+		int month = cal.get(Calendar.MONTH+1);
+		sp.setSemYear(year);
 		
-		ArrayList<Registration> r = rService.gradeList(s);
-		System.out.println(s);
-		System.out.println(r);
-		mv.addObject("r",r);
+		if(month>9) {
+			sp.setSemNo("2");
+			ArrayList<Registration> r = rService.gradeList(sp);
+			mv.addObject("r",r);
+		}else if (month<8) {
+			sp.setSemNo("1");
+			ArrayList<Registration> r = rService.gradeList(sp);
+			r.get(1).getSemNo();
+			mv.addObject("r",r);
+		}
+
+		
+		
+		
 		mv.setViewName("ad_register/ad_Application_Status");
 		
 		

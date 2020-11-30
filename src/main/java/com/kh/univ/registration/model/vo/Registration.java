@@ -2,11 +2,11 @@ package com.kh.univ.registration.model.vo;
 
 import java.util.ArrayList;
 
+import com.kh.univ.ad_Register.model.vo.semesterPoint;
 import com.kh.univ.testPage.model.vo.Grade;
 
-public class Registration {
+public class Registration extends semesterPoint {
 	
-	private int semester;     // 학기 
 	private String cNo;       // 강의 번호
 	private String cName;     // 강의 이름
 	private String cType;     // 강의 타입  
@@ -26,10 +26,9 @@ public class Registration {
 
 
 
-	public Registration(int semester, String cNo, String cName, String cType, String pName, String pNo, String sNo,
+	public Registration( String cNo, String cName, String cType, String pName, String pNo, String sNo,
 			int credit, String dNo, String dName) {
 		super();
-		this.semester = semester;
 		this.cNo = cNo;
 		this.cName = cName;
 		this.cType = cType;
@@ -43,15 +42,8 @@ public class Registration {
 
 
 
-	public int getSemester() {
-		return semester;
-	}
 
 
-
-	public void setSemester(int semester) {
-		this.semester = semester;
-	}
 
 
 
@@ -165,7 +157,7 @@ public class Registration {
 
 	@Override
 	public String toString() {
-		return "Registration [semester=" + semester + ", cNo=" + cNo + ", cName=" + cName + ", cType=" + cType
+		return "Registration [ cNo=" + cNo + ", cName=" + cName + ", cType=" + cType
 				+ ", pName=" + pName + ", pNo=" + pNo + ", sNo=" + sNo + ", credit=" + credit + ", dNo=" + dNo
 				+ ", dName=" + dName + "]";
 	}

@@ -221,7 +221,7 @@
 								</div>
 								<div class="card-body px-0 pb-0">
 									<div class="table-responsive">
-								<form id="excelUploadForm" name="excelUploadForm" enctype="multipart/form-data" method="post" action= "excelUploadAjax.do">
+								<form id="excelUploadForm" name="excelUploadForm" enctype="multipart/form-data" method="post" >
 									<div>
 										<c:set var="excel " value="${efu }" />
 										<c:if test="${!empty efu }">
@@ -231,9 +231,9 @@
 											</span>
 										</c:if>
 										<input class="text-uppercase mb-2 text-center  float-left col-md-12" style="text-align: right;" id="excelFile" name="excelFile" type="file">
-										<button type="button" id="addExcelImpoartBtn" class="btn" onclick="check()">
-											<span>추가</span>
-										</button>
+										<a  id="addExcelImpoartBtn" class="btn" onclick="check()">
+											<span>엑셀파일 업로드</span>
+										</a>
 									</div>
 								</form>
 										<div class="form-file">
@@ -255,9 +255,11 @@
 			</div>
 		</div>
 	</div>
+	<script src="http://malsup.github.io/jquery.form.js"></script>
 	<script type="text/javaScript" language="javascript" defer="defer">
 		/*************excel upload*************/
-
+		
+		
 		function checkFileType(filePath) {
 			var fileFormat = filePath.split(".");
 
@@ -286,7 +288,7 @@
 			if (confirm("업로드 하시겠습니까?")) {
 
 				var options = {
-
+					url :'excelUploadAjax.do',
 					success : function(data) {
 						console.log(data);
 						alert("모든 데이터가 업로드 되었습니다.");
@@ -296,9 +298,12 @@
 				};
 
 				$("#excelUploadForm").ajaxSubmit(options);
+				return false;
 
 			}
 		}
+
+		
 	</script>
 	
 	<script src="resources/assets/js/feather-icons/feather.min.js"></script>

@@ -36,31 +36,51 @@
 		<result property="qType" column="QNATYPE" />
 	</resultMap>
 
-	<resultMap type="excel" id="excelResultset">
-		<result property="rownum" column="ROWNUM" />
-		<result property="id" column="id" />
-		<result property="useCode" column="useCode" />
-		<result property="useDate" column="useDate" />
-		<result property="money" column="money" />
-		<result property="fileName" column="fileName" />
-		<result property="fileOriName" column="fileOriName" />
-		<result property="processCode" column="processCode" />
-		<result property="pDate" column="pDate" />
-		<result property="pMoney" column="pMoney" />
-		<result property="contents" column="contents" />
-		<result property="regDate" column="regDate" />
-	</resultMap>
+	 <!-- 학생 맵 -->
+   <resultMap type="student" id="studentResultSet">
+      <id property="sNo" column="STD_NO" />
+      <result property="sPwd" column="STD_PWD" />
+      <result property="sName" column="STD_NAME" />
+      <result property="sEmail" column="STD_EMAIL" />
+      <result property="sPhone" column="STD_PHONE" />
+      <result property="sAddress" column="STD_ADDRESS" />
+      <result property="enrollDate" column="ENT_DATE" />
+      <result property="semester" column="SEMESTER" />
+      <result property="sImage" column="STD_IMAGE" />
+      <result property="dNo" column="DEPT_NO" />
+      <result property="sSsn" column="STD_SSN" />
+      <result property="sStatus" column="STATUS" />
+      <result property="cpNo" column="COACH_PROF_NO" />
+      <result property="sCategory" column="CATEGORY" />
+      <result property="sDeptName" column="DEPT_NAME"/>
+      <result property="type" column="LOGIN_TYPE" />
+   </resultMap>
 
 
-	<insert id="insertExcel" parameterType="excel">
-		INSERT 
+	<insert id="insertExcel" parameterType="student">
+		INSERT ALL
+		<foreach collection="excelContent" item="item" >
 		INTO 
-		LIST 
-		(USECODE,USEDATE,MONEY)
+		TB_STUDENT
+		(SEMESTER,
+		 STD_NO,
+		 STD_PWD,
+		 STD_EMAIL,
+		 STD_PHONE,
+		 STD_IMAGE,
+		 DEPT_NO,
+		 STD_NAME,
+		 STD_SSN,
+		 STD_ADDRESS,
+		 ENT_DATE,
+		 STATUS,
+		 COACH_PROF_NO,
+		 LOGIN_TYPE
+)
 		VALUES
-		<foreach collection="excelContent" item="item" separator=",">
-			(#{item.A},#{item.B},#{item.C})
+			(#{item.A},#{item.B},#{item.C},#{item.D},#{item.E},#{item.F},#{item.G},#{item.H},#{item.I},#{item.J},#{item.K},#{item.L},#{item.M},#{item.N})
 		</foreach>
+		SELECT * FROM DUAL
 	</insert>
 
 	<select id="getListCount" resultType="_int">

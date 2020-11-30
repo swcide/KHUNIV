@@ -6,6 +6,7 @@
 		<id property="dNo" column="DEPT_NO" />
 		<result property="dName" column="DEPT_NAME" />
 		<result property="semester" column="STD_SEMESTER" />
+		<result property="semNo" column="SEME_NO" />
 		<result property="cNo" column="CLASS_NO" />
 		<result property="cName" column="CLASS_NAME" />
 		<result property="cType" column="CLASS_TYPE" />
@@ -15,14 +16,26 @@
 		<result property="sNo" column="STUDENT_No" />
 	</resultMap>
 	
-	<resultMap type="Grade" id="GradeResultSet">
+<resultMap type="semesterPoint" id="semesterPointResultSet">
 		<id property="sNo" column="STD_NO" />
+		<result property="semYear" column="SEM_YEAR" />
+		<result property="semNo" column="SEME_NO" />
 		<result property="cNo" column="CLASS_NO" />
-		<result property="semester" column="STD_SEMESTER" />
+		<result property="cType" column="CLASS_TYPE" />
+		<result property="mTest" column="MID_TEST" />
+		<result property="fTest" column="FINAL_TEST" />
+		<result property="report" column="REPORT" />
+		<result property="attendance" column="ATTENDANCE" />
 		<result property="point" column="POINT" />
 		<result property="pNo" column="PROF_NO" />
-		
-	
+		<result property="count" column="COUNT" />
+		<result property="avgPoint" column="AVG_POINT" />
+		<result property="profName" column="PROF_NAME" />
+		<result property="deptName" column="DEPT_NAME" />
+		<result property="sName" column="STD_NAME" />
+		<result property="cName" column="CLASS_NAME" />
+		<result property="sysdate" column="SYSDATE" />
+		<result property="credit" column="CREDIT" />
 	</resultMap>
 	
 	<resultMap type="RegistrationSNO" id="RegistrationSNOResultSet">
@@ -76,27 +89,32 @@
 			  
 			)VALUES (
 		
-			 (SELECT NVL(MAX(STD_SEMESTER),0)+1 FROM TB_GRADE)
-			 , #{item.sNo} 
-			 , DEFAULT
-			 , #{item.cNo} 
+			   #{item.sNo} 
+			 , #{item.semYear} 
+			 , #{item.semNo} 
+			 , #{item.cNo}
+			 , #{item.mTest}
+			 , #{item.fTest}
+			 , #{item.report}
+			 , #{item.attendance}
+			 , #{item.point}
 			 , #{item.pNo}
+			 , #{item.avgPoint}
 			 )
 		 </foreach>
 		   
 	</insert>
 	<select id="gradeList" resultMap="RegistrationResultSet">
 	
-         SELECT  P.PROF_NO,CLASS_NO,CLASS_NAME,P.PROF_NAME,P.DEPT_NO,D.DEPT_NAME,CREDIT,C.CLASS_TYPE,std_no,std_semester
-
+     	SELECT  P.PROF_NO,CLASS_NO,CLASS_NAME,P.PROF_NAME,P.DEPT_NO,D.DEPT_NAME,CREDIT,C.CLASS_TYPE,std_no,SEM_YEAR,SEME_NO,std_no
          FROM TB_CLASS C
          JOIN TB_DEPARTMENT D USING(DEPT_NO)
          JOIN TB_CLASS_PROFESSOR CP USING(CLASS_NO)
-         join  TESTt T using(class_no)
          JOIN TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
+         join  TB_SEMESTER_POINT sp using(class_no)
          where std_no =#{sNo}
-         and std_semester =#{semester}
-         
+         and seme_no =#{semNo}
+         and sem_year =#{semYear}
 	</select>
 	
 

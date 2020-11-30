@@ -4,10 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,8 +26,10 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.kh.univ.common.Pagination;
 import com.kh.univ.member.model.vo.Admin;
+import com.kh.univ.member.model.vo.Student;
 import com.kh.univ.univlife.board.human.model.service.HumanBoardService;
 import com.kh.univ.univlife.board.human.model.vo.HumanBoard;
+import com.kh.univ.univlife.board.human.model.vo.Report;
 import com.kh.univ.univlife.board.human.model.vo.hReply;
 import com.kh.univ.common.PageInfo;
 
@@ -173,7 +177,7 @@ public class HumanBoardController {
 
 		if (result > 0) {
 			System.out.println(h.gethId());
-			mv.addObject("hId", h.gethId()).setViewName("redirect:humandetail.do");
+			mv.addObject("hId", h.gethId()).setViewName("redirect:human.do");
 		} else {
 			mv.addObject("msg", "수정실패").setViewName("common/errorPage");
 		}
@@ -280,6 +284,21 @@ public class HumanBoardController {
 			return "success";
 		}else {
 			return "fail";
+		}
+	}
+	
+	@RequestMapping("reportInsert.do")
+	public String reportInsertint (Report rp,HttpSession session, HttpServletRequest request) {
+		
+					
+	    int result = hService.reportInsert(rp);
+		
+		
+		System.out.println(result);
+		if (result > 0) {
+			return "redirect:human.do";
+		} else {
+			return "common/errorPage";
 		}
 	}
 	

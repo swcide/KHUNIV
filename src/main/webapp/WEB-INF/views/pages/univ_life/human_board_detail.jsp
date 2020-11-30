@@ -5,47 +5,40 @@
 <%@ page import="com.kh.univ.member.model.vo.Admin"%>
 <%@ page import="com.kh.univ.member.model.vo.Professor"%>
 
+
 <%
-
-
-
-Student loginUser = (Student)session.getAttribute("loginUser");
-Professor loginProf = (Professor)session.getAttribute("loginProf");
-Admin loginAdmin = (Admin)session.getAttribute("loginAdmin");
+	Student loginUser = (Student) session.getAttribute("loginUser");
+Professor loginProf = (Professor) session.getAttribute("loginProf");
+Admin loginAdmin = (Admin) session.getAttribute("loginAdmin");
 
 String sNo = null;
 String pNo = null;
 String aId = null;
 
-String sName =null;
-String pName =null;
+String sName = null;
+String pName = null;
 String aName = null;
-
 
 int type = 0;
 
-	if(loginUser !=null){
-	 sNo =loginUser.getsNo(); 
-	 sName =loginUser.getsName();
-	 type = loginUser.getType();
-	
-	}else if(loginProf !=null){	
-	 pNo =loginProf.getpNo();
-	 pName=loginProf.getpName();
-	 type = loginProf.getType();
-	
-	}else if (loginAdmin !=null){
-	 aId = loginAdmin.getaId();
-	 aName = loginAdmin.getaName();
-	 type = loginAdmin.getType();
-	
-	}
-	
-System.out.println(type);	
+if (loginUser != null) {
+	sNo = loginUser.getsNo();
+	sName = loginUser.getsName();
+	type = loginUser.getType();
 
+} else if (loginProf != null) {
+	pNo = loginProf.getpNo();
+	pName = loginProf.getpName();
+	type = loginProf.getType();
 
-     
+} else if (loginAdmin != null) {
+	aId = loginAdmin.getaId();
+	aName = loginAdmin.getaName();
+	type = loginAdmin.getType();
 
+}
+
+System.out.println(type);
 %>
 
 
@@ -77,7 +70,7 @@ ul.comments li {
 				<div class="row mt-3">
 					<div class="col-md-12 align-self-center p-static order-2 text-center">
 						<h1 class="text-9 font-weight-bold">학생 게시판</h1>
-						<span class="sub-title">Studnet Board</span>
+						<span class="sub-title">Student Board</span>
 					</div>
 				</div>
 			</div>
@@ -104,7 +97,7 @@ ul.comments li {
 
 								<p clss="text-5">${h.hContent }</p>
 								<span class="date float-right">
-									<a href= ""data-toggle="modal" data-target="#reportContent">신고하기</a>
+									<a href="" data-toggle="modal" data-target="#reportContent">신고하기</a>
 								</span>
 								<div class="mt-5 ">
 									<hr>
@@ -133,18 +126,18 @@ ul.comments li {
 								<c:if test="${ loginUser != null }">
 									<div class=" float-right">
 										<div>
-											<c:url var="nupview" value="nUpView.do">
+											<c:url var="hupview" value="hBoardupView.do">
 												<c:param name="hId" value="${h.hId }" />
 												<c:param name="hType" value="${h.hType}" />
 											</c:url>
-											<c:url var="nDelete" value="nDelete.do">
+											<c:url var="hDelete" value="hBoarddelete.do">
 												<c:param name="hId" value="${h.hId }" />
 											</c:url>
-											<c:url var="nList" value="nList.do?nType=1">
+											<c:url var="hList" value="hList.do?hType=1">
 												<c:param name="currentPage" value="${ currentPage }" />
 											</c:url>
 
-											<a href="${hDelete}" class="mb-1 mt-1 mr-1 btn btn-primary"> 삭제하기${hupview} </a>
+											<a href="${hDelete}" class="mb-1 mt-1 mr-1 btn btn-primary"> 삭제하기 </a>
 											<a href="${hupview }" class="mb-1 mt-1 mr-1 btn btn-primary"> 수정하기 </a>
 										</div>
 									</div>
@@ -153,8 +146,8 @@ ul.comments li {
 								<c:if test="${ loginUser.sNo eq h.hWriter }">
 									<div class=" float-right">
 										<div>
-											<c:url var="hupview" value="hUpView.do">
-												<c:param name="hId" value="${h.nId }" />
+											<c:url var="hupview" value="hBoardupView.do">
+												<c:param name="hId" value="${h.hId }" />
 												<c:param name="hType" value="${h.hType}" />
 											</c:url>
 											<c:url var="hDelete" value="hDelete.do?hType=1">
@@ -221,48 +214,43 @@ ul.comments li {
 					<h4 class="modal-title" id="formModalLabel">게시글 신고</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<div class="modal-body">
-					<form id="demo-form" class="mb-4" novalidate="novalidate">
-					 	<thead> 
-					 		<tr> 
-					 			<th colspan="2">게시물 신고 사유 선택</th>
-					 		</tr>	
-					 	</thead>
-					 	<tbody>
-						<tr>
-						<td>
-						<div class="form-group row align-items-center">
-								<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" style="margin-left:140px; margin-right:-50px"/>							
-								<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">욕설/비방</label>
-							<div class="col-sm-9">
-							</div>
-						</div>
-						</td>
-						</tr>
-						<div class="form-group row align-items-center">
-								<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" style="margin-left:140px; margin-right:-50px"/>							
+				<form id="demo-form" class="mb-4" novalidate="novalidate">
+					<div class="modal-body">
+						<thead>
+							<tr>
+								<th colspan="2">게시물 신고 사유 선택</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<div class="form-group row align-items-center">
+										<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" style="margin-left: 140px; margin-right: -50px" />
+										<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">욕설/비방</label>
+										<div class="col-sm-9"></div>
+									</div>
+								</td>
+							</tr>
+							<div class="form-group row align-items-center">
+								<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" style="margin-left: 140px; margin-right: -50px" />
 								<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">광고/홍보물</label>
-							<div class="col-sm-9">
+								<div class="col-sm-9"></div>
 							</div>
-						</div>
-						<div class="form-group row align-items-center">
-								<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" style="margin-left:140px; margin-right:-50px"/>							
+							<div class="form-group row align-items-center">
+								<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" style="margin-left: 140px; margin-right: -50px" />
 								<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">저작권침해</label>
-							<div class="col-sm-9">
+								<div class="col-sm-9"></div>
 							</div>
-						</div>
-						<div class="form-group row align-items-center">
-								<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" style="margin-left:140px; margin-right:-50px"/>							
+							<div class="form-group row align-items-center">
+								<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" style="margin-left: 140px; margin-right: -50px" />
 								<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">음란성게시물</label>
-							<div class="col-sm-9">
+								<div class="col-sm-9"></div>
 							</div>
-						</div>
-						<div class="form-group row align-items-center">
-								<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" style="margin-left:140px; margin-right:-50px"/>							
+							<div class="form-group row align-items-center">
+								<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" style="margin-left: 140px; margin-right: -50px" />
 								<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">기타</label>
-							<div class="col-sm-9">
+								<div class="col-sm-9"></div>
 							</div>
-						</div>
 						</tbody>
 						<div class="form-group row">
 							<label class="col-sm-3 text-left text-sm-right mb-0">신고내용 입력(필수)</label>
@@ -270,13 +258,16 @@ ul.comments li {
 								<textarea rows="5" class="form-control" placeholder="Type your comment..." required></textarea>
 							</div>
 						</div>
-					</form>
-					<p>fdasfdsafd</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save Changes</button>
-				</div>
+						<p>
+							<i class="fas fa-exclamation-triangle"></i>
+							<b>주의:</b> :신고된 게시물은 운영자의 확인 후 게시판에서 삭제될 수 있으며 게시물 작성자는 경고 / 이용 제한 등의 제재를 받게 됩니다. 상습적으로 잘못된 신고를 할 경우, 신고한 회원에게 불이익이 가해질 수 있습니다.
+						</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" onclick="reportP()">신고접수</button>
+						<button type="button" class="btn btn-light" data-dismiss="modal">취소</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -285,41 +276,70 @@ ul.comments li {
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title" id="formModalLabel">댓글 신고</h4>
+					<h4 class="modal-title" id="formModalLabel">게시글 신고</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<div class="modal-body">
-					<form id="demo-form" class="mb-4" novalidate="novalidate">
-						<div class="form-group row align-items-center">
-							<label class="col-sm-3 text-left text-sm-right mb-0">Name</label>
-							<div class="col-sm-9">
-								<input type="text" name="name" class="form-control" placeholder="Type your name..." required />
+					<form id="demo-form" class="mb-4" action="reportInsert.do" method="post" novalidate="novalidate">
+						<div class="modal-body">
+							<thead>
+								<tr>
+									<th colspan="2">게시물 신고 사유 선택</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<div class="form-group row align-items-center">
+											<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" value="욕설/비방" style="margin-left: 140px; margin-right: -50px" />
+											<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">욕설/비방</label>
+											<div class="col-sm-9"></div>
+										</div>
+									</td>
+								</tr>
+								<div class="form-group row align-items-center">
+									<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" value="광고/홍보물" style="margin-left: 140px; margin-right: -50px" />
+									<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">광고/홍보물</label>
+									<div class="col-sm-9"></div>
+								</div>
+								<div class="form-group row align-items-center">
+									<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" value="저작권침해" style="margin-left: 140px; margin-right: -50px" />
+									<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">저작권침해</label>
+									<div class="col-sm-9"></div>
+								</div>
+								<div class="form-group row align-items-center">
+									<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" value="음란성게시물" style="margin-left: 140px; margin-right: -50px" />
+									<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">음란성게시물</label>
+									<div class="col-sm-9"></div>
+								</div>
+								<div class="form-group row align-items-center">
+									<input class="col-sm-3 text-left text-sm-right mb-0" type="radio" name="categoryName" value="기타" style="margin-left: 140px; margin-right: -50px" />
+									<label class="col-sm-3 text-left text-sm-right mb-0" style="text-align: left !important">기타</label>
+									<div class="col-sm-9"></div>
+								</div>
+							</tbody>
+							<div class="form-group row">
+								<label class="col-sm-3 text-left text-sm-right mb-0">신고내용 입력(필수)</label>
+								<div class="col-sm-9">
+									<textarea rows="5" class="form-control" name="reportContet" placeholder="내용을 작성하세요" required></textarea>
+								</div>
 							</div>
+							<p>
+								<i class="fas fa-exclamation-triangle"></i>
+								<b>주의:</b> :신고된 게시물은 운영자의 확인 후 게시판에서 삭제될 수 있으며 게시물 작성자는 경고 / 이용 제한 등의 제재를 받게 됩니다. 상습적으로 잘못된 신고를 할 경우, 신고한 회원에게 불이익이 가해질 수 있습니다.
+							</p>
 						</div>
-						<div class="form-group row align-items-center">
-							<label class="col-sm-3 text-left text-sm-right mb-0">Email</label>
-							<div class="col-sm-9">
-								<input type="email" name="email" class="form-control" placeholder="Type your email..." required />
-							</div>
+
+
+						<div class="form-group col">
+							<input id="hId" type="hidden" name="hId" value="${ h.hId}">
+							<input type="hidden" name="rpWriter" value="${loginUser.sNo}">
+							<input type="hidden" name="rpName" value="${loginUser.sName}">
 						</div>
-						<div class="form-group row align-items-center">
-							<label class="col-sm-3 text-left text-sm-right mb-0">URL</label>
-							<div class="col-sm-9">
-								<input type="url" name="url" class="form-control" placeholder="Type an URL..." />
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-3 text-left text-sm-right mb-0">Comment</label>
-							<div class="col-sm-9">
-								<textarea rows="5" class="form-control" placeholder="Type your comment..." required></textarea>
-							</div>
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-primary">신고접수</button>
+							<button type="button" class="btn btn-light" data-dismiss="modal">취소</button>
 						</div>
 					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save Changes</button>
-				</div>
 			</div>
 		</div>
 	</div>
@@ -831,56 +851,51 @@ ul.comments li {
 				rWriter = "<%=pNo%>";
 	    	 }else if(type==3){
 				rName = "<%=aName%>";
-				rWriter = "<%=aId%>";
-				 console.log(rName)
-			 }
-		
-		 }
-		
-		$.ajax({
-			url:"hBoardAddReply.do",
-			data:{
-				rContent:rContent,
-				refHid:refHid,
-				rWriter:rWriter,
-				rName:rName,
-				refRid:refRid,
-				hType:hType
-				},
-			type:"post",
-			success:function(data){
-				if(data =="success"){
-					
-					
-					getReplyList();
-					$("#rContent").val(""); // 댓글 등록이 성공을 하면 작성한 글은 초기화 시켜준다.
-					alert("댓글이 등록되었습니다.");
+				rWriter = "<%=aId%>
+		";
+					console.log(rName)
 				}
-			}
-			
-		});
-		
-		
-	}
-	
-	function r_rCancle (obj){
-		var remove = $(obj).parent().parent().parent().parent();
-		
-		remove.remove();
-		$('.checkId2').css('display','block');
-		$('.checkId').css('display','block');
-		$('.btnChk').css('display','block');
-		
-	
-		
-	}
 
-	
-	
-	
-	
-	
+			}
+
+			$.ajax({
+				url : "hBoardAddReply.do",
+				data : {
+					rContent : rContent,
+					refHid : refHid,
+					rWriter : rWriter,
+					rName : rName,
+					refRid : refRid,
+					hType : hType
+				},
+				type : "post",
+				success : function(data) {
+					if (data == "success") {
+
+						getReplyList();
+						$("#rContent").val(""); // 댓글 등록이 성공을 하면 작성한 글은 초기화 시켜준다.
+						alert("댓글이 등록되었습니다.");
+					}
+				}
+
+			});
+
+		}
+
+		function r_rCancle(obj) {
+			var remove = $(obj).parent().parent().parent().parent();
+
+			remove.remove();
+			$('.checkId2').css('display', 'block');
+			$('.checkId').css('display', 'block');
+			$('.btnChk').css('display', 'block');
+
+		}
+
 	</script>
+
+
+
 
 </div>
 

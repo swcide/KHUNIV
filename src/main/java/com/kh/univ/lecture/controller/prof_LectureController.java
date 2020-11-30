@@ -81,7 +81,10 @@ public class prof_LectureController {
 		}
 		return mv;
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/KHunivesity/khuniv.git
 	@RequestMapping(value = "prof_lectureList2.do")
 	public ModelAndView prof_lecture2(ModelAndView mv, HttpSession session)
 		{

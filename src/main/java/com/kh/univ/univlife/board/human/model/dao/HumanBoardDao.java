@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.univlife.board.human.model.vo.HumanBoard;
+import com.kh.univ.univlife.board.human.model.vo.Report;
 import com.kh.univ.univlife.board.human.model.vo.hReply;
 
 @Repository("hDao")
@@ -74,6 +75,16 @@ public class HumanBoardDao {
 	public int reportReply(hReply r) {
 
 		return sqlSession.update("humanBoardMapper.reportReply",r);
+	}
+		
+		
+		 
+		
+
+
+
+	public int reportInsert(Report rp) {
+		return sqlSession.insert("humanBoardMapper.reportInsert",rp);
 	}
 
 

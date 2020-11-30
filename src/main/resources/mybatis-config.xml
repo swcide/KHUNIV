@@ -18,11 +18,11 @@
       <typeAlias type="com.kh.univ.notice.model.vo.nReply" alias="nReply" />
       <typeAlias type="com.kh.univ.univlife.board.human.model.vo.HumanBoard" alias="HumanBoard" />
       <typeAlias type="com.kh.univ.univlife.board.human.model.vo.hReply" alias="hReply"/>
+      <typeAlias type="com.kh.univ.univlife.board.human.model.vo.Report" alias="Report"/>
       <typeAlias type="com.kh.univ.lecture.model.vo.LectureClass" alias="LectureClass" />
       <typeAlias type="com.kh.univ.lecture.model.vo.LecturePlan" alias="LecturePlan" />
       <typeAlias type="com.kh.univ.lecture.model.vo.LecturePlanWeek" alias="LecturePlanWeek" />
       <typeAlias type="com.kh.univ.lecture.model.vo.LectureList" alias="LectureList" />
-      <typeAlias type="com.kh.univ.lecture.model.vo.LectureStudent" alias="LectureStudent" />
       <typeAlias type="com.kh.univ.lecture.model.vo.Attendance" alias="Attendance" />
       <typeAlias type="com.kh.univ.lecture.model.vo.ClassTest" alias="ClassTest" />
       <typeAlias type="com.kh.univ.lecture.model.vo.MyLectureVideoList" alias="MyLectureVideoList" />
@@ -35,13 +35,16 @@
       <typeAlias type="com.kh.univ.ad_Register.model.vo.Bill" alias="Bill" />
       <typeAlias type="com.kh.univ.ad_Register.model.vo.semesterPoint" alias="semesterPoint" />
       <typeAlias type="com.kh.univ.admin.model.vo.excel" alias="excel" />
+	  <typeAlias type="com.kh.univ.lecture.model.vo.LectureStudent" alias="LectureStudent" />
       <typeAlias type="com.kh.univ.registration.model.vo.Registration" alias="Registration" />
       <typeAlias type="com.kh.univ.registration.model.vo.RegistrationSNO" alias="RegistrationSNO" />
       <typeAlias type="com.kh.univ.testPage.model.vo.Grade" alias="Grade" />
-		<typeAlias type="com.kh.univ.registration.model.vo.Registration" alias="Registration" />
-		<typeAlias type="com.kh.univ.registration.model.vo.RegistrationSNO" alias="RegistrationSNO" />
-		<typeAlias type="com.kh.univ.testPage.model.vo.Grade" alias="Grade" />
-		<typeAlias type="com.kh.univ.testPage.model.vo.HomeworkGrade" alias="HomeworkGrade" />
+	  <typeAlias type="com.kh.univ.registration.model.vo.Registration" alias="Registration" />
+	  <typeAlias type="com.kh.univ.testPage.model.vo.HomeworkGrade" alias="HomeworkGrade" />
+
+
+	  <typeAlias type="com.kh.univ.testPage.model.vo.TestList" alias="TestList" />
+	  <typeAlias type="com.kh.univ.testPage.model.vo.TestGrade" alias="TestGrade" />
 
 
    </typeAliases>
@@ -54,6 +57,7 @@
       <mapper resource="mappers/lecture-mapper.xml" />
       <mapper resource="mappers/register-mapper.xml" />
       <mapper resource="mappers/registration-mapper.xml" />
+      <mapper resource="mappers/testpage-mapper.xml" />
    </mappers>
 
 </configuration>

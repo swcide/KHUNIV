@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.univ.ad_Register.model.vo.semesterPoint;
 import com.kh.univ.member.model.vo.Student;
 import com.kh.univ.registration.model.dao.RegistrationDao;
 import com.kh.univ.registration.model.vo.Registration;
@@ -23,8 +24,8 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 
 	@Override
-	public int insertRegistration(ArrayList<Grade> gList) {
-		return rDao.insertRegistration(gList);
+	public int insertRegistration(ArrayList<semesterPoint> spList) {
+		return rDao.insertRegistration(spList);
 	}
 
 
@@ -35,9 +36,11 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 
 	@Override
-	public ArrayList<Registration> gradeList(Student s) {
-		return rDao.gradeList(s);
+	public ArrayList<Registration> gradeList(semesterPoint sp) {
+		return rDao.gradeList(sp);
 	}
+
+
 
 
 
