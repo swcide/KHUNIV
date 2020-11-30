@@ -62,28 +62,29 @@ public class RegistrationController {
 			
 		System.out.println(list.size());
 		System.out.println(list2.size());
-		int count = 0;
-			for(int i=0; i<list.size();i++) { // 18
-				for(int j=0; j<list2.size();j++) { //3
+		for (int i = 0; i < list.size(); i++) {
 			
-					if(!list.get(i).getcNo().equals(list2.get(j).getcNo()) ){
-						System.out.println("값 다를 때");
+			beforeR.add(list.get(i));	
+
+		}	
+		
+		for(int i=0; i<list.size();i++) { // 3
+							
+				for (int j = 0; j< list2.size(); j++) 	 { //18
+					if(list2.get(j).getcNo().equals(list.get(i).getcNo()) ){
+						System.out.println("여기몇번들어옴?" +i);
+						System.out.println("여기몇번들어옴?" +j+"jjjjj");
+						System.out.println(list.get(i));
 						
-						beforeR.add(list.get(i));	
+						beforeR.remove(i);
 					}
 				}
 				
 			}
-			ArrayList<Registration> r = new ArrayList<Registration>();
 		
-			System.out.println(count);
 			System.out.println(beforeR);
 			
-//			for (int i = 0; i < beforeR.size(); i++) {
-//				if(!r.contains(beforeR.get(i)))
-//					r.add(beforeR.get(i));
-//				
-//			}  
+		
 		
 		mv.addObject("r",beforeR).setViewName("ad_register/ad_AuditLecture_Application");
 		

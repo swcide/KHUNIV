@@ -5,7 +5,6 @@
 	<resultMap type="Registration" id="RegistrationResultSet">
 		<id property="dNo" column="DEPT_NO" />
 		<result property="dName" column="DEPT_NAME" />
-		<result property="semester" column="STD_SEMESTER" />
 		<result property="semNo" column="SEME_NO" />
 		<result property="cNo" column="CLASS_NO" />
 		<result property="cName" column="CLASS_NAME" />
@@ -67,7 +66,8 @@
 	<select id="myRSelectList" resultMap="RegistrationResultSet">
 	
          SELECT * FROM TESTT T
-         LEFT JOIN TB_CLASS C ON(C.CLASS_NO=T.CLASS_NO)
+         join TB_class_PROFESSOR using(class_no)
+         join TB_CLASS C using(class_no)
          WHERE STD_NO = #{sNo} 
 	</select>
 	

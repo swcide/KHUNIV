@@ -139,13 +139,14 @@ ul.comments li {
 												<c:param name="nType" value="${n.nType}" />
 											</c:url>
 											<c:url var="nDelete" value="nDelete.do">
+												<c:param name="nType" value="${n.nType}" />
 												<c:param name="nId" value="${n.nId }" />
 											</c:url>
 											<c:url var="nList" value="nList.do?nType=1">
 												<c:param name="currentPage" value="${ currentPage }" />
 											</c:url>
 
-											<a href="${nDelete}" class="mb-1 mt-1 mr-1 btn btn-primary"> 삭제하기${nupview} </a> <a href="${nupview }" class="mb-1 mt-1 mr-1 btn btn-primary"> 수정하기 </a>
+											<a href="${nDelete}" class="mb-1 mt-1 mr-1 btn btn-primary"> 삭제하기 </a> <a href="${nupview }" class="mb-1 mt-1 mr-1 btn btn-primary"> 수정하기 </a>
 										</div>
 									</div>
 
