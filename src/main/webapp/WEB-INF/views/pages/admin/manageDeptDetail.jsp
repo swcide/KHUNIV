@@ -121,6 +121,7 @@ if (loginUser != null) {
 																		</c:url>
 																		<c:url var="nDelete" value="manageNoticeDelete.do">
 																			<c:param name="nId" value="${n.nId }" />
+																			<c:param name="nType" value="${n.nType}" />
 																		</c:url>
 																		<c:url var="nList" value="manageNotice.do?nType=1">
 																			<c:param name="currentPage" value="${ currentPage }" />
@@ -138,6 +139,7 @@ if (loginUser != null) {
 																		</c:url>
 																		<c:url var="nDelete" value="manageNoticeDelete.do?nType=1">
 																			<c:param name="nId" value="${n.nId }" />
+																			<c:param name="nType" value="${n.nType}" />
 																		</c:url>
 																		<c:url var="nList" value="manageNotice.do">
 																			<c:param name="currentPage" value="${ currentPage }" />

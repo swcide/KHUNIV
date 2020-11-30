@@ -159,7 +159,7 @@ ul.comments li {
 												<c:param name="nType" value="${n.nType}" />
 											</c:url>
 											<c:url var="nDelete" value="nDelete.do?nType=1">
-												<c:param name="nId" value="${n.nId }" />
+												<c:param name="nType" value="${n.nType}" />
 												<c:param name="nId" value="${n.nId }" />
 											</c:url>
 											<c:url var="nList" value="nList.do">
