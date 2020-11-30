@@ -1,7 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/professor_header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.util.Date"%>
+<%@ page import="com.kh.univ.member.model.vo.Professor"%>
 
+<%
+Professor loginProf = (Professor)session.getAttribute("loginProf");
+String pNo = null;
+pNo =loginProf.getpNo();
+%>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="body">
@@ -24,30 +32,49 @@
 						<div class="custom-box-details bg-color-light col-lg-12 ml-5 mb-5 mb-lg-4 float-right clearfix">
 							<h4>내 강의 목록</h4>
 
-								<table class="table table-hover">
-									<thead>
-										<tr>
-											<th>강의번호<th>
-											<th>학기</th>
-											<th>과목명</th>
-											<th>수강인원</th>
-											<th>과제제출률</th>
-											<th>수업진행률</th>
-										</tr>
-									</thead>
-							<c:forEach var="lc" items="${aLc}">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>강의번호</th>
+										<th>강의구분</th>
+										<th width="500px" style="text-align:center;">과목명</th>
+										<th>개강일</th>
+										<th>진행 주차</th>
+										<th>수업진행률</th>
+										
+									</tr>
+								</thead>
+								<c:forEach var="ls" items="${ls}">
+								<input id="pNo" type="hidden" value="<%=pNo%>"></input>
 									<tbody>
-										<tr>
-											<td>${lc.classNo}<td>
-											<td>2</td>
-											<td>${lc.className}</td>
-											<td>20</td>
-											<td>100%</td>
-											<td>12%</td>
+									
+										<tr onclick="openNew(this); return false;" style="cursor: pointer;">
+
+											<td >${ls.classNo}													
+											<input type="hidden" value="${ls.classNo}"></td>
+											<td>${ls.classType }</td>
+											<td style="text-align:center;">${ls.className}</td>
+											<td>${ls.startDate }</td>
+											<td>
+												<c:set var="today" value="<%=new Date()%>" />
+												<c:set var="sd" value="${ls.startDate}" />
+												<fmt:formatDate var="nowDate" pattern="yyyy-MM-dd" value="${today }" />
+												<fmt:formatDate var="startDate" value="${sd}" pattern="yyyy-MM-dd" />
+												<fmt:parseNumber var="currentDate" value="${today.time / (1000*60*60*24)}" integerOnly="true"></fmt:parseNumber>
+												<fmt:parseNumber var="strDate" value="${sd.time / (1000*60*60*24)}" integerOnly="true"></fmt:parseNumber>
+
+												<c:set var="days" value="${currentDate - strDate }" />
+												<c:set var="dr" value="${days/84*100 }" />
+												<c:set var="cw" value="${days/7 }" />
+												<fmt:parseNumber var="cw" value="${cw }" integerOnly="true" />
+												<c:if test="${(cw-(cw%1))>= 12}">12</c:if>/12주
+
+											</td>
+											<td><c:if test="${dr-(dr%1) >= 100}">100%</c:if></td>
 										</tr>
 									</tbody>
-							</c:forEach>
-								</table>
+								</c:forEach>
+							</table>
 						</div>
 					</div>
 				</div>
@@ -55,6 +82,15 @@
 		</section>
 	</div>
 </div>
-<!-- <a href="prof_lectureStudentList.do"> -->
+<script>
+	function openNew(obj){
+		var classNo = $(obj).find('input').val();
+		console.log(classNo);
+		var pNo=$('#pNo').val();
+		location.href="prof_lectureStudentList.do?classNo=" + classNo +'&pNo='+ pNo;
+		return false;
+		
+	};
+   </script>
 <%@ include file="../common/footer.jsp"%>
 

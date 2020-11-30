@@ -64,7 +64,7 @@ if (loginUser != null) {
 			<!--  contents -->
 			<div class="main-content container-fluid">
 				<div class="page-title">
-					<h3>QnA</h3>
+					<h3>일반공지 작성</h3>
 					<p class="text-subtitle text-muted">모든 기능은 필요에 의해 이용하여 주시길 바랍니다.</p>
 				</div>
 				<section class="section">
@@ -84,7 +84,7 @@ if (loginUser != null) {
 
 
 															<div class="custom-box-details bg-color-light custom-box-shadow-1 col-lg-12 ml-5 mb-5 mb-lg-4 float-right clearfix">
-																<h4>학사공지 작성</h4>
+																<h4>일반공지 작성</h4>
 
 																<form id="fm" class="contact-form" action="manageNoticeInsert.do" method="post" enctype="multipart/form-data">
 
@@ -98,7 +98,7 @@ if (loginUser != null) {
 																		<div class="form-group col">
 																			<input type="hidden" name="nWriter" value="${loginAdmin.aId}">
 																			<input type="hidden" name="nName" value="${loginAdmin.aName}">
-																			<input type="hidden" name="nType" value="1">
+																			<input type="hidden" name="nType" value="2">
 																			<div class=" ">
 																				<div class="mb-3">
 																					<textarea id="Content" class="textarea" placeholder="Place some text here" name="nContent" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>

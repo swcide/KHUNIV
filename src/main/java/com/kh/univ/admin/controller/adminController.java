@@ -189,7 +189,7 @@ int listCount = aService.getListCount(nType);
 
 			return "admin/manageDeptWrite";
 		} else if (nType == 2) {
-			return "admin/managegeneralWrite";
+			return "admin/manageGeneralWrite";
 		} else {
 			return "common/errorPage";
 		}

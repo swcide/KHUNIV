@@ -11,12 +11,14 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.lecture.model.vo.Assignment;
+import com.kh.univ.lecture.model.vo.Attendance;
 import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
 import com.kh.univ.lecture.model.vo.LectureHomeWork;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
+import com.kh.univ.lecture.model.vo.LectureStudent;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.testPage.model.vo.HomeworkGrade;
 import com.kh.univ.testPage.model.vo.Test;
@@ -200,10 +202,16 @@ public class profLecDao {
 		return (ArrayList)sqlSession.selectList("lectureMapper.takeQList",qId);
 	}
 
-	
+	public ArrayList<Attendance> selectAttendList(String pNo) {
+		return (ArrayList)sqlSession.selectList("lectureMapper.lectureAttendList",pNo);
+	}
 
-	
+	public ArrayList<Attendance> selectStudentAttendList(LectureList ll) {
+		return (ArrayList)sqlSession.selectList("lectureMapper.lectureStudentAttendList",ll);
+	}
 
-
-
+	public ArrayList<LectureStudent> selectlectureStudentDetail(LectureStudent ls) {
+		System.out.println("DAO 들어옴"+ls.getpNo());
+		return (ArrayList)sqlSession.selectList("lectureMapper.lectureStudentDetail",ls);
+	}
 }

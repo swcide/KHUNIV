@@ -105,13 +105,6 @@ pNo =loginProf.getpNo();
 		return false;
 		
 	} ;
-	
-// 	$("#popular10").click(function(){ 
-		
-		
-		
-	
-// 	});
    </script>
 <%@include file="../common/footer.jsp"%>
 </html>

@@ -32,12 +32,14 @@ import com.kh.univ.common.PageInfo;
 import com.kh.univ.common.Pagination;
 import com.kh.univ.lecture.model.service.profLecService;
 import com.kh.univ.lecture.model.vo.Assignment;
+import com.kh.univ.lecture.model.vo.Attendance;
 import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
 import com.kh.univ.lecture.model.vo.LectureHomeWork;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
+import com.kh.univ.lecture.model.vo.LectureStudent;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.notice.model.vo.Notice;
 import com.kh.univ.testPage.model.vo.HomeworkGrade;
@@ -68,9 +70,9 @@ public class prof_LectureController {
 
 		ArrayList<LectureClass> aLc = plService.selectValue(pNo);
 		System.out.println(aLc);
-		System.out.println();
 
-		if (aLc != null) {
+		if (aLc != null) 
+		{
 			mv.addObject("aLc", aLc);
 			mv.setViewName("prof_lecture/prof_lectureList");
 		} else {
@@ -79,18 +81,77 @@ public class prof_LectureController {
 		}
 		return mv;
 	}
+
 	@RequestMapping(value = "prof_lectureList2.do")
-	public String prof_lecture2(Model model)
+	public ModelAndView prof_lecture2(ModelAndView mv, HttpSession session)
 		{
-			return "prof_lecture/prof_lectureList2";
+		Professor p = (Professor) session.getAttribute("loginProf");
+		String pNo = p.getpNo();
+
+		ArrayList<Attendance> ls = plService.AttendanceList(pNo);
+		System.out.println(ls);
+
+		if (ls != null) 
+		{
+			mv.addObject("ls", ls);
+			mv.setViewName("prof_lecture/prof_lectureList2");
+		} else {
+			mv.addObject("msg", "로그인 실패");
+			mv.setViewName("common/errorPage");
 		}
+		return mv;
+	}
 
 	@RequestMapping(value = "prof_lectureStudentList.do")
-	public String prof_Studentlecture(Model model)
-		{
-			return "prof_lecture/prof_lectureStudentList";
-		}
+	public ModelAndView prof_lectureStudent(ModelAndView mv, LectureList ll, 
+			@RequestParam(name = "pNo", required = false) String pNo, 
+			@RequestParam(name = "classNo", required = false) String classNo, HttpSession session)
+	{
+		System.out.println(pNo);
+		System.out.println(classNo);
+		ll.setpNo(pNo);
+		ll.setClassNo(classNo);
 
+		ArrayList<Attendance> lc = plService.StudentAttendList(ll);
+		System.out.println(lc);
+
+		if (lc != null) 
+		{
+			mv.addObject("lc", lc);
+			mv.setViewName("prof_lecture/prof_lectureStudentList");
+		} else {
+			mv.addObject("msg", "로그인 실패");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value = "prof_lectureStudentDetail.do")
+	public ModelAndView prof_lectureStudent(ModelAndView mv, LectureStudent ls, 
+			@RequestParam(name = "pNo", required = false) String pNo, 
+			@RequestParam(name = "sNo", required = false) String sNo, 
+			@RequestParam(name = "classNo", required = false) String classNo, HttpSession session)
+	{
+		System.out.println(pNo);
+		System.out.println(sNo);
+		System.out.println(classNo);
+		ls.setpNo(pNo);
+		ls.setsNo(sNo);
+		ls.setClassNo(classNo);
+
+		ArrayList<LectureStudent> lc = plService.lectureStudentDetail(ls);
+		System.out.println(lc);
+
+		if (lc != null) 
+		{
+			mv.addObject("lc", lc);
+			mv.setViewName("prof_lecture/prof_lectureStudentDetail");
+		} else {
+			mv.addObject("msg", "에러가 발생했습니다.");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
 	/**
 	 * 해당 과목의 주차별 내용만 출력
 	 * 

@@ -48,22 +48,16 @@
 												<c:forEach var="aq" items="${list }">
 													<tr>
 														<td class="text-bold-500" style="text-align: left">${aq.qnaId }</td>
-														<td style="text-align: left">
-																<c:url var="QnA_detail" value="manageQnA_detail.do">
-																	<c:param name="qnaId" value="${aq.qnaId}" />
-																	<c:param name="currentPage" value="${pi.currentPage }" />
-																</c:url>
-																<a href="${QnA_detail }">${aq.qnaTitle }</a>
-														</td>
+														<td style="text-align: left"><c:url var="QnA_detail" value="manageQnA_detail.do">
+																<c:param name="qnaId" value="${aq.qnaId}" />
+																<c:param name="currentPage" value="${pi.currentPage }" />
+															</c:url> <a href="${QnA_detail }">${aq.qnaTitle }</a></td>
 														<td class="text-bold-500">${aq.qnaName }</td>
-														<td>
-															<c:if test="${aq.rCount > 0}">
+														<td><c:if test="${aq.rCount > 0}">
 																<span class="badge bg-secondary">답변완료</span>
-															</c:if>
-															<c:if test="${aq.rCount== 0}">
+															</c:if> <c:if test="${aq.rCount== 0}">
 																<span class="badge bg-warning">답변대기</span>
-															</c:if>
-														</td>
+															</c:if></td>
 													</tr>
 												</c:forEach>
 											</tbody>
@@ -72,38 +66,46 @@
 										<div class="card-tools" align="center">
 											<ul class="pagination pagination-sm" style="display: inline-flex">
 												<c:if test="${ pi.currentPage eq 1 }">
-													<a class="page-link" href="#"><i class="fas fa-angle-left"></i></a>
+													<li class="page-item"><a class="page-link">
+															<i class="fas fa-angle-left"></i>
+														</a></li>
 												</c:if>
+												
 												<c:if test="${ pi.currentPage ne 1 }">
-													<c:url var="before" value="manageQna.do">
+													<c:url var="before" value="manageQna.do?nType=1">
 														<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
 													</c:url>
-													<li class="page-item"><a class="page-link" href="${ before }"><i class="fas fa-angle-left"></i></a></li>
+													<li class="page-item"><a class="page-link" href="${ before }">
+															<i class="fas fa-angle-left"></i>
+														</a></li>
 												</c:if>
-
+												
 												<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
 													<c:if test="${ p eq pi.currentPage }">
-														<li class="page-item active"><a class="page-link" href="${ pagination }">${ p }</a></li>
-													</c:if>
 
+														<li class="page-item active"><a class="page-link" href="${ pagination }">${p}</a></li>
+													</c:if>
 													<c:if test="${ p ne pi.currentPage }">
-														<c:url var="pagination" value="manageQna.do">
+														<c:url var="pagination" value="manageQna.do?nType=1">
 															<c:param name="currentPage" value="${ p }" />
 														</c:url>
-														<li class="page-item"><a class="page-link" href="${ pagination }">${ p }</a></li>
+														<li class="page-item "><a class="page-link" href="${ pagination }">${p}</a></li>
 													</c:if>
 												</c:forEach>
-
 												<c:if test="${ pi.currentPage eq pi.maxPage }">
-													<li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
+													<li class="page-item"><a class="page-link">
+															<i class="fas fa-angle-right"></i>
+														</a></li>
 												</c:if>
-												<c:if test="${ pi.currentPage ne pi.maxPage }">
-													<c:url var="after" value="manageQna.do">
+												
+												<c:if test="${pi.currentPage ne pi.maxPage }">
+													<c:url var="after" value="manageQna.do?nType=1">
 														<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
 													</c:url>
-													<li class="page-item"><a class="page-link" href="${ after }"><i class="fas fa-angle-right"></i></a></li>
+													<li class="page-item"><a class="page-link" href="${after}">
+															<i class="fas fa-angle-right"></i>
+														</a></li>
 												</c:if>
-
 											</ul>
 										</div>
 									</div>

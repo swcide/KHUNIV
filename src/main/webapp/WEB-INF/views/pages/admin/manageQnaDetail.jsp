@@ -105,23 +105,18 @@ int type = 0;
 															<c:url var="blist" value="blist.do">
 																<c:param name="currentPage" value="${ currentPage }" />
 															</c:url>
-															<c:if test="${ loginUser.sNo eq b.qnaWriter}">
-																<a href="${ qnaUpview }">수정하기</a>&nbsp;            
-					               <a href="${ qnaDelete }">삭제하기</a>&nbsp;            
-					            </c:if>
 															<c:if test="${!empty sessionScope.loginAdmin}">
 																<a href="${ qnaUpview }">수정하기</a>&nbsp;      
 					              <a href="${ qnaDelete }">삭제하기</a>&nbsp;     
 					            </c:if>
 
 															<!-- 댓글댓글댓글댓글댓글댓글 -->
-															<c:if test="${empty sessionScope.loginAdmin || !empty sessionScope.loginUser  }">
+															<c:if test="${!empty sessionScope.loginAdmin || !empty sessionScope.loginUser  }">
 																<div id="comments" class="post-block mt-5 post-comments">
 																	<h4 id="rCount" class="mb-3"></h4>
 																	<ul class="comments">
 																	</ul>
 																</div>
-
 
 																<div class="post-block mt-5 post-leave-comment">
 																	<h4 class="mb-3">Leave a comment</h4>
@@ -274,7 +269,7 @@ $(function(){
 									'					<strong >'+$rName+'</strong>'+
 									'				<span class="date float-right" style=" margin-left: 10px;">'+$rCreateDate+'</span>'+			
 									'				</span>'+
-									'				<p style="margin-bottom:15px;">'+$rContent+'<a href="" style="float:right;">삭제하기</a>'+'</p>'+ 
+									'				<p style="margin-bottom:15px;">'+$rContent+'</p>'+ 
 									'				<textarea style="width:85%; display: none;"></textarea>'+
 									' 				<span class="float-right">'+
 									'				</span>'+

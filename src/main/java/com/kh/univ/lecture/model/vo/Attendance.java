@@ -13,23 +13,41 @@ public class Attendance {
 	protected int attendRate; 				// 출석률 					TB_ATTENDANCE
 	private int assignment;					// 과제제출수				TB_ATTENDANCE
 	private int week;						// 주차					TB_ATTENDANCE
+	private String sName;					// 학생이름				
 	
 	public Attendance() {
 	}
 	
-	public Attendance(String classNo, String classType, String className, String sNo, int attendRate, Date attendance,
-			Date startDate, int assignment, int week) {
+	
+
+	public Attendance(String classNo, String classType, String className, String sNo, Date attendance, Date startDate, int attendRate, int assignment,
+			int week, String sName) {
 		super();
 		this.classNo = classNo;
 		this.classType = classType;
 		this.className = className;
 		this.sNo = sNo;
-		this.attendRate = attendRate;
 		this.attendance = attendance;
 		this.startDate = startDate;
+		this.attendRate = attendRate;
 		this.assignment = assignment;
 		this.week = week;
+		this.sName = sName;
 	}
+
+
+
+	public String getsName() {
+		return sName;
+	}
+
+
+
+	public void setsName(String sName) {
+		this.sName = sName;
+	}
+
+
 
 	public String getClassNo() {
 		return classNo;
@@ -103,12 +121,15 @@ public class Attendance {
 		this.week = week;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "Attendance [classNo=" + classNo + ", classType=" + classType + ", className=" + className + ", sNo="
-				+ sNo + ", attendRate=" + attendRate + ", attendance=" + attendance + ", startDate=" + startDate
-				+ ", assignment=" + assignment + ", week=" + week + "]";
+		return "Attendance [classNo=" + classNo + ", classType=" + classType + ", className=" + className + ", sNo=" + sNo + ", attendance="
+				+ attendance + ", startDate=" + startDate + ", attendRate=" + attendRate + ", assignment=" + assignment + ", week=" + week
+				+ ", sName=" + sName + "]";
 	}
+
 
 	
 

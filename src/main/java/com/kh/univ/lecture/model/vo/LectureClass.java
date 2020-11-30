@@ -5,12 +5,12 @@ public class LectureClass {
 	protected String classNo; 		    // 과목번호 					tb-class
 	protected String className;			// 과목명						tb-class
 	protected String lecAttendance;	    // 출석 					tb-class-detail
-	protected String lecLearningRate;     // 학습률					tb-class-detail
-	protected int Attendees;			    	// 수강인원				tb-class-detail
+	protected String lecLearningRate;   // 학습률					tb-class-detail
+	protected int Attendees;			// 수강인원				tb-class-detail
 	protected String classSummary;		// 교과목개요				tb_lectuerPlan
 	protected String classImg; 			//과목사진					tb-class
-	protected String profName; 			 //교수이름					tb-class-professor join tb-professor
-	protected String profEmail; 			//교수이메일					tb-class-professor join tb-professor
+	protected String profName; 			//교수이름					tb-class-professor join tb-professor
+	protected String profEmail; 		//교수이메일					tb-class-professor join tb-professor
 	protected String deptName; 			//학과이름					tb-department
 	
 	
@@ -21,7 +21,6 @@ public class LectureClass {
 
 	public LectureClass(String classNo, String className, String lecAttendance, String lecLearningRate, int attendees, String classSummary, String classImg, String profName, String profEmail,
 			String deptName) {
-		super();
 		this.classNo = classNo;
 		this.className = className;
 		this.lecAttendance = lecAttendance;
