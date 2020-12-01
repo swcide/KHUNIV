@@ -348,14 +348,14 @@ int listCount = aService.getListCount(nType);
 	//게시글삭제
 
 	@RequestMapping("manageNoticeDelete.do")
-	public String noticeDelete(Notice n, HttpServletRequest request) {
+	public String noticeDelete(Notice nc, HttpServletRequest request) {
 		
-		n = aService.selectUpdateNotice(n);
+		Notice n = aService.selectUpdateNotice(nc);
 		System.out.println(n);
 		
-//		if (n.getRenameFileName() != null) {
-//			deleteFile(n.getRenameFileName(), request);
-//		}
+		if (n.getRenameFileName() != null) {
+			deleteFile(n.getRenameFileName(), request);
+		}
 
 		int result = aService.deleteNotice(n);
 		System.out.println(result);

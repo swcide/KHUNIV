@@ -221,31 +221,17 @@
 								</div>
 								<div class="card-body px-0 pb-0">
 									<div class="table-responsive">
-								<form id="excelUploadForm" name="excelUploadForm" enctype="multipart/form-data" method="post" >
-									<div>
-										<c:set var="excel " value="${efu }" />
-										<c:if test="${!empty efu }">
-											<span class="text-uppercase mb-0 text-left  text-2 float-left col-md-12">
-												현재 업로드한 파일 :
-												<a href="${contextPath }/resources/excelUploadFile/${efu  }">${efu  }</a>
-											</span>
-										</c:if>
-										<input class="text-uppercase mb-2 text-center  float-left col-md-12" style="text-align: right;" id="excelFile" name="excelFile" type="file">
-										<a  id="addExcelImpoartBtn" class="btn" onclick="check()">
-											<span>엑셀파일 업로드</span>
-										</a>
-									</div>
-								</form>
-										<div class="form-file">
-											<input type="file" class="form-file-input" id="customFile">
-											<label class="form-file-label" for="customFile" style="margin: 0px 10px 17px 10px;"> <span class="form-file-text">학생정보 엑셀파일을 첨부해주세요.</span> <span class="form-file-button btn-primary ">
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-upload">
-														<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-														<polyline points="17 8 12 3 7 8"></polyline>
-														<line x1="12" y1="3" x2="12" y2="15"></line></svg>
-												</span>
-											</label>
-										</div>
+										<form id="excelUploadForm" name="excelUploadForm" enctype="multipart/form-data" method="post">
+											<div>
+												<c:set var="excel " value="${efu }" />
+												<c:if test="${!empty efu }">
+													<span class="text-uppercase mb-0 text-left  text-2 float-left col-md-12"> 현재 업로드한 파일 : <a href="${contextPath }/resources/excelUploadFile/${efu  }">${efu  }</a>
+													</span>
+												</c:if>
+												<input class="text-uppercase mb-2 text-center  float-left col-md-12" style="padding: 0px 20px 0 20px; color: #5A8DEE;" id="excelFile" name="excelFile" type="file">
+												<a id="addExcelImpoartBtn" class="btn btn-primary mr-1 mb-1" onclick="check()" style="padding: 1px 3px 1px 3px; margin: 0px 0px 0px 20px;"> 엑셀파일 업로드 </a>
+											</div>
+										</form>
 									</div>
 								</div>
 							</div>
@@ -305,7 +291,7 @@
 
 		
 	</script>
-	
+
 	<script src="resources/assets/js/feather-icons/feather.min.js"></script>
 	<script src="resources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script src="resources/assets/js/app.js"></script>
@@ -315,6 +301,6 @@
 	<script src="resources/assets/js/pages/dashboard.js"></script>
 
 	<script src="resources/assets/js/main.js"></script>
-	
+
 </body>
 </html>

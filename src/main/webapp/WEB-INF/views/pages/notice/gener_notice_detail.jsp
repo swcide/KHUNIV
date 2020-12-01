@@ -118,6 +118,7 @@ System.out.println(type);
 												</c:url>
 												<c:url var="nDelete" value="nDelete.do">
 													<c:param name="nId" value="${n.nId }"/>
+													<c:param name="nType" value="${n.nType}" />
 												</c:url>
 												<c:url var="nlist" value="nList.do?nType=2">
 													<c:param name="currentPage" value="${ currentPage }"/>
@@ -142,6 +143,7 @@ System.out.println(type);
 												</c:url>
 												<c:url var="nDelete" value="nDelete.do">
 													<c:param name="nId" value="${n.nId }"/>
+													<c:param name="nType" value="${n.nType}" />
 												</c:url>
 												<c:url var="nlist" value="dept_nList.do?nType=2">
 													<c:param name="currentPage" value="${ currentPage }"/>

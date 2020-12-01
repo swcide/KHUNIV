@@ -281,15 +281,7 @@ public class NoticeController {
 		return mv;
 	}
 
-	public void deleteFile(String fileName, HttpServletRequest request) {
-		String root = request.getSession().getServletContext().getRealPath("resources");
-		String savePath = root + "\\uploadFiles";
-		File f = new File(savePath + "\\" + fileName);// 기존의 업로드된 파일의 실제 경로를 이용해서 ifle 객체 생성
 
-		if (f.exists()) {
-			f.delete();
-		}
-	}
 
 	/**
 	 * 7. 게시글 삭제
@@ -299,10 +291,10 @@ public class NoticeController {
 	 * @return
 	 */
 	@RequestMapping("nDelete.do")
-	public String noticeDelete(Notice n, HttpServletRequest request) {
+	public String noticeDelete(Notice n2, HttpServletRequest request) {
 
-		n = nService.selectUpdateNotice(n);
-
+		
+		Notice n = nService.selectUpdateNotice(n2);
 		if (n.getRenameFileName() != null) {
 			deleteFile(n.getRenameFileName(), request);
 		}
@@ -320,6 +312,15 @@ public class NoticeController {
 
 	}
 
+	public void deleteFile(String fileName, HttpServletRequest request) {
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\uploadFiles";
+		File f = new File(savePath + "\\" + fileName);// 기존의 업로드된 파일의 실제 경로를 이용해서 ifle 객체 생성
+
+		if (f.exists()) {
+			f.delete();
+		}
+	}
 	/**
 	 * 8. 댓글 조회
 	 * 
