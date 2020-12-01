@@ -7,6 +7,7 @@ import com.kh.univ.common.PageInfo;
 import com.kh.univ.helpDesk.model.vo.QnA;
 import com.kh.univ.helpDesk.model.vo.Reply;
 import com.kh.univ.notice.model.vo.Notice;
+import com.kh.univ.univlife.board.human.model.vo.Report;
 
 public interface adminService {
 
@@ -44,5 +45,7 @@ public interface adminService {
 	int insertNotice(Notice n);
 
 	int deleteNotice(Notice n);
+
+	ArrayList<Report> selectReportList();
 
 }

@@ -396,42 +396,5 @@ public class NoticeController {
 		}
 	}
 
-//----------------------------------------------------------
-
-	/**
-	 * 1_2. 일반 게시물 리스트 조회
-	 * 
-	 * @param mv
-	 * @param session
-	 * @param currentPage
-	 * @return
-	 */
-	@RequestMapping("generNList.do")
-	public ModelAndView generNoticeList(ModelAndView mv, HttpSession session, @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage) {
-//				
-//		int listCount = nService.getDeptListCount();
-//		
-//		Admin admin =(Admin)session.getAttribute("loginAdmin");
-//		
-//		
-//		
-//		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-//		
-//		ArrayList<Notice> list = nService.selectDeptList(pi);
-//		ArrayList<Notice> listAll = nService.selectDeptListAll(pi); //비공개,공개 모두 관람 
-//		
-//		if(admin==null) {
-//			mv.addObject("list",list);
-//			mv.addObject("pi",pi);
-//			mv.setViewName("notice/gener_notice");
-//		}else{
-//			mv.addObject("list",listAll);
-//			mv.addObject("pi",pi);
-//			mv.setViewName("notice/gener_notice");
-//		}
-
-		return mv;
-
-	}
 
 }
