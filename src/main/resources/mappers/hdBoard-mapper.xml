@@ -159,7 +159,8 @@
 		SELECT COUNT(*)
 		FROM
 		TB_HELPDESK_QNA
-		WHERE QNA_WRITER = #{sNo}
+		WHERE QNA_STATUS = 'Y'
+		AND QNA_WRITER = #{sNo}
 	</select>
 
 

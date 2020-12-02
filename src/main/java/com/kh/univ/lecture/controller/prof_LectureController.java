@@ -8,6 +8,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +29,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
+import com.kh.univ.ad_Register.model.vo.semesterPoint;
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.common.Pagination;
 import com.kh.univ.lecture.model.service.profLecService;
@@ -43,8 +45,13 @@ import com.kh.univ.lecture.model.vo.LectureStudent;
 import com.kh.univ.lecture.model.vo.attPointsDTO;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.notice.model.vo.Notice;
+import com.kh.univ.testPage.model.service.TestPageService;
+import com.kh.univ.testPage.model.service.TestPageServiceImpl;
+import com.kh.univ.testPage.model.vo.Grade;
 import com.kh.univ.testPage.model.vo.HomeworkGrade;
 import com.kh.univ.testPage.model.vo.Test;
+import com.kh.univ.testPage.model.vo.TestGrade;
+import com.kh.univ.testPage.model.vo.TestList;
 import com.kh.univ.member.model.vo.Student;
 
 @SessionAttributes({ "loginProf" })
@@ -53,6 +60,9 @@ public class prof_LectureController {
 
 	@Autowired
 	profLecService plService;
+	
+	@Autowired
+	TestPageService tService; 
 
 	/**
 	 * 내 강의 동영상 목록 클릭 담당과목만 출력
@@ -867,19 +877,7 @@ public class prof_LectureController {
 		mv.addObject("ll",ll);
 		mv.setViewName("prof_lecture/prof_homework_list");
 		return mv;
-//		Professor p= (Professor)session.getAttribute("loginProf");
-//		
-//		
-//		ArrayList<LectureHomeWork> cTList = plService.hSelectList(p);
-//		
-////		System.out.println(cTList);
-//		
-//		
-//		mv.addObject("cTList",cTList);
-//		mv.setViewName("prof_lecture/prof_homework_list");
-//		return mv;
-//				"prof_lecture/prof_homework_list";
-		
+
 		
 	}
 	
@@ -912,6 +910,8 @@ public class prof_LectureController {
 	 * @param file
 	 * @return
 	 */
+	
+	
 	@RequestMapping("hInsert.do")
 	public String homeworkEvaludation(LectureHomeWork lh,HttpServletRequest request,
 			 @RequestParam(name="uploadFile",required=false) MultipartFile file) {
@@ -929,29 +929,28 @@ public class prof_LectureController {
 				
 			}
 		}
+		
 		String openDate = lh.getOpenDate();
 		
 		String arr[] = openDate.split("-");
 		
 		String str = arr[0]+arr[1]+arr[2];
 		
-		
-		
+		System.out.println("d여기오니ㅣㅣㅣㅣㅣㅣ?");
+		System.out.println(lh);
 		
 		
 
 		
 		lh.sethNo("H"+lh.getpNo()+str);
 		
-		int result = plService.insertHomework(lh);
+		int result = plService.insertHomework(lh);	
 		
 		if(result>0) {
 			return "redirect:hWeekList.do?cNo="+lh.getcNo()+"&pNo="+lh.getpNo();
 		}else {
 			return "common/errorPage";
 		}
-		
-		
 	}
 	
 	
@@ -965,16 +964,20 @@ public class prof_LectureController {
 	 * @return
 	 */
 	@RequestMapping( "sEvaluation.do")
-	public ModelAndView prof_StdEvaluation(ModelAndView mv,LectureHomeWork lh) {
+	public ModelAndView prof_StdEvaluation(ModelAndView mv,HomeworkGrade gb) {
 		
 		
 		
+		System.out.println(gb);
 		
-		ArrayList<LecturePlanWeek> ag = plService.selectSeList(lh);
-		
+		ArrayList<LecturePlanWeek> ag = plService.selectSeList(gb);
+		ArrayList<HomeworkGrade> hg = plService.SelectHGList(gb);
 		System.out.println(ag);
 		
+		System.out.println(hg);
 		
+		mv.addObject("hg",hg);
+		mv.addObject("lh",gb);
 		mv.addObject("ag",ag);
 		mv.setViewName("prof_lecture/prof_homework_Evaluation"); 
 		
@@ -989,22 +992,77 @@ public class prof_LectureController {
 	 * @return
 	 */
 	@RequestMapping( "sEvaluationInsert.do")
-	public ModelAndView prof_StdEvaluationUpdate(HttpSession session, ModelAndView mv , HomeworkGrade gb ) {
+	public String prof_StdEvaluationUpdate(HttpSession session , HomeworkGrade gb ) {
 		
 		Professor p =  (Professor)session.getAttribute("loginProf");
 		
+		
+		
 		String pNo =p.getpNo();
+		String cNo =gb.getcNo();
 		
 		gb.setpNo(pNo);
+		
+		
+		System.out.println(gb);
+		
+		
 		
 
 		int result=plService.EvaluationInsert(gb);
 		
-		System.out.println(result);
 		
-		mv.setViewName("prof_lecture/prof_homework_Evaluation"); 
 		
-		return mv;
+//		----------------------------------------- semesterPoint insert
+		
+		ArrayList<HomeworkGrade> hg =plService.hList(gb); 
+		int grade =0;
+		
+		for (int i = 0; i < hg.size(); i++) {
+			
+		  grade +=hg.get(i).getPoint();
+		}
+		System.out.println(grade);
+		
+		LecturePlan lp = tService.lpOne(cNo);
+		
+		
+		int reportPoint = lp.getAssignmentPoints();
+		
+		System.out.println(grade);
+		System.out.println(reportPoint+"examPoint");
+		
+		int report = (int) (grade*(reportPoint)/120);
+		
+		System.out.println(report);
+		semesterPoint sp = new semesterPoint();
+		Calendar cal = Calendar.getInstance();
+		String year = String.valueOf(cal.get(Calendar.YEAR));
+		int month = cal.get(Calendar.MONTH+1);
+		
+		
+		
+		sp.setcNo(gb.getcNo());
+		sp.setpNo(gb.getpNo());
+		sp.setsNo(gb.getsNo());
+		sp.setSemYear(year);
+		
+	
+		System.out.println(sp);
+		
+		if(month >8 && hg.size()==6) {
+			sp.setSemNo("2");
+			sp.setReport(report);
+			int result2 = tService.updateSp(sp);
+		}else if(month<8 && hg.size()==6) {
+			sp.setReport(report);
+			sp.setsNo("1");
+			int result2 = tService.updateSp(sp);
+		}
+		
+		
+		
+		return "redirect:sEvaluation.do?cNo="+cNo+"&lecNo="+gb.getLecNo()+"&hNo="+gb.gethNo();
 	}
 	
 	

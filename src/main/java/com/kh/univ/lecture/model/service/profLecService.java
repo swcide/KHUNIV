@@ -127,11 +127,6 @@ public interface profLecService {
 
 	ArrayList<ClassTest> quizSelectList(Professor p, PageInfo pi);
 	
-	
-	
-	
-	
-
 
 	ArrayList<LectureList> hSelectList(Professor p);
 
@@ -139,12 +134,24 @@ public interface profLecService {
 
 	ArrayList<LectureHomeWork> selectHList(LectureHomeWork lh);
 
-	ArrayList<LecturePlanWeek> selectSeList(LectureHomeWork lh);
+	ArrayList<LecturePlanWeek> selectSeList(HomeworkGrade gb);
 
 
 	int EvaluationInsert(HomeworkGrade gb);
 
 	ArrayList<Test> takeQList(int qId);
+	
+	
+	ArrayList<HomeworkGrade> hList(HomeworkGrade gb);
+	
+	/**
+	 * 평가 뷰 체크용
+	 * @param gb
+	 * @return
+	 */
+	ArrayList<HomeworkGrade> SelectHGList(HomeworkGrade gb);
+	
+	
 
 	
 	// 교수용 강의 리스트(학생관리용 리스트) 1단계
@@ -162,6 +169,17 @@ public interface profLecService {
 	int attendancePointUpdate(attPointsDTO apDTO);
 	
 	
+
+
+
+
+
+	
+	
+	
+	
+	
+
 
 
 	

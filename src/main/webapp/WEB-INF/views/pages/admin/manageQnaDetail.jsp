@@ -89,13 +89,12 @@ int type = 0;
 																<span>${b.qnaTitle }</span>
 															</h2>
 															<div class="post-meta">
-																<span>
-																	<i class="far fa-user fl"></i> By ${b.qnaName}
-																</span>
-																<span class="date float-right">${b.qnaCreateDate }</span>
-																<span class=" float-right">조회수 : ${b.qnaCount } |</span>
+																<span> <i class="far fa-user fl"></i> By ${b.qnaName}
+																</span> <span class="date float-right">${b.qnaCreateDate }</span> <span class=" float-right">조회수 : ${b.qnaCount } |</span>
 															</div>
 															<p>${b.qnaContent}</p>
+															<hr>
+															<div class=" float-right">
 															<c:url var="qnaUpview" value="qnaUpView.do">
 																<c:param name="qnaId" value="${b.qnaId }" />
 															</c:url>
@@ -105,23 +104,19 @@ int type = 0;
 															<c:url var="blist" value="blist.do">
 																<c:param name="currentPage" value="${ currentPage }" />
 															</c:url>
-															<c:if test="${ loginUser.sNo eq b.qnaWriter}">
-																<a href="${ qnaUpview }">수정하기</a>&nbsp;            
-					               <a href="${ qnaDelete }">삭제하기</a>&nbsp;            
-					            </c:if>
 															<c:if test="${!empty sessionScope.loginAdmin}">
-																<a href="${ qnaUpview }">수정하기</a>&nbsp;      
-					              <a href="${ qnaDelete }">삭제하기</a>&nbsp;     
-					            </c:if>
+																<a href="${ qnaUpview }" class="btn btn-secondary">수정하기</a>&nbsp;      
+											  	        	       <a href="${ qnaDelete }" class="btn btn-secondary">삭제하기</a>&nbsp;     
+												            </c:if>
+												            </div>
 
 															<!-- 댓글댓글댓글댓글댓글댓글 -->
-															<c:if test="${empty sessionScope.loginAdmin || !empty sessionScope.loginUser  }">
+															<c:if test="${!empty sessionScope.loginAdmin || !empty sessionScope.loginUser  }">
 																<div id="comments" class="post-block mt-5 post-comments">
 																	<h4 id="rCount" class="mb-3"></h4>
 																	<ul class="comments">
 																	</ul>
 																</div>
-
 
 																<div class="post-block mt-5 post-leave-comment">
 																	<h4 class="mb-3">Leave a comment</h4>
@@ -264,8 +259,8 @@ $(function(){
 						if(data[i].refRid==0){
 							
 							$div_c = 
-									'	<li id="rId_'+$rId+'">'+
-									'		<div class="comment">'+													
+									'	<li id="rId_'+$rId+'" style="list-style: none;">'+
+									'		<div class="comment"style="margin-top:45px;">'+													
 									'			<div class="comment-block">'+
 									'				<div class="comment-arrow"></div>'+
 									'				<input type="hidden" value="'+$rId+'">'+		
@@ -274,7 +269,7 @@ $(function(){
 									'					<strong >'+$rName+'</strong>'+
 									'				<span class="date float-right" style=" margin-left: 10px;">'+$rCreateDate+'</span>'+			
 									'				</span>'+
-									'				<p style="margin-bottom:15px;">'+$rContent+'<a href="" style="float:right;">삭제하기</a>'+'</p>'+ 
+									'				<p style="margin-bottom:-20px;">'+$rContent+'</p>'+ 
 									'				<textarea style="width:85%; display: none;"></textarea>'+
 									' 				<span class="float-right">'+
 									'				</span>'+
@@ -303,17 +298,17 @@ $(function(){
 									if($refRid ==$rId){
 										console.log("refrid"+$refRid+"----"+$rId+"rId");
 										$rePlace=$(	
-												'<ul class="comments reply">'+
-												'    <li >'+
-												'   	<div class="comment">'+				
+												'<ul class="comments reply" style="list-style: none;">'+
+												'    <li style="list-style: none;">'+
+												'   	<div class="comment" style="margin-top: 19px;">'+				
 												'			<i class="fas fa-chevron-up"></i>'+
 												'     		<div class="comment-block">'+
 												'     			<input type="hidden" value="'+$reRid+'">'+		
 												'     			<span class="comment-by">'+
-												'     				<strong >수정한거'+$rName+'</strong>'+
+												'     				<strong >'+$rName+'</strong>'+
 												'     			<span class="date float-right" style=" margin-left: 10px;">'+$rCreateDate+'</span>'+			
 												'     			</span>'+
-												'     			<p style="margin-bottom:15px;">'+$rContent+'</p>'+ 
+												'     			<p style="margin-bottom:-20px;">'+$rContent+'</p>'+ 
 												'     			<textarea style="width:85%; display: none;"></textarea>'+
 												'     		</div>'+
 												'     	</div>' +
@@ -335,10 +330,10 @@ $(function(){
 							if($rWriter==sNo){	
 								$dupReply = $(	
 												'<span  class=" float-right">'+
-													'<button onclick="rDelete(this);" class="btn btn-xs btn-light btnChk" style=" margin-right: 10px; ">삭제</button>'+
+													'<button onclick="rDelete(this);" class="badge bg-secondary" style=" margin-right: 10px; ">삭제</button>'+
 												'</span>'+
 												'<span class=" float-right">'+
-													'<button onclick="rUpdateView(this);"class="btn btn-xs btn-primary btnChk" style=" margin-right: 10px;" >수정</button>'+
+													'<button onclick="rUpdateView(this);"class="badge bg-secondary" style=" margin-right: 10px;" >수정</button>'+
 												'</span>'											 
 											);
 							 $('.comment-block').append($dupReply);
@@ -349,10 +344,10 @@ $(function(){
 							if($rWriter==pNo){
 								$dupReply = $(	
 												'<span  class=" float-right">'+
-													'<button onclick="rDelete(this);" class="btnChk btn btn-xs btn-light" style=" margin-right: 10px; ">삭제</button>'+
+													'<button onclick="rDelete(this);" class="badge bg-secondary" style=" margin-right: 10px; ">삭제</button>'+
 												'</span>'+
 												'<span class=" float-right">'+
-													'<button onclick="rUpdateView(this);" class="btnChk btn btn-xs btn-primary" style=" margin-right: 10px;" >수정</button>'+
+													'<button onclick="rUpdateView(this);" class="badge bg-secondary" style=" margin-right: 10px;" >수정</button>'+
 												'</span>'
 											  );	
 						  	$('.comment-block').append($dupReply);
@@ -360,10 +355,10 @@ $(function(){
 						}else if(type==3){
 							$dupReply = $(	
 											'<span  class=" float-right">'+
-												'<button onclick="rDelete(this);" class="btnChk btn btn-xs btn-light" style=" margin-right: 10px; ">삭제</button>'+
+												'<button onclick="rDelete(this);" class="badge bg-secondary" style=" margin-right: 10px; ">삭제</button>'+
 											'</span>'+
 											'<span class=" float-right">'+
-												'<button onclick="rUpdateView(this);" class="btnChk btn btn-xs btn-primary" style=" margin-right: 10px;" >수정</button>'+
+												'<button onclick="rUpdateView(this);" class="badge bg-secondary" style=" margin-right: 10px;" >수정</button>'+
 											'</span>'						
 										);	
 							$('.comment-block ').append($dupReply);
@@ -405,8 +400,8 @@ $(function(){
 		
 		var changeBtn;
 		changeBtn=
-			'<button onclick="rUpdate(this);" class="btn btn-xs btn-primary" style=" margin-right: 10px; ">수정하기</button>'+
-			'<button  onclick="rCancle(this);" class="btn btn-xs btn-primary" style=" margin-right: 10px; ">취소하기</button>';
+			'<button onclick="rUpdate(this);" class="badge bg-light" style=" margin-right: 10px; ">수정하기</button>'+
+			'<button  onclick="rCancle(this);" class="badge bg-light" style=" margin-right: 10px; ">취소하기</button>';
 		var changeContent;
 		changeContent= $(obj).parent().siblings('p').css('display','none');
 		var changeContent2;
@@ -444,7 +439,7 @@ $(function(){
 	}
 // 수정하기 안에 있는 취소 버튼
 	function rCancle(obj){
-		var update = '<button onclick="rUpdateView(this);" class="btn btn-xs btn-primary" style=" margin-right: 10px;" >수정</button>';
+		var update = '<button onclick="rUpdateView(this);" class="badge bg-secondary" style=" margin-right: 10px;" >수정</button>';
 		$('.checkId').css('display','block');
 
 		var remove2 =$(obj).siblings('button').remove();

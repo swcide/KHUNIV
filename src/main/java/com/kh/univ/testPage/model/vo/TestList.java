@@ -15,8 +15,10 @@ public class TestList extends Registration{
 	private String pName;
 	private String tType;
 	private String openDate;
+	private String textDate;
 	private String testTime;
 	private String status;
+	private String rTime;
 	
 	
 	
@@ -30,7 +32,8 @@ public class TestList extends Registration{
 
 
 	public TestList(String tNo, String sNo, String semYear, String semNo, String cNo, String cName, String cType,
-			String pNo, String pName, String tType, String openDate, String testTime, String status) {
+			String pNo, String pName, String tType, String openDate, String textDate, String testTime, String status,
+			String rTime) {
 		super();
 		this.tNo = tNo;
 		this.sNo = sNo;
@@ -43,8 +46,10 @@ public class TestList extends Registration{
 		this.pName = pName;
 		this.tType = tType;
 		this.openDate = openDate;
+		this.textDate = textDate;
 		this.testTime = testTime;
 		this.status = status;
+		this.rTime = rTime;
 	}
 
 
@@ -204,6 +209,20 @@ public class TestList extends Registration{
 
 
 
+	public String getTextDate() {
+		return textDate;
+	}
+
+
+
+
+	public void setTextDate(String textDate) {
+		this.textDate = textDate;
+	}
+
+
+
+
 	public String getTestTime() {
 		return testTime;
 	}
@@ -232,23 +251,32 @@ public class TestList extends Registration{
 
 
 
-	@Override
-	public String toString() {
-		return "TestList [tNo=" + tNo + ", sNo=" + sNo + ", semYear=" + semYear + ", semNo=" + semNo + ", cNo=" + cNo
-				+ ", cName=" + cName + ", cType=" + cType + ", pNo=" + pNo + ", pName=" + pName + ", tType=" + tType
-				+ ", openDate=" + openDate + ", testTime=" + testTime + ", status=" + status + "]";
+	public String getrTime() {
+		return rTime;
 	}
 
 
 
 
-	
+	public void setrTime(String rTime) {
+		this.rTime = rTime;
+	}
 
-	
 
 
 
-	
-	
+	@Override
+	public String toString() {
+		return "TestList [tNo=" + tNo + ", sNo=" + sNo + ", semYear=" + semYear + ", semNo=" + semNo + ", cNo=" + cNo
+				+ ", cName=" + cName + ", cType=" + cType + ", pNo=" + pNo + ", pName=" + pName + ", tType=" + tType
+				+ ", openDate=" + openDate + ", textDate=" + textDate + ", testTime=" + testTime + ", status=" + status
+				+ ", rTime=" + rTime + "]";
+	}
+
+
+
+
+
+
 	
 }

@@ -3,54 +3,53 @@
 <mapper namespace="lectureMapper">
 
 
-	<resultMap type="LecturePlan" id="lecturePlanResultSet">
-		<id property="classNo" column="CLASS_NO" />
-		<result property="className" column="CLASS_NAME" />
-		<result property="classProf" column="CLASS_PROF" />
-		<result property="classType" column="CLASS_TYPE" />
-		<result property="classSummary" column="CLASS_SUMMARY" />
-		<result property="classGoal" column="CLASS_GOAL" />
-		<result property="lecMethod" column="LEC_METHOD" />
-		<result property="evalMethod" column="EVAL_METHOD" />
-		<result property="assignment" column="ASSIGNMENT" />
-		<result property="lecExperiment" column="LEC_EXPERIMENT" />
-		<result property="relatedLec" column="RELATED_LEC" />
-		<result property="lecTextbook" column="LEC_TEXTBOOK" />
-	</resultMap>
+   <resultMap type="LecturePlan" id="lecturePlanResultSet">
+      <id property="classNo" column="CLASS_NO" />
+      <result property="className" column="CLASS_NAME" />
+      <result property="classProf" column="CLASS_PROF" />
+      <result property="classType" column="CLASS_TYPE" />
+      <result property="classSummary" column="CLASS_SUMMARY" />
+      <result property="classGoal" column="CLASS_GOAL" />
+      <result property="lecMethod" column="LEC_METHOD" />
+      <result property="evalMethod" column="EVAL_METHOD" />
+      <result property="assignment" column="ASSIGNMENT" />
+      <result property="lecExperiment" column="LEC_EXPERIMENT" />
+      <result property="relatedLec" column="RELATED_LEC" />
+      <result property="lecTextbook" column="LEC_TEXTBOOK" />
+   </resultMap>
 
-	<resultMap type="LectureClass" id="lectureClassResultSet">
-		<id property="classNo" column="CLASS_NO" />
-		<result property="className" column="CLASS_NAME" />
-		<result property="lecAttendance" column="LECTURE_ATTENDANCE" />
-		<result property="lecLearningRate"
-			column="LECTURE_LEARNINGRATE" />
-		<result property="Attendees" column="CLASS_ATTENDEES" />
-		<result property="classSummary" column="CLASS_SUMMARY" />
-		<result property="classImg" column="CLASS_IMG" />
-		<result property="profName" column="PROF_NAME" />
-		<result property="profEmail" column="PROF_EMAIL" />
-		<result property="deptName" column="DEPT_NAME" />
-	</resultMap>
+   <resultMap type="LectureClass" id="lectureClassResultSet">
+      <id property="classNo" column="CLASS_NO" />
+      <result property="className" column="CLASS_NAME" />
+      <result property="lecAttendance" column="LECTURE_ATTENDANCE" />
+      <result property="lecLearningRate"
+         column="LECTURE_LEARNINGRATE" />
+      <result property="Attendees" column="CLASS_ATTENDEES" />
+      <result property="classSummary" column="CLASS_SUMMARY" />
+      <result property="classImg" column="CLASS_IMG" />
+      <result property="profName" column="PROF_NAME" />
+      <result property="profEmail" column="PROF_EMAIL" />
+      <result property="deptName" column="DEPT_NAME" />
+   </resultMap>
 
-	<resultMap type="LecturePlanWeek"
-		id="lecturePlanWeekResultSet">
-		<id property="classNo" column="CLASS_NO" />
-		<id property="className" column="CLASS_NAME" />
-		<id property="sNo" column="STD_NO" />
-		<id property="sName" column="STD_NO" />
-		<id property="assignExpl" column="ASSIGNMENT_EXPLANATION" />
-		<id property="submitDate" column="SUBMIT_DATE" />
-		<id property="assignFile" column="ASSIGNMENT_FILE_NAME" />
-		<id property="lecNo" column="LECTURE_NO" />
-
-
-		<id property="lecName" column="LECTURE_NAME" />
-		<id property="lecReference" column="LECTURE_REFERENCE" />
-		<id property="lecVideo" column="LECTURE_VIDEO" />
-		<id property="lecExplanation" column="LECTURE_EXPLANATION" />
-		<id property="lecVideoCreateDate"
-			column="LECTURE_VIDEO_CREATE_DATE" />
-	</resultMap>
+   <resultMap type="LecturePlanWeek"
+      id="lecturePlanWeekResultSet">
+      <id property="classNo" column="CLASS_NO" />
+      <id property="className" column="CLASS_NAME" />
+      <id property="sNo" column="STD_NO" />
+      <id property="sName" column="STD_NO" />
+      <id property="assignExpl" column="ASSIGNMENT_EXPLANATION" />
+      <id property="submitDate" column="SUBMIT_DATE" />
+      <id property="assignFile" column="ASSIGNMENT_FILE_NAME" />
+      <id property="lecNo" column="LECTURE_NO" />
+      
+      
+      <id property="lecName" column="LECTURE_NAME" />
+      <id property="lecReference" column="LECTURE_REFERENCE" />
+      <id property="lecVideo" column="LECTURE_VIDEO" />
+      <id property="lecExplanation" column="LECTURE_EXPLANATION" />
+      <id property="lecVideoCreateDate"  column="LECTURE_VIDEO_CREATE_DATE" />
+   </resultMap>
 
 	<resultMap type="LectureList" id="lectureListResultSet">
 		<id property="classNo" column="CLASS_NO" />
@@ -173,147 +172,149 @@
 		<result property="className" column="CLASS_NAME" />
 		<result property="classImg" column="CLASS_IMG" />
 	</resultMap>
+	
+	 
 
+   
+   
+   	<resultMap type="LectureHomeWork" id="LectureHomeWorkResultSet">
+      <id property="hNo" column="HWORK_NO" />
+      <result property="lecNo" column="LEC_NO" />
+      <result property="hTitle" column="HWORK_TITLE" />
+      <result property="hContent" column="HWORK_CONTENT" />
+      <result property="originalFileName" column="ORIGINAL_FILENAME" />
+      <result property="renameFileName" column="RENAME_FILENAME" />
+      <result property="pNo" column="PROF_NO" />
+      <result property="cNo" column="CLASS_NO" />
+      <result property="cName" column="CLASS_NAME" />
+      <result property="eGrade" column="EVALUATION_GRADE" />
+      <result property="hStatus" column="H_STATUS" />
+      <result property="openDate" column="OPENDATE" />
+      <result property="endDate" column="ENDDATE" />
+      <result property="hPoint" column="HWORK_POINT" />
+   </resultMap>
+   
 
-
-
-
-	<resultMap type="LectureHomeWork"
-		id="LectureHomeWorkResultSet">
-		<id property="hNo" column="HWORK_NO" />
-		<result property="lecNo" column="LEC_NO" />
-		<result property="hTitle" column="HWORK_TITLE" />
-		<result property="hContent" column="HWORK_CONTENT" />
-		<result property="originalFileName" column="ORIGINAL_FILENAME" />
-		<result property="renameFileName" column="RENAME_FILENAME" />
-		<result property="pNo" column="PROF_NO" />
-		<result property="cNo" column="CLASS_NO" />
-		<result property="cName" column="CLASS_NAME" />
-		<result property="eGrade" column="EVALUATION_GRADE" />
-		<result property="hStatus" column="H_STATUS" />
-		<result property="openDate" column="OPENDATE" />
-		<result property="endDate" column="ENDDATE" />
-		<result property="hPoint" column="HWORK_POINT" />
-	</resultMap>
-
-
-
-
-
-
-
-
-
-
-
-	<insert id="assignmentInsert" parameterType="LecturePlanWeek">
-		INSERT INTO
-		TB_ASSIGNMENT
-		VALUES(#{sNo}, #{classNo},
-		#{lecReference},#{lecNo},#{lecExplanation},SYSDATE,#{className},#{sName})
-	</insert>
-
-
-
-
-
-
-
-	<select id="stdVideoList" resultMap="lecturePlanWeekResultSet">
-		SELECT *
-		FROM TB_CLASS_DETAIL
-		JOIN TB_CLASS USING(CLASS_NO)
-		WHERE CLASS_NO = #{classNo }
-		ORDER BY
-		LECTURE_NO DESC
-	</select>
-
+   
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+   <insert id="assignmentInsert" parameterType="LecturePlanWeek">
+      INSERT INTO
+      TB_ASSIGNMENT
+      VALUES(#{sNo}, #{classNo}, #{lecReference},#{lecExplanation},SYSDATE,#{sName},#{lecNo})
+   </insert>
+   
+   
+   
+   
+   
+   
+   
+   <select id="stdVideoList" resultMap="lecturePlanWeekResultSet">
+      SELECT *
+      FROM TB_CLASS_DETAIL
+      JOIN TB_CLASS USING(CLASS_NO)
+      WHERE CLASS_NO = #{classNo }
+      ORDER BY
+      LECTURE_NO DESC
+   </select>
+	
+	
 	<select id="lectureList" resultMap="LectureListResultSet">
-		SELECT
-		CLASS_NO,
-		CLASS_NAME,
+	        SELECT 
+        CLASS_NO,
+		CLASS_NAME, 
 		CLASS_TYPE,
 		PROF_EMAIL,
-		PROF_NAME,
-		PROF_NO,
-		CLASS_IMG
-		FROM TB_ATTENDANCE
-		JOIN TB_CLASS USING(CLASS_NO)
-		JOIN TB_LECTURE_PLAN USING(CLASS_NO)
-		LEFT JOIN
-		TB_PROFESSOR USING(PROF_NO)
+        PROF_NAME, 
+        lp.PROF_NO,
+        CLASS_IMG
+
+        
+		FROM TB_ATTENDANCE ad
+        JOIN TB_CLASS c USING(CLASS_NO)
+        left JOIN TB_PROFESSOR p USING(PROF_NO)
+		JOIN TB_LECTURE_PLAN lp USING(CLASS_NO)
+
 		WHERE STD_NO=#{sNo}
-		GROUP BY
-		CLASS_NO,
-		CLASS_NAME,
-		CLASS_TYPE,
+
+		GROUP BY 
+		CLASS_NO, 
+		CLASS_NAME, 
+		CLASS_TYPE, 
 		PROF_EMAIL,
-		PROF_NAME,
-		PROF_NO,
-		CLASS_IMG
+        PROF_NAME, 
+        lp.PROF_NO,
+        CLASS_IMG
 	</select>
+	
 	<select id="attendance" resultMap="AttendanceResultSet">
-		SELECT
-		CLASS_TYPE,
-		CLASS_NAME,
-		CLASS_NO,
-		START_DATE,
-		STD_NO,
-		COUNT(ATTENDANCE),
-		COUNT(ASSIGNMENT),
-		COUNT(WEEK)
-		FROM TB_ATTENDANCE
-		JOIN TB_CLASS USING (CLASS_NO)
-		WHERE WEEKDATE
-		BETWEEN
-		TO_NUMBER(TO_CHAR(START_DATE,'IW'))
-		AND
-		TO_NUMBER(TO_CHAR(SYSDATE,'IW'))
-		AND STD_NO= #{sNo}
-		GROUP BY CLASS_NO, STD_NO, CLASS_TYPE, CLASS_NAME, START_DATE
-	</select>
+      SELECT 
+         CLASS_TYPE,
+         CLASS_NAME,
+         CLASS_NO, 
+         START_DATE,
+         STD_NO, 
+         COUNT(ATTENDANCE),
+         COUNT(ASSIGNMENT),
+         COUNT(WEEK)
+         FROM TB_ATTENDANCE
+         JOIN TB_CLASS USING (CLASS_NO)
+         WHERE WEEKDATE 
+         BETWEEN 
+         TO_NUMBER(TO_CHAR(START_DATE,'IW'))
+         AND 
+         TO_NUMBER(TO_CHAR(SYSDATE,'IW')) 
+         AND STD_NO= #{sNo}
+         GROUP BY CLASS_NO, STD_NO, CLASS_TYPE, CLASS_NAME, START_DATE
+   </select>
 
-	<select id="lectureAttendList" resultMap="AttendanceResultSet">
-		SELECT
-		DISTINCT CLASS_NO,
-		CLASS_TYPE,
-		CLASS_NAME,
-		START_DATE
-		FROM TB_ATTENDANCE
-		JOIN TB_CLASS USING (CLASS_NO)
-		JOIN TB_CLASS_PROFESSOR USING (CLASS_NO)
-		WHERE WEEKDATE
-		BETWEEN
-		TO_NUMBER(TO_CHAR(START_DATE,'IW'))
-		AND
-		TO_NUMBER(TO_CHAR(SYSDATE,'IW'))
-		AND PROFESSOR_NO=#{pNo}
-	</select>
+	select id="lectureAttendList" resultMap="AttendanceResultSet">
+   	    SELECT 
+         DISTINCT CLASS_NO, 
+         CLASS_TYPE,
+         CLASS_NAME, 
+         START_DATE
+       	 FROM TB_ATTENDANCE
+         JOIN TB_CLASS USING (CLASS_NO)
+         JOIN TB_CLASS_PROFESSOR USING (CLASS_NO)
+         WHERE WEEKDATE 
+         BETWEEN 
+         TO_NUMBER(TO_CHAR(START_DATE,'IW'))
+         AND 
+         TO_NUMBER(TO_CHAR(SYSDATE,'IW')) 
+         AND PROFESSOR_NO=#{pNo}
+   </select>
 
-	<select id="lectureStudentAttendList"
-		resultMap="AttendanceResultSet">
-		SELECT
-		STD_NAME,
-		STD_NO,
-		CLASS_NO,
-		CLASS_NAME,
-		START_DATE,
-		COUNT(ATTENDANCE),
-		COUNT(ASSIGNMENT),
-		COUNT(WEEK)
-		FROM TB_ATTENDANCE
-		JOIN TB_CLASS USING (CLASS_NO)
-		JOIN TB_CLASS_PROFESSOR USING (CLASS_NO)
-		JOIN TB_STUDENT USING(STD_NO)
-		WHERE WEEKDATE
-		BETWEEN
-		TO_NUMBER(TO_CHAR(START_DATE,'IW'))
-		AND
-		TO_NUMBER(TO_CHAR(SYSDATE,'IW'))
-		AND PROFESSOR_NO=#{pNo}
-		AND CLASS_NO=#{classNo}
-		GROUP BY CLASS_NO, STD_NO,STD_NAME,CLASS_NAME, START_DATE
-	</select>
+	<select id="lectureStudentAttendList" resultMap="AttendanceResultSet">
+   SELECT 
+         STD_NAME, 
+         STD_NO,
+         CLASS_NO,
+         CLASS_NAME, 
+          START_DATE,
+         COUNT(ATTENDANCE),
+         COUNT(ASSIGNMENT),
+         COUNT(WEEK)
+         FROM TB_ATTENDANCE
+         JOIN TB_CLASS USING (CLASS_NO)
+         JOIN TB_CLASS_PROFESSOR USING (CLASS_NO)
+         JOIN TB_STUDENT USING(STD_NO)
+         WHERE WEEKDATE 
+         BETWEEN 
+         TO_NUMBER(TO_CHAR(START_DATE,'IW'))
+         AND 
+         TO_NUMBER(TO_CHAR(SYSDATE,'IW')) 
+         AND PROFESSOR_NO=#{pNo}
+         AND CLASS_NO=#{classNo}
+         GROUP BY CLASS_NO, STD_NO,STD_NAME,CLASS_NAME, START_DATE
+   </select>
 	<select id="lectureStudentDetail" resultMap="lectureStudentResultSet">
 		SELECT
 		WEEK,
@@ -511,333 +512,311 @@
 
 
 	<!-- **************************************************************** -->
-	<select id="selectValue" resultMap="lectureClassResultSet">
+   <select id="selectValue" resultMap="lectureClassResultSet">
 
-		SELECT *
-		FROM TB_CLASS C
-		JOIN
-		TB_DEPARTMENT D USING(DEPT_NO)
-		JOIN TB_CLASS_PROFESSOR CP
-		USING(CLASS_NO)
-		JOIN TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
-		WHERE PROF_NO = #{pNo}
-	</select>
+      SELECT *
+      FROM TB_CLASS C
+      JOIN
+      TB_DEPARTMENT D USING(DEPT_NO)
+      JOIN TB_CLASS_PROFESSOR CP
+      USING(CLASS_NO)
+      JOIN TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
+      WHERE PROF_NO = #{pNo}
+   </select>
 
 
 	<select id="lecVideo" resultMap="lecturePlanWeekResultSet">
-		SELECT *
-		FROM TB_CLASS_DETAIL
-		JOIN TB_CLASS USING(CLASS_NO)
-		WHERE CLASS_NO = #{classNo }
-		ORDER BY
-		LECTURE_NO DESC
-	</select>
+      SELECT *
+      FROM TB_CLASS_DETAIL
+      JOIN TB_CLASS USING(CLASS_NO)
+      WHERE CLASS_NO = #{classNo }
+      ORDER BY
+      LECTURE_NO DESC
+   </select>
 
-	<insert id="lectureVideoInsert" parameterType="LecturePlanWeek">
-		INSERT INTO
-		TB_CLASS_DETAIL
-		VALUES(#{classNo},#{lecNo},#{lecName},#{lecReference},#{lecVideo},#{lecExplanation},DEFAULT,DEFAULT,DEFAULT,SYSDATE)
+   <insert id="lectureVideoInsert" parameterType="LecturePlanWeek">
+      INSERT INTO
+      TB_CLASS_DETAIL
+      VALUES(#{classNo},#{lecNo},#{lecName},#{lecReference},#{lecVideo},#{lecExplanation},DEFAULT,DEFAULT,DEFAULT,SYSDATE)
 
-	</insert>
+   </insert>
 
 
-	<select id="selectlpList" resultMap="lecturePlanResultSet">
-		SELECT *
-		FROM TB_LECTURE_PLAN
-		WHERE CLASS_PROF=#{classProf}
-		AND CLASS_NO=#{classNo}
-	</select>
+	 <select id="selectlpList" resultMap="lecturePlanResultSet">
+      SELECT *
+      FROM TB_LECTURE_PLAN
+      WHERE CLASS_PROF=#{classProf}
+      AND CLASS_NO=#{classNo}
+   </select>
 
-	<delete id="lectureVideoDelete" parameterType="LecturePlanWeek">
-		DELETE
-		FROM
-		TB_CLASS_DETAIL
-		WHERE LECTURE_NO = #{lecNo}
-	</delete>
+   <delete id="lectureVideoDelete" parameterType="LecturePlanWeek">
+      DELETE
+      FROM
+      TB_CLASS_DETAIL
+      WHERE LECTURE_NO = #{lecNo}
+   </delete>
 
-	<update id="lectureVideoUpdate" parameterType="LecturePlanWeek">
-		UPDATE
-		TB_CLASS_DETAIL
-		SET
-		LECTURE_NAME = #{lecName},
-		LECTURE_REFERENCE =
-		#{lecReference},
-		LECTURE_VIDEO = #{lecVideo},
-		LECTURE_EXPLANATION
-		=#{lecExplanation},
-		LECTURE_ATTENDANCE = DEFAULT,LECTURE_LEARNINGRATE =
-		DEFAULT,CLASS_ATTENDEES =
-		DEFAULT,LECTURE_VIDEO_CREATE_DATE = SYSDATE
-		WHERE LECTURE_NO = #{lecNo}
-	</update>
+   <update id="lectureVideoUpdate" parameterType="LecturePlanWeek">
+      UPDATE
+      TB_CLASS_DETAIL
+      SET
+      LECTURE_NAME = #{lecName},
+      LECTURE_REFERENCE =
+      #{lecReference},
+      LECTURE_VIDEO = #{lecVideo},
+      LECTURE_EXPLANATION
+      =#{lecExplanation},
+      LECTURE_ATTENDANCE = DEFAULT,LECTURE_LEARNINGRATE =
+      DEFAULT,CLASS_ATTENDEES =
+      DEFAULT,LECTURE_VIDEO_CREATE_DATE = SYSDATE
+      WHERE LECTURE_NO = #{lecNo}
+   </update>
 
 	<select id="updateAfter" resultMap="lecturePlanWeekResultSet">
-		SELECT *
-		FROM TB_CLASS_DETAIL
-		WHERE LECTURE_NO = #{lecNo}
-	</select>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      SELECT *
+      FROM TB_CLASS_DETAIL
+      WHERE LECTURE_NO = #{lecNo}
+   </select>
 
 
 	<select id="getQListCount" resultType="int">
-		SELECT count(*)
-		FROM
-		TB_PROF_TEST P
-		WHERE PROF_NO = #{pNo}
-	</select>
+      SELECT count(*)
+      FROM
+      TB_PROF_TEST P
+      WHERE PROF_NO = #{pNo}
+   </select>
 
-	<select id="classSelectList" resultMap="ClassTestResultSet">
-		SELECT TEST_NO, TEST_TYPE, TEST_TITLE, OPENDATE, STARTDATE, ENDDATE,
-		TEST_TIME, CLASS_NO, CLASS_NAME, PROF_NO,lp.EXAM_POINTS/2
-		FROM TB_PROF_TEST
-		join tb_lecture_plan lp using(class_no)
-		WHERE PROF_NO = #{pNo}
-	</select>
-	<insert id="insertTestSchedule" parameterType="ClassTest">
-		INSERT INTO
-		TB_PROF_TEST
-		VALUES(
-		#{tNo},
-		#{tType},
-		#{tTitle},
-		(to_date(#{openDate},'yyyy-mm-dd HH24:MI')),
-		#{startDate},
-		#{endDate},
-		#{tTime},
-		#{cNo},
-		#{cName},
-		#{pNo}
-		)
-	</insert>
+   <select id="classSelectList" resultMap="ClassTestResultSet">
+      SELECT TEST_NO, TEST_TYPE, TEST_TITLE, OPENDATE, STARTDATE, ENDDATE, TEST_TIME, CLASS_NO, CLASS_NAME, pt.PROF_NO,EXAM_POINTS/2
+      FROM TB_PROF_TEST pt
+      join tb_lecture_plan lp using(class_no)
+      WHERE pt.PROF_NO = #{pNo}
+   </select>
+   <insert id="insertTestSchedule" parameterType="ClassTest">
+      INSERT INTO
+      TB_PROF_TEST
+      VALUES(
+      #{tNo},
+      #{tType},
+      #{tTitle},
+      (to_date(#{openDate},'yyyy-mm-dd HH24:MI')),
+      #{startDate},
+      #{endDate},
+      #{tTime},
+      #{cNo},
+      #{cName},
+      #{pNo}
+      )
+   </insert>
 
 
 	<update id="updateTestSchedule" parameterType="ClassTest">
-		UPDATE
-		TB_PROF_TEST
-		SET
-		TEST_TITLE=#{tTitle},
-		OPENDATE=
-		(to_date(#{openDate},'yyyy-mm-dd HH24:MI')),
-		STARTDATE=#{startDate},
-		ENDDATE=#{endDate},
-		TEST_TIME=#{tTime}
-		WHERE
-		TEST_NO = #{tNo}
+      UPDATE
+      TB_PROF_TEST
+      SET
+      TEST_TITLE=#{tTitle},
+      OPENDATE=
+      (to_date(#{openDate},'yyyy-mm-dd HH24:MI')),
+      STARTDATE=#{startDate},
+      ENDDATE=#{endDate},
+      TEST_TIME=#{tTime}
+      WHERE
+      TEST_NO = #{tNo}
 
-	</update>
-
-
-	<select id="selectClassList" resultMap="TestResultSet">
-		SELECT *
-		FROM TB_TEST
-		WHERE TEST_NO= #{tNo}
-		ORDER BY QID DESC
-	</select>
+   </update>
 
 
+   <select id="selectClassList" resultMap="TestResultSet">
+      SELECT *
+      FROM TB_TEST
+      WHERE TEST_NO= #{tNo}
+      ORDER BY QID DESC
+   </select>
 
-	<update id="updateTest" parameterType="Test">
-		UPDATE TB_TEST
-		SET
-		TEST_NO
-		=#{tNo},
-		QUESTION_NO = #{qNo},
-		QUESTION_TITLE = #{qTitle},
-		QUESTION_CONTENT1 = #{qContent1},
-		QUESTION_CONTENT2 = #{qContent2},
-		QUESTION_CONTENT3 = #{qContent3},
-		QUESTION_CONTENT4 =#{qContent4},
-		QUESTION_ANSWER = #{qAnswer},
-		QUESTION_WORTH = #{qWorth}
-		WHERE QID =
-		#{qId}
-	</update>
-	<insert id="insertTest" parameterType="Test">
-		INSERT INTO TB_TEST
-		VALUES(
-		#{tNo},
-		#{cNo},
-		#{cName},
-		#{qNo},
-		#{qTitle},
-		#{qContent1},
-		#{qContent2},
-		#{qContent3},
-		#{qContent4},
-		#{qAnswer},
-		#{qWorth},
-		#{pNo},
-		SEQ_QID.NEXTVAL
-		)
 
-	</insert>
+
+	 <update id="updateTest" parameterType="Test">
+      UPDATE TB_TEST
+      SET
+      TEST_NO
+      =#{tNo},
+      QUESTION_NO = #{qNo},
+      QUESTION_TITLE = #{qTitle},
+      QUESTION_CONTENT1 = #{qContent1},
+      QUESTION_CONTENT2 = #{qContent2},
+      QUESTION_CONTENT3 = #{qContent3},
+      QUESTION_CONTENT4 =#{qContent4},
+      QUESTION_ANSWER = #{qAnswer},
+      QUESTION_WORTH = #{qWorth}
+      WHERE QID =
+      #{qId}
+   </update>
+   <insert id="insertTest" parameterType="Test">
+      INSERT INTO TB_TEST
+      VALUES(
+      #{tNo},
+      #{cNo},
+      #{cName},
+      #{qNo},
+      #{qTitle},
+      #{qContent1},
+      #{qContent2},
+      #{qContent3},
+      #{qContent4},
+      #{qAnswer},
+      #{qWorth},
+      #{pNo},
+      SEQ_QID.NEXTVAL
+      )
+
+   </insert>
 	<select id="selectClassOne" resultMap="ClassTestResultSet">
-		SELECT *
-		FROM TB_PROF_TEST
-		WHERE TEST_NO =#{tNo}
-	</select>
-	<delete id="deleteTest" parameterType="Test">
-		DELETE FROM TB_TEST
-		WHERE
-		TEST_NO =#{tNo}
-		AND QUESTION_NO =#{qNo}
-		AND QID =#{qId}
-	</delete>
-	<select id="selectTest" resultMap="TestResultSet">
-		SELECT *
-		FROM TB_TEST
-		WHERE QID
-		=#{qId}
-	</select>
-	<select id="takeClassList" resultMap="TestResultSet">
-		SELECT *
-		FROM TB_TEST
-		WHERE
-		CLASS_NO= #{cNo}
-		and NOT test_no= #{tNo}
-		ORDER BY QID DESC
-	</select>
+      SELECT *
+      FROM TB_PROF_TEST
+      WHERE TEST_NO =#{tNo}
+   </select>
+   <delete id="deleteTest" parameterType="Test">
+      DELETE FROM TB_TEST
+      WHERE
+      TEST_NO =#{tNo}
+      AND QUESTION_NO =#{qNo}
+      AND QID =#{qId}
+   </delete>
+   <select id="selectTest" resultMap="TestResultSet">
+      SELECT *
+      FROM TB_TEST
+      WHERE QID
+      =#{qId}
+   </select>
+   <select id="takeClassList" resultMap="TestResultSet">
+      SELECT *
+      FROM TB_TEST
+      WHERE
+      CLASS_NO= #{cNo}
+      and NOT test_no= #{tNo}
+      ORDER BY QID DESC
+   </select>
+   
+   <select id="takeQList" resultMap="TestResultSet">
+      SELECT *
+      FROM TB_TEST
+      WHERE
+      QID= #{qId}
+      ORDER BY QID DESC
+   </select>
 
-	<select id="takeQList" resultMap="TestResultSet">
-		SELECT *
-		FROM TB_TEST
-		WHERE
-		QID= #{qId}
-		ORDER BY QID DESC
-	</select>
+   <insert id="takeAddQ" parameterType="java.util.ArrayList">
+		 
+   		insert
+       INTO TB_TEST(
+       TEST_NO, 
+       CLASS_NO, 
+       CLASS_NAME, 
+       QUESTION_NO, 
+       QUESTION_TITLE, 
+       QUESTION_CONTENT1, 
+       QUESTION_CONTENT2, 
+       QUESTION_CONTENT3, 
+       QUESTION_CONTENT4, 
+       QUESTION_ANSWER,
+       QUESTION_WORTH,
+       PROF_NO, 
+       QID
+       )SELECT A.* , SEQ_QID.NEXTVAL FROM(
+      <foreach collection="list" item="item"  separator="UNION ALL">
+       select #{item.tNo} AS TEST_NO,
+      #{item.cNo} AS CLASS_NO,
+      #{item.cName} AS CLASS_NAME,
+      #{item.qNo} AS QUESTION_NO,
+      #{item.qTitle} AS QUESTION_TITLE,
+      #{item.qContent1} AS QUESTION_CONTENT1,
+      #{item.qContent2} AS QUESTION_CONTENT2,
+      #{item.qContent3} AS QUESTION_CONTENT3,
+      #{item.qContent4} AS QUESTION_CONTENT4,
+      #{item.qAnswer} AS QUESTION_ANSWER,
+      #{item.qWorth} AS QUESTION_WORTH,
+      #{item.pNo} AS PROF_NO
+      
+       from dual
+      
+      
+ 	</foreach>)A
+   </insert>
+   
+   <!-- 과제 listcount -->
+     <select id="gethListCount" resultType="int">
+      SELECT count(*)
+      FROM
+      TB_HOMEWORK
+      WHERE PROF_NO = #{pNo}
+   </select>
+   
+   
+    <select id="hSelectList" resultMap="lectureListResultSet">
+       select * 
+      from tb_class
+      join TB_CLASS_PROFESSOR using(class_no)
+      join TB_DEPARTMENT using (dept_no)
+      where PROFESSOR_NO =#{pNo}
+   </select>
+   
+   
+   
+   
+    <select id="quizSelectList" resultMap="LectureHomeWorkResultSet">
+      SELECT *
+      FROM TB_PROF_TEST
+      WHERE PROF_NO = #{pNo}
+    </select>
+   
+    <insert id="insertHomework" parameterType="LectureHomeWork">
+      INSERT INTO TB_HOMEWORK
+      VALUES(
+      #{hNo},
+      #{lecNo},
+      #{hTitle},
+      #{hContent},
+      #{originalFileName},
+      #{renameFileName},
+      #{pNo},
+      #{cNo},
+      #{cName},
+      #{eGrade},
+      #{hStatus},
+      #{openDate},
+      #{endDate},
+      #{hPoint},
+      SEQ_HID.NEXTVAL
+      )
 
-	<insert id="takeAddQ" parameterType="java.util.ArrayList">
+   </insert>
+ 
+ 	<select id="selectHList" resultMap="LectureHomeWorkResultSet">
+      SELECT *
+      FROM TB_HOMEWORK
+      WHERE PROF_NO = #{pNo}
+      AND CLASS_NO =#{cNo}
+   </select>
+ 
+ 	<select id="selectSeList" resultMap="lecturePlanWeekResultSet">
+      SELECT *
+      FROM TB_ASSIGNMENT
+      where CLASS_NO =#{cNo}
+      and LECTURE_NO =#{lecNo}
+   </select>
+   
+     <insert id="EvaluationInsert" parameterType="HomeworkGrade">
+      INSERT INTO TB_HOMEWORK_GRADE
+      VALUES(
+      #{sNo},
+      #{cNo},
+      #{pNo},
+      #{hNo},
+      #{point},
+      #{lecNo}
+      )
 
-		insert
-		INTO TB_TEST(
-		TEST_NO,
-		CLASS_NO,
-		CLASS_NAME,
-		QUESTION_NO,
-		QUESTION_TITLE,
-		QUESTION_CONTENT1,
-		QUESTION_CONTENT2,
-		QUESTION_CONTENT3,
-		QUESTION_CONTENT4,
-		QUESTION_ANSWER,
-		QUESTION_WORTH,
-		PROF_NO,
-		QID
-		)SELECT A.* , SEQ_QID.NEXTVAL FROM(
-		<foreach collection="list" item="item" separator="UNION ALL">
-			select #{item.tNo} AS TEST_NO,
-			#{item.cNo} AS CLASS_NO,
-			#{item.cName} AS CLASS_NAME,
-			#{item.qNo} AS QUESTION_NO,
-			#{item.qTitle} AS QUESTION_TITLE,
-			#{item.qContent1} AS QUESTION_CONTENT1,
-			#{item.qContent2} AS QUESTION_CONTENT2,
-			#{item.qContent3} AS QUESTION_CONTENT3,
-			#{item.qContent4} AS QUESTION_CONTENT4,
-			#{item.qAnswer} AS QUESTION_ANSWER,
-			#{item.qWorth} AS QUESTION_WORTH,
-			#{item.pNo} AS PROF_NO
-
-			from dual
-
-
-		</foreach>
-		)A
-	</insert>
-
-	<!-- 과제 listcount -->
-	<select id="gethListCount" resultType="int">
-		SELECT count(*)
-		FROM
-		TB_HOMEWORK
-		WHERE PROF_NO = #{pNo}
-	</select>
-
-
-	<select id="hSelectList" resultMap="lectureListResultSet">
-		select *
-		from tb_class
-		join TB_CLASS_PROFESSOR using(class_no)
-		join TB_DEPARTMENT using (dept_no)
-		where PROFESSOR_NO =#{pNo}
-	</select>
-
-
-
-
-	<select id="quizSelectList" resultMap="LectureHomeWorkResultSet">
-		SELECT *
-		FROM TB_PROF_TEST
-		WHERE PROF_NO = #{pNo}
-	</select>
-
-	<insert id="insertHomework" parameterType="LectureHomeWork">
-		INSERT INTO TB_HOMEWORK
-		VALUES(
-		#{hNo},
-		#{lecNo},
-		#{hTitle},
-		#{hContent},
-		#{originalFileName},
-		#{renameFileName},
-		#{pNo},
-		#{cNo},
-		#{cName},
-		#{eGrade},
-		#{hStatus},
-		#{openDate},
-		#{endDate},
-		#{hPoint},
-		SEQ_HID.NEXTVAL
-		)
-
-	</insert>
-
-	<select id="selectHList" resultMap="LectureHomeWorkResultSet">
-		SELECT *
-		FROM TB_HOMEWORK
-		WHERE PROF_NO = #{pNo}
-		AND CLASS_NO =#{cNo}
-	</select>
-
-	<select id="selectSeList" resultMap="lecturePlanWeekResultSet">
-		SELECT *
-		FROM TB_ASSIGNMENT
-		where CLASS_NO =#{cNo}
-		and LECTURE_NO =#{lecNo}
-	</select>
-
-	<insert id="EvaluationInsert" parameterType="HomeworkGrade">
-		INSERT INTO TB_HOMEWORK_GRADE
-		VALUES(
-		#{sNo},
-		#{cNo},
-		#{pNo},
-		#{tNo},
-		#{homework},
-		#{homeworkweek}
-		)
-
-	</insert>
+   </insert>
 
 
 

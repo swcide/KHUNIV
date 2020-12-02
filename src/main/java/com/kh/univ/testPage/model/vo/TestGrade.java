@@ -5,6 +5,7 @@ public class TestGrade {
 	private String sNo;
 	private String pNo;
 	private String cNo;
+	private String rTime;
 	private int point;
 	
 	
@@ -16,12 +17,13 @@ public class TestGrade {
 
 
 
-	public TestGrade(String tNo, String sNo, String pNo, String cNo, int point) {
+	public TestGrade(String tNo, String sNo, String pNo, String cNo, String rTime, int point) {
 		super();
 		this.tNo = tNo;
 		this.sNo = sNo;
 		this.pNo = pNo;
 		this.cNo = cNo;
+		this.rTime = rTime;
 		this.point = point;
 	}
 
@@ -75,6 +77,18 @@ public class TestGrade {
 
 
 
+	public String getrTime() {
+		return rTime;
+	}
+
+
+
+	public void setrTime(String rTime) {
+		this.rTime = rTime;
+	}
+
+
+
 	public int getPoint() {
 		return point;
 	}
@@ -89,8 +103,13 @@ public class TestGrade {
 
 	@Override
 	public String toString() {
-		return "TestGrade [tNo=" + tNo + ", sNo=" + sNo + ", pNo=" + pNo + ", cNo=" + cNo + ", point=" + point + "]";
+		return "TestGrade [tNo=" + tNo + ", sNo=" + sNo + ", pNo=" + pNo + ", cNo=" + cNo + ", rTime=" + rTime
+				+ ", point=" + point + "]";
 	}
+
+
+
+	
 	
 	
 }

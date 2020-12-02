@@ -31,6 +31,8 @@ import com.kh.univ.helpDesk.model.vo.QnA;
 import com.kh.univ.helpDesk.model.vo.Reply;
 import com.kh.univ.member.model.vo.Admin;
 import com.kh.univ.notice.model.vo.Notice;
+import com.kh.univ.univlife.board.human.model.vo.Report;
+import com.kh.univ.univlife.board.human.model.vo.hReply;
 
 @Controller
 @SessionAttributes("loginAdmin")
@@ -189,7 +191,7 @@ int listCount = aService.getListCount(nType);
 
 			return "admin/manageDeptWrite";
 		} else if (nType == 2) {
-			return "admin/managegeneralWrite";
+			return "admin/manageGeneralWrite";
 		} else {
 			return "common/errorPage";
 		}
@@ -346,14 +348,14 @@ int listCount = aService.getListCount(nType);
 	//게시글삭제
 
 	@RequestMapping("manageNoticeDelete.do")
-	public String noticeDelete(Notice n, HttpServletRequest request) {
+	public String noticeDelete(Notice nc, HttpServletRequest request) {
 		
-		n = aService.selectUpdateNotice(n);
+		Notice n = aService.selectUpdateNotice(nc);
 		System.out.println(n);
 		
-//		if (n.getRenameFileName() != null) {
-//			deleteFile(n.getRenameFileName(), request);
-//		}
+		if (n.getRenameFileName() != null) {
+			deleteFile(n.getRenameFileName(), request);
+		}
 
 		int result = aService.deleteNotice(n);
 		System.out.println(result);
@@ -417,5 +419,18 @@ int listCount = aService.getListCount(nType);
 		view.setViewName("/insertStudent.do");
 		System.out.println("view: " + view);
 		return view;
+	}
+	
+	@RequestMapping(value="reportList.do")
+	public void getReportList(HttpServletResponse response) throws JsonIOException, IOException {
+	
+		response.setContentType("application/json; charset=UTF-8");
+
+		ArrayList<Report> rp =aService.selectReportList();
+		System.out.println("rp" + rp);
+		
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(rp,response.getWriter());
 	}
 }

@@ -46,7 +46,7 @@
 
 </head>
 
-<body>
+<body >
 	<header id="header" class="full-header">
 		<div id="header-wrap">
 			<div class="container-test">
@@ -85,7 +85,7 @@
 
 					<!-- Primary Navigation
                     ============================================= -->
-
+					
 					<dl id="head" class="row mb-0">
 						<dt class="col-md-4 mb-0 pl-0 pr-0 ">응시자 :</dt>
 						<dd class="col-md-5 mb-0 pl-0 pr-0 ">${t.sNo}</dd>
@@ -94,10 +94,11 @@
 					</dl>
 					<dl id="head" class="row mb-0">
 						<dt class="col-md-5 mb-0 pl-0 pr-0">잔여시간 :</dt>
-						<dd class="col-md-5 mb-0 pl-0 pr-0">${t.testTime }</dd>
+						<dd id="tTime" class="col-md-5 mb-0 pl-0 pr-0"></dd>
 						<dt class="col-sm-5 mb-0 pl-0 pr-0">잔여 문제 :</dt>
-						<dd class="col-sm-5 mb-0 pl-0 pr-0">2/${fn:length(tList)}</dd>
+						<dd id="t" class="col-sm-5 mb-0 pl-0 pr-0">${fn:length(tList)}/${fn:length(tList)}</dd>
 					</dl>
+					<input type="hidden" id="length" value="${fn:length(tList)}">
 
 				</div>
 			</div>
@@ -112,12 +113,18 @@
 	<input type='hidden' id='current_startNum' value='' size='3'>
 	<input type='hidden' id='current_questionTotal' value='' size='3'>
 	<input type='hidden' id='current_mode' value='' size='3'>
+	<c:if test=""></c:if>
+	<input type="hidden" id="time" value="${t.testTime }">
+	
+	<input type="hidden" id="openDate" value="${t.openDate }">
 
-	<form id="fm"name='test_form' method='post' action="tMidtermInsert.do">
+	<form id="fm"name='test_form' method='post' action="tInsert.do">
 		<input type="hidden" name="tNo" value="${t.tNo }">
 		<input type="hidden" name="sNo" value="${t.sNo }">
 		<input type="hidden" name="pNo" value="${t.pNo }">
 		<input type="hidden" name="cNo" value="${t.cNo }">
+		<input type="hidden" id="rTime" name="rTime" value="">
+		
 		<input type='hidden' name='examUid' value='3779'> 
 		<input	type='hidden' name='mode' value=''> 
 		<input type='hidden' name='targetDiv' value=''> 
@@ -157,7 +164,7 @@
 
 						</div>
 						<div class="text-center">
-							<button onclick="start_test(1,'First', 1, 20)"
+							<button onclick="start_test(1,'First', 1, ${fn:length(tList)})"
 								class="button button-rounded button-reveal button-large button-dirtygreen button-dirtygreen text-right">
 								<span>응시하기 </span> <i class="icon-circle-arrow-right"></i>
 							</button>
@@ -805,7 +812,6 @@
 	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 
-	<c:set var="test" value="${fn:length(tList)/5}" />
 	<script type="text/javascript" language="javascript">var max_five = Array(10);</script>
 	<script>
      max_five[0] = '${test-(test%1)%1 -1}';</script>
@@ -814,6 +820,149 @@
 	<script>max_five[3] = '${test-(test%1)%1-1}';</script>
 	<script>max_five[4] = '${test-(test%1)%1-1}';</script>
 	<script>
+	
+	 
+
+	 
+	
+	</script>
+	
+	
+	
+	<script>
+	
+
+	 $(window).on('beforeunload', function (event) {
+			
+		 
+		  event.returnValue = '';
+		  
+		  return "";
+		 
+        		 
+     });
+	
+	
+	
+		$(document).ready(function(){
+			
+			timer();
+			
+			function noRefresh(event){
+			    if (event.keyCode == 116)  {
+			        alert("새로고침을 할 수 없습니다11.");
+			        
+			        console.log("??")
+			        event.keyCode = 2;
+			        return false;
+			    } 
+			 
+			}
+			document.onkeydown = noRefresh;
+		})
+		
+	
+	
+		
+
+	
+		
+		function timer(){
+			var t = $('#time').val();
+			var d =$('#openDate').val();
+			var time =Number(t);
+			
+			 //opendate date형으로 변경
+			 
+			 console.log(openDate);
+			 
+			 var oYear = d.substring(0,4);
+			 var oMonth = d.substring(5,7);
+			 var oDate = d.substring(8,10);
+			 var oHours = d.substring(11,13);
+			 var oMinutes = d.substring(14,16);
+			 
+			 console.log(oYear);
+			 console.log(oMonth);
+			 console.log(oDate);
+			 console.log(oHours);
+			 console.log(oMinutes);
+			 
+		 	 var openDatetoDate = new Date(Number(oYear), Number(oMonth)-1, Number(oDate),Number(oHours),Number(oMinutes));
+				 
+			 var now = new Date();
+				//현재시간에 분까지 담음
+			 var t = new Date(now.getFullYear(), now.getMonth(), now.getDate(),now.getHours(),now.getMinutes()); 
+			 var today =t.getTime();
+
+			 var cd = new Date(openDatetoDate); //시험 시간
+			 var openDate = cd.getTime();
+			 
+			 var ld = new Date(openDatetoDate);
+			 var limitTime =ld.setMinutes(cd.getMinutes() +time);  //마감 시간
+			
+			
+			
+			
+			var countTime =(limitTime-today)/1000;
+			 
+			 
+			console.log(time);
+			
+			console.log(limitTime)
+			console.log(today)
+			console.log(openDate)
+			
+			
+			console.log(countTime)
+			
+			var min="";
+			var sec="";
+			
+			var timer =setInterval(function(){
+				min =parseInt(countTime/60)
+				sec =countTime%60
+				
+				var count =min+"분"+sec+"초";
+				
+				$('#tTime').empty();
+				
+				$('#tTime').append(count) 
+				countTime--;
+				
+				var rTime = countTime
+				$('#rTime').val(countTime);
+				
+				
+				
+				if(countTime==100){
+					alert("시험 종료 5분전 입니다. 답안 제출을 꼭 해주세요!")
+					
+				}else if(countTime<0){
+					alert("시험시간이 모두 경과되었습니다. 시험을 종료합니다.")
+					clearInterval(timer);
+	                var params = $('#fm').serialize();
+	                $.ajax({
+	                		
+	                	url:"tInsert.do",
+	                	data :params,
+	                	success : function(data){
+	                		if(data="success"){
+	                	
+		                		window.close();
+		                	
+	                		}
+	                	}
+	                })
+					
+				}
+				
+				
+				
+			},1000)
+
+		}
+		
 
         
         /* 첫화면으로 이동*/
@@ -896,15 +1045,17 @@
     
 
 
-    
-
+    	// 잔여문제 확인용
+        var check =""
+       	var length =$('#length').val()
+        var num = Number(length);
+       
         function answer_check(question_num, ans_num) {
+            var startNum = $('#current_startNum').val();
+            var eachTotal = $('#current_questionTotal').val();
+            var endNum = Number(startNum) + Number(eachTotal) - 1;
+        	
             var currentMode = $('#current_mode').val();
-           
-
-            console.log(currentMode)
-          
-
            
 
             var ans = $('#answer' + question_num + ans_num);
@@ -924,6 +1075,46 @@
 
             /* 폼에 값 저장하기*/
             $('#ans_try' + question_num).val(ans_num);
+            
+            
+            
+            var f = document.test_form;
+
+            
+                var tryList = "";
+                var checkList="";
+                
+                for (var i = startNum; i <= endNum; i++) {
+                    ans_try =$('#ans_try' + i).val();
+                    if (ans_try == "") { 
+                    	ans_try = " ";  // 정답률 추출을 위해 한자리수로 맞춤.
+                   	}else{
+                   		checkList =	checkList + ans_try+","
+                   	}
+                    
+                    
+                    
+                    tryList = tryList + ans_try + ",";
+                    
+                }
+                f.ansTryList.value = tryList;
+            
+          
+            // 잔여문제 확인용
+            var arr = checkList.split(",");
+            console.log(arr.length)    
+                
+                
+            var test = $('#t')
+            var check= num-arr.length+1;    
+            
+            test.empty();
+            test.append(check+"/"+num);
+            
+            
+            
+            
+            
         }
 
         function previous_div(courseName, divIndex, fiveIndex) {
@@ -967,7 +1158,7 @@
             var endNum = Number(startNum) + Number(eachTotal) - 1;
           
 
-         
+            console.log('zz')
 
             var notTriedNum = get_notTriedNum(startNum, endNum);
             if (notTriedNum != -1) {
@@ -995,7 +1186,7 @@
                 var params = $('#fm').serialize();
                 $.ajax({
                 		
-                	url:"tMidtermInsert.do",
+                	url:"tInsert.do",
                 	data :params,
                 	success : function(data){
                 		if(data="success"){

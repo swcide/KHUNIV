@@ -2,7 +2,7 @@ package com.kh.univ.testPage.model.vo;
 
 public class HomeworkGrade {
 	
-	private String tNo;
+	private String hNo;
 	private String sNo;
 	private String pNo;
 	private String cNo;
@@ -20,9 +20,9 @@ public class HomeworkGrade {
 
 
 
-	public HomeworkGrade(String tNo, String sNo, String pNo, String cNo, int point, int lecNo) {
+	public HomeworkGrade(String hNo, String sNo, String pNo, String cNo, int point, int lecNo) {
 		super();
-		this.tNo = tNo;
+		this.hNo = hNo;
 		this.sNo = sNo;
 		this.pNo = pNo;
 		this.cNo = cNo;
@@ -33,15 +33,15 @@ public class HomeworkGrade {
 
 
 
-	public String gettNo() {
-		return tNo;
+	public String gethNo() {
+		return hNo;
 	}
 
 
 
 
-	public void settNo(String tNo) {
-		this.tNo = tNo;
+	public void sethNo(String hNo) {
+		this.hNo = hNo;
 	}
 
 
@@ -119,14 +119,9 @@ public class HomeworkGrade {
 
 	@Override
 	public String toString() {
-		return "HomeworkGrade [tNo=" + tNo + ", sNo=" + sNo + ", pNo=" + pNo + ", cNo=" + cNo + ", point=" + point
+		return "HomeworkGrade [hNo=" + hNo + ", sNo=" + sNo + ", pNo=" + pNo + ", cNo=" + cNo + ", point=" + point
 				+ ", lecNo=" + lecNo + "]";
 	}
-
-
-
-
-
 
 
 

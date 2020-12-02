@@ -5,7 +5,6 @@
 	<resultMap type="Registration" id="RegistrationResultSet">
 		<id property="dNo" column="DEPT_NO" />
 		<result property="dName" column="DEPT_NAME" />
-		<result property="semester" column="STD_SEMESTER" />
 		<result property="semNo" column="SEME_NO" />
 		<result property="cNo" column="CLASS_NO" />
 		<result property="cName" column="CLASS_NAME" />
@@ -46,29 +45,52 @@
 
 
 	<select id="rSelectList" resultMap="RegistrationResultSet">
-		    SELECT  
+		     SELECT  
             
-	        CLASS_NO,
-	        CLASS_NAME,
+	         CLASS_NO,
+             CLASS_NAME,
 	        CLASS_TYPE,
             d.dept_no,
             p.prof_no,
-            p.prof_name,
-	        CREDIT
+            p.prof_name, 
+            CREDIT
+	    
 			FROM TB_CLASS C
-			JOIN TB_DEPARTMENT D on (D.DEPT_NO=c.dept_no)          
+			left JOIN TB_DEPARTMENT D on (D.DEPT_NO=c.dept_no)          
 			left outer JOIN TB_CLASS_PROFESSOR CP USING(CLASS_NO)
-            left JOIN TB_PROFESSOR P ON( p.prof_no= CP.PROFESSOR_NO)
-            where TO_NUMBER(D.DEPT_NO) =#{dNo}
+            left outer JOIN TB_PROFESSOR P ON( p.prof_no= CP.PROFESSOR_NO)
+            where TO_NUMBER(D.DEPT_NO) = #{dNo}
+            MINUS
+            
+          
+         SELECT   
+         CLASS_NO,
+             CLASS_NAME,
+	        CLASS_TYPE,
+            d.dept_no,
+            p.prof_no,
+            p.prof_name, 
+            CREDIT
+	   
+         FROM TB_SEMESTER_POINT T
+
+         left outer join TB_CLASS C using(class_no)
+        	JOIN TB_DEPARTMENT D on (D.DEPT_NO=c.dept_no)          
+			left outer JOIN TB_CLASS_PROFESSOR CP USING(CLASS_NO)
+            left outer JOIN TB_PROFESSOR P ON( p.prof_no= CP.PROFESSOR_NO)
+            where TO_NUMBER(D.DEPT_NO) = #{dNo}
+         and STD_NO = #{sNo}
 	</select>
 	
 	   	
 	
 	<select id="myRSelectList" resultMap="RegistrationResultSet">
 	
-         SELECT * FROM TESTT T
-         LEFT JOIN TB_CLASS C ON(C.CLASS_NO=T.CLASS_NO)
+         SELECT class_no FROM TB_SEMESTER_POINT T
+         join TB_class_PROFESSOR using(class_no)
+         join TB_CLASS C using(class_no)
          WHERE STD_NO = #{sNo} 
+         AND DEPT_NO = #{dNo}
 	</select>
 	
 	<insert id="insertRegistration" parameterType="java.util.ArrayList">

@@ -41,7 +41,7 @@
 										<table class="table table-hover mb-0" style="text-align: center">
 											<thead>
 												<tr>
-													<th style="text-align: left">#</th>
+													<th>#</th>
 													<th>제목</th>
 													<th>작성자</th>
 													<th>작성일</th>
@@ -104,7 +104,7 @@
 
 										</c:if>
 										<c:if test="${ pi.currentPage ne 1 }">
-											<c:url var="before" value="nList.do?nType=2">
+											<c:url var="before" value="manageNotice.do?nType=2">
 												<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
 											</c:url>
 											<li class="page-item"><a class="page-link" href="${ before }"> <i class="fas fa-angle-left"></i>
@@ -118,7 +118,7 @@
 												<li class="page-item active"><a class="page-link" href="${ pagination }">${p}</a></li>
 											</c:if>
 											<c:if test="${ p ne pi.currentPage }">
-												<c:url var="pagination" value="nList.do?nType=2">
+												<c:url var="pagination" value="manageNotice.do?nType=2">
 													<c:param name="currentPage" value="${ p }" />
 												</c:url>
 												<li class="page-item "><a class="page-link" href="${ pagination }">${p}</a></li>
@@ -133,7 +133,7 @@
 
 										<!-- 				            	다음대음다음대음 -->
 										<c:if test="${pi.currentPage ne pi.maxPage }">
-											<c:url var="after" value="nList.do?nType=2">
+											<c:url var="after" value="manageNotice.do?nType=2">
 												<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
 											</c:url>
 
