@@ -80,7 +80,7 @@ if (month >= 7) {
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 </head>
-<body onresize="parent.resizeTo(800,500)" onload="parent.resizeTo(700,100)">
+<body onresize="parent.resizeTo(900,500)" onload="parent.resizeTo(700,100)">
 	<div class="body">
 		<div role="main" class="main">
 			<section class="page-header page-header-modern bg-color-light-scale-3 page-header-sm section-overlay-dot" style="margin: 0; background-image: url(resources/img/custom-header-bg.jpg);">
@@ -102,36 +102,74 @@ if (month >= 7) {
 				<div class="row">
 					<div class="col">
 						<!-- onsubmit="return checkForm();" -->
-						<form id="attPointInsert-form" name="attPointInsert-form"  class="mb-4" method="POST" novalidate="novalidate">
-							<div class="modal-body">
-								<c:set var="today" value="${Time}.getFullYear()%>" />
-								<input type="hidden" name="pNo" value="<%=pNo%>">
+						<form id="attPointInsert-form" name="attPointInsert-form" class="mb-4" >
+							<div>
+								<input type="hidden" name="semesterNo" value="<%=semester%>">
 								<input type="hidden" name="year" value="<%=year%>">
-								<input type="hidden" name="semester" value="<%=semester%>">
-								<thead>
-									<c:forEach var="lc" items="${lc}" end="0">
-										<h3>${lc.sName}</h3>
-										<input type="hidden" name="classNo" value="${lc.classNo }">
-										<input type="hidden" name="sNo" value="${lc.sNo}">
-									</c:forEach>
-									<tr>
-										<th colspan="2" style="text-align: center">출석점수 만점 :&nbsp;&nbsp;&nbsp; ${lp.attendancePoints}점</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>
-											<div class="form-group row align-items-center">
-												<input type="text" pattern="[0-9]+" class="col-sm-7 text-left text-sm-right mb-0" id="attPoints" name="attendancePoints" placeholder="0 ~ ${lp.attendancePoints}점 내에서 점수를 부여하세요" style="margin-left: 140px; margin-right: -50px" />
-												<div class="col-sm-9"></div>
-											</div>
-										</td>
-									</tr>
-								</tbody>
+								<input type="hidden" name="pNo" value="<%=pNo%>">
+								<table class="table table-striped table-bordered" width="100%">
+									<thead>
+										<tr>
+											<th>이름</th>
+											<th>강의명</th>
+											<th>중간고사점수</th>
+											<th>기말고사점수</th>
+											<th>과제점수</th>
+											<th>출석점수</th>
+											<th>총점</th>
+										</tr>
+									</thead>
+									<tfoot>
+								<c:forEach var="lc" items="${lc}" end="0">
+											<tr>
+												<td>${lc.sName}
+												<input type="hidden" name="sNo" value="${sp.sNo}"/> </td>
+												<td>${lc.className}
+												<input type="hidden" name="classNo" value="${sp.classNo}"/> </td>
+												<td>${sp.midTestPoints}
+												<input type="hidden" name="midTestPoints" value="${sp.midTestPoints}"/> </td>
+												<td>${sp.finalTestPoints}
+												<input type="hidden" name="finalTestPoints" value="${sp.finalTestPoints}"/></td>
+												<td>${sp.reportPoints}
+												<input type="hidden" name="reportPoints" value="${sp.reportPoints}"/></td>
+												<td>${sp.attendancePoints}</td>
+												<td>${sp.totalPoints}
+												
+												<fmt:parseNumber var="sumPoints" value="${(sp.midTestPoints+sp.finalTestPoints+sp.reportPoints)}" integerOnly="true"></fmt:parseNumber>
+
+											</tr>
+										</c:forEach>
+									</tfoot>
+								</table>
+								<table>
+									<thead>
+										<tr>
+											<th colspan="2" style="text-align: center">출석점수 만점 :&nbsp;&nbsp;&nbsp; ${lp.attendancePoints}점</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												<div class="form-group row align-items-center">
+													<input type="text" pattern="[0-9]+" 
+													class="col-12 text-left text-sm-right mb-0" 
+													id="attPoints" name="attendancePoints" 
+													placeholder="0 ~ ${lp.attendancePoints}점 내에서 점수를 부여" 
+													style="margin-left: 140px; margin-right: -50px" />
+													<div class="col-sm-9"></div>
+												
+												</div>
+													<fmt:parseNumber var="attPoints" value="${lp.attendancePoints}" integerOnly="true"></fmt:parseNumber>
+												<c:set var="total" value="${sumPoints + attPoints }" />
+												<input type="hidden" id="totalPoints" name="totalPoints" value="${total}"/></td>
+											</td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
-							<div class="modal-footer">
-								<button type="submit" onclick="checkForm(); return false;" class="btn btn-primary">확인</button>
-								<button type="button" class="btn btn-light" data-dismiss="modal">취소</button>
+							<div style="float:right;">
+								<button style="float:right; margin-left:20px" type="button" class="btn btn-light"onClick='window.close()'>취소</button>
+								<button style="float:right; margin-left:20px" type="submit" onclick="checkForm(); return false;" class="btn btn-primary">확인</button>
 							</div>
 						</form>
 					</div>
@@ -143,7 +181,8 @@ if (month >= 7) {
 
 <script>
 	function checkForm() {
-
+		var totalPoints = $("#totalPoints").val();
+		console.log(totalPoints);
 		var maxPoint = ${lp.attendancePoints};
 		var inputNo = $("#attPoints").val();
 		parseInt(inputNo);
@@ -161,23 +200,22 @@ if (month >= 7) {
 		console.log(formData);
 		$.ajax({
 			type : "POST",
-			url : 'attendancePointUpdate.do',
+			url : 'attendancePointUpdate.do', 
 			data : formData,
-			contentType: false,
-			processData:false,
+			contentType : false,
+			processData : false,
 			success : function(data) {
-				
+
 				alert("채점을 완료되었습니다.")
 				window.opener.location.reload();
 				self.close();
-				
+
 			},
 			error : function(request, status, error) {
 				alert("code:" + request.status + "\n" + "message:"
 						+ request.responseText + "\n" + "error:" + error);
 			}
 		});
-		 
 
 	};
 </script>

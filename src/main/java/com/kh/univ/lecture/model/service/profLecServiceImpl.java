@@ -18,7 +18,6 @@ import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.lecture.model.vo.LectureStudent;
 import com.kh.univ.lecture.model.vo.SemePoint;
-import com.kh.univ.lecture.model.vo.attPointsDTO;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.testPage.model.vo.HomeworkGrade;
 import com.kh.univ.testPage.model.vo.Test;
@@ -264,11 +263,6 @@ public class profLecServiceImpl implements profLecService {
 		
 	}
 
-	@Override
-	public int attendancePointUpdate(attPointsDTO apDTO) {
-		return plDao.updateStudentAttendancePoints(apDTO);
-	}
-	
 	
 
 	@Override
@@ -284,6 +278,11 @@ public class profLecServiceImpl implements profLecService {
 	@Override
 	public SemePoint studentSemesterPoint(SemePoint sp) {
 		return plDao.studentSemesterPoint(sp);
+	}
+
+	@Override
+	public int attendancePointUpdate(SemePoint sp) {
+		return plDao.attendancePointUpdate(sp);
 	}
 
 	
