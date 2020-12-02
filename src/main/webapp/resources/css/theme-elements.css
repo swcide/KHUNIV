@@ -9908,19 +9908,19 @@ html.boxed .nav-secondary.sticky-active {
 }
 
 /* Section Scroll - Dots Navigation */
-.section-scroll-dots-navigation {
-	display: flex;
-	flex-direction: column;
-	position: fixed;
-	top: 50%;
-	right: 30px;
-	background: #FFF;
-	border-radius: 35px;
-	padding: 9.6px;
-	padding: 0.6rem;
-	z-index: 10;
-	transform: translate3d(0, -50%, 0);
-}
+/* .section-scroll-dots-navigation { */
+/* 	display: flex; */
+/* 	flex-direction: column; */
+/* 	position: fixed; */
+/* 	top: 50%; */
+/* 	right: 30px; */
+/* 	background: #FFF; */
+/* 	border-radius: 35px; */
+/* 	padding: 9.6px; */
+/* 	padding: 0.6rem; */
+/* 	z-index: 10; */
+/* 	transform: translate3d(0, -50%, 0); */
+/* } */
 
 .section-scroll-dots-navigation > ul {
 	margin: 8px 0;

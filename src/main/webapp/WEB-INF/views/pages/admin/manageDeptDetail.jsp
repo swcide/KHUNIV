@@ -88,15 +88,26 @@ if (loginUser != null) {
 																<span> <i class="far fa-user fl"></i> By ${n.nWriter }
 																</span> <span class="date float-right">${n.nCreateDate }</span>
 															</div>
-
 															<p class="text-5">${n.nContent }</p>
-
 															<div class="mt-5 ">
 																<hr>
-																<h4>첨부파일</h4>
+																<h4>첨부파일
+																<div class=" float-right">
+																		<c:url var="nupview" value="manageNoticeUpView.do">
+																			<c:param name="nId" value="${n.nId }" />
+																			<c:param name="nType" value="${n.nType}" />
+																		</c:url>
+																		<c:url var="nDelete" value="manageNoticeDelete.do">
+																			<c:param name="nId" value="${n.nId }" />
+																			<c:param name="nType" value="${n.nType}" />
+																		</c:url>
+																		<c:url var="nList" value="manageNotice.do?nType=1">
+																			<c:param name="currentPage" value="${ currentPage }" />
+																		</c:url>
+																		<a href="${nDelete}" class="btn btn-secondary"> 삭제하기</a> <a href="${nupview }" class="btn btn-secondary"> 수정하기 </a>
+																</div>
+																</h4>
 															</div>
-
-
 															<c:if test="${ !empty n.originalFileName }">
 																<ul class=" d-flex align-items-stretch clearfix" style="list-style: none; padding: 0;">
 																	<li>
@@ -104,48 +115,9 @@ if (loginUser != null) {
 																			<a href="/spring/resources/uploadFiles/${n.renameFileName}" download="${n.originalFileName }" class="mailbox-attachment-name"> <i class="fas fa-paperclip"></i>${n.originalFileName }
 																			</a> <span class="mailbox-attachment-size clearfix mt-"> <a href="#" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
 																			</span>
-
 																		</div>
 																	</li>
 																</ul>
-
-
-															</c:if>
-
-															<c:if test="${ loginAdmin != null }">
-																<div class=" float-right">
-																	<div>
-																		<c:url var="nupview" value="manageNoticeUpView.do">
-																			<c:param name="nId" value="${n.nId }" />
-																			<c:param name="nType" value="${n.nType}" />
-																		</c:url>
-																		<c:url var="nDelete" value="manageNoticeDelete.do">
-																			<c:param name="nId" value="${n.nId }" />
-																		</c:url>
-																		<c:url var="nList" value="manageNotice.do?nType=1">
-																			<c:param name="currentPage" value="${ currentPage }" />
-																		</c:url>
-																		<a href="${nDelete}" class="mb-1 mt-1 mr-1 btn btn-primary"> 삭제하기</a> <a href="${nupview }" class="mb-1 mt-1 mr-1 btn btn-primary"> 수정하기 </a>
-																	</div>
-																</div>
-															</c:if>
-															<c:if test="${ loginProf.pNo eq n.nWriter }">
-																<div class=" float-right">
-																	<div>
-																		<c:url var="nupview" value="manageNoticeUpView.do">
-																			<c:param name="nId" value="${n.nId }" />
-																			<c:param name="nType" value="${n.nType}" />
-																		</c:url>
-																		<c:url var="nDelete" value="manageNoticeDelete.do?nType=1">
-																			<c:param name="nId" value="${n.nId }" />
-																		</c:url>
-																		<c:url var="nList" value="manageNotice.do">
-																			<c:param name="currentPage" value="${ currentPage }" />
-																		</c:url>
-																		<c:set var="test" value="${n.nType }" />
-																		<a href="${nDelete}" class="mb-1 mt-1 mr-1 btn btn-primary"> 삭제하기 </a> <a href="${nupview }" class="mb-1 mt-1 mr-1 btn btn-primary"> 수정하기 </a>
-																	</div>
-																</div>
 															</c:if>
 															<div id="comments" class="post-block mt-5 post-comments">
 																<h4 id="rCount" class="mb-3"></h4>
@@ -316,8 +288,8 @@ if (loginUser != null) {
 										
 								
 								$div_c = 
-										'	<li id="rId_'+$rId+'">'+
-										'		<div class="comment">'+													
+										'	<li id="rId_'+$rId+'" style="list-style: none;">'+
+										'		<div class="comment" style="margin-top:45px;">'+													
 										'			<div class="comment-block">'+
 										'				<div class="comment-arrow"></div>'+
 										'				<input type="hidden" value="'+$rId+'">'+		
@@ -326,7 +298,7 @@ if (loginUser != null) {
 										'					<strong >'+$rName+'</strong>'+
 										'				<span class="date float-right" style=" margin-left: 10px;">'+$rCreateDate+'</span>'+			
 										'				</span>'+
-										'				<p style="margin-bottom:15px;">'+$rContent+'</p>'+ 
+										'				<p style="margin-bottom:-20px;">'+$rContent+'</p>'+ 
 										'				<textarea style="width:85%; display: none;"></textarea>'+
 										' 				<span class="float-right">'+
 										'						<span class="checkId"> <a href="javascript:void(0);" onclick="reAddReplyView(this);"><i class="fas fa-reply"></i> Reply</a></span>'+
@@ -373,17 +345,17 @@ if (loginUser != null) {
 											console.log("refrid"+$refRid+"----"+$rId+"rId");
 											
 											$rePlace=$(	
-													'<ul class="comments reply">'+
-													'    <li >'+
-													'   	<div class="comment">'+				
+													'<ul class="comments reply"style="list-style: none;">'+
+													'    <listyle=" list-style: none;" >'+
+													'   	<div class="comment" style="margin-top: 19px;">'+				
 													'			<i class="fas fa-chevron-up"></i>'+
 													'     		<div class="comment-block">'+
 													'     			<input type="hidden" value="'+$reRid+'">'+		
 													'     			<span class="comment-by">'+
-													'     				<strong >수정한거'+$rName+'</strong>'+
+													'     				<strong >'+$rName+'</strong>'+
 													'     			<span class="date float-right" style=" margin-left: 10px;">'+$rCreateDate+'</span>'+			
 													'     			</span>'+
-													'     			<p style="margin-bottom:15px;">'+$rContent+'</p>'+ 
+													'     			<p style="margin-bottom:-20px;">'+$rContent+'</p>'+ 
 													'     			<textarea style="width:85%; display: none;"></textarea>'+
 													'     		</div>'+
 													'     	</div>' +
@@ -422,10 +394,10 @@ if (loginUser != null) {
 								if($rWriter==sNo){	
 									$dupReply = $(	
 													'<span  class=" float-right">'+
-														'<button onclick="rDelete(this);" class="btn btn-xs btn-light btnChk" style=" margin-right: 10px; ">삭제</button>'+
+														'<button onclick="rDelete(this);" class="badge bg-primary" style=" margin-right: 10px; ">삭제</button>'+
 													'</span>'+
 													'<span class=" float-right">'+
-														'<button onclick="rUpdateView(this);"class="btn btn-xs btn-primary btnChk" style=" margin-right: 10px;" >수정</button>'+
+														'<button onclick="rUpdateView(this);"class="badge bg-primary" style=" margin-right: 10px;" >수정</button>'+
 													'</span>'											 
 												);
 							
@@ -439,10 +411,10 @@ if (loginUser != null) {
 									$dupReply = $(	
 													'<span  class=" float-right">'+
 													
-														'<button onclick="rDelete(this);" class="btnChk btn btn-xs btn-light" style=" margin-right: 10px; ">삭제</button>'+
+														'<button onclick="rDelete(this);" class="badge bg-secondary" style=" margin-right: 10px; ">삭제</button>'+
 													'</span>'+
 													'<span class=" float-right">'+
-														'<button onclick="rUpdateView(this);" class="btnChk btn btn-xs btn-primary" style=" margin-right: 10px;" >수정</button>'+
+														'<button onclick="rUpdateView(this);" class="badge bg-secondary" style=" margin-right: 10px;" >수정</button>'+
 													'</span>'
 												  );	
 
@@ -453,10 +425,10 @@ if (loginUser != null) {
 								$dupReply = $(	
 												'<span  class=" float-right">'+
 												
-													'<button onclick="rDelete(this);" class="btnChk btn btn-xs btn-light" style=" margin-right: 10px; ">삭제</button>'+
+													'<button onclick="rDelete(this);" class="badge bg-secondary" style=" margin-right: 10px; ">삭제</button>'+
 												'</span>'+
 												'<span class=" float-right">'+
-													'<button onclick="rUpdateView(this);" class="btnChk btn btn-xs btn-primary" style=" margin-right: 10px;" >수정</button>'+
+													'<button onclick="rUpdateView(this);" class="badge bg-secondary" style=" margin-right: 10px;" >수정</button>'+
 												'</span>'						
 											);	
 					
@@ -514,8 +486,8 @@ if (loginUser != null) {
 			
 			var changeBtn;
 			changeBtn=
-				'<button onclick="rUpdate(this);" class="btn btn-xs btn-primary" style=" margin-right: 10px; ">수정하기</button>'+
-				'<button  onclick="rCancle(this);" class="btn btn-xs btn-primary" style=" margin-right: 10px; ">취소하기</button>';
+				'<button onclick="rUpdate(this);" class="badge bg-light" style=" margin-right: 10px; ">수정하기</button>'+
+				'<button  onclick="rCancle(this);" class="badge bg-light" style=" margin-right: 10px; ">취소하기</button>';
 			
 			var changeContent;
 			changeContent= $(obj).parent().siblings('p').css('display','none');
@@ -578,7 +550,7 @@ if (loginUser != null) {
 		}
 	
 		function rCancle(obj){
-			var update = '<button onclick="rUpdateView(this);" class="btn btn-xs btn-primary" style=" margin-right: 10px;" >수정</button>';
+			var update = '<button onclick="rUpdateView(this);" class="badge bg-secondary" style=" margin-right: 10px;" >수정</button>';
 			$('.checkId').css('display','block');
 
 			var remove2 =$(obj).siblings('button').remove();
@@ -732,15 +704,8 @@ if (loginUser != null) {
 		$('.checkId').css('display','block');
 		$('.btnChk').css('display','block');
 		
-	
-		
 	}
 
-	
-	
-	
-	
-	
 	</script>
 	<script src="resources/assets/js/feather-icons/feather.min.js"></script>
 	<script src="resources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>

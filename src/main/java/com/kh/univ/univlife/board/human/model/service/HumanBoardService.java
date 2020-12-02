@@ -42,6 +42,8 @@ public interface HumanBoardService {
 
 	int reportInsert(Report rp);
 
+	int reportDone(int rpId);
+
 	
 
 

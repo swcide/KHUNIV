@@ -1,115 +1,157 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="humanBoardMapper">
- 
-  <resultMap type="HumanBoard" id="humanResultSet">
-  		<id property="hId" column="HID"/>
-  		<result property="hType" column="HTYPE"/>
-		<result property="hTitle" column="HTITLE"/>
-		<result property="hWriter" column="HWRITER"/>
-		<result property="hWriter" column="HNAME"/>
-		<result property="hContent" column="HCONTENT"/>
-		<result property="hCount" column="HCOUNT"/>
-		<result property="originalFilename" column="ORIGINAL_FILENAME"/>
-		<result property="renameFilename" column="RENAME_FILENAME"/>
-		<result property="hCount" column="HCOUNT"/>
-		<result property="hCreateDate" column="H_CREATE_DATE"/>
-		<result property="hModifyDate" column="H_MODIFY_DATE"/>
-		<result property="hStatus" column="H_STATUS"/>
-		<result property="hStatus" column="H_SECRET"/>
- 	 </resultMap>
- 	 
- 	    <resultMap type="hReply" id="replyResultSet">
- 	 	<id property="rId" column="H_RID"/>
-		<result property="rContent" column="H_RCONTENT"/>
-		<result property="refHid" column="H_REF_HID"/>
-		<result property="rWriter" column="H_RWRITER"/>
-		<result property="rCreateDate" column="H_R_CREATE_DATE"/>
-		<result property="rmodifyDate" column="H_R_MODIFY_DATE"/>
-		<result property="rStatus" column="H_R_STATUS"/>
-		<result property="rName" column="H_RNAME"/>
-		<result property="refRid" column="H_REF_RID"/>
-		<result property="hType" column="HTYPE"/>
- 	 </resultMap>
- 	    
- 	    <resultMap type="report" id="reportResultSet">
- 	 	<id property="rpWriter" column="RP_WRITER"/>
-		<result property="hId" column="HID"/>
-		<result property="rpName" column="RP_NAME"/>
-		<result property="rpCreateDate" column="RP_CREATE_DATE"/>
- 	 </resultMap>
- 	 
- 	 	<insert id="reportInsert" parameterType="report">
- 	 	INSERT INTO TB_REPORTBOARD
- 	 	VALUES(#{hId},#{rpWriter},#{rpName},SYSDATE)
- 	 </insert>
- 	 
- 	 
- 	 	<select id="getListCount"  resultType="_int">
-  		SELECT COUNT(*)
-  		FROM TB_HUMAN_BOARD
-  		WHERE H_STATUS='Y'	
- 		</select>
-		<select id="selectList" resultMap="humanResultSet">
- 		SELECT *
+
+	<resultMap type="HumanBoard" id="humanResultSet">
+		<id property="hId" column="HID" />
+		<result property="hType" column="HTYPE" />
+		<result property="hTitle" column="HTITLE" />
+		<result property="hWriter" column="HWRITER" />
+		<result property="hWriter" column="HNAME" />
+		<result property="hContent" column="HCONTENT" />
+		<result property="hCount" column="HCOUNT" />
+		<result property="originalFilename" column="ORIGINAL_FILENAME" />
+		<result property="renameFilename" column="RENAME_FILENAME" />
+		<result property="hCount" column="HCOUNT" />
+		<result property="hCreateDate" column="H_CREATE_DATE" />
+		<result property="hModifyDate" column="H_MODIFY_DATE" />
+		<result property="hStatus" column="H_STATUS" />
+		<result property="hStatus" column="H_SECRET" />
+	</resultMap>
+
+	<resultMap type="hReply" id="replyResultSet">
+		<id property="rId" column="H_RID" />
+		<result property="rContent" column="H_RCONTENT" />
+		<result property="refHid" column="H_REF_HID" />
+		<result property="rWriter" column="H_RWRITER" />
+		<result property="rCreateDate" column="H_R_CREATE_DATE" />
+		<result property="rmodifyDate" column="H_R_MODIFY_DATE" />
+		<result property="rStatus" column="H_R_STATUS" />
+		<result property="rName" column="H_RNAME" />
+		<result property="refRid" column="H_REF_RID" />
+		<result property="hType" column="HTYPE" />
+	</resultMap>
+
+	<resultMap type="report" id="reportResultSet">
+		<id property="rpWriter" column="RP_WRITER" />
+		<result property="hId" column="HID" />
+		<result property="hTitle" column="HTITLE" />
+		<result property="rpName" column="RP_NAME" />
+		<result property="rpCreateDate" column="RP_CREATE_DATE" />
+		<result property="rpContent" column="RP_CONTENT" />
+		<result property="categoryName" column="CATEGORYNAME" />
+		<result property="status" column="STATUS" />
+		<result property="rpId" column="RPID" />
+	</resultMap>
+
+	<update id="reportDone" parameterType="_int">
+		UPDATE TB_REPORTBOARD
+		SET
+		STATUS ='Y'
+		WHERE RPID = #{rpId}
+
+	</update>
+
+	<insert id="reportInsert" parameterType="report">
+		INSERT INTO
+		TB_REPORTBOARD
+		VALUES(#{hId},#{rpWriter},#{rpName},SYSDATE,#{rpContent},#{categoryName},DEFAULT,SEQ_REPORT.NEXTVAL)
+	</insert>
+
+	<select id="reportList" resultMap="reportResultSet">
+		SELECT
+		CATEGORYNAME,
+		HTITLE,
+		RP_CONTENT,
+		RP_CREATE_DATE,
+		RP_NAME,
+		STATUS,
+		RPID
+		FROM
+		TB_REPORTBOARD
+		JOIN
+		TB_HUMAN_BOARD USING(HID)
+	</select>
+
+	<select id="getListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM
+		TB_HUMAN_BOARD
+		WHERE H_STATUS='Y'
+	</select>
+	<select id="selectList" resultMap="humanResultSet">
+		SELECT *
 		FROM TB_HUMAN_BOARD
 		WHERE H_STATUS='Y'
 		ORDER BY HID DESC
- 	 </select>
- 	 <update id="updateCount" parameterType="_int">
- 	 	UPDATE TB_HUMAN_BOARD
- 	 	SET HCOUNT = HCOUNT+1
- 	 	WHERE HID=#{hId}
- 	 </update>
- 	  <select id="selectHumanBoard" resultMap="humanResultSet">
- 	 	SELECT *
- 	 	FROM TB_HUMAN_BOARD
- 	 	WHERE HID=#{hId}
- 	 	AND H_STATUS='Y'
- 	 </select>
- 	  <insert id="insertHumanBoard" parameterType="HumanBoard">
- 	 	INSERT INTO TB_HUMAN_BOARD
- 	 	VALUES(SEQ_HUMAN_HID.NEXTVAL,#{hType},#{hTitle},#{hContent},#{hWriter},#{hName},DEFAULT,DEFAULT,DEFAULT,DEFAULT,#{originalFilename},#{renameFilename},DEFAULT)
- 	 </insert>
- 	 
- 	 <update id="updateHumanBoard"  parameterType="HumanBoard">
- 	 	UPDATE TB_HUMAN_BOARD
- 	 	SET HTITLE=#{hTitle},HCONTENT=#{hContent},ORIGINAL_FILENAME=#{originalFilename},RENAME_FILENAME=#{renameFilename},H_MODIFY_DATE=SYSDATE
- 	 	WHERE HID=#{hId} 
- 	 </update>
- 	 
- 	  <update id="deleteHumanBoard" parameterType="_int">
- 	 	UPDATE TB_HUMAN_BOARD
- 	 	SET H_STATUS ='N'
- 	 	WHERE HID= #{hId}
- 	 </update>
- 	 <select id="selectHumanReplyList" parameterType="_int" resultMap="replyResultSet">
- 	 	SELECT *
- 	 	FROM TB_HUMANBOARD_REPLY
- 	 	WHERE H_REF_HID=#{hId}
- 	 	ORDER BY H_RID DESC
- 	 </select>
- 	 
- 	  <insert id="insertReply" parameterType="Reply">
- 	 	INSERT INTO TB_HUMANBOARD_REPLY
- 	 	VALUES(SEQ_HUMAN_RID.NEXTVAL,#{rContent},#{refHid},SYSDATE,SYSDATE,#{rWriter},DEFAULT,#{rName},#{refRid},#{hType})
- 	 </insert>
- 	 <insert id="deleteReply" parameterType="Reply">
- 	 	UPDATE TB_HUMANBOARD_REPLY
- 	 	SET  H_R_STATUS='N'
- 		WHERE H_RID= #{rId}
- 		OR H_REF_RID =#{rId}
- 	 </insert>
- 	 <insert id="updateReply" parameterType="Reply">
- 	 	UPDATE TB_HUMANBOARD_REPLY
- 	 	SET  H_RCONTENT=#{rContent}
- 		WHERE H_RID= #{rId}
- 	 </insert>
+	</select>
+	<update id="updateCount" parameterType="_int">
+		UPDATE TB_HUMAN_BOARD
+		SET
+		HCOUNT = HCOUNT+1
+		WHERE HID=#{hId}
+	</update>
+	<select id="selectHumanBoard" resultMap="humanResultSet">
+		SELECT *
+		FROM
+		TB_HUMAN_BOARD
+		WHERE HID=#{hId}
+		AND H_STATUS='Y'
+	</select>
+	<insert id="insertHumanBoard" parameterType="HumanBoard">
+		INSERT INTO
+		TB_HUMAN_BOARD
+		VALUES(SEQ_HUMAN_HID.NEXTVAL,#{hType},#{hTitle},#{hContent},#{hWriter},#{hName},DEFAULT,DEFAULT,DEFAULT,DEFAULT,#{originalFilename},#{renameFilename},DEFAULT)
+	</insert>
 
- 	 <insert id="reportReply" parameterType="Reply">
- 	 	UPDATE TB_HUMANBOARD_REPLY
- 	 	SET  H_RCONTENT=#{rContent}
- 		WHERE H_RID= #{rId}
- 	 </insert>
+	<update id="updateHumanBoard" parameterType="HumanBoard">
+		UPDATE
+		TB_HUMAN_BOARD
+		SET
+		HTITLE=#{hTitle},HCONTENT=#{hContent},ORIGINAL_FILENAME=#{originalFilename},RENAME_FILENAME=#{renameFilename},H_MODIFY_DATE=SYSDATE
+		WHERE HID=#{hId}
+	</update>
+
+	<update id="deleteHumanBoard" parameterType="_int">
+		UPDATE
+		TB_HUMAN_BOARD
+		SET H_STATUS ='N'
+		WHERE HID= #{hId}
+	</update>
+	<select id="selectHumanReplyList" parameterType="_int"
+		resultMap="replyResultSet">
+		SELECT *
+		FROM TB_HUMANBOARD_REPLY
+		WHERE H_REF_HID=#{hId}
+		ORDER
+		BY H_RID DESC
+	</select>
+
+	<insert id="insertReply" parameterType="Reply">
+		INSERT INTO
+		TB_HUMANBOARD_REPLY
+		VALUES(SEQ_HUMAN_RID.NEXTVAL,#{rContent},#{refHid},SYSDATE,SYSDATE,#{rWriter},DEFAULT,#{rName},#{refRid},#{hType})
+	</insert>
+	<insert id="deleteReply" parameterType="Reply">
+		UPDATE
+		TB_HUMANBOARD_REPLY
+		SET H_R_STATUS='N'
+		WHERE H_RID= #{rId}
+		OR H_REF_RID
+		=#{rId}
+	</insert>
+	<insert id="updateReply" parameterType="Reply">
+		UPDATE
+		TB_HUMANBOARD_REPLY
+		SET H_RCONTENT=#{rContent}
+		WHERE H_RID= #{rId}
+	</insert>
+
+	<insert id="reportReply" parameterType="Reply">
+		UPDATE
+		TB_HUMANBOARD_REPLY
+		SET H_RCONTENT=#{rContent}
+		WHERE H_RID= #{rId}
+	</insert>
 
 </mapper>

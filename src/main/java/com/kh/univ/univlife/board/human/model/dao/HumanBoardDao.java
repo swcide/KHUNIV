@@ -87,5 +87,10 @@ public class HumanBoardDao {
 		return sqlSession.insert("humanBoardMapper.reportInsert",rp);
 	}
 
+	public int reportDone(int rpId) {
+	
+		return sqlSession.update("humanBoardMapper.reportDone",rpId);
+	}
+
 
 }

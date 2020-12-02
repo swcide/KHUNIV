@@ -12,8 +12,8 @@
 				<div class="row mt-3">
 					<div
 						class="col-md-12 align-self-center p-static order-2 text-center">
-						<h1 class="text-9 font-weight-bold">인문 사회 게시판</h1>
-						<span class="sub-title"> Humanities and Social Sciences</span>
+						<h1 class="text-9 font-weight-bold">학생 게시판</h1>
+						<span class="sub-title">Student Board</span>
 					</div>
 				</div>
 			</div>
@@ -26,7 +26,7 @@
 
 						<div
 							class="custom-box-details bg-color-light custom-box-shadow-1 col-lg-12 ml-5 mb-5 mb-lg-4 float-right clearfix">
-							<h4>인문 사회 게시판</h4>
+							<h4>학생 게시판</h4>
 
 							<table class="table table-hover">
 								<thead>

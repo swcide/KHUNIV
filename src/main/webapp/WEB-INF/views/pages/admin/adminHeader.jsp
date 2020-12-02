@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="resources/assets/css/app.css">
 <link rel="shortcut icon" href="resources/assets/images/favicon.svg" type="image/x-icon">
 <link rel="stylesheet" href="resources/vendor/fontawesome-free/css/all.min.css">
+	<link rel="stylesheet" href="resources/css/components/bs-datatable.css" type="text/css" />
 </head>
 <body>
 			<nav class="navbar navbar-header navbar-expand navbar-light">

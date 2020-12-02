@@ -41,7 +41,7 @@
 										<table class="table table-hover mb-0" style="text-align: center">
 											<thead>
 												<tr>
-													<th style="text-align: left">#</th>
+													<th>#</th>
 													<th>제목</th>
 													<th>작성자</th>
 													<th>작성일</th>

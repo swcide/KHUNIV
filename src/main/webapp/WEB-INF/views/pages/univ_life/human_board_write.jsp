@@ -12,8 +12,8 @@
 				<div class="row mt-3">
 					<div
 						class="col-md-12 align-self-center p-static order-2 text-center">
-						<h1 class="text-9 font-weight-bold">인문 사회 게시판 작성하기</h1>
-						<span class="sub-title">Humanities & Social Sciences Board</span>
+						<h1 class="text-9 font-weight-bold">학생 게시판 작성하기</h1>
+						<span class="sub-title">Student Board</span>
 					</div>
 				</div>
 			</div>
@@ -30,7 +30,7 @@
 
 
 								<div class="post-block mt-5 post-leave-comment">
-									<h4>인문 사회 게시판 작성</h4>
+									<h4>학생 게시판 작성</h4>
 
 									<form id="fm"class="contact-form"action="hBoardInsert.do" method="post" enctype="multipart/form-data">
 
