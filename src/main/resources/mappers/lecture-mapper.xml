@@ -42,8 +42,6 @@
       <id property="submitDate" column="SUBMIT_DATE" />
       <id property="assignFile" column="ASSIGNMENT_FILE_NAME" />
       <id property="lecNo" column="LECTURE_NO" />
-      
-      
       <id property="lecName" column="LECTURE_NAME" />
       <id property="lecReference" column="LECTURE_REFERENCE" />
       <id property="lecVideo" column="LECTURE_VIDEO" />
@@ -194,15 +192,20 @@
       <result property="hPoint" column="HWORK_POINT" />
    </resultMap>
    
-
+   	<resultMap type="SemesterPoint" id="LectureHomeWorkResultSet">
+	  <id property="sNo" column="STD_NO" />
+      <result property="year" column="SEM_YEAR" />
+      <result property="semesterNo" column="SEME_NO" />
+      <result property="classNo" column="CLASS_NO" />
+      <result property="midTestPoints" column="MID_TEST" />
+      <result property="finalTestPoints" column="FINAL_TEST" />
+      <result property="reportPoints" column="REPORT" />
+      <result property="attendancePoints" column="ATTENDANCE" />
+      <result property="totalPoints" column="POINT" />
+      <result property="pNo" column="PROF_NO" />
+   </resultMap>
    
-  	
-  	
-  	
-  	
-  	
-  	
-  	
+
   	
    <insert id="assignmentInsert" parameterType="LecturePlanWeek">
       INSERT INTO
@@ -275,7 +278,7 @@
          GROUP BY CLASS_NO, STD_NO, CLASS_TYPE, CLASS_NAME, START_DATE
    </select>
 
-	select id="lectureAttendList" resultMap="AttendanceResultSet">
+	<select id="lectureAttendList" resultMap="AttendanceResultSet">
    	    SELECT 
          DISTINCT CLASS_NO, 
          CLASS_TYPE,
