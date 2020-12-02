@@ -96,6 +96,12 @@ public class HumanBoardServiceImpl implements HumanBoardService {
 		return hDao.reportInsert(rp);
 	}
 
+	@Override
+	public int reportDone(int rpId) {
+
+		return hDao.reportDone(rpId);
+	}
+
 
 
 }

@@ -2,13 +2,8 @@ package com.kh.univ.lecture.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -28,10 +22,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
+import com.kh.univ.ad_Register.model.vo.semesterPoint;
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.common.Pagination;
 import com.kh.univ.lecture.model.service.profLecService;
-import com.kh.univ.lecture.model.vo.Assignment;
 import com.kh.univ.lecture.model.vo.Attendance;
 import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
@@ -40,11 +34,12 @@ import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.lecture.model.vo.LectureStudent;
+import com.kh.univ.lecture.model.vo.SemePoint;
+import com.kh.univ.lecture.model.vo.attPointsDTO;
 import com.kh.univ.member.model.vo.Professor;
-import com.kh.univ.notice.model.vo.Notice;
+import com.kh.univ.testPage.model.service.TestPageService;
 import com.kh.univ.testPage.model.vo.HomeworkGrade;
 import com.kh.univ.testPage.model.vo.Test;
-import com.kh.univ.member.model.vo.Student;
 
 @SessionAttributes({ "loginProf" })
 @Controller
@@ -52,6 +47,9 @@ public class prof_LectureController {
 
 	@Autowired
 	profLecService plService;
+	
+	@Autowired
+	TestPageService tService; 
 
 	/**
 	 * 내 강의 동영상 목록 클릭 담당과목만 출력
@@ -127,7 +125,45 @@ public class prof_LectureController {
 	}
 	
 	@RequestMapping(value = "prof_lectureStudentDetail.do")
-	public ModelAndView prof_lectureStudent(ModelAndView mv, LectureStudent ls, 
+	public ModelAndView prof_lectureStudent(ModelAndView mv, SemePoint sp,LectureStudent ls, LecturePlan lp, 
+			@RequestParam(name = "pNo", required = false) String pNo, 
+			@RequestParam(name = "sNo", required = false) String sNo, 
+			@RequestParam(name = "classNo", required = false) String classNo,
+			@RequestParam(name = "year", required = false) String year,
+			@RequestParam(name = "semesterNo", required = false) String semesterNo,
+			HttpSession session)
+	{
+		
+		ls.setpNo(pNo);
+		ls.setsNo(sNo);
+		ls.setClassNo(classNo);
+		
+		sp.setClassNo(classNo);
+		sp.setpNo(pNo);
+		sp.setsNo(sNo);
+		sp.setYear(year);
+		sp.setSemesterNo(semesterNo);
+		System.out.println("sp값 잘 들어가나?" + sp);
+		SemePoint spp = plService.studentSemesterPoint(sp);
+		ArrayList<LectureStudent> lc = plService.lectureStudentDetail(ls);
+		LecturePlan ll = plService.lectureAttendancePointMax(lp);
+		
+		System.out.println("디비갔다온"+spp);
+		if (lc != null) 
+		{
+			mv.addObject("sp",spp);
+			mv.addObject("lc", lc);
+			mv.addObject("lp",ll);
+			mv.setViewName("prof_lecture/prof_lectureStudentDetail");
+		} else {
+			mv.addObject("msg", "에러가 발생했습니다.");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value = "prof_lectureStudentAttPointPopup.do")
+	public ModelAndView prof_lectureStudentAttPointPopup(ModelAndView mv, LectureStudent ls, LecturePlan lp, 
 			@RequestParam(name = "pNo", required = false) String pNo, 
 			@RequestParam(name = "sNo", required = false) String sNo, 
 			@RequestParam(name = "classNo", required = false) String classNo, HttpSession session)
@@ -140,18 +176,54 @@ public class prof_LectureController {
 		ls.setClassNo(classNo);
 
 		ArrayList<LectureStudent> lc = plService.lectureStudentDetail(ls);
-		System.out.println(lc);
+		LecturePlan ll = plService.lectureAttendancePointMax(lp);
+		System.out.println("출석점수"+ll);
 
 		if (lc != null) 
 		{
 			mv.addObject("lc", lc);
-			mv.setViewName("prof_lecture/prof_lectureStudentDetail");
+			mv.addObject("lp",ll);
+			mv.setViewName("prof_lecture/prof_lectureStudentAttendancePointInsert");
 		} else {
 			mv.addObject("msg", "에러가 발생했습니다.");
 			mv.setViewName("common/errorPage");
 		}
 		return mv;
 	}
+	// 출석점수 배점에 따라 부여하기 모달 팝업창에서 디비에 값 넣어줌
+	@ResponseBody
+	@RequestMapping(value = "attendancePointUpdate.do")
+	public String attendancePointUpdate(attPointsDTO apDTO,
+			@RequestParam(name = "pNo", required = false) String pNo, 
+			@RequestParam(name = "sNo", required = false) String sNo, 
+			@RequestParam(name = "classNo", required = false) String classNo,
+			@RequestParam(name = "year", required = false) String year,
+			@RequestParam(name = "semester", required = false) String semesterNo,
+			@RequestParam(name = "attendancePoints", required = false) String attendancePoints
+			
+			) {
+		apDTO.setAttendancePoints(attendancePoints);
+		apDTO.setClassNo(classNo);
+		apDTO.setpNo(pNo);
+		apDTO.setSemesterNo(semesterNo);
+		apDTO.setsNo(sNo);
+		apDTO.setYear(year);
+		System.out.println("출석점수 잘 들어가나??");
+		System.out.println("컨트롤러에 들어온 출석점수"+apDTO);
+		int result = plService.attendancePointUpdate(apDTO);
+		System.out.println("출석점수 들어가면 나오는 "+result);
+		if(result>0) {
+			System.out.println("성공했씁니다"+apDTO);
+			return "success";
+		} else {
+			return "fail";
+		}
+		
+	}
+
+	
+	
+	
 	/**
 	 * 해당 과목의 주차별 내용만 출력
 	 * 
@@ -357,7 +429,9 @@ public class prof_LectureController {
 	 * @return
 	 */
 	@RequestMapping(value = "prof_Syllabus_LectureWrite.do")
-	public ModelAndView prof_Syllabus_LectureWrite(ModelAndView mv, LectureList ll,@RequestParam(name = "pNo", required = false) String pNo, @RequestParam(name = "classNo", required = false) String classNo, HttpSession session ) {
+	public ModelAndView prof_Syllabus_LectureWrite(ModelAndView mv, LectureList ll,
+			@RequestParam(name = "pNo", required = false) String pNo, 
+			@RequestParam(name = "classNo", required = false) String classNo, HttpSession session ) {
 		System.out.println(pNo);
 		System.out.println(classNo);
 		ll.setpNo(pNo);
@@ -799,19 +873,7 @@ public class prof_LectureController {
 		mv.addObject("ll",ll);
 		mv.setViewName("prof_lecture/prof_homework_list");
 		return mv;
-//		Professor p= (Professor)session.getAttribute("loginProf");
-//		
-//		
-//		ArrayList<LectureHomeWork> cTList = plService.hSelectList(p);
-//		
-////		System.out.println(cTList);
-//		
-//		
-//		mv.addObject("cTList",cTList);
-//		mv.setViewName("prof_lecture/prof_homework_list");
-//		return mv;
-//				"prof_lecture/prof_homework_list";
-		
+
 		
 	}
 	
@@ -844,6 +906,8 @@ public class prof_LectureController {
 	 * @param file
 	 * @return
 	 */
+	
+	
 	@RequestMapping("hInsert.do")
 	public String homeworkEvaludation(LectureHomeWork lh,HttpServletRequest request,
 			 @RequestParam(name="uploadFile",required=false) MultipartFile file) {
@@ -861,29 +925,28 @@ public class prof_LectureController {
 				
 			}
 		}
+		
 		String openDate = lh.getOpenDate();
 		
 		String arr[] = openDate.split("-");
 		
 		String str = arr[0]+arr[1]+arr[2];
 		
-		
-		
+		System.out.println("d여기오니ㅣㅣㅣㅣㅣㅣ?");
+		System.out.println(lh);
 		
 		
 
 		
 		lh.sethNo("H"+lh.getpNo()+str);
 		
-		int result = plService.insertHomework(lh);
+		int result = plService.insertHomework(lh);	
 		
 		if(result>0) {
 			return "redirect:hWeekList.do?cNo="+lh.getcNo()+"&pNo="+lh.getpNo();
 		}else {
 			return "common/errorPage";
 		}
-		
-		
 	}
 	
 	
@@ -897,16 +960,20 @@ public class prof_LectureController {
 	 * @return
 	 */
 	@RequestMapping( "sEvaluation.do")
-	public ModelAndView prof_StdEvaluation(ModelAndView mv,LectureHomeWork lh) {
+	public ModelAndView prof_StdEvaluation(ModelAndView mv,HomeworkGrade gb) {
 		
 		
 		
+		System.out.println(gb);
 		
-		ArrayList<LecturePlanWeek> ag = plService.selectSeList(lh);
-		
+		ArrayList<LecturePlanWeek> ag = plService.selectSeList(gb);
+		ArrayList<HomeworkGrade> hg = plService.SelectHGList(gb);
 		System.out.println(ag);
 		
+		System.out.println(hg);
 		
+		mv.addObject("hg",hg);
+		mv.addObject("lh",gb);
 		mv.addObject("ag",ag);
 		mv.setViewName("prof_lecture/prof_homework_Evaluation"); 
 		
@@ -921,22 +988,77 @@ public class prof_LectureController {
 	 * @return
 	 */
 	@RequestMapping( "sEvaluationInsert.do")
-	public ModelAndView prof_StdEvaluationUpdate(HttpSession session, ModelAndView mv , HomeworkGrade gb ) {
+	public String prof_StdEvaluationUpdate(HttpSession session , HomeworkGrade gb ) {
 		
 		Professor p =  (Professor)session.getAttribute("loginProf");
 		
+		
+		
 		String pNo =p.getpNo();
+		String cNo =gb.getcNo();
 		
 		gb.setpNo(pNo);
+		
+		
+		System.out.println(gb);
+		
+		
 		
 
 		int result=plService.EvaluationInsert(gb);
 		
-		System.out.println(result);
 		
-		mv.setViewName("prof_lecture/prof_homework_Evaluation"); 
 		
-		return mv;
+//		----------------------------------------- semesterPoint insert
+		
+		ArrayList<HomeworkGrade> hg =plService.hList(gb); 
+		int grade =0;
+		
+		for (int i = 0; i < hg.size(); i++) {
+			
+		  grade +=hg.get(i).getPoint();
+		}
+		System.out.println(grade);
+		
+		LecturePlan lp = tService.lpOne(cNo);
+		
+		
+		int reportPoint = lp.getAssignmentPoints();
+		
+		System.out.println(grade);
+		System.out.println(reportPoint+"examPoint");
+		
+		int report = (int) (grade*(reportPoint)/120);
+		
+		System.out.println(report);
+		semesterPoint sp = new semesterPoint();
+		Calendar cal = Calendar.getInstance();
+		String year = String.valueOf(cal.get(Calendar.YEAR));
+		int month = cal.get(Calendar.MONTH+1);
+		
+		
+		
+		sp.setcNo(gb.getcNo());
+		sp.setpNo(gb.getpNo());
+		sp.setsNo(gb.getsNo());
+		sp.setSemYear(year);
+		
+	
+		System.out.println(sp);
+		
+		if(month >8 && hg.size()==6) {
+			sp.setSemNo("2");
+			sp.setReport(report);
+			int result2 = tService.updateSp(sp);
+		}else if(month<8 && hg.size()==6) {
+			sp.setReport(report);
+			sp.setsNo("1");
+			int result2 = tService.updateSp(sp);
+		}
+		
+		
+		
+		return "redirect:sEvaluation.do?cNo="+cNo+"&lecNo="+gb.getLecNo()+"&hNo="+gb.gethNo();
 	}
 	
 	

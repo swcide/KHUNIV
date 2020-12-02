@@ -16,6 +16,7 @@ import com.kh.univ.common.PageInfo;
 import com.kh.univ.helpDesk.model.vo.QnA;
 import com.kh.univ.helpDesk.model.vo.Reply;
 import com.kh.univ.notice.model.vo.Notice;
+import com.kh.univ.univlife.board.human.model.vo.Report;
 
 
 @Service("aService")
@@ -155,6 +156,11 @@ public class adminServiceImpl implements adminService {
 	@Override
 	public int deleteNotice(Notice n) {
 		return aDao.deleteNotice(n);
+	}
+
+	@Override
+	public ArrayList<Report> selectReportList() {
+		return aDao.selectReportList();
 	}
 		
 

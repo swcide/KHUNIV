@@ -10,6 +10,7 @@ import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.member.model.vo.Student;
 import com.kh.univ.testPage.model.dao.TestPageDao;
+import com.kh.univ.testPage.model.vo.HomeworkGrade;
 import com.kh.univ.testPage.model.vo.Test;
 import com.kh.univ.testPage.model.vo.TestGrade;
 import com.kh.univ.testPage.model.vo.TestList;
@@ -69,6 +70,20 @@ public class TestPageServiceImpl implements TestPageService {
 	@Override
 	public int updateSp(semesterPoint sp) {
 		return tDao.updateSp(sp);
+	}
+	
+	@Override
+	public ArrayList<HomeworkGrade> hList(HomeworkGrade gb) {
+		return tDao.hList(gb);
+	}
+
+
+	/**
+	 *시험 봤늕 ㅣ확인
+	 */
+	@Override
+	public ArrayList<TestGrade> alreadyTest(TestList tl) {
+		return tDao.alreadyTest(tl);
 	}
 
 

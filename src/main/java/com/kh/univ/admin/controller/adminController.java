@@ -31,6 +31,8 @@ import com.kh.univ.helpDesk.model.vo.QnA;
 import com.kh.univ.helpDesk.model.vo.Reply;
 import com.kh.univ.member.model.vo.Admin;
 import com.kh.univ.notice.model.vo.Notice;
+import com.kh.univ.univlife.board.human.model.vo.Report;
+import com.kh.univ.univlife.board.human.model.vo.hReply;
 
 @Controller
 @SessionAttributes("loginAdmin")
@@ -417,5 +419,18 @@ int listCount = aService.getListCount(nType);
 		view.setViewName("/insertStudent.do");
 		System.out.println("view: " + view);
 		return view;
+	}
+	
+	@RequestMapping(value="reportList.do")
+	public void getReportList(HttpServletResponse response) throws JsonIOException, IOException {
+	
+		response.setContentType("application/json; charset=UTF-8");
+
+		ArrayList<Report> rp =aService.selectReportList();
+		System.out.println("rp" + rp);
+		
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(rp,response.getWriter());
 	}
 }

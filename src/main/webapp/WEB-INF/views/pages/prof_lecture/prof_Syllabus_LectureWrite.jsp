@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -118,6 +119,7 @@
 
 						<form name="formSylla" id="formSylla" method="post">
 							<input name="classNo" type="hidden" value="${lp.classNo}">
+							<input name="pNo" type="hidden" value="${pNo}">
 							<table class="table table-hover">
 								<thead>
 									<tr>
@@ -305,6 +307,7 @@
 		}else { 
 			
 			var classNo = $("input[name=classNo]").val();		// 동영강 강의추가페이지로 이동시 필요
+			var pNo =	$("input[name=pNo]").val();
 			var formData = new FormData($('#formSylla')[0]);	// 폼 데이터 값 가져올 시 필요
 			console.log(formData);
 			
@@ -316,7 +319,7 @@
 				processData:false,
 				success : function(data) {
 					if(confirm("주차별 자료를 이어서 등록하시겠습니까?")== true){
-					window.opener.location.href="prof_lectureVideo.do?classNo="+classNo;
+					window.opener.location.href="prof_lectureVideo.do?classNo="+classNo+"&pNo="+pNo;
 					self.close();
 					} else{
 						alert("등록이 완료되었습니다.")

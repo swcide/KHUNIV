@@ -39,54 +39,13 @@ public class RegistrationController {
 		
 		
 		Student s = (Student) session.getAttribute("loginUser");
-
-		int dNo = Integer.parseInt(s.getdNo());
-		String strDno =Integer.toString(dNo);
-		s.setdNo(strDno);
-		
-		
-		
-		
-		ArrayList<Registration> beforeR = new ArrayList<Registration>();
-		
-		
-		
 		ArrayList<Registration> list = rService.rSelectList(s);
 		
-		ArrayList<Registration> list2 = rService.myRSelectList(s);
-			
-		System.out.println("===============list==============");
-		System.out.println(list);
-		System.out.println("=============list2--================");
-		System.out.println(list2);
-			
-		System.out.println(list.size());
-		System.out.println(list2.size());
-		for (int i = 0; i < list.size(); i++) {
-			
-			beforeR.add(list.get(i));	
 
-		}	
 		
-		for(int i=0; i<list.size();i++) { // 3
-							
-				for (int j = 0; j< list2.size(); j++) 	 { //18
-					if(list2.get(j).getcNo().equals(list.get(i).getcNo()) ){
-						System.out.println("여기몇번들어옴?" +i);
-						System.out.println("여기몇번들어옴?" +j+"jjjjj");
-						System.out.println(list.get(i));
-						
-						beforeR.remove(i);
-					}
-				}
-				
-			}
-		
-			System.out.println(beforeR);
-			
-		
-		
-		mv.addObject("r",beforeR).setViewName("ad_register/ad_AuditLecture_Application");
+		mv.addObject("r",list);
+
+		mv.setViewName("ad_register/ad_AuditLecture_Application");
 		
 			
 		return mv;

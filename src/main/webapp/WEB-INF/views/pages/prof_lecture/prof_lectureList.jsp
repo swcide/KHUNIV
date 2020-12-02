@@ -72,11 +72,7 @@ pNo =loginProf.getpNo();
 													<i class="far fa-comments"></i> <a href="#">${lc.profEmail }</a>
 												</span>
 												<br>
-												<label onclick="openNew(this)" class="btn btn-xs btn-light text-1 text-uppercase">
-													<input type="hidden" name="classNo" value="${lc.classNo }">
-													<input type="hidden" name="pNo" value="<%=pNo%>">
-													강의 계획서
-												</label>
+												
 											</div>
 										</div>
 									</article>
@@ -89,18 +85,6 @@ pNo =loginProf.getpNo();
 		</div>
 	</div>
 </div>
-<script>
-	// 강의계획서 불러오는 스크립트
-	function openNew(obj) {
-		var classNo = $(obj).find('input:eq(0)').val();		// 과목번호
-		var pNo = $(obj).children('input:eq(1)').val();		// 세션에서 받아온 교수번호
 
-			window.open(this.href = 'ad_syllabus.do?classNo=' + classNo
-													+ '&pNo=' + pNo, '',
-							'resizable=yes, width=900, height=800 left=700px top=100px');
-			return false;
-		
-	}
-</script>
 <%@ include file="../common/footer.jsp"%>
 

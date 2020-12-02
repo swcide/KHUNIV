@@ -53,8 +53,6 @@ public class HumanBoardController {
 		int listCount = hService.getListCount();
 
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-		
-		
 
 		ArrayList<HumanBoard> list = hService.selectList(pi);
 
@@ -212,61 +210,56 @@ public class HumanBoardController {
 			return "common/errorPage";
 		}
 	}
-	@RequestMapping(value="huamnboardrList.do")
-	public void getReplyList(HttpServletResponse response, int hId ) throws JsonIOException, IOException {
-	
+
+	@RequestMapping(value = "huamnboardrList.do")
+	public void getReplyList(HttpServletResponse response, int hId) throws JsonIOException, IOException {
+
 		response.setContentType("application/json; charset=UTF-8");
 
-		
-		ArrayList<hReply> rList =hService.selectReplyList(hId);
-		
+		ArrayList<hReply> rList = hService.selectReplyList(hId);
 
-		
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-		gson.toJson(rList,response.getWriter());
+		gson.toJson(rList, response.getWriter());
 	}
+
 	@ResponseBody
 	@RequestMapping("hBoardAddReply.do")
 	public String addReply(hReply r) {
-		
-		
+
 		int result = hService.insertReply(r);
-		
-		
+
 		System.out.println(result);
-		if(result>0) {
+		if (result > 0) {
 			return "success";
-		}else {
-			return "fail";
-		}
-	}	
-	@ResponseBody
-	@RequestMapping("HuamnBoardDeleteReply.do")
-	public String deleteReply(hReply r) {
-		
-		
-		int result = hService.deleteReply(r);
-		
-		
-		System.out.println(result);
-		if(result>0) {
-			return "success";
-		}else {
+		} else {
 			return "fail";
 		}
 	}
+
+	@ResponseBody
+	@RequestMapping("HuamnBoardDeleteReply.do")
+	public String deleteReply(hReply r) {
+
+		int result = hService.deleteReply(r);
+
+		System.out.println(result);
+		if (result > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+
 	@ResponseBody
 	@RequestMapping("hBoardUpdateReply.do")
 	public String updateReply(hReply r) {
-		
-		
+
 		int result = hService.updateReply(r);
-		
-		
+
 		System.out.println(result);
-		if(result>0) {
+		if (result > 0) {
 			return "success";
-		}else {
+		} else {
 			return "fail";
 		}
 	}
@@ -274,26 +267,23 @@ public class HumanBoardController {
 	@ResponseBody
 	@RequestMapping("report_reply.do")
 	public String reportReply(hReply r) {
-		
-		
+
 		int result = hService.reportReply(r);
-		
-		
+
 		System.out.println(result);
-		if(result>0) {
+		if (result > 0) {
 			return "success";
-		}else {
+		} else {
 			return "fail";
 		}
 	}
-	
+
 	@RequestMapping("reportInsert.do")
-	public String reportInsertint (Report rp,HttpSession session, HttpServletRequest request) {
-		
-					
-	    int result = hService.reportInsert(rp);
-		
-		
+	public String reportInsertint(Report rp, HttpSession session, HttpServletRequest request) {
+		System.out.println("re:" + rp);
+
+		int result = hService.reportInsert(rp);
+
 		System.out.println(result);
 		if (result > 0) {
 			return "redirect:human.do";
@@ -301,6 +291,18 @@ public class HumanBoardController {
 			return "common/errorPage";
 		}
 	}
-	
+	@ResponseBody
+	@RequestMapping("reportDone.do")
+	public String reportDone(int rpId) {
 
+			System.out.println(rpId);
+		
+		int result = hService.reportDone(rpId);
+		
+		if (result > 0) {
+			return "success";
+		} else {
+			return "common/errorPage";
+		}
+	}
 }

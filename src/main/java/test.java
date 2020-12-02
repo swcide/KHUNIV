@@ -1,3 +1,6 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.springframework.format.datetime.joda.MillisecondInstantPrinter;
@@ -29,22 +32,20 @@ public class test {
 //	@Autowired
 //	private static RegistrationService rService ;
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		
-		int examPoints = 60 /2;  
-		int grade  = 100 ;
-		
-		
-		
-		
-		
-		
-		
-		double mTest = (int) (grade * (examPoints*0.01)) ;
-		
-		
-		System.out.println(mTest);
+		String from = "2013-04-08 10:10:10";
 
+		SimpleDateFormat transFormat = new SimpleDateFormat("MM-dd HH:mm:ss");
+
+		Date to = transFormat.parse(from);
+		String to2 = transFormat.format(to);
+
+		Calendar cal = Calendar.getInstance();
+		
+//		cal.YEAR
+		
+		System.out.println(to2);
 
 	
 	}

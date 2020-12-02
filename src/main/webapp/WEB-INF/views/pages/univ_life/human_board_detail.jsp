@@ -320,7 +320,7 @@ ul.comments li {
 							<div class="form-group row">
 								<label class="col-sm-3 text-left text-sm-right mb-0">신고내용 입력(필수)</label>
 								<div class="col-sm-9">
-									<textarea rows="5" class="form-control" name="reportContet" placeholder="내용을 작성하세요" required></textarea>
+									<textarea rows="5" class="form-control" name="rpContent" placeholder="내용을 작성하세요" required></textarea>
 								</div>
 							</div>
 							<p>
@@ -461,7 +461,6 @@ ul.comments li {
 						
 						for(var i  in data){
 							
-		
 							$rId = data[i].rId;
 							$rIdCheck = $('<input type="hidden" value="'+data[i].rId+'">') //참조 댓글의 rid
 							
@@ -497,9 +496,9 @@ ul.comments li {
 									
 							
 	
-								
+							<uL>	
 							
-							
+							</Ul>
 										
 								if(type ==0 ){
 									$('.checkId').css('display','none');

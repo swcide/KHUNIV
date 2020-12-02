@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.univ.common.PageInfo;
-import com.kh.univ.lecture.model.vo.Assignment;
 import com.kh.univ.lecture.model.vo.Attendance;
 import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
@@ -19,6 +18,8 @@ import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.lecture.model.vo.LectureStudent;
+import com.kh.univ.lecture.model.vo.SemePoint;
+import com.kh.univ.lecture.model.vo.attPointsDTO;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.testPage.model.vo.HomeworkGrade;
 import com.kh.univ.testPage.model.vo.Test;
@@ -189,7 +190,7 @@ public class profLecDao {
 		return (ArrayList)sqlSession.selectList("lectureMapper.selectHList",lh);
 	}
 
-	public ArrayList<LecturePlanWeek> selectSeList(LectureHomeWork lh) {
+	public ArrayList<LecturePlanWeek> selectSeList(HomeworkGrade lh) {
 		return (ArrayList)sqlSession.selectList("lectureMapper.selectSeList",lh);
 
 	}
@@ -211,7 +212,27 @@ public class profLecDao {
 	}
 
 	public ArrayList<LectureStudent> selectlectureStudentDetail(LectureStudent ls) {
-		System.out.println("DAO 들어옴"+ls.getpNo());
 		return (ArrayList)sqlSession.selectList("lectureMapper.lectureStudentDetail",ls);
 	}
+
+	public LecturePlan selectLectureAttendancePointMax(LecturePlan lp) {
+		return sqlSession.selectOne("lectureMapper.sylla1",lp);
+	}
+
+	public int updateStudentAttendancePoints(attPointsDTO apDTO) {
+		return sqlSession.update("lectureMapper.AttendancePointsUpdate",apDTO);
+	}
+
+	public ArrayList<HomeworkGrade> hList(HomeworkGrade gb) {
+		return (ArrayList)sqlSession.selectList("testPageMapper.hList",gb);
+	}
+
+	public ArrayList<HomeworkGrade> SelectHGList(HomeworkGrade gb) {
+		return (ArrayList)sqlSession.selectList("testPageMapper.SelectHGList",gb);
+	}
+
+	public SemePoint studentSemesterPoint(SemePoint sp) {
+		return sqlSession.selectOne("lectureMapper.semesterPointSelect",sp);
+	}
+	
 }

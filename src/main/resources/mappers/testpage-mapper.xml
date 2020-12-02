@@ -10,9 +10,10 @@
 		<result property="cName" column="CLASS_NAME" />
 		<result property="cType" column="CLASS_TYPE" />
 		<result property="pNo" column="PROF_NO" />
-		<result property="pName" column="DEPT_NAME" />
+		<result property="pName" column="PROF_NAME" />
 		<result property="sName" column="STD_NAME" />
 		<result property="openDate" column="OPENDATE" />
+		<result property="textDate" column="TEXTDATE" />
 		<result property="testTime" column="TEST_TIME" />
 		<result property="status" column="CREDIT" />
 		<result property="tType" column="test_type" />
@@ -25,6 +26,7 @@
 		<result property="cNo" column="CLASS_NO" />
 		<result property="pNo" column="PROF_NO" />
 		<result property="point" column="Point" />
+		<result property="rTime" column="REMAINING_TIME" />
 	</resultMap>
 	
    <resultMap type="Test" id="TestResultSet">
@@ -87,6 +89,16 @@
 		<result property="sysdate" column="SYSDATE" />
 		<result property="credit" column="CREDIT" />
 	</resultMap>
+	
+	 <resultMap type="HomeworkGrade" id="HomeworkGradeResultSet">
+		<id property="sNo" column="STD_NO" />
+		<result property="cNo" column="CLASS_NO" />
+		<result property="pNo" column="PROF_NO" />
+		<result property="hNo" column="TEST_NO" />
+		<result property="point" column="POINT" />
+		<result property="lecNo" column="LECTURE_NO" />
+	</resultMap>
+	
    
    
 	<select id="getclassList" resultMap="TestListResultSet">
@@ -138,8 +150,10 @@
         class_type,
         TEST_NO, 
         TEST_TYPE,
-        OPENDATE 
-        TEST_TIME FROM TB_PROF_TEST pt
+        to_char(OPENDATE,'mm-dd hh:mm')as TEXTDATE,
+        OPENDATE, 
+        TEST_TIME
+         FROM TB_PROF_TEST pt
         join TB_SEMESTER_POINT using(class_no)
          join tb_class c using(class_no)
         where std_no =#{sNo}
@@ -187,15 +201,13 @@
      	#{cNo},
      	#{pNo},
      	#{tNo},
-     	#{point}
-     	
+     	#{point},
+     	#{rTime}
      	)
-     	
-     
      
      </insert>
 	 <select id="lpOne" resultMap="Sylla1ResultSet">
-	 SELECT	 EXAM_POINTS
+	 SELECT	 *
 	 FROM TB_LECTURE_PLAN
 	 WHERE CLASS_NO =#{cNo}
 	 
@@ -203,13 +215,61 @@
 
 	<select id="updateSp" resultMap="semesterPointResultSet">
 	 UPDATE  TB_SEMESTER_POINT
+	 
+	 <choose>
+	 <when test="mTest !=0" >
 	 SET MID_TEST =#{mTest}
+	 </when >
+	 <when test="fTest !=0">
+	 SET FINAL_TEST=#{fTest}
+	 </when>
+	 <when test="report !=0">
+	 SET REPORT=${report}
+	 </when>
+	 
+	 </choose>
 	 WHERE STD_NO =#{sNo}
+	 
+	 
+	 
 	 AND SEM_YEAR =#{semYear}
 	 AND SEME_NO =#{semNo}
 	 AND PROF_NO =#{pNo}
 	 AND CLASS_NO =#{cNo}
 	
 	</select>
+	
+	<select id ="hList" resultMap="HomeworkGradeResultSet">
+		SELECT * FROM TB_HOMEWORK_GRADE
+		WHERE STD_NO = #{sNo}
+		AND TEST_NO =#{hNo}
+	</select>
+	  <select id="SelectHGList" resultMap="HomeworkGradeResultSet">
+   	SELECT 
+      g.STD_NO, 
+      CLASS_NO,
+      g.LECTURE_NO,
+      PROF_NO,
+      POINT
+      FROM TB_HOMEWORK_GRADE g
+      left join TB_ASSIGNMENT a using(class_no)
+      
+      where CLASS_NO = #{cNo}
+      and g.LECTURE_NO =#{lecNo}
+      group by   g.STD_NO, 
+      CLASS_NO,
+      g.LECTURE_NO,
+      PROF_NO,
+      POINT
+   
+   </select>
+   
+     <select id="alreadyTest" resultMap="TestGradeResultSet">
+   	 SELECT * FROM TB_TEST_GRADE
+        where STD_NO = #{sNo}	
+        AND TEST_NO = #{tNo}
+   </select>
+   
+ 
 
 </mapper>

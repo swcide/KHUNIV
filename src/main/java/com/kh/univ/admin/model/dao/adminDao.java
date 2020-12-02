@@ -12,6 +12,7 @@ import com.kh.univ.common.PageInfo;
 import com.kh.univ.helpDesk.model.vo.QnA;
 import com.kh.univ.helpDesk.model.vo.Reply;
 import com.kh.univ.notice.model.vo.Notice;
+import com.kh.univ.univlife.board.human.model.vo.Report;
 
 @Repository("aDao")
 public class adminDao {
@@ -96,6 +97,10 @@ public class adminDao {
 
 	public int deleteNotice(Notice n) {
 		return sqlSession.update("noticeMapper.deleteNotice",n);
+	}
+
+	public ArrayList<Report> selectReportList() {
+		return (ArrayList)sqlSession.selectList("humanBoardMapper.reportList");
 	}
 
 }

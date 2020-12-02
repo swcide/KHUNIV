@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpSession;
 
 import com.kh.univ.common.PageInfo;
-import com.kh.univ.lecture.model.vo.Assignment;
 import com.kh.univ.lecture.model.vo.Attendance;
 import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
@@ -14,9 +13,9 @@ import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.lecture.model.vo.LectureStudent;
+import com.kh.univ.lecture.model.vo.SemePoint;
+import com.kh.univ.lecture.model.vo.attPointsDTO;
 import com.kh.univ.member.model.vo.Professor;
-import com.kh.univ.member.model.vo.Professor;
-import com.kh.univ.notice.model.vo.Notice;
 import com.kh.univ.testPage.model.vo.HomeworkGrade;
 import com.kh.univ.testPage.model.vo.Test;
 
@@ -126,11 +125,6 @@ public interface profLecService {
 
 	ArrayList<ClassTest> quizSelectList(Professor p, PageInfo pi);
 	
-	
-	
-	
-	
-
 
 	ArrayList<LectureList> hSelectList(Professor p);
 
@@ -138,12 +132,24 @@ public interface profLecService {
 
 	ArrayList<LectureHomeWork> selectHList(LectureHomeWork lh);
 
-	ArrayList<LecturePlanWeek> selectSeList(LectureHomeWork lh);
+	ArrayList<LecturePlanWeek> selectSeList(HomeworkGrade gb);
 
 
 	int EvaluationInsert(HomeworkGrade gb);
 
 	ArrayList<Test> takeQList(int qId);
+	
+	
+	ArrayList<HomeworkGrade> hList(HomeworkGrade gb);
+	
+	/**
+	 * 평가 뷰 체크용
+	 * @param gb
+	 * @return
+	 */
+	ArrayList<HomeworkGrade> SelectHGList(HomeworkGrade gb);
+	
+	
 
 	
 	// 교수용 강의 리스트(학생관리용 리스트) 1단계
@@ -154,6 +160,26 @@ public interface profLecService {
 	
 	// 교수용 학생 디테일 
 	ArrayList<LectureStudent> lectureStudentDetail(LectureStudent ls);
+	
+	// 출석점수 배점용 모달 팝업 출석점수 
+	LecturePlan lectureAttendancePointMax(LecturePlan lp);
+
+	int attendancePointUpdate(attPointsDTO apDTO);
+
+	SemePoint studentSemesterPoint(SemePoint sp);
+	
+	
+
+
+
+
+
+	
+	
+	
+	
+	
+
 
 
 	

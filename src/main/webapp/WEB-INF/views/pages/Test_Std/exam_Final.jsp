@@ -2,13 +2,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="UTF-8">
 </head>
 
 <body class="stretched side-header">
-	<c:import url="../common/Test_std_header.jsp"/>
+<c:import url="../common/test_header.jsp"/>
+
+	
+		
+
 		<!-- Content
         ============================================= -->
         <section id="page-title" class="page-title-parallax page-title-dark skrollable skrollable-between" style=" background-position: 0px -200.237px;" data-bottom-top="background-position:0px 0px;" data-top-bottom="background-position:0px -300px;">
@@ -56,80 +61,45 @@
                                 </tr>
                             </thead>
                             <tbody>
+                             
+                            <c:forEach var ="tl" items="${tl }">
+                             <c:if test="${tl.tType eq 'F' }">
                                 <tr>                                                             
                                     <td >1</td>
-                                    <td style="text-align: center;">정신약리학</td>
-                                    <td style="text-align: center;">전공선택</td>
-                                    <td style="text-align: center;">기말고사</td>
-                                    <td style="text-align: center;">10-21 00:00~ <br> 10-23 23:59</td>
-                                    <td style="text-align: center;">50분</td>     
+                                    <td style="text-align: center;">${tl.cName }</td>
+                                    <td style="text-align: center;">${tl.cType }</td>
+                                  	<td style="text-align: center;">중간고사</td>
+                                    <td style="text-align: center;">${tl.openDate } </td>
+                                    <td style="text-align: center;">${tl.testTime }분</td>     
                                     <td style="text-align: center;">
-                                        <a class="button button-rounded button-reveal  button-small button-aqua button-border  text-right" onclick="(window.open('test.jsp','brank','width=1198,height=800'))">
+                                    	<c:url var="test" value="tMidtermTest.do">
+											<c:param name="cNo" value="${tl.cNo}"/>
+											<c:param name="tNo" value="${tl.tNo}"/>
+											<c:param name="sNo" value="${tl.sNo}"/>
+											<c:param name="pNo" value="${tl.pNo}"/>
+										</c:url>
+                                        <a  class="button button-rounded button-reveal  button-small button-aqua button-border  text-right" onclick="(window.open('${test}','brank','width=1198,height=1000'))">
                                             <i class="icon-line-arrow-right"></i>
                                             <span>응시하기</span>
                                         </a>
                                     </td>
                                 </tr>
-                                <tr>                                                             
-                                    <td >1</td>
-                                    <td style="text-align: center;">정신약리학</td>
-                                    <td style="text-align: center;">전공선택</td>
-                                    <td style="text-align: center;">기말고사</td>
-                                    <td style="text-align: center;">10-21 00:00~ <br> 10-23 23:59</td>
-                                    <td style="text-align: center;">50분</td>     
-                                    <td style="text-align: center;">
-                                        <a class="button button-rounded button-reveal button-small button-aqua button-border  text-right" onclick="(window.open('test.jsp','brank','width=1198,height=800'))">
-                                            <i class="icon-line-arrow-right"></i>
-                                            <span>응시하기</span>
-                                        </a>
-                                    </td>
-                                </tr>  <tr>                                                             
-                                    <td >1</td>
-                                    <td style="text-align: center;">정신약리학</td>
-                                    <td style="text-align: center;">전공선택</td>
-                                    <td style="text-align: center;">기말고사</td>
-                                    <td style="text-align: center;">10-21 00:00~ <br> 10-23 23:59</td>
-                                    <td style="text-align: center;">50분</td>     
-                                    <td style="text-align: center;">
-                                        <a class="button button-rounded button-reveal button-small  button-aqua button-border  text-right" onclick="(window.open('test.jsp','brank','width=1198,height=800'))">
-                                            <i class="icon-line-arrow-right"></i>
-                                            <span>응시하기</span>
-                                        </a>
-                                    </td>
-                                </tr>  <tr>                                                             
-                                    <td >1</td>
-                                    <td style="text-align: center;">정신약리학</td>
-                                    <td style="text-align: center;">전공선택</td>
-                                    <td style="text-align: center;">기말고사</td>
-                                    <td style="text-align: center;">10-21 00:00~ <br> 10-23 23:59</td>
-                                    <td style="text-align: center;">50분</td>     
-                                    <td style="text-align: center;">
-                                        <a class="button button-rounded button-reveal button-small button-aqua button-border  text-right" onclick="(window.open('test.jsp','brank','width=1198,height=800'))">
-                                            <i class="icon-line-arrow-right"></i>
-                                            <span>응시하기</span>
-                                        </a>
-                                    </td>
-                                </tr>  <tr>                                                             
-                                    <td >1</td>
-                                    <td style="text-align: center;">정신약리학</td>
-                                    <td style="text-align: center;">전공선택</td>
-                                    <td style="text-align: center;">기말고사</td>
-                                    <td style="text-align: center;">10-21 00:00~ <br> 10-23 23:59</td>
-                                    <td style="text-align: center;">과제로 대체</td>     
-                                    <td style="text-align: center;">
-                                        <!-- <div tabindex="500" class="button button-rounded button-reveal button-large button-aqua button-border  text-right btn-file">
-                                            
-                                            <span class="hidden-xs">제출하기</span>
-                                            <input id="input-5" name="input5[]" type="file" multiple="" class="" data-show-preview="false">
-                                            <i class="icon-line-arrow-right"></i>
-                                        </div> -->
-                                        <a class="button button-rounded button-reveal  button-small button-aqua button-border  text-right" onclick="(window.open('test.jsp','brank','width=1198,height=800'))">
-                                            <i class="icon-line-arrow-right"></i>
-                                            <span>제출하기</span>
-                                        </a>
-                                                     
-                                    </td>
-                                </tr>
+                               </c:if>
+                                 <c:if test="${tl.tType eq 'M' }">
+                                 <tr>
+                                 <td>
+                                 	준비된 시험이 없습니다.
+                                 </td>
+                                 </tr>
+                                 </c:if>
+                                
+                           </c:forEach>
+                             <c:if test="${empty tl  }">
+                                <tr>
+									<td colspan="8" align="center">준비된 시험이 없습니다.</td>
+								</tr>
+                                 </c:if>
+                                 
                             </tbody>
                         </table>
 					</div>
@@ -142,7 +112,9 @@
 			</div>
         </section><!-- #content end -->
         
-	<c:import url="../common/test_std_footer.jsp"/>
+<c:import url="../common/test_std_footer.jsp"/>
+
+
 
 </body>
 </html>

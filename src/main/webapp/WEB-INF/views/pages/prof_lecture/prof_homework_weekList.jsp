@@ -10,7 +10,7 @@
 				<div class="row mt-3">
 					<div class="col-md-12 align-self-center p-static order-2 text-center">
 						<h1 class="text-9 font-weight-bold">과제 목록</h1>
-						<span class="sub-title">my lecture list</span>
+						<span class="sub-title">report list</span>
 					</div>
 				</div>
 			</div>
@@ -36,7 +36,6 @@
 										</tr>
 									</thead>
 									<tbody>
-									<c:out value="${hList }"/>	
 <!-- 										<tr> -->
 <!-- 											<td colspan="8" align="center">조회할 자료가 없습니다.</td> -->
 <!-- 										</tr> -->
@@ -58,6 +57,7 @@
 											<c:url var="SeList" value="sEvaluation.do">
 												<c:param name="cNo" value="${lh.cNo}"/>
 												<c:param name="lecNo" value="${h.lecNo }"/>
+												<c:param name="hNo" value="${h.hNo }"/>
 											</c:url>
 											<a href="${SeList }" class="btn btn-sm btn-default" >평가</a></th>
 										</tr>
@@ -69,7 +69,6 @@
 											<c:param name="cName" value="${lh.cName}"/>
 											<c:param name="pNo" value="${lh.pNo}"/>
 										</c:url>
-										<c:out value="${lh.lecNo }zzzz"/>	
 										<a class="btn btn-sm btn-primary float-right" href="${hInsertView }">과제 추가하기</a>
 							</div>	
 							

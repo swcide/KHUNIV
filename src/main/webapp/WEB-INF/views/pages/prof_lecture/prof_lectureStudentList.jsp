@@ -3,14 +3,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.Date"%>
+<%@ page import ="java.text.SimpleDateFormat"%>
+<%@ page import="java.util.Calendar"%>
 <%@ page import="com.kh.univ.member.model.vo.Professor"%>
 
 <%
-Professor loginProf = (Professor)session.getAttribute("loginProf");
+	Professor loginProf = (Professor) session.getAttribute("loginProf");
 String pNo = null;
-pNo =loginProf.getpNo();
+pNo = loginProf.getpNo();
 %>
-
+<%
+	Calendar Now = Calendar.getInstance();
+int year = Now.get(Calendar.YEAR);
+int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
+String semester = "1";
+if (month >= 7) {
+	semester = "2";
+}
+%>
 <!-- Content Wrapper. Contains page content -->
 <div class="body">
 	<div role="main" class="main">
@@ -33,6 +43,7 @@ pNo =loginProf.getpNo();
 							<c:forEach var="l" items="${lc}" end="0">
 							<h4>${l.className}</h4>
 							<label style="display:none" id="classNo">${l.classNo }</label>
+							
 							</c:forEach>
 							<table class="table table-hover">
 								<thead>
@@ -48,9 +59,12 @@ pNo =loginProf.getpNo();
 								<tbody>
 									<c:forEach var="lc" items="${lc}">
 									<input id="pNo" type="hidden" value="<%=pNo%>"></input>
+									<input id="year" style="display:none" name="year" value="<%=year%>">
+									<input id="semesterNo" style="display:none" name="semesterNo" value="<%=semester%>">
 										<tr onclick="openNew(this); return false;" style="cursor: pointer;">
 											<td>${lc.sNo }
 											<input type="hidden" value="${lc.sNo}"></td>
+											
 											<td>${lc.sName}</td>
 											<td>${lc.attendRate }</td>
 											<td>${lc.assignment }</td>
@@ -75,9 +89,8 @@ pNo =loginProf.getpNo();
 												<c:if test="${sysweek ==0.0}">개강일 전입니다.</c:if>
 												<c:if test="${attend/sysweek*100<=0.0}">0%</c:if>
 												<c:if test="${sysweek >= 12 }"><fmt:parseNumber var="percentage" value="${((attendRate/fullweek)*100)}" integerOnly="true" />${percentage}%</c:if>
-												<c:if test="${sysweek <= 12 }"><fmt:parseNumber var="percentage" value="${((attendRate/sysweek)*100)}" integerOnly="true" />${percentage}%</c:if>
+												<c:if test="${sysweek < 12 }"><fmt:parseNumber var="percentage" value="${((attendRate/sysweek)*100)}" integerOnly="true" />${percentage}%</c:if>
 											</td>
-											
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -95,7 +108,11 @@ pNo =loginProf.getpNo();
 		var classNo = $('#classNo').html();
 		console.log(classNo);
 		var pNo=$('#pNo').val();
-		location.href="prof_lectureStudentDetail.do?classNo=" + classNo +'&pNo='+ pNo + '&sNo='+ sNo;
+		var semesterNo=$('#semesterNo').val();
+		var year=$('#year').val();
+		console.log(year);
+		console.log(semesterNo);
+		location.href="prof_lectureStudentDetail.do?classNo=" + classNo +'&pNo='+ pNo + '&sNo='+ sNo+'&semesterNo='+semesterNo+'&year='+year;
 		return false;
 		
 	};
