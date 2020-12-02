@@ -19,7 +19,6 @@ import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.lecture.model.vo.LectureStudent;
 import com.kh.univ.lecture.model.vo.SemePoint;
-import com.kh.univ.lecture.model.vo.attPointsDTO;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.testPage.model.vo.HomeworkGrade;
 import com.kh.univ.testPage.model.vo.Test;
@@ -219,10 +218,6 @@ public class profLecDao {
 		return sqlSession.selectOne("lectureMapper.sylla1",lp);
 	}
 
-	public int updateStudentAttendancePoints(attPointsDTO apDTO) {
-		return sqlSession.update("lectureMapper.AttendancePointsUpdate",apDTO);
-	}
-
 	public ArrayList<HomeworkGrade> hList(HomeworkGrade gb) {
 		return (ArrayList)sqlSession.selectList("testPageMapper.hList",gb);
 	}
@@ -233,6 +228,10 @@ public class profLecDao {
 
 	public SemePoint studentSemesterPoint(SemePoint sp) {
 		return sqlSession.selectOne("lectureMapper.semesterPointSelect",sp);
+	}
+
+	public int attendancePointUpdate(SemePoint sp) {
+		return sqlSession.update("lectureMapper.AttendancePointsUpdate",sp);
 	}
 	
 }

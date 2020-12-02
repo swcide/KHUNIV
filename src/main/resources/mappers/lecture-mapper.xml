@@ -95,16 +95,6 @@
 		<id property="lecReference" column="LECTURE_REFERENCE" />
 	</resultMap>
 	
-	<resultMap type="attPointsDTO" id="attPointsUpdate">
-		<id property="classNo" column="CLASS_NO" />
-		<id property="sNo" column="STD_NO" />
-		<id property="pNo" column="PROF_NO" />
-		<id property="year" column="SEM_YEAR" />
-		<id property="semeterNo" column="SEME_NO" />
-		<id property="attendancePoints" column="ATTENDANCE" />
-	</resultMap>
-
-
 	<resultMap type="ClassTest" id="ClassTestResultSet">
 		<id property="tNo" column="TEST_NO" />
 		<result property="tType" column="TEST_TYPE" />
@@ -338,9 +328,10 @@
 		ATTENDANCE, ASSIGNMENT
 		ORDER BY WEEK ASC
 	</select>
-	<update id="AttendancePointsUpdate" parameterType="attPointsDTO">
+	<update id="AttendancePointsUpdate" parameterType="SemePoint">
 		UPDATE TB_SEMESTER_POINT
-        SET ATTENDANCE =#{attendancePoints}
+        SET ATTENDANCE =#{attendancePoints},
+		POINT=#{totalPoints}        
         WHERE PROF_NO=#{pNo}
 		AND CLASS_NO=#{classNo}
 		AND STD_NO=#{sNo}
