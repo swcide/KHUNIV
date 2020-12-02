@@ -284,7 +284,7 @@
 									</div>
 								</c:if>
 								<c:url var="ad_login" value="ad_login.do" />
-								<c:if test="${empty loginUser }">
+								<c:if test="${empty sessionScope }">
 								<button class="header-nav-features header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2 btn btn-outline btn-primary  btn-with-arrow" onclick="location.href='login_page.do'">
 									등교하기 <span> <i class="fas fa-chevron-right"></i>
 									</span>
@@ -292,6 +292,18 @@
 								</c:if>
 								<c:if test="${!empty loginUser }">
 								<button class="header-nav-features header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2 btn btn-outline btn-primary  btn-with-arrow" onclick="location.href='ad_main.do'">
+									등교하기 <span> <i class="fas fa-chevron-right"></i>
+									</span>
+								</button>
+								</c:if>
+								<c:if test="${!empty loginProf }">
+								<button class="header-nav-features header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2 btn btn-outline btn-primary  btn-with-arrow" onclick="location.href='prof_main.do'">
+									등교하기 <span> <i class="fas fa-chevron-right"></i>
+									</span>
+								</button>
+								</c:if>
+								<c:if test="${!empty loginAdmin }">
+								<button class="header-nav-features header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2 btn btn-outline btn-primary  btn-with-arrow" onclick="location.href='admin.do'">
 									등교하기 <span> <i class="fas fa-chevron-right"></i>
 									</span>
 								</button>
