@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpSession;
 
 import com.kh.univ.common.PageInfo;
-import com.kh.univ.lecture.model.vo.Assignment;
 import com.kh.univ.lecture.model.vo.Attendance;
 import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
@@ -14,10 +13,9 @@ import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.lecture.model.vo.LectureStudent;
+import com.kh.univ.lecture.model.vo.SemePoint;
 import com.kh.univ.lecture.model.vo.attPointsDTO;
 import com.kh.univ.member.model.vo.Professor;
-import com.kh.univ.member.model.vo.Professor;
-import com.kh.univ.notice.model.vo.Notice;
 import com.kh.univ.testPage.model.vo.HomeworkGrade;
 import com.kh.univ.testPage.model.vo.Test;
 
@@ -167,6 +165,8 @@ public interface profLecService {
 	LecturePlan lectureAttendancePointMax(LecturePlan lp);
 
 	int attendancePointUpdate(attPointsDTO apDTO);
+
+	SemePoint studentSemesterPoint(SemePoint sp);
 	
 	
 

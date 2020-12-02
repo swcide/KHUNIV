@@ -192,7 +192,7 @@
       <result property="hPoint" column="HWORK_POINT" />
    </resultMap>
    
-   	<resultMap type="SemesterPoint" id="LectureHomeWorkResultSet">
+   	<resultMap type="SemePoint" id="SemesterPointResultSet">
 	  <id property="sNo" column="STD_NO" />
       <result property="year" column="SEM_YEAR" />
       <result property="semesterNo" column="SEME_NO" />
@@ -347,6 +347,18 @@
         AND SEM_YEAR=#{year}
         AND SEME_NO=#{semesterNo}
 	</update>
+	
+	<select id="semesterPointSelect" resultMap="SemesterPointResultSet">
+		SELECT
+		*
+		FROM
+		TB_SEMESTER_POINT
+        WHERE STD_NO=#{sNo}
+        AND CLASS_NO=#{classNo}
+        AND PROF_NO=#{pNo}
+        AND SEM_YEAR=#{year}
+        AND SEME_NO=#{semesterNo}
+	</select>
 	
 
 	<select id="sylla1" resultMap="Sylla1ResultSet">

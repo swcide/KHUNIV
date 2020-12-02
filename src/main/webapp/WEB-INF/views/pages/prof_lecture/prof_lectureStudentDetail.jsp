@@ -2,8 +2,6 @@
 <%@ include file="../common/professor_header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page import="java.util.Date"%>
-<%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="java.util.Calendar"%>
 <%@ page import="com.kh.univ.member.model.vo.Professor"%>
 
@@ -57,20 +55,18 @@ if (month >= 7) {
 										<th>기말고사점수</th>
 										<th>과제점수</th>
 										<th>출석점수</th>
-										<th>총점</th>
 									</tr>
 								</thead>
 								<tfoot>
 									<tr>
 										<th>${lc.sName}</th>
-										<th>${lc.sNo}</th>
-										<th>${lc.classNo}</th>
+										<th>${sp.sNo}</th>
+										<th>${sp.classNo}</th>
 										<th>${lc.className}</th>
-										<th>Office</th>
-										<th>Age</th>
-										<th>Start date</th>
-										<th>Salary</th>
-										<th>Salary</th>
+										<th>${sp.midTestPoints}</th>
+										<th>${sp.finalTestPoints}</th>
+										<th>${sp.reportPoints}</th>
+										<th>${sp.attendancePoints}</th>
 									</tr>
 								</tfoot>
 							</table>

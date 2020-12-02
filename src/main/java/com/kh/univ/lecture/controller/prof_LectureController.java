@@ -2,14 +2,8 @@ package com.kh.univ.lecture.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -33,7 +26,6 @@ import com.kh.univ.ad_Register.model.vo.semesterPoint;
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.common.Pagination;
 import com.kh.univ.lecture.model.service.profLecService;
-import com.kh.univ.lecture.model.vo.Assignment;
 import com.kh.univ.lecture.model.vo.Attendance;
 import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
@@ -42,17 +34,12 @@ import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.lecture.model.vo.LectureStudent;
+import com.kh.univ.lecture.model.vo.SemePoint;
 import com.kh.univ.lecture.model.vo.attPointsDTO;
 import com.kh.univ.member.model.vo.Professor;
-import com.kh.univ.notice.model.vo.Notice;
 import com.kh.univ.testPage.model.service.TestPageService;
-import com.kh.univ.testPage.model.service.TestPageServiceImpl;
-import com.kh.univ.testPage.model.vo.Grade;
 import com.kh.univ.testPage.model.vo.HomeworkGrade;
 import com.kh.univ.testPage.model.vo.Test;
-import com.kh.univ.testPage.model.vo.TestGrade;
-import com.kh.univ.testPage.model.vo.TestList;
-import com.kh.univ.member.model.vo.Student;
 
 @SessionAttributes({ "loginProf" })
 @Controller
@@ -138,24 +125,33 @@ public class prof_LectureController {
 	}
 	
 	@RequestMapping(value = "prof_lectureStudentDetail.do")
-	public ModelAndView prof_lectureStudent(ModelAndView mv, LectureStudent ls, LecturePlan lp, 
+	public ModelAndView prof_lectureStudent(ModelAndView mv, SemePoint sp,LectureStudent ls, LecturePlan lp, 
 			@RequestParam(name = "pNo", required = false) String pNo, 
 			@RequestParam(name = "sNo", required = false) String sNo, 
-			@RequestParam(name = "classNo", required = false) String classNo, HttpSession session)
+			@RequestParam(name = "classNo", required = false) String classNo,
+			@RequestParam(name = "year", required = false) String year,
+			@RequestParam(name = "semesterNo", required = false) String semesterNo,
+			HttpSession session)
 	{
-		System.out.println(pNo);
-		System.out.println(sNo);
-		System.out.println(classNo);
+		
 		ls.setpNo(pNo);
 		ls.setsNo(sNo);
 		ls.setClassNo(classNo);
-
+		
+		sp.setClassNo(classNo);
+		sp.setpNo(pNo);
+		sp.setsNo(sNo);
+		sp.setYear(year);
+		sp.setSemesterNo(semesterNo);
+		System.out.println("sp값 잘 들어가나?" + sp);
+		SemePoint spp = plService.studentSemesterPoint(sp);
 		ArrayList<LectureStudent> lc = plService.lectureStudentDetail(ls);
 		LecturePlan ll = plService.lectureAttendancePointMax(lp);
-		System.out.println("출석점수"+ll);
-
+		
+		System.out.println("디비갔다온"+spp);
 		if (lc != null) 
 		{
+			mv.addObject("sp",spp);
 			mv.addObject("lc", lc);
 			mv.addObject("lp",ll);
 			mv.setViewName("prof_lecture/prof_lectureStudentDetail");

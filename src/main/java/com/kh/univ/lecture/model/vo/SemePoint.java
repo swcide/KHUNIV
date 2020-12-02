@@ -2,7 +2,7 @@ package com.kh.univ.lecture.model.vo;
 
 // 교수용 강의계획서
 // 학생용 강의계획서 
-public class SemesterPoint{
+public class SemePoint{
 	
 	private String sNo;					// 학생번호
 	private String year;				// 현재 년도
@@ -15,10 +15,10 @@ public class SemesterPoint{
 	private String totalPoints;			// 총점
 	private String pNo;					// 교수번호
 	
-	public SemesterPoint() {
+	public SemePoint() {
 	}
 
-	public SemesterPoint(String sNo, String year, String semesterNo, String classNo, String midTestPoints, String finalTestPoints,
+	public SemePoint(String sNo, String year, String semesterNo, String classNo, String midTestPoints, String finalTestPoints,
 			String reportPoints, String attendancePoints, String totalPoints, String pNo) {
 		this.sNo = sNo;
 		this.year = year;
@@ -114,7 +114,7 @@ public class SemesterPoint{
 
 	@Override
 	public String toString() {
-		return "SemesterPoint [sNo=" + sNo + ", year=" + year + ", semesterNo=" + semesterNo + ", classNo=" + classNo + ", midTestPoints="
+		return "SemePoint [sNo=" + sNo + ", year=" + year + ", semesterNo=" + semesterNo + ", classNo=" + classNo + ", midTestPoints="
 				+ midTestPoints + ", finalTestPoints=" + finalTestPoints + ", reportPoints=" + reportPoints + ", attendancePoints=" + attendancePoints
 				+ ", totalPoints=" + totalPoints + ", pNo=" + pNo + "]";
 	}
