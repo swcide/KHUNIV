@@ -22,6 +22,8 @@
       <typeAlias type="com.kh.univ.lecture.model.vo.LectureClass" alias="LectureClass" />
       <typeAlias type="com.kh.univ.lecture.model.vo.LecturePlan" alias="LecturePlan" />
       <typeAlias type="com.kh.univ.lecture.model.vo.LecturePlanWeek" alias="LecturePlanWeek" />
+      <typeAlias type="com.kh.univ.lecture.model.vo.attPointsDTO" alias="attPointsDTO" />
+      <typeAlias type="com.kh.univ.lecture.model.vo.SemesterPoint" alias="SemesterPoint" />
       <typeAlias type="com.kh.univ.lecture.model.vo.LectureList" alias="LectureList" />
       <typeAlias type="com.kh.univ.lecture.model.vo.Attendance" alias="Attendance" />
       <typeAlias type="com.kh.univ.lecture.model.vo.ClassTest" alias="ClassTest" />

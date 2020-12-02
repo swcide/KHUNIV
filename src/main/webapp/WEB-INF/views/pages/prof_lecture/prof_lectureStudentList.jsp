@@ -75,9 +75,8 @@ pNo =loginProf.getpNo();
 												<c:if test="${sysweek ==0.0}">개강일 전입니다.</c:if>
 												<c:if test="${attend/sysweek*100<=0.0}">0%</c:if>
 												<c:if test="${sysweek >= 12 }"><fmt:parseNumber var="percentage" value="${((attendRate/fullweek)*100)}" integerOnly="true" />${percentage}%</c:if>
-												<c:if test="${sysweek <= 12 }"><fmt:parseNumber var="percentage" value="${((attendRate/sysweek)*100)}" integerOnly="true" />${percentage}%</c:if>
+												<c:if test="${sysweek < 12 }"><fmt:parseNumber var="percentage" value="${((attendRate/sysweek)*100)}" integerOnly="true" />${percentage}%</c:if>
 											</td>
-											
 										</tr>
 									</c:forEach>
 								</tbody>

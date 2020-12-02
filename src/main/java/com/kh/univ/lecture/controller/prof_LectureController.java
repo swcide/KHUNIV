@@ -40,6 +40,7 @@ import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.lecture.model.vo.LectureStudent;
+import com.kh.univ.lecture.model.vo.attPointsDTO;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.notice.model.vo.Notice;
 import com.kh.univ.testPage.model.vo.HomeworkGrade;
@@ -127,7 +128,7 @@ public class prof_LectureController {
 	}
 	
 	@RequestMapping(value = "prof_lectureStudentDetail.do")
-	public ModelAndView prof_lectureStudent(ModelAndView mv, LectureStudent ls, 
+	public ModelAndView prof_lectureStudent(ModelAndView mv, LectureStudent ls, LecturePlan lp, 
 			@RequestParam(name = "pNo", required = false) String pNo, 
 			@RequestParam(name = "sNo", required = false) String sNo, 
 			@RequestParam(name = "classNo", required = false) String classNo, HttpSession session)
@@ -140,11 +141,13 @@ public class prof_LectureController {
 		ls.setClassNo(classNo);
 
 		ArrayList<LectureStudent> lc = plService.lectureStudentDetail(ls);
-		System.out.println(lc);
+		LecturePlan ll = plService.lectureAttendancePointMax(lp);
+		System.out.println("출석점수"+ll);
 
 		if (lc != null) 
 		{
 			mv.addObject("lc", lc);
+			mv.addObject("lp",ll);
 			mv.setViewName("prof_lecture/prof_lectureStudentDetail");
 		} else {
 			mv.addObject("msg", "에러가 발생했습니다.");
@@ -152,6 +155,69 @@ public class prof_LectureController {
 		}
 		return mv;
 	}
+	
+	@RequestMapping(value = "prof_lectureStudentAttPointPopup.do")
+	public ModelAndView prof_lectureStudentAttPointPopup(ModelAndView mv, LectureStudent ls, LecturePlan lp, 
+			@RequestParam(name = "pNo", required = false) String pNo, 
+			@RequestParam(name = "sNo", required = false) String sNo, 
+			@RequestParam(name = "classNo", required = false) String classNo, HttpSession session)
+	{
+		System.out.println(pNo);
+		System.out.println(sNo);
+		System.out.println(classNo);
+		ls.setpNo(pNo);
+		ls.setsNo(sNo);
+		ls.setClassNo(classNo);
+
+		ArrayList<LectureStudent> lc = plService.lectureStudentDetail(ls);
+		LecturePlan ll = plService.lectureAttendancePointMax(lp);
+		System.out.println("출석점수"+ll);
+
+		if (lc != null) 
+		{
+			mv.addObject("lc", lc);
+			mv.addObject("lp",ll);
+			mv.setViewName("prof_lecture/prof_lectureStudentAttendancePointInsert");
+		} else {
+			mv.addObject("msg", "에러가 발생했습니다.");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	// 출석점수 배점에 따라 부여하기 모달 팝업창에서 디비에 값 넣어줌
+	@ResponseBody
+	@RequestMapping(value = "attendancePointUpdate.do")
+	public String attendancePointUpdate(attPointsDTO apDTO,
+			@RequestParam(name = "pNo", required = false) String pNo, 
+			@RequestParam(name = "sNo", required = false) String sNo, 
+			@RequestParam(name = "classNo", required = false) String classNo,
+			@RequestParam(name = "year", required = false) String year,
+			@RequestParam(name = "semester", required = false) String semesterNo,
+			@RequestParam(name = "attendancePoints", required = false) String attendancePoints
+			
+			) {
+		apDTO.setAttendancePoints(attendancePoints);
+		apDTO.setClassNo(classNo);
+		apDTO.setpNo(pNo);
+		apDTO.setSemesterNo(semesterNo);
+		apDTO.setsNo(sNo);
+		apDTO.setYear(year);
+		System.out.println("출석점수 잘 들어가나??");
+		System.out.println("컨트롤러에 들어온 출석점수"+apDTO);
+		int result = plService.attendancePointUpdate(apDTO);
+		System.out.println("출석점수 들어가면 나오는 "+result);
+		if(result>0) {
+			System.out.println("성공했씁니다"+apDTO);
+			return "success";
+		} else {
+			return "fail";
+		}
+		
+	}
+
+	
+	
+	
 	/**
 	 * 해당 과목의 주차별 내용만 출력
 	 * 
@@ -357,7 +423,9 @@ public class prof_LectureController {
 	 * @return
 	 */
 	@RequestMapping(value = "prof_Syllabus_LectureWrite.do")
-	public ModelAndView prof_Syllabus_LectureWrite(ModelAndView mv, LectureList ll,@RequestParam(name = "pNo", required = false) String pNo, @RequestParam(name = "classNo", required = false) String classNo, HttpSession session ) {
+	public ModelAndView prof_Syllabus_LectureWrite(ModelAndView mv, LectureList ll,
+			@RequestParam(name = "pNo", required = false) String pNo, 
+			@RequestParam(name = "classNo", required = false) String classNo, HttpSession session ) {
 		System.out.println(pNo);
 		System.out.println(classNo);
 		ll.setpNo(pNo);

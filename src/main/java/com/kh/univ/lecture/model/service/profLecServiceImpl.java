@@ -18,6 +18,7 @@ import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.lecture.model.vo.LectureStudent;
+import com.kh.univ.lecture.model.vo.attPointsDTO;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.notice.model.vo.Notice;
@@ -259,6 +260,19 @@ public class profLecServiceImpl implements profLecService {
 		System.out.println("서비스임플"+ls);
 		return plDao.selectlectureStudentDetail(ls);
 	}
+	// 교수의 내강의 목록 출석점수 배점 모달팝업
+	@Override
+	public LecturePlan lectureAttendancePointMax(LecturePlan lp) {
+		return plDao.selectLectureAttendancePointMax(lp);
+		
+	}
+
+	@Override
+	public int attendancePointUpdate(attPointsDTO apDTO) {
+		return plDao.updateStudentAttendancePoints(apDTO);
+	}
+	
+	
 
 	
 

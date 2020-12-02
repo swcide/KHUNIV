@@ -14,6 +14,7 @@ import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.lecture.model.vo.LectureStudent;
+import com.kh.univ.lecture.model.vo.attPointsDTO;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.notice.model.vo.Notice;
@@ -154,6 +155,13 @@ public interface profLecService {
 	
 	// 교수용 학생 디테일 
 	ArrayList<LectureStudent> lectureStudentDetail(LectureStudent ls);
+	
+	// 출석점수 배점용 모달 팝업 출석점수 
+	LecturePlan lectureAttendancePointMax(LecturePlan lp);
+
+	int attendancePointUpdate(attPointsDTO apDTO);
+	
+	
 
 
 	
