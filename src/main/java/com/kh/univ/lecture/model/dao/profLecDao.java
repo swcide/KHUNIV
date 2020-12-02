@@ -189,7 +189,7 @@ public class profLecDao {
 		return (ArrayList)sqlSession.selectList("lectureMapper.selectHList",lh);
 	}
 
-	public ArrayList<LecturePlanWeek> selectSeList(LectureHomeWork lh) {
+	public ArrayList<LecturePlanWeek> selectSeList(HomeworkGrade lh) {
 		return (ArrayList)sqlSession.selectList("lectureMapper.selectSeList",lh);
 
 	}
@@ -213,5 +213,13 @@ public class profLecDao {
 	public ArrayList<LectureStudent> selectlectureStudentDetail(LectureStudent ls) {
 		System.out.println("DAO 들어옴"+ls.getpNo());
 		return (ArrayList)sqlSession.selectList("lectureMapper.lectureStudentDetail",ls);
+	}
+
+	public ArrayList<HomeworkGrade> hList(HomeworkGrade gb) {
+		return (ArrayList)sqlSession.selectList("testPageMapper.hList",gb);
+	}
+
+	public ArrayList<HomeworkGrade> SelectHGList(HomeworkGrade gb) {
+		return (ArrayList)sqlSession.selectList("testPageMapper.SelectHGList",gb);
 	}
 }

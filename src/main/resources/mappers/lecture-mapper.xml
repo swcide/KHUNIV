@@ -199,7 +199,7 @@
    <insert id="assignmentInsert" parameterType="LecturePlanWeek">
       INSERT INTO
       TB_ASSIGNMENT
-      VALUES(#{sNo}, #{classNo}, #{lecReference},#{lecNo},#{lecExplanation},SYSDATE,#{className},#{sName})
+      VALUES(#{sNo}, #{classNo}, #{lecReference},#{lecExplanation},SYSDATE,#{sName},#{lecNo})
    </insert>
    
    
@@ -218,26 +218,30 @@
    </select>
 	
 	<select id="lectureList" resultMap="LectureListResultSet">
-		SELECT 
-		CLASS_NO,
+	        SELECT 
+        CLASS_NO,
 		CLASS_NAME, 
 		CLASS_TYPE,
 		PROF_EMAIL,
         PROF_NAME, 
-        PROF_NO,
+        lp.PROF_NO,
         CLASS_IMG
-		FROM TB_ATTENDANCE
-        JOIN TB_CLASS USING(CLASS_NO)
-		JOIN TB_LECTURE_PLAN USING(CLASS_NO)
-		LEFT JOIN TB_PROFESSOR USING(PROF_NO)
+
+        
+		FROM TB_ATTENDANCE ad
+        JOIN TB_CLASS c USING(CLASS_NO)
+        left JOIN TB_PROFESSOR p USING(PROF_NO)
+		JOIN TB_LECTURE_PLAN lp USING(CLASS_NO)
+
 		WHERE STD_NO=#{sNo}
+
 		GROUP BY 
 		CLASS_NO, 
 		CLASS_NAME, 
 		CLASS_TYPE, 
 		PROF_EMAIL,
         PROF_NAME, 
-        PROF_NO,
+        lp.PROF_NO,
         CLASS_IMG
 	</select>
    <select id="attendance" resultMap="AttendanceResultSet">
@@ -467,6 +471,7 @@
       WHERE
       CLASS_NO=#{classNo} AND PROF_NO=#{pNo}
    </select>
+   
    <select id="SyllaUpdate" resultMap="Sylla1ResultSet">
       UPDATE TB_LECTURE_PLAN
       SET
@@ -484,9 +489,6 @@
       WHERE
       CLASS_NO=#{classNo}
    </select>
-
-
-
 
    <!-- **************************************************************** -->
    <select id="selectValue" resultMap="lectureClassResultSet">
@@ -556,26 +558,6 @@
    </select>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
    <select id="getQListCount" resultType="int">
       SELECT count(*)
       FROM
@@ -584,10 +566,10 @@
    </select>
 
    <select id="classSelectList" resultMap="ClassTestResultSet">
-      SELECT TEST_NO, TEST_TYPE, TEST_TITLE, OPENDATE, STARTDATE, ENDDATE, TEST_TIME, CLASS_NO, CLASS_NAME, PROF_NO,lp.EXAM_POINTS/2
-      FROM TB_PROF_TEST
+      SELECT TEST_NO, TEST_TYPE, TEST_TITLE, OPENDATE, STARTDATE, ENDDATE, TEST_TIME, CLASS_NO, CLASS_NAME, pt.PROF_NO,EXAM_POINTS/2
+      FROM TB_PROF_TEST pt
       join tb_lecture_plan lp using(class_no)
-      WHERE PROF_NO =  #{pNo}
+      WHERE pt.PROF_NO = #{pNo}
    </select>
    <insert id="insertTestSchedule" parameterType="ClassTest">
       INSERT INTO
@@ -808,12 +790,13 @@
       #{sNo},
       #{cNo},
       #{pNo},
-      #{tNo},
-      #{homework},
-      #{homeworkweek}
+      #{hNo},
+      #{point},
+      #{lecNo}
       )
 
    </insert>
+   
  
  
  

@@ -229,7 +229,7 @@ public class profLecServiceImpl implements profLecService {
 	}
 
 	@Override
-	public ArrayList<LecturePlanWeek> selectSeList(LectureHomeWork lh) {
+	public ArrayList<LecturePlanWeek> selectSeList(HomeworkGrade lh) {
 		return plDao.selectSeList(lh);
 	}
 
@@ -258,6 +258,16 @@ public class profLecServiceImpl implements profLecService {
 	public ArrayList<LectureStudent> lectureStudentDetail(LectureStudent ls) {
 		System.out.println("서비스임플"+ls);
 		return plDao.selectlectureStudentDetail(ls);
+	}
+
+	@Override
+	public ArrayList<HomeworkGrade> hList(HomeworkGrade gb) {
+		return plDao.hList(gb);
+	}
+
+	@Override
+	public ArrayList<HomeworkGrade> SelectHGList(HomeworkGrade gb) {
+		return plDao.SelectHGList(gb);
 	}
 
 	

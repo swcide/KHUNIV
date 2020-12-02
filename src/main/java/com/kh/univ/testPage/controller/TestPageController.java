@@ -1,6 +1,7 @@
 package com.kh.univ.testPage.controller;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -60,39 +61,39 @@ public class TestPageController {
 		
 		sp.setsNo(s.getsNo());
 		sp.setSemYear(year);
+		
+		
 	    
 		if(month>9) {
 			sp.setSemNo("2");
+			
 			ArrayList<TestList> tl =tService.getClassList(sp);
 			
-			for (int i = 0; i < tl.size(); i++) {
+			 for (int i = 0; i < tl.size(); i++) {
 				
 			 	
-			 String tNo=tl.get(i).gettNo();
-			 String sNo= s.getsNo();
-			 
-			 TestGrade tg = new TestGrade();
-			 
-			 tg.setsNo(sNo);
-			 tg.settNo(tNo);
-			 
-			 ArrayList<TestGrade> add = tService.getMyTest(tg) ;
-				
-			 for (int j = 0; j < add.size(); j++) {
-				 if( add !=null) {
-					 tgList.add(add.get(j));
-				}
-			}
+				 String tNo=tl.get(i).gettNo();
+				 String sNo= s.getsNo();
+				 
+				 TestGrade tg = new TestGrade();
+				 
+				 tg.setsNo(sNo);
+				 tg.settNo(tNo);
+				 
+				 ArrayList<TestGrade> add = tService.getMyTest(tg) ;
+					
+				 for (int j = 0; j < add.size(); j++) {
+					 if( add !=null) {
+						 tgList.add(add.get(j));
+					 }
+				 }
 			
 			}
 			mv.addObject("tg",tgList);
 			mv.addObject("tl",tl);
-		
-	
 		}else if (month<8) {
 			sp.setSemNo("1");
 			ArrayList<TestList> tl =tService.getClassList(sp);
-			tl.get(1).getSemNo();
 			mv.addObject("tl",tl);
 		}
 		mv.addObject("s",s);
@@ -103,13 +104,7 @@ public class TestPageController {
 	
 	
 	
-	@RequestMapping(value = "tGrade.do", method = RequestMethod.GET)
-	public String TestGrade(Model model) {
 
-		return "Test_Std/exam_Grade";
-
-	
-	}
 	@RequestMapping("tMidterm.do")
 	public ModelAndView TestMidterm(ModelAndView mv,HttpSession session) {
 		Student s = (Student)session.getAttribute("loginUser");
@@ -118,7 +113,7 @@ public class TestPageController {
 		
 		String year = String.valueOf(cal.get(Calendar.YEAR));
 		int month = cal.get(Calendar.MONTH+1);
-
+		ArrayList<TestGrade> tgList = new ArrayList<TestGrade>();
 		
 		TestList tl = new TestList();
 		
@@ -128,27 +123,106 @@ public class TestPageController {
 		if(month>9) {
 			tl.setSemNo("2");
 			ArrayList<TestList> tlList = tService.midList(tl);
+				
+				
+				
+				 for (int i = 0; i < tlList.size(); i++) {
+					
+				 	
+					 String tNo=tlList.get(i).gettNo();
+					 String sNo= s.getsNo();
+					 TestGrade tg = new TestGrade();
+					 
+					 tg.setsNo(sNo);
+					 tg.settNo(tNo);
+					 
+					 ArrayList<TestGrade> add = tService.getMyTest(tg) ;
+						
+					 for (int j = 0; j < add.size(); j++) {
+						 if( add !=null) {
+							 tgList.add(add.get(j));
+						 }
+					 }
+				 }
+				 
+				 
 			mv.addObject("tl",tlList);
-			
-		}else if (month<8) {
-			tl.setSemNo("1");
-			ArrayList<TestList> tlList = tService.midList(tl);
-			mv.addObject("tl",tlList);
+			mv.addObject("tg",tgList);
+			mv.setViewName("Test_Std/exam_midterm");
 			
 		}
 	
 
-		mv.setViewName("Test_Std/exam_midterm");
+	
 		return mv;
 
 	
 	}
+	
+	@RequestMapping("tFinal.do")
+	public ModelAndView testFinal(ModelAndView mv,HttpSession session) {
+//		Student s = (Student)session.getAttribute("loginUser");
+//		Calendar cal = Calendar.getInstance();
+//		
+//		
+//		String year = String.valueOf(cal.get(Calendar.YEAR));
+//		int month = cal.get(Calendar.MONTH+1);
+//		ArrayList<TestGrade> tgList = new ArrayList<TestGrade>();
+//		
+//		TestList tl = new TestList();
+//		
+//		tl.setsNo(s.getsNo());
+//		tl.setSemYear(year);
+//	
+//		if(month<8) {
+//			tl.setSemNo("1");
+//			ArrayList<TestList> tlList = tService.midList(tl);
+//				
+//				
+//				
+//				 for (int i = 0; i < tlList.size(); i++) {
+//					
+//				 	
+//					 String tNo=tlList.get(i).gettNo();
+//					 String sNo= s.getsNo();
+//					 TestGrade tg = new TestGrade();
+//					 
+//					 tg.setsNo(sNo);
+//					 tg.settNo(tNo);
+//					 
+//					 ArrayList<TestGrade> add = tService.getMyTest(tg) ;
+//						
+//					 for (int j = 0; j < add.size(); j++) {
+//						 if( add !=null) {
+//							 tgList.add(add.get(j));
+//						 }
+//					 }
+//				 }
+//				 
+//				 
+//			mv.addObject("tl",tlList);
+//			mv.addObject("tg",tgList);
+			mv.setViewName("Test_Std/exam_Final");
+			
+//		}
+	
+
+	
+		return mv;
+
+	
+	}
+	
+	
+	
+	
+	
 	@ResponseBody
-	@RequestMapping("tMidtermInsert.do")
+	@RequestMapping("tInsert.do")
 	public String TestMidtermInsert(HttpSession session,TestList tl, String ansTryList) {
 
 		ArrayList<Test> t = tService.selectTestList(tl);
-		
+		System.out.println("===tl===");
 		System.out.println(tl);
 		int grade=0;
 		
@@ -173,10 +247,15 @@ public class TestPageController {
 		tg.setpNo(tl.getpNo());
 		tg.setsNo(tl.getsNo());
 		tg.settNo(tl.gettNo());
+		tg.setrTime(tl.getrTime());
 		
+		System.out.println("===tg===");
+		System.out.println(tg);
 //		시험 인설트 
 		int result =tService.insertGrade(tg);
 		String cNo = tl.getcNo();
+		System.out.println("===result===");
+		System.out.println(result);
 		
 //		배점 가져오기
 		LecturePlan lp = tService.lpOne(cNo);
@@ -192,15 +271,21 @@ public class TestPageController {
 		String year = String.valueOf(cal.get(Calendar.YEAR));
 		int month = cal.get(Calendar.MONTH+1);
 		
+		
 		sp.setmTest(mTest);
 		sp.setcNo(tl.getcNo());
 		sp.setpNo(tl.getpNo());
 		sp.setsNo(tl.getsNo());
 		sp.setSemYear(year);
 		
+		System.out.println("===sp===");
+		System.out.println(sp);
+		
 		if(month >8) {
 			sp.setSemNo("2");
 			int result2 = tService.updateSp(sp);
+			
+			System.out.println(result2);
 		}else if(month<8) {
 			sp.setsNo("1");
 			int result2 = tService.updateSp(sp);
@@ -214,42 +299,18 @@ public class TestPageController {
 	
 	}
 	
-	@RequestMapping(value = "tFinal.do", method = RequestMethod.GET)
-	public String TestFinal(Model model) {
 
-		return "Test_Std/exam_Final";
-
-	
-	}
-	@RequestMapping(value = "tQuiz.do", method = RequestMethod.GET)
-	public String TestQuiz(Model model) {
-
-		return "Test_Std/exam_quiz";
-
-	
-	}
-	@RequestMapping(value = "tHomework.do", method = RequestMethod.GET)
-	public String TestHomework(Model model) {
-		
-		return "Test_Std/exam_homework";
-		
-		
-	}
-	@RequestMapping(value = "tObjection.do", method = RequestMethod.GET)
-	public String TestObjection(Model model) {
-		
-		return "Test_Std/exam_Objection";
-		
-		
-	}
-	@RequestMapping("tMidtermTest.do")
+	@RequestMapping("tTest.do")
 	public ModelAndView TestOpen(ModelAndView mv, TestList tl) {
+		
+		
 		
 		
 		ArrayList<Test> tList = tService.selectTestList(tl);
 		TestList t = tService.selectTest(tl);
 		
-		
+		mv.addObject("tTime",tl.getTestTime());
+		mv.addObject("openDate",tl.getOpenDate());
 		mv.addObject("tList",tList);
 		mv.addObject("t",t);
 		mv.setViewName("Test_Std/test");

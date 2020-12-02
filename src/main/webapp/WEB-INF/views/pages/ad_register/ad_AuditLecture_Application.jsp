@@ -207,7 +207,7 @@ ul.tab2 li.current {
 												</tr>
 											</thead>
 											<tbody>
-												<c:forEach var="r" items="${r}">
+											<c:forEach var="r" items="${r}">
 													<tr class="cart_table_item">
 														
 														<td class="product-thumbnail">
@@ -230,7 +230,9 @@ ul.tab2 li.current {
 																
 														</span></td>
 													</tr>
+													
 												</c:forEach>
+
 											</tbody>
 										</table>
 									</div>

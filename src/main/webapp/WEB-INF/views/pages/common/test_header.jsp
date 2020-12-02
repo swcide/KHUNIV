@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     
 <!DOCTYPE html>
 <html>
@@ -27,10 +25,13 @@
         height: 50px;
         
     }
-    .menu-link{
-        font-size:20px
+    .menu-link span{
+        font-size:20px;
+        
+        display: block;
     }
-    .sub-menu-container >.menu-item > .menu-link > div{
+  
+    .sub-menu-container >.menu-item > .menu-link > span{
         font-size:15px
     }
     .tabs-bb .navi{
@@ -78,26 +79,14 @@
 						<nav class="primary-menu on-click" style="margin-bottom: 200px;">
 
 							<ul class="menu-container">
-                                <li class="menu-item"><a class="menu-link" href="tList.do"><div>강의 목록</div></a> </li>
-                                <li class="menu-item"><a class="menu-link" href="tGrade.do"><div>시험 성적 조회</div></a> </li>
+                                <li class="menu-item"><a class="menu-link" href="tList.do"><span>강의 목록</span></a> </li>
                                 
-								<li class="menu-item"><a class="menu-link" href="#"><div> 정기 시험</div></a>
+								<li class="menu-item"><a class="menu-link" href="#"><span> 정기 시험</span></a>
 									<ul class="sub-menu-container">
-										<li class="menu-item"><a class="menu-link" href="tMidterm.do"><div>중간고사</div></a></li>
-                                        <li class="menu-item"><a class="menu-link" href="tFinal.do"><div>기말고사</div></a></li>	                                        								
+										<li class="menu-item"><a class="menu-link" href="tMidterm.do"><span>중간고사</span></a></li>
+                                        <li class="menu-item"><a class="menu-link" href="tFinal.do"><span>기말고사</span></a></li>	                                        								
 									</ul>
                                 </li>
-                                <li class="menu-item"> <a class="menu-link" href="#"><div> 수시 시험</div></a>								
-                                    <ul class="sub-menu-container">
-                                        <li class="menu-item"><a class="menu-link" href="tQuiz.do"><div>퀴즈</div></a></li>
-                                        <li class="menu-item"><a class="menu-link" href="tHomework.do"><div>과제 제출</div></a></li>
-                                  </ul>
-                                </li>
-                                <li class="menu-item"><a class="menu-link" href="#"><div>시험 관련 신청</div></a>
-									<ul class="sub-menu-container">
-										<li class="menu-item"><a class="menu-link" href="tObjection.do"><div></i>성적 이의 신청</div></a></li>
-									</ul>
-								</li>
 							</ul>
 
 						</nav><!-- #primary-menu end -->
