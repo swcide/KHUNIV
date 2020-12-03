@@ -13,6 +13,7 @@ import com.kh.univ.lecture.model.vo.Attendance;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.lecture.model.vo.MyLectureVideoList;
+import com.kh.univ.lecture.model.vo.SemePoint;
 
 @Repository("lDao")
 public class LectureDao {
@@ -42,6 +43,10 @@ public class LectureDao {
 	public ArrayList<LecturePlanWeek> assigment(String classNo) {
 		
 		return (ArrayList)sqlSession.selectList("lectureMapper.lecVideo", classNo);
+	}
+
+	public ArrayList<SemePoint> selectGradeList(SemePoint sp) {
+		return (ArrayList)sqlSession.selectList("lectureMapper.getStudentGradeList",sp);
 	}
 
 

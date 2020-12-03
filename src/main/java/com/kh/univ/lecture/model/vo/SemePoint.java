@@ -10,16 +10,19 @@ public class SemePoint{
 	private String classNo;				// 강의번호
 	private String midTestPoints;		// 중간고사 점수
 	private String finalTestPoints;		// 기말고사 점수
-	private String reportPoints;			// 과제 점수
+	private String reportPoints;		// 과제 점수
 	private String attendancePoints;	// 과목의 출석 배점 
 	private String totalPoints;			// 총점
 	private String pNo;					// 교수번호
+	private String className;			// 과목명
 	
 	public SemePoint() {
 	}
 
-	public SemePoint(String sNo, String year, String semesterNo, String classNo, String midTestPoints, String finalTestPoints,
-			String reportPoints, String attendancePoints, String totalPoints, String pNo) {
+	
+
+	public SemePoint(String sNo, String year, String semesterNo, String classNo, String midTestPoints, String finalTestPoints, String reportPoints,
+			String attendancePoints, String totalPoints, String pNo, String className) {
 		this.sNo = sNo;
 		this.year = year;
 		this.semesterNo = semesterNo;
@@ -30,95 +33,152 @@ public class SemePoint{
 		this.attendancePoints = attendancePoints;
 		this.totalPoints = totalPoints;
 		this.pNo = pNo;
+		this.className = className;
 	}
+
+
 
 	public String getsNo() {
 		return sNo;
 	}
 
+
+
 	public void setsNo(String sNo) {
 		this.sNo = sNo;
 	}
+
+
 
 	public String getYear() {
 		return year;
 	}
 
+
+
 	public void setYear(String year) {
 		this.year = year;
 	}
+
+
 
 	public String getSemesterNo() {
 		return semesterNo;
 	}
 
+
+
 	public void setSemesterNo(String semesterNo) {
 		this.semesterNo = semesterNo;
 	}
+
+
 
 	public String getClassNo() {
 		return classNo;
 	}
 
+
+
 	public void setClassNo(String classNo) {
 		this.classNo = classNo;
 	}
+
+
 
 	public String getMidTestPoints() {
 		return midTestPoints;
 	}
 
+
+
 	public void setMidTestPoints(String midTestPoints) {
 		this.midTestPoints = midTestPoints;
 	}
+
+
 
 	public String getFinalTestPoints() {
 		return finalTestPoints;
 	}
 
+
+
 	public void setFinalTestPoints(String finalTestPoints) {
 		this.finalTestPoints = finalTestPoints;
 	}
+
+
 
 	public String getReportPoints() {
 		return reportPoints;
 	}
 
+
+
 	public void setReportPoints(String reportPoints) {
 		this.reportPoints = reportPoints;
 	}
+
+
 
 	public String getAttendancePoints() {
 		return attendancePoints;
 	}
 
+
+
 	public void setAttendancePoints(String attendancePoints) {
 		this.attendancePoints = attendancePoints;
 	}
+
+
 
 	public String getTotalPoints() {
 		return totalPoints;
 	}
 
+
+
 	public void setTotalPoints(String totalPoints) {
 		this.totalPoints = totalPoints;
 	}
+
+
 
 	public String getpNo() {
 		return pNo;
 	}
 
+
+
 	public void setpNo(String pNo) {
 		this.pNo = pNo;
 	}
 
+
+
+	public String getClassName() {
+		return className;
+	}
+
+
+
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+
+
 	@Override
 	public String toString() {
-		return "SemePoint [sNo=" + sNo + ", year=" + year + ", semesterNo=" + semesterNo + ", classNo=" + classNo + ", midTestPoints="
-				+ midTestPoints + ", finalTestPoints=" + finalTestPoints + ", reportPoints=" + reportPoints + ", attendancePoints=" + attendancePoints
-				+ ", totalPoints=" + totalPoints + ", pNo=" + pNo + "]";
+		return "SemePoint [sNo=" + sNo + ", year=" + year + ", semesterNo=" + semesterNo + ", classNo=" + classNo + ", midTestPoints=" + midTestPoints
+				+ ", finalTestPoints=" + finalTestPoints + ", reportPoints=" + reportPoints + ", attendancePoints=" + attendancePoints
+				+ ", totalPoints=" + totalPoints + ", pNo=" + pNo + ", className=" + className + "]";
 	}
-	
+
+
+
 	
 	
 	
