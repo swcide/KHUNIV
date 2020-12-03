@@ -91,7 +91,7 @@
 		<result property="classSummary" column="CLASS_SUMMARY" />
 		<result property="classImg" column="CLASS_IMG" />
 		<result property="profName" column="PROF_NAME" />
-		<result property="pNo" column="PROF_NO" />
+		<result property="pNo" column="PROFESSOR_NO" />
 		<result property="profEmail" column="PROF_EMAIL" />
 		<result property="deptName" column="DEPT_NAME" />
 		<result property="credit" column="CREDIT" />
@@ -132,7 +132,7 @@
 	<!-- 강의개설정보 리스트 //전공// -->
 	<select id="lecPList" resultMap="lectureListResultSet">
 		SELECT
-		CLASS_NO,CLASS_NAME,CLASS_TYPE,PROF_NAME,PROF_NO,CLASS_SUMMARY
+		CLASS_NO,CLASS_NAME,CLASS_TYPE,PROF_NAME,PROFESSOR_NO,CLASS_SUMMARY
 		FROM TB_CLASS C
 		JOIN
 		TB_CLASS_PROFESSOR USING(CLASS_NO)
@@ -146,7 +146,7 @@
 	<!-- 강의개설정보 리스트 //교양// -->
 	<select id="lecPList2" resultMap="lectureListResultSet">
 		SELECT
-		CLASS_NO,CLASS_NAME,CLASS_TYPE,PROF_NAME,PROF_NO,CLASS_SUMMARY
+		CLASS_NO,CLASS_NAME,CLASS_TYPE,PROF_NAME,PROFESSOR_NO,CLASS_SUMMARY
 		FROM TB_CLASS C
 		JOIN
 		TB_CLASS_PROFESSOR USING(CLASS_NO)
@@ -185,7 +185,7 @@
 		TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
 		WHERE
 		CLASS_NO=#{classNo}
-		AND PROF_NO=#{pNo}
+		AND PROFESSOR_NO=#{pNo}
 	</select>
 
 	<!-- 강의계획서 주차별 강의명 파트 (아랫부분) -->
