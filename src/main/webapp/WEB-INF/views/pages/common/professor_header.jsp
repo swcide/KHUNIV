@@ -133,12 +133,10 @@
 											<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"> 시험및 과제 </a>
 												<ul class="dropdown-menu">
 													<li><a class="dropdown-item" href="prof_testList.do">시험</a></li>
-													<li class="dropdown-submenu"><a class="dropdown-item" href="#">과제 및 퀴즈</a>
-														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="TestInsert.do">퀴즈</a></li>
-															<li><a class="dropdown-item" href="hlist.do">과제</a></li>
-														</ul></li>
-												</ul></li>
+													<li><a class="dropdown-item" href="hlist.do">과제</a></li>
+
+												</ul>
+											</li>
 										</ul>
 									</nav>
 								</div>

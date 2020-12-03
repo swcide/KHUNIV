@@ -10,6 +10,7 @@ import com.kh.univ.ad_Register.model.vo.semesterPoint;
 import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.member.model.vo.Student;
+import com.kh.univ.testPage.model.vo.HomeworkGrade;
 import com.kh.univ.testPage.model.vo.Test;
 import com.kh.univ.testPage.model.vo.TestGrade;
 import com.kh.univ.testPage.model.vo.TestList;
@@ -54,4 +55,15 @@ public class TestPageDao {
 	public int updateSp(semesterPoint sp) {
 		return sqlSession.update("testPageMapper.updateSp",sp);
 	}
+
+	public ArrayList<HomeworkGrade> hList(HomeworkGrade gb) {
+		return (ArrayList)sqlSession.selectList("testPageMapper.hList",gb);
+	}
+
+	public ArrayList<TestGrade> alreadyTest(TestList tl) {
+		return (ArrayList)sqlSession.selectList("testPageMapper.alreadyTest",tl);
+	}
+
+
+
 }

@@ -28,6 +28,7 @@ import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.lecture.model.vo.MyLectureVideoList;
+import com.kh.univ.lecture.model.vo.SemePoint;
 import com.kh.univ.member.model.vo.Student;
 import com.kh.univ.univlife.board.human.model.vo.HumanBoard;
 
@@ -36,7 +37,7 @@ public class LectureController {
 	
 	@Autowired
 	LectureService lService;
-	
+	// 학생용 강의리스트 조회
 	@RequestMapping(value = "lecturelist.do")
 	public ModelAndView lectureList(ModelAndView mv,HttpSession session) {
 	Student student = (Student)session.getAttribute("loginUser"); // 로긴세션에서 뽑은 정보를 학생객체에 넣기
@@ -47,7 +48,30 @@ public class LectureController {
 	mv.setViewName("ad_lecture/ad_lectureList");
 		return mv;
 	}
-
+	
+	// 학생용 성적조회
+	@RequestMapping(value = "grade.do")
+	public ModelAndView grade(ModelAndView mv,HttpSession session, SemePoint sp,
+			 @RequestParam(name = "year", required = false) String year,
+			 @RequestParam(name = "semesterNo", required = false) String semesterNo
+			 ) {
+		Student student = (Student)session.getAttribute("loginUser"); // 로긴세션에서 뽑은 정보를 학생객체에 넣기
+		String sNo = student.getsNo();
+		sp.setsNo(sNo);
+		sp.setYear(year);
+		sp.setSemesterNo(semesterNo);
+		System.out.println("화면에서 받아온"+sp);
+		ArrayList<SemePoint> spl = lService.selectGradeList(sp);
+		System.out.println("성적조회 리스트: " + spl);
+		if(spl !=null) {
+			mv.addObject("spl", spl);
+			mv.setViewName("ad_lecture/ad_grade");
+		}else {
+			mv.addObject("msg","비정상적인 접근입니다.");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
 	@RequestMapping(value = "stdVideoList.do")
 	public ModelAndView myLectureVideoList(ModelAndView mv,@RequestParam(name = "classNo", required = false) String classNo)
 	{

@@ -50,7 +50,7 @@ padding-left:20px
 														<span class="card-title mb-1 text-4 font-weight-bold">평가할 학생이 없습니다.</span>
 													</div>
 												</c:if>
-												<c:if test="${empty ag }">
+												<c:if test="${!empty ag }">
 												
 												<c:forEach var ="ag" items="${ag }">
 												<tr>
@@ -63,11 +63,16 @@ padding-left:20px
 														</c:if>
 														<c:if test="${!empty ag.assignFile  }">
 														<span style="color:red">제출</span>
-															<c:if test="${!empty gb }">
-															<span class="float-right" style="color:red">평가 완료</span>
+														<c:forEach var="hg"  items="${hg }">
+															<c:if test="${hg.sNo eq ag.sNo &&!empty hg.sNo  }">
+															<span class="check float-right" style="color:red">평가 완료</span>
 															</c:if>
+															<c:if test="${hg.sNo ne ag.sNo&&empty hg.sNo}">
+															<span class="check float-right" style="color:red">미 평가</span>
+															</c:if>
+															
+														</c:forEach>
 														</c:if>
-														<c:out value="${ag.lecNo }" />
 													</td>
 												</tr>
 												</c:forEach>
@@ -77,6 +82,8 @@ padding-left:20px
 									</div>
 								</div>	
 								<div class="col-lg-2"></div>
+								
+							
 								
 								
 								
@@ -120,16 +127,16 @@ padding-left:20px
 										
 										</div>
 										<br>
-										<form action="sEvaluationInsert.do">
+										<form id="fm" action="sEvaluationInsert.do" onsubmit="return checkPoint(this);">
 										<div id="Evaluation" class="card-body" style="text-align: center">
 											<span>평가 점수</span>
-											<input name ="point" type="text">
+											<input id ="point${ag.sNo}" type="text">
 											<br>
 											<br>
 											<input type="hidden" name ="lecNo" value="${ag.lecNo }">
-											<input type="hidden" name ="lecNo" value="${ag.tNo }">
 											<input type="hidden" name ="sNo" value="${ag.sNo }">
 											<input type="hidden" name ="cNo" value="${ag.classNo }">
+											<input type="hidden" name ="hNo" value="${lh.hNo }">
 											<input type="submit" class="btn btn-sm btn-primary float-right " value="저장">
 										
 										</div>
@@ -183,22 +190,78 @@ padding-left:20px
 		</div>
 	</div>
 </div>
+	
 <script>
 
 	function Evaluation(obj){
+		
+		var check = $(obj).find(".check").text();
 		var sNo = $(obj).find('input').val();
-		console.log(sNo);
 		var remove = $('#before');
-		remove.remove();
 		var none = $('.change');
+		
 		var after = $('#in'+sNo);
+		
+		if (check == "평가 완료"){
+			alert("이미 평가한 학생입니다")
+			
+			remove.css("display","block");
+			
+			
+			
+			
+			none.css("display","none");
+			after.css("display","none");
+		}else if (check =="미 평가"){
+		
+	
+		console.log(sNo);
+		
+		remove.css("display","none");
+		
+		
+		
+		
 		none.css("display","none");
 		after.css("display","block");
+		}
 		
 		
 		
 		
 	}
+	
+	function checkPoint(obj){
+		
+		var sNo = $(obj).find('input[name=sNo]').val()
+		
+		
+		console.log(sNo)
+		
+		var point = $("#point"+sNo).val()
+		
+// 		console.log(point)
+		if(point >20){
+// 			fm.attr('onsubmit','false') 
+// 			console.log(point)
+			alert('점수는 20점을 넘을 수 없습니다.')
+			return false;
+		}else if(point ==""){
+			alert('평가점수는 꼭 입력하셔야 합니다.')
+			return false;
+		}
+		else{
+			
+			alert('저장이 완료되었습니다!')
+			return true;
+		}
+			
+	}
+	
+
+	
+	
+	
 </script>
 
 <%@ include file="../common/footer.jsp"%>

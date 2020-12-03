@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.Calendar"%>
+
+<%
+	Calendar Now = Calendar.getInstance();
+int year = Now.get(Calendar.YEAR);
+int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
+String semesterNo = "1";
+if (month >= 7) {
+	semesterNo = "2";
+}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,7 +75,7 @@
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <!-- Bootstrap Data Table Plugin -->
-	<link rel="stylesheet" href="resources/css/components/bs-datatable.css" type="text/css" />
+<link rel="stylesheet" href="resources/css/components/bs-datatable.css" type="text/css" />
 
 
 <style>
@@ -101,17 +112,28 @@
 												<div class="row">
 													<div class="col-md-6">
 														<c:if test="${!empty sessionScope.loginUser }">
-															<a href="mypage.do"><label><strong style="color: #008995">${loginUser.sName }</strong></label></a>
+															<a href="mypage.do"><label>
+																	<strong style="color: #008995">${loginUser.sName }</strong>
+																</label></a>
+																<form id="gradeform" action="grade.do">
+															<input type="hidden" id="year" name="year" value="<%=year%>">
+															<input type="hidden" id="semesterNo" name="semesterNo" value="<%=semesterNo%>">
 															<input type="hidden" id="sNo" name="sNo" value="${loginUser.sNo }">
+															<button id="submit-form" style="display:none"></button>
+															</form>
 														</c:if>
 													</div>
 													<div class="col-md-6" style="text-align: right">
-<!-- 																												<a href="mypage.do"><label><strong>내 정보</strong></label></a>
+														<!-- 																												<a href="mypage.do"><label><strong>내 정보</strong></label></a>
  -->
-														<a href="ad_logout.do"><label><strong>로그아웃</strong></label></a>
+														<a href="ad_logout.do"><label>
+																<strong>로그아웃</strong>
+															</label></a>
 													</div>
 												</div>
-												<strong class="text-uppercase text-2"> <label><strong>학사행정사이트 방문을 환영합니다</strong></label>
+												<strong class="text-uppercase text-2"> <label>
+														<strong>학사행정사이트 방문을 환영합니다</strong>
+													</label>
 												</strong>
 											</div>
 										</li>
@@ -135,7 +157,7 @@
 														<ul class="dropdown-menu">
 															<li><a class="dropdown-item" href="#">학습 현황</a></li>
 															<li><a class="dropdown-item" href="attendance.do">출석 현황</a></li>
-															<li><a class="dropdown-item" href="grade.do">성적 현황</a></li>
+															<li><a class="dropdown-item" href="javascript:grade();" >성적 현황</a></li>
 														</ul></li>
 													<li><a class="dropdown-item" href="speciallecture.do"> 특강 목록 </a></li>
 												</ul></li>
@@ -153,7 +175,7 @@
 													<li class="dropdown-submenu"><a class="dropdown-item" href="#">휴학</a>
 														<ul class="dropdown-menu">
 															<li><a class="dropdown-item" onClick="open_leave_check()">휴학신청 바로가기</a></li>
-															<li><a class="dropdown-item"  href="ad_leave_absence_check.do">휴학신청 확인</a></li>
+															<li><a class="dropdown-item" href="ad_leave_absence_check.do">휴학신청 확인</a></li>
 														</ul></li>
 													<li class="dropdown-submenu"><a class="dropdown-item" href="#">복학</a>
 														<ul class="dropdown-menu">
@@ -198,24 +220,30 @@
 		</header>
 	</div>
 	<script>
-	//휴학 확인 화면 
-			var sNo = $('#sNo').val();
+		//휴학 확인 화면 
+		var sNo = $('#sNo').val();
 		function open_leave_check() {
 			console.log(sNo)
-			window.open(this.href='ad_leave_absence.do?sNo='+ sNo, '', 'resizable=yes, width=900, height=800 left=700px top=100px'); 
+			window
+					.open(this.href = 'ad_leave_absence.do?sNo=' + sNo, '',
+							'resizable=yes, width=900, height=800 left=700px top=100px');
 			return false;
 		};
 		//성적조회 화면
-		function point_search_list(){
+		function point_search_list() {
 			console.log(sNo)
-			location.href ='ad_point_search_list.do?sNo='+ sNo; 
+			location.href = 'ad_point_search_list.do?sNo=' + sNo;
 			return false;
 		}
 		//등록금 납부 화면
-		function tuition_Bill(){
-			location.href='ad_tuition_bill.do?sNo='+ sNo; 
+		function tuition_Bill() {
+			location.href = 'ad_tuition_bill.do?sNo=' + sNo;
 			return false;
 		}
+		function grade() {
+			$("#gradeform").submit();
+		};
+
 	</script>
 </body>
 </html>

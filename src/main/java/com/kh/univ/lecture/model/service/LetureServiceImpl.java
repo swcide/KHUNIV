@@ -12,6 +12,7 @@ import com.kh.univ.lecture.model.vo.Attendance;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.lecture.model.vo.MyLectureVideoList;
+import com.kh.univ.lecture.model.vo.SemePoint;
 @Service("lService")
 public class LetureServiceImpl implements LectureService {
 	
@@ -50,9 +51,8 @@ public class LetureServiceImpl implements LectureService {
 	}
 
 	@Override
-	public ArrayList<Attendance> selectTestPoint(String sNo) {
-
-		return lDao.selectTestPoint(sNo);
+	public ArrayList<SemePoint> selectGradeList(SemePoint sp) {
+		return lDao.selectGradeList(sp);
 	}
 
 

@@ -6,6 +6,7 @@ import com.kh.univ.lecture.model.vo.Assignment;
 import com.kh.univ.lecture.model.vo.Attendance;
 import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
+import com.kh.univ.lecture.model.vo.SemePoint;
 
 public interface LectureService {
 	
@@ -40,7 +41,7 @@ public interface LectureService {
 	
 	int assignmentInsert(LecturePlanWeek lpw);
 
-	ArrayList<Attendance> selectTestPoint(String sNo);
+	ArrayList<SemePoint> selectGradeList(SemePoint sp);
 
 	
 

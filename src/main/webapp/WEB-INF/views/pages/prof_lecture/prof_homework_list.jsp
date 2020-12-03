@@ -12,8 +12,8 @@
 			<div class="container">
 				<div class="row mt-3">
 					<div class="col-md-12 align-self-center p-static order-2 text-center">
-						<h1 class="text-9 font-weight-bold">시험 목록</h1>
-						<span class="sub-title">my lecture list</span>
+						<h1 class="text-9 font-weight-bold">과제 목록</h1>
+						<span class="sub-title">report list</span>
 					</div>
 				</div>
 			</div>
@@ -51,7 +51,6 @@
 													<c:param name="cName" value="${ll.className}"/>
 													<c:param name="pNo" value="${pNo}"/>
 												</c:url>
-												<c:out value="${ll.classNo }"/>
 											
 												<tr onclick="location.href='${week}'" style="cursor: pointer;">
 													<td>${ll.classNo }	</td>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <html>
 <head>
 
@@ -10,7 +11,7 @@
 </head>
 
 <body class="stretched side-header">
-	<c:import url="../common/Test_std_header.jsp"/>
+	<c:import url="../common/test_header.jsp"/>
 
 		
 
@@ -48,8 +49,9 @@
                                    <th>No</th>
                                    <th style="text-align: center;">과목명</th>
                                    <th style="text-align: center;">이수</th>
-                                   <th style="text-align: center;">시험 종류</th>
                                    <th style="text-align: center;">담당교수</th>
+                                   <th style="text-align: center;">시험 종류</th>
+                                   
                                    <th style="text-align: center;">시험 응시</th>
                                 </tr>
                             </thead>
@@ -58,19 +60,28 @@
                                 <tr>
                                    <td style="text-align: center;">${status.index+1 }</td>
                                    <td style="text-align: center;">${tl.cName }</td>
-                                   <td style="text-align: center;">${tl.cType }</td>
                                    <td style="text-align: center;">${tl.pName }</td>
-                                   <c:forEach var ="tg" end="0" items="${tg }">
+                                   <td style="text-align: center;">${tl.cType }</td>
+                                 
                                    <c:if test="${tl.tType eq 'M' }">
 	                                   <td style="text-align: center;">중간고사</td>
-	                                   <c:if test="${ tl.tNo ne tg.tNo }">
+	                                     <c:if test="${empty tg  }">
 	                                   		<td style="text-align: center;"> 미응시</td>
 	                                   </c:if>
+	                                  <c:forEach var ="tg" end="0" items="${tg }">
+	                                   <c:if test="${tl.tNo ne tg.tNo }">
+	                                   		<td style="text-align: center;"> 미응시</td>
+	                                   </c:if>
+	                                   </c:forEach>
+	                                    <c:forEach var ="tg" end="0" items="${tg }">
 	                                   <c:if test="${tl.tNo eq tg.tNo}">
 	                                   		<td style="text-align: center;">응시완료</td>
                                   	   </c:if>
+                                  	   </c:forEach>
                                    </c:if>
-                                   </c:forEach>
+                                   
+                                    
+                                    
                                     <c:forEach var ="tg" end="0" items="${tg }">
                                    <c:if test="${tl.tType eq 'F' }">
 	                                   <td style="text-align: center;">기말고사</td>

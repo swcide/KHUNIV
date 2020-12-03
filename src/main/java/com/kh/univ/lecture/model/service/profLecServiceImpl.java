@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.lecture.model.dao.profLecDao;
-import com.kh.univ.lecture.model.vo.Assignment;
 import com.kh.univ.lecture.model.vo.Attendance;
 import com.kh.univ.lecture.model.vo.ClassTest;
 import com.kh.univ.lecture.model.vo.LectureClass;
@@ -18,9 +17,8 @@ import com.kh.univ.lecture.model.vo.LectureList;
 import com.kh.univ.lecture.model.vo.LecturePlan;
 import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.lecture.model.vo.LectureStudent;
+import com.kh.univ.lecture.model.vo.SemePoint;
 import com.kh.univ.member.model.vo.Professor;
-import com.kh.univ.member.model.vo.Professor;
-import com.kh.univ.notice.model.vo.Notice;
 import com.kh.univ.testPage.model.vo.HomeworkGrade;
 import com.kh.univ.testPage.model.vo.Test;
 
@@ -229,7 +227,7 @@ public class profLecServiceImpl implements profLecService {
 	}
 
 	@Override
-	public ArrayList<LecturePlanWeek> selectSeList(LectureHomeWork lh) {
+	public ArrayList<LecturePlanWeek> selectSeList(HomeworkGrade lh) {
 		return plDao.selectSeList(lh);
 	}
 
@@ -256,8 +254,35 @@ public class profLecServiceImpl implements profLecService {
 	// 교수의 내 강의 목록 3단계
 	@Override
 	public ArrayList<LectureStudent> lectureStudentDetail(LectureStudent ls) {
-		System.out.println("서비스임플"+ls);
 		return plDao.selectlectureStudentDetail(ls);
+	}
+	// 교수의 내강의 목록 출석점수 배점 모달팝업
+	@Override
+	public LecturePlan lectureAttendancePointMax(LecturePlan lp) {
+		return plDao.selectLectureAttendancePointMax(lp);
+		
+	}
+
+	
+
+	@Override
+	public ArrayList<HomeworkGrade> hList(HomeworkGrade gb) {
+		return plDao.hList(gb);
+	}
+
+	@Override
+	public ArrayList<HomeworkGrade> SelectHGList(HomeworkGrade gb) {
+		return plDao.SelectHGList(gb);
+	}
+
+	@Override
+	public SemePoint studentSemesterPoint(SemePoint sp) {
+		return plDao.studentSemesterPoint(sp);
+	}
+
+	@Override
+	public int attendancePointUpdate(SemePoint sp) {
+		return plDao.attendancePointUpdate(sp);
 	}
 
 	

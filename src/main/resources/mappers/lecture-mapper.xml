@@ -42,8 +42,6 @@
 		<id property="submitDate" column="SUBMIT_DATE" />
 		<id property="assignFile" column="ASSIGNMENT_FILE_NAME" />
 		<id property="lecNo" column="LECTURE_NO" />
-
-
 		<id property="lecName" column="LECTURE_NAME" />
 		<id property="lecReference" column="LECTURE_REFERENCE" />
 		<id property="lecVideo" column="LECTURE_VIDEO" />
@@ -89,8 +87,6 @@
 		<result property="examPoints" column="EXAM_POINTS" />
 		<result property="assignmentPoints" column="ASSIGN_POINTS" />
 		<result property="attendancePoints" column="ATTEND_POINTS" />
-
-
 	</resultMap>
 
 	<resultMap type="LecturePlanWeek" id="Sylla2ResultSet">
@@ -112,7 +108,6 @@
 		<result property="pNo" column="PROF_NO" />
 		<result property="cName" column="CLASS_NAME" />
 		<result property="point" column="EXAM_POINTS" />
-
 	</resultMap>
 
 	<resultMap type="Test" id="TestResultSet">
@@ -189,13 +184,19 @@
 		<result property="hPoint" column="HWORK_POINT" />
 	</resultMap>
 
-
-
-
-
-
-
-
+	<resultMap type="SemePoint" id="SemesterPointResultSet">
+		<id property="sNo" column="STD_NO" />
+		<result property="year" column="SEM_YEAR" />
+		<result property="semesterNo" column="SEME_NO" />
+		<result property="classNo" column="CLASS_NO" />
+		<result property="midTestPoints" column="MID_TEST" />
+		<result property="finalTestPoints" column="FINAL_TEST" />
+		<result property="reportPoints" column="REPORT" />
+		<result property="attendancePoints" column="ATTENDANCE" />
+		<result property="totalPoints" column="POINT" />
+		<result property="pNo" column="PROF_NO" />
+		<result property="className" column="CLASS_NAME" />
+	</resultMap>
 
 
 
@@ -203,7 +204,7 @@
 		INSERT INTO
 		TB_ASSIGNMENT
 		VALUES(#{sNo}, #{classNo},
-		#{lecReference},#{lecNo},#{lecExplanation},SYSDATE,#{className},#{sName})
+		#{lecReference},#{lecExplanation},SYSDATE,#{sName},#{lecNo})
 	</insert>
 
 
@@ -221,6 +222,7 @@
 		LECTURE_NO DESC
 	</select>
 
+
 	<select id="lectureList" resultMap="LectureListResultSet">
 		SELECT
 		CLASS_NO,
@@ -228,48 +230,26 @@
 		CLASS_TYPE,
 		PROF_EMAIL,
 		PROF_NAME,
-		PROF_NO,
+		lp.PROF_NO,
 		CLASS_IMG
-		FROM TB_ATTENDANCE
-		JOIN TB_CLASS USING(CLASS_NO)
-		JOIN TB_LECTURE_PLAN USING(CLASS_NO)
-		LEFT JOIN
-		TB_PROFESSOR USING(PROF_NO)
+
+
+		FROM TB_ATTENDANCE ad
+		JOIN TB_CLASS c USING(CLASS_NO)
+		left JOIN TB_PROFESSOR p USING(PROF_NO)
+		JOIN TB_LECTURE_PLAN lp
+		USING(CLASS_NO)
+
 		WHERE STD_NO=#{sNo}
+
 		GROUP BY
 		CLASS_NO,
 		CLASS_NAME,
 		CLASS_TYPE,
 		PROF_EMAIL,
 		PROF_NAME,
-		PROF_NO,
+		lp.PROF_NO,
 		CLASS_IMG
-	</select>
-
-	<select id="testPoint" resultMap="AttendanceResultSet">
-		SELECT
-		CLASS_TYPE,
-		CLASS_NAME,
-COUNT(WEEK)
-		START_DATE,
-		STD_NO,
-		POINT,
-		TEST_NO
-
-		FROM
-		TB_ATTENDANCE
-
-		JOIN
-		TB_CLASS USING (CLASS_NO)
-		JOIN TB_TEST_GRADE USING(STD_NO)
-		WHERE STD_NO = '2020'
-		GROUP BY CLASS_TYPE,
-		CLASS_NAME,
-
-		START_DATE,
-		STD_NO,
-		POINT,
-		TEST_NO
 	</select>
 
 	<select id="attendance" resultMap="AttendanceResultSet">
@@ -334,6 +314,29 @@ COUNT(WEEK)
 		AND CLASS_NO=#{classNo}
 		GROUP BY CLASS_NO, STD_NO,STD_NAME,CLASS_NAME, START_DATE
 	</select>
+
+	<!-- 학생용 성적조회리스트 -->
+	<select id="getStudentGradeList" resultMap="SemesterPointResultSet">
+		SELECT
+		SEM_YEAR,
+		SEME_NO,
+		CLASS_NO,
+		CLASS_NAME,
+		MID_TEST,
+		FINAL_TEST,
+		REPORT,
+		ATTENDANCE,
+		POINT,
+		PROF_NO
+		FROM TB_SEMESTER_POINT
+		JOIN TB_CLASS USING(CLASS_NO)
+		WHERE STD_NO=#{sNo}
+		AND SEM_YEAR=#{year}
+		AND
+		SEME_NO=#{semesterNo}
+	</select>
+
+	<!-- 교수용 학생 조회리스트 -->
 	<select id="lectureStudentDetail"
 		resultMap="lectureStudentResultSet">
 		SELECT
@@ -349,12 +352,42 @@ COUNT(WEEK)
 		JOIN TB_CLASS USING (CLASS_NO)
 		JOIN TB_STUDENT USING (STD_NO)
 		WHERE PROF_NO=#{pNo}
+		AND
+		CLASS_NO=#{classNo}
+		AND STD_NO=#{sNo}
+		GROUP BY CLASS_NO, STD_NO,
+		STD_NAME, CLASS_NAME, START_DATE, WEEK,
+		ATTENDANCE, ASSIGNMENT
+		ORDER BY
+		WEEK ASC
+	</select>
+
+	<!-- 교수용 학생출석&총점부여 -->
+	<update id="AttendancePointsUpdate" parameterType="SemePoint">
+		UPDATE
+		TB_SEMESTER_POINT
+		SET ATTENDANCE =#{attendancePoints},
+		POINT=#{totalPoints}
+		WHERE PROF_NO=#{pNo}
 		AND CLASS_NO=#{classNo}
 		AND STD_NO=#{sNo}
-		GROUP BY CLASS_NO, STD_NO, STD_NAME, CLASS_NAME, START_DATE, WEEK,
-		ATTENDANCE, ASSIGNMENT
-		ORDER BY WEEK ASC
+		AND SEM_YEAR=#{year}
+		AND SEME_NO=#{semesterNo}
+	</update>
+
+	<select id="semesterPointSelect"
+		resultMap="SemesterPointResultSet">
+		SELECT
+		*
+		FROM
+		TB_SEMESTER_POINT
+		WHERE STD_NO=#{sNo}
+		AND CLASS_NO=#{classNo}
+		AND PROF_NO=#{pNo}
+		AND SEM_YEAR=#{year}
+		AND SEME_NO=#{semesterNo}
 	</select>
+
 
 	<select id="sylla1" resultMap="Sylla1ResultSet">
 		SELECT CLASS_NO,
@@ -375,15 +408,19 @@ COUNT(WEEK)
 		EXAM_POINTS,
 		ASSIGN_POINTS,
 		ATTEND_POINTS
-		FROM TB_CLASS C
+		FROM
+		TB_CLASS C
 		JOIN TB_CLASS_PROFESSOR CP
 		USING(CLASS_NO)
-		LEFT JOIN TB_LECTURE_PLAN LP USING(CLASS_NO)
+		LEFT JOIN
+		TB_LECTURE_PLAN LP USING(CLASS_NO)
 		JOIN
-		TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
+		TB_PROFESSOR P ON(P.PROF_NO =
+		CP.PROFESSOR_NO)
 		WHERE
 		CLASS_NO=#{classNo}
 	</select>
+	
 	<select id="sylla2" resultMap="Sylla2ResultSet">
 		SELECT
 		LECTURE_NO,LECTURE_NAME,LECTURE_REFERENCE,LECTURE_EXPLANATION
@@ -435,18 +472,17 @@ COUNT(WEEK)
 	</select>
 
 	<select id="SyllaPlanList" resultMap="lectureListResultSet">
-		SELECT CLASS_NO,
+		SELECT
+		CLASS_NO,
 		CLASS_NAME,
 		CLASS_TYPE,
-		CLASS_SUMMARY
-		FROM TB_CLASS C
-		JOIN
-		TB_CLASS_PROFESSOR CP
-		USING(CLASS_NO)
-		LEFT JOIN TB_LECTURE_PLAN LP
-		USING(CLASS_NO)
-		JOIN TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
-		WHERE PROF_NO=#{pNo}
+		CLASS_SUMMARY,
+		PROF_NO
+		FROM
+		TB_LECTURE_PLAN
+		JOIN TB_CLASS USING
+		(CLASS_NO)
+		WHERE PROF_NO =#{pNo}
 	</select>
 
 	<select id="lecList" resultMap="lectureListResultSet">
@@ -500,7 +536,7 @@ COUNT(WEEK)
 		JOIN
 		TB_PROFESSOR P ON(P.PROF_NO = CP.PROFESSOR_NO)
 		WHERE
-		CLASS_NO=#{classNo} AND PROF_NO=#{pNo}
+		CLASS_NO=#{classNo} AND P.PROF_NO=#{pNo}
 	</select>
 	<select id="SyllaUpdate" resultMap="Sylla1ResultSet">
 		UPDATE TB_LECTURE_PLAN
@@ -591,26 +627,6 @@ COUNT(WEEK)
 	</select>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<select id="getQListCount" resultType="int">
 		SELECT count(*)
 		FROM
@@ -620,10 +636,10 @@ COUNT(WEEK)
 
 	<select id="classSelectList" resultMap="ClassTestResultSet">
 		SELECT TEST_NO, TEST_TYPE, TEST_TITLE, OPENDATE, STARTDATE, ENDDATE,
-		TEST_TIME, CLASS_NO, CLASS_NAME, PROF_NO,lp.EXAM_POINTS/2
-		FROM TB_PROF_TEST
+		TEST_TIME, CLASS_NO, CLASS_NAME, pt.PROF_NO,EXAM_POINTS/2
+		FROM TB_PROF_TEST pt
 		join tb_lecture_plan lp using(class_no)
-		WHERE PROF_NO = #{pNo}
+		WHERE pt.PROF_NO = #{pNo}
 	</select>
 	<insert id="insertTestSchedule" parameterType="ClassTest">
 		INSERT INTO
@@ -845,9 +861,9 @@ COUNT(WEEK)
 		#{sNo},
 		#{cNo},
 		#{pNo},
-		#{tNo},
-		#{homework},
-		#{homeworkweek}
+		#{hNo},
+		#{point},
+		#{lecNo}
 		)
 
 	</insert>
