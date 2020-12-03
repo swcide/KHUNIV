@@ -49,6 +49,12 @@ public class LetureServiceImpl implements LectureService {
 		return lDao.assigment(classNo);
 	}
 
+	@Override
+	public ArrayList<Attendance> selectTestPoint(String sNo) {
+
+		return lDao.selectTestPoint(sNo);
+	}
+
 
 
 

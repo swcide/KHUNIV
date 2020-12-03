@@ -25,9 +25,7 @@
 						<table class="table table-hover">
 										<thead>
 											<tr>
-												<th>
-													학기
-												</th>
+												<th>이수구분</th>
 												<th>
 													과목명
 												</th>
@@ -43,51 +41,15 @@
 											</tr>
 										</thead>
 										<tbody>
+										<c:forEach var="g" items="${gl}">
 											<tr>
+												<td>${g. classType }</td>
+												<td>${g. className }</td>
 												<td>
-													1
-												</td>
-												<td>
-													서양주거사
-												</td>
-												<td>
-													5/10
-												</td>
-												<td>
-													20/30
-												</td>
-												<td>
-													30/60
-												</td>
-												
-											</tr>
-											<tr>
-												<td>
-													1
-												</td>
-												<td>
-													디자인 커뮤니케이션
-												</td>
-												<td>
-													5/10
-												</td>
-												<td>
-													20/30
-												</td>
-												<td>
-													30/60
-												</td>
-												
-											</tr>
-											<tr>
-												<td>
-													1
-												</td>
-												<td>
-													색체
-												</td>
-												<td>
-													5/10
+													<c:set var="wc" value="${g.week}"/>
+													<c:set var= "ac" value="${g.attendRate}"/>
+													<c:set var= "ar" value="${ac/(wc-1)*100}"/>
+													<fmt:formatNumber  value="${ar-(ar%1)}"/>%(${g. attendRate }/12주)
 												</td>
 												<td>
 													20/30
@@ -98,7 +60,7 @@
 												
 											</tr>
 											
-											
+											</c:forEach>
 										</tbody>
 									</table>
 						

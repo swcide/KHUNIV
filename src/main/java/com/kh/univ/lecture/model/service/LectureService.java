@@ -40,6 +40,8 @@ public interface LectureService {
 	
 	int assignmentInsert(LecturePlanWeek lpw);
 
+	ArrayList<Attendance> selectTestPoint(String sNo);
+
 	
 
 

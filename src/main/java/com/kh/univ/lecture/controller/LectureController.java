@@ -79,7 +79,7 @@ public class LectureController {
 		Student student = (Student)session.getAttribute("loginUser"); // 로긴세션에서 뽑은 정보를 학생객체에 넣기
 		String sNo = student.getsNo();
 		System.out.println("학생번호 컨트롤러"+sNo);
-		ArrayList<Attendance> al = lService.selectList(sNo);
+		ArrayList<Attendance> al = lService.selectTestPoint(sNo);
 		System.out.println(al);
 
 //		System.out.print("attendanceRate: " + attendanceRate);
@@ -91,6 +91,25 @@ public class LectureController {
 	}
 	
 	
+	/**
+	 *
+	 */
+	@RequestMapping(value = "grade.do")
+	public ModelAndView grade(ModelAndView mv, HttpSession session)
+	{
+		Student student = (Student)session.getAttribute("loginUser");
+		String sNo = student.getsNo();
+		System.out.println("학생번호 컨트롤러"+sNo);
+		ArrayList<Attendance> gl = lService.selectList(sNo);
+		System.out.println(gl);
+		
+		
+		mv.addObject("gl", gl);
+		mv.setViewName("ad_lecture/ad_grade");
+		
+		return mv;
+	}
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */

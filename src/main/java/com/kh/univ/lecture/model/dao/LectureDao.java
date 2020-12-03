@@ -45,5 +45,11 @@ public class LectureDao {
 	}
 
 
+	public ArrayList<Attendance> selectTestPoint(String sNo) {
+	
+		return (ArrayList)sqlSession.selectList("lectureMapper.testPoint",sNo);
+	}
+
+
 
 }
