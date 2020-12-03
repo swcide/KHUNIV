@@ -129,6 +129,7 @@
 		<id property="lecExplanation" column="LECTURE_EXPLANATION" />
 	</resultMap>
 
+
 	<!-- 강의개설정보 리스트 //전공// -->
 	<select id="lecPList" resultMap="lectureListResultSet">
 		SELECT
