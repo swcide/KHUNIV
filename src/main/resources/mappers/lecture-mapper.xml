@@ -420,6 +420,7 @@
 		WHERE
 		CLASS_NO=#{classNo}
 	</select>
+	
 	<select id="sylla2" resultMap="Sylla2ResultSet">
 		SELECT
 		LECTURE_NO,LECTURE_NAME,LECTURE_REFERENCE,LECTURE_EXPLANATION

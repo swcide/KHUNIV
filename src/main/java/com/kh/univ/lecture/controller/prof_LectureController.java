@@ -545,8 +545,6 @@ public class prof_LectureController {
 	@RequestMapping( "prof_testScheduleInsert.do")
 	public ModelAndView prof_testInsert(ModelAndView mv, ClassTest ct,
 			@RequestParam(value="openDate",required = false)String openDate, @RequestParam(value="openTime",required = false)String openTime
-//			@RequestParam(value="startDate",required = false)String startDate1, @RequestParam(value="startTime",required = false)Date startTime,
-//			@RequestParam(value="endDate",required = false)String endDate1, @RequestParam(value="endTime",required = false)Date endTime ) {
 		 ){
 		String openDate2 = openDate+" "+openTime;
 		ct.setOpenDate(openDate2);

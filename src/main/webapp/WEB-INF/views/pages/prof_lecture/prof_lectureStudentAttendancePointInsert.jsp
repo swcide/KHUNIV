@@ -133,7 +133,7 @@ if (month >= 7) {
 												<td>${sp.reportPoints}
 												<input type="hidden" name="reportPoints" value="${sp.reportPoints}"/></td>
 												<td>${sp.attendancePoints}</td>
-												<td>${sp.totalPoints}
+												<td>${sp.totalPoints}</td>
 												
 												<fmt:parseNumber var="sumPoints" value="${(sp.midTestPoints+sp.finalTestPoints+sp.reportPoints)}" integerOnly="true"></fmt:parseNumber>
 
@@ -151,27 +151,28 @@ if (month >= 7) {
 										<tr>
 											<td>
 												<div class="form-group row align-items-center">
-													<input type="text" pattern="[0-9]+" 
+													<input type="text" 
 													class="col-12 text-left text-sm-right mb-0" 
-													id="attPoints" name="attendancePoints" 
+													id="attendancePoints" name="attendancePoints" 
 													placeholder="0 ~ ${lp.attendancePoints}점 내에서 점수를 부여" 
-													style="margin-left: 140px; margin-right: -50px" />
+													style="margin-left: 140px; margin-right: -50px"/>
 													<div class="col-sm-9"></div>
 												
 												</div>
-													<fmt:parseNumber var="attPoints" value="${lp.attendancePoints}" integerOnly="true"></fmt:parseNumber>
-												<c:set var="total" value="${sumPoints + attPoints }" />
-												<input type="hidden" id="totalPoints" name="totalPoints" value="${total}"/></td>
+												
+												<input type="hidden" id="sumPoints" value="${sumPoints}"/>
+												<input type="hidden" id="totalPoints" name="totalPoints" value=""/>
 											</td>
 										</tr>
 									</tbody>
 								</table>
 							</div>
-							<div style="float:right;">
+							
+						</form>
+						<div style="float:right;">
 								<button style="float:right; margin-left:20px" type="button" class="btn btn-light"onClick='window.close()'>취소</button>
 								<button style="float:right; margin-left:20px" type="submit" onclick="checkForm(); return false;" class="btn btn-primary">확인</button>
 							</div>
-						</form>
 					</div>
 				</div>
 			</div>
@@ -181,13 +182,17 @@ if (month >= 7) {
 
 <script>
 	function checkForm() {
-		var totalPoints = $("#totalPoints").val();
-		console.log(totalPoints);
+		var s = $("#sumPoints").val();
+		var sumPoints =Number(s);
+		
 		var maxPoint = ${lp.attendancePoints};
-		var inputNo = $("#attPoints").val();
-		parseInt(inputNo);
+		var ap = $("#attendancePoints").val();
+		var inputNo = Number(ap);
+		
+		var totalPoint = inputNo + sumPoints
+		$('#totalPoints').val(totalPoint);
+		
 		parseInt(maxPoint);
-		console.log(inputNo)
 		if (maxPoint < inputNo) {
 			alert("배점 점수보다 더 높은 점수를 줄 수 없습니다.")
 			return false;
