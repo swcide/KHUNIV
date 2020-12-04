@@ -34,13 +34,8 @@ public class indexController {
 	@RequestMapping(value = "main.do", method = RequestMethod.GET)
 	public ModelAndView  main( ModelAndView mv ) {
 		
-		
-		
-		
+		// 공지사항 탑5 불러오기
 		ArrayList<Notice> nList = nService.selectTopList();
-		
-		
-		
 		mv.addObject("nList",nList);
 		mv.setViewName("main");
 	

@@ -87,7 +87,7 @@ int type = 0;
 									<c:param name="currentPage" value="${ currentPage }" />
 								</c:url>
 								
-								<c:if test="${ loginUser.sNo eq b.qnaWriter}">
+								<c:if test="${ loginUser.sName eq b.qnaName}">
 									<a href="${ qnaUpview }">수정하기</a>&nbsp;            
 					               <a href="${ qnaDelete }">삭제하기</a>&nbsp;            
 					            </c:if>
@@ -288,7 +288,7 @@ $(function(){
 												'     		<div class="comment-block">'+
 												'     			<input type="hidden" value="'+$reRid+'">'+		
 												'     			<span class="comment-by">'+
-												'     				<strong >수정한거'+$rName+'</strong>'+
+												'     				<strong >'+$rName+'</strong>'+
 												'     			<span class="date float-right" style=" margin-left: 10px;">'+$rCreateDate+'</span>'+			
 												'     			</span>'+
 												'     			<p style="margin-bottom:15px;">'+$rContent+'</p>'+ 
