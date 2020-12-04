@@ -8,10 +8,8 @@
 		<result property="qnaTitle" column="QNA_TITLE" />
 		<result property="qnaWriter" column="QNA_WRITER" />
 		<result property="qnaContent" column="QNA_CONTENT" />
-		<result property="qnaOriginalFileName" 
-			column="QNA_ORIGINAL_FILENAME" />
-		<result property="qnaRenameFileName"
-			column="QNA_RENAME_FILENAME" />
+		<result property="qnaOriginalFileName" column="QNA_ORIGINAL_FILENAME" />
+		<result property="qnaRenameFileName" column="QNA_RENAME_FILENAME" />
 		<result property="qnaCount" column="QNA_COUNT" />
 		<result property="qnaCreateDate" column="QNA_CREATE_DATE" />
 		<result property="qnaModifyDate" column="QNA_MODIFY_DATE" />
@@ -19,8 +17,7 @@
 		<result property="qnaName" column="QNA_NAME" />
 		<result property="rCount" column="rCount" />
 
-		<collection property="replyList"
-			javaType="java.util.ArrayList" resultMap="QNA_replyResultSet" />
+		<collection property="replyList" javaType="java.util.ArrayList" resultMap="QNA_replyResultSet" />
 	</resultMap>
 
 	<resultMap type="Reply" id="QNA_replyResultSet">
@@ -36,48 +33,34 @@
 		<result property="qType" column="QNATYPE" />
 	</resultMap>
 
-	 <!-- 학생 맵 -->
-   <resultMap type="student" id="studentResultSet">
-      <id property="sNo" column="STD_NO" />
-      <result property="sPwd" column="STD_PWD" />
-      <result property="sName" column="STD_NAME" />
-      <result property="sEmail" column="STD_EMAIL" />
-      <result property="sPhone" column="STD_PHONE" />
-      <result property="sAddress" column="STD_ADDRESS" />
-      <result property="enrollDate" column="ENT_DATE" />
-      <result property="semester" column="SEMESTER" />
-      <result property="sImage" column="STD_IMAGE" />
-      <result property="dNo" column="DEPT_NO" />
-      <result property="sSsn" column="STD_SSN" />
-      <result property="sStatus" column="STATUS" />
-      <result property="cpNo" column="COACH_PROF_NO" />
-      <result property="sCategory" column="CATEGORY" />
-      <result property="sDeptName" column="DEPT_NAME"/>
-      <result property="type" column="LOGIN_TYPE" />
-   </resultMap>
+	<!-- 학생 맵 -->
+	<resultMap type="student" id="studentResultSet">
+		<id property="sNo" column="STD_NO" />
+		<result property="sPwd" column="STD_PWD" />
+		<result property="sName" column="STD_NAME" />
+		<result property="sEmail" column="STD_EMAIL" />
+		<result property="sPhone" column="STD_PHONE" />
+		<result property="sAddress" column="STD_ADDRESS" />
+		<result property="enrollDate" column="ENT_DATE" />
+		<result property="semester" column="SEMESTER" />
+		<result property="sImage" column="STD_IMAGE" />
+		<result property="dNo" column="DEPT_NO" />
+		<result property="sSsn" column="STD_SSN" />
+		<result property="sStatus" column="STATUS" />
+		<result property="cpNo" column="COACH_PROF_NO" />
+		<result property="sCategory" column="CATEGORY" />
+		<result property="sDeptName" column="DEPT_NAME" />
+		<result property="type" column="LOGIN_TYPE" />
+	</resultMap>
 
 
 	<insert id="insertExcel" parameterType="student">
 		INSERT ALL
-		<foreach collection="excelContent" item="item" >
-		INTO 
-		TB_STUDENT
-		(SEMESTER,
-		 STD_NO,
-		 STD_PWD,
-		 STD_EMAIL,
-		 STD_PHONE,
-		 STD_IMAGE,
-		 DEPT_NO,
-		 STD_NAME,
-		 STD_SSN,
-		 STD_ADDRESS,
-		 ENT_DATE,
-		 STATUS,
-		 COACH_PROF_NO,
-		 LOGIN_TYPE
-)
-		VALUES
+		<foreach collection="excelContent" item="item">
+			INTO
+			TB_STUDENT
+			(SEMESTER, STD_NO, STD_PWD, STD_EMAIL, STD_PHONE, STD_IMAGE, DEPT_NO, STD_NAME, STD_SSN, STD_ADDRESS, ENT_DATE, STATUS, COACH_PROF_NO, LOGIN_TYPE)
+			VALUES
 			(#{item.A},#{item.B},#{item.C},#{item.D},#{item.E},#{item.F},#{item.G},#{item.H},#{item.I},#{item.J},#{item.K},#{item.L},#{item.M},#{item.N})
 		</foreach>
 		SELECT * FROM DUAL
@@ -101,7 +84,8 @@
 		, H.QNA_COUNT
 		,
 		H.QNA_CREATE_DATE
-		, H.QNA_MODIFY_DATE
+		,
+		H.QNA_MODIFY_DATE
 		, H.QNA_STATUS
 		, H.QNA_SECRET
 		,
@@ -109,7 +93,8 @@
 		FROM TB_QNA_REPLY R
 		WHERE H.QNA_ID =
 		R.QNA_REF_BID) rCount
-		FROM TB_HELPDESK_QNA H
+		FROM TB_HELPDESK_QNA
+		H
 		WHERE QNA_STATUS = 'Y'
 		ORDER BY QNA_ID DESC
 
@@ -171,14 +156,14 @@
 		ORDER BY QNA_ID DESC
 	</select>
 
-	<select id="selectReplyList" parameterType="_int"
-		resultMap="QNA_replyResultSet">
+	<select id="selectReplyList" parameterType="_int" resultMap="QNA_replyResultSet">
 		SELECT *
 		FROM TB_QNA_REPLY
 		WHERE QNA_REF_BID = #{qnaId}
 		AND
 		QNA_R_STATUS = 'Y'
-		ORDER BY QNA_RID DESC
+		ORDER BY
+		QNA_RID DESC
 	</select>
 
 	<insert id="insertReply" parameterType="Reply">

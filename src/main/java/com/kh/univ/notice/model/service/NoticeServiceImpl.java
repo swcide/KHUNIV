@@ -24,7 +24,7 @@ public class NoticeServiceImpl implements NoticeService {
       return nDao.getListCount(nType);
    }
    
-   
+   // 공지사항 탑5 불러오기
    @Override
    public ArrayList<Notice> selectTopList() {
       return nDao.selectTopList();

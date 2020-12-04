@@ -19,13 +19,11 @@ public interface NoticeService {
 	 * @return
 	 */
 	int getListCount(int nType);
-
+	//공지사항 게시글 불러오기
 	ArrayList<Notice> selectList(PageInfo pi, int nType);
-	
+	//공지사항 탑5 불러오기
 	ArrayList<Notice> selectTopList();
 
-
-	
 	/**
 	 * 2.상세보기
 	 * @param n 

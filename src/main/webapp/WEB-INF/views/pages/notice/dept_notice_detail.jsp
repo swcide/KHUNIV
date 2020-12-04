@@ -81,7 +81,7 @@ ul.comments li {
 			<div class="container">
 				<div class="row mt-3">
 					<div class="col-md-12 align-self-center p-static order-2 text-center">
-						<h1 class="text-9 font-weight-bold">학사공지${n.nId}</h1>
+						<h1 class="text-9 font-weight-bold">학사공지</h1>
 						<span class="sub-title">Department Notice</span>
 					</div>
 				</div>

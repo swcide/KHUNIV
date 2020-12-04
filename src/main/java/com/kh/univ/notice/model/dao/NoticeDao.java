@@ -18,13 +18,12 @@ public class NoticeDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	
+	//공지사항 탑5 불러오기
 	public ArrayList<Notice> selectTopList() {
 		return (ArrayList)sqlSession.selectList("noticeMapper.selectTopList");
 	}
 
 	public int getListCount(int nType) {
-		
 		return sqlSession.selectOne("noticeMapper.getListCount",nType);
 	}
 
