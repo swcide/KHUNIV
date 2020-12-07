@@ -17,7 +17,7 @@
 	<script>
     $(function(){
         var IMP = window.IMP; // 생략가능
-        IMP.init('imp84734803'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+        IMP.init('imp84734803'); // 부여받은 "가맹점 식별코드"를 사용
         var msg;
        var pay = $("#pay").val();
        var sEmail = $("#sEmail").val();
@@ -56,7 +56,6 @@
                         msg += '\n상점 거래ID : ' + rsp.merchant_uid;
                         msg += '\결제 금액 : ' + rsp.paid_amount;
                         msg += '카드 승인번호 : ' + rsp.apply_num;
-                        
                         alert(msg);
                     } else {
                         //[3] 아직 제대로 결제가 되지 않았습니다.
@@ -73,7 +72,6 @@
                 alert(msg);
             }
         });
-        
     });
     </script>
 </body>

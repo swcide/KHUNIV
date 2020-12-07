@@ -15,6 +15,7 @@ import com.kh.univ.notice.model.vo.nReply;
 public interface helpDeskService {
 
 	/**
+	 * ListCount
 	 * @return
 	 */
 	int getListCount();
@@ -62,8 +63,6 @@ public interface helpDeskService {
 	 * @return
 	 */
 	int deleteBoard(int qnaId);
-
-	
 	
 	/**
 	 * 내질문 카운트
@@ -77,8 +76,6 @@ public interface helpDeskService {
 	 * @return
 	 */
 	ArrayList<QnA> mySelectList(PageInfo pi, Student student);
-
-	
 	
 	/**
 	 * replyList

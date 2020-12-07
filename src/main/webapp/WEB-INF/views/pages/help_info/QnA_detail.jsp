@@ -1,49 +1,40 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.kh.univ.member.model.vo.Student"%>
 <%@ page import="com.kh.univ.member.model.vo.Admin"%>
 <%@ page import="com.kh.univ.member.model.vo.Professor"%>
 
 
 <%
-
-
-
-Student loginUser = (Student)session.getAttribute("loginUser");
-Professor loginProf = (Professor)session.getAttribute("loginProf");
-Admin loginAdmin = (Admin)session.getAttribute("loginAdmin");
+	Student loginUser = (Student) session.getAttribute("loginUser");
+Professor loginProf = (Professor) session.getAttribute("loginProf");
+Admin loginAdmin = (Admin) session.getAttribute("loginAdmin");
 
 String sNo = null;
 String pNo = null;
 String aId = null;
 
-String sName =null;
-String pName =null;
+String sName = null;
+String pName = null;
 String aName = null;
-
 
 int type = 0;
 
-	if(loginUser !=null){
-	 sNo =loginUser.getsNo(); 
-	 sName =loginUser.getsName();
-	 type = loginUser.getType();
-	
-	}else if(loginProf !=null){	
-	 pNo =loginProf.getpNo();
-	 pName=loginProf.getpName();
-	 type = loginProf.getType();
-	
-	}else if (loginAdmin !=null){
-	 aId = loginAdmin.getaId();
-	 aName = loginAdmin.getaName();
-	 type = loginAdmin.getType();
-	
-	}
-	
+if (loginUser != null) {
+	sNo = loginUser.getsNo();
+	sName = loginUser.getsName();
+	type = loginUser.getType();
 
+} else if (loginProf != null) {
+	pNo = loginProf.getpNo();
+	pName = loginProf.getpName();
+	type = loginProf.getType();
 
-     
+} else if (loginAdmin != null) {
+	aId = loginAdmin.getaId();
+	aName = loginAdmin.getaName();
+	type = loginAdmin.getType();
 
+}
 %>
 <%@ include file="../common/header.jsp"%>
 
@@ -61,22 +52,25 @@ int type = 0;
 		</section>
 
 		<div class="container py-4">
-
 			<div class="row">
 				<div class="col">
 					<div class="blog-posts single-post">
 						<article class="post post-large blog-single-post border-0 m-0 p-0">
-
 							<div class="post-content ml-0">
-
 								<h2 class="font-weight-bold">
 									<span>${b.qnaTitle }</span>
+									<!-- 제목 -->
 								</h2>
-
 								<div class="post-meta">
-									<span><i class="far fa-user fl"></i> By ${b.qnaName} </span> <span class="date float-right">${b.qnaCreateDate }</span> <span class=" float-right">조회수 : ${b.qnaCount } |</span>
+								<!--  작성 정보 -->
+									<span><i class="far fa-user fl"></i> By ${b.qnaName} </span> 
+									<span class="date float-right">${b.qnaCreateDate }</span> 
+									<span class=" float-right">조회수 : ${b.qnaCount } |</span>
 								</div>
 								<p>${b.qnaContent}</p>
+								<!--  내용 -->
+
+								<!-- c태그 url로 매핑주소 미리 선언 -->
 								<c:url var="qnaUpview" value="qnaUpView.do">
 									<c:param name="qnaId" value="${b.qnaId }" />
 								</c:url>
@@ -86,7 +80,7 @@ int type = 0;
 								<c:url var="blist" value="blist.do">
 									<c:param name="currentPage" value="${ currentPage }" />
 								</c:url>
-								
+								<!-- 작성자이거나 관리자일 때만 수정 삭제 버튼 출력 -->
 								<c:if test="${ loginUser.sName eq b.qnaName}">
 									<a href="${ qnaUpview }">수정하기</a>&nbsp;            
 					               <a href="${ qnaDelete }">삭제하기</a>&nbsp;            
@@ -96,36 +90,31 @@ int type = 0;
 					              <a href="${ qnaDelete }">삭제하기</a>&nbsp;     
 					            </c:if>
 
-								<!-- 댓글댓글댓글댓글댓글댓글 -->
+								<!-- 댓글 -->
 								<c:if test="${!empty sessionScope.loginAdmin ||!empty sessionScope.loginUser  }">
-								<div id="comments" class="post-block mt-5 post-comments">
-											<h4 id ="rCount"class="mb-3"></h4>
-											<ul class="comments">
-											</ul>
-								</div>
-						
- 								
- 								<div class="post-block mt-5 post-leave-comment">
- 									<h4 class="mb-3">Leave a comment</h4> 									
- 										<div class="p-2"> 
- 											<div class="form-row"> 
- 												<div class="form-group col"> 
- 													<label class="required font-weight-bold text-dark">Comment</label> 
- 													<textarea id="rContent" maxlength="5000" rows="2" class="form-control" name="message" ></textarea> 
-											</div> 
- 											</div> 
- 											<div class="form-row"> 
- 											
- 												<div class="form-group col mb-0">
-													<input id="rSubmit"type="button" value="등록"  class="btn btn-dark btn-modern float-right" data-loading-text="Loading..."> 
-												<a href="javascript:history.back()" class="mb-1 mt-1 mr-1 btn btn-primary float-left">
-												목록으로
-										</a>
-												</div> 
-											</div> 
-										</div> 								
-								</div> 
-								</c:if>	
+									<div id="comments" class="post-block mt-5 post-comments">
+										<h4 id="rCount" class="mb-3"></h4>
+										<ul class="comments">
+										</ul>
+									</div>
+									<div class="post-block mt-5 post-leave-comment">
+										<h4 class="mb-3">Leave a comment</h4>
+										<div class="p-2">
+											<div class="form-row">
+												<div class="form-group col">
+													<label class="required font-weight-bold text-dark">Comment</label>
+													<textarea id="rContent" maxlength="5000" rows="2" class="form-control" name="message"></textarea>
+												</div>
+											</div>
+											<div class="form-row">
+												<div class="form-group col mb-0">
+													<input id="rSubmit" type="button" value="등록" class="btn btn-dark btn-modern float-right" data-loading-text="Loading...">
+													<a href="javascript:history.back()" class="mb-1 mt-1 mr-1 btn btn-primary float-left"> 목록으로 </a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</c:if>
 							</div>
 						</article>
 					</div>
@@ -134,34 +123,24 @@ int type = 0;
 		</div>
 	</div>
 </div>
-	
-	<div class=" commentList "></div>
+
+<div class=" commentList "></div>
 
 <script>
 
 $(function(){
 	getReplyList();
-//		setInterval(function(){
-//			getReplyList(); // 타 회원이 댓글들을 작성했을 수도 있으니 지속적으로 댓글 불러오기
-//		},3000);
-	
-	
 	$('#rSubmit').on('click',function(){
-	
 		 if($("#rContent").val().trim() == ""){
              alert("내용을 입력하세요");
              $("#rContent").focus();
              return false;
          }
-		
-		
 		 var rContent = $("#rContent").val();
 		 var refQid = ${b.qnaId};
 		 var rWriter;
 		 var rName;
 		 var type= "<%=type%>";
-// 			 var refRid = $(obj).
-			
 			 if(type !=null){
 				if (type==1){
 				rName = "<%=sName%>";
@@ -175,8 +154,6 @@ $(function(){
 					rWriter = "<%=aId%>";
 			 	}
 		 }
-	
-		
 		if (type != null){
 		$.ajax({
 			url:"qna_addReply.do",
@@ -196,15 +173,12 @@ $(function(){
 			},error:function(request,status,errorData){
 				console.log(request.status + " : " + errorData);
 			}
-			
 		});
 		}else{
 		
 		}
 	})
 });
-
-	
 	function getReplyList() {
 		var qnaId = ${b.qnaId};
 		$.ajax({
@@ -324,122 +298,128 @@ $(function(){
 						}
 						else if(type==2){
 						var pNo = "<%=pNo%>";
-							if($rWriter==pNo){
-								$dupReply = $(	
-												'<span  class=" float-right">'+
-													'<button onclick="rDelete(this);" class="btnChk btn btn-xs btn-light" style=" margin-right: 10px; ">삭제</button>'+
-												'</span>'+
-												'<span class=" float-right">'+
-													'<button onclick="rUpdateView(this);" class="btnChk btn btn-xs btn-primary" style=" margin-right: 10px;" >수정</button>'+
-												'</span>'
-											  );	
-						  	$('.comment-block').append($dupReply);
+								if ($rWriter == pNo) {
+									$dupReply = $('<span  class=" float-right">'
+											+ '<button onclick="rDelete(this);" class="btnChk btn btn-xs btn-light" style=" margin-right: 10px; ">삭제</button>'
+											+ '</span>'
+											+ '<span class=" float-right">'
+											+ '<button onclick="rUpdateView(this);" class="btnChk btn btn-xs btn-primary" style=" margin-right: 10px;" >수정</button>'
+											+ '</span>');
+									$('.comment-block').append($dupReply);
+								}
+							} else if (type == 3) {
+								$dupReply = $('<span  class=" float-right">'
+										+ '<button onclick="rDelete(this);" class="btnChk btn btn-xs btn-light" style=" margin-right: 10px; ">삭제</button>'
+										+ '</span>'
+										+ '<span class=" float-right">'
+										+ '<button onclick="rUpdateView(this);" class="btnChk btn btn-xs btn-primary" style=" margin-right: 10px;" >수정</button>'
+										+ '</span>');
+								$('.comment-block ').append($dupReply);
 							}
-						}else if(type==3){
-							$dupReply = $(	
-											'<span  class=" float-right">'+
-												'<button onclick="rDelete(this);" class="btnChk btn btn-xs btn-light" style=" margin-right: 10px; ">삭제</button>'+
-											'</span>'+
-											'<span class=" float-right">'+
-												'<button onclick="rUpdateView(this);" class="btnChk btn btn-xs btn-primary" style=" margin-right: 10px;" >수정</button>'+
-											'</span>'						
-										);	
-							$('.comment-block ').append($dupReply);
 						}
-				}
-				//if 문
-			},error: function(result){
-				console.log(result)
-			}
-		});
+						//if 문
+					},
+					error : function(result) {
+						console.log(result)
+					}
+				});
 	};
-	
-	
-	function rDelete(obj){
-		var qnaId = ${b.qnaId};
+
+	function rDelete(obj) {
+		var qnaId = $
+		{
+			b.qnaId
+		}
+		;
 		var rId = $(obj).parent().siblings('input').val();
-		
+
 		$.ajax({
-			url:"qna_DeleteReply.do",
-			data:{
-				rId:rId},
-			type:"post",
-			success:function(data){
-				if(data =="success"){
+			url : "qna_DeleteReply.do",
+			data : {
+				rId : rId
+			},
+			type : "post",
+			success : function(data) {
+				if (data == "success") {
 					alert("삭제가 완료되었습니다.");
 					getReplyList();
 				}
-			},error: function(result){
+			},
+			error : function(result) {
 				console.log(result)
 			}
 		});
 	}
 	//수정하기 뷰
-	function rUpdateView(obj){
-		$('.checkId').css('display','none');	
-		var rId =$(obj).parent().siblings('input').val();
+	function rUpdateView(obj) {
+		$('.checkId').css('display', 'none');
+		var rId = $(obj).parent().siblings('input').val();
 		var rName = $('.comment-by').children().siblings('span').html().trim();
-		var rCreateDate = $('.comment-by').children().siblings('strong').html().trim();
-		
+		var rCreateDate = $('.comment-by').children().siblings('strong').html()
+				.trim();
+
 		var changeBtn;
-		changeBtn=
-			'<button onclick="rUpdate(this);" class="btn btn-xs btn-primary" style=" margin-right: 10px; ">수정하기</button>'+
-			'<button  onclick="rCancle(this);" class="btn btn-xs btn-primary" style=" margin-right: 10px; ">취소하기</button>';
+		changeBtn = '<button onclick="rUpdate(this);" class="btn btn-xs btn-primary" style=" margin-right: 10px; ">수정하기</button>'
+				+ '<button  onclick="rCancle(this);" class="btn btn-xs btn-primary" style=" margin-right: 10px; ">취소하기</button>';
 		var changeContent;
-		changeContent= $(obj).parent().siblings('p').css('display','none');
+		changeContent = $(obj).parent().siblings('p').css('display', 'none');
 		var changeContent2;
-		changeContent= $(obj).parent().siblings('textarea').css('display','block');
+		changeContent = $(obj).parent().siblings('textarea').css('display',
+				'block');
 		var edit = $(obj).parent().append(changeBtn);
-		var remove =$(obj).remove();
+		var remove = $(obj).remove();
 	}
 	// 수정하기 ajax
-	function rUpdate(obj){
-		var qnaId = ${b.qnaId};
+	function rUpdate(obj) {
+		var qnaId = $
+		{
+			b.qnaId
+		}
+		;
 		var rId = $(obj).parent().siblings('input').val();
-		var rContent =$(obj).parent().siblings('textarea').val();
-		
-		 if(rContent.trim() == ""){
-             alert("내용을 입력하세요");
-             rContent.focus();
-             return false;
-         }
-		
+		var rContent = $(obj).parent().siblings('textarea').val();
+
+		if (rContent.trim() == "") {
+			alert("내용을 입력하세요");
+			rContent.focus();
+			return false;
+		}
+
 		$.ajax({
-			url:"qna_UpdateReply.do",
-			data:{
-				rId:rId,
-				rContent:rContent},
-			type:"post",
-			success:function(data){
-				if(data =="success"){
-						getReplyList();
+			url : "qna_UpdateReply.do",
+			data : {
+				rId : rId,
+				rContent : rContent
+			},
+			type : "post",
+			success : function(data) {
+				if (data == "success") {
+					getReplyList();
 					alert("수정이 완료되었습니다.");
 				}
-			},error: function(result){
+			},
+			error : function(result) {
 				console.log(result)
 			}
 		});
 	}
-// 수정하기 안에 있는 취소 버튼
-	function rCancle(obj){
+	// 수정하기 안에 있는 취소 버튼
+	function rCancle(obj) {
 		var update = '<button onclick="rUpdateView(this);" class="btn btn-xs btn-primary" style=" margin-right: 10px;" >수정</button>';
-		$('.checkId').css('display','block');
+		$('.checkId').css('display', 'block');
 
-		var remove2 =$(obj).siblings('button').remove();
-		
+		var remove2 = $(obj).siblings('button').remove();
+
 		var changeContent2;
-		changeContent= $(obj).parent().siblings('textarea').css('display','none');
+		changeContent = $(obj).parent().siblings('textarea').css('display',
+				'none');
 
 		var changeContent;
-		changeContent= $(obj).parent().siblings('p').css('display','block');
+		changeContent = $(obj).parent().siblings('p').css('display', 'block');
 
-		$btnBack=$(obj).parent().append(update);
-		var remove =$(obj).remove();
-		
+		$btnBack = $(obj).parent().append(update);
+		var remove = $(obj).remove();
+
 	}
-
-
-
-			
 </script>
 <%@ include file="../common/footer.jsp"%>

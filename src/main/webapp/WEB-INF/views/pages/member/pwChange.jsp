@@ -74,10 +74,10 @@
 									<div class="form-row">
 										<div class="form-group col">
 											<label class="text-color-dark text-3">비밀번호 확인<span class="text-color-danger">*</span>&nbsp;&nbsp;&nbsp;
-<!-- 											<span class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</span> -->
-<!-- 											<span class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</span> -->
-											<label style="color: rgb(23, 162, 184);border-radius: 4px; width: 321px;text-align: center; display:none;"id="alert-success" ><strong>비밀번호가 일치합니다.</strong></label>
-											<label style="color: #dc3545; border-radius: 4px;width: 321px;text-align: center;display:none;"  id="alert-danger"><strong>비밀번호가 일치하지 않습니다.</strong></label>
+											<label style="color: rgb(23, 162, 184);border-radius: 4px; width: 321px;
+											text-align: center; display:none;"id="alert-success" ><strong>비밀번호가 일치합니다.</strong></label>
+											<label style="color: #dc3545; border-radius: 4px;width: 321px;
+											text-align: center;display:none;"  id="alert-danger"><strong>비밀번호가 일치하지 않습니다.</strong></label>
 											</label>
 											<input type="password" name="rePassword" id="rePwd" class="form-control form-control-lg text-4" required>
 										</div>
@@ -87,7 +87,8 @@
 										<input type="hidden" name="e_mail" value="${e_mail }">
 										<input type="hidden" name="id" value="${id }">
 										<input type="hidden" name="type" value="${type }">
-											<button type="submit" class="btn btn-dark btn-modern btn-block text-uppercase rounded-0 font-weight-bold text-3 py-3" data-loading-text="Loading...">변경하기</button>
+											<button type="submit"  data-loading-text="Loading..." 
+											class="btn btn-dark btn-modern btn-block text-uppercase rounded-0 font-weight-bold text-3 py-3">변경하기</button>
 										</div>
 									</div>
 								</form>

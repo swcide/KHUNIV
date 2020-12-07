@@ -46,13 +46,6 @@ public interface MemberService {
 	Professor sendEmailP(Professor p);
 
 	/**
-	 * 비번찾기 인증번호
-	 * @param newPwd
-	 * @return
-	 */
-	int updatePwd(String newPwd);
-
-	/**
 	 * 학생 비번 변경 업데이트 
 	 * @param s
 	 * @return 

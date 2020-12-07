@@ -21,10 +21,8 @@
 			<div class="container">
 				<div class="row">
 					<div class="col">
-
 						<div class="custom-box-details bg-color-light custom-box-shadow-1 col-lg-12 ml-5 mb-5 mb-lg-4 float-right clearfix">
 							<h4>Q&A</h4>
-
 							<table class="table table-hover">
 								<thead>
 									<tr>
@@ -35,86 +33,81 @@
 									</tr>
 								</thead>
 								<tbody>
+								<!-- 값 가져오기 -->
 									<c:forEach var="b" items="${list }">
 										<tr>
 											<td>${b.qnaId}</td>
-											<td>
-												<c:if test="${!empty sessionScope }">
+											<td><c:if test="${!empty sessionScope }">
 													<c:url var="QnA_detail" value="QnA_detail.do">
 														<c:param name="qnaId" value="${b.qnaId}" />
 														<c:param name="currentPage" value="${pi.currentPage }" />
 													</c:url>
 													<a href="${QnA_detail }">${b.qnaTitle }</a>
-												</c:if>
-
-												<c:if test="${empty sessionScope }">
+												</c:if> <c:if test="${empty sessionScope }">
 													${b.qnaTitle }
-												</c:if>
-											</td>
-											<td>${b.qnaName }
-											</td>
-											
-											<td>
-												<c:if test="${b.rCount > 0}">
+												</c:if></td>
+											<td>${b.qnaName }</td>
+											<!--  댓글 여부에 따른 css뱃지 출력 -->
+											<td><c:if test="${b.rCount > 0}">
 													<span class="badge badge-dark badge-sm badge-pill text-uppercase px-2 py-1 mr-1">답변완료</span>
-												</c:if>
-												<c:if test="${b.rCount == 0}">
+												</c:if> <c:if test="${b.rCount == 0}">
 													<span class="badge badge-sm badge-pill text-uppercase px-2 py-1 mr-1">답변대기</span>
-												</c:if>
-											</td>
+												</c:if></td>
 										</tr>
-												</c:forEach>
+									</c:forEach>
 								</tbody>
 							</table>
+							<!--  페이징처리 -->
 							<div class="card-tools" align="center">
-							<ul class="pagination pagination-sm" style="display: inline-flex">
-								<c:if test="${ pi.currentPage eq 1 }">
-								<a class="page-link" href="#"><i class="fas fa-angle-left"></i></a>
-						         </c:if>
-								<c:if test="${ pi.currentPage ne 1 }">
-									<c:url var="before" value="QnA.do">
-										<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
-									</c:url>
-									<li class="page-item">
-								<a class="page-link" href="${ before }"><i class="fas fa-angle-left"></i></a>
-								</li>
-        						   </c:if>
-
-								<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-									<c:if test="${ p eq pi.currentPage }">
-									<li class="page-item active">
-								<a class="page-link" href="${ pagination }">${ p }</a></li>
+								<ul class="pagination pagination-sm" style="display: inline-flex">
+									<c:if test="${ pi.currentPage eq 1 }">
+										<a class="page-link" href="#">
+											<i class="fas fa-angle-left"></i>
+										</a>
+									</c:if>
+									<c:if test="${ pi.currentPage ne 1 }">
+										<c:url var="before" value="QnA.do">
+											<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
+										</c:url>
+										<li class="page-item"><a class="page-link" href="${ before }">
+												<i class="fas fa-angle-left"></i>
+											</a></li>
 									</c:if>
 
-									<c:if test="${ p ne pi.currentPage }">
-										<c:url var="pagination" value="QnA.do">
-											<c:param name="currentPage" value="${ p }" />
-										</c:url>
-										<li class="page-item">
-								<a class="page-link" href="${ pagination }">${ p }</a></li>
-             						  </c:if>
-								</c:forEach>
+									<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+										<c:if test="${ p eq pi.currentPage }">
+											<li class="page-item active"><a class="page-link" href="${ pagination }">${ p }</a></li>
+										</c:if>
 
-								<c:if test="${ pi.currentPage eq pi.maxPage }">
-					               <li class="page-item">
-								<a class="page-link" href="#"><i class="fas fa-angle-right"></i></a>
-								</li>
-					            </c:if>
-								<c:if test="${ pi.currentPage ne pi.maxPage }">
-									<c:url var="after" value="QnA.do">
-										<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
-									</c:url>
-									<li class="page-item">
-								<a class="page-link" href="${ after }"><i class="fas fa-angle-right"></i></a>
-								</li>
-								</c:if>
-								
+										<c:if test="${ p ne pi.currentPage }">
+											<c:url var="pagination" value="QnA.do">
+												<c:param name="currentPage" value="${ p }" />
+											</c:url>
+											<li class="page-item"><a class="page-link" href="${ pagination }">${ p }</a></li>
+										</c:if>
+									</c:forEach>
+
+									<c:if test="${ pi.currentPage eq pi.maxPage }">
+										<li class="page-item"><a class="page-link" href="#">
+												<i class="fas fa-angle-right"></i>
+											</a></li>
+									</c:if>
+									<c:if test="${ pi.currentPage ne pi.maxPage }">
+										<c:url var="after" value="QnA.do">
+											<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
+										</c:url>
+										<li class="page-item"><a class="page-link" href="${ after }">
+												<i class="fas fa-angle-right"></i>
+											</a></li>
+									</c:if>
 								</ul>
-							<c:if test="${! empty sessionScope.loginUser }">
-								<button  type="button" class="btn btn-dark" onclick="location.href= 'QnA_write.do'" style="float: right; margin-bottom: 20px;">
-									<i class="fas fa-pencil-alt"></i> 질문작성
-								</button>
-							</c:if>
+								<!--  학생 로그인 시 작성 버튼 출력 -->
+								<c:if test="${! empty sessionScope.loginUser }">
+									<button type="button" class="btn btn-dark" onclick="location.href= 'QnA_write.do'" style="float: right; margin-bottom: 20px;">
+										<i class="fas fa-pencil-alt"></i>
+										질문작성
+									</button>
+								</c:if>
 							</div>
 						</div>
 					</div>

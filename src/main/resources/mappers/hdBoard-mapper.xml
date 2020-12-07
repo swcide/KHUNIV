@@ -59,7 +59,8 @@
 		<foreach collection="excelContent" item="item">
 			INTO
 			TB_STUDENT
-			(SEMESTER, STD_NO, STD_PWD, STD_EMAIL, STD_PHONE, STD_IMAGE, DEPT_NO, STD_NAME, STD_SSN, STD_ADDRESS, ENT_DATE, STATUS, COACH_PROF_NO, LOGIN_TYPE)
+			(SEMESTER, STD_NO, STD_PWD, STD_EMAIL, STD_PHONE, STD_IMAGE, DEPT_NO, STD_NAME,
+			STD_SSN, STD_ADDRESS, ENT_DATE, STATUS, COACH_PROF_NO, LOGIN_TYPE)
 			VALUES
 			(#{item.A},#{item.B},#{item.C},#{item.D},#{item.E},#{item.F},#{item.G},#{item.H},#{item.I},#{item.J},#{item.K},#{item.L},#{item.M},#{item.N})
 		</foreach>
@@ -75,30 +76,12 @@
 
 	<select id="selectList" resultMap="QnAResultSet">
 		SELECT
-		H.QNA_ID
-		, H.QNA_TITLE
-		,
-		H.QNA_CONTENT
-		, H.QNA_WRITER
-		, H.QNA_NAME
-		, H.QNA_COUNT
-		,
-		H.QNA_CREATE_DATE
-		,
-		H.QNA_MODIFY_DATE
-		, H.QNA_STATUS
-		, H.QNA_SECRET
-		,
-		(SELECT COUNT(QNA_REF_BID)
-		FROM TB_QNA_REPLY R
-		WHERE H.QNA_ID =
-		R.QNA_REF_BID) rCount
-		FROM TB_HELPDESK_QNA
-		H
+					H.QNA_ID,H.QNA_TITLE,H.QNA_CONTENT,H.QNA_WRITER,H.QNA_NAME
+					,H.QNA_COUNT,H.QNA_CREATE_DATE,H.QNA_MODIFY_DATE,H.QNA_STATUS,H.QNA_SECRET
+					,(SELECT COUNT(QNA_REF_BID)FROM TB_QNA_REPLY R WHERE H.QNA_ID =R.QNA_REF_BID) rCount
+		   FROM TB_HELPDESK_QNA H
 		WHERE QNA_STATUS = 'Y'
 		ORDER BY QNA_ID DESC
-
-
 	</select>
 
 	<update id="updateCount" parameterType="_int">
@@ -115,7 +98,8 @@
 
 	<insert id="insertQnA" parameterType="QnA">
 		INSERT INTO TB_HELPDESK_QNA
-		VALUES(SEQ_QNA_ID.NEXTVAL,#{qnaTitle},#{qnaContent},#{qnaWriter},#{qnaName},DEFAULT,SYSDATE,SYSDATE,'Y','N')
+		VALUES(SEQ_QNA_ID.NEXTVAL,#{qnaTitle},#{qnaContent}
+		,#{qnaWriter},#{qnaName},DEFAULT,SYSDATE,SYSDATE,'Y','N')
 	</insert>
 
 	<select id="updateBoard" resultMap="QnAResultSet">
