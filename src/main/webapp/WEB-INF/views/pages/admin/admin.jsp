@@ -174,7 +174,7 @@ System.out.println(type);
 		function t(){
 			
      $.ajax({
-										//                 type: "POST", //GET 타입
+										//type: "POST", //GET 타입
 						url : "reportList.do", //URL 선언
 						dataType : "json",
 						success : function(data) { //성공시 매개변수로 DATA를 받음

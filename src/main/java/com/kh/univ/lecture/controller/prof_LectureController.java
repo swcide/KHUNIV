@@ -9,10 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -22,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
+import com.kh.univ.indexController;
 import com.kh.univ.ad_Register.model.vo.semesterPoint;
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.common.Pagination;
@@ -36,6 +40,8 @@ import com.kh.univ.lecture.model.vo.LecturePlanWeek;
 import com.kh.univ.lecture.model.vo.LectureStudent;
 import com.kh.univ.lecture.model.vo.SemePoint;
 import com.kh.univ.member.model.vo.Professor;
+import com.kh.univ.notice.model.service.NoticeService;
+import com.kh.univ.notice.model.vo.Notice;
 import com.kh.univ.testPage.model.service.TestPageService;
 import com.kh.univ.testPage.model.vo.HomeworkGrade;
 import com.kh.univ.testPage.model.vo.Test;
@@ -44,6 +50,7 @@ import com.kh.univ.testPage.model.vo.Test;
 @Controller
 public class prof_LectureController {
 
+	
 	@Autowired
 	profLecService plService;
 	
@@ -66,7 +73,7 @@ public class prof_LectureController {
 		String pNo = p.getpNo();
 
 		ArrayList<LectureClass> aLc = plService.selectValue(pNo);
-		System.out.println(aLc);
+		
 
 		if (aLc != null) 
 		{
