@@ -117,7 +117,8 @@
 								</tr>
 							</tbody>
 						</table>
-						<button type="submit" class="btn btn-primary btn-lg mb-2 float-right" onClick="window.open(this.href='ad_tuition_payment.do', '', 'resizable=yes, width=900, height=800 left=700px top=100px'); return false;" >즉시 납부하기</button>
+						<button type="submit" class="btn btn-primary btn-lg mb-2 float-right" 
+						onClick="window.open(this.href='ad_tuition_payment.do', '', 'resizable=yes, width=900, height=800 left=700px top=100px'); return false;" >즉시 납부하기</button>
 					</div>
 				</div>
 			</div>

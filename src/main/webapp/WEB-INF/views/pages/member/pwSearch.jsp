@@ -79,7 +79,8 @@
 						</div>
 						<div class="form-row">
 							<div class="form-group col">
-								<button id="sendMail" type="button" class="btn btn-dark btn-modern btn-block text-uppercase rounded-0 font-weight-bold text-3 py-3" data-loading-text="Loading...">인증번호 받기</button>
+								<button id="sendMail" type="button" data-loading-text="Loading..."
+								class="btn btn-dark btn-modern btn-block text-uppercase rounded-0 font-weight-bold text-3 py-3" >인증번호 받기</button>
 							</div>
 						</div>
 					</form>

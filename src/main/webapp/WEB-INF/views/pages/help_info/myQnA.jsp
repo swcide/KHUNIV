@@ -25,11 +25,9 @@
 			<div class="container">
 				<div class="row">
 					<div class="col">
-
 						<div
 							class="custom-box-details bg-color-light custom-box-shadow-1 col-lg-12 ml-5 mb-5 mb-lg-4 float-right clearfix">
 							<h4>내 질문</h4>
-
 							<table class="table table-hover">
 								<thead>
 									<tr>
@@ -51,7 +49,6 @@
 													</c:url>
 										<a href ="${QnA_detail }">${b.qnaTitle }</a>
 										</c:if>
-										
 										<c:if test="${empty sessionScope }">
 													${b.qnaTitle }
 												</c:if>
@@ -62,13 +59,14 @@
 										<span class="badge badge-sm badge-pill text-uppercase px-2 py-1 mr-1">답변대기</span>
 										</c:if>
 										<c:if test="${b.rCount > 0}">
-													<span class="badge badge-sm badge-pill text-uppercase px-2 py-1 mr-1">답변대기</span>
+													<span class="badge badge-dark badge-sm badge-pill text-uppercase px-2 py-1 mr-1">답변완료</span>
 												</c:if>
 										</td>
 									</tr>
 									</c:forEach>
 								</tbody>
 							</table>
+							
 							<div class="card-tools" align="center">
 							<ul class="pagination pagination-sm" style="display: inline-flex">
 								<c:if test="${ pi.currentPage eq 1 }">
