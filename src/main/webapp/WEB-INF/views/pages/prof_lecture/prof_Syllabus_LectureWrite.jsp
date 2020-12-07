@@ -338,7 +338,7 @@
 
 <script>
 function ExamPointsChange(e) {
-	$("select#아이디 option").remove();
+	$("select#AttendancePoints option").remove();
 
     if(e.value == "0") var d = ["0", "10", "20", "30", "40", "50","60" ,"70", "80", "90", "100"];
     else if(e.value == "10") var d = ["0", "10", "20", "30", "40", "50","60" ,"70", "80", "90"];
