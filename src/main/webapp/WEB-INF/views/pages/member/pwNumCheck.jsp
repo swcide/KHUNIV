@@ -76,7 +76,8 @@
 						</div>
 						<div class="form-row">
 							<div class="form-group col">
-								<button id="numCheck" type="button" class="btn btn-dark btn-modern btn-block text-uppercase rounded-0 font-weight-bold text-3 py-3" data-loading-text="Loading...">확인</button>
+								<button id="numCheck" type="button" data-loading-text="Loading..."
+								 class="btn btn-dark btn-modern btn-block text-uppercase rounded-0 font-weight-bold text-3 py-3" >확인</button>
 							</div>
 						</div>
 					</form>

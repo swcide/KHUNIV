@@ -36,7 +36,7 @@ public Professor sendEmailP(Professor p)
 	{
 		return (Professor) sqlSession.selectOne("memberMapper.sendEmailP",p);
 	}
-//이게뭐였더라 ..
+//?
 public int updatePwd(String newPwd)
 	{
 		return sqlSession.update("memberMapper.updatePwd",newPwd);

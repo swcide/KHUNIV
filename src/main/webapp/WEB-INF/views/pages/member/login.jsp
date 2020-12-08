@@ -85,7 +85,7 @@
 							<div class="form-group col-md-auto">
 								<div class="custom-control custom-checkbox">
 									<input type="checkbox" class="custom-control-input" id="rememberme">
-									<label class="custom-control-label cur-pointer text-2" for="rememberme">Remember Me</label>
+									<label class="custom-control-label cur-pointer text-2" for="rememberme">비밀번호 저장하기</label>
 								</div>
 							</div>
 							<div class="form-group col-md-auto">

@@ -69,7 +69,6 @@
 	<div class="body">
 		<div role="main" class="main">
 			<section class="page-header page-header-modern bg-color-light-scale-3 page-header-sm section-overlay-dot" style="margin: 0; background-image: url(resources/img/custom-header-bg.jpg);">
-				<!-- style="background-image: url(resources/img/en-mini-logo.png);" -->
 				<div class="col-12">
 					<div class="row">
 						<div class="col-md-5 align-self-center p-static order-2 text-center">
@@ -85,9 +84,9 @@
 			</section>
 			<div id="pdf_wrap">
 				<div class="container py-2">
-					<div class="row"style="border: 1px solid;">
+					<div class="row" style="border: 1px solid;">
 						<div class="col">
-							<h1 align="center" style="font-weight: bolder;margin-top: 30px;">재학 증명서</h1>
+							<h1 align="center" style="font-weight: bolder; margin-top: 30px;">재학 증명서</h1>
 							<div class="row">
 								<div class="col-md-12">
 									<div style="background-image: url(resources/img/big-logo.png); background-size: contain; background-repeat: no-repeat; background-position: 50% 0;">
@@ -164,7 +163,8 @@
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-md-12" align="center" style="margin-top: 40px; margin-bottom: 20px; background-image: url(resources/img/seal.png); background-size: contain; background-repeat: no-repeat; background-position: 70%;">
+										<div class="col-md-12" align="center" style="margin-top: 40px; margin-bottom: 20px; background-image: url(resources/img/seal.png); 
+										background-size: contain; background-repeat: no-repeat; background-position: 70%;">
 											<h2 style="font-weight: bolder; margin-bottom: 9px; margin-top: 18px;">
 												<label> KH 사이버 대학교 총장</label>
 											</h2>
@@ -180,28 +180,33 @@
 		</div>
 	</div>
 	<script>
-	
-		$(document).ready(function() {
-			$('#create_pdf').click(function() { // pdf저장 button id
-			    html2canvas($('#pdf_wrap')[0]).then(function(canvas) { //저장 영역 div id
-			    // 캔버스를 이미지로 변환
-			    var imgData = canvas.toDataURL('image/png');
-			    var imgWidth = 190; // 이미지 가로 길이(mm) / A4 기준 210mm
-			    var pageHeight = imgWidth * 1.414;  // 출력 페이지 세로 길이 계산 A4 기준
-			    var imgHeight = canvas.height * imgWidth / canvas.width;
-			    var heightLeft = imgHeight;
-			    var margin = 10; // 출력 페이지 여백설정
-			    var doc = new jsPDF('p', 'mm');
-			    var position = 0;
-			    // 첫 페이지 출력
-			    doc.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight);
-			    heightLeft -= pageHeight;
-			    // 파일 저장
-			    doc.save('재학증명서.pdf');
-			});
-			});
-		});
-		
+		$(document).ready(
+				function() {
+					$('#create_pdf').click(
+							function() { // pdf저장 button id
+								html2canvas($('#pdf_wrap')[0]).then(
+										function(canvas) { //저장 영역 div id
+											// 캔버스를 이미지로 변환
+											var imgData = canvas
+													.toDataURL('image/png');
+											var imgWidth = 190; // 이미지 가로 길이(mm) / A4 기준 210mm
+											var pageHeight = imgWidth * 1.414; // 출력 페이지 세로 길이 계산 A4 기준
+											var imgHeight = canvas.height
+													* imgWidth / canvas.width;
+											var heightLeft = imgHeight;
+											var margin = 10; // 출력 페이지 여백설정
+											var doc = new jsPDF('p', 'mm');
+											var position = 0;
+											// 첫 페이지 출력
+											doc.addImage(imgData, 'PNG',
+													margin, position, imgWidth,
+													imgHeight);
+											heightLeft -= pageHeight;
+											// 파일 저장
+											doc.save('재학증명서.pdf');
+										});
+							});
+				});
 	</script>
 </body>
 </html>

@@ -1,4 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%-- <% --%>
+<!-- 	System.out.println(session.getAttribute("loginProf")); -->
+<!-- %> -->
+
+<%-- <%@ page import="com.kh.univ.member.model.vo.Professor"%> --%>
+
+
+<%-- <% --%>
+<!-- Professor loginProf = (Professor)session.getAttribute("loginProf"); -->
+
+<!-- String pNo = null; -->
+
+<!-- String pName = null; -->
+
+<!-- int type = 0; -->
+
+<!-- if (loginProf != null) { -->
+<!-- 	pNo = loginProf.getpNo(); -->
+<!-- 	pName = loginProf.getpName(); -->
+<!-- 	type = loginProf.getType(); -->
+
+<!-- } -->
+
+<!-- System.out.println(type); -->
+<!-- %> -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,39 +59,22 @@
 										<path d="M32,38a8,8,0,1,0-8-8A8.009,8.009,0,0,0,32,38Zm0-12a4,4,0,1,1-4,4A4,4,0,0,1,32,26Z"></path>
 										<path d="M6,62H58a2,2,0,0,0,2-2V15a2,2,0,0,0-.586-1.414l-11-11A2,2,0,0,0,47,2H6A2,2,0,0,0,4,4V60A2,2,0,0,0,6,62Zm42-4H16V46H48ZM16,6H31v4h4V6h4v8H16ZM8,6h4V16a2,2,0,0,0,2,2H41a2,2,0,0,0,2-2V6h3.172L56,15.829V58H52V44a2,2,0,0,0-2-2H14a2,2,0,0,0-2,2V58H8Z"></path></svg>
 								</div>
-								<h4 class="text-color-primary font-weight-bold text-6 mb-3">과제 제출 현황</h4>
+								<h4 class="text-color-primary font-weight-bold text-6 mb-3">내강의목록</h4>
 
-								<table class="table table-sm">
+								<table id="" class="table table-sm">
+<%-- 								<c:param name="pNo" value="${p.pNo }" /> --%>
 									<thead>
 										<tr>
-											<th>#</th>
 											<th>과목명</th>
-											<th>과제명</th>
-											<th>제출상태</th>
+											<th>교수명</th>
+											<th>수강대상</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<td>1</td>
-											<td>사랑할과?</td>
-											<td>이별의대처법</td>
-											<td>미제출</td>
-										</tr>
-										<tr>
-											<td>2</td>
-											<td>Jacob</td>
-											<td>Thornton</td>
-											<td>@fat</td>
-										</tr>
-										<tr>
-											<td>-</td>
-											<td>-</td>
-											<td>-</td>
-											<td>-</td>
-										</tr>
+									<tbody id="tbody">
+									
 									</tbody>
 								</table>
-								<a href="demo-it-services-services-detail.html" class="text-color-dark font-weight-bold float-right custom-text-size-1">과제 바로가기 +</a>
+								<a href="prof_lecturelist.do" class="text-color-dark font-weight-bold float-right custom-text-size-1">내강의 목록 바로가기 +</a>
 							</div>
 						</div>
 					</div>
@@ -241,6 +250,62 @@
 			</div>
 		</section>
 	</div>
+
+
+	
+	<script src="resources/vendor/jquery/jquery.min.js"></script>
+	<script>
+	//페이지가 불러 졌을때
+	$(document).ready(function() {
+	
+		t();
+
+	})
+	
+
+	//비동기 통신
+
+	function t(){
+	
+ $.ajax({
+										// type: "POST", //GET 타입
+						url : "prof_main.do", //URL 선언
+						dataType : "json",
+						success : function(data) { //성공시 매개변수로 DATA를 받음
+							//12번 눌러서 콘솔로 이동하면 json형태의 데이터 확인
+							$tableBody = $("#tbody");
+							$tableBody.html("");
+								
+							var $tr;
+							var $className;
+							var $profName;
+							var $deptName;
+							
+							//데이터의 크기만큼 돌려줌
+							for ( var str  = 0; str < 3; str++) {
+								//tr 태그를 생성해서 id에 tbody에 추가
+									$tr = $("<tr>");
+									$className = $("<td>").text(data[str].className);
+									$profName = $("<td >").text( data[str].profName);
+									$deptName=$("<td>").text(data[str].deptName);
+									
+									$tr.append($className);
+									$tr.append($profName);
+									$tr.append($deptName);
+									$tableBody.append($tr);
+							}
+							
+						},
+						error : function(error) {
+							alert("오류 발생" + error);
+						}
+					})
+		}
+
+
+
+	
+	</script>
 </body>
 <%@ include file="common/footer.jsp"%>
 </html>

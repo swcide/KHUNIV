@@ -28,7 +28,6 @@ public class EmailSender  {
     		System.out.println(email.getContent());
     		System.out.println(email.getReceiver());
     		
-    		
        MimeMessage msg = mailSender.createMimeMessage();
         try {
             msg.setSubject(email.getSubject());
@@ -39,13 +38,6 @@ public class EmailSender  {
             System.out.println("MessagingException");
             e.printStackTrace();
         }
-//        try {
-//        	mailSender.send(msg);
-//        }catch(MailException e) {
-//            System.out.println("MailException발생");
-//            e.printStackTrace();
-//        }
-        System.out.println("check1");
     }
 
 }

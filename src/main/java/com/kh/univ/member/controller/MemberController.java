@@ -356,48 +356,40 @@ public class MemberController {
 	@RequestMapping("pwEmail.do")
 	public ModelAndView sendEmailAction(Student s, Professor p, Email email, ModelAndView mv, @RequestParam(value = "id") String id, @RequestParam(value = "e_mail") String e_mail,
 			@RequestParam(value = "type") int type, HttpServletResponse response) throws Exception {
-
-		System.out.println("ddddddddddddddddddddddddddddddddddddd");
-
-		System.out.println("id:" + id);
-		System.out.println("e_mail:" + e_mail);
-		System.out.println("type:" + type);
+		// 난수 생성(인증번호)
+		// 메일에 포함될 난수 값임
 		String newPwd = "";
 		String st[] = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
 		Random r = new Random();
 		for (int i = 1; i <= 6; i++) {
 			newPwd += st[r.nextInt(26)];
 		}
-		System.out.println(newPwd);
 		// 학생
 		// -------------------------------------------------------------------------------------------
 		if (type == 1) {
 			s.setsNo(id);
 			s.setsEmail(e_mail);
 			s.setType(type);
+			// 아이디와 이메일 둘 다 충족한 값 가져오기
 			Student sendEmailS = mService.sendEmailS(s);
-			System.out.println("가져온아이디 : " + sendEmailS.getsNo());
-			System.out.println(sendEmailS);
+			// 메일 안내 내용에 사용될 유저 이름
 			String userName = s.getsName();
 
+			// 입력ID와 DB 저장된 ID 일치 && 입력Email과 DB 저장된 Email 일치 충족 시
 			if (sendEmailS.getsNo().equals(id) && sendEmailS.getsEmail().equals(e_mail)) {
-				System.out.println("여기까지 못와 ?");
 				email.setContent("비밀번호 찾기 인증번호 입니다." + System.getProperty("line.separator") + System.getProperty("line.separator") + "인증번호는 " + newPwd + " 입니다." + System.getProperty("line.separator")
 						+ System.getProperty("line.separator") + " 인증번호를 올바르게 입력해주시길 바랍니다." + System.getProperty("line.separator") + System.getProperty("line.separator")
 						+ "인증번호를 입력하시면 비밀번호 변경 화면으로 이동됩니다.");
-				System.out.println("인증번호는 " + newPwd + " 입니다.");
-				email.setReceiver(e_mail);
-				// 얘 왜 이름 안들어가니 ? 빡치게
-				email.setSubject("안녕하세요" + userName + "님. KH 사이버 대학교 행정팀 입니다.");
-				System.out.println("확인용 : " + email);
+				email.setReceiver(e_mail); // 받는사람
+				email.setSubject("안녕하세요" + userName + "님. KH 사이버 대학교 행정팀 입니다."); // 이메일 제목
 
-				emailSender.SendEmail(email);
+				emailSender.SendEmail(email); // email에 담은 값들을 전송 클래스로 이동
 
 				mv.addObject("type", type);
 				mv.addObject("id", id);
 				mv.addObject("e_mail", e_mail);
 				mv.addObject("newPwd", newPwd);
-				mv.setViewName("member/pwNumCheck");
+				mv.setViewName("member/pwNumCheck"); // 인증번호 확인 화면으로 전송
 				return mv;
 			} else {
 				response.setContentType("text/html; charset=UTF-8");
@@ -414,15 +406,11 @@ public class MemberController {
 			p.setpEmail(e_mail);
 			p.setType(type);
 			Professor sendEmailP = mService.sendEmailP(p);
-			System.out.println(sendEmailP);
-			System.out.println("가져온아이디 : " + sendEmailP.getpNo());
 
 			if (sendEmailP.getpNo().equals(id)) {
 				email.setContent("인증번호는 " + newPwd + " 입니다.");
-				System.out.println("비밀번호는 " + newPwd + " 입니다.");
 				email.setReceiver(e_mail);
 				email.setSubject(id + "님 비밀번호 찾기 메일입니다.");
-				System.out.println("확인용 : " + email);
 
 				emailSender.SendEmail(email);
 
@@ -457,31 +445,22 @@ public class MemberController {
 	@RequestMapping(value = "pwNumCheck.do", method = RequestMethod.POST)
 	public ModelAndView pass_injeung(@RequestParam(value = "insertPassCode") String insertPassCode, @RequestParam(value = "type") int type, @RequestParam(value = "id") String id,
 			@RequestParam(value = "passCode") String passCode, @RequestParam(value = "e_mail") String e_mail, HttpServletResponse response_equals) throws IOException {
-		System.out.println(type);
-		System.out.println(id);
-		System.out.println(e_mail);
-		System.out.println("넣어야할 값 : passCode : " + passCode);
-		System.out.println("넣은 값 : insertPassCode : " + insertPassCode);
 
 		ModelAndView mv = new ModelAndView();
 
-		// mv.setViewName("/member/pwChange");
-		//
-		// mv.addObject("e_mail",e_mail);
 		if (insertPassCode.equals(passCode)) {
-			// 인증번호가 일치할 경우 인증번호가 맞다는 창을 출력하고 비밀번호 변경창으로 이동시킨다
-			mv.setViewName("member/pwChange");
 			mv.addObject("e_mail", e_mail);
 			mv.addObject("id", id);
 			mv.addObject("type", type);
-			// 만약 인증번호가 같다면 이메일을 비밀번호 변경 페이지로 넘기고, 활용할 수 있도록 한다.
+			mv.setViewName("member/pwChange");
+			//인증번호 일치 시 비밀번호 변경화면으로 이동
 			response_equals.setContentType("text/html; charset=UTF-8");
 			PrintWriter out_equals = response_equals.getWriter();
 			out_equals.println("<script>alert('인증번호가 일치하였습니다. 비밀번호 변경창으로 이동합니다.');</script>");
 			out_equals.flush();
 			return mv;
 
-		} else /* if (insertPassCode != passCode) */ {
+		} else {
 			ModelAndView mv2 = new ModelAndView();
 			mv2.setViewName("member/pwNumCheck");
 			response_equals.setContentType("text/html; charset=UTF-8");
@@ -510,64 +489,40 @@ public class MemberController {
 	@RequestMapping(value = "pwChange.do", method = RequestMethod.POST)
 	public ModelAndView pwChange(ModelAndView mv, Student s, Professor p, @RequestParam(value = "type") int type, @RequestParam(value = "id") String id, @RequestParam(value = "e_mail") String email,
 			@RequestParam(value = "password") String pwd, HttpServletRequest request, HttpServletResponse pass) throws Exception {
-		System.out.println("비밀번호 변경");
-		System.out.println(type);
-		System.out.println(id);
-		System.out.println(email);
-		System.out.println(pwd);
-
 		BCryptPasswordEncoder bcpt = new BCryptPasswordEncoder();
-
-		// mv.setViewName("member/login");
-		// 학생 비밀번호 업데이트 로직
+		// 학생 비밀번호 업데이트 
 		if (type == 1) {
-			System.out.println("1번 if");
 			s.setsNo(id);
 			s.setsPwd(pwd);
 			s.setsEmail(email);
 			s.setType(type);
-			System.out.println(pwd);
 			// 암호화
 			String encodingPwd = bcpt.encode(s.getsPwd());
-			System.out.println(encodingPwd);
 			// 다시 셋터 사용
 			s.setsPwd(encodingPwd);
-
 			int result = mService.pwChangeS(s);
-			System.out.println(result);
-
 			if (result > 0) {
 				System.out.println("result : " + result);
 				mv.setViewName("member/login");
 			} else {
 				mv.setViewName("member/pWChange");
-				System.out.println("실패실패 대실패 ~");
 			}
 			return mv;
-
-			// 교수 비밀번호 업데이트 로직
+			// 교수 비밀번호 업데이트 
 		} else {
-			System.out.println("2번 if");
 			p.setpNo(id);
 			p.setpPwd(pwd);
 			p.setpEmail(email);
 			p.setType(type);
-
 			// 암호화
 			String encodingPwd = bcpt.encode(p.getpPwd());
-			System.out.println(encodingPwd);
 			// 다시 셋터 사용
 			p.setpPwd(encodingPwd);
-
 			int result = mService.pwChangeP(p);
-			System.out.println(result);
-
 			if (result > 0) {
-				System.out.println("result : " + result);
 				mv.setViewName("member/login");
 			} else {
 				mv.setViewName("member/pWChange");
-				System.out.println("실패실패 대실패 ~");
 			}
 			return mv;
 		}

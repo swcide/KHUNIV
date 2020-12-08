@@ -338,6 +338,7 @@
 
 <script>
 function ExamPointsChange(e) {
+	$("select#AttendancePoints option").remove();
 
     if(e.value == "0") var d = ["0", "10", "20", "30", "40", "50","60" ,"70", "80", "90", "100"];
     else if(e.value == "10") var d = ["0", "10", "20", "30", "40", "50","60" ,"70", "80", "90"];
@@ -365,7 +366,7 @@ function ExamPointsChange(e) {
     }   
 }
 
-function AssignmentPointsChange(e){
+function AssignmentPointsChange(){
 	
     add = parseInt($("#examPoints option:selected").val())
 		 +parseInt($("#AssignmentPoints option:selected").val());
@@ -403,7 +404,7 @@ function AssignmentPointsChange(e){
         
     }   
 }
-function AttendancePointsChange(e){
+function AttendancePointsChange(){
 	
 	//배점 SELECT 최종 합 더하기
 	add=  parseInt($("#examPoints option:selected").val())
