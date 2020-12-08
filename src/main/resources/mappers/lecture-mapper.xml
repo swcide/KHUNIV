@@ -37,7 +37,7 @@
 		<id property="classNo" column="CLASS_NO" />
 		<id property="className" column="CLASS_NAME" />
 		<id property="sNo" column="STD_NO" />
-		<id property="sName" column="STD_NO" />
+		<id property="sName" column="STD_NAME" />
 		<id property="assignExpl" column="ASSIGNMENT_EXPLANATION" />
 		<id property="submitDate" column="SUBMIT_DATE" />
 		<id property="assignFile" column="ASSIGNMENT_FILE_NAME" />

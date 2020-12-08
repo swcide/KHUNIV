@@ -130,7 +130,7 @@ ul.tab2 li.current {
 					<div class="row"></div>
 					<div class="row">
 						<div class="col p-static">
-							<h1 data-title-border>청강신청</h1>
+							<h1 data-title-border>수강신청</h1>
 						</div>
 					</div>
 				</div>
@@ -320,27 +320,13 @@ ul.tab2 li.current {
 					alert("수강신청이 완료되었습니다.")
 					
 					location.reload();
-						
-						
 					}
 				},error: function(result){
-					console.log(result)
 				}
-				
-				
 			});
-			
-			
-		
 		});
-	
-	
-
         $(document).ready(function () {
         	$('#datatable1').dataTable();
-        	
-        
-        	
             $('ul.tab2 li').click(function () {
                 var tab_id = $(this).attr('data-tab');
                 $('ul.tab2 li').removeClass('current');
@@ -365,6 +351,9 @@ ul.tab2 li.current {
         
         
         
+        
+        
+        
           $(".add").click(function () {
                 var btn = $(this);
                 var remove = $('.remove');
@@ -373,16 +362,12 @@ ul.tab2 li.current {
                 var sNo = "<%= ((Student)session.getAttribute("loginUser")).getsNo() %>";
                 var td = tr.children();
                 var pNo = btn.siblings('input').val();
-                console.log(pNo);
-                	
                 	
                 var str = '<tr class="cart_table_item" >'
                 	+'<input type="hidden"  name ="cNo" value="'+ $.trim(td.eq(0).text())+'" >'
-//                 	+'<input type="hidden"  name ="cName" value="'+td.eq(1).text()+'" >'
                 	+'<input type="hidden"  name ="pName" value="'+td.eq(2).text()+'" >'
                 	+'<input type="hidden"  name ="pNo" value="'+pNo+'" >'
                 	+'<input type="hidden"  name ="sNo" value="'+sNo+'" >'
-//                 	+'<input type="hidden"  name ="credit" value="'+td.eq(3).text()+'" >'
                		+'<td class="product-thumbnail" ><span class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase">'
                     + $.trim(td.eq(0).text())
                     + '    </span> </td><td class="product-thumbnail"><span class="amount font-weight-bold text-color-dark text-decoration-none text-uppercase"> '
@@ -393,19 +378,13 @@ ul.tab2 li.current {
                     + td.eq(3).text()
                     + '</span> </td> <td class="product-thumbnail"> <a href="javascript:void(0)"onclick ="test(this)"class="btn btn-sm btn-primary remove">-</a></td></tr>';
                 
-                    
                     $(".afterclassT tbody ").append(str);
-                
-                    
-                    
 //                     ===================================
 //                     	중복확인
 //                     ====================================
                     var arr = $('#datatable2').find('tr');
                     for (var i = 1; i < arr.length; i++){
-                    	
                     	for (var j = 0; j < i; j++) {
-                    
 	                    var arrI = $(arr[i]).find("td"); //비교하고 싶은 항목이 있는곳 찾아가기
 	                    var arrJ = $(arr[j]).find('td'); //비교하고 싶은 항목이 있는곳 찾아가기
 	                    var arrItxt = arrI.text(); //비교항목 텍스트 추출하기

@@ -718,11 +718,11 @@
 							<tr>
 								<td width='50%' align='right' style='padding-right: 12px;'>
 									<input type='button' value='이전'
-									onclick="previous_div('1과목', 0, ${status.index})"
+									onclick="previous_div('시험', 0, ${status.index})"
 									class='btn01_qpass'>
 								</td>
 								<td style='padding-left: 10px;'><input type='button'
-									value='다음' onclick="next_div('1과목', 0, ${status.index})"
+									value='다음' onclick="next_div('시험', 0, ${status.index})"
 									class='btn01_qpass'></td>
 							</tr>
 						</table>
@@ -740,7 +740,7 @@
 							<tr>
 								<td align="center"
 									style="color: green; font-weight: bold; border: solid 1px #ccc; border-bottom: none">
-									1과목</td>
+									시험</td>
 							</tr>
 						</tbody>
 					</table>
@@ -806,19 +806,15 @@
 		<input type="hidden" name="initEachTotal">
 	</form>
 
-
 	<!-- JavaScripts
 	============================================= -->
 	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 
+	
 	<script type="text/javascript" language="javascript">var max_five = Array(10);</script>
 	<script>
-     max_five[0] = '${test-(test%1)%1 -1}';</script>
-	<script>max_five[1] = '${test-(test%1)%1-1}';</script>
-	<script>max_five[2] = '${test-(test%1)%1-1}';</script>
-	<script>max_five[3] = '${test-(test%1)%1-1}';</script>
-	<script>max_five[4] = '${test-(test%1)%1-1}';</script>
+     max_five[0] = '3';</script>
 	<script>
 	
 	 
@@ -830,19 +826,13 @@
 	
 	
 	<script>
-	
-
 	 $(window).on('beforeunload', function (event) {
 			
 		 
 		  event.returnValue = '';
 		  
 		  return "";
-		 
-        		 
      });
-	
-	
 	
 		$(document).ready(function(){
 			
@@ -861,12 +851,6 @@
 			document.onkeydown = noRefresh;
 		})
 		
-	
-	
-		
-
-	
-		
 		function timer(){
 			var t = $('#time').val();
 			var d =$('#openDate').val();
@@ -874,19 +858,11 @@
 			
 			 //opendate date형으로 변경
 			 
-			 console.log(openDate);
-			 
 			 var oYear = d.substring(0,4);
 			 var oMonth = d.substring(5,7);
 			 var oDate = d.substring(8,10);
 			 var oHours = d.substring(11,13);
 			 var oMinutes = d.substring(14,16);
-			 
-			 console.log(oYear);
-			 console.log(oMonth);
-			 console.log(oDate);
-			 console.log(oHours);
-			 console.log(oMinutes);
 			 
 		 	 var openDatetoDate = new Date(Number(oYear), Number(oMonth)-1, Number(oDate),Number(oHours),Number(oMinutes));
 				 
@@ -901,20 +877,7 @@
 			 var ld = new Date(openDatetoDate);
 			 var limitTime =ld.setMinutes(cd.getMinutes() +time);  //마감 시간
 			
-			
-			
-			
 			var countTime =(limitTime-today)/1000;
-			 
-			 
-			console.log(time);
-			
-			console.log(limitTime)
-			console.log(today)
-			console.log(openDate)
-			
-			
-			console.log(countTime)
 			
 			var min="";
 			var sec="";
@@ -934,8 +897,7 @@
 				$('#rTime').val(countTime);
 				
 				
-				
-				if(countTime==100){
+				if(countTime==299){
 					alert("시험 종료 5분전 입니다. 답안 제출을 꼭 해주세요!")
 					
 				}else if(countTime<0){
@@ -943,12 +905,10 @@
 					clearInterval(timer);
 	                var params = $('#fm').serialize();
 	                $.ajax({
-	                		
 	                	url:"tInsert.do",
 	                	data :params,
 	                	success : function(data){
 	                		if(data="success"){
-	                	
 		                		window.close();
 		                	
 	                		}
@@ -956,9 +916,6 @@
 	                })
 					
 				}
-				
-				
-				
 			},1000)
 
 		}
@@ -967,7 +924,6 @@
         
         /* 첫화면으로 이동*/
         function moveP1() {
-           
            var currentI = $('#current_i').val();
            var currentJ = $('#current_j').val();
            var currentDiv = $('#div'+currentI+currentJ);
@@ -982,39 +938,32 @@
            indexDiv.css("visibility",'visible');
        }
 
+          /* 인덱스에서의 선택 처리*/
+          function start_test(i, mode, startNum, eachTotal) {
 
-            /* 인덱스에서의 선택 처리*/
-            function start_test(i, mode, startNum, eachTotal) {
-
-        
-                var f = document.test_form;
-                var index_div = $('#index_div');
+      
+              var f = document.test_form;
+              var index_div = $('#index_div');
 
 
-                targetDiv = i - 1;
-                index_div.css('display','none') ;
-                f.mode.value= mode;
-        
-                
-                $('#current_mode').val(mode)
-                $('#current_startNum').val(startNum) ;
-                $('#current_questionTotal').val(eachTotal);
+              targetDiv = i - 1;
+              index_div.css('display','none') ;
+              f.mode.value= mode;
+      
+              
+              $('#current_mode').val(mode)
+              $('#current_startNum').val(startNum) ;
+              $('#current_questionTotal').val(eachTotal);
 
-                var finishBtn = $('#btnFinish' + targetDiv);
-                var resultDisplay = $('#resultDisplay' + targetDiv);
-                resultDisplay.innerHTML = "";
+              var finishBtn = $('#btnFinish' + targetDiv);
+              var resultDisplay = $('#resultDisplay' + targetDiv);
+              resultDisplay.innerHTML = "";
 
-                if (mode == "first") { /* 응시하기*/
-                }
-
-                replace_div(targetDiv, 0);
-                index_div.css('visibility','hidden');
-            }
-
-  
-
-        
-
+              if (mode == "first") { /* 응시하기*/
+              }
+              replace_div(targetDiv, 0);
+              index_div.css('visibility','hidden');
+          }
 
         /* 해당 구역으로 이동*/
         function replace_div(divNum, fiveNum) {
@@ -1057,7 +1006,6 @@
         	
             var currentMode = $('#current_mode').val();
            
-
             var ans = $('#answer' + question_num + ans_num);
             var ques = $('#quesitem' + question_num + ans_num);
 
@@ -1066,20 +1014,15 @@
                 $('#answer' + question_num + i).attr("src", "resources/img/test/num" + i + ".gif"); 
                 $('#quesitem' + question_num + i).css('backgroundImage','');
             }
-
             var ansIndex = question_num - $('#current_startNum').val();
             move2question(ansIndex);
             ques.css('backgroundImage',"url('resources/img/test/red_v38.gif')"); 
             ques.css('backgroundRepeat',"no-repeat") ;
             ans.attr('src',"resources/img/test/num" + ans_num + "_gray.gif") ;
-
             /* 폼에 값 저장하기*/
             $('#ans_try' + question_num).val(ans_num);
             
-            
-            
             var f = document.test_form;
-
             
                 var tryList = "";
                 var checkList="";
@@ -1092,13 +1035,9 @@
                    		checkList =	checkList + ans_try+","
                    	}
                     
-                    
-                    
                     tryList = tryList + ans_try + ",";
-                    
                 }
                 f.ansTryList.value = tryList;
-            
           
             // 잔여문제 확인용
             var arr = checkList.split(",");
@@ -1125,7 +1064,6 @@
             nextFive = fiveIndex - 1;
             replace_div(divIndex, nextFive);
         }
-
         function next_div(courseName, divIndex, fiveIndex) {
             if (fiveIndex == max_five[divIndex]) {
                 alert("여기가 " + courseName + " 마지막입니다.\t");
@@ -1134,14 +1072,11 @@
             nextFive = fiveIndex +1;
             replace_div(divIndex, nextFive);
         }
-
         function move2question(ansIndex) {
             var divNum = $('#current_i').val();
             var fiveNum = Math.floor(ansIndex / 5); //1page에 5개씩 뽑기 때문에 5로 나눔
             replace_div(divNum, fiveNum);
-  
         }
-
         function get_notTriedNum(startNum, endNum) {
             var ans_try;
             for (var i = startNum; i <= endNum; i++) {
@@ -1150,28 +1085,21 @@
             }
             return -1;
         }
-
         function finish_exam(divIndex) {
             /* 안푼 문제가 있는지 체크*/
             var startNum = $('#current_startNum').val();
             var eachTotal = $('#current_questionTotal').val();
             var endNum = Number(startNum) + Number(eachTotal) - 1;
-          
-
-            console.log('zz')
 
             var notTriedNum = get_notTriedNum(startNum, endNum);
             if (notTriedNum != -1) {
                 var ansIndex = notTriedNum - Number(startNum);
-                if (!confirm("아직 풀지 않은 문제가 있습니다.\n\n이대로 채점하시려면 [확인]을 선택하시고,\n\n모두 푸시려면 [취소]를 선택하신 후\n\n답안란의 풀지 않은 문제번호를 선택하시면 \n\n해당 문제로 이동합니다.")) {
+                alert("아직 풀지 않은 문제가 있습니다.\n\n모두 푸시려면 [취소]를 선택하신 후\n\n답안란의 풀지 않은 문제번호를 선택하시면 \n\n해당 문제로 이동합니다.")
                     move2question(ansIndex);
-                    return;
-                }
+                return false;
             }
-
             var f = document.test_form;
             nextSameIndex = divIndex + 1;
-
             
                 var tryList = "";
                 for (var i = startNum; i <= endNum; i++) {
@@ -1181,8 +1109,6 @@
                 }
                 f.ansTryList.value = tryList;
                 f.targetDiv.value = $('#current_i').val();
-                
-                
                 var params = $('#fm').serialize();
                 $.ajax({
                 		
@@ -1190,10 +1116,8 @@
                 	data :params,
                 	success : function(data){
                 		if(data="success"){
-                		var check =confirm("정말 종료하시겠습니까?");
-                		
+                		var check =confirm("정말 제출하시겠습니까?");
 	                		if(check == true){
-	
 	                		window.close();
 	                		}else{
 	                			return false;
@@ -1201,8 +1125,6 @@
                 		}
                 	}
                 })
-                
-            
         }
     </script>
 

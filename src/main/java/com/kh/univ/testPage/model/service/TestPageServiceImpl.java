@@ -21,52 +21,63 @@ public class TestPageServiceImpl implements TestPageService {
 	@Autowired
 	private TestPageDao tDao;
 	
+	/**
+	 * 내 시험 리스트
+	 */
 	@Override
 	public ArrayList<TestList> getClassList(semesterPoint sp) {
-		
 		return tDao.getclassList(sp);
 	}
-
-
+	/**
+	 *내가 본 시험 리스트
+	 */
 	@Override
 	public ArrayList<TestGrade> getMyTest(TestGrade tg) {
 		return tDao.getMyTest(tg);
-
 	}
 
 
+	/**
+	 *
+	 *중간고사 리스트
+	 */
 	@Override
 	public ArrayList<TestList> midList(TestList tl) {
 		return tDao.midList(tl);
 	}
 
 
+	/**
+	 * 문제 목록
+	 */
 	@Override
 	public ArrayList<Test> selectTestList(TestList tl) {
 		return tDao.selectTestList(tl);
 	}
-
-
-
-
+	/**
+	 * 문제
+	 */
 	@Override
 	public TestList selectTest(TestList tl) {
 		return tDao.selectTest(tl);
 	}
-
-
+	/**
+	 * 시험성적 업데이트
+	 */
 	@Override
 	public int insertGrade(TestGrade tg) {
 		return tDao.insertGrade(tg);
 	}
-
-
+	/**
+	 * 배점 가져오기
+	 */
 	@Override
 	public LecturePlan lpOne(String cNo) {
 		return tDao.lpOne(cNo);
 	}
-
-
+	/**
+	 * 학기 성적 업데이트
+	 */
 	@Override
 	public int updateSp(semesterPoint sp) {
 		return tDao.updateSp(sp);
@@ -78,13 +89,6 @@ public class TestPageServiceImpl implements TestPageService {
 	}
 
 
-	/**
-	 *시험 봤늕 ㅣ확인
-	 */
-	@Override
-	public ArrayList<TestGrade> alreadyTest(TestList tl) {
-		return tDao.alreadyTest(tl);
-	}
 
 
 }

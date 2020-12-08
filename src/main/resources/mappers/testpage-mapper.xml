@@ -117,7 +117,6 @@
      sp.SEM_YEAR,
      sp.SEME_NO,
      TEST_NO
-     
 
          FROM TB_CLASS C
          JOIN TB_DEPARTMENT D USING(DEPT_NO)
@@ -138,6 +137,7 @@
         AND TEST_NO = #{tNo}
 	
 	</select>
+   
 	
 	<select id="midList" resultMap="TestListResultSet">
       	SELECT     
@@ -175,24 +175,18 @@
         TEST_TYPE,
         OPENDATE,
         TEST_TIME
-       
-        
         FROM TB_PROF_TEST pt
         join TB_SEMESTER_POINT using(class_no)
         join tb_class c using(class_no)
-        
         WHERE TEST_NO =#{tNo}
         AND STD_NO=#{sNo}
-     
      </select>
-     
      <select id="selectTestList" resultMap="TestResultSet">
         select *
         from tb_test
         where test_no =#{tNo}
         ORDER BY QUESTION_NO ASC
      </select>
-     
      <insert id="insertGrade" parameterType="TestGrade">
      	INSERT INTO
      	TB_TEST_GRADE
@@ -202,17 +196,13 @@
      	#{pNo},
      	#{tNo},
      	#{point},
-     	#{rTime}
-     	)
-     
+     	#{rTime}   	)
      </insert>
 	 <select id="lpOne" resultMap="Sylla1ResultSet">
 	 SELECT	 *
 	 FROM TB_LECTURE_PLAN
 	 WHERE CLASS_NO =#{cNo}
-	 
 	 </select>
-
 	<select id="updateSp" resultMap="semesterPointResultSet">
 	 UPDATE  TB_SEMESTER_POINT
 	 
@@ -226,17 +216,12 @@
 	 <when test="report !=0">
 	 SET REPORT=${report}
 	 </when>
-	 
 	 </choose>
 	 WHERE STD_NO =#{sNo}
-	 
-	 
-	 
 	 AND SEM_YEAR =#{semYear}
 	 AND SEME_NO =#{semNo}
 	 AND PROF_NO =#{pNo}
 	 AND CLASS_NO =#{cNo}
-	
 	</select>
 	
 	<select id ="hList" resultMap="HomeworkGradeResultSet">
@@ -264,12 +249,7 @@
    
    </select>
    
-     <select id="alreadyTest" resultMap="TestGradeResultSet">
-   	 SELECT * FROM TB_TEST_GRADE
-        where STD_NO = #{sNo}	
-        AND TEST_NO = #{tNo}
-   </select>
-   
+
  
 
 </mapper>

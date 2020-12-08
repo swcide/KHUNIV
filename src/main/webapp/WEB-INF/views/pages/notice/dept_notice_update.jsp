@@ -62,42 +62,32 @@
 										</div>
 										<div class="form-group">
 											<input class="form-control"  name="nTitle" value="${n.nTitle }">
-										
 										</div>
 										<div class="form-row">
-
 											<div class="form-group col">
-										
-												  <div class=" ">
-										              <div class="mb-3">
-										                <textarea class="textarea" placeholder="Place some text here" name="nContent"
-										                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
-										                          ${n.nContent }
-							                            </textarea>
-										              </div>
-										            
-										            </div>
-										            <div>첨부파일</div>
-													<div>
-													
-													
-													
-													<input class="form-control-file" type="file" name="uploadFile">
-														<c:if test="${ !empty n.originalFileName }">
-															<br> 현재 업로드한 파일 :
-															<a href="${ contextPath }/resources/uploadFiles/${n.renameFileName}" download="${n.originalFileName}">${n.originalFileName}</a>
-														</c:if>
-													</div>
-											
+											  <div class=" ">
+									              <div class="mb-3">
+									                <textarea class="textarea" placeholder="Place some text here" name="nContent"
+									                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+									                          ${n.nContent }
+						                            </textarea>
+									              </div>
+									            
+									            </div>
+									            <div>첨부파일</div>
+												<div>
+												<input class="form-control-file" type="file" name="uploadFile">
+													<c:if test="${ !empty n.originalFileName }">
+														<br> 현재 업로드한 파일 :
+														<a href="${ contextPath }/resources/uploadFiles/${n.renameFileName}" download="${n.originalFileName}">${n.originalFileName}</a>
+													</c:if>
+												</div>
 											</div>
 										</div>
 										<div>
 										 <a href="javascript:history.go(-1)" class="btn btn-quaternary mb-2">뒤로가기</a>
 										</div>
 										<input	type="submit" value="수정하기"class="btn btn-dark btn-modern float-right">
-					
-										
-										
 									</form>
 										
 									

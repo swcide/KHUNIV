@@ -44,6 +44,13 @@ public class TestPageController {
 	
 
 	
+	/**
+	 * 
+	 * 강의 리스트
+	 * @param mv
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("tList.do")
 		public ModelAndView testMain (ModelAndView mv,HttpSession session) {
 		
@@ -52,21 +59,20 @@ public class TestPageController {
 		Student s = (Student) session.getAttribute("loginUser");
 		semesterPoint sp = new semesterPoint();
 		
-		
+		// 리스트 뽑을 arrayList 선언
 		ArrayList<TestGrade> tgList = new ArrayList<TestGrade>();
 		
+		// 현재 년도, 월
 		String year = String.valueOf(cal.get(Calendar.YEAR));
 		int month = cal.get(Calendar.MONTH+1);
 	
 		
 		sp.setsNo(s.getsNo());
 		sp.setSemYear(year);
-		
-		
 	    
 		if(month>9) {
 			sp.setSemNo("2");
-			
+			// 내 시험 리스트 불러오기
 			ArrayList<TestList> tl =tService.getClassList(sp);
 			
 			 for (int i = 0; i < tl.size(); i++) {
@@ -80,6 +86,7 @@ public class TestPageController {
 				 tg.setsNo(sNo);
 				 tg.settNo(tNo);
 				 
+				 // 내가 본 시험 불러오기
 				 ArrayList<TestGrade> add = tService.getMyTest(tg) ;
 					
 				 for (int j = 0; j < add.size(); j++) {
@@ -87,7 +94,6 @@ public class TestPageController {
 						 tgList.add(add.get(j));
 					 }
 				 }
-			
 			}
 			mv.addObject("tg",tgList);
 			mv.addObject("tl",tl);
@@ -105,6 +111,12 @@ public class TestPageController {
 	
 	
 
+	/**
+	 * 중간고사 리스트
+	 * @param mv
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("tMidterm.do")
 	public ModelAndView TestMidterm(ModelAndView mv,HttpSession session) {
 		Student s = (Student)session.getAttribute("loginUser");
@@ -123,12 +135,7 @@ public class TestPageController {
 		if(month>9) {
 			tl.setSemNo("2");
 			ArrayList<TestList> tlList = tService.midList(tl);
-				
-				
-				
 				 for (int i = 0; i < tlList.size(); i++) {
-					
-				 	
 					 String tNo=tlList.get(i).gettNo();
 					 String sNo= s.getsNo();
 					 TestGrade tg = new TestGrade();
@@ -145,18 +152,12 @@ public class TestPageController {
 					 }
 				 }
 				 
-				 
 			mv.addObject("tl",tlList);
 			mv.addObject("tg",tgList);
 			mv.setViewName("Test_Std/exam_midterm");
-			
 		}
 	
-
-	
 		return mv;
-
-	
 	}
 	
 	@RequestMapping("tFinal.do")
@@ -239,16 +240,13 @@ public class TestPageController {
 				grade += qWorth;
 			}
 		}
-	
 		TestGrade tg = new TestGrade();
-		
 		tg.setPoint(grade);
 		tg.setcNo(tl.getcNo());
 		tg.setpNo(tl.getpNo());
 		tg.setsNo(tl.getsNo());
 		tg.settNo(tl.gettNo());
 		tg.setrTime(tl.getrTime());
-		
 		System.out.println("===tg===");
 		System.out.println(tg);
 //		시험 인설트 
@@ -256,14 +254,10 @@ public class TestPageController {
 		String cNo = tl.getcNo();
 		System.out.println("===result===");
 		System.out.println(result);
-		
 //		배점 가져오기
 		LecturePlan lp = tService.lpOne(cNo);
-		
 		int examPoints = lp.getExamPoints()/2;
-		
 		int mTest  = (int) (grade*(examPoints*0.01));
-		
 		
 //		현재 시험 가져오기
 		semesterPoint sp = new semesterPoint();
@@ -271,16 +265,13 @@ public class TestPageController {
 		String year = String.valueOf(cal.get(Calendar.YEAR));
 		int month = cal.get(Calendar.MONTH+1);
 		
-		
 		sp.setmTest(mTest);
 		sp.setcNo(tl.getcNo());
 		sp.setpNo(tl.getpNo());
 		sp.setsNo(tl.getsNo());
 		sp.setSemYear(year);
-		
 		System.out.println("===sp===");
 		System.out.println(sp);
-		
 		if(month >8) {
 			sp.setSemNo("2");
 			int result2 = tService.updateSp(sp);
@@ -290,33 +281,18 @@ public class TestPageController {
 			sp.setsNo("1");
 			int result2 = tService.updateSp(sp);
 		}
-		
-		
-		
-		
-		
 		return "success";
-	
 	}
-	
 
 	@RequestMapping("tTest.do")
 	public ModelAndView TestOpen(ModelAndView mv, TestList tl) {
-		
-		
-		
-		
 		ArrayList<Test> tList = tService.selectTestList(tl);
 		TestList t = tService.selectTest(tl);
-		
 		mv.addObject("tTime",tl.getTestTime());
 		mv.addObject("openDate",tl.getOpenDate());
 		mv.addObject("tList",tList);
 		mv.addObject("t",t);
 		mv.setViewName("Test_Std/test");
-		
-		
-		
 		
 		return mv;
 	}

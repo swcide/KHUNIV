@@ -38,20 +38,14 @@
                     
                     <div class="title-block">
 						<h4>김진태 님의 중간 고사 목록입니다.</h4>
-                    
-                        
                     </div>
-                    
                     <ul class="iconlist">
                         <li ><i class="icon-bell"></i>응시하기 이후 반드시 제출을 눌러주세요!</li>
                     </ul>
-                    
-
 					<div class="row col-mb-50">
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                  
                                     <th>No.</th>
                                     <th style="text-align: center;">과목명</th>
                                     <th style="text-align: center;">이수</th>
@@ -62,7 +56,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                             
                             <c:forEach var ="tl" items="${tl }">
                              <c:if test="${tl.tType eq 'M' }">
                                 <tr>                                                             
@@ -93,7 +86,6 @@
 		                                            <span>응시완료 </span>
 		                                        </button>
 	                                        </c:if>
-	                                        
 	                                         <c:if test="${tl.tNo ne tg.tNo  }">
 		                                        <a  class="button button-rounded button-reveal  button-small button-aqua button-border  text-right" onclick="openTest(this)">
 		                                            <i class="icon-line-arrow-right"></i>
@@ -102,7 +94,6 @@
 	                                        </c:if>
 	                                        </c:forEach>
                                         </c:if>
-                                        
 	                                         <c:if test="${empty tg }">
 		                                        <a  class="button button-rounded button-reveal  button-small button-aqua button-border  text-right" onclick="openTest(this)">
 		                                            <i class="icon-line-arrow-right"></i>
@@ -161,34 +152,15 @@
 	 var toNum = Number(noHangle)//넘버로
 	 /// 가져온 값들
 	 
-	 
 	 //opendate date형으로 변경
-	 
-	 console.log(openDate);
 	 
 	 var oYear = openDate.substring(0,4);
 	 var oMonth = openDate.substring(5,7);
 	 var oDate = openDate.substring(8,10);
 	 var oHours = openDate.substring(11,13);
 	 var oMinutes = openDate.substring(14,16);
-	 
-	 console.log(oYear);
-	 console.log(oMonth);
-	 console.log(oDate);
-	 console.log(oHours);
-	 console.log(oMinutes);
-	 
  	 var openDatetoDate = new Date(Number(oYear), Number(oMonth)-1, Number(oDate),Number(oHours),Number(oMinutes));
-		 
-	 
-	 
-	 
 	 ////////////////////////////////////////////////
-	 
-	 
-	 
-	 
-	 
 	 // 현재 시간
 	 var now = new Date();
 	//현재시간에 분까지 담음
@@ -208,11 +180,6 @@
 	 
 	 
 	 var limitTime =ld.setMinutes(cd.getMinutes() +toNum);
-	 
-	 
-	 console.log(checkDate)
-	 console.log(today)
-	 console.log(limitTime)
 	 
 	 if(checkDate<=today && today <= limitTime ){
 		 alert("시험창으로 이동합니다.")

@@ -134,10 +134,12 @@ public interface profLecService {
 	ArrayList<LecturePlanWeek> selectSeList(HomeworkGrade gb);
 
 
-	int EvaluationInsert(HomeworkGrade gb);
+	
 
 	ArrayList<Test> takeQList(int qId);
 	
+	
+	int EvaluationInsert(HomeworkGrade gb);
 	
 	ArrayList<HomeworkGrade> hList(HomeworkGrade gb);
 	

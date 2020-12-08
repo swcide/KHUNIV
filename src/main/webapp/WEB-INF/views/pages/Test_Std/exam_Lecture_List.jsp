@@ -23,35 +23,22 @@
 
 		<section id="content">
 			<div class="content-wrap">
-
-                
-			
-
 				<div class="container clearfix">
-                    
-                    
                     <div class="title-block">
 						<h4>${s.sNo } 님의 강의 목록 입니다.</h4>
-                    
-                        
                     </div>
-                    
                     <ul class="iconlist">
                         <li ><i class="icon-bell"></i> 시험 응시 여부를 꼭 확인하세요!</li>
                     </ul>
-                    
-
 					<div class="row col-mb-50">
                         <table class="table table-hover">
                             <thead>
-                           
                                 <tr>
                                    <th>No</th>
                                    <th style="text-align: center;">과목명</th>
                                    <th style="text-align: center;">이수</th>
                                    <th style="text-align: center;">담당교수</th>
                                    <th style="text-align: center;">시험 종류</th>
-                                   
                                    <th style="text-align: center;">시험 응시</th>
                                 </tr>
                             </thead>
@@ -79,9 +66,6 @@
                                   	   </c:if>
                                   	   </c:forEach>
                                    </c:if>
-                                   
-                                    
-                                    
                                     <c:forEach var ="tg" end="0" items="${tg }">
                                    <c:if test="${tl.tType eq 'F' }">
 	                                   <td style="text-align: center;">기말고사</td>

@@ -50,21 +50,23 @@ public class RegistrationController {
 			
 		return mv;
 			
-			
-			
 		}
 	
+	/**
+	 * 
+	 * 수강신청 insert
+	 * @param mv
+	 * @param session
+	 * @param sp
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("rInsert.do")
 	public String RegistrationInsert (ModelAndView mv,HttpSession session,semesterPoint sp){
 		
-		
-//		System.out.println(r);
-		
 		String [] cNo =sp.getcNo().split(",");
 		String [] sNo =sp.getsNo().split(",");
 		String [] pNo =sp.getpNo().split(",");
-		System.out.println(sp.getcNo());
 
 		Calendar cal = Calendar.getInstance();
 		String year = String.valueOf(cal.get(Calendar.YEAR));
@@ -86,24 +88,21 @@ public class RegistrationController {
 			}else if (Integer.parseInt(month)<8) {
 				sp2.setSemNo("1");
 			}
-
 			
 			spList.add(sp2);
-			
-			
-		
-			
-			
 		}
-		
-		
-		
 		
 		int result = rService.insertRegistration(spList);
 
 		return "success";
 	}
-	
+	/**
+	 * 수강신청 성적 insert
+	 * @param mv
+	 * @param session
+	 * @param sp
+	 * @return
+	 */
 	@RequestMapping("ad_appl_stat.do")
 	public ModelAndView GradeList (ModelAndView mv,HttpSession session,semesterPoint sp){
 		Student s = (Student) session.getAttribute("loginUser"); 
@@ -125,8 +124,6 @@ public class RegistrationController {
 			mv.addObject("r",r);
 		}
 
-		
-		
 		
 		mv.setViewName("ad_register/ad_Application_Status");
 		

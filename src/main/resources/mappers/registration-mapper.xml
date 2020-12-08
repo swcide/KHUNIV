@@ -46,7 +46,6 @@
 
 	<select id="rSelectList" resultMap="RegistrationResultSet">
 		     SELECT  
-            
 	         CLASS_NO,
              CLASS_NAME,
 	        CLASS_TYPE,
@@ -54,15 +53,14 @@
             p.prof_no,
             p.prof_name, 
             CREDIT
-	    
 			FROM TB_CLASS C
 			left JOIN TB_DEPARTMENT D on (D.DEPT_NO=c.dept_no)          
 			left outer JOIN TB_CLASS_PROFESSOR CP USING(CLASS_NO)
             left outer JOIN TB_PROFESSOR P ON( p.prof_no= CP.PROFESSOR_NO)
             where TO_NUMBER(D.DEPT_NO) = #{dNo}
+            
             MINUS
             
-          
          SELECT   
          CLASS_NO,
              CLASS_NAME,
@@ -71,9 +69,7 @@
             p.prof_no,
             p.prof_name, 
             CREDIT
-	   
          FROM TB_SEMESTER_POINT T
-
          left outer join TB_CLASS C using(class_no)
         	JOIN TB_DEPARTMENT D on (D.DEPT_NO=c.dept_no)          
 			left outer JOIN TB_CLASS_PROFESSOR CP USING(CLASS_NO)
@@ -81,11 +77,7 @@
             where TO_NUMBER(D.DEPT_NO) = #{dNo}
          and STD_NO = #{sNo}
 	</select>
-	
-	   	
-	
 	<select id="myRSelectList" resultMap="RegistrationResultSet">
-	
          SELECT class_no FROM TB_SEMESTER_POINT T
          join TB_class_PROFESSOR using(class_no)
          join TB_CLASS C using(class_no)
@@ -93,9 +85,9 @@
          AND DEPT_NO = #{dNo}
 	</select>
 	
+	
 	<insert id="insertRegistration" parameterType="java.util.ArrayList">
 			<foreach collection="list" item="item"  separator=" " open="INSERT ALL" close="SELECT * FROM DUAL"> 
-			
 			INTO TB_SEMESTER_POINT	( 
 				STD_NO 
 			  , SEM_YEAR 
@@ -108,9 +100,7 @@
 			  , POINT
 			  , PROF_NO
 			  , AVG_POINT
-			  
 			)VALUES (
-		
 			   #{item.sNo} 
 			 , #{item.semYear} 
 			 , #{item.semNo} 
@@ -124,7 +114,6 @@
 			 , #{item.avgPoint}
 			 )
 		 </foreach>
-		   
 	</insert>
 	<select id="gradeList" resultMap="RegistrationResultSet">
 	
