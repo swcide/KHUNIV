@@ -155,11 +155,9 @@ if (month >= 7) {
 													<li><a class="dropdown-item" href="lecturelist.do"> 내 강의 목록 </a></li>
 													<li class="dropdown-submenu"><a class="dropdown-item" href="#">수업 관리</a>
 														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="#">학습 현황</a></li>
 															<li><a class="dropdown-item" href="attendance.do">출석 현황</a></li>
 															<li><a class="dropdown-item" href="javascript:grade();" >성적 현황</a></li>
 														</ul></li>
-													<li><a class="dropdown-item" href="speciallecture.do"> 특강 목록 </a></li>
 												</ul></li>
 											<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="tList.do"> 시험 </a></li>
 											<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"> 학적 관리 </a>
@@ -168,7 +166,6 @@ if (month >= 7) {
 														<ul class="dropdown-menu">
 															<li><a class="dropdown-item" href="ad_lect_list.do">강의 개설 정보</a></li>
 															<li><a class="dropdown-item" href="ad_lect_appl.do">수강신청</a></li>
-															<li><a class="dropdown-item" href="ad_audit_lect_appl.do">청강신청</a></li>
 															<li><a class="dropdown-item" href="ad_appl_stat.do">신청현황</a></li>
 														</ul></li>
 													<li><a class="dropdown-item" onClick="point_search_list()">성적조회</a></li>
