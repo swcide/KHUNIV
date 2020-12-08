@@ -20,18 +20,38 @@ public class TestPageDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
+	/**
+	 * 내 시험 리스트
+	 * @param sp
+	 * @return
+	 */
 	public ArrayList<TestList> getclassList(semesterPoint sp) {
 		return (ArrayList)sqlSession.selectList("testPageMapper.getclassList",sp);
 	}
 
+	/**
+	 * 내가 본 시험 리스트
+	 * @param tg
+	 * @return
+	 */
 	public ArrayList<TestGrade> getMyTest(TestGrade tg) {
 		return (ArrayList)sqlSession.selectList("testPageMapper.getMyTest",tg);
 	}
 
+	/**
+	 * 중간고사 리스트
+	 * @param tl
+	 * @return
+	 */
 	public ArrayList<TestList> midList(TestList tl) {
 		return (ArrayList)sqlSession.selectList("testPageMapper.midList",tl);
 	}
 
+	/**
+	 * 문제 목록
+	 * @param tl
+	 * @return
+	 */
 	public ArrayList<Test> selectTestList(TestList tl) {
 		return  (ArrayList)sqlSession.selectList("testPageMapper.selectTestList",tl);
 	}
@@ -40,18 +60,29 @@ public class TestPageDao {
 		return sqlSession.selectOne("testPageMapper.selectTest",tl);
 	}
 
+	/**
+	 * 성적 업데이트
+	 * @param tg
+	 * @return
+	 */
 	public int insertGrade(TestGrade tg) {
 		return sqlSession.insert("testPageMapper.insertGrade",tg);
 	}
 
+	/**
+	 * 배점 가져오기
+	 * @param cNo
+	 * @return
+	 */
 	public LecturePlan lpOne(String cNo) {
 		return sqlSession.selectOne("testPageMapper.lpOne",cNo);
 	}
 
-	public semesterPoint selectSp(TestList tl) {
-		return sqlSession.selectOne("testPageMapper.selectSp",tl);
-	}
-
+	/**
+	 * 학기 성적 업데이트
+	 * @param sp
+	 * @return
+	 */
 	public int updateSp(semesterPoint sp) {
 		return sqlSession.update("testPageMapper.updateSp",sp);
 	}
@@ -60,9 +91,6 @@ public class TestPageDao {
 		return (ArrayList)sqlSession.selectList("testPageMapper.hList",gb);
 	}
 
-	public ArrayList<TestGrade> alreadyTest(TestList tl) {
-		return (ArrayList)sqlSession.selectList("testPageMapper.alreadyTest",tl);
-	}
 
 
 

@@ -33,21 +33,16 @@ public class test {
 //	private static RegistrationService rService ;
 	
 	public static void main(String[] args) throws ParseException {
+
 		
-		String from = "2013-04-08 10:10:10";
-
-		SimpleDateFormat transFormat = new SimpleDateFormat("MM-dd HH:mm:ss");
-
-		Date to = transFormat.parse(from);
-		String to2 = transFormat.format(to);
-
-		Calendar cal = Calendar.getInstance();
 		
-//		cal.YEAR
+		for (int i = 0; i < 31; i++) {
+			
+			
+		}
 		
-		System.out.println(to2);
-
-	
+		
+		
 	}
 	
 

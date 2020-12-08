@@ -254,6 +254,8 @@ public class NoticeController {
 		int result = nService.updateNotice(n);
 
 		System.out.println("result=" + result);
+		
+		// 게시판 이동시 시퀀스 넘버 변경되기 때문에 새로 불러온다.
 		Notice upN = nService.updateAfterNotice(n);
 		System.out.println(upN);
 		int nId = upN.getnId();

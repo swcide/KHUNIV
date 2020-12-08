@@ -72,15 +72,6 @@
 		AND NTYPE= #{nType}
 	</update>
 
-<!-- 업데이트 된 값 불러오기 -->
-	<select id="updateAfterNotice" resultMap="noticeResultSet">
-		SELECT *
-		FROM TB_NOTICE_BOARD
-		WHERE NTITLE=#{nTitle}
-		AND NWRITER =#{nWriter}
-		And NCONTENT =#{nContent}
-		AND N_STATUS='Y'
-	</select>
 
 	<select id="selectNotice" resultMap="noticeResultSet">
 		SELECT *
@@ -99,6 +90,17 @@
 			VALUES(SEQ_GENER_NID.NEXTVAL,#{nType},#{nTitle},#{nContent},#{nWriter},#{nName},DEFAULT,DEFAULT,DEFAULT,DEFAULT,#{originalFileName},#{renameFileName},DEFAULT)
 		</if>
 	</insert>
+	
+	<!-- 업데이트 된 값 불러오기 -->
+	<select id="updateAfterNotice" resultMap="noticeResultSet">
+		SELECT *
+		FROM TB_NOTICE_BOARD
+		WHERE NTITLE=#{nTitle}
+		AND NWRITER =#{nWriter}
+		And NCONTENT =#{nContent}
+		AND N_STATUS='Y'
+	</select>
+	
 
 	<!-- 공지사항 수정 / 학사공지 미수정 NTYPE=1 / 일반공지 미수정 NTYPE=2 / 학사공지 수정 NTYPE=3 / 일반공지 수정 NTYPE=4 -->
 	<update id="updateNotice" parameterType="Notice">

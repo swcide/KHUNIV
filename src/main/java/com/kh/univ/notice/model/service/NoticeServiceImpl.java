@@ -11,98 +11,109 @@ import com.kh.univ.notice.model.vo.nReply;
 import com.kh.univ.common.PageInfo;
 import com.kh.univ.member.model.vo.Admin;
 
-
-
 @Service("nService")
 public class NoticeServiceImpl implements NoticeService {
 
-   @Autowired
-   private NoticeDao nDao;
-   
-   @Override
-   public int getListCount(int nType) {
-      return nDao.getListCount(nType);
-   }
-   
-   // 공지사항 탑5 불러오기
-   @Override
-   public ArrayList<Notice> selectTopList() {
-      return nDao.selectTopList();
-   }
-   
-  
+	@Autowired
+	private NoticeDao nDao;
 
-   @Override
-   public ArrayList<Notice> selectList(PageInfo pi,int nType) {
+	/**
+	 * 공지사항 페이징
+	 *
+	 */
+	@Override
+	public int getListCount(int nType) {
+		return nDao.getListCount(nType);
+	}
 
-      return  nDao.selectList(pi,nType);
-   }
+	// 공지사항 탑5 불러오기
+	@Override
+	public ArrayList<Notice> selectTopList() {
+		return nDao.selectTopList();
+	}
 
+	/**
+	 * 공지사항 게시글 리스트
+	 *
+	 */
+	@Override
+	public ArrayList<Notice> selectList(PageInfo pi, int nType) {
 
-   @Override
-   public Notice selectNotice( Notice n ) {
-     
-   
-	   
-      int result=nDao.updateCount(n);
-      
-      
-      if(result>0) {
-         return nDao.detailNotice(n);
-      }else {
-         return null;
-      }
-      
-   }
+		return nDao.selectList(pi, nType);
+	}
 
-   @Override
-   public int insertNotice(Notice n) {
-      return nDao.insertNotice(n);
-   }
+	/**
+	 * 디테일
+	 */
+	@Override
+	public Notice selectNotice(Notice n) {
 
-   @Override
-   public Notice selectUpdateNotice(Notice n) {
-      return nDao.selectNotice(n);
-   }
+		int result = nDao.updateCount(n);
 
-   @Override
-   public int updateNotice(Notice n) {
-      return nDao.updateNotice(n);
-   }
+		if (result > 0) {
+			return nDao.detailNotice(n);
+		} else {
+			return null;
+		}
 
-   @Override
-   public int deleteNotice(Notice n) {
-      return nDao.deleteNotice(n);
-   }
+	}
 
-   @Override
-   public ArrayList<nReply> selectReplyList(int nId) {
-      return nDao.selectReplyList(nId);
-   }
+	/**
+	 *
+	 *인서트
+	 */
+	@Override
+	public int insertNotice(Notice n) {
+		return nDao.insertNotice(n);
+	}
 
-   @Override
-   public int insertReply(nReply r) {
-      return nDao.insertReply(r);
-   }
+	/**
+	 *업데이트 뷰
+	 */
+	@Override
+	public Notice selectUpdateNotice(Notice n) {
+		return nDao.selectNotice(n);
+	}
 
-   @Override
-   public int deleteReply(nReply r) {
-      return nDao.deleteReply(r);
-   }
+	/**
+	 *업데이트 후
+	 */
+	@Override
+	public Notice updateAfterNotice(Notice n) {
+		return nDao.updateAfterNotice(n);
+	}
 
-   @Override
-   public int updateReply(nReply r) {
-      return nDao.updateReply(r);
-   }
+	/**
+	 * 업데이트
+	 */
+	@Override
+	public int updateNotice(Notice n) {
+		return nDao.updateNotice(n);
+	}
 
+	@Override
+	public int deleteNotice(Notice n) {
+		return nDao.deleteNotice(n);
+	}
 
-@Override
-public Notice updateAfterNotice(Notice n) {
-	return nDao.updateAfterNotice(n);
-}
+	@Override
+	public ArrayList<nReply> selectReplyList(int nId) {
+		return nDao.selectReplyList(nId);
+	}
 
+	@Override
+	public int insertReply(nReply r) {
+		return nDao.insertReply(r);
+	}
 
+	@Override
+	public int deleteReply(nReply r) {
+		return nDao.deleteReply(r);
+	}
 
-
+	@Override
+	public int updateReply(nReply r) {
+		return nDao.updateReply(r);
+	}
 
 }

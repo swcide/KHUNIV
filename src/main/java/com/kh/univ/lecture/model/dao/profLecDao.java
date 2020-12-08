@@ -118,10 +118,6 @@ public class profLecDao {
 		return (ArrayList)sqlSession.selectList("lectureMapper.SyllaPlanList", pNo);
 	}
 
-
-
-	
-
 	public int insertTestSchedule(ClassTest ct) {
 		return sqlSession.insert("lectureMapper.insertTestSchedule",ct);
 
@@ -194,9 +190,7 @@ public class profLecDao {
 
 	}
 
-	public int EvaluationInsert(HomeworkGrade gb) {
-		return sqlSession.insert("lectureMapper.EvaluationInsert",gb);
-	}
+
 
 	public ArrayList<Test> takeQList(int qId) {
 		return (ArrayList)sqlSession.selectList("lectureMapper.takeQList",qId);
@@ -214,9 +208,16 @@ public class profLecDao {
 		return (ArrayList)sqlSession.selectList("lectureMapper.lectureStudentDetail",ls);
 	}
 
+	
+	
+	public int EvaluationInsert(HomeworkGrade gb) {
+		return sqlSession.insert("lectureMapper.EvaluationInsert",gb);
+	}
+	
 	public LecturePlan selectLectureAttendancePointMax(LecturePlan lp) {
 		return sqlSession.selectOne("lectureMapper.sylla1",lp);
 	}
+	
 
 	public ArrayList<HomeworkGrade> hList(HomeworkGrade gb) {
 		return (ArrayList)sqlSession.selectList("testPageMapper.hList",gb);

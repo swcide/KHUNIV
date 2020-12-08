@@ -490,21 +490,14 @@ public class prof_LectureController {
 		
 		int listCount = plService.getListCount(p);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-
-		
 		
 		ArrayList<ClassTest> cTList = plService.classSelectList(p,pi);
-		
-//		System.out.println(cTList);
-		
 		
 		mv.addObject("cTList",cTList);
 		mv.addObject("pi",pi);
 		mv.setViewName("prof_lecture/prof_testList");
 		return mv;
 	}
-
-	
 	/**
 	 * 
 	 * 인서트 뷰
@@ -527,12 +520,6 @@ public class prof_LectureController {
 		
 		return mv;
 	}
-		
-
-	
-	
-
-
 	/**
 	 * 
 	 * 스케쥴 insert
@@ -553,14 +540,9 @@ public class prof_LectureController {
 		String[] arr = str.split(",");
 		ct.setcName(arr[0]);
 		ct.setcNo(arr[1]);
-		
-		
-		
-		
 //		-------------------------------------------------------
 		String str2 =openDate;
 		String str3 =openTime;
-		
 		
 		String[] arr2 = str2.split("-");
 		String[] arr3 = str3.split(":");
@@ -582,7 +564,6 @@ public class prof_LectureController {
 		}
 		return mv;
 	}
-	
 	/**
 	 * 시험스케쥴 디테일
 	 * @param mv
@@ -626,11 +607,6 @@ public class prof_LectureController {
 
 		String openDate2 = openDate+" "+openTime;
 		ct.setOpenDate(openDate2);
-
-
-		
-		
-		
 		
 		ArrayList<Test> t = plService.selectClassList(ct.getcNo());
 		int result = plService.updateTestSchedule(ct);
@@ -642,7 +618,6 @@ public class prof_LectureController {
 		}
 		return mv;
 	}
-	
 	/**
 	 * 
 	 * 문제 업데이트
@@ -696,11 +671,8 @@ public class prof_LectureController {
 			mv.addObject("tNo",tNo);
 			mv.setViewName("redirect:qList.do");
 		}
-		
-		
 		return mv;
 	}
-
 	/**
 	 * 문제 리스트
 	 * @param mv
@@ -710,18 +682,15 @@ public class prof_LectureController {
 	 */
 	@RequestMapping("qList.do")
 	public ModelAndView qList(ModelAndView mv, String cNo,String tNo) {
-		
-//		
-//		
 		ArrayList<Test> t = plService.selectClassList(tNo);
 		ClassTest ct = plService.selectClassOne(tNo);
 		mv.addObject("t",t);
 		mv.addObject("ct",ct)
 		.setViewName("prof_lecture/prof_test_after_insert");
+		System.out.println(t);
 		return mv;	
 		
 	}
-	
 	/**
 	 * 문제 리스트 ajax
 	 * @param mv
@@ -753,10 +722,8 @@ public class prof_LectureController {
 		System.out.println(t.getcNo());
 		System.out.println(t.gettNo());
 		
+		// qId 배열로 받기
 		for (int i = 0; i < qId.length; i++) {
-			System.out.println(qId[i]+":qId "+i+"번쨰");
-		
-//			Test t1 = new Test();
 			
 			Test t1 = plService.selectTest(Integer.parseInt(qId[i]));
 			
@@ -764,19 +731,11 @@ public class prof_LectureController {
 			
 			tArr.add(t1);
 		}
-			
-		
 		
 		System.out.println(tArr);
 		System.out.println(t);
 		System.out.println("qid-------takeQAdd------");
 		
-
-//		Test t1 = plService.selectTest(t.getqId());
-		
-//		t1.settNo(t.gettNo());
-//		System.out.println(t);
-//		
 		int result = plService.takeAddQ(tArr);
 		System.out.println(result);
 		
@@ -786,10 +745,11 @@ public class prof_LectureController {
 			return "fail";
 		}
 	}
-	
-	
-
-	
+	/**
+	 * 문제 삭제
+	 * @param t
+	 * @return
+	 */
 	@RequestMapping("qdelete.do")
 	public String testDelete(Test t) {
 		
@@ -839,6 +799,13 @@ public class prof_LectureController {
 		
 	}
 	
+	/**
+	 * 
+	 * 과제 리스트 뷰
+	 * @param mv
+	 * @param lh
+	 * @return
+	 */
 	@RequestMapping( "hWeekList.do")
 	public ModelAndView prof_homeworkWeekView(ModelAndView mv,LectureHomeWork lh) {
 		
@@ -851,6 +818,13 @@ public class prof_LectureController {
 	}
 	
 	
+	/**
+	 * 
+	 * 과제 인서트
+	 * @param mv
+	 * @param lh
+	 * @return
+	 */
 	@RequestMapping("hWeekInsertView.do")
 	public ModelAndView QuizDelete2(ModelAndView mv, LectureHomeWork lh) {
 		
@@ -954,21 +928,13 @@ public class prof_LectureController {
 		
 		Professor p =  (Professor)session.getAttribute("loginProf");
 		
-		
-		
 		String pNo =p.getpNo();
 		String cNo =gb.getcNo();
 		
 		gb.setpNo(pNo);
 		
-		
-		System.out.println(gb);
-		
-		
-		
 
 		int result=plService.EvaluationInsert(gb);
-		
 		
 		
 //		----------------------------------------- semesterPoint insert
@@ -980,24 +946,17 @@ public class prof_LectureController {
 			
 		  grade +=hg.get(i).getPoint();
 		}
-		System.out.println(grade);
 		
 		LecturePlan lp = tService.lpOne(cNo);
 		
-		
 		int reportPoint = lp.getAssignmentPoints();
-		
-		System.out.println(grade);
-		System.out.println(reportPoint+"examPoint");
 		
 		int report = (int) (grade*(reportPoint)/120);
 		
-		System.out.println(report);
 		semesterPoint sp = new semesterPoint();
 		Calendar cal = Calendar.getInstance();
 		String year = String.valueOf(cal.get(Calendar.YEAR));
 		int month = cal.get(Calendar.MONTH+1);
-		
 		
 		
 		sp.setcNo(gb.getcNo());
@@ -1006,7 +965,6 @@ public class prof_LectureController {
 		sp.setSemYear(year);
 		
 	
-		System.out.println(sp);
 		
 		if(month >8 && hg.size()==6) {
 			sp.setSemNo("2");

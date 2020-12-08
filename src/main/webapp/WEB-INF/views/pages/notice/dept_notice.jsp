@@ -73,7 +73,7 @@
 															<c:param name="nType" value="${n.nType }"/>
 														</c:url>
 														
-														
+													<!-- 	비밀글  -->
 														<c:if test="${nSecret eq 'N'}">
 															<a id="ntitle" href="${nDetail}">
 																${n.nTitle }

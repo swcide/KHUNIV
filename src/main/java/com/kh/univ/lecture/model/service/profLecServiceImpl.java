@@ -231,10 +231,6 @@ public class profLecServiceImpl implements profLecService {
 		return plDao.selectSeList(lh);
 	}
 
-	@Override
-	public int EvaluationInsert(HomeworkGrade gb) {
-		return plDao.EvaluationInsert(gb);
-	}
 
 	@Override
 	public ArrayList<Test> takeQList(int qId) {
@@ -264,6 +260,11 @@ public class profLecServiceImpl implements profLecService {
 	}
 
 	
+
+	@Override
+	public int EvaluationInsert(HomeworkGrade gb) {
+		return plDao.EvaluationInsert(gb);
+	}
 
 	@Override
 	public ArrayList<HomeworkGrade> hList(HomeworkGrade gb) {

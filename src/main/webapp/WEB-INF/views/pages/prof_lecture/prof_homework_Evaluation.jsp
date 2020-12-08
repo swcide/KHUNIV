@@ -56,7 +56,7 @@ padding-left:20px
 												<tr>
 													<td  onclick="Evaluation(this);">
 														<input type="hidden" value="${ag.sNo }">
-														<span class="font-weight-bold">${ag.sName }</span><br>
+														<span class="font-weight-bold">${ag.sName } </span><br>
 														<span>${ag.sNo }</span><br>
 														<c:if test="${empty ag.assignFile  }">
 														<span style="color:red">미제출</span>
@@ -67,7 +67,7 @@ padding-left:20px
 															<c:if test="${hg.sNo eq ag.sNo &&!empty hg.sNo  }">
 															<span class="check float-right" style="color:red">평가 완료</span>
 															</c:if>
-															<c:if test="${hg.sNo ne ag.sNo&&empty hg.sNo}">
+															<c:if test="${hg.sNo ne ag.sNo && !empty hg.sNo}">
 															<span class="check float-right" style="color:red">미 평가</span>
 															</c:if>
 															
@@ -82,10 +82,6 @@ padding-left:20px
 									</div>
 								</div>	
 								<div class="col-lg-2"></div>
-								
-							
-								
-								
 								
 								<div class="col-lg-5 mb-5 mb-lg-0 appear-animation animated fadeInUpShorter appear-animation-visible" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="200" style="animation-delay: 200ms;">
 									<c:forEach var ="ag" items="${ag }">
@@ -142,7 +138,6 @@ padding-left:20px
 										</div>
 										</form>
 									</div>
-										
 								
 										</c:if>
 										
@@ -195,10 +190,12 @@ padding-left:20px
 
 	function Evaluation(obj){
 		
+		
 		var check = $(obj).find(".check").text();
 		var sNo = $(obj).find('input').val();
 		var remove = $('#before');
 		var none = $('.change');
+		
 		
 		var after = $('#in'+sNo);
 		
@@ -212,10 +209,11 @@ padding-left:20px
 			
 			none.css("display","none");
 			after.css("display","none");
+			
 		}else if (check =="미 평가"){
 		
 	
-		console.log(sNo);
+		
 		
 		remove.css("display","none");
 		

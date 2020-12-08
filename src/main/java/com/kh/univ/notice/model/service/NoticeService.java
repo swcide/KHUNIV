@@ -41,8 +41,16 @@ public interface NoticeService {
 	int insertNotice(Notice n);
 
 
+	
+	/**
+	 * 
+	 * 업데이트 
+	 * @param n
+	 * @return
+	 */
 	Notice selectUpdateNotice(Notice n);
 	int updateNotice(Notice n);
+	Notice updateAfterNotice(Notice n);
 	
 
 
@@ -62,7 +70,7 @@ public interface NoticeService {
 
 	int updateReply(nReply r);
 
-	Notice updateAfterNotice(Notice n);
+	
 
 
 

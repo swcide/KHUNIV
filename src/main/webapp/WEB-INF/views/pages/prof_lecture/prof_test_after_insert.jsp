@@ -106,7 +106,7 @@ margin:0;}
 																	<c:param name="cNo" value="${t.cNo}"/>
 																	<c:param name="qId" value="${t.qId}"/>
 																</c:url>
-																<input type="hidden" value="${t.qNo }">
+																<input type="hidden" value="${t.qId }">
 																<a href="javascript:void(0)"onclick="update(this);"><i class="icon-wrench icons mr-2"></i></a>
 																<a href="${qdelete}"class="close" style="cursor: pointer;" ><span >×</span></a>
 															</div>
@@ -206,7 +206,7 @@ margin:0;}
 											
 							    			<div class="form-group row">
 												<label class="col-lg-3 control-label text-lg-right pt-2" >문제 명</label>											<div class="col-lg-6">
-												<textarea name="qTitle" class="textarea"></textarea>
+												<textarea name="qTitle" style="width:100%" class="textarea"></textarea>
 												</div>
 											</div>
 											<div class="form-group row">
@@ -322,11 +322,6 @@ margin:0;}
 		
 		var cNo = $('input[name=cNo]').val()
 		var tNo = $('input[name=tNo]').val()
-		
-	
-		console.log(cNo)
-		
-		
 		$.ajax({
 			url:"takeQList.do",
 			data:{
@@ -346,15 +341,12 @@ margin:0;}
 				var $tTitle;
 				var $qNo;
 				
-				
 				if(data.length>0){
 					for(var i in data){
 						console.log(cNo+"22")
 						year = data[i].tNo;
-						
 						var $year= year.charAt(1)+year.charAt(2)+year.charAt(3)+year.charAt(4)
 						var $tType =year.charAt(0);
-						
 						if($tType=="M"){
 							$tType= $("<td width='100'align='center'>").text("중간고사");
 							$tr = $("<tr>");
@@ -364,7 +356,6 @@ margin:0;}
 							$qNo=$("<td width='10px' align='center'><input type='checkbox' name='check' value='"+data[i].qId+"'></td>");
 							var hidden =$("<input type='hidden' name='cNo1' value='"+data[i].cNo+"'>");
 							var hidden3 =$("<input type='hidden' name='qId1' value='"+data[i].qId+"'>");
-							
 							$tr.append($year);
 							$tr.append($tType);
 							$tr.append($cName);
@@ -373,7 +364,6 @@ margin:0;}
 							$tr.append(hidden);
 							$tr.append(hidden3);
 							$tableBody.append($tr);
-							
 						}else if($tType=="F"){
 							$tType= $("<td width='80' align='center'>").text("기말고사");
 							$tr = $("<tr>");
@@ -382,8 +372,6 @@ margin:0;}
 							$qTitle=$("<td width='200px' align='center'>").html(data[i].qTitle);
 							$qNo=$("<td width='10px' align='center'><input name='check' type='checkbox' value='"+data[i].qId+"'></td>");
 							var hidden =$("<input type='hidden' name='cNo1' value='"+data[i].cNo+"'>");
-							
-							
 							$tr.append($year);
 							$tr.append($tType);
 							$tr.append($cName);
@@ -396,7 +384,7 @@ margin:0;}
 					}
 					$('#datatable').dataTable();
 				}else{
-					alert("야 2오류나")
+					alert("야 오류나")
 				}
 			},error:function(request,status,errorData){
 				alert("야 오류나 걍 에러임 엘스말고")
@@ -408,29 +396,14 @@ margin:0;}
 		
 	
 	function addTakeQ(){
-		
-		 
 	
 		var qId = [];
 
-	
-
-		
 		$("input[name=check]:checked").each(function(i) {
-
 			qId.push($(this).val())
-
-
-
 		});
-		
-
-		
 		var tNo = $('input[name=tNo]').val();
 		var cNo = $('input[name=cNo]').val()
-		
-		console.log(qId);
-		console.log(tNo)
 		
 		$.ajax({
 			url:"takeQListAdd.do",
@@ -449,7 +422,7 @@ margin:0;}
 					
 					
 					alert('불러오기 완료');
-					re()
+					location.reload();
 				
 				}
 			
@@ -519,7 +492,7 @@ margin:0;}
 	    		'	<div class="form-group row">'+
 				'		<label class="col-lg-3 control-label text-lg-right pt-2" >문제 명</label>	'+
 				'		<div class="col-lg-6">'+
-				'			<textarea class="textarea"></textarea>'+
+				'			<textarea style="width:100%"class="textarea"></textarea>'+
 				'		</div>'+
 				'	</div>'+
 				'	<div class="form-group row">'+
@@ -638,10 +611,10 @@ margin:0;}
 		var qId = $(obj).siblings('input').val();
 		
 		console.log(qId)
+		var update ="";
 		<c:forEach items="${t}" var="t">
-		
 		if(${t.qId} == qId){
-		var update =
+			update =
 				'<form id="fm" action="prof_testUpdate.do" method="post">'+
 				'	<div class="form-group row">'+
 				'		<label class="col-lg-2 control-label text-lg-right pt-2" ></label>'+
@@ -673,8 +646,8 @@ margin:0;}
 				'	</div>'+
 	    		'	<div class="form-group row">'+
 				'		<label class="col-lg-2 control-label text-lg-right pt-2" >문제 명</label>	'+
-				'		<div class="col-lg-9">'+
-				'			<textarea name="qTitle" class="textarea">${t.qTitle}</textarea>'+
+				'		<div class="col-lg-9" >'+
+				'			<textarea  style="width:100%px;"name="qTitle" class="textarea">${t.qTitle}</textarea>'+
 				'		</div>'+
 				'	</div>'+
 				'	<div class="form-group row">'+
@@ -720,13 +693,14 @@ margin:0;}
 				'		</div>'+
 				'	</div>'+
 				'</form>';
+		
 		}
+		
 		</c:forEach>
 		fm.after(update);
-		  $('.textarea').summernote();
+		console.log(update);
 		fm.css('display','none');
-		
-		
+	
 		
 		
 	}
@@ -796,7 +770,6 @@ function update2(obj){
 	function re(){
 		location.reload();
 	}
-	
 
 </script>
 <%@ include file="../common/footer.jsp"%>
